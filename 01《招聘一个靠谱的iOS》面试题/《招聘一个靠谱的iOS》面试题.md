@@ -257,6 +257,11 @@ Objective-C
 
 ## 13.ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
 
+- 对应基本数据类型默认关键字是
+atomic,readwrite,assign 
+- 对于普通的 Objective-C 对象 atomic,readwrite,strong
+
+
 ## 14.用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
 
 ## 15.@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
@@ -272,6 +277,23 @@ Objective-C
 ## 20.一个objc对象如何进行内存布局？（考虑有父类的情况）
 
 ## 21.一个objc对象的isa的指针指向什么？有什么作用？
+
+- sa指针是什么？
+    * 我们经常使用id来声明一个对象，本质上，我们创建的一个对象或实例其实就是一个struct objc_object结构体，而我们常用的id也就是这个结构体的指针。这个结构体只有一个成员变量，这是一个Class类型的变量isa，也是一个结构体									指针。面向对象中每一个对象都必须依赖一个类来创建，因此对象的isa指针就指向对象所属的类根据这个类模板能够创建出实例变量、实例方法等。
+- 对象的isa指针
+    * 每个实例对象有个isa的指针,他指向对象的类
+- 类对象的isa指针
+    * Class里也有个isa的指针, 指向meteClass(元类)。
+- 元类的isa指针
+    * 元类保存了类方法的列表。当类方法被调用时，先会从本身查找类方法的实现，如果没有，元类会向他父类查找该方法。同时注意的是：元类（meteClass）也是类，它也是对象。元类也有isa指针,它的isa指针最终指向的是一个根元类(root meteClass).根元类的isa指针指向本身，这样形成了一个封闭的内循环。
+
+![image](http://img.zhimengzhe.com/d/file/p/2017-03-23/8c3150b91893bfef8b2f925d986388d6.png)
+
+![image](http://hi.csdn.net/attachment/201201/19/0_1326963670oeC1.gif)
+
+参考文献：
+- [《iOS class深入理解： 实例对象、类对象、元类和isa指针》](http://www.zhimengzhe.com/IOSkaifa/253119.html)
+- [《iOS中isa指针》](https://blog.csdn.net/miao_em/article/details/56671616)
 
 ## 22.下面的代码输出什么？
 
@@ -304,6 +326,28 @@ Objective-C
     * 运行时创建的类是可以添加实例变量，调用 class_addIvar 函数。但是得在调用 objc_allocateClassPair 之后，objc_registerClassPair 之前，原因同上。
 
 ## 26.runloop和线程有什么关系？
+
+- 总的说来，Run loop，正如其名，loop表示某种循环，和run放在一起就表示一直在运行着的循环。实际上，run loop和线程是紧密相连的，可以这样说run loop是为了线程而生，没有线程，它就没有存在的必要。Run loops是线程的基础架构部分， Cocoa 和 CoreFundation 都提供了 run loop 对象方便配置和管理线程的 run loop （以下都以 Cocoa 为例）。每个线程，包括程序的主线程（ main thread ）都有与之相应的 run loop 对象。
+- runloop 和线程的关系：
+    * 主线程的run loop默认是启动的。
+iOS的应用程序里面，程序启动后会有一个如下的main()函数
+
+```
+int main(int argc, char * argv[]) {
+   @autoreleasepool {
+       return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+   }
+}
+```
+重点是UIApplicationMain()函数，这个方法会为main thread设置一个NSRunLoop对象，这就解释了：为什么我们的应用可以在无人操作的时候休息，需要让它干活的时候又能立马响应。
+    * 对其它线程来说，run loop默认是没有启动的，如果你需要更多的线程交互则可以手动配置和启动，如果线程只是去执行一个长时间的已确定的任务则不需要。
+    * 在任何一个 Cocoa 程序的线程中，都可以通过以下代码来获取到当前线程的 run loop 。
+
+```
+NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+```
+- 参考链接：[《Objective-C之run loop详解》](https://blog.csdn.net/wzzvictory/article/details/9237973)。
+
 
 ## 27.runloop的mode作用是什么？
 
@@ -670,7 +714,139 @@ observer中需要实现一下方法：
 
 ## 46.KVC的keyPath中的集合运算符如何使用？
 
+- 必须用在集合对象上或普通对象的集合属性上
+- 简单集合运算符有@avg， @count ， @max ， @min ，@sum，
+- 格式 @"@sum.age"或 @"集合属性.@max.age"
+- 例子：
+首先造一些测试数据、后面使用
+
+```
+- (NSArray *) loadData
+{
+    //假数据
+    Student *stu0 = [[Student alloc]init];
+    stu0.stuId = 0;
+    stu0.name = @"tom";
+    stu0.score = 88;
+    
+    Student *stu1 = [[Student alloc]init];
+    stu1.stuId = 1;
+    stu1.name = @"sam";
+    stu1.score = 90;
+    
+    Student *stu2 = [[Student alloc]init];
+    stu2.stuId = 2;
+    stu2.name = @"xiaoming";
+    stu2.score = 65;
+    
+    Student *stu3 = [[Student alloc]init];
+    stu3.stuId = 3;
+    stu3.name = @"shangsan";
+    stu3.score = 89;
+    
+    //此学生和stu3同名
+    Student *stu4 = [[Student alloc]init];
+    stu4.stuId = 4;
+    stu4.name = @"shangsan";
+    stu4.score = 91;
+    
+    return @[stu0,stu1,stu2,stu3,stu4];
+}```
+
+#####简单集合操作符
+>   `@count`: 返回一个值为集合中对象总数的NSNumber对象。
+      `@sum`:   首先把集合中的每个对象都转换为double类型，然后计算其总，最后返回一个值为这个总和的NSNumber对象。
+      `@avg`:   首先把集合中的每个对象都转换为double类型，然后计算其均分，最后返回一个值为这个总和的NSNumber对象。
+      `@max`:   使用compare:方法来确定最大值。所以为了让其正常工作，集合中所有的对象都必须支持和另一个对象的比较。
+      `@min`:   和@max一样，但是返回的是集合中的最小值。
+
+```
+//获取学生数据
+NSArray *arr = [self loadData];
+
+```
+/**
+ 简单集合操作符
+  @count: 返回一个值为集合中对象总数的NSNumber对象。
+  @sum:   首先把集合中的每个对象都转换为double类型，然后计算其总，最后返回一个值为这个总和的NSNumber对象。
+  @avg:   首先把集合中的每个对象都转换为double类型，然后计算其均分，最后返回一个值为这个总和的NSNumber对象。
+  @max:   使用compare:方法来确定最大值。所以为了让其正常工作，集合中所有的对象都必须支持和另一个对象的比较。
+  @min:   和@max一样，但是返回的是集合中的最小值。
+ */
+
+//注：--->   @
+//KVC集合运算符允许在valueForKeyPath:方法中使用key path符号在一个集合中执行方法。无论什么时候你在key path中看见了@，它都代表了一个特定的集合方法，其结果可以被返回或者链接，就像其他的key path一样。
+
+NSLog(@"学生集合平均分 = %@",[arr valueForKeyPath:@"@avg.score"]);
+NSLog(@"学生集合总数  = %@",[arr valueForKeyPath:@"@count"]);
+NSLog(@"学生集合最该分 = %@",[arr valueForKeyPath:@"@max.score"]);
+NSLog(@"学生集合最低分 = %@",[arr valueForKeyPath:@"@min.score"]);
+NSLog(@"学生集合成绩总和 = %@",[arr valueForKeyPath:@"@sum.score"]);
+
+```
+
+```
+打印结果：
+![简单集合操作符](http://upload-images.jianshu.io/upload_images/1599305-2543477be98d8c10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+#####对象操作符
+> `@unionOfObjects`/ `@distinctUnionOfObjects`: 返回一个由操作符右边的key path所指定的对象属性组成的数组。
+       其中:
+        `@distinctUnionOfObjects` 会对数组去重, 
+        `@unionOfObjects` 不会对数组去重
+
+```
+
+```
+/**
+   对象操作符
+ 
+   @unionOfObjects / @distinctUnionOfObjects: 返回一个由操作符右边的key path所指定的对象属性组成的数组。
+   其中:
+    @distinctUnionOfObjects 会对数组去重, 
+    @unionOfObjects 不会对数组去重
+ */
+NSLog(@"%@",[arr valueForKeyPath:@"@unionOfObjects.name"]);
+NSLog(@"%@",[arr valueForKeyPath:@"@distinctUnionOfObjects.name"]);
+
+```
+
+```
+打印结果：
+![对象操作符](http://upload-images.jianshu.io/upload_images/1599305-5063d87616d26289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#####数组和集合操作符
+>    `@distinctUnionOfArrays` / `@unionOfArrays`: 返回了一个数组，其中包含这个集合中每个数组对于这个操作符右面指定的key path进行操作之后的值。正如你期望的，distinct版本会移除重复的值。
+     `@distinctUnionOfSets`: 和`@distinctUnionOfArrays`差不多, 但是它期望的是一个包含着NSSet对象的NSSet，并且会返回一个NSSet对象。因为集合不能包含重复的值，所以它只有distinct操作。
+
+```
+
+```
+/**
+  数组和集合操作符
+ 
+ @distinctUnionOfArrays / @unionOfArrays: 返回了一个数组，其中包含这个集合中每个数组对于这个操作符右面指定的key path进行操作之后的值。正如你期望的，distinct版本会移除重复的值。
+ 
+ @distinctUnionOfSets: 和@distinctUnionOfArrays差不多, 但是它期望的是一个包含着NSSet对象的NSSet，并且会返回一个NSSet对象。因为集合不能包含重复的值，所以它只有distinct操作。
+ */
+
+NSArray *arr2 = [self loadData];
+NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
+
+```
+
+
+打印结果：
+
+![数组和集合操作符]
+
+![image](http://upload-images.jianshu.io/upload_images/1599305-6a75ebddd2c1b221.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 ## 47.KVC和KVO的keyPath一定是属性么？
+
 
 ## 48.如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？
 
