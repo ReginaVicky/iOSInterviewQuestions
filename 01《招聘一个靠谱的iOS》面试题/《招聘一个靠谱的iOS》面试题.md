@@ -320,13 +320,72 @@ Objective-C
 
 ## 29.猜想runloop内部是如何实现的？
 
+> 一般来讲，一个线程一次只能执行一个任务，执行完成后线程就会退出。如果我们需要一个机制，让线程能随时处理事件但并不退出，通常的代码逻辑 是这样的：
+
+
+```
+function loop() {
+    initialize();
+    do {
+        var message = get_next_message();
+        process_message(message);
+    } while (message != quit);
+}
+```
+或使用伪代码来展示下:
+
+```
+// 
+// http://weibo.com/luohanchenyilong/ (微博@iOS程序犭袁)
+// https://github.com/ChenYilong
+int main(int argc, char * argv[]) {
+ //程序一直运行状态
+ while (AppIsRunning) {
+      //睡眠状态，等待唤醒事件
+      id whoWakesMe = SleepForWakingUp();
+      //得到唤醒事件
+      id event = GetEvent(whoWakesMe);
+      //开始处理事件
+      HandleEvent(event);
+ }
+ return 0;
+}
+```
+参考文献：
+- [《深入理解RunLoop》](https://blog.ibireme.com/2015/05/18/runloop/#base)
+- [CFRunLoop](https://github.com/ming1016/study/wiki/CFRunLoop)，原作者是微博@我就叫Sunny怎么了
+
+
 ## 30.objc使用什么机制管理对象内存？
 
 - 通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的retainCount，如果retainCount为0，说明该对象没有地方需要继续使用了，可以释放掉了。
 
 ## 31.ARC通过什么方式帮助开发者管理内存？
 
+
 ## 32.不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）
+
+- 分两种情况：手动干预释放时机、系统自动去释放。
+    * 手动干预释放时机--指定autoreleasepool 就是所谓的：当前作用域大括号结束时释放。
+    * 系统自动去释放--不手动指定autoreleasepool
+- Autorelease对象出了作用域之后，会被添加到最近一次创建的自动释放池中，并会在当前的 runloop 迭代结束时释放。释放的时机总结起来，可以用下图来表示：
+
+![image](https://camo.githubusercontent.com/56f8ea718f47679e7771d247d8f6f820de2e0ab5/687474703a2f2f6936312e74696e797069632e636f6d2f32386b6f6477702e6a7067)
+
+下面对这张图进行详细的解释：
+
+- 从程序启动到加载完成是一个完整的运行循环，然后会停下来，等待用户交互，用户的每一次交互都会启动一次运行循环，来处理用户所有的点击事件、触摸事件。
+- 我们都知道： 所有 autorelease 的对象，在出了作用域之后，会被自动添加到最近创建的自动释放池中。
+- 但是如果每次都放进应用程序的 main.m 中的 autoreleasepool 中，迟早有被撑满的一刻。这个过程中必定有一个释放的动作。何时？在一次完整的运行循环结束之前，会被销毁。
+- 那什么时间会创建自动释放池？运行循环检测到事件并启动后，就会创建自动释放池。
+- 子线程的 runloop 默认是不工作，无法主动创建，必须手动创建。
+- 自定义的 NSOperation 和 NSThread 需要手动创建自动释放池。比如： 自定义的 NSOperation 类中的 main 方法里就必须添加自动释放池。否则出了作用域后，自动释放对象会因为没有自动释放池去处理它，而造成内存泄露。
+- 但对于 blockOperation 和 invocationOperation 这种默认的Operation ，系统已经帮我们封装好了，不需要手动创建自动释放池。
+- @autoreleasepool 当自动释放池被销毁或者耗尽时，会向自动释放池中的所有对象发送 release 消息，释放自动释放池中的所有对象。
+- 如果在一个vc的viewDidLoad中创建一个 Autorelease对象，那么该对象会在 viewDidAppear 方法执行前就被销毁了。
+- 参考链接：[《黑幕背后的Autorelease》](http://blog.sunnyxx.com/2014/10/15/behind-autorelease/)
+
+
 
 ## 33.BAD_ACCESS在什么情况下出现？
 
@@ -335,11 +394,129 @@ Objective-C
 
 ## 34.苹果是如何实现autoreleasepool的？
 
+- autoreleasepool 以一个队列数组的形式实现,主要通过下列三个函数完成.
+    * objc_autoreleasepoolPush
+    * objc_autoreleasepoolPop
+    * objc_autorelease
+    
+看函数名就可以知道，对 autorelease 分别执行 push，和 pop 操作。销毁对象时执行release操作。
+- 举例说明：我们都知道用类方法创建的对象都是 Autorelease 的，那么一旦 Person 出了作用域，当在 Person 的 dealloc 方法中打上断点，我们就可以看到这样的调用堆栈信息
+
+![image](https://camo.githubusercontent.com/1e77679169328e5128722b3268bf9a488fc00ae2/687474703a2f2f6936302e74696e797069632e636f6d2f31356d666a31312e6a7067)
+
 ## 35.使用block时什么情况会发生引用循环，如何解决？
+
+- 循环引用就是当self 拥有一个block的时候，在block 又调用self的方法。形成你中有我，我中有你，谁都无法将谁释放的困局。其实就是一个对象中强引用了block，在block中又强引用了该对象，就会发生循环引用。
+
+```
+self.myBlock = ^{
+    [self doSomething];
+  };
+       +-----------+           +-----------+
+       |    self   |           |   Block   |
+  ---> |           | --------> |           |
+       | retain 2  | <-------- | retain 1  |
+       |           |           |           |
+       +-----------+           +-----------+
+
+```
+又或者
+```
+ClassA* objA = [[[ClassA alloc] init] autorelease];
+  objA.myBlock = ^{
+    [self doSomething];
+  };
+  self.objA = objA;
+
+  +-----------+           +-----------+           +-----------+
+  |   self    |           |   objA    |           |   Block   |
+  |           | --------> |           | --------> |           |
+  | retain 1  |           | retain 1  |           | retain 1  |
+  |           |           |           |           |           |
+  +-----------+           +-----------+           +-----------+
+       ^                                                |
+       |                                                |
+       +------------------------------------------------+
+
+```
+
+- 解决方法是将该对象使用__weak或者__block修饰符修饰之后再在block中使用。
+    * id weak weakSelf = self; 或者 weak __typeof(&*self)weakSelf = self该方法可以设置宏
+    * id __block weakSelf = self;
+    * 或者将其中一方强制制空 xxx = nil。
+
+```
+__weak typeof (self) weakSelf = self;
+［self.button  ^｛
+      weakSelf.label.text = @"I am Label";
+ }］;
+
+//这个时候就变成这样了。
+  +-----------+           +-----------+           +-----------+
+  |   self    |           |  button   |           |   Block   |
+  |           | --------> |           | --------> |           |
+  | retain 1  |           | retain 1  |           | retain 1  |
+  |           |           |           |           |           |
+  +-----------+           +-----------+           +-----------+
+       ^                                                |
+       |                                                |
+       + - - - - - - - - - - - - - - - - - - - - - - - -+
+                               weak
+
+```
+- 检测代码中是否存在循环引用问题，可使用 Facebook 开源的一个检测工具[FBRetainCycleDetector](https://github.com/facebook/FBRetainCycleDetector) 。
+
 
 ## 36.在block内如何修改block外部变量？
 
 ## 37.使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？
+
+- 系统的某些block api中，UIView的block版本写动画时不需要考虑，但也有一些api 需要考虑：
+- 所谓“引用循环”是指双向的强引用，所以那些“单向的强引用”（block 强引用 self ）没有问题，比如这些：
+
+```
+[UIView animateWithDuration:duration animations:^{ [self.superview layoutIfNeeded]; }]; 
+```
+
+```
+[[NSOperationQueue mainQueue] addOperationWithBlock:^{ self.someProperty = xyz; }]; 
+```
+
+```
+[[NSNotificationCenter defaultCenter] addObserverForName:@"someNotification" 
+                                                 object:nil 
+                          queue:[NSOperationQueue mainQueue]
+                                             usingBlock:^(NSNotification * notification) {
+                                                   self.someProperty = xyz; }]; 
+```
+这些情况不需要考虑“引用循环”。
+
+但如果你使用一些参数中可能含有 ivar 的系统 api ，如 GCD 、NSNotificationCenter就要小心一点：比如GCD 内部如果引用了 self，而且 GCD 的其他参数是 ivar，则要考虑到循环引用：
+
+```
+__weak __typeof__(self) weakSelf = self;
+dispatch_group_async(_operationsGroup, _operationsQueue, ^
+{
+__typeof__(self) strongSelf = weakSelf;
+[strongSelf doSomething];
+[strongSelf doSomethingElse];
+} );
+```
+类似的
+
+```
+__weak __typeof__(self) weakSelf = self;
+ _observer = [[NSNotificationCenter defaultCenter] addObserverForName:@"testKey"
+                                                               object:nil
+                                                                queue:nil
+                                                           usingBlock:^(NSNotification *note) {
+     __typeof__(self) strongSelf = weakSelf;
+     [strongSelf dismissModalViewControllerAnimated:YES];
+ }];
+
+```
+- self --> _observer --> block --> self 显然这也是一个循环引用。
+- 总结：所谓循环引用，是因为当前控制器在引用着block，而block又引用着self即当前控制器，这样就造成了循环引用。系统的block或者AFN等block的调用并不在当前控制器中调用，那么这个self就不代表当前控制器，那自然也就没有循环引用的问题。
 
 ## 38.GCD的队列（dispatch_queue_t）分哪两种类型？
 
@@ -348,7 +525,26 @@ Objective-C
 
 ## 39.如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）
 
+- 使用Dispatch Group追加block到Global Group Queue,这些block如果全部执行完毕，就会执行Main Dispatch Queue中的结束处理的block。
+
+```
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_group_t group = dispatch_group_create();
+dispatch_group_async(group, queue, ^{ /*加载图片1 */ });
+dispatch_group_async(group, queue, ^{ /*加载图片2 */ });
+dispatch_group_async(group, queue, ^{ /*加载图片3 */ }); 
+dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        // 合并图片
+});
+```
+
+
 ## 40.dispatch_barrier_async的作用是什么？
+
+- 栅栏函数
+- 毫无疑问,dispatch_barrier_async函数的作用与barrier的意思相同,在进程管理中起到一个栅栏的作用,在并行队列中，为了保持某些任务的顺序，需要等待一些任务完成后才能继续进行，使用 barrier 来等待之前任务完成，避免数据竞争等问题。 dispatch_barrier_async 函数会等待追加到Concurrent Dispatch Queue并行队列中的操作全部执行完之后，然后再执行 dispatch_barrier_async 函数追加的处理，等 dispatch_barrier_async 追加的处理执行结束之后，Concurrent Dispatch Queue才恢复之前的动作继续执行。
+- 实现高效率的数据库访问和文件访问
+- 避免数据竞争
 
 ## 41.苹果为什么要废弃dispatch_get_current_queue？
 
@@ -398,7 +594,75 @@ Objective-C
 
 ## 43.addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？
 
+```
+// 添加键值观察
+/*
+1 观察者，负责处理监听事件的对象
+2 观察的属性
+3 观察的选项
+4 上下文
+5 self.person 被观察者
+6 self        观察者
+7 forKeyPath  观察的属性
+8 options     观察的选项
+*/
+[self.person addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"Person Name"];
+```
+observer中需要实现一下方法：
+
+```
+// 所有的 kvo 监听到事件，都会调用此方法
+/*
+ 1. 观察的属性
+ 2. 观察的对象
+ 3. change 属性变化字典（新／旧）
+ 4. 上下文，与监听的时候传递的一致
+ */
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
+```
+
+
 ## 44.如何手动触发一个value的KVO
+
+- 所谓的“手动触发”是区别于“自动触发”：
+- 自动触发是指类似这种场景：在注册 KVO 之前设置一个初始值，注册之后，设置一个不一样的值，就可以触发了。
+- 想知道如何手动触发，必须知道自动触发 KVO 的原理：
+    * 键值观察通知依赖于 NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey: 。在一个被观察属性发生改变之前， willChangeValueForKey: 一定会被调用，这就 会记录旧的值。而当改变发生后， observeValueForKey:ofObject:change:context: 会被调用，继而 didChangeValueForKey: 也会被调用。如果可以手动实现这些调用，就可以实现“手动触发”了。
+    * 那么“手动触发”的使用场景是什么？一般我们只在希望能控制“回调的调用时机”时才会这么做。
+具体做法如下：
+
+如果这个 value 是 表示时间的 self.now ，那么代码如下：最后两行代码缺一不可。
+
+```
+//  .m文件
+//  手动触发 value 的KVO，最后两行代码缺一不可。
+
+//@property (nonatomic, strong) NSDate *now;
+- (void)viewDidLoad {
+   [super viewDidLoad];
+   _now = [NSDate date];
+   [self addObserver:self forKeyPath:@"now" options:NSKeyValueObservingOptionNew context:nil];
+   NSLog(@"1");
+   [self willChangeValueForKey:@"now"]; // “手动触发self.now的KVO”，必写。
+   NSLog(@"2");
+   [self didChangeValueForKey:@"now"]; // “手动触发self.now的KVO”，必写。
+   NSLog(@"4");
+}
+```
+但是平时我们一般不会这么干，我们都是等系统去“自动触发”。“自动触发”的实现原理：
+> 比如调用 setNow: 时，系统还会以某种方式在中间插入 wilChangeValueForKey: 、 didChangeValueForKey: 和 observeValueForKeyPath:ofObject:change:context: 的调用。
+
+大家可能以为这是因为 setNow: 是合成方法，有时候我们也能看到有人这么写代码:
+
+```
+- (void)setNow:(NSDate *)aDate {
+   [self willChangeValueForKey:@"now"]; // 没有必要
+   _now = aDate;
+   [self didChangeValueForKey:@"now"];// 没有必要
+}
+```
+这完全没有必要，不要这么做，这样的话，KVO代码会被调用两次。KVO在调用存取方法之前总是调用 willChangeValueForKey: ，之后总是调用 didChangeValueForkey: 。
+
 
 ## 45.若一个类有实例变量 NSString *_foo ，调用setValue:forKey:时，可以以foo还是 _foo 作为key？
 
@@ -411,6 +675,81 @@ Objective-C
 ## 48.如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？
 
 ## 49.apple用什么方式实现对一个对象的KVO？
+
+- 在iOS开发中，苹果提供了许多机制给我们进行回调。KVO(key-value-observing)是一种十分有趣的回调机制，在某个对象注册监听者后，在被监听的对象发生改变时，对象会发送一个通知给监听者，以便监听者执行回调操作。最常见的KVO运用是监听scrollView的contentOffset属性，来完成用户滚动时动态改变某些控件的属性实现效果，包括渐变导航栏、下拉刷新控件等效果。
+- Apple 的文档对 KVO 实现的描述：
+> Automatic key-value observing is implemented using a technique called isa-swizzling... When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class ...
+- 从Apple 的文档可以看出：Apple 并不希望过多暴露 KVO 的实现细节。不过，要是借助 runtime 提供的方法去深入挖掘，所有被掩盖的细节都会原形毕露：
+> 当你观察一个对象时，一个新的类会被动态创建。这个类继承自该对象的原本的类，并重写了被观察属性的 setter 方法。重写的 setter 方法会负责在调用原 setter 方法之前和之后，通知所有观察对象：值的更改。最后通过 isa 混写（isa-swizzling） 把这个对象的 isa 指针 ( isa 指针告诉 Runtime 系统这个对象的类是什么 )（关于更多isa指针，点击[这里](https://note.youdao.com/)） 指向这个新创建的子类，对象就神奇的变成了新创建的子类的实例。
+如下图
+
+![image](https://camo.githubusercontent.com/9517b0d78961b5f32cf3392b99964f2e1f79fb35/687474703a2f2f6936322e74696e797069632e636f6d2f7379353775722e6a7067)
+
+KVO 确实有点黑魔法：
+> Apple 使用了 isa 混写（isa-swizzling）来实现 KVO 。
+
+- 下面做下详细解释：
+
+键值观察通知依赖于 NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey: 。在一个被观察属性发生改变之前， willChangeValueForKey: 一定会被调用，这就会记录旧的值。而当改变发生后， observeValueForKey:ofObject:change:context: 会被调用，继而 didChangeValueForKey: 也会被调用。可以手动实现这些调用，但很少有人这么做。一般我们只在希望能控制回调的调用时机时才会这么做。大部分情况下，改变通知会自动调用。
+
+比如调用 setNow: 时，系统还会以某种方式在中间插入 wilChangeValueForKey: 、 didChangeValueForKey: 和 observeValueForKeyPath:ofObject:change:context: 的调用。大家可能以为这是因为 setNow: 是合成方法，有时候我们也能看到有人这么写代码:
+ 
+```
+- (void)setNow:(NSDate *)aDate {
+   [self willChangeValueForKey:@"now"]; // 没有必要
+   _now = aDate;
+   [self didChangeValueForKey:@"now"];// 没有必要
+}
+```
+这完全没有必要，不要这么做，这样的话，KVO代码会被调用两次。KVO在调用存取方法之前总是调用 willChangeValueForKey: ，之后总是调用 didChangeValueForkey: 。怎么做到的呢?答案是通过 isa 混写（isa-swizzling）。第一次对一个对象调用 addObserver:forKeyPath:options:context: 时，框架会创建这个类的新的 KVO 子类，并将被观察对象转换为新子类的对象。在这个 KVO 特殊子类中， Cocoa 创建观察属性的 setter ，大致工作原理如下:
+
+```
+- (void)setNow:(NSDate *)aDate {
+   [self willChangeValueForKey:@"now"];
+   [super setValue:aDate forKey:@"now"];
+   [self didChangeValueForKey:@"now"];
+}
+```
+这种继承和方法注入是在运行时而不是编译时实现的。这就是正确命名如此重要的原因。只有在使用KVC命名约定时，KVO才能做到这一点。
+
+KVO 在实现中通过 isa 混写（isa-swizzling） 把这个对象的 isa 指针 ( isa 指针告诉 Runtime 系统这个对象的类是什么 ) 指向这个新创建的子类，对象就神奇的变成了新创建的子类的实例。这在Apple 的文档可以得到印证：
+> Automatic key-value observing is implemented using a technique called isa-swizzling... When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class ...
+
+然而 KVO 在实现中使用了 isa 混写（ isa-swizzling） ，这个的确不是很容易发现：Apple 还重写、覆盖了 -class 方法并返回原来的类。 企图欺骗我们：这个类没有变，就是原本那个类。。。
+
+但是，假设“被监听的对象”的类对象是 MYClass ，有时候我们能看到对 NSKVONotifying_MYClass 的引用而不是对 MYClass 的引用。借此我们得以知道 Apple 使用了 isa 混写（isa-swizzling）。具体探究过程可参考 这篇博文 。
+
+那么 wilChangeValueForKey: 、 didChangeValueForKey: 和 observeValueForKeyPath:ofObject:change:context: 这三个方法的执行顺序是怎样的呢？
+
+wilChangeValueForKey: 、 didChangeValueForKey: 很好理解，observeValueForKeyPath:ofObject:change:context: 的执行时机是什么时候呢？
+
+先看一个例子：
+
+```
+- (void)viewDidLoad {
+   [super viewDidLoad];
+   [self addObserver:self forKeyPath:@"now" options:NSKeyValueObservingOptionNew context:nil];
+   NSLog(@"1");
+   [self willChangeValueForKey:@"now"]; // “手动触发self.now的KVO”，必写。
+   NSLog(@"2");
+   [self didChangeValueForKey:@"now"]; // “手动触发self.now的KVO”，必写。
+   NSLog(@"4");
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+   NSLog(@"3");
+}
+```
+
+![image](https://camo.githubusercontent.com/154f30ca6e4fbb77af74b8186057b7f7c96221ff/687474703a2f2f6936362e74696e797069632e636f6d2f6e636d3774682e6a7067)
+   
+如果单单从下面这个例子的打印上，顺序似乎是 wilChangeValueForKey: 、 observeValueForKeyPath:ofObject:change:context: 、 didChangeValueForKey: 。
+其实不然，这里有一个 observeValueForKeyPath:ofObject:change:context: , 和 didChangeValueForKey: 到底谁先调用的问题：如果 observeValueForKeyPath:ofObject:change:context: 是在 didChangeValueForKey: 内部触发的操作呢？ 那么顺序就是： wilChangeValueForKey: 、 didChangeValueForKey: 和 observeValueForKeyPath:ofObject:change:context:
+
+不信你把 didChangeValueForKey: 注视掉，看下 observeValueForKeyPath:ofObject:change:context: 会不会执行。
+
+了解到这一点很重要，正如“手动触发”的使用场景是什么？一般我们只在希望能控制“回调的调用时机”时才会这么做。而“回调的调用时机”就是在你调用 didChangeValueForKey: 方法时。
+
 
 ## 50.IBOutlet连出来的视图属性为什么可以被设置成weak?
 
