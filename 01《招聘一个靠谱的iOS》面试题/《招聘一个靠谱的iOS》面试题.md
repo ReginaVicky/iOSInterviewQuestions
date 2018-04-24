@@ -141,6 +141,16 @@ Objective-C
 
 53.[lldb（gdb）常用的调试命令？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/01《招聘一个靠谱的iOS》面试题/《招聘一个靠谱的iOS》面试题.md#53-lldbgdb常用的调试命令)
 
+# 在微博@iOS程序犭袁的答案整理中多出来的题整理如下
+
+54. [runtime如何通过selector找到对应的IMP地址？（分别考虑类方法和实例方法）](https://note.youdao.com/)
+
+55. [使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？](https://note.youdao.com/)
+
+56. [objc中的类方法和实例方法有什么本质区别和联系？](https://note.youdao.com/)
+
+
+
 ## 1.风格纠错题
 ![image](https://camo.githubusercontent.com/748813155b831969a3ff5829f527b851d1b6c8a9/687474703a2f2f692e696d6775722e636f6d2f4f375a657639342e706e67)
 
@@ -201,6 +211,79 @@ Objective-C
 
 ## 7.@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
 
+- @property 的本质是什么？
+    * @property = ivar + getter + setter;
+- 下面解释下：
+    * “属性” (property)有两大概念：ivar（实例变量）、存取方法（access method ＝ getter + setter）。
+    * “属性” (property)作为 Objective-C 的一项特性，主要的作用就在于封装对象中的数据。 Objective-C 对象通常会把其所需要的数据保存为各种实例变量。实例变量一般通过“存取方法”(access method)来访问。其中，“获取方法” (getter)用于读取变量值，而“设置方法” (setter)用于写入变量值。这个概念已经定型，并且经由“属性”这一特性而成为 Objective-C 2.0 的一部分。 而在正规的 Objective-C 编码风格中，存取方法有着严格的命名规范。 正因为有了这种严格的命名规范，所以 Objective-C 这门语言才能根据名称自动创建出存取方法。其实也可以把属性当做一种关键字，其表示:
+    * 编译器会自动写出一套存取方法，用以访问给定类型中具有给定名称的变量。 所以你也可以这么说：
+    * @property = getter + setter;
+    * 例如下面这个类：
+
+```
+@interface Person : NSObject
+@property NSString *firstName;
+@property NSString *lastName;
+@end
+```
+上述代码写出来的类与下面这种写法等效：
+
+```
+@interface Person : NSObject
+- (NSString *)firstName;
+- (void)setFirstName:(NSString *)firstName;
+- (NSString *)lastName;
+- (void)setLastName:(NSString *)lastName;
+@end
+```
+property在runtime中是objc_property_t定义如下:
+
+```
+typedef struct objc_property *objc_property_t;
+```
+而objc_property是一个结构体，包括name和attributes，定义如下：
+
+```
+struct property_t {
+    const char *name;
+    const char *attributes;
+};
+```
+而attributes本质是objc_property_attribute_t，定义了property的一些属性，定义如下：
+
+```
+/// Defines a property attribute
+typedef struct {
+    const char *name;           /**< The name of the attribute */
+    const char *value;          /**< The value of the attribute (usually empty) */
+} objc_property_attribute_t;
+```
+而attributes的具体内容是什么呢？其实，包括：类型，原子性，内存语义和对应的实例变量。
+
+例如：我们定义一个string的property@property (nonatomic, copy) NSString *string;，通过 property_getAttributes(property)获取到attributes并打印出来之后的结果为T@"NSString",C,N,V_string
+
+其中T就代表类型，C就代表Copy，N代表nonatomic，V就代表对于的实例变量。
+
+- ivar、getter、setter 是如何生成并添加到这个类中的?
+    * “自动合成”( autosynthesis)
+完成属性定义后，编译器会自动编写访问这些属性所需的方法，此过程叫做“自动合成”(autosynthesis)。需要强调的是，这个过程由编译 器在编译期执行，所以编辑器里看不到这些“合成方法”(synthesized method)的源代码。除了生成方法代码 getter、setter 之外，编译器还要自动向类中添加适当类型的实例变量，并且在属性名前面加下划线，以此作为实例变量的名字。在前例中，会生成两个实例变量，其名称分别为 _firstName 与 _lastName。也可以在类的实现代码里通过 @synthesize 语法来指定实例变量的名字.
+
+```
+@implementation Person
+@synthesize firstName = _myFirstName;
+@synthesize lastName = _myLastName;
+@end
+```
+我为了搞清属性是怎么实现的,曾经反编译过相关的代码,他大致生成了五个东西
+- OBJC_IVAR_$类名$属性名称 ：该属性的“偏移量” (offset)，这个偏移量是“硬编码” (hardcode)，表示该变量距离存放对象的内存区域的起始地址有多远。
+- setter 与 getter 方法对应的实现函数
+- ivar_list ：成员变量列表
+- method_list ：方法列表
+- prop_list ：属性列表
+
+也就是说我们每次在增加一个属性,系统都会在 ivar_list 中添加一个成员变量的描述,在 method_list 中增加 setter 与 getter 方法的描述,在属性列表中增加一个属性的描述,然后计算该属性在对象中的偏移量,然后给出 setter 与 getter 方法对应的实现,在 setter 方法中从偏移量的位置开始赋值,在 getter 方法中从偏移量开始取值,为了能够读取正确字节数,系统对象偏移量的指针类型进行了类型强转.
+
+
 ## 8.@protocol 和 category 中如何使用 @property
 
 - category和protocol都可以添加方法，也都可以添加@property 关键字
@@ -215,6 +298,265 @@ Objective-C
 
 ## 9.runtime 如何实现 weak 属性
 
+- 要实现 weak 属性，首先要搞清楚 weak 属性的特点：
+    * weak 此特质表明该属性定义了一种“非拥有关系” (nonowning relationship)。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质同 assign 类似， 然而在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。
+- 那么 runtime 如何实现 weak 变量的自动置nil？
+    * runtime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
+- 对象的内存销毁时间表，分四个步骤：
+
+```
+// 对象的内存销毁时间表
+// http://weibo.com/luohanchenyilong/ (微博@iOS程序犭袁)
+// https://github.com/ChenYilong
+// 根据 WWDC 2011, Session 322 (36分22秒)中发布的内存销毁时间表 
+
+ 1. 调用 -release ：引用计数变为零
+     * 对象正在被销毁，生命周期即将结束.
+     * 不能再有新的 __weak 弱引用， 否则将指向 nil.
+     * 调用 [self dealloc] 
+ 2. 子类 调用 -dealloc
+     * 继承关系中最底层的子类 在调用 -dealloc
+     * 如果是 MRC 代码 则会手动释放实例变量们（iVars）
+     * 继承关系中每一层的父类 都在调用 -dealloc
+ 3. NSObject 调 -dealloc
+     * 只做一件事：调用 Objective-C runtime 中的 object_dispose() 方法
+ 4. 调用 object_dispose()
+     * 为 C++ 的实例变量们（iVars）调用 destructors 
+     * 为 ARC 状态下的 实例变量们（iVars） 调用 -release 
+     * 解除所有使用 runtime Associate方法关联的对象
+     * 解除所有 __weak 引用
+     * 调用 free()
+```
+- 先看下 runtime 里源码的实现：
+
+```
+/**
+* The internal structure stored in the weak references table. 
+* It maintains and stores
+* a hash set of weak references pointing to an object.
+* If out_of_line==0, the set is instead a small inline array.
+*/
+#define WEAK_INLINE_COUNT 4
+struct weak_entry_t {
+   DisguisedPtr<objc_object> referent;
+   union {
+       struct {
+           weak_referrer_t *referrers;
+           uintptr_t        out_of_line : 1;
+           uintptr_t        num_refs : PTR_MINUS_1;
+           uintptr_t        mask;
+           uintptr_t        max_hash_displacement;
+       };
+       struct {
+           // out_of_line=0 is LSB of one of these (don't care which)
+           weak_referrer_t  inline_referrers[WEAK_INLINE_COUNT];
+       };
+   };
+};
+
+/**
+* The global weak references table. Stores object ids as keys,
+* and weak_entry_t structs as their values.
+*/
+struct weak_table_t {
+   weak_entry_t *weak_entries;
+   size_t    num_entries;
+   uintptr_t mask;
+   uintptr_t max_hash_displacement;
+};
+```
+具体完整实现参照 [objc/objc-weak.h](https://opensource.apple.com/source/objc4/objc4-646/runtime/objc-weak.h) 。
+
+- 我们可以设计一个函数（伪代码）来表示上述机制：
+    * objc_storeWeak(&a, b)函数：
+        * objc_storeWeak函数把第二个参数--赋值对象（b）的内存地址作为键值key，将第一个参数--weak修饰的属性变量（a）的内存地址（&a）作为value，注册到 weak 表中。如果第二个参数（b）为0（nil），那么把变量（a）的内存地址（&a）从weak表中删除，
+        * 你可以把objc_storeWeak(&a, b)理解为：objc_storeWeak(value, key)，并且当key变nil，将value置nil。
+        * 在b非nil时，a和b指向同一个内存地址，在b变nil时，a变nil。此时向a发送消息不会崩溃：在Objective-C中向nil发送消息是安全的。
+        * 而如果a是由 assign 修饰的，则： 在 b 非 nil 时，a 和 b 指向同一个内存地址，在 b 变 nil 时，a 还是指向该内存地址，变野指针。此时向 a 发送消息极易崩溃。
+- 下面我们将基于objc_storeWeak(&a, b)函数，使用伪代码模拟“runtime如何实现weak属性”：
+
+```
+// 使用伪代码模拟：runtime如何实现weak属性
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+
+ id obj1;
+ objc_initWeak(&obj1, obj);
+/*obj引用计数变为0，变量作用域结束*/
+ objc_destroyWeak(&obj1);
+```
+- 下面对用到的两个方法objc_initWeak和objc_destroyWeak做下解释：
+    * 总体说来，作用是： 通过objc_initWeak函数初始化“附有weak修饰符的变量（obj1）”，在变量作用域结束时通过objc_destoryWeak函数释放该变量（obj1）。
+- 下面分别介绍下方法的内部实现：
+    * objc_initWeak函数的实现是这样的：在将“附有weak修饰符的变量（obj1）”初始化为0（nil）后，会将“赋值对象”（obj）作为参数，调用objc_storeWeak函数。
+
+```
+obj1 = 0；
+obj_storeWeak(&obj1, obj);
+```
+也就是说：weak 修饰的指针默认值是 nil 
+
+（在Objective-C中向nil发送消息是安全的）
+然后obj_destroyWeak函数将0（nil）作为参数，调用objc_storeWeak函数。
+
+objc_storeWeak(&obj1, 0);
+
+- 前面的源代码与下列源代码相同。
+
+```
+// 使用伪代码模拟：runtime如何实现weak属性
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+
+id obj1;
+obj1 = 0;
+objc_storeWeak(&obj1, obj);
+/* ... obj的引用计数变为0，被置nil ... */
+objc_storeWeak(&obj1, 0);
+```
+objc_storeWeak 函数把第二个参数--赋值对象（obj）的内存地址作为键值，将第一个参数--weak修饰的属性变量（obj1）的内存地址注册到 weak 表中。如果第二个参数（obj）为0（nil），那么把变量（obj1）的地址从 weak 表中删除，在后面的相关一题会详解。
+
+- 使用伪代码是为了方便理解，下面我们“真枪实弹”地实现下：
+- 如何让不使用weak修饰的@property，拥有weak的效果。
+- 我们从setter方法入手：
+    * 注意以下的 cyl_runAtDealloc 方法实现仅仅用于模拟原理，如果想用于项目中，还需要考虑更复杂的场景，想在实际项目使用的话，可以使用我写的一个小库，可以使用 CocoaPods 在项目中使用： CYLDeallocBlockExecutor ）
+
+```
+- (void)setObject:(NSObject *)object
+{
+   objc_setAssociatedObject(self, "object", object, OBJC_ASSOCIATION_ASSIGN);
+   [object cyl_runAtDealloc:^{
+       _object = nil;
+   }];
+}
+```
+- 也就是有两个步骤：
+1. 在setter方法中做如下设置：
+```
+objc_setAssociatedObject(self, "object", object, OBJC_ASSOCIATION_ASSIGN);
+```
+2. 在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。做到这点，同样要借助 runtime：
+
+```
+//要销毁的目标对象
+id objectToBeDeallocated;
+//可以理解为一个“事件”：当上面的目标对象销毁时，同时要发生的“事件”。
+id objectWeWantToBeReleasedWhenThatHappens;
+objc_setAssociatedObject(objectToBeDeallocted,
+                        someUniqueKey,
+                        objectWeWantToBeReleasedWhenThatHappens,
+                        OBJC_ASSOCIATION_RETAIN);
+```
+知道了思路，我们就开始实现 cyl_runAtDealloc 方法，实现过程分两部分：
+
+第一部分：创建一个类，可以理解为一个“事件”：当目标对象销毁时，同时要发生的“事件”。借助 block 执行“事件”。
+
+// .h文件
+
+```
+// .h文件
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+// 这个类，可以理解为一个“事件”：当目标对象销毁时，同时要发生的“事件”。借助block执行“事件”。
+
+typedef void (^voidBlock)(void);
+
+@interface CYLBlockExecutor : NSObject
+
+- (id)initWithBlock:(voidBlock)block;
+
+@end
+```
+// .m文件
+
+```
+// .m文件
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+// 这个类，可以理解为一个“事件”：当目标对象销毁时，同时要发生的“事件”。借助block执行“事件”。
+
+#import "CYLBlockExecutor.h"
+
+@interface CYLBlockExecutor() {
+   voidBlock _block;
+}
+@implementation CYLBlockExecutor
+
+- (id)initWithBlock:(voidBlock)aBlock
+{
+   self = [super init];
+   
+   if (self) {
+       _block = [aBlock copy];
+   }
+   
+   return self;
+}
+
+- (void)dealloc
+{
+   _block ? _block() : nil;
+}
+
+@end
+```
+第二部分：核心代码：利用runtime实现cyl_runAtDealloc方法
+
+```
+// CYLNSObject+RunAtDealloc.h文件
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+// 利用runtime实现cyl_runAtDealloc方法
+
+#import "CYLBlockExecutor.h"
+
+const void *runAtDeallocBlockKey = &runAtDeallocBlockKey;
+
+@interface NSObject (CYLRunAtDealloc)
+
+- (void)cyl_runAtDealloc:(voidBlock)block;
+
+@end
+
+
+// CYLNSObject+RunAtDealloc.m文件
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+// 利用runtime实现cyl_runAtDealloc方法
+
+#import "CYLNSObject+RunAtDealloc.h"
+#import "CYLBlockExecutor.h"
+
+@implementation NSObject (CYLRunAtDealloc)
+
+- (void)cyl_runAtDealloc:(voidBlock)block
+{
+   if (block) {
+       CYLBlockExecutor *executor = [[CYLBlockExecutor alloc] initWithBlock:block];
+       
+       objc_setAssociatedObject(self,
+                                runAtDeallocBlockKey,
+                                executor,
+                                OBJC_ASSOCIATION_RETAIN);
+   }
+}
+
+@end
+```
+使用方法： 导入
+
+```
+#import "CYLNSObject+RunAtDealloc.h"
+```
+然后就可以使用了：
+
+```
+NSObject *foo = [[NSObject alloc] init];
+
+[foo cyl_runAtDealloc:^{
+   NSLog(@"正在释放foo!");
+}];
+```
 
 ## 10.@property中有哪些属性关键字？/ @property 后面可以有哪些修饰符
 
@@ -316,6 +658,81 @@ Objective-C
 
 ## 24.runtime如何实现weak变量的自动置nil？
 
+- runtime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
+- __weak引用的解除时间:
+    * 对象的内存销毁时间表，分四个步骤：
+
+```
+// 对象的内存销毁时间表
+// http://weibo.com/luohanchenyilong/ (微博@iOS程序犭袁)
+// https://github.com/ChenYilong
+// 根据 WWDC 2011, Session 322 (36分22秒)中发布的内存销毁时间表 
+
+ 1. 调用 -release ：引用计数变为零
+     * 对象正在被销毁，生命周期即将结束.
+     * 不能再有新的 __weak 弱引用， 否则将指向 nil.
+     * 调用 [self dealloc] 
+ 2. 子类 调用 -dealloc
+     * 继承关系中最底层的子类 在调用 -dealloc
+     * 如果是 MRC 代码 则会手动释放实例变量们（iVars）
+     * 继承关系中每一层的父类 都在调用 -dealloc
+ 3. NSObject 调 -dealloc
+     * 只做一件事：调用 Objective-C runtime 中的 object_dispose() 方法
+ 4. 调用 object_dispose()
+     * 为 C++ 的实例变量们（iVars）调用 destructors 
+     * 为 ARC 状态下的 实例变量们（iVars） 调用 -release 
+     * 解除所有使用 runtime Associate方法关联的对象
+     * 解除所有 __weak 引用
+     * 调用 free()
+```
+- 我们可以设计一个函数（伪代码）来表示上述机制：
+- objc_storeWeak(&a, b)函数：
+    * objc_storeWeak函数把第二个参数--赋值对象（b）的内存地址作为键值key，将第一个参数--weak修饰的属性变量（a）的内存地址（&a）作为value，注册到 weak 表中。如果第二个参数（b）为0（nil），那么把变量（a）的内存地址（&a）从weak表中删除，
+    * 你可以把objc_storeWeak(&a, b)理解为：objc_storeWeak(value, key)，并且当key变nil，将value置nil。
+    * 在b非nil时，a和b指向同一个内存地址，在b变nil时，a变nil。此时向a发送消息不会崩溃：在Objective-C中向nil发送消息是安全的。
+    * 而如果a是由assign修饰的，则： 在b非nil时，a和b指向同一个内存地址，在b变nil时，a还是指向该内存地址，变野指针。此时向a发送消息极易崩溃。
+    * 下面我们将基于objc_storeWeak(&a, b)函数，使用伪代码模拟“runtime如何实现weak属性”：
+
+```
+// 使用伪代码模拟：runtime如何实现weak属性
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+
+ id obj1;
+ objc_initWeak(&obj1, obj);
+/*obj引用计数变为0，变量作用域结束*/
+ objc_destroyWeak(&obj1);
+```
+- 下面对用到的两个方法objc_initWeak和objc_destroyWeak做下解释：
+    * 总体说来，作用是： 通过objc_initWeak函数初始化“附有weak修饰符的变量（obj1）”，在变量作用域结束时通过objc_destoryWeak函数释放该变量（obj1）。
+- 下面分别介绍下方法的内部实现：
+    * objc_initWeak函数的实现是这样的：在将“附有weak修饰符的变量（obj1）”初始化为0（nil）后，会将“赋值对象”（obj）作为参数，调用objc_storeWeak函数。
+
+```
+obj1 = 0；
+obj_storeWeak(&obj1, obj);
+```
+也就是说：weak 修饰的指针默认值是 nil
+
+（在Objective-C中向nil发送消息是安全的）
+然后obj_destroyWeak函数将0（nil）作为参数，调用objc_storeWeak函数。
+
+objc_storeWeak(&obj1, 0);
+- 前面的源代码与下列源代码相同。
+
+```
+// 使用伪代码模拟：runtime如何实现weak属性
+// http://weibo.com/luohanchenyilong/
+// https://github.com/ChenYilong
+
+id obj1;
+obj1 = 0;
+objc_storeWeak(&obj1, obj);
+/* ... obj的引用计数变为0，被置nil ... */
+objc_storeWeak(&obj1, 0);
+```
+objc_storeWeak函数把第二个参数--赋值对象（obj）的内存地址作为键值，将第一个参数--weak修饰的属性变量（obj1）的内存地址注册到 weak 表中。如果第二个参数（obj）为0（nil），那么把变量（obj1）的地址从weak表中删除。
+
 ## 25.能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？
 
 - 不能向编译后得到的类中增加实例变量；
@@ -406,6 +823,9 @@ int main(int argc, char * argv[]) {
 
 ## 31.ARC通过什么方式帮助开发者管理内存？
 
+- ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期和运行期两部分共同帮助开发者管理内存。
+- 编译期：ARC用的是更底层的C接口实现的retain/release/autorelease，这样做性能更好，也是为什么不能在ARC环境下手动retain/release/autorelease，同时对同一上下文的同一对象的成对retain/release操作进行优化
+- 运行期：ARC也包含运行期组件，这个地方做的优化比较复杂，但也不能被忽略。
 
 ## 32.不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）
 
@@ -512,6 +932,70 @@ __weak typeof (self) weakSelf = self;
 
 
 ## 36.在block内如何修改block外部变量？
+
+- 用__block声明外部变量，或者static变量，或者全局变量。
+- 默认情况下，在block中访问的外部变量是复制过去的，即：写操作不对原变量生效。但是你可以加上 __block 来让其写操作生效，示例代码如下:
+
+```
+__block int a = 0;
+   void (^foo)(void) = ^{ 
+       a = 1; 
+   };
+   foo(); 
+   //这里，a的值被修改为1
+```
+- 为什么写操作就生效了？”真正的原因是这样的：
+    * 我们都知道：Block不允许修改外部变量的值，这里所说的外部变量的值，指的是栈中指针的内存地址。__block 所起到的作用就是只要观察到该变量被 block 所持有，就将“外部变量”在栈中的内存地址放到了堆中。进而在block内部也可以修改外部变量的值。
+- Block不允许修改外部变量的值。Apple这样设计，应该是考虑到了block的特殊性，block也属于“函数”的范畴，变量进入block，实际就是已经改变了作用域。在几个作用域之间进行切换时，如果不加上这样的限制，变量的可维护性将大大降低。又比如我想在block内声明了一个与外部同名的变量，此时是允许呢还是不允许呢？只有加上了这样的限制，这样的情景才能实现。于是栈区变成了红灯区，堆区变成了绿灯区。
+- 我们可以打印下内存地址来进行验证：
+
+```
+__block int a = 0;
+   NSLog(@"定义前：%p", &a);         //栈区
+   void (^foo)(void) = ^{
+       a = 1;
+       NSLog(@"block内部：%p", &a);    //堆区
+   };
+   NSLog(@"定义后：%p", &a);         //堆区
+   foo();
+```
+
+```
+2016-05-17 02:03:33.559 LeanCloudChatKit-iOS[1505:713679] 定义前：0x16fda86f8
+2016-05-17 02:03:33.559 LeanCloudChatKit-iOS[1505:713679] 定义后：0x155b22fc8
+2016-05-17 02:03:33.559 LeanCloudChatKit-iOS[1505:713679] block内部： 0x155b22fc8
+```
+“定义后”和“block内部”两者的内存地址是一样的，我们都知道 block 内部的变量会被 copy 到堆区，“block内部”打印的是堆地址，因而也就可以知道，“定义后”打印的也是堆的地址。
+- 那么如何证明“block内部”打印的是堆地址？
+    * 把三个16进制的内存地址转成10进制就是：
+        * 定义后前：6171559672
+        * block内部：5732708296
+        * 定义后后：5732708296
+    * 中间相差438851376个字节，也就是 418.5M 的空间，因为堆地址要小于栈地址，又因为iOS中一个进程的栈区内存只有1M，Mac也只有8M，显然a已经是在堆区了。这也证实了：a 在定义前是栈区，但只要进入了 block 区域，就变成了堆区。这才是 __block 关键字的真正作用。
+- __block 关键字修饰后，int类型也从4字节变成了32字节，这是 Foundation 框架 malloc 出来的。这也同样能证实上面的结论。（PS：居然比 NSObject alloc 出来的 16 字节要多一倍）。
+- 理解到这是因为堆栈地址的变更，而非所谓的“写操作生效”，这一点至关重要，要不然你如何解释下面这个现象：
+- 以下代码编译可以通过，并且在block中成功将a的从Tom修改为Jerry。
+
+```
+NSMutableString *a = [NSMutableString stringWithString:@"Tom"];
+   NSLog(@"\n 定以前：------------------------------------\n\
+         a指向的堆中地址：%p；a在栈中的指针地址：%p", a, &a);               //a在栈区
+   void (^foo)(void) = ^{
+       a.string = @"Jerry";
+       NSLog(@"\n block内部：------------------------------------\n\
+        a指向的堆中地址：%p；a在栈中的指针地址：%p", a, &a);               //a在栈区
+       a = [NSMutableString stringWithString:@"William"];
+   };
+   foo();
+   NSLog(@"\n 定以后：------------------------------------\n\
+         a指向的堆中地址：%p；a在栈中的指针地址：%p", a, &a);               //a在栈区
+```
+
+![image](https://camo.githubusercontent.com/548c6cfd7a1d7084da25be9d4ee76e51a907fd84/687474703a2f2f6936362e74696e797069632e636f6d2f333465756863792e6a7067)
+
+- 这里的a已经由基本数据类型，变成了对象类型。block会对对象类型的指针进行copy，copy到堆中，但并不会改变该指针所指向的堆中的地址，所以在上面的示例代码中，block体内修改的实际是a指向的堆中的内容。
+- 但如果我们尝试像上面图片中的65行那样做，结果会编译不通过，那是因为此时你在修改的就不是堆中的内容，而是栈中的内容。
+- 上文已经说过：Block不允许修改外部变量的值，这里所说的外部变量的值，指的是栈中指针的内存地址。栈区是红灯区，堆区才是绿灯区。
 
 ## 37.使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？
 
@@ -1013,3 +1497,90 @@ viewController强引用view对象，同时view强引用button对象，那么你�
 - p:是打印这个对象所属的类,即其父类
 - 更多具体命令
     * 苹果官方文档： [iOS Debugging Magic](https://developer.apple.com/library/content/technotes/tn2239/_index.html) 。
+
+# 在微博[@iOS程序犭袁](https://weibo.com/luohanchenyilong/)的答案整理中多出来的题整理如下
+
+## 54. runtime如何通过selector找到对应的IMP地址？（分别考虑类方法和实例方法）
+
+## 55. 使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？
+
+- 无论在MRC下还是ARC下均不需要。
+- 2011年版本的Apple API 官方文档 - Associative References 一节中有一个MRC环境下的例子：
+```
+// 在MRC下，使用runtime Associate方法关联的对象，不需要在主对象dealloc的时候释放
+// http://weibo.com/luohanchenyilong/ (微博@iOS程序犭袁)
+// https://github.com/ChenYilong
+// 摘自2011年版本的Apple API 官方文档 - Associative References 
+
+static char overviewKey;
+ 
+NSArray *array =
+    [[NSArray alloc] initWithObjects:@"One", @"Two", @"Three", nil];
+// For the purposes of illustration, use initWithFormat: to ensure
+// the string can be deallocated
+NSString *overview =
+    [[NSString alloc] initWithFormat:@"%@", @"First three numbers"];
+ 
+objc_setAssociatedObject (
+    array,
+    &overviewKey,
+    overview,
+    OBJC_ASSOCIATION_RETAIN
+);
+ 
+[overview release];
+// (1) overview valid
+[array release];
+// (2) overview invalid
+```
+文档指出
+> At point 1, the string overview is still valid because the OBJC_ASSOCIATION_RETAIN policy specifies that the array retains the associated object. When the array is deallocated, however (at point 2), overview is released and so in this case also deallocated.
+
+我们可以看到，在[array release];之后，overview就会被release释放掉了。
+
+既然会被销毁，那么具体在什么时间点？
+> 根据 WWDC 2011, Session 322 (第36分22秒) 中发布的内存销毁时间表，被关联的对象在生命周期内要比对象本身释放的晚很多。它们会在被 NSObject -dealloc 调用的 object_dispose() 方法中释放。
+
+对象的内存销毁时间表，分四个步骤：
+
+```
+// 对象的内存销毁时间表
+// http://weibo.com/luohanchenyilong/ (微博@iOS程序犭袁)
+// https://github.com/ChenYilong
+// 根据 WWDC 2011, Session 322 (36分22秒)中发布的内存销毁时间表 
+
+ 1. 调用 -release ：引用计数变为零
+     * 对象正在被销毁，生命周期即将结束.
+     * 不能再有新的 __weak 弱引用， 否则将指向 nil.
+     * 调用 [self dealloc] 
+ 2. 子类 调用 -dealloc
+     * 继承关系中最底层的子类 在调用 -dealloc
+     * 如果是 MRC 代码 则会手动释放实例变量们（iVars）
+     * 继承关系中每一层的父类 都在调用 -dealloc
+ 3. NSObject 调 -dealloc
+     * 只做一件事：调用 Objective-C runtime 中的 object_dispose() 方法
+ 4. 调用 object_dispose()
+     * 为 C++ 的实例变量们（iVars）调用 destructors 
+     * 为 ARC 状态下的 实例变量们（iVars） 调用 -release 
+     * 解除所有使用 runtime Associate方法关联的对象
+     * 解除所有 __weak 引用
+     * 调用 free()
+```
+
+## 56. objc中的类方法和实例方法有什么本质区别和联系？
+
+- 类方法：
+    * 类方法是属于类对象的
+    * 类方法只能通过类对象调用
+    * 类方法中的self是类对象
+    * 类方法可以调用其他的类方法
+    * 类方法中不能访问成员变量
+    * 类方法中不能直接调用对象方法
+
+- 实例方法：
+    * 实例方法是属于实例对象的
+    * 实例方法只能通过实例对象调用
+    * 实例方法中的self是实例对象
+    * 实例方法中可以访问成员变量
+    * 实例方法中直接调用实例方法
+    * 实例方法中也可以调用类方法(通过类名)
