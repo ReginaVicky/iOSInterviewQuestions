@@ -167,6 +167,114 @@ Objective-C
 10. -(id)initUserModelWithUserName: (NSString*)name withAge:(int)age; 方法中 (NSString*)name,应为 (NSString *)name，少了空格。
 
 ### 优化部分
+1. enum 建议使用 NS_ENUM 和 NS_OPTIONS 宏来定义枚举类型
+
+```
+//定义一个枚举
+   typedef NS_ENUM(NSInteger, CYLSex) {
+       CYLSexMan,
+       CYLSexWoman
+   };
+```
+（仅仅让性别包含男和女可能并不严谨）
+2. age 属性的类型：应避免使用基本类型，建议使用 Foundation 数据类型，对应关系如下：
+
+```
+    int -> NSInteger
+    unsigned -> NSUInteger
+    float -> CGFloat
+    动画时间 -> NSTimeInterval
+```
+同时考虑到 age 的特点，应使用 NSUInteger ，而非 int 。
+3. 如果工程项目非常庞大，需要拆分成不同的模块，可以在类、typedef宏命名的时候使用前缀。
+4. doLogIn方法不应写在该类中：无论是 MVC 模式还是 MVVM 模式，业务逻辑都不应当写在 Model 里：MVC 应在 C，MVVM 应在 VM。
+5. doLogIn 方法命名不规范：添加了多余的动词前缀。 请牢记：如果方法表示让对象执行一个动作，使用动词打头来命名，注意不要使用 do，does 这种多余的关键字，动词本身的暗示就足够了。应为 -logIn 
+6. -(id)initUserModelWithUserName: (NSString*)name withAge:(int)age;方法中不要用 with 来连接两个参数: withAge: 应当换为age:，age: 已经足以清晰说明参数的作用，也不建议用 andAge: ：通常情况下，即使有类似 withA:withB: 的命名需求，也通常是使用withA:andB: 这种命名，用来表示方法执行了两个相对独立的操作（从设计上来说，这时候也可以拆分成两个独立的方法），它不应该用作阐明有多个参数，比如下面的：
+
+```
+//错误，不要使用"and"来连接参数
+- (int)runModalForDirectory:(NSString *)path andFile:(NSString *)name andTypes:(NSArray *)fileTypes;
+//错误，不要使用"and"来阐明有多个参数
+- (instancetype)initWithName:(CGFloat)width andAge:(CGFloat)height;
+//正确，使用"and"来表示两个相对独立的操作
+- (BOOL)openFile:(NSString *)fullPath withApplication:(NSString *)appName andDeactivate:(BOOL)flag;
+```
+7. 由于字符串值可能会改变，所以要把相关属性的“内存管理语义”声明为 copy 。
+8. “性别”(sex）属性的：该类中只给出了一种“初始化方法” (initializer)用于设置“姓名”(Name)和“年龄”(Age)的初始值，那如何对“性别”(Sex）初始化？
+
+Objective-C 有 designated 和 secondary 初始化方法的观念。 designated 初始化方法是提供所有的参数，secondary 初始化方法是一个或多个，并且提供一个或者更多的默认参数来调用 designated 初始化方法的初始化方法。举例说明：
+
+```
+// .m文件
+   //
+
+   @implementation CYLUser
+
+   - (instancetype)initWithName:(NSString *)name
+                            age:(NSUInteger)age
+                            sex:(CYLSex)sex {
+       if(self = [super init]) {
+           _name = [name copy];
+           _age = age;
+           _sex = sex;
+       }
+       return self;
+   }
+
+   - (instancetype)initWithName:(NSString *)name
+                            age:(NSUInteger)age {
+       return [self initWithName:name age:age sex:nil];
+   }
+
+   @end
+```
+上面的代码中initWithName:age:sex: 就是 designated 初始化方法，另外的是 secondary 初始化方法。因为仅仅是调用类实现的 designated 初始化方法。
+
+因为出题者没有给出 .m 文件，所以有两种猜测：1：本来打算只设计一个 designated 初始化方法，但漏掉了“性别”(sex）属性。那么最终的修改代码就是上文给出的第一种修改方法。2：不打算初始时初始化“性别”(sex）属性，打算后期再修改，如果是这种情况，那么应该把“性别”(sex）属性设为 readwrite 属性，最终给出的修改代码应该是：
+
+```
+// .h文件
+ 
+   // 第二种修改方法（基于第一种修改方法的基础上）
+
+   typedef NS_ENUM(NSInteger, CYLSex) {
+       CYLSexMan,
+       CYLSexWoman
+   };
+
+   @interface CYLUser : NSObject<NSCopying>
+
+   @property (nonatomic, readonly, copy) NSString *name;
+   @property (nonatomic, readonly, assign) NSUInteger age;
+   @property (nonatomic, readwrite, assign) CYLSex sex;
+
+   - (instancetype)initWithName:(NSString *)name age:(NSUInteger)age sex:(CYLSex)sex;
+   - (instancetype)initWithName:(NSString *)name age:(NSUInteger)age;
+   + (instancetype)userWithName:(NSString *)name age:(NSUInteger)age sex:(CYLSex)sex;
+
+   @end
+```
+.h 中暴露 designated 初始化方法，是为了方便子类化
+
+- 按照接口设计的惯例，如果设计了“初始化方法” (initializer)，也应当搭配一个快捷构造方法。而快捷构造方法的返回值，建议为 instancetype，为保持一致性，init 方法和快捷构造方法的返回类型最好都用 instancetype。
+- 如果基于第一种修改方法：既然该类中已经有一个“初始化方法” (initializer)，用于设置“姓名”(Name)、“年龄”(Age)和“性别”(Sex）的初始值: 那么在设计对应 @property 时就应该尽量使用不可变的对象：其三个属性都应该设为“只读”。用初始化方法设置好属性值之后，就不能再改变了。在本例中，仍需声明属性的“内存管理语义”。于是可以把属性的定义改成这样
+
+```
+@property (nonatomic, readonly, copy) NSString *name;
+       @property (nonatomic, readonly, assign) NSUInteger age;
+       @property (nonatomic, readonly, assign) CYLSex sex;
+```
+由于是只读属性，所以编译器不会为其创建对应的“设置方法”，即便如此，我们还是要写上这些属性的语义，以此表明初始化方法在设置这些属性值时所用的方式。要是不写明语义的话，该类的调用者就不知道初始化方法里会拷贝这些属性，他们有可能会在调用初始化方法之前自行拷贝属性值。这种操作多余而且低效。
+
+9. initUserModelWithUserName 如果改为 initWithName 会更加简洁，而且足够清晰。
+10. UserModel 如果改为 User 会更加简洁，而且足够清晰。
+11. UserSex如果改为Sex 会更加简洁，而且足够清晰。
+12. 第二个 @property 中 assign 和 nonatomic 调换位置。 推荐按照下面的格式来定义属性
+
+```
+@property (nonatomic, readwrite, copy) NSString *name;
+```
+
 
 
 ## 2.@property 后面可以有哪些修饰符？
@@ -723,7 +831,114 @@ NSMutableArray *mCopyArray = [array mutableCopy];
 
 ## 15.@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
 
+在回答之前先说明下一个概念：
+
+实例变量 = 成员变量 ＝ ivar
+这些说法，笔者下文中，可能都会用到，指的是一个东西。
+
+正如 Apple官方文档 You Can Customize Synthesized Instance Variable Names 所说：
+
+![image](https://camo.githubusercontent.com/d562010accc0b123c355d48d56b4eb426b032641/687474703a2f2f692e696d6775722e636f6d2f443664307a474a2e706e67)
+
+如果使用了属性的话，那么编译器就会自动编写访问属性所需的方法，此过程叫做“自动合成”( auto synthesis)。需要强调的是，这个过程由编译器在编译期执行，所以编辑器里看不到这些“合成方法” (synthesized method)的源代码。除了生成方法代码之外，编译器还要自动向类中添加适当类型的实例变量，并且在属性名前面加下划线，以此作为实例变量的名字。
+
+```
+@interface CYLPerson : NSObject 
+@property NSString *firstName; 
+@property NSString *lastName; 
+@end
+```
+在上例中，会生成两个实例变量，其名称分别为 _firstName 与 _lastName。也可以在类的实现代码里通过 @synthesize 语法来指定实例变量的名字:
+
+```
+@implementation CYLPerson 
+@synthesize firstName = _myFirstName; 
+@synthesize lastName = _myLastName; 
+@end 
+```
+上述语法会将生成的实例变量命名为 _myFirstName 与 _myLastName ，而不再使用默认的名字。一般情况下无须修改默认的实例变量名，但是如果你不喜欢以下划线来命名实例变量，那么可以用这个办法将其改为自己想要的名字。笔者还是推荐使用默认的命名方案，因为如果所有人都坚持这套方案，那么写出来的代码大家都能看得懂。
+
+- 总结下 @synthesize 合成实例变量的规则，有以下几点：
+    * 如果指定了成员变量的名称,会生成一个指定的名称的成员变量,
+    * 如果这个成员已经存在了就不再生成了.
+    * 如果是 @synthesize foo;              * 还会生成一个名称为foo的成员变量，也就是说：
+        * 如果没有指定成员变量的名称会自动生成一个属性同名的成员变量,
+    * 如果是 @synthesize foo = _foo; 就不会生成成员变量了.
+假如 property 名为 foo，存在一个名为 _foo 的实例变量，那么还会自动合成新变量么？ 不会。如下图：
+
+![image](https://camo.githubusercontent.com/8e11101c9fe0b3defc7fbd144c0dca9fdf0471d0/687474703a2f2f692e696d6775722e636f6d2f743238676534572e706e67)
+
+
 ## 16.在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？
+
+- 回答这个问题前，我们要搞清楚一个问题，什么情况下不会autosynthesis（自动合成）？
+    * 同时重写了 setter 和 getter 时
+    * 重写了只读属性的 getter 时
+    * 使用了 @dynamic 时
+    * 在 @protocol 中定义的所有属性
+    * 在 category 中定义的所有属性
+    * 重载的属性
+- 当你在子类中重载了父类中的属性，你必须 使用 @synthesize 来手动合成ivar。
+- 除了后三条，对其他几个我们可以总结出一个规律：当你想手动管理 @property 的所有内容时，你就会尝试通过实现 @property 的所有“存取方法”（the accessor methods）或者使用 @dynamic 来达到这个目的，这时编译器就会认为你打算手动管理 @property，于是编译器就禁用了 autosynthesis（自动合成）。
+- 因为有了 autosynthesis（自动合成），大部分开发者已经习惯不去手动定义ivar，而是依赖于 autosynthesis（自动合成），但是一旦你需要使用ivar，而 autosynthesis（自动合成）又失效了，如果不去手动定义ivar，那么你就得借助 @synthesize 来手动合成 ivar。
+- 其实，@synthesize 语法还有一个应用场景，但是不太建议大家使用：
+可以在类的实现代码里通过 @synthesize 语法来指定实例变量的名字:
+
+```
+@implementation CYLPerson 
+@synthesize firstName = _myFirstName; 
+@synthesize lastName = _myLastName; 
+@end 
+```
+上述语法会将生成的实例变量命名为 _myFirstName 与 _myLastName，而不再使用默认的名字。一般情况下无须修改默认的实例变量名，但是如果你不喜欢以下划线来命名实例变量，那么可以用这个办法将其改为自己想要的名字。笔者还是推荐使用默认的命名方案，因为如果所有人都坚持这套方案，那么写出来的代码大家都能看得懂。
+
+举例说明：应用场景：
+
+```
+//
+// .m文件
+
+// 打开第14行和第17行中任意一行，就可编译成功
+
+@import Foundation;
+
+@interface CYLObject : NSObject
+@property (nonatomic, copy) NSString *title;
+@end
+
+@implementation CYLObject {
+   //    NSString *_title;
+}
+
+//@synthesize title = _title;
+
+- (instancetype)init
+{
+   self = [super init];
+   if (self) {
+       _title = @"微博@iOS程序犭袁";
+   }
+   return self;
+}
+
+- (NSString *)title {
+   return _title;
+}
+
+- (void)setTitle:(NSString *)title {
+   _title = [title copy];
+}
+
+@end
+```
+结果编译器报错：
+
+![image](https://camo.githubusercontent.com/a569a90281598d8cc74156fe5f0e3a6ddbf8fc6b/687474703a2f2f692e696d6775722e636f6d2f6641454748496f2e706e67)
+
+- 当你同时重写了 setter 和 getter 时，系统就不会生成 ivar（实例变量/成员变量）。这时候有两种选择：
+    * 要么如第14行：手动创建 ivar
+    * 要么如第17行：使用@synthesize foo = _foo; ，关联 @property 与 ivar。
+
 
 ## 17.objc中向一个nil对象发送消息将会发生什么？
 
@@ -1156,6 +1371,31 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
     * NSRunLoopCommonModes（kCFRunLoopCommonModes）
 
 ## 28.以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？
+
+- RunLoop只能运行在一种mode下，如果要换mode，当前的loop也需要停下重启成新的。利用这个机制，ScrollView滚动过程中NSDefaultRunLoopMode（kCFRunLoopDefaultMode）的mode会切换到UITrackingRunLoopMode来保证ScrollView的流畅滑动：只能在NSDefaultRunLoopMode模式下处理的事件会影响ScrollView的滑动。
+- 如果我们把一个NSTimer对象以NSDefaultRunLoopMode（kCFRunLoopDefaultMode）添加到主运行循环中的时候, ScrollView滚动过程中会因为mode的切换，而导致NSTimer将不再被调度。
+- 同时因为mode还是可定制的，所以：
+
+Timer计时会被scrollView的滑动影响的问题可以通过将timer添加到NSRunLoopCommonModes（kCFRunLoopCommonModes）来解决。代码如下：
+
+```
+// 
+
+//将timer添加到NSDefaultRunLoopMode中
+[NSTimer scheduledTimerWithTimeInterval:1.0
+     target:self
+     selector:@selector(timerTick:)
+     userInfo:nil
+     repeats:YES];
+//然后再添加到NSRunLoopCommonModes里
+NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
+     target:self
+     selector:@selector(timerTick:)
+     userInfo:nil
+     repeats:YES];
+[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+```
+
 
 ## 29.猜想runloop内部是如何实现的？
 
@@ -1728,6 +1968,8 @@ NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
     * [手动设定实例变量的KVO实现监听](https://yq.aliyun.com/articles/30483)
 
 ## 48.如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？
+
+
 
 ## 49.apple用什么方式实现对一个对象的KVO？
 
