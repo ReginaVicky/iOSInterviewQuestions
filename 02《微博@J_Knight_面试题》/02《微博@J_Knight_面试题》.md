@@ -726,25 +726,1073 @@ delete动画与插入类似，提供正确的final 属性即可
 
 ## 14.线程间通信？
 
+线程间通信：在1个进程中，线程往往不是孤立存在的，多个线程之间需要经常进行通信
+ 
+线程间通信的体现
+1个线程传递数据给另1个线程
+在1个线程中执行完特定任务后，转到另1个线程继续执行任务
+ 
+线程间通信常用方法
+- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait;
+- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thr withObject:(id)arg waitUntilDone:(BOOL)wait;
+
+ 
+线程间通信示例 – 图片下载
+
+
+```
+//
+ 2 //  YYViewController.m
+ 3 //  06-NSThread04-线程间通信
+ 4 //
+ 5 
+ 7 //
+ 8 
+ 9 #import "YYViewController.h"
+10 @interface YYViewController ()
+11 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
+12 @end
+13 
+14 @implementation YYViewController
+15 
+16 - (void)viewDidLoad
+17 {
+18     [super viewDidLoad];
+19 }
+20 
+21 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+22 {
+23 
+24 // 在子线程中调用download方法下载图片
+25     [self performSelectorInBackground:@selector(download) withObject:nil];
+26 }
+27 
+28  
+29 
+30 -(void)download
+31 {
+32     //1.根据URL下载图片
+33     //从网络中下载图片
+34     NSURL *urlstr=[NSURL URLWithString:@"fdsf"];
+35 
+36     //把图片转换为二进制的数据
+37     NSData *data=[NSData dataWithContentsOfURL:urlstr];//这一行操作会比较耗时
+38 
+39     //把数据转换成图片
+40     UIImage *image=[UIImage imageWithData:data];
+41  
+42     //2.回到主线程中设置图片
+43     [self performSelectorOnMainThread:@selector(settingImage:) withObject:image waitUntilDone:NO];
+44 }
+45 
+46  
+47 
+48 //设置显示图片
+49 -(void)settingImage:(UIImage *)image
+50 {
+51     self.iconView.image=image;
+52 }
+53 
+54 @end
+```
+
+```
+//
+ 2 //  YYViewController.m
+ 3 //  06-NSThread04-线程间通信
+ 4 //
+ 5 //  Created by apple on 14-6-23.
+ 6 //  Copyright (c) 2014年 itcase. All rights reserved.
+ 7 //
+ 8 
+ 9 #import "YYViewController.h"
+10 #import <NSData.h>
+11 
+12 @interface YYViewController ()
+13 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
+14 @end
+15 
+16 @implementation YYViewController
+17 
+18 - (void)viewDidLoad
+19 {
+20     [super viewDidLoad];
+21 }
+22 
+23  
+24 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+25 {
+26 // 在子线程中调用download方法下载图片
+27 
+28     [self performSelectorInBackground:@selector(download) withObject:nil];
+29 }
+30 
+31  
+32 -(void)download
+33 {
+34 
+35     //1.根据URL下载图片
+36     //从网络中下载图片
+37     NSURL *urlstr=[NSURL URLWithString:@"fdsf"];
+38 
+39     //把图片转换为二进制的数据
+40     NSData *data=[NSData dataWithContentsOfURL:urlstr];//这一行操作会比较耗时
+41 
+42     //把数据转换成图片
+43     UIImage *image=[UIImage imageWithData:data];
+44 
+45     //2.回到主线程中设置图片
+46     //第一种方式
+47 //    [self performSelectorOnMainThread:@selector(settingImage:) withObject:image waitUntilDone:NO];
+48 
+49     //第二种方式
+50     //    [self.imageView performSelector:@selector(setImage:) onThread:[NSThread mainThread] withObject:image waitUntilDone:NO];
+51 
+52     //第三种方式
+53    [self.iconView performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
+54 }
+55 
+56 
+57 //设置显示图片
+58 //-(void)settingImage:(UIImage *)image
+59 //{
+60 //    self.iconView.image=image;
+61 //}
+62 
+63 @end
+```
 
 
 ## 15.GCD的一些常用的函数？（group，barrier，信号量，线程同步）
+
+- Grand Central Dispatch（GCD）是异步执行任务的技术之一。一般将应用程序中记述的线程管理用的代码在系统级中实现。开发者只需要定义想执行的任务并追加到适当的Dispatch Queue中，GCD就能生成必要的线程并计划执行任务。由于线程管理是作为系统的一部分来实现的，因此可统一管理，也可执行任务，这样就比以前的线程更有效率
+-dispatch_group_t（队列组）
+    * dispatch_group是GCD的一项特性，能够把任务分组。调用者可以等待这组任务执行完毕，也可以提供回调函数之后继续往下执行，这组任务完成时，调用者会得到通知。常用场景比如说，下载一个大的文件，分块下载，全部下载完成后再合成一个文件。再比如同时下载多个图片，监听全部下载完后的动作
+    * 创建group
+        * dispatch_group_t group = dispatch_group_create();
+    * 添加任务
+        * dispatch_group_async(dispatch_group_t group, dispatch_queue_t queue, dispatch_block_t block); 将一个任务添加到指定group中
+        * dispatch_group_enter(dispatch_group_t group); dispatch_group_leave(dispatch_group_t group);这两个函数同上边一样的效果，不过一定要注意这两个函数必须成对出现！否则这一组任务就永远执行不完。
+    * 监听任务完成
+        * timeout参数表示函数在等待dispatch group执行完毕后，应该阻塞多久。如果执行dispatch group所需的时间小于timeout，则返回0，否则返回非0值.此参数可以取常量DISPATCH_TIME_FOREVER，这表示函数会一直等着dispatch group 执行完，而不会超时。此方法会阻塞线程。
+            * dispatch_group_notify(dispatch_group_t group, dispatch_queue_t queue, dispatch_block_t block); 开发者可以传入block，等dispatch group 执行完毕之后，块会在特定的线程上执行，而不阻塞线程。
+            * long dispatch_group_wait(dispatch_group_t group, dispatch_time_t timeout);
+方式一：
+```
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    //创建一个队列组
+    dispatch_group_t group = dispatch_group_create();
+
+    //创建两个不同的队列来测试
+    dispatch_queue_t queue1 = dispatch_get_global_queue(0, 0);
+
+    dispatch_queue_t queue2 = dispatch_queue_create("yuxuan", DISPATCH_QUEUE_CONCURRENT);
+
+    //dispatch_group_async 异步函数
+    //系统会先把任务放入队列中,然后把队列放入组中
+    //从组中把队列取出来,在从队列里取任务执行
+    dispatch_group_async(group, queue1, ^{
+    [NSThread sleepForTimeInterval:1.0];
+        NSLog(@"download 1");
+    });
+
+    dispatch_group_async(group, queue2, ^{
+        [NSThread sleepForTimeInterval:1.0];
+        NSLog(@"download 2");
+    });
+    //给group添加一个通知,异步函数
+    //当group队列中所有任务执行完毕,就会通知group执行block
+    /*
+     * 第一个参数: 为那个队列组添加通知
+     * 第二个参数: 决定block在什么线程中执行
+     * 第三个参数: block 代码块
+     */
+    dispatch_group_notify(group, dispatch_queue_create("yuxuan1",DISPATCH_QUEUE_CONCURRENT), ^{
+        NSLog(@"OK");
+    });
+   NSLog(@"end");
+}
+
+```
+方式二：
+
+```
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    /*
+     dispatch_group_async底层实现:
+     void dispatch_group_async(dispatch_group_t group, dispatch_queue_t queue, dispatch_block_t block)
+     {
+         dispatch_retain(group);
+         dispatch_group_enter(group);
+         dispatch_async(queue, ^{
+             block();
+             dispatch_group_leave(group);
+             dispatch_release(group);
+         });
+     }
+     */
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+
+    //创建一个队列组
+    dispatch_group_t group =  dispatch_group_create();
+
+    //通知队列组进入队列组
+    dispatch_group_enter(group);
+
+    dispatch_async(queue, ^{
+        NSLog(@"111");
+        //任务执行完毕
+        //通知队列组离开队列组
+        dispatch_group_leave(group);
+    });
+
+    //通知队列组进入队列组
+    dispatch_group_enter(group);
+
+    dispatch_async(queue, ^{
+        NSLog(@"222");
+        //任务执行完毕
+        //通知队列组离开队列组
+        dispatch_group_leave(group);
+    });
+
+    //等待所有任务执行完毕,一直等待.会阻塞线程
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    //    dispatch_group_notify(group, queue, ^{
+    //        NSLog(@"over");
+    //    });
+}
+
+```
+
+
+例子：从网络上下载两张图片，把两张图片合并成一张最终显示在view上。
+
+方法一：
+```
+ //  04-GCD基本使用（队列组下载图片）
+ //
+ //  Created by apple on 14-6-25.
+ //  Copyright (c) 2014年 itcase. All rights reserved.
+ //
+ 
+ #import "YYViewController.h"
+ //宏定义全局并发队列
+ #define global_quque    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+ //宏定义主队列
+ #define main_queue       dispatch_get_main_queue()
+ 
+ @interface YYViewController ()
+ @property (weak, nonatomic) IBOutlet UIImageView *imageView1;
+ @property (weak, nonatomic) IBOutlet UIImageView *imageView2;
+ @property (weak, nonatomic) IBOutlet UIImageView *imageView3;
+ 
+ @end
+ 
+ @implementation YYViewController
+ 
+ - (void)viewDidLoad
+ {
+     [super viewDidLoad];
+ }
+ -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+ {
+     //获取全局并发队列
+ //    dispatch_queue_t queue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+     //获取主队列
+ //    dispatch_queue_t queue= dispatch_get_main_queue();
+     
+ //    图片1：http://d.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2b9a12172df5e0fefa1581533d095fcd/cefc1e178a82b9019115de3d738da9773912ef00.jpg
+ //    图片2：http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f47fd63ca41ea8d39e2f7c56f6635b2b/1e30e924b899a9018b8d3ab11f950a7b0308f5f9.jpg
+     dispatch_async(global_quque, ^{
+         //下载图片1
+        UIImage *image1= [self imageWithUrl:@"http://d.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2b9a12172df5e0fefa1581533d095fcd/cefc1e178a82b9019115de3d738da9773912ef00.jpg"];
+         NSLog(@"图片1下载完成---%@",[NSThread currentThread]);
+     
+         //下载图片2
+        UIImage *image2= [self imageWithUrl:@"http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f47fd63ca41ea8d39e2f7c56f6635b2b/1e30e924b899a9018b8d3ab11f950a7b0308f5f9.jpg"];
+         NSLog(@"图片2下载完成---%@",[NSThread currentThread]);
+         
+         //回到主线程显示图片
+         dispatch_async(main_queue, ^{
+              NSLog(@"显示图片---%@",[NSThread currentThread]);
+             self.imageView1.image=image1;
+             self.imageView2.image=image2;
+             //合并两张图片
+             UIGraphicsBeginImageContextWithOptions(CGSizeMake(200, 100), NO, 0.0);
+             [image1 drawInRect:CGRectMake(0, 0, 100, 100)];
+             [image2 drawInRect:CGRectMake(100, 0, 100, 100)];
+             self.imageView3.image=UIGraphicsGetImageFromCurrentImageContext();
+             //关闭上下文
+             UIGraphicsEndImageContext();
+                NSLog(@"图片合并完成---%@",[NSThread currentThread]);
+         });
+         //
+     });
+ }
+ 
+ //封装一个方法，传入一个url参数，返回一张网络上下载的图片
+ -(UIImage *)imageWithUrl:(NSString *)urlStr
+ {
+     NSURL *url=[NSURL URLWithString:urlStr];
+     NSData *data=[NSData dataWithContentsOfURL:url];
+     UIImage *image=[UIImage imageWithData:data];
+     return image;
+ }
+ @end
+```
+方法二：使用队列组
+步骤：
+
+创建一个组
+
+开启一个任务下载图片1
+
+ 开启一个任务下载图片2
+
+同时执行下载图片1\下载图片2操作
+
+等group中的所有任务都执行完毕, 再回到主线程执行其他操作
+
+```
+//
+//  04-GCD基本使用（队列组下载图片）
+//
+//  Created by apple on 14-6-25.
+//  Copyright (c) 2014年 itcase. All rights reserved.
+//
+
+#import "YYViewController.h"
+//宏定义全局并发队列
+#define global_quque    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+//宏定义主队列
+#define main_queue       dispatch_get_main_queue()
+ 
+@interface YYViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView3;
+
+@end
+
+@implementation YYViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //    图片1：http://d.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2b9a12172df5e0fefa1581533d095fcd/cefc1e178a82b9019115de3d738da9773912ef00.jpg
+   //    图片2：http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f47fd63ca41ea8d39e2f7c56f6635b2b/1e30e924b899a9018b8d3ab11f950a7b0308f5f9.jpg
+    
+    
+    //1.创建一个队列组
+         dispatch_group_t group = dispatch_group_create();
+     
+    //2.开启一个任务下载图片1
+    __block UIImage *image1=nil;
+    dispatch_group_async(group, global_quque, ^{
+        image1= [self imageWithUrl:@"http://d.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2b9a12172df5e0fefa1581533d095fcd/cefc1e178a82b9019115de3d738da9773912ef00.jpg"];
+         NSLog(@"图片1下载完成---%@",[NSThread currentThread]);
+     });
+    
+     //3.开启一个任务下载图片2
+    __block UIImage *image2=nil;
+    dispatch_group_async(group, global_quque, ^{
+        image2= [self imageWithUrl:@"http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=f47fd63ca41ea8d39e2f7c56f6635b2b/1e30e924b899a9018b8d3ab11f950a7b0308f5f9.jpg"];
+        NSLog(@"图片2下载完成---%@",[NSThread currentThread]);
+    });
+    
+   //同时执行下载图片1\下载图片2操作
+    
+   //4.等group中的所有任务都执行完毕, 再回到主线程执行其他操作
+    dispatch_group_notify(group,main_queue, ^{
+        NSLog(@"显示图片---%@",[NSThread currentThread]);
+         self.imageView1.image=image1;
+         self.imageView2.image=image2;
+         
+         //合并两张图片
+         //注意最后一个参数是浮点数（0.0），不要写成0。
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(200, 100), NO, 0.0);
+         [image1 drawInRect:CGRectMake(0, 0, 100, 100)];
+         [image2 drawInRect:CGRectMake(100, 0, 100, 100)];
+         self.imageView3.image=UIGraphicsGetImageFromCurrentImageContext();
+         //关闭上下文
+         UIGraphicsEndImageContext();
+         
+        NSLog(@"图片合并完成---%@",[NSThread currentThread]);
+    });
+    
+ }
+ -(void)download2image
+ {
+     //获取全局并发队列
+ //    dispatch_queue_t queue= dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+     //获取主队列
+ //    dispatch_queue_t queue= dispatch_get_main_queue();
+     
+     dispatch_async(global_quque, ^{
+        //下载图片1
+        UIImage *image1= [self imageWithUrl:@"http://news.baidu.com/z/resource/r/image/2014-06-22/2a1009253cf9fc7c97893a4f0fe3a7b1.jpg"];
+        NSLog(@"图片1下载完成---%@",[NSThread currentThread]);
+    
+        //下载图片2
+       UIImage *image2= [self imageWithUrl:@"http://news.baidu.com/z/resource/r/image/2014-06-22/2a1009253cf9fc7c97893a4f0fe3a7b1.jpg"];
+        NSLog(@"图片2下载完成---%@",[NSThread currentThread]);
+        
+        //回到主线程显示图片
+        dispatch_async(main_queue, ^{
+             NSLog(@"显示图片---%@",[NSThread currentThread]);
+            self.imageView1.image=image1;
+            self.imageView2.image=image2;
+            //合并两张图片
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(200, 100), NO, 0.0);
+            [image1 drawInRect:CGRectMake(0, 0, 100, 100)];
+            [image2 drawInRect:CGRectMake(0, 0, 100, 100)];
+            self.imageView3.image=UIGraphicsGetImageFromCurrentImageContext();
+            //关闭上下文
+            UIGraphicsEndImageContext();
+               NSLog(@"图片合并完成---%@",[NSThread currentThread]);
+        });
+        //
+    });
+ }
+
+//封装一个方法，传入一个url参数，返回一张网络上下载的图片
+-(UIImage *)imageWithUrl:(NSString *)urlStr
+{
+   NSURL *url=[NSURL URLWithString:urlStr];
+    NSData *data=[NSData dataWithContentsOfURL:url];
+    UIImage *image=[UIImage imageWithData:data];
+    return image;
+ }
+ @end
+```
+- dispatch_barrier_async/dispatch_barrier_sync（栅栏函数）
+    * 作用：与并发队列结合，可以高效率的避免数据竞争的问题
+    * 相同点：dispatch_barrier_sync和dispatch_barrier_async函数功能一样就是在并发队列中将此代码插入的地方上下隔开，如果栅栏一样，两部分不影响。只有上边的并发队列都执行结束之后，下边的并发队列才能够执行。
+    * 不同点:dispatch_barrier_sync代码后边的任务直到dispatch_barrier_sync执行完才能被追加到队列中；dispatch_barrier_async不用代码执行完，后边的任务也会被追加到队列中。代码上的体现就是dispatch_barrier_sync后边的代码不会执行，dispatch_barrier_async后边的代码会执行，但是Block不会被执行。
+    * dispatch_barrier_async
+        * dispatch_async将指定的Block异步的追加到指定的Dispatch Queue中。dispatch_async函数不会做任何等待
+        * dispatch_async代表异步任务，意思不是一定会生成一条线程。如果在MainQueue中执行，则不会生成线程；如果在Global Queue中有可能会生成。因为线程有一个线程池，会重用已经完成任务了的线程。
+    * dispatch_barrier_sync
+        * dispatch_sync将指定的Block同步的追加到指定的Dispatch Queue。此时dispatch_sync会一直等待Block执行结束之后，才会返回。线程才能接着继续执行其他代码。
+        * 当前queue是串行队列。 当前queue上调用sync函数，并且sync函数中指定的queue也是当前queue。需要执行的block被放到当前queue的队尾等待执行，因为这是一个串行的queue，调用sync函数会阻塞当前队列,等待block执行 这个block永远没有机会执行sync函数不返回，所以当前队列就永远被阻塞了，这就造成了死锁。（这就是问题中在主线程调用sync函数，并且在sync函数中传入main_queue作为queue造成死锁的情况）
+        * 当前queue是并行队列。 在并行的queue上面调用sync函数，同时传入当前queue作为参数，并不会造成死锁，因为block会马上被执行，所以sync函数也不会一直等待不返回造成死锁。（并且Block是在当前线程上执行。例如如果是在主线程上调用了dispatch_sync,则Block是在主线程上执行的）
+例子：
+
+```
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+   dispatch_queue_t queue = dispatch_queue_create("yuxuan", DISPATCH_QUEUE_CONCURRENT);
+
+   dispatch_async(queue, ^{
+       NSLog(@"任务1");
+   });
+
+    dispatch_async(queue, ^{
+       NSLog(@"任务2");
+    });
+
+    //栅栏函数(同步函数就没必要控制顺序了,因为它是有序的)
+            //dispatch_barrier_async 是异步函数不会阻塞线程
+            //dispatch_barrier_sync 是同步函数 会阻塞线程
+    //如果所有任务都在同一个并行队列中,并且这个并行队列不是系统自带全局并行队列
+    //哪么在barrier之前添加的方法会先被执行,只有等barrier之前的任务执行完毕后才会执行barrier任务
+    //只有barrier任务执行完毕后,才会执行后添加的任务
+    dispatch_barrier_async(queue, ^{
+        NSLog(@"我是个可爱的路障");
+    });
+
+    dispatch_async(queue, ^{
+       NSLog(@"任务3");
+    });
+
+    dispatch_async(queue, ^{
+       NSLog(@"任务4");
+    });
+
+    NSLog(@"end");
+}
+
+```
+- 信号量
+    * 就是一种可用来控制访问资源的数量的标识，设定了一个信号量，在线程访问之前，加上信号量的处理，则可告知系统按照我们指定的信号量数量来执行多个线程。
+    * 其实，这有点类似锁机制了，只不过信号量都是系统帮助我们处理了，我们只需要在执行线程之前，设定一个信号量值，并且在使用时，加上信号量处理方法就行了。
+    * 信号量主要有3个函数，分别是：
+        * dispatch_semaphore_create（信号量值）//创建信号量，参数：信号量的初值，如果小于0则会返回NULL
+        * dispatch_semaphore_wait（信号量，等待时间）//等待降低信号量
+        * dispatch_semaphore_signal(信号量)//提高信号量
+        * 注意，正常的使用顺序是先降低然后再提高，这两个函数通常成对使用。
+- 线程同步
+    * 我们使用GCD的时候如何让线程同步，目前我能想到的就三种
+        * dispatch_group
+        * dispatch_barrier
+        * dispatch_semaphore
+- dispatch_group
+    * 用户下载一个图片，图片很大，需要分成很多份进行下载，
+    * 使用Dispatch Group追加block到Global Group Queue，这些block如果全部执行完毕，就会执行通过dispatch_group_notify添加到主队列中的block，进行图片的合并处理。
+        
+```
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_group_t group = dispatch_group_create();
+dispatch_group_async(group, queue, ^{ /*加载图片1 */ });
+dispatch_group_async(group, queue, ^{ /*加载图片2 */ });
+dispatch_group_async(group, queue, ^{ /*加载图片3 */ }); 
+dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        // 合并图片… …
+});
+```
+
+- dispatch_barrier
+    * 通过dispatch_barrier_async添加的操作会暂时阻塞当前队列，即等待前面的并发操作都完成后执行该阻塞操作，待其完成后后面的并发操作才可继续。可以将其比喻为一根霸道的独木桥，是并发队列中的一个并发障碍点，或者说中间瓶颈，临时阻塞并独占。注意dispatch_barrier_async只有在并发队列中才能起作用，在串行队列中队列本身就是独木桥，将失去其意义。
+    * 可见使用dispatch_barrier_async可以实现类似dispatch_group_t组调度的效果,同时主要的作用是避免数据竞争，高效访问数据。
+    
+```
+/* 创建并发队列 */
+dispatch_queue_t concurrentQueue = dispatch_queue_create("test.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
+/* 添加两个并发操作A和B，即A和B会并发执行 */
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationA");
+});
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationB");
+});
+/* 添加barrier障碍操作，会等待前面的并发操作结束，并暂时阻塞后面的并发操作直到其完成 */
+dispatch_barrier_async(concurrentQueue, ^(){
+    NSLog(@"OperationBarrier!");
+});
+/* 继续添加并发操作C和D，要等待barrier障碍操作结束才能开始 */
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationC");
+});
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationD");
+});
+```
+
+- dispatch_semaphore
+    * 信号量机制主要是通过设置有限的资源数量来控制线程的最大并发数量以及阻塞线程实现线程同步等。
+    * 使用信号量实现任务2依赖于任务1，即任务2要等待任务1结束才开始执行
+    * 方法很简单，创建信号量并初始化为0，让任务2执行前等待信号，实现对任务2的阻塞。然后在任务1完成后再发送信号，从而任务2获得信号开始执行。需要注意的是这里任务1和2都是异步提交的，如果没有信号量的阻塞，任务2是不会等待任务1的,实际上这里使用信号量实现了两个任务的同步。
+    
+```
+/* 创建一个信号量 */
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+/* 任务1 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 耗时任务1 */
+    NSLog(@"任务1开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务1结束");
+    /* 任务1结束，发送信号告诉任务2可以开始了 */
+    dispatch_semaphore_signal(semaphore);
+});
+
+/* 任务2 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 等待任务1结束获得信号量, 无限等待 */
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    /* 如果获得信号量则开始任务2 */
+    NSLog(@"任务2开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务2结束");
+});
+[NSThread sleepForTimeInterval:10];
+```
+- 通过信号量控制最大并发数量：
+    * 通过信号量控制最大并发数量的方法为：创建信号量并初始化信号量为想要控制的最大并发数量，例如想要保证最大并发数为5，则信号量初始化为5。然后在每个新任务执行前进行P操作，等待信号使信号量减1；每个任务结束后进行V操作，发送信号使信号量加1。这样即可保证信号量始终在5以内，当前最多也只有5个以内的任务在并发执行。
+    
+```
+/* 创建一个信号量并初始化为5 */
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(5);
+
+/* 模拟1000个等待执行的任务，通过信号量控制最大并发任务数量为5 */
+for (int i = 0; i < 1000; i++) {
+    /* 任务i */
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        /* 耗时任务1，执行前等待信号使信号量减1 */
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"任务%d开始", i);
+        [NSThread sleepForTimeInterval:10];
+        NSLog(@"任务%d结束", i);
+        /* 任务i结束，发送信号释放一个资源 */
+        dispatch_semaphore_signal(semaphore);
+    });
+}
+[NSThread sleepForTimeInterval:1000];
+
+打印结果为每次开启五个并发任务
+2017-06-02 21:45:27.409067+0800 OC[7234:336757] 任务1开始
+2017-06-02 21:45:27.409069+0800 OC[7234:336758] 任务2开始
+2017-06-02 21:45:27.409103+0800 OC[7234:336759] 任务3开始
+2017-06-02 21:45:27.409268+0800 OC[7234:336761] 任务4开始
+2017-06-02 21:45:27.409887+0800 OC[7234:336756] 任务0开始
+
+2017-06-02 21:45:37.415217+0800 OC[7234:336757] 任务1结束
+2017-06-02 21:45:37.415370+0800 OC[7234:336759] 任务3结束
+2017-06-02 21:45:37.415217+0800 OC[7234:336761] 任务4结束
+2017-06-02 21:45:37.415217+0800 OC[7234:336758] 任务2结束
+2017-06-02 21:45:37.415442+0800 OC[7234:336756] 任务0结束
+
+2017-06-02 21:45:37.415544+0800 OC[7234:336760] 任务5开始
+2017-06-02 21:45:37.415548+0800 OC[7234:336762] 任务6开始
+2017-06-02 21:45:37.415614+0800 OC[7234:336765] 任务9开始
+2017-06-02 21:45:37.415620+0800 OC[7234:336764] 任务8开始
+2017-06-02 21:45:37.415594+0800 OC[7234:336763] 任务7开始
+
+... ...
+```
+- 延迟函数dispatch_after(.....)
+
+```
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+NSLog(@"start");
+//dispatch_after 是异步执行的
+//队列只决定在哪个线程中执行任务 并不能决定执行时间
+/**
+ * 第一个参数: 在哪个时间点执行
+ *            dispatch_time(从哪个时间点开始,经历多少纳秒)
+ * 第二个参数: 在哪个队列中执行block任务
+ * 第三个参数: block任务
+ */
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    NSLog(@"%@",[NSThread currentThread]);
+});
+NSLog(@"end");
+}
+
+```
+
+- 定时器
+
+```
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+ //创建一个队列,创建GCD定时器时使用
+  dispatch_queue_t queue = dispatch_queue_create("yuxuan", DISPATCH_QUEUE_SERIAL);
+  //创建一个GCD定时器(触发器)
+  //第四个参数:传入一个队列,决定了定时器回调任务执行方式.
+  dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+  //dispatch_source_t其实本质是一个类,由于是局部变量,方法执行完,就会被释放.
+  self.timer = timer;
+  //设置定时器
+  /*
+   第一个参数:给那个定时器设置
+   第二个参数:什么时候启动
+   第三个参数:间隔多久执行一次
+   第四个参数:设置精准度:0 代表最高精准(尽量让定时器精准), 大于0的的话代表是在多少秒内接受.
+   第四个参数存在意义:主要是为了提高程序性能, 设置越大,能减轻CPU的压力
+   注意:GCD定时器传入的时间都是纳秒
+   */
+  dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC, 0.0 * NSEC_PER_SEC);
+   //第一个参数:给那个定时器设置
+  //第二个参数:设置定时器回调block
+  //异步执行的,具有创建新线程的能力
+  //具体是否创建线程,创建几条线程是由定时任务创建时,传入的queue决定的
+  dispatch_source_set_event_handler(timer, ^{
+      NSLog(@"%@",[NSThread currentThread]);
+  });
+      //启动定时器
+  dispatch_resume(timer);
+}
+
+```
+
+- 一次性执行dispatch_once(...)
+
+```
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    //一次性执行的机制,能保证在程序启动后只会执行一次,并且是线程安全的,在主线程中执行
+    //一般使用dispatch_once来做一次性执行,效率高, 在单例模式中使用.
+    //可以利用互斥锁在实现此功能,但不建议使用,因为效率非常低!!!!
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSLog(@"");
+    });
+}
+
+
+```
 
 
 
 ## 16.如何使用队列来避免资源抢夺？
 
-
+dispatch_barrior_async 作用是在并行队列中，等待前面两个操作并行操作完成。
 
 ## 17.数据持久化的几个方案（fmdb用没用过）
 
+- NSUserDefaults
+- plist（属性列表）
+- NSKeyedArchiver（对象归档）
+- iOS的嵌入式关系数据库SQLite3
+- 苹果公司提供的持久化工具 Core Data
+
+首先介绍沙盘
+- 沙盒目录结构:
+    * Documents：保存应用运行时生成的需要持久化的数据，iTunes同步设备时 会 备份该目录。例如，游戏应用可将游戏存档保存在该目录
+    * tmp：保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时 不会 备份该目录
+    * Library/Caches：保存应用运行时生成的需要持久化的数据，iTunes同步设备时 不会 备份该目录。一般存储体积大、不需要备份的非重要数据
+    * Library/Preference：保存应用的所有偏好设置，iOS的Settings(设置)应用 会 在该目录中查找应用的设置信息。iTunes同步设备时 会 备份该目录
+
+NSUserDefaults
+
+```
+static NSString* const key = @"key";
+[[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:key];
+[NSUserDefaults standardUserDefaults] valueForKey:key]
+[userDefaults removeObjectForKey:key];
+[userDefaults synchronize];
+```
+上面的示例代码基本就是NSUserDefaults所有用法了，虽然很简单，但还是有几点需要注意：
+    * 建议将所有的的key单独存放（好处自己领会）
+    * NSUserDefaults可以存储的数据类型包括：NSData、NSString、NSNumber、NSDate、NSArray、NSDictionary。如果要存储其他类型，则需要转换为前面的类型，才能用NSUserDefaults存储。之前碰到个坑就是从服务器拿到数据部分用这种方式存储，服务器返回NSNull,我们这边也没有model层转，就直接存储了，导致app卡掉但并没有闪退之类，就是线程卡死的情况
+    * 同步问题，在适当的时候同步。因为synchronize的开销可能会很大，因为要比较内存中和存储中的所有用户偏好默认值，如果有好几百个key value 同步是非常消耗性能的。
+    * 偏好设置是专门用来保存应用程序的配置信息的，（ 用过Settings.bundle的应该都很熟悉），所以一般不要在偏好设置中保存其他数据。
+    * 偏好设置会将所有数据保存到同一个文件中。即preference目录下的一个以此应用包名来命名的plist文件。
+
+plist
+首先需要知道什么是序列化对象（serialized object）：指可以被转换为字节流以便于存储到文件中或通过网络进行传输的对象
+
+```
+/**
+ *  获取存储路径
+ */
+- (NSString*)dataFilePath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = paths[0];
+    return [documentDirectory stringByAppendingPathComponent:@"data.plist"];//nsstring真强大
+}
+```
+我们在app处于非活跃状态时存储一些东东
+
+```
+UIApplication* app = [UIApplication sharedApplication];
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:app];
+
+- (void)appWillResignActive:(NSNotification*)notification {
+    NSString* filePath = [self dataFilePath];
+    NSArray* arr = @[@1,@2,@3,@4];
+    [arr writeToFile:filePath atomically:YES];
+}
+```
+在我们需要这些东东的时候从文件中读取
+
+```
+NSString* filePath = [self dataFilePath];
+if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
+    NSArray* arr = [[NSArray alloc]initWithContentsOfFile:filePath];
+}
+```
+
+NSKeyedArchiver
+
+在Cocoa中，Archiver是另一种形式的序列化，是任何对象都可实现的更常规的类型
+
+说明：
+
+只有遵守了NSCoding或 NSSecureCoding（更为安全的归档协议）协议,并且实现了协议里归档与解归档的方法的的类创建的对象才能够进行归档
+最好也实现以下NSCopying，NSCopying与NSCoding一起实现好处在于允许复制对象，使用数据模型对象时有较大的灵活性
+
+
+```
+#import <Foundation/Foundation.h>
+@interface FourLines : NSObject<NSCoding,NSCopying>
+
+@property(copy,nonatomic)NSArray* lines;
+
+@end
+
+#import "FourLines.h"
+
+//编解码的key
+static NSString* const klinesKey = @"klinesKey";
+
+@implementation FourLines
+
+#pragma mark -  NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.lines forKey:klinesKey];
+}
+
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        self.lines = [aDecoder decodeObjectForKey:klinesKey];
+    }
+    return self;
+}
+
+#pragma mark -  NSCopying 
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    FourLines* copy = [[[self class]allocWithZone:zone]init];
+    NSMutableArray* linesCopy = [NSMutableArray array];
+    for (id line in self.lines) {
+        [linesCopy addObject:[line copyWithZone:zone]];
+    }
+    copy.lines = linesCopy;
+    return copy;
+}
+
+@end
+```
+写入数据，编码：文件路径还是用上面代码中定义的文件路径
+
+```
+- (void)appWillResignActive:(NSNotification*)notification {
+    NSString* filePath = [self dataFilePath];
+    FourLines* lines = [[FourLines alloc]init];
+    lines.lines = @[@"a",@"b",@"c",@"d"];
+    NSMutableData* data = [[NSMutableData alloc]init];
+    NSKeyedArchiver* archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+    [archiver encodeObject:lines forKey:kRootKey];
+    [archiver finishEncoding];
+    [data writeToFile:filePath atomically:YES];  
+}
+```
+读取数据，解码：
+
+```
+NSString* filePath = [self dataFilePath];
+ if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
+        NSData* data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
+        NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+        FourLines* four = [unarchiver decodeObjectForKey:kRootKey];
+        [unarchiver finishDecoding];
+        for (int i = 0; i < 4; i++) {
+            //to do
+        }
+}
+
+UIApplication* app = [UIApplication sharedApplication];
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:app];
+```
+fmdb（iOS平台的SQLite数据库框架）
+
+建表以及关闭表
+
+使用数据库的第一件事，就是建立一个数据库。要注意的是，在iOS环境下，只有document directory 是可以进行读写的。在写程序时用的那个Resource资料夹底下的东西都是read-only。因此，建立的资料库要放在document 资料夹下。方法如下：
+
+
+```
+//建表
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSLog(@"doc = %@", doc);
+    NSString *fileName = [doc stringByAppendingPathComponent:@"device.sqlite"];
+    FMDatabase *db = [FMDatabase databaseWithPath:fileName];
+    if ([db open]) {
+        BOOL result = [db executeUpdate:@"CREATE TABLE IF NOT EXISTS Device (deviceID text, deviceName text, deviceType integer, deviceStatus integer);"];
+        if (result) {
+            NSLog(@"创建表成功");
+        } else {
+            NSLog(@"建表失败");
+        }
+    }
+
+```
+
+这样简单的操作就已经完成了数据库的创建，每一行代码都很好理解，先是找到程序在沙盒中的路径，之后填写数据库的名字，完成创建。如果创建数据库成功，那么我们就创建一个名字叫Device的表，这个设备表里有 deviceID, deviceName, deviceType, deviceStatus 四个字段，他们的类型分别是text、text、integer、integer。
 
 
 ## 18.说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？
 
+- 1,-(void)applicationWillResignActive:(UIApplication *)application.
+    * 说明:当应用程序将要入非活动状态执行,在此期间,应用程序不接收消息或事件,比如来电
+- 2.-(void)applicationDidBecomeActive:(UIApplication *)application
+    * 说明:当应用程序入活动状态执行,这个刚好跟上面那个方法相反
+- 3,-(void)applicationDidEnterBackground:(UIApplication *)application
+    * 说明:当程序被推送到后台的时候调用。所以要设置后台继续运行,则在这个函数里面设置即,可
+- 4,-(void)applicationWillEnterForeground:(UIApplication *)application
+    * 说明:当程序从后台将要重新回到前台时候调用,这个刚好跟上面的那个方法相反.
+- 5,-(void)applicationWillTerminate:(UIApplication *)application.
+    * 说明:当程序将要退出是被调用,通常是用来保存数据和一些退出前的清理工作。这个需要要,设置UIApplicationExitsOnSuspend的键值。
+- 6,-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+    * 说明: iPhone设备只有有限的内存,如果为应用程序分配了太多内存操作系统会终止应用程!序的运行,在终止前会执行这个方法,通常可以在这里进行内存清理工作防止程序被终止,
+- 7,-(void)applicationSignificantTimeChange:(UIApplication*)application
+    * 说明：当系统时间发生改变时执行
+- 8,-(void)applicationDidFinishLaunching:(UIApplication*)application
+    * 说明:当程序载入后执行
+- 9.- (void)application:(UApplication)application willChangeStatusBarFrame:(CGRectinewStatusBarFrame
+    * 说明:当StatusBar框将要变化时执行
+- 10 - (void)application:(UIApplication*)application willChangeStatusBarOrientation:(UlinterfaceOrientation)newStatusBarOrientation
+duration(NSTimelinterval)duration
+    * 说明:当StatusBar框方向将要变化时执行,
+- 11,-(BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
+    * 说明:当通过url执行
+- 12.- (void)application:(UIApplication*)application didChangeStatusBarOrientation(unterfaceOrientation)oldStatusBarOrientation
+    * 说明:当StatusBar框方向变化完成后执行
+- 13.-(void)application:(UIApplication*)application didChangeSetStatusBarFrame:(CGRect)oldStatusBarFrame
+    * 说明:当StatusBar框变化完成后执行
 
 
 ## 19.NSCache优于NSDictionary的几点？
+
+- NSCache苹果提供的一套缓存机制
+    * 主要作用于内存缓存的管理方面;
+    * 在没有引入NSCache之前,我们要管理缓存,都是使用的NSMutableDictionary来管理,如:
+
+```
+// 定义下载操作缓存池
+@property (nonatomic, strong) NSMutableDictionary *operationCache;
+// 定义图片缓存池
+@property (nonatomic, strong) NSMutableDictionary *imageCache;
+
+```
+然而,使用NSMutableDictionary来管理缓存是有些不妥的, 知道多线程操作原理的开发者都明白, NSMutableDictionary在线程方面来说是不安全,这也是苹果官方文档明确说明了的,而如果使用的是NSCache,那就不会出现这些问题.
+
+- NSCache和NSMutableDictionary的相同点与区别
+    * 相同点：
+        * NSCache和NSMutableDictionary功能用法基本是相同的。
+    * 区别：
+        * NSCache是线程安全的，NSMutableDictionary线程不安全;NSCache线程是安全的，Mutable开发的类一般都是线程不安全的
+        * 当内存不足时NSCache会自动释放内存(所以从缓存中取数据的时候总要判断是否为空)
+        * NSCache可以指定缓存的限额，当缓存超出限额自动释放内存缓存限额：
+            * 缓存数量
+            
+            @property NSUInteger countLimit;
+            * 缓存成本
+            
+            @property NSUInteger totalCostLimit;
+        * 苹果给NSCache封装了更多的方法和属性,比NSMutableDictionary的功能要强大很多
+
+代码演示：
+
+先定义缓存池,并懒加载初始化:
+
+
+```
+#import "ViewController.h"
+
+@interface ViewController () <NSCacheDelegate>
+
+// 定义缓存池
+@property (nonatomic, strong) NSCache *cache;
+@end
+
+@implementation ViewController
+- (NSCache *)cache {
+if (_cache == nil) {
+    _cache = [[NSCache alloc] init];
+    // 缓存中总共可以存储多少条
+    _cache.countLimit = 5;
+    // 缓存的数据总量为多少
+    _cache.totalCostLimit = 1024 * 5;
+}
+return _cache;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  // Do any additional setup after loading the view, typically from a nib.
+
+  //添加缓存数据
+   for (int i = 0; i < 10; i++) {
+    [self.cache setObject:[NSString stringWithFormat:@"hello %d",i] forKey:[NSString stringWithFormat:@"h%d",i]];
+    NSLog(@"添加 %@",[NSString stringWithFormat:@"hello %d",i]);
+   }
+
+  //输出缓存中的数据
+   for (int i = 0; i < 10; i++) {
+    NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+   }
+
+}
+
+```
+控制台输出结果为:
+
+![image](https://upload-images.jianshu.io/upload_images/1483059-7d13b9b81f721289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/455)
+
+**通过输出结果可以看出: **
+
+1.当我们使用NSCache来创建缓存池的时候,我们可以很灵活的设置缓存的限额,
+
+2.当程序中的个数超过我们的限额的时候,会先移除最先创建的
+
+3.如果已经移除了,那么当我们输出缓存中的数据的时候,就只剩下后面创建的数据了;
+
+#### 演示NSCache的代理方法
+
+先设置代理对象:
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+//设置NSCache的代理
+self.cache.delegate = self;
+调用代理方法: 这里我仅用一个方法来演示:
+
+
+```
+//当缓存被移除的时候执行
+         - (void)cache:(NSCache *)cache willEvictObject:(id)obj{
+        NSLog(@"缓存移除  %@",obj);
+       }
+```
+![image](https://camo.githubusercontent.com/ba7de0659ecacb3d4d33d30ea1c4eb564b56a3bb/68747470733a2f2f7374617469632e6f736368696e612e6e65742f75706c6f6164732f696d672f3230313630322f31363232313531375f773432722e706e67)
+
+通过结果可以看出: NSCache的功能要比NSMutableDictionary的功能要强大很多很多;
+
+#### 当遇到内存警告的时候
+
+```
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    //当收到内存警告，清除内存
+    [self.cache removeAllObjects];
+    //输出缓存中的数据
+    for (int i = 0; i < 10; i++) {
+        NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+    }
+}
+```
+控制台输出结果:
+
+![image](https://camo.githubusercontent.com/9d0895f61d5c29f257092c7a32d5b5cce8043a9e/68747470733a2f2f7374617469632e6f736368696e612e6e65742f75706c6f6164732f696d672f3230313630322f31363232303331345f505064382e706e67)
+
+通过结果可以看出: 当收到内存警告之后,清除数据之后,NSCache缓存池中所有的数据都会为空!
+
+#### 当收到内存警告，调用removeAllObjects 之后，无法再次往缓存池中添加数据
+
+
+```
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    //当收到内存警告，调用removeAllObjects 之后，无法再次往缓存中添加数据
+    [self.cache removeAllObjects];
+    //输出缓存中的数据
+    for (int i = 0; i < 10; i++) {
+        NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+    }
+}
+
+// 触摸事件, 以便验证添加数据
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.cache removeAllObjects];
+    
+    //添加缓存数据
+    for (int i = 0; i < 10; i++) {
+        [self.cache setObject:[NSString stringWithFormat:@"hello %d",i] forKey:[NSString stringWithFormat:@"h%d",i]];
+//        NSLog(@"添加 %@",[NSString stringWithFormat:@"hello %d",i]);
+    }
+    
+    //输出缓存中的数据
+    for (int i = 0; i < 10; i++) {
+        NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+    }
+
+}
+```
+控制台输出结果为: 
+
+![image](https://camo.githubusercontent.com/c30bb9b1a4d03a949190145b441ed3ebc888504b/68747470733a2f2f7374617469632e6f736368696e612e6e65742f75706c6f6164732f696d672f3230313630322f31363232313931345f664678622e706e67)
+
+通过输出结果,我们可以看出: 当收到内存警告，而我们又调用removeAllObjects 之后，则无法再次往缓存中添加数据;
 
 
 
@@ -846,7 +1894,31 @@ objc_storeWeak函数把第二个参数--赋值对象（obj）的内存地址作�
 
 ## 30.给类添加一个属性后，在类结构体里哪些元素会发生变化？
 
+
+
 ## 31.runloop是来做什么的？runloop和线程有什么关系？主线程默认开启了runloop么？子线程呢？
+
+- 总的说来，Run loop，正如其名，loop表示某种循环，和run放在一起就表示一直在运行着的循环。实际上，run loop和线程是紧密相连的，可以这样说run loop是为了线程而生，没有线程，它就没有存在的必要。Run loops是线程的基础架构部分， Cocoa 和 CoreFundation 都提供了 run loop 对象方便配置和管理线程的 run loop （以下都以 Cocoa 为例）。每个线程，包括程序的主线程（ main thread ）都有与之相应的 run loop 对象。
+- runloop 和线程的关系：
+    * 主线程的run loop默认是启动的。
+iOS的应用程序里面，程序启动后会有一个如下的main()函数
+
+```
+int main(int argc, char * argv[]) {
+   @autoreleasepool {
+       return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+   }
+}
+```
+重点是UIApplicationMain()函数，这个方法会为main thread设置一个NSRunLoop对象，这就解释了：为什么我们的应用可以在无人操作的时候休息，需要让它干活的时候又能立马响应。
+    * 对其它线程来说，run loop默认是没有启动的，如果你需要更多的线程交互则可以手动配置和启动，如果线程只是去执行一个长时间的已确定的任务则不需要。
+    * 在任何一个 Cocoa 程序的线程中，都可以通过以下代码来获取到当前线程的 run loop 。
+
+```
+NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+```
+- 参考链接：[《Objective-C之run loop详解》](https://blog.csdn.net/wzzvictory/article/details/9237973)。
+
 
 ## 32.runloop的mode是用来做什么的？有几种mode？
 
@@ -860,6 +1932,33 @@ objc_storeWeak函数把第二个参数--赋值对象（obj）的内存地址作�
     * NSRunLoopCommonModes（kCFRunLoopCommonModes）
 
 ## 33.为什么把NSTimer对象以NSDefaultRunLoopMode（kCFRunLoopDefaultMode）添加到主运行循环以后，滑动scrollview的时候NSTimer却不动了？
+
+RunLoop只能运行在一种mode下，如果要换mode，当前的loop也需要停下重启成新的。利用这个机制，ScrollView滚动过程中NSDefaultRunLoopMode（kCFRunLoopDefaultMode）的mode会切换到UITrackingRunLoopMode来保证ScrollView的流畅滑动：只能在NSDefaultRunLoopMode模式下处理的事件会影响ScrollView的滑动。
+
+如果我们把一个NSTimer对象以NSDefaultRunLoopMode（kCFRunLoopDefaultMode）添加到主运行循环中的时候, ScrollView滚动过程中会因为mode的切换，而导致NSTimer将不再被调度。
+
+同时因为mode还是可定制的，所以：
+
+Timer计时会被scrollView的滑动影响的问题可以通过将timer添加到NSRunLoopCommonModes（kCFRunLoopCommonModes）来解决。代码如下：
+
+```
+// 
+
+//将timer添加到NSDefaultRunLoopMode中
+[NSTimer scheduledTimerWithTimeInterval:1.0
+     target:self
+     selector:@selector(timerTick:)
+     userInfo:nil
+     repeats:YES];
+//然后再添加到NSRunLoopCommonModes里
+NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
+     target:self
+     selector:@selector(timerTick:)
+     userInfo:nil
+     repeats:YES];
+[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+```
+
 
 ## 34.苹果是如何实现Autorelease Pool的？
 
@@ -910,9 +2009,50 @@ objc_storeWeak函数把第二个参数--赋值对象（obj）的内存地址作�
 
 ## 37.介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？
 
+
+
 ## 38.运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？
 
+
+
 ## 39.objc中向一个nil对象发送消息将会发生什么？（返回值是对象，是标量，结构体）
+
+- 在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用:
+- 如果一个方法返回值是一个对象，那么发送给nil的消息将返回0(nil)。例如：
+
+```
+Person * motherInlaw = [[aPerson spouse] mother];
+```
+- 如果 spouse 对象为 nil，那么发送给 nil 的消息 mother 也将返回 nil。 
+- 如果方法返回值为指针类型，其指针大小为小于或者等于sizeof(void*)，float，double，long double 或者 long long 的整型标量，发送给 nil 的消息将返回0。 
+- 如果方法返回值为结构体,发送给 nil 的消息将返回0。结构体中各个字段的值将都是0。 
+- 如果方法的返回值不是上述提到的几种情况，那么发送给 nil 的消息的返回值将是未定义的。
+
+具体原因如下：
+> objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。
+
+具体分析：
+
+```
+// runtime.h（类在runtime中的定义）
+
+struct objc_class {
+  Class isa OBJC_ISA_AVAILABILITY; //isa指针指向Meta Class，因为Objc的类的本身也是一个Object，为了处理这个关系，runtime就创造了Meta Class，当给类发送[NSObject alloc]这样消息时，实际上是把这个消息发给了Class Object
+  #if !__OBJC2__
+  Class super_class OBJC2_UNAVAILABLE; // 父类
+  const char *name OBJC2_UNAVAILABLE; // 类名
+  long version OBJC2_UNAVAILABLE; // 类的版本信息，默认为0
+  long info OBJC2_UNAVAILABLE; // 类信息，供运行期使用的一些位标识
+  long instance_size OBJC2_UNAVAILABLE; // 该类的实例变量大小
+  struct objc_ivar_list *ivars OBJC2_UNAVAILABLE; // 该类的成员变量链表
+  struct objc_method_list **methodLists OBJC2_UNAVAILABLE; // 方法定义的链表
+  struct objc_cache *cache OBJC2_UNAVAILABLE; // 方法缓存，对象接到一个消息会根据isa指针查找消息对象，这时会在method Lists中遍历，如果cache了，常用的方法调用时就能够提高调用的效率。
+  struct objc_protocol_list *protocols OBJC2_UNAVAILABLE; // 协议链表
+  #endif
+  } OBJC2_UNAVAILABLE;
+```
+objc在向一个对象发送消息时，runtime库会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，然后在发送消息的时候，objc_msgSend方法不会返回值，所谓的返回内容都是具体调用时执行的。 那么，回到本题，如果向一个nil对象发送消息，首先在寻找对象的isa指针时就是0地址返回了，所以不会出现任何错误。
+
 
 ## 40.UITableview的优化方法（缓存高度，异步绘制，减少层级，hide，避免离屏渲染
 
