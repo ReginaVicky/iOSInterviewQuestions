@@ -300,6 +300,30 @@ Objective-C 有 designated 和 secondary 初始化方法的观念。 designated 
 
 ## 4.怎么用 copy 关键字？
 
+- 用途：
+    * NSString、NSArray、NSDictionary 等等经常使用copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary；
+    * block 也经常使用 copy 关键字，具体原因见官方文档：Objects Use Properties to Keep Track of Blocks：
+- block 使用 copy 是从 MRC 遗留下来的“传统”,在 MRC 中,方法内部的 block 是在栈区的,使用 copy 可以把它放到堆区.在 ARC 中写不写都行：对于 block 使用 copy 还是 strong 效果是一样的，但写上 copy 也无伤大雅，还能时刻提醒我们：编译器自动对 block 进行了 copy 操作。如果不写 copy ，该类的调用者有可能会忘记或者根本不知道“编译器会自动对 block 进行了 copy 操作”，他们有可能会在调用之前自行拷贝属性值。这种操作多余而低效。你也许会感觉我这种做法有些怪异，不需要写依然写。如果你这样想，其实是你“日用而不知”，你平时开发中是经常在用我说的这种做法的，比如下面的属性不写copy也行，但是你会选择写还是不写呢？
+
+```
+@property (nonatomic, copy) NSString *userId;
+
+- (instancetype)initWithUserId:(NSString *)userId {
+   self = [super init];
+   if (!self) {
+       return nil;
+   }
+   _userId = [userId copy];
+   return self;
+}
+```
+
+![image](https://camo.githubusercontent.com/8a5fa34435801cc4c2715d8880f3abd45be6a6c5/687474703a2f2f692e696d6775722e636f6d2f566c564b6c384c2e706e67)
+
+下面做下解释： copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。 当属性类型为 NSString 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString 类的实例。这个类是 NSString 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。
+> 用 @property 声明 NSString、NSArray、NSDictionary 经常使用 copy 关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary，他们之间可能进行赋值操作，为确保对象中的字符串值不会无意间变动，应该在设置新属性值时拷贝一份。
+
+
 ## 5.这个写法会出什么问题： @property (copy) NSMutableArray *array;
 
 - 两个问题：
@@ -316,6 +340,210 @@ Objective-C 有 designated 和 secondary 初始化方法的观念。 designated 
     * 第二个原因：该属性使用了同步锁，会在创建时生成一些额外的代码用于帮助编写多线程程序，这会带来性能问题，通过声明 nonatomic 可以节省这些虽然很小但是不必要额外开销。在默认情况下，由编译器所合成的方法会通过锁定机制确保其原子性(atomicity)。如果属性具备 nonatomic 特质，则不使用同步锁。请注意，尽管没有名为“atomic”的特质(如果某属性不具备 nonatomic 特质，那它就是“原子的”(atomic))。在iOS开发中，你会发现，几乎所有属性都声明为 nonatomic。一般情况下并不要求属性必须是“原子的”，因为这并不能保证“线程安全” ( thread safety)，若要实现“线程安全”的操作，还需采用更为深层的锁定机制才行。例如，一个线程在连续多次读取某属性值的过程中有别的线程在同时改写该值，那么即便将属性声明为 atomic，也还是会读到不同的属性值。因此，开发iOS程序时一般都会使用 nonatomic 属性。但是在开发 Mac OS X 程序时，使用 atomic 属性通常都不会有性能瓶颈。
 
 ## 6.如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？
+
+> 若想令自己所写的对象具有拷贝功能，则需实现 NSCopying 协议。如果自定义的对象分为可变版本与不可变版本，那么就要同时实现 NSCopying 与 NSMutableCopying 协议。
+- 具体步骤：
+    * 需声明该类遵从 NSCopying 协议
+    * 实现 NSCopying 协议。该协议只有一个方法:
+
+```
+- (id)copyWithZone:(NSZone *)zone;
+```
+- 注意：一提到让自己的类用 copy 修饰符，我们总是想覆写copy方法，其实真正需要实现的却是 “copyWithZone” 方法。
+- 以第一题的代码为例：
+
+```
+// .h文件
+   // 修改完的代码
+
+   typedef NS_ENUM(NSInteger, CYLSex) {
+       CYLSexMan,
+       CYLSexWoman
+   };
+
+   @interface CYLUser : NSObject<NSCopying>
+
+   @property (nonatomic, readonly, copy) NSString *name;
+   @property (nonatomic, readonly, assign) NSUInteger age;
+   @property (nonatomic, readonly, assign) CYLSex sex;
+
+   - (instancetype)initWithName:(NSString *)name age:(NSUInteger)age sex:(CYLSex)sex;
+   + (instancetype)userWithName:(NSString *)name age:(NSUInteger)age sex:(CYLSex)sex;
+
+   @end
+```
+然后实现协议中规定的方法：
+
+```
+- (id)copyWithZone:(NSZone *)zone {
+	CYLUser *copy = [[[self class] allocWithZone:zone] 
+		             initWithName:_name
+ 							      age:_age
+						          sex:_sex];
+	return copy;
+}
+```
+但在实际的项目中，不可能这么简单，遇到更复杂一点，比如类对象中的数据结构可能并未在初始化方法中设置好，需要另行设置。举个例子，假如 CYLUser 中含有一个数组，与其他 CYLUser 对象建立或解除朋友关系的那些方法都需要操作这个数组。那么在这种情况下，你得把这个包含朋友对象的数组也一并拷贝过来。下面列出了实现此功能所需的全部代码:
+
+```
+// .h文件
+// 以第一题《风格纠错题》里的代码为例
+
+typedef NS_ENUM(NSInteger, CYLSex) {
+    CYLSexMan,
+    CYLSexWoman
+};
+
+@interface CYLUser : NSObject<NSCopying>
+
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly, assign) NSUInteger age;
+@property (nonatomic, readonly, assign) CYLSex sex;
+
+- (instancetype)initWithName:(NSString *)name age:(NSUInteger)age sex:(CYLSex)sex;
++ (instancetype)userWithName:(NSString *)name age:(NSUInteger)age sex:(CYLSex)sex;
+- (void)addFriend:(CYLUser *)user;
+- (void)removeFriend:(CYLUser *)user;
+
+@end
+```
+// .m文件
+
+```
+// .m
+//
+
+@implementation CYLUser {
+   NSMutableSet *_friends;
+}
+
+- (void)setName:(NSString *)name {
+   _name = [name copy];
+}
+
+- (instancetype)initWithName:(NSString *)name
+                        age:(NSUInteger)age
+                        sex:(CYLSex)sex {
+   if(self = [super init]) {
+       _name = [name copy];
+       _age = age;
+       _sex = sex;
+       _friends = [[NSMutableSet alloc] init];
+   }
+   return self;
+}
+
+- (void)addFriend:(CYLUser *)user {
+   [_friends addObject:user];
+}
+
+- (void)removeFriend:(CYLUser *)user {
+   [_friends removeObject:user];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+   CYLUser *copy = [[[self class] allocWithZone:zone]
+                    initWithName:_name
+                    age:_age
+                    sex:_sex];
+   copy->_friends = [_friends mutableCopy];
+   return copy;
+}
+
+- (id)deepCopy {
+   CYLUser *copy = [[[self class] alloc]
+                    initWithName:_name
+                    age:_age
+                    sex:_sex];
+   copy->_friends = [[NSMutableSet alloc] initWithSet:_friends
+                                            copyItems:YES];
+   return copy;
+}
+
+@end
+```
+以上做法能满足基本的需求，但是也有缺陷：
+> 如果你所写的对象需要深拷贝，那么可考虑新增一个专门执行深拷贝的方法。
+
+在例子中，存放朋友对象的 set 是用 “copyWithZone:” 方法来拷贝的，这种浅拷贝方式不会逐个复制 set 中的元素。若需要深拷贝的话，则可像下面这样，编写一个专供深拷贝所用的方法:
+
+```
+- (id)deepCopy {
+   CYLUser *copy = [[[self class] alloc]
+                    initWithName:_name
+                    age:_age
+                    sex:_sex];
+   copy->_friends = [[NSMutableSet alloc] initWithSet:_friends
+                                            copyItems:YES];
+   return copy;
+}
+```
+至于***如何重写带 copy 关键字的 setter***这个问题，
+
+如果抛开本例来回答的话，如下：
+
+```
+- (void)setName:(NSString *)name {
+    //[_name release];
+    _name = [name copy];
+}
+```
+不过也有争议，有人说“苹果如果像下面这样干，是不是效率会高一些？”
+
+```
+- (void)setName:(NSString *)name {
+   if (_name != name) {
+       //[_name release];//MRC
+       _name = [name copy];
+   }
+}
+```
+你可能会说：
+
+之所以在这里做if判断 这个操作：是因为一个 if 可能避免一个耗时的copy，还是很划算的。 (在刚刚讲的：《如何让自己的类用 copy 修饰符？》里的那种复杂的copy，我们可以称之为 “耗时的copy”，但是对 NSString 的 copy 还称不上。)
+
+但是你有没有考虑过代价：
+
+你每次调用 setX: 都会做 if 判断，这会让 setX: 变慢，如果你在 setX:写了一串复杂的 if+elseif+elseif+... 判断，将会更慢。
+要回答“哪个效率会高一些？”这个问题，不能脱离实际开发，就算 copy 操作十分耗时，if 判断也不见得一定会更快，除非你把一个“ @property他当前的值 ”赋给了他自己，代码看起来就像：
+
+```
+[a setX:x1];
+[a setX:x1];    //你确定你要这么干？与其在setter中判断，为什么不把代码写好？
+```
+或者
+
+```
+[a setX:[a x]];   //队友咆哮道：你在干嘛？！！
+```
+不要在 setter 里进行像 if(_obj != newObj) 这样的判断。
+
+什么情况会在 copy setter 里做 if 判断？ 例如，车速可能就有最高速的限制，车速也不可能出现负值，如果车子的最高速为300，则 setter 的方法就要改写成这样：
+
+```
+-(void)setSpeed:(int)_speed{
+    if(_speed < 0) speed = 0;
+    if(_speed > 300) speed = 300;
+    _speed = speed;
+}
+```
+回到这个题目，如果单单就上文的代码而言，我们不需要也不能重写 name 的 setter ：由于是 name 是只读属性，所以编译器不会为其创建对应的“设置方法”，用初始化方法设置好属性值之后，就不能再改变了。（ 在本例中，之所以还要声明属性的“内存管理语义”--copy，是因为：如果不写 copy，该类的调用者就不知道初始化方法里会拷贝这些属性，他们有可能会在调用初始化方法之前自行拷贝属性值。这种操作多余而低效）。
+
+那如何确保 name 被 copy？在初始化方法(initializer)中做：
+
+```
+- (instancetype)initWithName:(NSString *)name 
+   							 age:(NSUInteger)age 
+   							 sex:(CYLSex)sex {
+        if(self = [super init]) {
+        	_name = [name copy];
+        	_age = age;
+        	_sex = sex;
+        	_friends = [[NSMutableSet alloc] init];
+        }
+        return self;
+   }
+```
 
 ## 7.@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
 
@@ -1248,6 +1476,8 @@ objc Runtime开源代码对- (Class)class方法的实现:
 
 
 ## 23.`_objc_msgForward` 函数是做什么的，直接调用它将会发生什么？
+
+
 
 ## 24.runtime如何实现weak变量的自动置nil？
 
