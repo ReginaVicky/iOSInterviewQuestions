@@ -1820,9 +1820,11 @@ self.cache.delegate = self;
 
 ## 22.objc使用什么机制管理对象内存？
 
-
+* 通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的retainCount，如果retainCount为0，说明该对象没有地方需要继续使用了，可以释放掉了。
 
 ## 23.block的实质是什么？一共有几种block？都是什么情况下生成的？
+
+
 
 ## 24.为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？
 
