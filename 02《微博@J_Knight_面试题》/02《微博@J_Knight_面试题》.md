@@ -547,7 +547,12 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 
 ## 10.nonatomic和atomic的区别？atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？
 
-
+* atomic 和 nonatomic 的区别在于，系统自动生成的 getter/setter 方法不一样。如果你自己写 getter/setter，那 atomic/nonatomic/retain/assign/copy 这些关键字只起提示作用，写不写都一样。
+* 其实质就是，atomic比nonatomic多了一个互斥加锁代码，避免该变量的读写不同步问题。
+* 对于atomic的属性，系统生成的 getter/setter 会保证 get、set 操作的完整性，不受其他线程影响。比如，线程 A 的 getter 方法运行到一半，线程 B 调用了 setter：那么线程 A 的 getter 还是能得到一个完好无损的对象。
+而nonatomic就没有这个保证了。所以，nonatomic的速度要比atomic快。据说快大约20倍。
+* 不过atomic可并不能保证线程安全。如果线程 A 调了 getter，与此同时线程 B 、线程 C 都调了 setter——那最后线程 A get 到的值，3种都有可能：可能是 B、C set 之前原始的值，也可能是 B set 的值，也可能是 C set 的值。同时，最终这个属性的值，可能是 B set 的值，也有可能是 C set 的值。
+* 解决方案是加锁。
 
 ## 11.UICollectionView自定义layout如何实现？
 
@@ -695,7 +700,16 @@ delete动画与插入类似，提供正确的final 属性即可
 
 ## 12.用StoryBoard开发界面有什么弊端？如何避免？
 
-
+* 难以维护
+    - Storyboard在某些角度上，是难以维护的。我所遇到过的实际情况是，公司一个项目的2.0版本，设计师希望替换原有字体。然而原来项目的每一个Label都是采用Storyboard来定义字体的，因此替换新字体需要在Storyboard中更改每一个Label。
+    - 幸亏我们知道Storyboard的源文件是XML，最终写了一个读取-解析-替换脚本来搞定这件事。
+* 性能瓶颈
+    - 当项目达到一定的规模，即使是高性能的MacBook Pro,在打开Storyboard是也会有3-5秒的读取时间。无论是只有几个Scene的小东西，还是几十个Scene的庞然大物，都无法避免。Scene越多的文件，打开速度越慢(从另一个方面说明了分割大故事板的重要性)。
+    - 让人沮丧的是，这个造成卡顿的项目规模并不是太难达到。 
+    - 我猜想是由于每一次打开都需要进行I/O操作造成的，Apple对这一块的缓存优化没有做到位。可能是由于Storyboard占用了太多内存，难以在内存中进行缓存。Whatever,这个问题总是让人困扰的。 
+    - 然而需要指出的是，采用Storyboard开发或采用纯代码开发的App，在真机的运行效率上，并没有太大的区别。
+* 错误定位困难
+    - Storyboard的初学者应该对此深有体会。排除BAD_EXCUSE错误不说，单单是有提示的错误，就足以让人在代码和Storyboard之间来回摸索，却无法找到解决方案。
 
 ## 13.进程和线程的区别？同步异步的区别？并行和并发的区别？
 
@@ -742,124 +756,124 @@ delete动画与插入类似，提供正确的final 属性即可
 
 ```
 //
- 2 //  YYViewController.m
- 3 //  06-NSThread04-线程间通信
- 4 //
- 5 
- 7 //
- 8 
- 9 #import "YYViewController.h"
-10 @interface YYViewController ()
-11 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
-12 @end
-13 
-14 @implementation YYViewController
-15 
-16 - (void)viewDidLoad
-17 {
-18     [super viewDidLoad];
-19 }
-20 
-21 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-22 {
-23 
-24 // 在子线程中调用download方法下载图片
-25     [self performSelectorInBackground:@selector(download) withObject:nil];
-26 }
-27 
-28  
-29 
-30 -(void)download
-31 {
-32     //1.根据URL下载图片
-33     //从网络中下载图片
-34     NSURL *urlstr=[NSURL URLWithString:@"fdsf"];
-35 
-36     //把图片转换为二进制的数据
-37     NSData *data=[NSData dataWithContentsOfURL:urlstr];//这一行操作会比较耗时
-38 
-39     //把数据转换成图片
-40     UIImage *image=[UIImage imageWithData:data];
-41  
-42     //2.回到主线程中设置图片
-43     [self performSelectorOnMainThread:@selector(settingImage:) withObject:image waitUntilDone:NO];
-44 }
-45 
-46  
-47 
-48 //设置显示图片
-49 -(void)settingImage:(UIImage *)image
-50 {
-51     self.iconView.image=image;
-52 }
-53 
-54 @end
+//  YYViewController.m
+//  06-NSThread04-线程间通信
+//
+
+//
+
+#import "YYViewController.h"
+@interface YYViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@end
+
+@implementation YYViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+
+ // 在子线程中调用download方法下载图片
+    [self performSelectorInBackground:@selector(download) withObject:nil];
+}
+
+ 
+
+ -(void)download
+{
+    //1.根据URL下载图片
+    //从网络中下载图片
+    NSURL *urlstr=[NSURL URLWithString:@"fdsf"];
+
+    //把图片转换为二进制的数据
+    NSData *data=[NSData dataWithContentsOfURL:urlstr];//这一行操作会比较耗时
+
+    //把数据转换成图片
+   UIImage *image=[UIImage imageWithData:data];
+ 
+    //2.回到主线程中设置图片
+    [self performSelectorOnMainThread:@selector(settingImage:) withObject:image waitUntilDone:NO];
+}
+ 
+ 
+
+ //设置显示图片
+-(void)settingImage:(UIImage *)image
+ {
+    self.iconView.image=image;
+ }
+
+ @end
 ```
 
 ```
 //
- 2 //  YYViewController.m
- 3 //  06-NSThread04-线程间通信
- 4 //
- 5 //  Created by apple on 14-6-23.
- 6 //  Copyright (c) 2014年 itcase. All rights reserved.
- 7 //
- 8 
- 9 #import "YYViewController.h"
-10 #import <NSData.h>
-11 
-12 @interface YYViewController ()
-13 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
-14 @end
-15 
-16 @implementation YYViewController
-17 
-18 - (void)viewDidLoad
-19 {
-20     [super viewDidLoad];
-21 }
-22 
-23  
-24 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-25 {
-26 // 在子线程中调用download方法下载图片
-27 
-28     [self performSelectorInBackground:@selector(download) withObject:nil];
-29 }
-30 
-31  
-32 -(void)download
-33 {
-34 
-35     //1.根据URL下载图片
-36     //从网络中下载图片
-37     NSURL *urlstr=[NSURL URLWithString:@"fdsf"];
-38 
-39     //把图片转换为二进制的数据
-40     NSData *data=[NSData dataWithContentsOfURL:urlstr];//这一行操作会比较耗时
-41 
-42     //把数据转换成图片
-43     UIImage *image=[UIImage imageWithData:data];
-44 
-45     //2.回到主线程中设置图片
-46     //第一种方式
-47 //    [self performSelectorOnMainThread:@selector(settingImage:) withObject:image waitUntilDone:NO];
-48 
-49     //第二种方式
-50     //    [self.imageView performSelector:@selector(setImage:) onThread:[NSThread mainThread] withObject:image waitUntilDone:NO];
-51 
-52     //第三种方式
-53    [self.iconView performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
-54 }
-55 
-56 
-57 //设置显示图片
-58 //-(void)settingImage:(UIImage *)image
-59 //{
-60 //    self.iconView.image=image;
-61 //}
-62 
-63 @end
+//  YYViewController.m
+//  06-NSThread04-线程间通信
+//
+//  Created by apple on 14-6-23.
+//  Copyright (c) 2014年 itcase. All rights reserved.
+//
+
+#import "YYViewController.h"
+#import <NSData.h>
+ 
+ @interface YYViewController ()
+ @property (weak, nonatomic) IBOutlet UIImageView *iconView;
+ @end
+ 
+ @implementation YYViewController
+ 
+ - (void)viewDidLoad
+ {
+     [super viewDidLoad];
+ }
+ 
+  
+ -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+ {
+ // 在子线程中调用download方法下载图片
+ 
+     [self performSelectorInBackground:@selector(download) withObject:nil];
+ }
+ 
+  
+ -(void)download
+ {
+ 
+     //1.根据URL下载图片
+     //从网络中下载图片
+     NSURL *urlstr=[NSURL URLWithString:@"fdsf"];
+ 
+     //把图片转换为二进制的数据
+     NSData *data=[NSData dataWithContentsOfURL:urlstr];//这一行操作会比较耗时
+ 
+     //把数据转换成图片
+     UIImage *image=[UIImage imageWithData:data];
+ 
+     //2.回到主线程中设置图片
+     //第一种方式
+ //    [self performSelectorOnMainThread:@selector(settingImage:) withObject:image waitUntilDone:NO];
+ 
+     //第二种方式
+     //    [self.imageView performSelector:@selector(setImage:) onThread:[NSThread mainThread] withObject:image waitUntilDone:NO];
+ 
+     //第三种方式
+    [self.iconView performSelectorOnMainThread:@selector(setImage:) withObject:image waitUntilDone:NO];
+}
+ 
+ 
+//设置显示图片
+//-(void)settingImage:(UIImage *)image
+//{
+//    self.iconView.image=image;
+ //}
+ 
+@end
 ```
 
 
@@ -1806,16 +1820,46 @@ self.cache.delegate = self;
 
 ## 22.objc使用什么机制管理对象内存？
 
+
+
 ## 23.block的实质是什么？一共有几种block？都是什么情况下生成的？
 
 ## 24.为什么在默认情况下无法修改被block捕获的变量？ __block都做了什么？
+
+
+
+
 ## 25.模拟一下循环引用的一个情况？block实现界面反向传值如何实现？
+
+
 
 ## 26.objc在向一个对象发送消息时，发生了什么？
 
+
+
 ## 27.什么时候会报unrecognized selector错误？iOS有哪些机制来避免走到这一步？
 
+- 简单来说：
+    * 当调用该对象上某个方法,而该对象上没有实现这个方法的时候， 
+- 可以通过“消息转发”进行解决。
+- 由于，objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。
+- objc在向一个对象发送消息时，runtime库会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，如果，在最顶层的父类中依然找不到相应的方法时，程序在运行时会挂掉并抛出异常unrecognized selector sent to XXX 。但是在这之前，objc的运行时会给出三次拯救程序崩溃的机会：
+    * Method resolution
+        * objc运行时会调用+resolveInstanceMethod:或者 +resolveClassMethod:，让你有机会提供一个函数实现。如果你添加了函数，那运行时系统就会重新启动一次消息发送的过程，否则 ，运行时就会移到下一步，消息转发（Message Forwarding）。
+    * Fast forwarding
+        * 如果目标对象实现了-forwardingTargetForSelector:，Runtime 这时就会调用这个方法，给你把这个消息转发给其他对象的机会。 只要这个方法返回的不是nil和self，整个消息发送的过程就会被重启，当然发送的对象会变成你返回的那个对象。否则，就会继续Normal Fowarding。 这里叫Fast，只是为了区别下一步的转发机制。因为这一步不会创建任何新的对象，但下一步转发会创建一个NSInvocation对象，所以相对更快点。
+    * Normal forwarding
+        * 这一步是Runtime最后一次给你挽救的机会。首先它会发送-methodSignatureForSelector:消息获得函数的参数和返回值类型。如果-methodSignatureForSelector:返回nil，Runtime则会发出-doesNotRecognizeSelector:消息，程序这时也就挂掉了。如果返回了一个函数签名，Runtime就会创建一个NSInvocation对象并发送-forwardInvocation:消息给目标对象。
+
 ## 28.能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？
+
+- 不能向编译后得到的类中增加实例变量；
+- 能向运行时创建的类中添加实例变量；
+解释下：
+- 原因：
+    * 因为编译后的类已经注册在 runtime 中，类结构体中的 objc_ivar_list 实例变量的链表 和 instance_size 实例变量的内存大小已经确定，同时runtime 会调用 class_setIvarLayout 或 class_setWeakIvarLayout 来处理 strong weak 引用。所以不能向存在的类中添加实例变量；
+    * 运行时创建的类是可以添加实例变量，调用 class_addIvar 函数。但是得在调用 objc_allocateClassPair 之后，objc_registerClassPair 之前，原因同上。
+
 
 ## 29.runtime如何实现weak变量的自动置nil？
 
@@ -2009,6 +2053,66 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 
 ## 37.介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？
 
+- Category (分类、类别) 分类只能增加方法不能增加成员变量,可以声明属性,实际上会生成属性的set和get方法,但不会生成带下划线的成员变量,也不能添加成员变量（可以在不修改原来类模型的基础上拓充方法）
+- 作用：
+    * 可以在不修改原来类的基础上，为一个类扩展方法。
+    * 将类的实现分散到多个不同文件或多个不同框架中。
+    * 创建对私有方法的前向引用。
+    * 向对象添加非正式协议。
+- 最主要的用法：给系统自带的类扩展方法。
+- 分类中可以访问原来类中的成员变量，但是只能访问@protect和@public形式的变量。如果想要访问本类中的私有变量，分类和子类一样，只能通过方法来访问。
+- 如果一定要在分类中添加成员变量，可以通过getter，setter手段进行添加
+- 声明：@interface 类名(分类名称) @end
+- 实现：@implementation 类名(分类名称) @end
+- 注意:
+    * 在分类只能增加方法,不能增加成员变量，如果要增加成员变量的话该考虑用继承去实现
+    * 在分类实现方法中可以访问类中的成员变量但是不能访问类中的属性@property
+    * 在分类中可以重新实现原类中的方法，但会将原类中的方法覆盖而失效。
+    * 如果一个类有多个分类，而且分类中有同名的方法那么最后编译的分类会将前面编译的分类覆盖而执行输出
+- 内部实现
+
+```
+struct _category_t {
+    const char *name;//类名
+    struct _class_t *cls;//类
+    const struct _method_list_t *instance_methods;//category中所有给类添加的实例方法的列表（instanceMethods）
+    const struct _method_list_t *class_methods;//category中所有添加的类方法的列表（classMethods）
+    const struct _protocol_list_t *protocols;//category实现的所有协议的列表（protocols）
+    const struct _prop_list_t *properties;//category中添加的所有属性（instanceProperties）
+};
+
+struct category_t {
+    const char *name; // 类名
+    classref_t cls;   // 分类所属的类
+    struct method_list_t *instanceMethods;  // 实例方法列表
+    struct method_list_t *classMethods;     // 类方法列表
+    struct protocol_list_t *protocols;      // 遵循的协议列表
+    struct property_list_t *instanceProperties; // 属性列表
+
+    // 如果是元类，就返回类方法列表；否则返回实例方法列表
+    method_list_t *methodsForMeta(bool isMeta) {
+        if (isMeta) {
+            return classMethods;
+        } else {
+            return instanceMethods;
+        }
+    }
+
+    // 如果是元类，就返回 nil，因为元类没有属性；否则返回实例属性列表，但是...实例属性
+    property_list_t *propertiesForMeta(bool isMeta) {
+        if (isMeta) {
+            return nil; // classProperties;
+        } else {
+            return instanceProperties;
+        }
+    }
+};
+```
+- 它为什么会覆盖掉原来的方法
+
+我们已经知道category其实并不是完全替换掉原来类的同名方法，只是category在方法列表的前面而已，所以我们只要顺着方法列表找到最后一个对应名字的方法，就可以调用原来类的方法
+
+
 
 
 ## 38.运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？
@@ -2185,6 +2289,13 @@ KVO 为子类的观察者属性重写调用存取方法的工作原理在代码�
 
 ## 46.KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）
 
+- KVC（Key-value coding）键值编码，单看这个名字可能不太好理解。其实翻译一下就很简单了，就是指iOS的开发中，可以允许开发者通过Key名直接访问对象的属性，或者给对象的属性赋值。而不需要调用明确的存取方法。这样就可以在运行时动态地访问和修改对象的属性。而不是在编译时确定，这也是iOS开发中的黑魔法之一。很多高级的iOS开发技巧都是基于KVC实现的。
+- 实现原理
+    * KVC运用了一个isa-swizzling技术。isa-swizzling就是类型混合指针机制。KVC主要通过isa-swizzling，来实现其内部查找定位的。isa指针，如其名称所指，（就是is a kind of的意思），指向维护分发表的对象的类。该分发表实际上包含了指向实现类中的方法的指针，和其它数据。
+- KVC拿到key以后，是如何赋值的
+    * 
+
+
 ## 47.有已经上线的项目么？
 
 ## 48.项目里哪个部分是你完成的？（找一个亮点问一下如何实现的）
@@ -2196,6 +2307,10 @@ KVO 为子类的观察者属性重写调用存取方法的工作原理在代码�
 ## 51.有看书的习惯么？最近看的一本是什么书？有什么心得？
 
 ## 52.有没有使用一些笔记软件？会在多平台同步以及多渠道采集么？（如果没有，问一下是如何复习知识的）
+
+- 有道云笔记
+- onenote
+- GitHub
 
 ## 53.有没有使用清单类，日历类的软件？（如果没有，问一下是如何安排，计划任务的）
 
