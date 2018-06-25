@@ -40,7 +40,7 @@
 - 7.两数之和为特定值
 
 ## 1.iOS 内存管理
-- 1.讲一下 `iOS` 内存管理的理解？(三种方案的结合) 
+- 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合) 
 - 2.使用自动引用计（`ARC`）数应该遵循的原则? 
 - 3.`ARC` 自动内存管理的原则？ 
 - 4.访问 `__weak` 修饰的变量，是否已经被注册在了 `@autoreleasePool` 中？为什么？ 
