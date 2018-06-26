@@ -685,10 +685,37 @@ __unsafe_unretain，正如其名称隐藏的含义，尽管释放指针指向的
 ### 17.是否了解 `深拷贝` 和 `浅拷贝` 的概念，集合类深拷贝如何实现？
 
 * 对象拷贝有两种方式：浅复制和深复制。顾名思义，浅复制，并不拷贝对象本身，仅仅是拷贝指向对象的指针；深复制是直接拷贝整个对象内存到另一块内存中。
-* 
+ ![image](http://7s1ssm.com1.z0.glb.clouddn.com/image_note50592_1.png)
+* 再简单些说：浅复制就是指针拷贝；深复制就是内容拷贝。
+* 集合类深拷贝，集合的深复制有两种方法。
+    - 可以用 initWithArray:copyItems: 将第二个参数设置为YES即可深复制，如
+ ```
+NSDictionary shallowCopyDict = [[NSDictionary alloc] initWithDictionary:someDictionary copyItems:YES];
+```
+如果你用这种方法深复制，集合里的每个对象都会收到 copyWithZone: 消息。如果集合里的对象遵循 NSCopying 协议，那么对象就会被深复制到新的集合。如果对象没有遵循 NSCopying 协议，而尝试用这种方法进行深复制，会在运行时出错。copyWithZone: 这种拷贝方式只能够提供一层内存拷贝(one-level-deep copy)，而非真正的深复制。
+    - 第二个方法是将集合进行归档(archive)，然后解档(unarchive)，
+```
+NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:oldArray]];
+```
+
+[iOS 集合的深复制与浅复制](https://www.zybuluo.com/MicroCai/note/50592)
 
 ### 18.`BAD_ACCESS` 在什么情况下出现? 
+
+* 访问了野指针的时候，比如一个已经释放的对象执行了release、访问已经释放对象的成员变量或者发消息。
+* 死循环的时候也会。
+
 ### 19.讲一下 `@dynamic` 关键字？
+
+* @dynamic这个关键词，通常是用不到的。
+* 它与@synthesize的区别在于：
+    - 使用@synthesize编译器会确实的产生getter和setter方法，而@dynamic仅仅是告诉编译器这两个方法在运行期会有的，无需产生警告。
+* 假设有这么个场景，B类，C类分别继承A类，A类实现某个协议（@protocol），协议中某个属性( somePropety )我不想在A中实现，而在B类，C类中分别实现。如果A中不写任何代码，编译器就会给出警告：
+
+“use @synthesize, @dynamic or provide a method implementation"
+
+这时你给用@dynamic somePropety; 编译器就不会警告，同时也不会产生任何默认代码。
+
 ### 20.`@autoreleasrPool` 的释放时机？
 ### 21.`retain`、`release` 的实现机制？
 ### 22.能不能简述一下 `Dealloc` 的实现机制？
