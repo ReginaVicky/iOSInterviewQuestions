@@ -571,9 +571,40 @@ struct __AtAutoreleasePool {
 
 ```
 
-### 7.`__weak` 和 `_Unsafe_Unretain` 的区别？ 
-### 8.为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？ 
+### 7.`__weak` 和 `_Unsafe_Unretain` 的区别？
+
+__weak，当释放指针指向的对象时，该对象的指针将转换为nil，这是比较安全的行为。
+__unsafe_unretain，正如其名称隐藏的含义，尽管释放指针指向的对象时，该指针将继续指向原来的内存。不会置为nill，造成了垂悬指针。这将会导致应用崩溃，所以是不安全的。
+
+
+
+### 8.为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？
+
+* 自动释放池可以延长对象的声明周期，如果一个事件周期很长，比如有一个很长的循环逻辑，那么一个临时变量可能很长时间都不会被释放，一直在内存中保留，那么内存的峰值就会一直增加，但是其实这个临时变量是我们不再需要的。这个时候就通过创建新的自动释放池来缩短临时变量的生命周期来降低内存的峰值。
+* 注意：临时生成大量对象,一定要将自动释放池放在for循环里面，要释放在外面，就会因为大量对象得不到及时释放，而造成内存紧张，最后程序意外退出
+
 ### 9.`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`？ 
+
+* 都知道，weak是弱引用，所引用对象的计数器不会加一，并在引用对象被释放的时候自动被设置为nil。通常用于解决循环引用问题。
+* 其实质是：Runtime维护了一个weak表，用于存储指向某个对象的所有weak指针。weak表其实是一个hash（哈希）表，Key是所指对象的地址，Value是weak指针的地址（这个地址的值是所指对象的地址）数组。
+* weak 的实现原理可以概括一下三步：
+    - 初始化时：runtime会调用objc_initWeak函数，初始化一个新的weak指针指向对象的地址。
+    - 添加引用时：objc_initWeak函数会调用 objc_storeWeak() 函数， objc_storeWeak() 的作用是更新指针指向，创建对应的弱引用表。
+    - 释放时，调用clearDeallocating函数。clearDeallocating函数首先根据对象地址获取所有weak指针地址的数组，然后遍历这个数组把其中的数据设为nil，最后把这个entry从weak表中删除，最后清理对象的记录。
+* 当weak引用指向的对象被释放时，其基本流程如下：
+    - 调用objc_release
+    - 因为对象的引用计数为0，所以执行dealloc
+    - 在dealloc中，调用了_objc_rootDealloc函数
+    - 在_objc_rootDealloc中，调用了object_dispose函数
+    - 调用objc_destructInstance
+    - 最后调用objc_clear_deallocating
+ * objc_clear_deallocating该函数的动作如下：
+    - 从weak表中获取废弃对象的地址为键值的记录
+    - 将包含在记录中的所有附有 weak修饰符变量的地址，赋值为nil
+    - 将weak表中该记录删除
+    - 从引用计数表中删除废弃对象的地址为键值的记录
+ 其实，最终是使用了迭代器来取weak表的value，然后调用weak_clear_no_lock,然后查找对应的value，将该weak指针置空。
+
 ### 10.说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。 
 ### 11.`ARC` 在编译时做了哪些工作？ 
 ### 12.`ARC` 在运行时做了哪些工作？ 
