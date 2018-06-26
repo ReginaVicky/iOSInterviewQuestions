@@ -518,6 +518,59 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ![image](https://upload-images.jianshu.io/upload_images/131615-6ebbb4f2275a7362.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
 
 ### 6.简要说一下 `@autoreleasePool` 的数据结构？ 
+
+* 系统通过一个栈来管理所有的自动释放池，每当创建了一个新的自动释放池，系统就会把它压入栈顶，并且传入一个哨兵对象,将哨兵对象插入hotPage，这里分三种情况
+    - 若hotPage未满，则直接插入哨兵对象，
+    - 要是满了，新建一个NSAutoreleasePoolPage，并将其作为hotPage，然后将哨兵对象插入
+    - 如果没有NSAutoreleasePoolPage,则新建一个NSAutoreleasePoolPage，并将其作为hotPage，插入哨兵对象，注意。这里的hotPage是没有父节点的。
+* 每当有一个自动释放池要被释放的时候，哨兵对象就会作为参数被传入，找到该哨兵对象所在的位置后，将所有晚于哨兵对象的autorelease弹出，并对他们做一次release，然后将next指针一到合适的位置。
+* 首先我们去可以查看一下，clang 转成 c++ 的 autoreleasepool 的源码：
+
+```
+extern "C" __declspec(dllimport) void * objc_autoreleasePoolPush(void);
+extern "C" __declspec(dllimport) void objc_autoreleasePoolPop(void *);
+struct __AtAutoreleasePool {
+  __AtAutoreleasePool() {atautoreleasepoolobj = objc_autoreleasePoolPush();}
+  ~__AtAutoreleasePool() {objc_autoreleasePoolPop(atautoreleasepoolobj);}
+  void * atautoreleasepoolobj;
+};
+
+```
+可以发现objc_autoreleasePoolPush() 和 objc_autoreleasePoolPop() 这两个方法。
+
+* 再看一下runtime 中 Autoreleasepool 的结构，通过阅读源码可以看出 Autoreleasepool 是一个由 AutoreleasepoolPage 双向链表的结构，其中 child 指向它的子 page，parent 指向它的父 page。
+
+![image](https://upload-images.jianshu.io/upload_images/1197643-96db24a6be7d1796.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+* 并且每个 AutoreleasepoolPage 对象的大小都是 4096 个字节。
+
+```
+#define PAGE_MAX_SIZE           PAGE_SIZE
+#define PAGE_SIZE       I386_PGBYTES
+#define I386_PGBYTES        4096        /* bytes per 80386 page */
+
+```
+* AutoreleasepoolPage 通过压栈的方式来存储每个需要自动释放的对象。
+
+```
+//入栈方法
+    static inline void *push() 
+    {
+        id *dest;
+        if (DebugPoolAllocation) {
+            // Each autorelease pool starts on a new pool page.
+            //在 Debug 情况下每一个自动释放池 都以一个新的 poolPage 开始
+            dest = autoreleaseNewPage(POOL_BOUNDARY);
+        } else {
+//正常情况下，调用 push 方法会先插入一个 POOL_BOUNDARY 标志位
+            dest = autoreleaseFast(POOL_BOUNDARY);
+        }
+        assert(dest == EMPTY_POOL_PLACEHOLDER || *dest == POOL_BOUNDARY);
+        return dest;
+    }
+
+```
+
 ### 7.`__weak` 和 `_Unsafe_Unretain` 的区别？ 
 ### 8.为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？ 
 ### 9.`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`？ 
