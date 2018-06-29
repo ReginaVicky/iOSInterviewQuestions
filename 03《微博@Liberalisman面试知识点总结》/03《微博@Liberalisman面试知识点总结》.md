@@ -717,17 +717,81 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 这时你给用@dynamic somePropety; 编译器就不会警告，同时也不会产生任何默认代码。
 
 ### 20.`@autoreleasrPool` 的释放时机？
+
+* App启动后，苹果在主线程 RunLoop 里注册了两个 Observer，其回调都是 _wrapRunLoopWithAutoreleasePoolHandler()。
+* 第一个 Observer 监视的事件是 Entry(即将进入Loop)，其回调内会调用 _objc_autoreleasePoolPush() 创建自动释放池。其 order 是 -2147483647，优先级最高，保证创建释放池发生在其他所有回调之前。
+* 第二个 Observer 监视了两个事件： BeforeWaiting(准备进入休眠) 时调用_objc_autoreleasePoolPop() 和 _objc_autoreleasePoolPush() 释放旧的池并创建新池；Exit(即将退出Loop) 时调用 _objc_autoreleasePoolPop() 来释放自动释放池。这个 Observer 的 order 是 2147483647，优先级最低，保证其释放池子发生在其他所有回调之后。
+* 在主线程执行的代码，通常是写在诸如事件回调、Timer回调内的。这些回调会被 RunLoop 创建好的 AutoreleasePool 环绕着，所以不会出现内存泄漏，开发者也不必显示创建 Pool 了。
+
 ### 21.`retain`、`release` 的实现机制？
+
+
+
 ### 22.能不能简述一下 `Dealloc` 的实现机制？
 
 
 ## 2.Runtime
 ### 1.实例对象的数据结构？
+
+
+
 ### 2.类对象的数据结构？
 ### 3.元类对象的数据结构? 
 ### 4.`Category` 的实现原理？ 
 ### 5.如何给 `Category` 添加属性？关联对象以什么形式进行存储？ 
+
+* 使用Runtime中的关联对象
+* 由于一些特殊的需要，我们可能要给现有的类添加一些新的方法，这个需求用继承也可以做到，但是会显得比较重，这时候就可以用Category来达到目的，创建一个已有类的Category，可以给这个类添加你需要的方法，在使用的时候，只需要import你创建的Category，在使用的时候还是使用原来的类，但是你会发现他支持你自己在Category中添加的方法。
+* 我们看到的一些名为类似“UINavigationController+Cloudox.h”的文件就是类别了。
+* 我们都知道用Category类别可以给一些已经存在的，比如系统的类添加方法，但是不能添加新属性，那怎么添加属性呢？一种直接的方法是继承，但如果只是为了添加一个属性就去做一次继承，还是有点重，这时候，就可以用关联对象的方法。
+* 有两个相关的方法：
+    - objc_setAssociatedObject 方法用来给类关联一个属性；
+    - objc_getAssociatedObject 方法用来获取之前关联的属性。
+* 比如说给自己这个类关联一个字符串：
+```
+// 关联对象
+    static char associatedObjectKey;
+    objc_setAssociatedObject(self, &associatedObjectKey, @"我就是要关联的字符串对象内容", OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    NSString *theString = objc_getAssociatedObject(self, &associatedObjectKey);
+    NSLog(@"关联对象：%@", theString);
+```
+我们先给self关联了一个字符串内容，然后通过get方法获取了关联的字符串内容，并输出。
+
+从代码中其实也可以猜到各个参数的意思，self的参数就是要处理的类；associatedObjectKey 的参数其实就类似于key，用来标识区分你要关联的这个对象；第三个参数是要关联的对象；第四个参数是关联的策略，
+* 当然，你也可以和类别一起用，创建两个方法用来关联和获取对象，比如下面这样：
+```
+//添加关联对象
+- (void)addAssociatedObject:(id)object{
+    objc_setAssociatedObject(self, @selector(getAssociatedObject), object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+//获取关联对象
+- (id)getAssociatedObject{
+    return objc_getAssociatedObject(self, _cmd);
+}
+```
+这样就既能通过Category类别来添加方法，用一起顺便提供了对属性的添加了。
+
 ### 6.`Category` 有哪些用途？ 
+
+* 在不创建继承类的情况下实现对已有类的扩展。
+* 简化类的开发工作(当一个类需要多个程序员协同开发的时候,Category可以将同一个类根据用途分别放在不同的源文件中,从而便于程序员独立开发相应的方法集合)。
+* 将常用的相关的方法分组。
+* 在没有源代码的情况下可以用来修复BUG。
+* 模拟多继承（另外可以模拟多继承的还有protocol）
+* 把framework的私有方法公开
+
+补充：`Category`的优缺点？
+* 好处
+    - 可以将类的实现分散到多个不同的文件或者不同的框架中，方便代码的管理。也可以对框架提供类的扩展。（可以减少单个文件的体积，可以把不同的功能组织到不同的category里，可以由多个开发者共同完成一个类，可以按需加载想要的category）
+    - 创建对私有方法的前向引用：如果其他类中的方法未实现，在你访问其他类的私有方法时编译器报错这时使用类别，在类别中声明这些方法（不必提供方法实现），编译器就不会再产生警告
+    - 向对象添加非正式协议：创建一个NSObject的类别称为“创建一个非正式协议”，因为可以作为任何类的委托对象使用（声明私有方法）。
+* 不足
+    - category只能给某个已有的类扩充方法，不能扩充成员变量。
+    - category中也可以添加属性，只不过@property只会生成setter和getter的声明，不会生成setter和getter的实现以及成员变量。
+    - 如果category中的方法和类中原有方法同名，运行时会优先调用category中的方法。也就是，category中的方法会覆盖掉类中原有的方法。所以开发中尽量保证不要让分类中的方法和原有类中的方法名相同。避免出现这种情况的解决方案是给分类的方法名统一添加前缀。比如category_。
+    - 如果多个category中存在同名的方法，运行时到底调用哪个方法由编译器决定，最后一个参与编译的方法会被调用。
+
 ### 7.`Category` 和 `Extension` 有什么区别？
 ### 8.说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过? 
 ### 9.如何实现动态添加方法和属性？ 
