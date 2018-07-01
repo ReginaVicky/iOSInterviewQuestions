@@ -793,9 +793,36 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
     - 如果多个category中存在同名的方法，运行时到底调用哪个方法由编译器决定，最后一个参与编译的方法会被调用。
 
 ### 7.`Category` 和 `Extension` 有什么区别？
+
+* `Category`：类别是一种为现有的类添加新方法的方式。利用Objective-C的动态运行时分配机制，Category提供了一种比继承（inheritance）更为简洁的方法来对class进行扩展，无需创建对象类的子类就能为现有的类添加新方法，可以为任何已经存在的class添加方法，包括那些没有源代码的类。
+* 类别的作用主要有三个：
+    - 可以将类的实现分散到多个不同的文件或者不同的框架中，方便代码的管理。也可以对框架提供类的扩展（没有源码，不能修改）。
+    - 创建对私有方法的前向引用：如果其他类中的方法未实现，在你访问其他类的私有方法时编译器报错这时使用类别，在类别中声明这些方法（不必提供方法实现），编译器就不会再产生警告
+    - 向对象添加非正式协议：创建一个NSObject的类别称为“创建一个非正式协议”，因为可以作为任何类的委托对象使用。
+* `Extension`：首先还是需要创建相关类的扩展，即方法的声明，然后在需要扩张的类中引入头文件，然后实现声明的方法。
+* `Category` 和 `Extension` 的区别
+    - 形式上看：extension 是匿名的category
+    - extension中声明的方法需要在mainimplementation中实现，而category 不做强制要求
+    - extension 可以添加属性、成员变量，而category 一般不可以。
+
 ### 8.说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过? 
 ### 9.如何实现动态添加方法和属性？ 
-### 10.说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？（注意区分不同对象） 
+
+
+
+### 10.说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？（注意区分不同对象）
+
+- sa指针是什么？
+    * 我们经常使用id来声明一个对象，本质上，我们创建的一个对象或实例其实就是一个struct objc_object结构体，而我们常用的id也就是这个结构体的指针。这个结构体只有一个成员变量，这是一个Class类型的变量isa，也是一个结构体									指针。面向对象中每一个对象都必须依赖一个类来创建，因此对象的isa指针就指向对象所属的类根据这个类模板能够创建出实例变量、实例方法等。
+- 对象的isa指针
+    * 每个实例对象有个isa的指针,他指向对象的类
+- 类对象的isa指针
+    * Class里也有个isa的指针, 指向meteClass(元类)。
+- 元类的isa指针
+    * 元类保存了类方法的列表。当类方法被调用时，先会从本身查找类方法的实现，如果没有，元类会向他父类查找该方法。同时注意的是：元类（meteClass）也是类，它也是对象。元类也有isa指针,它的isa指针最终指向的是一个根元类(root meteClass).根元类的isa指针指向本身，这样形成了一个封闭的内循环。
+
+![image](http://hi.csdn.net/attachment/201201/19/0_1326963670oeC1.gif)
+
 ### 11.`Obj-C` 中的类信息存放在哪里？ 
 ### 12.一个 `NSObject` 对象占用多少内存空间？
 ### 13.说一下对 `class_rw_t` 的理解？
@@ -812,7 +839,39 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 
 ## 3.Runloop
 ### 1.`Runloop` 和线程的关系？ 
-### 2.讲一下 `Runloop` 的 `Mode`?(越详细越好)  
+
+- 总的说来，Run loop，正如其名，loop表示某种循环，和run放在一起就表示一直在运行着的循环。实际上，run loop和线程是紧密相连的，可以这样说run loop是为了线程而生，没有线程，它就没有存在的必要。Run loops是线程的基础架构部分， Cocoa 和 CoreFundation 都提供了 run loop 对象方便配置和管理线程的 run loop （以下都以 Cocoa 为例）。每个线程，包括程序的主线程（ main thread ）都有与之相应的 run loop 对象。
+- runloop 和线程的关系：
+    * 主线程的run loop默认是启动的。
+iOS的应用程序里面，程序启动后会有一个如下的main()函数
+
+```
+int main(int argc, char * argv[]) {
+   @autoreleasepool {
+       return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+   }
+}
+```
+重点是UIApplicationMain()函数，这个方法会为main thread设置一个NSRunLoop对象，这就解释了：为什么我们的应用可以在无人操作的时候休息，需要让它干活的时候又能立马响应。
+    * 对其它线程来说，run loop默认是没有启动的，如果你需要更多的线程交互则可以手动配置和启动，如果线程只是去执行一个长时间的已确定的任务则不需要。
+    * 在任何一个 Cocoa 程序的线程中，都可以通过以下代码来获取到当前线程的 run loop 。
+
+```
+NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+```
+- 参考链接：[《Objective-C之run loop详解》](https://blog.csdn.net/wzzvictory/article/details/9237973)。
+
+### 2.讲一下 `Runloop` 的 `Mode`?(越详细越好) 
+
+- model主要是用来指定事件在运行循环中的优先级的，分为：
+    * NSDefaultRunLoopMode（kCFRunLoopDefaultMode）：默认，空闲状态
+    * UITrackingRunLoopMode：ScrollView滑动时
+    * UIInitializationRunLoopMode：启动时
+    * NSRunLoopCommonModes（kCFRunLoopCommonModes）：Mode集合
+- 苹果公开提供的 Mode 有两个：
+    * NSDefaultRunLoopMode（kCFRunLoopDefaultMode）
+    * NSRunLoopCommonModes（kCFRunLoopCommonModes）
+
 ### 3.讲一下 `Observer` ？（Mode中的重点） 
 ### 4.讲一下 `Runloop` 的内部实现逻辑？（运行过程） 
 ### 5.你所知的哪些三方框架使用了 `Runloop`?（AFNetworking、Texture 等）
