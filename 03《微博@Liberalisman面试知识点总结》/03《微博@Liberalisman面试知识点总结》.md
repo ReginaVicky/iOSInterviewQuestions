@@ -31,7 +31,7 @@
 
 [推荐一个很好的算法总结](https://github.com/CyC2018/Interview-Notebook)
 
-- 1.字符串反转 - [链接](https://github.com/liberalisman/iOS-InterviewQuestion-collection/blob/master/0.算法集合/1.第一题.md)
+- 1.字符串反转 
 - 2.链表反转
 - 3.有序数组合并
 - 4.Hash 算法
@@ -42,51 +42,51 @@
 ## 1.iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合) 
 - 2.[使用自动引用计（`ARC`）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2使用自动引用计arc数应该遵循的原则) 
-- 3.`ARC` 自动内存管理的原则？ 
-- 4.访问 `__weak` 修饰的变量，是否已经被注册在了 `@autoreleasePool` 中？为什么？ 
-- 5.`ARC` 的 `retainCount` 怎么存储的？ 
-- 6.简要说一下 `@autoreleasePool` 的数据结构？ 
-- 7.`__weak` 和 `_Unsafe_Unretain` 的区别？ 
-- 8.为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？ 
-- 9.`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`？ 
-- 10.说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。 
-- 11.`ARC` 在编译时做了哪些工作？ 
-- 12.`ARC` 在运行时做了哪些工作？ 
-- 13.函数返回一个对象时，会对对象 `autorelease` 么？为什么？ 
-- 14.说一下什么是 `悬垂指针`？什么是 `野指针`? 
-- 15.内存管理默认的关键字是什么？ 
-- 16.内存中的5大区分别是什么？ 
-- 17.是否了解 `深拷贝` 和 `浅拷贝` 的概念，集合类深拷贝如何实现？ 
-- 18.`BAD_ACCESS` 在什么情况下出现? 
-- 19.讲一下 `@dynamic` 关键字？
-- 20.`@autoreleasrPool` 的释放时机？
-- 21.`retain`、`release` 的实现机制？
-- 22.能不能简述一下 `Dealloc` 的实现机制？
+- 3.[`ARC` 自动内存管理的原则？] ()
+- 4.[访问 `__weak` 修饰的变量，是否已经被注册在了 `@autoreleasePool` 中？为什么？] ()
+- 5.[`ARC` 的 `retainCount` 怎么存储的？] ()
+- 6.[简要说一下 `@autoreleasePool` 的数据结构？] ()
+- 7.[`__weak` 和 `_Unsafe_Unretain` 的区别？] ()
+- 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？] ()
+- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`？] ()
+- 10.[说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。] ()
+- 11.[`ARC` 在编译时做了哪些工作？] ()
+- 12.[`ARC` 在运行时做了哪些工作？] ()
+- 13.[函数返回一个对象时，会对对象 `autorelease` 么？为什么？] ()
+- 14.[说一下什么是 `悬垂指针`？什么是 `野指针`?] ()
+- 15.[内存管理默认的关键字是什么？] ()
+- 16.[内存中的5大区分别是什么？]() 
+- 17.[是否了解 `深拷贝` 和 `浅拷贝` 的概念，集合类深拷贝如何实现？] ()
+- 18.[`BAD_ACCESS` 在什么情况下出现? ]()
+- 19.[讲一下 `@dynamic` 关键字？]()
+- 20.[`@autoreleasrPool` 的释放时机？]()
+- 21.[`retain`、`release` 的实现机制？]()
+- 22.[能不能简述一下 `Dealloc` 的实现机制？]()
 
 
 ## 2.Runtime
-- 1.实例对象的数据结构？
-- 2.类对象的数据结构？
-- 3.元类对象的数据结构? 
-- 4.`Category` 的实现原理？ 
-- 5.如何给 `Category` 添加属性？关联对象以什么形式进行存储？ 
-- 6.`Category` 有哪些用途？ 
-- 7.`Category` 和 `Extension` 有什么区别？
-- 8.说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过? 
-- 9.如何实现动态添加方法和属性？ 
-- 10.说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？（注意区分不同对象） 
-- 11.`Obj-C` 中的类信息存放在哪里？ 
-- 12.一个 `NSObject` 对象占用多少内存空间？
-- 13.说一下对 `class_rw_t` 的理解？
-- 14.说一下对 `class_ro_t` 的理解？
-- 15.说一下 `Runtime` 消息解析。
-- 16.说一下 `Runtime` 消息转发。
-- 17.如何运用 `Runtime` 字典转模型？
-- 18.如何运用 `Runtime` 进行模型的归解档？
-- 19.在 `Obj-C` 中为什么叫发消息而不叫函数调用？
-- 20.说一下对 `runtime` 的理解。（主要讲一下消息机制，是对上述的总结）
-- 21.说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？
-- 22.是否了解 `Type Encoding`? 
+- 1.[实例对象的数据结构？]()
+- 2.[类对象的数据结构？]()
+- 3.[元类对象的数据结构?] ()
+- 4.[`Category` 的实现原理？] ()
+- 5.[如何给 `Category` 添加属性？关联对象以什么形式进行存储？] ()
+- 6.[`Category` 有哪些用途？] ()
+- 7.[`Category` 和 `Extension` 有什么区别？]()
+- 8.[说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过?] ()
+- 9.[如何实现动态添加方法和属性？] ()
+- 10.[说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？（注意区分不同对象）]() 
+- 11.[`Obj-C` 中的类信息存放在哪里？] ()
+- 12.[一个 `NSObject` 对象占用多少内存空间？]()
+- 13.[说一下对 `class_rw_t` 的理解？]()
+- 14.[说一下对 `class_ro_t` 的理解？]()
+- 15.[说一下 `Runtime` 消息解析。]()
+- 16.[说一下 `Runtime` 消息转发。]()
+- 17.[如何运用 `Runtime` 字典转模型？]()
+- 18.[如何运用 `Runtime` 进行模型的归解档？]()
+- 19.[在 `Obj-C` 中为什么叫发消息而不叫函数调用？]()
+- 20.[说一下对 `runtime` 的理解。（主要讲一下消息机制，是对上述的总结）]()
+- 21.[说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？]()
+- 22.[是否了解 `Type Encoding`? ]()
 
 
 ## 3.Runloop
@@ -771,6 +771,7 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 }
 ```
 这样就既能通过Category类别来添加方法，用一起顺便提供了对属性的添加了。
+* 关联对象 以哈希表的格式，存储在一个全局的单例中。
 
 ### 6.`Category` 有哪些用途？ 
 
@@ -806,6 +807,13 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
     - extension 可以添加属性、成员变量，而category 一般不可以。
 
 ### 8.说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过? 
+
+* Method Swzzling，是指runtime的一个API方法,Method Swizzling本质上就是对IMP和SEL进行交换。
+* Method Swizzing是发生在运行时的，主要用于在运行时将两个Method进行交换，我们可以将Method Swizzling代码写到任何地方，但是只有在这段Method Swilzzling代码执行完毕之后互换才起作用。而且Method Swizzling也是iOS中AOP(面相切面编程)的一种实现方式，我们可以利用苹果这一特性来实现AOP编程。
+* 方法互换、页面统计、
+* [iOS黑魔法－Method Swizzling](http://www.cocoachina.com/ios/20160121/15076.html)
+
+
 ### 9.如何实现动态添加方法和属性？ 
 
 
@@ -831,6 +839,10 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 ### 16.说一下 `Runtime` 消息转发。
 ### 17.如何运用 `Runtime` 字典转模型？
 ### 18.如何运用 `Runtime` 进行模型的归解档？
+
+* Runtime 遍历 ivar_list。
+* 有众多属性的时候就用runtime归档解档。
+
 ### 19.在 `Obj-C` 中为什么叫发消息而不叫函数调用？
 ### 20.说一下对 `runtime` 的理解。（主要讲一下消息机制，是对上述的总结）
 ### 21.说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？
@@ -1089,6 +1101,11 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 9.`App` 编译过程有了解吗？
 ### 10.`JS` 和 `Native` 交互。
 ### 11.使用 `atomic` 一定是线程安全的吗？
+
+* 对于atomic的属性，系统生成的 getter/setter 会保证 get、set 操作的完整性，不受其他线程影响。比如，线程 A 的 getter 方法运行到一半，线程 B 调用了 setter：那么线程 A 的 getter 还是能得到一个完好无损的对象。 而nonatomic就没有这个保证了。所以，nonatomic的速度要比atomic快。据说快大约20倍。
+* 不过atomic可并不能保证线程安全。如果线程 A 调了 getter，与此同时线程 B 、线程 C 都调了 setter——那最后线程 A get 到的值，3种都有可能：可能是 B、C set 之前原始的值，也可能是 B set 的值，也可能是 C set 的值。同时，最终这个属性的值，可能是 B set 的值，也有可能是 C set 的值。
+* 解决方案是加锁。
+
 ### 12.`LoadView`方法了解吗？
 ### 13.说一下对 `APNS` 的认识？
 ### 14.实现 `isEqual` 和 `hash` 方法时要注意什么？
@@ -1102,6 +1119,9 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 22.`@synthesize` 和 `@dynamic` 分别有什么作用？
 ### 23.`Obj-C` 中的反射机制了解吗？
 ### 24.`atomic` 修饰的属性是绝对安全的吗？为什么？
+
+
+
 ### 25.`id` 和 `instanceType` 有什么区别？
 
 
