@@ -42,13 +42,13 @@
 ## 1.iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合) 
 - 2.[使用自动引用计（`ARC`）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2使用自动引用计arc数应该遵循的原则) 
-- 3.[`ARC` 自动内存管理的原则？] ()
-- 4.[访问 `__weak` 修饰的变量，是否已经被注册在了 `@autoreleasePool` 中？为什么？] ()
-- 5.[`ARC` 的 `retainCount` 怎么存储的？] ()
-- 6.[简要说一下 `@autoreleasePool` 的数据结构？] ()
-- 7.[`__weak` 和 `_Unsafe_Unretain` 的区别？] ()
-- 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？] ()
-- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`？] ()
+- 3.[`ARC` 自动内存管理的原则？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3arc-自动内存管理的原则
+- 4.[访问 `__weak` 修饰的变量，是否已经被注册在了 `@autoreleasePool` 中？为什么？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4访问-__weak-修饰的变量是否已经被注册在了-autoreleasepool-中为什么)
+- 5.[`ARC` 的 `retainCount` 怎么存储的？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5arc-的-retaincount-怎么存储的)
+- 6.[简要说一下 `@autoreleasePool` 的数据结构？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6简要说一下-autoreleasepool-的数据结构)
+- 7.[`__weak` 和 `_Unsafe_Unretain` 的区别？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7__weak-和-_unsafe_unretain-的区别)
+- 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
+- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil）
 - 10.[说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。] ()
 - 11.[`ARC` 在编译时做了哪些工作？] ()
 - 12.[`ARC` 在运行时做了哪些工作？] ()
