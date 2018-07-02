@@ -49,7 +49,7 @@
 - 6.[简要说一下 `@autoreleasePool` 的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6简要说一下-autoreleasepool-的数据结构)
 - 7.[`__weak` 和 `_Unsafe_Unretain` 的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7__weak-和-_unsafe_unretain-的区别)
 - 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
-- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil）
+- 9.[`__weak`属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
 - 10.[说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
 - 补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
 - 11.[`ARC` 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
