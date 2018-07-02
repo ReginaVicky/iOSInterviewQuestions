@@ -42,7 +42,7 @@
 ## 1.iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合) 
 - 2.[使用自动引用计（`ARC`）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2使用自动引用计arc数应该遵循的原则) 
-- 3.[`ARC` 自动内存管理的原则？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3arc-自动内存管理的原则
+- 3.[`ARC` 自动内存管理的原则？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3arc-自动内存管理的原则)
 - 4.[访问 `__weak` 修饰的变量，是否已经被注册在了 `@autoreleasePool` 中？为什么？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4访问-__weak-修饰的变量是否已经被注册在了-autoreleasepool-中为什么)
 - 5.[`ARC` 的 `retainCount` 怎么存储的？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5arc-的-retaincount-怎么存储的)
 - 6.[简要说一下 `@autoreleasePool` 的数据结构？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6简要说一下-autoreleasepool-的数据结构)
