@@ -38,6 +38,7 @@
 - 5.查找两个子视图的共同父视图
 - 6.无序数组中的中位数
 - 7.两数之和为特定值
+- 补充：插入排序
 
 ## 1.iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合) 
@@ -48,7 +49,7 @@
 - 6.[简要说一下 `@autoreleasePool` 的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6简要说一下-autoreleasepool-的数据结构)
 - 7.[`__weak` 和 `_Unsafe_Unretain` 的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7__weak-和-_unsafe_unretain-的区别)
 - 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
-- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil）
+- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil）
 - 10.[说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
 - 补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
 - 11.[`ARC` 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
@@ -62,8 +63,8 @@
 - 19.[讲一下 `@dynamic` 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19讲一下-dynamic-关键字)
 - 20.[`@autoreleasrPool` 的释放时机？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20autoreleasrpool-的释放时机)
 - 21.[`retain`、`release` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21retainrelease-的实现机制)
-- 补充：在OC里 alloc 和 retain 语义相反的方法是？
-- 补充：realease作用是什么和 autorelease 有什么区别？
+- 补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？
+- 补充：`realease`作用是什么和 `autorelease` 有什么区别？
 - 22.[能不能简述一下 `Dealloc` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22能不能简述一下-dealloc-的实现机制)
 
 
@@ -73,7 +74,7 @@
 - 3.[元类对象的数据结构?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3元类对象的数据结构)
 - 4.[`Category` 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4category-的实现原理)
 - 5.[如何给 `Category` 添加属性？关联对象以什么形式进行存储？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5如何给-category-添加属性关联对象以什么形式进行存储)
-- 6.[`Category` 有哪些用途？] (https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6category-有哪些用途)
+- 6.[`Category` 有哪些用途？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6category-有哪些用途)
 - 7.[`Category` 和 `Extension` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7category-和-extension-有什么区别)
 - 8.[说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8说一下-method-swizzling-说一下在实际开发中你在什么场景下使用过)
 - 9.[如何实现动态添加方法和属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9如何实现动态添加方法和属性)
@@ -140,6 +141,7 @@
 - 25.[说一下传输控制协议 - `TCP` ?]()
 - 26.[说一下用户数据报协议 - `UDP` ?]() 
 - 27.[谈一谈网络中的 `session` 和 `cookie`?]() 
+- 补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
 
 ## 5.多线程
 - 1.`NSThread`相关知识？ 
@@ -299,6 +301,8 @@
 
 ## 24.其他问题
 - 1.`UIView` 和 `CALayer` 是什么关系？
+- 补充：在OC中对象方法的几种访问权限，分别是什么？
+- 补充：列出 #import 和 #include 的区别，另外什么时候使用@class？
 - 2.`Bounds` 和 `Frame` 的区别?
 - 3.`nil`、`NIL`、`NSNULL` 有什么区别？
 - 4.如何实现一个线程安全的 `NSMutableArray`?
@@ -323,6 +327,8 @@
 - 23.`Obj-C` 中的反射机制了解吗？
 - 24.`atomic` 修饰的属性是绝对安全的吗？为什么？
 - 25.`id` 和 `instanceType` 有什么区别？
+- 补充：简述Xcode7和Xcode8的异同
+- 补充：描述iOS 10的一些新特性（包括系统和开发环境）
 
 
 
@@ -342,7 +348,10 @@ b=(++a)+(++a);
 - 4.能不能说一下你的业余精力都花在什么方面，或者介绍一下你的爱好？
 - 5.学习技术知识通常通过哪些途径？
 - 6.遇到疑难问题一般怎么解决？能不能说一个你印象颇深的技术难点，后来怎么解决的？
-
+- 7.作为开发苹果应用者有多长时间，拥有哪些苹果设备？
+- 8.平时你经常访问哪些技术类网址
+- 9.为什么选择iOS开发，你对它的前景和本身有什么想法？请简要回答。
+- 10.你有自己的开源项目吗，用什么托管的代码？
 
 # 0.数据结构及算法
 
@@ -618,6 +627,18 @@ __unsafe_unretain，正如其名称隐藏的含义，尽管释放指针指向的
 * _weak:表示引用为弱引用。对应在定义property时用的"weak"。弱引用不会影响对象的释放，即只要对象没有任何强引用指向，即使有100个弱引用对象指向也没用，该对象依然会被释放。不过好在，对象在被释放的同时，指向它的弱引用会自动被置nil，这个技术叫zeroing weak pointer。这样有效得防止无效指针、野指针的产生。__weak一般用在delegate关系中防止循环引用或者用来修饰指向由Interface Builder编辑与生成的UI控件。
 * _autoreleasing:表示在autorelease pool中自动释放对象的引用，和MRC时代autorelease的用法相同。定义property时不能使用这个修饰符，任何一个对象的property都不应该是autorelease型的。
 
+### 补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
+
+* readwrite:可读写属性，需要生成getter方法和setter方法;
+* readonly:只读属性，只会生成getter方法 不会生成setter方法 ,不希望属性在类外改变;  
+* assign:简单赋值，setter方法将传入参数赋值给实例变量;仅设置变量时;不更改索引计数 ,主要用于修饰基本数据类型，存储在栈中，内存不用程序员管理。为了解决原类型和循环引用问题。
+* retain:setter方法对参数进行release旧值，再retain新值，就是setter方法将传入参数先保留,再赋值,
+* copy:建立一个引用计数为1的对象，然后释放旧对象 ,像NSString是内容拷贝,但是如果copy的是一个NSArray，copy是指向array中相对应元素的指针。
+* nonatomic:非原子性访问，不加同步，多线程并发访问会提高性能。注意，如果不加此属性，则默认是两个访问方法都为原子型事务访问。锁被加到所属对象实例级
+* weak:weak其实类似于assign，叫弱引用，也是不增加引用计数。一般只有在防止循环引用时使用，比如父类引用了子类，子类又去引用父类。IBOutlet、Delegate一般用的就是weak，这是因为它们会在类外部被调用，防止循环引用。
+* strong:相对的，strong就类似与retain了，叫强引用，会增加引用计数，类内部使用的属性一般都是strong修饰的，现在ARC已经基本替代了MRC，所以我们最常见的就是strong了。
+
+
 ### 11.`ARC` 在编译时做了哪些工作？ 
 
 当我们编译源码的时候，编译器会分析源码中每个对象的生命周期，然后基于这些对象的生命周期，来添加相应的引用计数操作代码,在适当的位置插入 retain，release;
@@ -733,9 +754,6 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 
 ## 2.Runtime
 ### 1.实例对象的数据结构？
-
-
-
 ### 2.类对象的数据结构？
 ### 3.元类对象的数据结构? 
 ### 4.`Category` 的实现原理？ 
@@ -783,7 +801,7 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 * 模拟多继承（另外可以模拟多继承的还有protocol）
 * 把framework的私有方法公开
 
-补充：`Category`的优缺点？
+### 补充：`Category`的优缺点？
 * 好处
     - 可以将类的实现分散到多个不同的文件或者不同的框架中，方便代码的管理。也可以对框架提供类的扩展。（可以减少单个文件的体积，可以把不同的功能组织到不同的category里，可以由多个开发者共同完成一个类，可以按需加载想要的category）
     - 创建对私有方法的前向引用：如果其他类中的方法未实现，在你访问其他类的私有方法时编译器报错这时使用类别，在类别中声明这些方法（不必提供方法实现），编译器就不会再产生警告
@@ -806,6 +824,99 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
     - 形式上看：extension 是匿名的category
     - extension中声明的方法需要在mainimplementation中实现，而category 不做强制要求
     - extension 可以添加属性、成员变量，而category 一般不可以。
+
+### 补充：介绍一下`Category`（类别）、`Extension`（拓展）和继承，它们的区别是什么？优缺点分别是什么？
+
+* `Category`
+    - 当原有类的方法不够用时，这时候分类就出现了。分类就是对一个类的功能进行扩展,利用objective-c 的动态运行时分配机制，可以为现有类添加新方法。可以在分类中添加方法和成员变量，但是添加的成员变量不会自动生成setter和getter方法，需要在实现部分给出实现。
+    - 作用
+        - 可以将类的实现分散到多个不同的文件或者不同的框架中，方便代码的管理。也可以对框架提供类的扩展（没有源码，不能修改）。
+        - 创建对私有方法的前向引用：如果其他类中的方法未实现，在你访问其他类的私有方法时编译器报错这时使用类别，在类别中声明这些方法（不必提供方法实现），编译器就不会再产生警告
+        - 向对象添加非正式协议：创建一个NSObject的类别称为“创建一个非正式协议”，因为可以作为任何类的委托对象使用。       
+    - 局限性
+        - 分类只能增加方法,不能增加成员变量,但是可以通过运行时来给分类添加属性,
+        - 如果分类和原来类出现同名的方法, 优先调用分类中的方法,原来类中的方法会被忽略,方法调用的优先级(从高到低) 分类(最后参与编译的分类优先),只要有分类就优先调用分类,不考虑与主类的编译顺序
+        - 利用运行时来为分类添加属性
+```
+1、引入运行时头文件。
+#import <objc/runtime.h>
+```
+
+```
+2、在匿名分类或者头文件中添加属性。区别是：匿名分类中添加的是私有属性，只在本类中可以使用，类的实
+例中不可以使用。头文件中添加的在类的实例中也可以使用。
+
+//分类的头文件
+@interface ClassName (CategoryName)
+//我要添加一个实例也可以访问的变量所以就写在这里了
+@property (nonatomic, strong) NSString *str;
+@end
+
+//匿名分类
+@interface ClassName ()
+
+@end
+
+```
+```
+3、在实现里面写要添加属性的getter、setter方法
+
+static void *strKey = &strKey;
+@implementation ClassName (CategoryName) 
+
+-(void)setStr:(NSString *)str  
+{  
+    objc_setAssociatedObject(self, &strKey, str, OBJC_ASSOCIATION_COPY);  
+}  
+
+-(NSString *)str  
+{  
+    return objc_getAssociatedObject(self, &strKey);  
+}
+@end
+
+在setStr:方法中使用了一个objc_setAssociatedObject的方法，这个方法有四个参数，分别是：
+1.源对象，
+2.关联时的用来标记是哪一个属性的key（因为你可能要添加很多属性），
+3.关联的对象
+4.一个关联策略。
+```
+* `Extension`：
+    - 是Category的一个特例，
+    - 作用
+        - 为一个类增加私有方法,属性或成员变量,也就是说
+    - 局限性
+        - 只能在本文件中被使用其名字为匿名(为空),并且新添加的方法一定要予以实现。(Category没有这个限制)
+    - 实现
+        - 第一种方法：通过延展来实现方法的私有,延展的头文件独立。这种方法不能实现真正的方法私有,当在别的文件中引入延展的头文件,那么在这个文件中定义的类的对象就可以直接调用在延展中定义所谓私有的方法
+        - 第二种实现延展的方式：延展没有独立的头文件,在类的实现文件.m中声明和实现延展,这种方法可以很好的实现方法的私有,因为在OC中是不能引入.m的文件的
+        - 第三种实现方法：私有的方式是在.m文件中的@implementation中直接实现在@interface中没有声明的方法,这样也可以很好的实现方法的私有,开发中经常用的方式。
+    - Category和Extension区别
+        - 形式上看：extension 是匿名的category
+        - extension中声明的方法需要在implementation中实现，而category 不做强制要求
+        - extension 可以添加属性、成员变量，而category 一般不可以。
+        - 虽然有人说extension是一个特殊的category，也有人将extension叫做匿名分类，但是其实两者差别很大。
+        - extension
+            - 在编译器决议，是类的一部分，在编译器和头文件的@interface和实现文件里的@implement一起形成了一个完整的类。
+            - 伴随着类的产生而产生，也随着类的消失而消失。
+            - extension一般用来隐藏类的私有消息，你必须有一个类的源码才能添加一个类的extension，所以对于系统一些类，如nsstring，就无法添加类扩展
+        - category
+            - 是运行期决议的
+            - 类扩展可以添加实例变量，分类不能添加实例变量
+            - 原因：因为在运行期，对象的内存布局已经确定，如果添加实例变量会破坏类的内部布局，这对编译性语言是灾难性的。
+* 继承：
+    - 多个类具有相同的实例变量和方法时，考虑用继承。即子类可以继承父类的相同特性。
+    - 作用
+        - 在子类中新扩展的方法与原方法同名，但是还需要使用父类的实现要用继承。因为使用类别，会覆盖原类的实现，无法访问到原来的方法。
+        - 扩展类的属性和实例变量，这个类别无法做到。
+        - 子类可以继承类别中的方法。
+    - 和Category的区别：
+        - 类别是对方法的扩展，不能添加成员变量。继承可以在原来父类的成员变量的基础上，添加新的成员变量
+        - 类别只能添加新的方法，不能修改和删除原来的方法。继承可以增加、修改和删除方法。
+        - 类别不提倡对原有的方法进行重载。继承可以通过使用super对原来方法进行重载。
+        - 类别可以被继承，如果一个父类中定义了类别，那么其子类中也会继承此类别。
+        - 共同点：都是给一个类进行扩展
+
 
 ### 8.说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过? 
 
@@ -922,7 +1033,7 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 17.如何在测试过程中 `MOCK` 各种网络环境？ 
 ### 18.`DNS` 的解析过程？网络的 `DNS` 优化。 
 ### 19.`Post`请求体有哪些格式？ 
-20.网络请求的状态码都大致代表什么意思？
+### 20.网络请求的状态码都大致代表什么意思？
 ### 21.抓包软件 `Charles` 的原理是什么？说一下中间人攻击的过程。
 ### 22.如何判断一个请求是否结束？
 ### 23.`SSL` 传输协议？说一下 `SSL` 验证过程？
@@ -1089,6 +1200,8 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 2.APM（应用程序性能监测）
 ### 3.Hot Patch（热修补）
 ### 4.崩溃的处理
+### 补充：在实际使用Instruments 可监控插件，你会注意哪些有用的信息？
+### 补充：使用哪个事件来检测用户轻按按钮？
 
 ## 24.其他问题
 ### 1.`UIView` 和 `CALayer` 是什么关系？
@@ -1120,10 +1233,9 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 22.`@synthesize` 和 `@dynamic` 分别有什么作用？
 ### 23.`Obj-C` 中的反射机制了解吗？
 ### 24.`atomic` 修饰的属性是绝对安全的吗？为什么？
-
-
-
 ### 25.`id` 和 `instanceType` 有什么区别？
+### 补充：简述Xcode7和Xcode8的异同
+### 补充：描述iOS 10的一些新特性（包括系统和开发环境）
 
 
 
