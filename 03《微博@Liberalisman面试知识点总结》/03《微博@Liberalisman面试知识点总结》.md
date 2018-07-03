@@ -51,7 +51,7 @@
 - 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
 - 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
 - 10.[说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
-- 补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
+- [补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
 - 11.[`ARC` 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
 - 12.[`ARC` 在运行时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12arc-在运行时做了哪些工作)
 - 13.[函数返回一个对象时，会对对象 `autorelease` 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13函数返回一个对象时会对对象-autorelease-么为什么)
@@ -63,8 +63,8 @@
 - 19.[讲一下 `@dynamic` 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19讲一下-dynamic-关键字)
 - 20.[`@autoreleasrPool` 的释放时机？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20autoreleasrpool-的释放时机)
 - 21.[`retain`、`release` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21retainrelease-的实现机制)
-- 补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？
-- 补充：`realease`作用是什么和 `autorelease` 有什么区别？
+- [补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？]()
+- [补充：`realease`作用是什么和 `autorelease` 有什么区别？]()
 - 22.[能不能简述一下 `Dealloc` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22能不能简述一下-dealloc-的实现机制)
 
 
@@ -747,7 +747,8 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 
 ### 21.`retain`、`release` 的实现机制？
 
-
+### 补充：`realease`作用是什么和 `autorelease` 有什么区别？
+### 补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？
 
 ### 22.能不能简述一下 `Dealloc` 的实现机制？
 
@@ -1067,6 +1068,8 @@ static void *strKey = &strKey;
 * 任何方法调用的本质就是发送一个消息，用runtime发送消息，OC底层就是通过runtime实现的。
 
 ### 21.说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？
+
+
 ### 22.是否了解 `Type Encoding`? 
 
 
