@@ -63,8 +63,8 @@
 - 19.[讲一下 `@dynamic` 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19讲一下-dynamic-关键字)
 - 20.[`@autoreleasrPool` 的释放时机？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20autoreleasrpool-的释放时机)
 - 21.[`retain`、`release` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21retainrelease-的实现机制)
-- [补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？]()
-- [补充：`realease`作用是什么和 `autorelease` 有什么区别？]()
+- [补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充realease作用是什么和-autorelease-有什么区别)
+- [补充：`realease`作用是什么和 `autorelease` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充在oc里-alloc-和-retain-语义相反的方法是)
 - 22.[能不能简述一下 `Dealloc` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22能不能简述一下-dealloc-的实现机制)
 
 
@@ -142,6 +142,7 @@
 - 26.[说一下用户数据报协议 - `UDP` ?]() 
 - 27.[谈一谈网络中的 `session` 和 `cookie`?]() 
 - 补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
+- 补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？
 
 ## 5.多线程
 - 1.`NSThread`相关知识？ 
@@ -160,6 +161,7 @@
 - 14.分步锁 - `NSDistributedLock`。
 - 15.如何确保线程安全？ 
 - 16.`NSMutableArray`、和 `NSMutableDictionary`是线程安全的吗？`NSCache`呢？ 
+- 补充：如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）
 
 ## 6.项目架构
 - 1.什么是 `MVC`?
