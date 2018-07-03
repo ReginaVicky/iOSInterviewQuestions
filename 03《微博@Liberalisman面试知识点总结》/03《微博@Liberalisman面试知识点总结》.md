@@ -75,6 +75,7 @@
 - 4.[`Category` 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4category-的实现原理)
 - 5.[如何给 `Category` 添加属性？关联对象以什么形式进行存储？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5如何给-category-添加属性关联对象以什么形式进行存储)
 - 6.[`Category` 有哪些用途？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6category-有哪些用途)
+- [补充：`Category`的优缺点]()
 - 7.[`Category` 和 `Extension` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7category-和-extension-有什么区别)
 - 8.[说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8说一下-method-swizzling-说一下在实际开发中你在什么场景下使用过)
 - 9.[如何实现动态添加方法和属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9如何实现动态添加方法和属性)
@@ -300,6 +301,7 @@
 - 2.APM（应用程序性能监测）
 - 3.Hot Patch（热修补）
 - 4.崩溃的处理
+- 补充：各个app之间是怎么相互切换的
 
 ## 24.其他问题
 - 1.`UIView` 和 `CALayer` 是什么关系？
@@ -749,8 +751,13 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 
 ### 21.`retain`、`release` 的实现机制？
 
-### 补充：`realease`作用是什么和 `autorelease` 有什么区别？
 ### 补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？
+
+* 在iOS中，alloc 代表着为对象在内存中开辟一个快空间，其经常要配合init使用，而dealloc则是当对象的引用计数为0的时候，将对象销毁，释放空间。而retain方法则是对象创建之后使对象的引用计数器加1，而release则是使对象的引用计数器减1。
+* 因此与alloc语义相反的方法是dealloc，与retain语义相反的是release，与alloc配对的方法是release，因为对象创建以后对象的引用计数器自动加1，而调用了release方法以后，对象的引用计数器为0，系统会自动调用dealloc方法释放掉该对象的空间
+
+### 补充：`realease`作用是什么和 `autorelease` 有什么区别？
+
 
 ### 22.能不能简述一下 `Dealloc` 的实现机制？
 
