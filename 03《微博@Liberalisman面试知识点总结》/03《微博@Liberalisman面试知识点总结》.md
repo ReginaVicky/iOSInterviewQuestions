@@ -49,7 +49,7 @@
 - 6.[简要说一下 `@autoreleasePool` 的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6简要说一下-autoreleasepool-的数据结构)
 - 7.[`__weak` 和 `_Unsafe_Unretain` 的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7__weak-和-_unsafe_unretain-的区别)
 - 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
-- 9.[`__weak`属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
+- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
 - 10.[说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
 - 补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
 - 11.[`ARC` 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
@@ -757,6 +757,75 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 ### 2.类对象的数据结构？
 ### 3.元类对象的数据结构? 
 ### 4.`Category` 的实现原理？ 
+
+* 无论我们有没有主动引入 Category 的头文件，Category 中的方法都会被添加进主类中。我们可以通过 - performSelector: 等方式对 Category 中的相应方法进行调用
+* 文中类与分类代码如下
+```
+//类
+@interface Person : NSObject
+@property (nonatomic ,copy) NSString *presonName;
+@end
+
+@implementation Person
+- (void)doSomeThing{
+    NSLog(@"Person");
+}
+@end
+
+```
+```
+// 分类
+@interface Person(categoryPerson)
+@property (nonatomic ,copy) NSString *categoryPersonName;
+@end
+
+@implementation Person(categoryPerson)
+- (void)doSomeThing{
+    NSLog(@"categoryPerson");
+}
+@end
+
+```
+* 分类的结构体
+```
+struct _category_t {
+    const char *name;//类名
+    struct _class_t *cls;//类
+    const struct _method_list_t *instance_methods;//category中所有给类添加的实例方法的列表（instanceMethods）
+    const struct _method_list_t *class_methods;//category中所有添加的类方法的列表（classMethods）
+    const struct _protocol_list_t *protocols;//category实现的所有协议的列表（protocols）
+    const struct _prop_list_t *properties;//category中添加的所有属性（instanceProperties）
+};
+
+struct category_t {
+    const char *name; // 类名
+    classref_t cls;   // 分类所属的类
+    struct method_list_t *instanceMethods;  // 实例方法列表
+    struct method_list_t *classMethods;     // 类方法列表
+    struct protocol_list_t *protocols;      // 遵循的协议列表
+    struct property_list_t *instanceProperties; // 属性列表
+
+    // 如果是元类，就返回类方法列表；否则返回实例方法列表
+    method_list_t *methodsForMeta(bool isMeta) {
+        if (isMeta) {
+            return classMethods;
+        } else {
+            return instanceMethods;
+        }
+    }
+
+    // 如果是元类，就返回 nil，因为元类没有属性；否则返回实例属性列表，但是...实例属性
+    property_list_t *propertiesForMeta(bool isMeta) {
+        if (isMeta) {
+            return nil; // classProperties;
+        } else {
+            return instanceProperties;
+        }
+    }
+};
+```
+[ios 分类的实现原理](https://blog.csdn.net/sharpyl/article/details/78238814?locationNum=1&fps=1)
+
 ### 5.如何给 `Category` 添加属性？关联对象以什么形式进行存储？ 
 
 * 使用Runtime中的关联对象
@@ -928,7 +997,13 @@ static void *strKey = &strKey;
 
 ### 9.如何实现动态添加方法和属性？ 
 
-
+* 动态添加方法
+    - 如果一个类方法非常多，加载类到内存的时候也比较耗费资源，需要给每个方法生成映射表，可以使用动态给某个类，添加方法解决。
+    - 注解：OC 中我们很习惯的会用懒加载，当用到的时候才去加载它，但是实际上只要一个类实现了某个方法，就会被加载进内存。当我们不想加载这么多方法的时候，就会使用到 runtime 动态的添加方法。
+* 动态添加属性
+    - 原理：给一个类声明属性，其实本质就是给这个类添加关联，并不是直接把这个值的内存空间添加到类存空间。
+    - 应用场景：给系统的类添加属性的时候,可以使用runtime动态添加属性方法。
+    - 注解：系统 NSObject 添加一个分类，我们知道在分类中是不能够添加成员属性的，虽然我们用了@property，但是仅仅会自动生成get和set方法的声明，并没有带下划线的属性和方法实现生成。但是我们可以通过runtime就可以做到给它方法的实现。
 
 ### 10.说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？（注意区分不同对象）
 
@@ -944,12 +1019,37 @@ static void *strKey = &strKey;
 ![image](http://hi.csdn.net/attachment/201201/19/0_1326963670oeC1.gif)
 
 ### 11.`Obj-C` 中的类信息存放在哪里？ 
+
+* OC的类本质就是结构体，通过封装一些映射方法，使你能更加方便地通过类和对象的方式来操作和使用这个结构体中的数据
+* 这个结构体存放了类的"元数据"(metadata)
+
 ### 12.一个 `NSObject` 对象占用多少内存空间？
+
+* Class 实际上是一个指向 objc_class 的结构体指针，也就是说 NSObject 最终声明为一个 指向结构体 objc_class 的名为 isa 的结构体指针。既然是指针，在32位系统中占 4个 字节，在64位系统中占 8 个字节。
+
 ### 13.说一下对 `class_rw_t` 的理解？
 ### 14.说一下对 `class_ro_t` 的理解？
 ### 15.说一下 `Runtime` 消息解析。
+
+
+
 ### 16.说一下 `Runtime` 消息转发。
+
+* 通常情况下，在我们调用不属于某个对象的方法的时候，我们的应用就会崩溃crash，在崩溃之前编译器会进行消息转发机制，总共给了我们三次机会来避免这样的崩溃并尽可能的找到方法的响应者。
+
+![image](https://upload-images.jianshu.io/upload_images/783864-d30b853ee14f829d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+* 首先先看第一阶段。我们都知道，在iOS开发当中我们需要非常的注意用户体验。单纯的是因为数据类型错误而导致应用出现闪退，这样的处理会极大的影响使用app的用户。因此，我们可以通过class_addMethod这个函数来动态的添加这种错误的处理
+* 在第二阶段最开始的时候，这时候已经默许了你并不想使用消息接收者来响应这个方法，所以我们需要找到消息接盘侠 —— 在iOS中不支持多继承，尽管我们可以通过协议和组合模式实现伪多继承。伪多继承和多继承的区别在于：多继承是将多个类的功能组合到一个对象当中，而伪多继承多个类的功能依旧分布在不同对象当中，但是对象彼此对消息发送者透明。那么，如果我们消息转发给另一个对象可以用来实现这种伪多继承。
+* 如果你依旧没有为这个方法找到另外一个调用者，那么阻止你app闪退的最后时刻到来了。runtime需要生成一个methodSignature变量来组装，这将通过调用消息接收者的-(NSMethodSignature *)methodSignatureForSelector:获取，这个变量包含了方法的参数类型、参数个数以及消息接收者等信息。接着把这个变量组装成一个NSInvocation对象进行最后一次的消息转发，调用接收者的-forwardInvocation:来进行最后的挽救机会。这意味着我们可以尽情的对invocation做任何事情，包括随意修改参数值、消息接收者等。
+
+总的来说整个消息发送的过程可以归纳成下面这张图：
+![image](https://upload-images.jianshu.io/upload_images/783864-6307edd44a777c2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
 ### 17.如何运用 `Runtime` 字典转模型？
+
+* 结合kvc，Runtime 遍历 ivar_list。
+
 ### 18.如何运用 `Runtime` 进行模型的归解档？
 
 * Runtime 遍历 ivar_list。
@@ -957,6 +1057,15 @@ static void *strKey = &strKey;
 
 ### 19.在 `Obj-C` 中为什么叫发消息而不叫函数调用？
 ### 20.说一下对 `runtime` 的理解。（主要讲一下消息机制，是对上述的总结）
+
+* Runtime又叫运行时，是一套底层C语言的API，其为iOS内部的核心之一，我们平时编写的OC代码底层都是基于它来实现的。比如：[target doSomething];底层运行时会被编译器转化成objc_msgSend(target,@selector(doSomething)); 带参数的[target doSomething:arg1...]; 会被底层运行时会被编译器转化成objc_msgSend(target, @selector(doSomething),arg1, arg2, ...);
+* Objc 在三种层面上与 Runtime 系统进行交互：
+    - 通过 Objective-C 源代码
+    - 通过 Foundation 框架的 NSObject 类定义的方法
+    - 通过对 Runtime 库函数的直接调用
+* Runtime有5大作用：发送消息，交换方法，动态添加方法，给分类添加属性，字典转模型；
+* 任何方法调用的本质就是发送一个消息，用runtime发送消息，OC底层就是通过runtime实现的。
+
 ### 21.说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？
 ### 22.是否了解 `Type Encoding`? 
 
