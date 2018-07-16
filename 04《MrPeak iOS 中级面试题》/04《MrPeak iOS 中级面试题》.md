@@ -352,7 +352,7 @@ __weak typedof(self)weakSelf = self
 * Method Swizzling 原理（方法搅拌？）
 * 在Objective-C中调用一个方法，其实是向一个对象发送消息，查找消息的唯一依据是selector的名字。利用Objective-C的动态特性，可以实现在运行时偷换selector对应的方法实现，达到给方法挂钩的目的。 
 * 每个类都有一个方法列表，存放着selector的名字和方法实现的映射关系。IMP有点类似函数指针，指向具体的Method实现。
-![image](https://img-blog.csdn.net/20150413222619384)
+![image](https://upload-images.jianshu.io/upload_images/595396-33c99f32ffc5fdda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/483)
 
     - 我们可以利用 method_exchangeImplementations 来交换2个方法中的IMP，
     - 我们可以利用 class_replaceMethod 来修改类，
