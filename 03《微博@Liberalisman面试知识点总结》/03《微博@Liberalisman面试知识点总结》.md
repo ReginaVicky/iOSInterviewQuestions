@@ -1206,6 +1206,116 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 1.说一下 `NSNotification` 的实现机制？
 ### 2.说一下 `NSNotification` 的特点。
 ### 3.简述 `KVO` 的实现机制。
+
+- 概述
+    * KVO，即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则其观察者就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。
+    * KVO其实也是“观察者”设计模式的一种应用。这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑与视图控制 这两个功能的解耦合。
+    
+- 实现原理
+    * KVO 是基于运行时实现的 isa   Class   NSKVONotifying_Person
+    * 基本的原理：当观察某对象A时，KVO机制动态创建一个对象A当前类的子类，并为这个新的子类重写了被观察属性keyPath的setter 方法。setter 方法随后负责通知观察对象属性的改变状况。
+    * 基本的步骤：
+        - 注册观察者，实施监听；
+        - 在回调方法中处理属性发生的变化；
+        - 移除观察者
+    * Apple 使用了 isa 混写（isa-swizzling）来实现 KVO 。当观察对象A时，KVO机制动态创建一个新的名为： NSKVONotifying_A的新类，该类继承自对象A的本类，且KVO为NSKVONotifying_A重写观察属性的setter 方法，setter 方法会负责在调用原 setter 方法之前和之后，通知所有观察对象属性值的更改情况。（备注： isa 混写（isa-swizzling）isa：is a kind of ； swizzling：混合，搅合；）
+        - NSKVONotifying_A类剖析：在这个过程，被观察对象的 isa 指针从指向原来的A类，被KVO机制修改为指向系统新创建的子类 NSKVONotifying_A类，来实现当前类属性值改变的监听；所以当我们从应用层面上看来，完全没有意识到有新的类出现，这是系统“隐瞒”了对KVO的底层实现过程，让我们误以为还是原来的类。但是此时如果我们创建一个新的名为“NSKVONotifying_A”的类()，就会发现系统运行到注册KVO的那段代码时程序就崩溃，因为系统在注册监听的时候动态创建了名为NSKVONotifying_A的中间类，并指向这个中间类了。（isa 指针的作用：每个对象都有isa 指针，指向该对象的类，它告诉 Runtime 系统这个对象的类是什么。所以对象注册为观察者时，isa指针指向新子类，那么这个被观察的对象就神奇地变成新子类的对象（或实例）了。） 因而在该对象上对 setter 的调用就会调用已重写的 setter，从而激活键值通知机制。
+        - 子类setter方法剖析：KVO的键值观察通知依赖于 NSObject 的两个方法:willChangeValueForKey:和 didChangevlueForKey:，在存取数值的前后分别调用2个方法：被观察属性发生改变之前，willChangeValueForKey:被调用，通知系统该 keyPath 的属性值即将变更；当改变发生后， didChangeValueForKey: 被调用，通知系统该 keyPath 的属性值已经变更；之后observeValueForKey:ofObject:change:context: 也会被调用。且重写观察属性的setter 方法这种继承方式的注入是在运行时而不是编译时实现的。
+
+- KVC与KVO的不同？
+    * KVC(键值编码)，即Key-Value Coding，一个非正式的Protocol，使用字符串(键)访问一个对象实例变量的机制。而不是通过调用Setter、Getter方法等显式的存取方式去问。
+    * KVO(键值监听)，即Key-Value Observing，它提供一种机制,当指定的对象的属性被修改后,对象就会接受到通知，前提是执行了setter方法、或者使用了KVC赋值。
+
+- 和notification(通知)的区别？
+    * notification比KVO多了发送通知的一步。两者都是一对多，但是对象之间直接的交互，notification明显得多，需要notificationCenter来做为中间交互。而KVO如我们介绍的，设置观察者->处理属性变化，至于中间通知这一环，则隐秘多了，只留一句“交由系统通知”，具体的可参照以上实现过程的剖析。
+notification的优点是监听不局限于属性的变化，还可以对多种多样的状态变化进行监听，监听范围广，例如键盘、前后台等系统通知的使用也更显灵活方便。
+
+- 与delegate的不同？
+    * 和delegate一样，KVO和NSNotification的作用都是类与类之间的通信。但是与delegate不同的是：
+这两个都是负责发送接收通知，剩下的事情由系统处理，所以不用返回值；而delegate 则需要通信的对象通过变量(代理)联系；
+delegate一般是一对一，而这两个可以一对多。
+
+- 总结
+    * 对比其他的回调方式，KVO机制的运用的实现，更多的由系统支持，相比notification、delegate等更简洁些，并且能够提供观察属性的最新值以及原始值；但是相应的在创建子类、重写方法等等方面的内存消耗是很巨大的。所以对于两个类之间的通信，我们可以根据实际开发的环境采用不同的方法，使得开发的项目更加简洁实用。
+    * 另外需要注意的是，由于这种继承方式的注入是在运行时而不是编译时实现的，如果给定的实例没有观察者，那么KVO不会有任何开销，因为此时根本就没有KVO代码存在。但是即使没有观察者，委托和NSNotification还是得工作，这也是KVO此处零开销观察的优势。
+    * 异步:监听通知 主线程:发出通知 接收通知代码在主线程
+    * 主线程:监听通知 异步:发出通知 接收通知代码在异步
+    * 注意:在接收通知代码中 可以加上主队列任务
+    * 总结:接收通知代码 由 发出通知线程决定, KVO也一样
+
+- 代码
+```
+#import "ViewController.h"
+#import "Person.h"
+
+@interface ViewController ()
+/** p1 */
+@property (strong, nonatomic) Person *p1;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // 1.什么是通知
+    
+    // 3个对象
+    self.p1 = [[Person alloc] init];
+    self.p1.name = @"p1";
+    //打印监听前类信息
+    [p1 printInfo];
+    // KVO是监听对象的属性值的改变的
+    [self.p1 addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    self.p1.name = @"123";
+    //打印监听后类信息
+     [p1 printInfo];
+     [p1 removeObserver:self forKeyPath:@"name"];
+     //打印移除监听后类信息
+     [p1 printInfo];
+}
+
+// 这个方法时属于 NSObject 类的，任何对象都可以作为观察者
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    NSLog(@"监听到了%@的%@属性发生了改变", object, keyPath);
+    NSLog(@"%@", change);
+}
+
+@end
+
+person类方法：
+
+-(void)printInfo
+{
+    NSLog(@"isa:%@, supper class:%@", NSStringFromClass(object_getClass(self)),
+          class_getSuperclass(object_getClass(self)));
+    
+    NSLog(@"self:%@, [self superclass]:%@", self, [self superclass]);
+    
+    NSLog(@"age setter function pointer:%p", class_getMethodImplementation(object_getClass(self), @selector(setAge:)));
+    
+    NSLog(@"name setter function pointer:%p", class_getMethodImplementation(object_getClass(self), @selector(setName:)));
+    NSLog(@"printInfo function pointer:%p", class_getMethodImplementation(object_getClass(self), @selector(printInfo)));
+}
+```
+- KVO为子类的观察者属性重写调用存取方法的工作原理在代码中相当于：
+    * 上述例子中，当 p1.name 的值改变时，p1对象的 isa 指针会指向 NSKVONotifying_Person，意味着，在程序运行时，会动态生成一个 NSKVONotifying_Person 类，该类继承于 Person，而且该类中也有个 -setName: 方法，方法中在设置 name 的同时实现了：
+```
+- (void)setName:(NSString *)name
+{
+    [super setName:name];
+    
+    // 这两个方法底层会调用observer的- (void)observeValueForKeyPath: ofObject: change: context:这个方法
+    [self willChangeValueForKey:@"age"];
+    [self didChangeValueForKey:@"age"];
+}
+
+```
+- 观察者观察的是属性，只有遵循 KVO 变更属性值的方式才会执行KVO的回调方法，例如是否执行了setter方法、或者是否使用了KVC赋值。
+如果赋值没有通过setter方法或者KVC，而是直接修改属性对应的成员变量，例如：仅调用_name = @"newName"，这时是不会触发kvo机制，更加不会调用回调方法的。
+所以使用KVO机制的前提是遵循 KVO 的属性设置方式来变更属性值。
+
 ### 4.`KVO` 在使用过程中有哪些注意点？有没有使用过其他优秀的 `KVO` 三方替代框架？ 
 ### 5.简述 `KVO` 的注册依赖键是什么？
 ### 6.如何做到 `KVO` 手动通知？
@@ -1221,6 +1331,8 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 补充：`Block` 用什么修饰？copy，assign，strong有什么区别？
 ### 补充：`Block` 后面携带参数的时候，有数量限制吗？为什么？
 ### 补充：消息通知有几种？如何判断是否哪些需要发送通知。
+
+
 
 ## 8.数据存储
 ### 1.Sqlite3 （不同版本的APP，数据库结构变化了，如何处理? ）
