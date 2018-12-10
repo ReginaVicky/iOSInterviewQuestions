@@ -142,36 +142,21 @@
 - 25.[说一下传输控制协议 - `TCP` ?]()
 - 26.[说一下用户数据报协议 - `UDP` ?]() 
 - 27.[谈一谈网络中的 `session` 和 `cookie`?]() 
-- 补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
-- 补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？
-- 补充：https的缓存问题。
+- [补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）]()
+- [补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？]()
+- [补充：https的缓存问题。]()
 
 ## 5.多线程
-- 补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
-    * 好处：
-        - 使用线程可以把占据时间长的程序中的任务放到后台去处理
-        - 用户界面可以更加吸引人，这样比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度
-        - 程序的运行效率可能提高
-        - 在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。
-    * 缺点：
-        - 如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换。
-        - 更多的线程需要更多的内存空间。
-        - 线程的中止需要考虑其对程序运行的影响。
-    * 实现多线程的方法：
-        - NSObject的类方法 
-            -(void)performSelectornBackground/OnMainThread:(SEL)aSelector withObject:(id)arg
-        - NSThread
-        - NSOperation
-        - GCD
-- 1.`NSThread`相关知识？ 
-- 2.`GCD` 相关知识？ 
-- 3.`NSOperation` 和 `NSOperationQueue`相关知识？ 
-- 补充：NSOperation与GCD的关系？
-- 4.如何实现线性编程？ 
-- 5.说一下 `GCD` 并发队列实现机制？
-- 补充：GCD的并行队列一定会开辟新的线程？
-- 6.`NSLock` 
-- 7.`NSContion`
+- [补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？]()
+- 1.[`NSThread`相关知识？]() 
+- 2.[`GCD` 相关知识？]() 
+- 3.[`NSOperation` 和 `NSOperationQueue`相关知识？ ]()
+- [补充：NSOperation与GCD的关系？]()
+- 4.[如何实现线性编程？]() 
+- 5.[说一下 `GCD` 并发队列实现机制？]()
+- [补充：GCD的并行队列一定会开辟新的线程？]()
+- 6.[`NSLock` ]()
+- 7.[`NSContion`]()
 - 8.条件锁 - `NSContionLock`
 - 9.递归锁 - `NSRecursiveLock`
 - 10.同步锁 - `Synchronized(self) {// code}`
@@ -209,7 +194,7 @@
 
 - 1.说一下 `NSNotification` 的实现机制？
 - 2.说一下 `NSNotification` 的特点。
-- 3.简述 `KVO` 的实现机制。(https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3简述-kvo-的实现机制)
+- 3.[简述 `KVO` 的实现机制。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3简述-kvo-的实现机制)
 - 4.`KVO` 在使用过程中有哪些注意点？有没有使用过其他优秀的 `KVO` 三方替代框架？ 
 - 5.简述 `KVO` 的注册依赖键是什么？
 - 6.如何做到 `KVO` 手动通知？
@@ -283,7 +268,7 @@
     - 3.`pod update` 和 `pod install` 有什么区别？
     - 4.`Podfile.lock` 文件起什么作用？
     - 5.如何集成本地私有库？
-    - 6.如何集成远程私有库 ？
+    - 6.如何集成远程私有库？
 - 4.Carthage
 - 5.Fastlane
 - 6.Jenkins
@@ -1199,11 +1184,29 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 补充：https的缓存问题。
 
 ## 5.多线程
+### 补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
+- 好处：
+    - 使用线程可以把占据时间长的程序中的任务放到后台去处理
+    - 用户界面可以更加吸引人，这样比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度
+    - 程序的运行效率可能提高
+    - 在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。
+- 缺点：
+    - 如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换。
+    - 更多的线程需要更多的内存空间。
+    - 线程的中止需要考虑其对程序运行的影响。
+- 实现多线程的方法：
+    - NSObject的类方法 
+        - -(void)performSelectornBackground/OnMainThread:(SEL)aSelector withObject:(id)arg
+    - NSThread
+    - NSOperation
+    - GCD
 ### 1.`NSThread`相关知识？ 
 ### 2.`GCD` 相关知识？ 
-### 3.`NSOperation` 和 `NSOperationQueue`相关知识？ 
+### 3.`NSOperation` 和 `NSOperationQueue`相关知识？
+### 补充：NSOperation与GCD的关系？
 ### 4.如何实现线性编程？ 
 ### 5.说一下 `GCD` 并发队列实现机制？
+### 补充：GCD的并行队列一定会开辟新的线程
 ### 6.`NSLock` 
 ### 7.`NSContion`
 ### 8.条件锁 - `NSContionLock`
@@ -1215,6 +1218,17 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 14.分步锁 - `NSDistributedLock`。
 ### 15.如何确保线程安全？ 
 ### 16.`NSMutableArray`、和 `NSMutableDictionary`是线程安全的吗？`NSCache`呢？ 
+### 补充：并行和并发的区别？串行/并行、同步异步的区别?
+### 补充：请说明同步请求与异步请求的区别?
+### 补充：默认最大并发？
+### 补充：dispatch_once如何实现一次性代码？
+### 补充：如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）
+### 补充：你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?
+### 补充：列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。
+### 补充：线程与进程的区别和联系?
+### 补充：iOS线程间怎么通信？
+### 补充：Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
+### 补充：请说明同步请求与异步请求的区别?
 
 ## 6.项目架构
 ### 1.什么是 `MVC`?
