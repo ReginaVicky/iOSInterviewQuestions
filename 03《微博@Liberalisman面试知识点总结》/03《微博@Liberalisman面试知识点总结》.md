@@ -1083,6 +1083,10 @@ static void *strKey = &strKey;
 * 有众多属性的时候就用runtime归档解档。
 
 ### 19.在 `Obj-C` 中为什么叫发消息而不叫函数调用？
+
+* 面向过程的语言，是通过函数调用并把数据作为参数传递来实现处理，函数是主要的。
+* 面向对象中，对象是主体（包含了数据和处理数据的方法），通过给对象发送消息，让对象自己（用自己的方法）完成需要的数据处理。
+
 ### 20.说一下对 `runtime` 的理解。（主要讲一下消息机制，是对上述的总结）
 
 * Runtime又叫运行时，是一套底层C语言的API，其为iOS内部的核心之一，我们平时编写的OC代码底层都是基于它来实现的。比如：[target doSomething];底层运行时会被编译器转化成objc_msgSend(target,@selector(doSomething)); 带参数的[target doSomething:arg1...]; 会被底层运行时会被编译器转化成objc_msgSend(target, @selector(doSomething),arg1, arg2, ...);
@@ -1136,9 +1140,93 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 
 ### 3.讲一下 `Observer` ？（Mode中的重点） 
 ### 4.讲一下 `Runloop` 的内部实现逻辑？（运行过程） 
+
+* 苹果在文档里的说明，RunLoop 内部的逻辑大致如下:
+![image](https://upload-images.jianshu.io/upload_images/1362984-fb2aec00d48e1bfe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+其内部代码整理如下 ：
+可以看到，实际上 RunLoop 就是这样一个函数，其内部是一个 do-while 循环。当你调用 CFRunLoopRun() 时，线程就会一直停留在这个循环里；直到超时或被手动停止，该函数才会返回。
+* RunLoop 的底层实现
+    * RunLoop 的核心是基于 mach port 的，其进入休眠时调用的函数是mach_msg()。
+    * RunLoop的核心就是一个 mach_msg() (见上面代码的第7步)，RunLoop调用这个函数去接收消息，如果没有别人发送port消息过来，内核会将线程置于等待状态。例如你在模拟器里跑起一个 iOS 的 App，然后在 App 静止时点击暂停，你会看到主线程调用栈是停留在mach_msg_trap() 这个地方。
+* 苹果用 RunLoop 实现的功能
+    * kCFRunLoopDefaultMode: App的默认 Mode，通常主线程是在这个 Mode 下运行的。
+    * UITrackingRunLoopMode: 界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响。
+    * UIInitializationRunLoopMode: 在刚启动 App 时第进入的第一个 Mode，启动完成后就不再使用。
+    * GSEventReceiveRunLoopMode: 接受系统事件的内部 Mode，通常用不到。
+    * kCFRunLoopCommonModes: 这是一个占位的 Mode，没有实际作用。
+
 ### 5.你所知的哪些三方框架使用了 `Runloop`?（AFNetworking、Texture 等）
-### 6.`autoreleasePool` 在何时被释放？ 
+### 6.`autoreleasePool` 在何时被释放？
+* MRC
+    * 通过手动创建的方式来创建自动释放池，这种方式创建的自动释放池需要手动调用release（引用计数环境下，调用release和drain的效果相同，但是在CG下，drain会触发GC,release不会），方法如下：
+
+```
+NSAutoreleasePool *pool = [[ NSAutoreleasePool alloc]init ];//创建一个自动释放池
+    Person *person = [[Person alloc]init];
+    //调autorelease方法将对象加入到自动释放池
+    //注意使用该方法，对象不会自己加入到自动释放池，需要人为调用autorelease方法加入
+    [person autorelease];
+    //,手动释放自动释放池执行完这行代码是，自动释放池会对加入他中的对象做一次release操作
+    [pool release];
+
+```
+自动释放池销毁时机：[pool release]代码执行完后
+* 通过@autoreleasepool来创建
+    - 对象的创建在自动释放池里面
+
+```
+@autoreleasepool {
+        //在这个{}之内的变量默认被添加到自动释放池
+         Person *p = [[Person alloc] init];
+      }//除了这个括号，p被释放
+```
+   - 如果一个变量在自动释放池之外创建，如下，需要通过__autoreleasing该修饰符将其加入到自动释放池。
+    
+```
+@autoreleasepool {
+
+}
+Person *   __autoreleasing p = [
+[Person alloc]init];
+ self.person = p;
+```
+系统就是通过@autoreleasepool {}这种方式来为我们创建自动释放池的，一个线程对应一个runloop，系统会为每一个runloop隐式的创建一个自动释放池，所有的autoreleasePool构成一个栈式结构，在每个runloop结束时，当前栈顶的autoreleasePool会被销毁，而且会对其中的每一个对象做一次release（严格来说，是你对这个对象做了几次autorelease就会做几次release，不一定是一次)，特别指出，使用容器的block版本的枚举器的时候，系统会自动添加一个autoreleasePool 
+[array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) { 
+// 这里被一个局部@autoreleasepool包围着 
+}];
+
+* ARC
+    * ARC下除了NSAutoreleasePool不可用以外，其他的同MRC
+
+
 ### 7.解释一下 `事件响应` 的过程？ 
+* iOS 的事件可以分为三种
+    * Touch Events(触摸事件)
+    * Motion Events(运动事件，比如重力感应和摇一摇等)
+    * Remote Events(远程事件，比如用耳机上得按键来控制手机)
+* 主要讲解 Touch Events(触摸事件) Touch Events事件的整个过程可以分为 传递和响应 2 个阶段
+    * 传递： 是当我们触摸屏幕时，为我们找出最适合的 View，
+    * 响应： 当我们找出最适合的 View 后，此时只是找到了最合适的 View，但未必 此 View 可以响应此事件，所以需要继续找出能响应此事件的 View。
+* 传递过程
+    * 每当手指接触屏幕，操作系统会把事件传递给当前的 App， 在 UIApplication接收到手指的事件之后，就会去调用`UIWindow的hitTest:withEvent:，看看当前点击的点是不是在window内，如果是则继续依次调用其 subView的hitTest:withEvent:方法，直到找到最后需要的view。调用结束并且hit-test view确定之后，便可以确定最合适的 View。
+    * 引用几张图来说明
+![image](https://upload-images.jianshu.io/upload_images/2026898-0c0d822295b13170?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+![image](https://upload-images.jianshu.io/upload_images/2026898-8bc9a7305c422eb4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+![image](https://upload-images.jianshu.io/upload_images/2026898-419131e790d66fda?imageMogr2/auto-orient/strip%7CimageView2/2/w/846)
+
+* 图片表示的内容可用下面的话描述
+    * 递归是向界面的根节点UIWindow发送hitTest:withEvent:消息开始的，从这个消息返回的是一个UIView，也就是手指当前位置最前面的那个 hittest view。 当向UIWindow发送hitTest:withEvent:消息时，hitTest:withEvent:里面所做的事，就是判断当前的点击位置是否在window里面，如果在则遍历window的subview然后依次对subview发送hitTest:withEvent:消息(注意这里给subview发送消息是根据当前subview的index顺序，index越大就越先被访问)。如果当前的point没有在view上面，那么这个view的subview也就不会被遍历了。当事件遍历到了view B.1，发现point在view B.1里面，并且view B.1没有subview，那么他就是我们要找的hittest view了，找到之后就会一路返回直到根节点，而view B之后的view A也不会被遍历了。
+* 响应过程
+    * 当我们知道最合适的 View 后，事件会 由上向下【子view -> 父view，控制器view -> 控制器】来找出合适响应事件的 View，来响应相关的事件。如果当前的 View 有添加手势，那么直接响应相应的事件，不会继续向下寻找了，如果没有手势事件，那么会看其是否实现了如下的方法：
+    * 如果有实现那么就由此 View 响应，如果没有实现，那么就会传递给他的下一个响应者【子view -> 父view，控制器view -> 控制器】， 这里我们可以做一个简单的验证，在默认情况下 UIView 是不响应事件的，UIControl 就算没有添加手势一样的会由他来响应， 这里可以使用 runtime查看 UIView 和 UIControl 的方法列表， 或 查看 UIKit 源码 可知， UIView 没有实现如上的 touchesBegan方法，而 UIControl 是实现了如上的相关方法，所以验证了刚才的 UIView 不响应，和 UIControl 的响应。一旦找到最合适响应的View就结束, 在执行响应的绑定的事件，如果没有就抛弃此事件。
+* 总结：
+    * 事件在传递时和上面的 hit 方法有关，一层层向上传递，【窗口---> view】由其相应的 view 中具体的实现来确定谁才是是最合适响应的view
+    * 在响应时，又上向下找出第一个能处理的view来处理事件，[view ---> 窗口]，在寻找刚过程中 会判断是否增加了手势 和是否实现了如上的 触摸方法。
+    * 至于 UIControl Button 的特殊事件相应，个人认为是在其m文件中实现了上面的4个方法，在这4个方法中做了相关的处理，这里可以从 UIControl 代码中在知道一些内容。
+    * 所以如果想自己实现 UIControl Button ，首先要想办法处理好上面的4个方法。
+![image](https://upload-images.jianshu.io/upload_images/2026898-e9b8e5c315e75fba?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+
+
 ### 8.解释一下 `手势识别` 的过程？ 
 ### 9.解释一下 `GCD` 在 `Runloop` 中的使用？ 
 ### 10.解释一下 `NSTimer`，以及 `NSTimer` 的循环引用。 
@@ -1157,11 +1245,67 @@ NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 ### 3.`Http` 和 `Https` 的区别？为什么更加安全？
 ### 4.`Http`的请求方式有哪些？`Http` 有什么特性？
 ### 5.解释一下 `三次握手` 和 `四次挥手`？解释一下为什么是`三次握手` 又为什么是 `四次挥手`？
+
+* tcp的三次握手
+    * 所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发，整个流程如下图所示：
+    * TCP三次握手
+        * 第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。
+        * 第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为 1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。
+        * 第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发 送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入 ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。
+* 补充：SYN攻击：
+    * 在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是 Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址 是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网 络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：
+  #netstat -nap | grep SYN_RECV
+* tcp的四次握手
+    * 所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，整个流程如下图所示：
+![image](https://upload-images.jianshu.io/upload_images/2744128-70075430fcb3ca99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+* TCP四次挥手
+    * 由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个 FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的 一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。
+        * 第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。
+        * 第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。
+        * 第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。
+        * 第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。
+* 原因
+    * 因为连接时服务端收到了客户端的SYN连接请求的报文后, 可以直接发送SYN+ACK报文, 其中的ACK报文是用来响应, SYN报文是用来同步的。
+    * 而当关闭连接时, 服务端收到FIN报文后, 很可能并不会马上就关闭Socket连接, 所以只能先回复一个ACK报文, 告诉客户端, 你发的FIN报文我收到了, 只有等到服务器的所有报文发送完了, 服务端才会发送FIN报文, 所以才需要四次挥手。
+
 ### 6.`GET` 和 `POST` 请求的区别？
+* GET方法：
+    * GET方法提交数据不安全，数据置于请求行，客户端地址栏可见
+    * GET方法提交的数据大小有限
+    * GET方法不可以设置书签
+* POST方法：
+    * POST方法提交数据安全，数据置于消息主体内，客户端不可见
+    * POST方法提交的数据大小没有限制
+    * POST方法可以设置书签
+
 ### 7.`HTTP` 请求报文 和 响应报文的结构？
 ### 8.什么是 `Mimetype` ? 
 ### 9.数据传输的加密过程？ 
 ### 10.说一下 `TCP/IP` 五层模型的协议? 
+* OSI七层模型：
+    * OSI七层网络模型称为开发式系统互联网参考模型，是一个逻辑上的定义和规范；
+    * 把网络从逻辑上分为七层，每一层都有相应的物理设备 
+    * OSI七层网络模型是一种框架式的设计方法，最主要的功能就是帮助不同类型的主机实现数据传输； 
+    * 最大的优点就是将服务、接口和协议三个概念明确的区分起来 
+    * 复杂且不实用；经常使用的是TCP/IP四层模型。
+* 各部分及功能
+    * 应用层：针对你特定应用的协议 
+    * 表示层：设备固定的数据格式和网络标准数据格式之间的转化 
+    * 会话层：通信管理，负责建立和单开通信连接，管理传输层 以下分层 
+    * 传输层：管理两个节点之间的数据传递。负责可靠传输 
+    * 网络层：地址管理和路由选择 
+    * 数据链路层：互联设备之间传送和识别数据帧 
+    * 物理层：界定连接器和网线之间的规格
+* TCP/IP四（五）层模型。
+    * 每一层都呼叫它的下一层提供的网络来完成自己的需求。（如果是四层模型数据链路层和物理层在一层） 
+    * 物理层：负责光电信号传递方式。集线器工作在物理层。以太网协议。 
+    * 数据链路层：负责设备之间的数据帧的传输和识别。交换机工作在数据链路层。例如网卡设备的驱动，帧同步，冲突检测，数据差错校验等工作。 
+    * 网络层：负责地址管理和路由选择。路由器工作在网络层。 
+    * 传输层：负责两台主机之间的数据传输。 
+    * 应用层：负责应用程序之间的沟通。网络编程主要针对的就是应用层。
+    * 传输层和网络层的封装在操作系统完成。应用层的封装在应用程序中完成。 
+数据链路层和物理层的封装在设备驱动程序与网络接口中完成。 
+
 ### 11.说一下 `OSI` 七层模型的协议? 
 ### 12.`大文件下载` 的功能有什么注意点？ 
 ### 13.`断点续传` 功能该怎么实现？ 
