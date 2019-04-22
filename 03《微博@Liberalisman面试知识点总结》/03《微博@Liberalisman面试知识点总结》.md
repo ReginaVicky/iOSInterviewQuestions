@@ -81,6 +81,7 @@
 - 15.二维数组查找一个值。
 - 补充：插入排序
 
+<<<<<<< HEAD
 ## iOS 内存管理
 - 1.讲一下 `iOS` 内存管理的理解？(三种方案的结合)
 - 2.使用自动引用计（ARC）数应该遵循的原则?
@@ -303,6 +304,178 @@
 - 补充：Block 用什么修饰？copy，assign，strong有什么区别？
 - 补充：Block 后面携带参数的时候，有数量限制吗？为什么？
 - 补充：消息通知有几种？如何判断是否发送通知。
+=======
+## 1.iOS 内存管理
+- 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合) 
+- 2.[使用自动引用计（`ARC`）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2使用自动引用计arc数应该遵循的原则) 
+- 3.[`ARC` 自动内存管理的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3arc-自动内存管理的原则)
+- 4.[访问 `__weak` 修饰的变量，是否已经被注册在了 `@autoreleasePool` 中？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4访问-__weak-修饰的变量是否已经被注册在了-autoreleasepool-中为什么)
+- 5.[`ARC` 的 `retainCount` 怎么存储的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5arc-的-retaincount-怎么存储的)
+- 6.[简要说一下 `@autoreleasePool` 的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6简要说一下-autoreleasepool-的数据结构)
+- 7.[`__weak` 和 `_Unsafe_Unretain` 的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7__weak-和-_unsafe_unretain-的区别)
+- 8.[为什么已经有了 `ARC` ,但还是需要 `@AutoreleasePool` 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
+- 9.[`__weak` 属性修饰的变量，如何实现在变量没有强引用后自动置为 `nil`](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
+- 10.[说一下对 `retain`,`copy`,`assign`,`weak`,`_Unsafe_Unretain` 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
+- [补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
+- 11.[`ARC` 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
+- 12.[`ARC` 在运行时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12arc-在运行时做了哪些工作)
+- 13.[函数返回一个对象时，会对对象 `autorelease` 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13函数返回一个对象时会对对象-autorelease-么为什么)
+- 14.[说一下什么是 `悬垂指针`？什么是 `野指针`?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14说一下什么是-悬垂指针什么是-野指针)
+- 15.[内存管理默认的关键字是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15内存管理默认的关键字是什么)
+- 16.[内存中的5大区分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16内存中的5大区分别是什么) 
+- 17.[是否了解 `深拷贝` 和 `浅拷贝` 的概念，集合类深拷贝如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17是否了解-深拷贝-和-浅拷贝-的概念集合类深拷贝如何实现)
+- 18.[`BAD_ACCESS` 在什么情况下出现? ](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#18bad_access-在什么情况下出现)
+- 19.[讲一下 `@dynamic` 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19讲一下-dynamic-关键字)
+- 20.[`@autoreleasrPool` 的释放时机？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20autoreleasrpool-的释放时机)
+- 21.[`retain`、`release` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21retainrelease-的实现机制)
+- [补充：在OC里 `alloc` 和 `retain` 语义相反的方法是？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充realease作用是什么和-autorelease-有什么区别)
+- [补充：`realease`作用是什么和 `autorelease` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充在oc里-alloc-和-retain-语义相反的方法是)
+- 22.[能不能简述一下 `Dealloc` 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22能不能简述一下-dealloc-的实现机制)
+
+
+## 2.Runtime
+- 1.[实例对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1实例对象的数据结构)
+- 2.[类对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2类对象的数据结构)
+- 3.[元类对象的数据结构?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3元类对象的数据结构)
+- 4.[`Category` 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4category-的实现原理)
+- 5.[如何给 `Category` 添加属性？关联对象以什么形式进行存储？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5如何给-category-添加属性关联对象以什么形式进行存储)
+- 6.[`Category` 有哪些用途？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6category-有哪些用途)
+- [补充：`Category`的优缺点]()
+- 7.[`Category` 和 `Extension` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7category-和-extension-有什么区别)
+- 8.[说一下 `Method Swizzling`? 说一下在实际开发中你在什么场景下使用过?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8说一下-method-swizzling-说一下在实际开发中你在什么场景下使用过)
+- 9.[如何实现动态添加方法和属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9如何实现动态添加方法和属性)
+- 10.[说一下对 `isa` 指针的理解， 对象的`isa` 指针指向哪里？`isa` 指针有哪两种类型？（注意区分不同对象）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10说一下对-isa-指针的理解-对象的isa-指针指向哪里isa-指针有哪两种类型注意区分不同对象) 
+- 11.[`Obj-C` 中的类信息存放在哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11obj-c-中的类信息存放在哪里)
+- 12.[一个 `NSObject` 对象占用多少内存空间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12一个-nsobject-对象占用多少内存空间)
+- 13.[说一下对 `class_rw_t` 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13说一下对-class_rw_t-的理解)
+- 14.[说一下对 `class_ro_t` 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14说一下对-class_ro_t-的理解)
+- 15.[说一下 `Runtime` 消息解析。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15说一下-runtime-消息解析)
+- 16.[说一下 `Runtime` 消息转发。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16说一下-runtime-消息转发)
+- 17.[如何运用 `Runtime` 字典转模型？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17如何运用-runtime-字典转模型)
+- 18.[如何运用 `Runtime` 进行模型的归解档？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#18如何运用-runtime-进行模型的归解档)
+- 19.[在 `Obj-C` 中为什么叫发消息而不叫函数调用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19在-obj-c-中为什么叫发消息而不叫函数调用)
+- 20.[说一下对 `runtime` 的理解。（主要讲一下消息机制，是对上述的总结）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20说一下对-runtime-的理解主要讲一下消息机制是对上述的总结)
+- 21.[说一下 `Runtime` 的方法缓存？存储的形式、数据结构以及查找的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21说一下-runtime-的方法缓存存储的形式数据结构以及查找的过程)
+- 22.[是否了解 `Type Encoding`? ](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22是否了解-type-encoding)
+
+
+## 3.Runloop
+- 1.[`Runloop` 和线程的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1runloop-和线程的关系) 
+- 2.[讲一下 `Runloop` 的 `Mode`?(越详细越好)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2讲一下-runloop-的-mode越详细越好) 
+- 3.[讲一下 `Observer` ？（Mode中的重点）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3讲一下-observer-mode中的重点) 
+- 4.[讲一下 `Runloop` 的内部实现逻辑？（运行过程）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4讲一下-runloop-的内部实现逻辑运行过程) 
+- 5.[你所知的哪些三方框架使用了 `Runloop`?（AFNetworking、Texture 等）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5你所知的哪些三方框架使用了-runloopafnetworkingtexture-等)
+- 6.[`autoreleasePool` 在何时被释放？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6autoreleasepool-在何时被释放) 
+- 7.[解释一下 `事件响应` 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7解释一下-事件响应-的过程) 
+- 8.[解释一下 `手势识别` 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8解释一下-手势识别-的过程) 
+- 9.[解释一下 `GCD` 在 `Runloop` 中的使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9解释一下-gcd-在-runloop-中的使用) 
+- 10.[解释一下 `NSTimer`，以及 `NSTimer` 的循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10解释一下-nstimer以及-nstimer-的循环引用) 
+- 11.[`AFNetworking` 中如何运用 `Runloop`? ](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11afnetworking-中如何运用-runloop)
+- 12.[`PerformSelector` 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12performselector-的实现原理)
+- 13.[利用 `runloop` 解释一下页面的渲染的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13利用-runloop-解释一下页面的渲染的过程)
+- 14.[如何使用 `Runloop` 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14如何使用-runloop-实现一个常驻线程这种线程一般有什么作用)
+- 15.[为什么 `NSTimer` 有时候不好使？（不同类型的Mode）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15为什么-nstimer-有时候不好使不同类型的mode)
+- 16.[`PerformSelector:afterDelay:`这个方法在子线程中是否起作用？为什么？怎么解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16performselectorafterdelay这个方法在子线程中是否起作用为什么怎么解决)
+- 17.[什么是异步绘制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17什么是异步绘制)
+
+
+## 4.网络
+- 1.[`NSUrlConnect`相关知识。]()
+- 2.[`NSUrlSession`相关知识。]()
+- 3.[`Http` 和 `Https` 的区别？为什么更加安全？]()
+- 4.[`Http`的请求方式有哪些？`Http` 有什么特性？]()
+- 5.[解释一下 `三次握手` 和 `四次挥手`？解释一下为什么是`三次握手` 又为什么是 `四次挥手`？]()
+- 6.[`GET` 和 `POST` 请求的区别？]()
+- 7.[`HTTP` 请求报文 和 响应报文的结构？]()
+- 8.[什么是 `Mimetype` ? ]()
+- 9.[数据传输的加密过程？]() 
+- 10.[说一下 `TCP/IP` 五层模型的协议? ]()
+- 11.[说一下 `OSI` 七层模型的协议?]() 
+- 12.[`大文件下载` 的功能有什么注意点？]() 
+- 13.[`断点续传` 功能该怎么实现？]() 
+- 14.[封装一个网络框架有哪些注意点？]()
+- 15.[`Wireshark`、`Charles`、`Paw` 等工具会使用吗？]()
+- 16.[`NSUrlProtocol`用过吗？用在什么地方了？]()
+- 17.[如何在测试过程中 `MOCK` 各种网络环境？]() 
+- 18.[`DNS` 的解析过程？网络的 `DNS` 优化。]() 
+- 19.[`Post`请求体有哪些格式？]()
+- 20.[网络请求的状态码都大致代表什么意思？]()
+- 21.[抓包软件 `Charles` 的原理是什么？说一下中间人攻击的过程。]()
+- 22.[如何判断一个请求是否结束？]()
+- 23.[`SSL` 传输协议？说一下 `SSL` 验证过程？]()
+- 24.[解释一下 `Http` 的持久连接？]()
+- 25.[说一下传输控制协议 - `TCP` ?]()
+- 26.[说一下用户数据报协议 - `UDP` ?]() 
+- 27.[谈一谈网络中的 `session` 和 `cookie`?]() 
+- [补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）]()
+- [补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？]()
+- [补充：https的缓存问题。]()
+
+## 5.多线程
+- [补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？]()
+- 1.[`NSThread`相关知识？]() 
+- 2.[`GCD` 相关知识？]() 
+- 3.[`NSOperation` 和 `NSOperationQueue`相关知识？ ]()
+- [补充：NSOperation与GCD的关系？]()
+- 4.[如何实现线性编程？]() 
+- 5.[说一下 `GCD` 并发队列实现机制？]()
+- [补充：GCD的并行队列一定会开辟新的线程？]()
+- 6.[`NSLock` ]()
+- 7.[`NSContion`]()
+- 8.[条件锁 - `NSContionLock`]()
+- 9.[递归锁 - `NSRecursiveLock`]()
+- 10.[同步锁 - `Synchronized(self) {// code}`]()
+- 11.[信号量 - `dispatch_semaphore`。]() 
+- 12.[自旋锁 - `OSSpinLock` 。 ]()
+- 13.[互斥锁 - `pthread_mutex`]()
+- 14.[分步锁 - `NSDistributedLock`。]()
+- 15.[如何确保线程安全？ ]()
+- 16.[`NSMutableArray`、和 `NSMutableDictionary`是线程安全的吗？`NSCache`呢？]()
+- 补充：[并行和并发的区别？串行/并行、同步异步的区别?]()
+- 补充：[请说明同步请求与异步请求的区别?]()
+- 补充：[默认最大并发？]()
+- 补充：[dispatch_once如何实现一次性代码？]()
+- 补充：[如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）]()
+- 补充：[你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?]()
+- 补充：[列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。]()
+- 补充：[线程与进程的区别和联系?]()
+- 补充：[iOS线程间怎么通信？]()
+- 补充：[Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?]()
+- 补充：[请说明同步请求与异步请求的区别?]()
+
+## 6.项目架构
+- 1.[什么是 `MVC`?]()
+- 2.[什么是 `MVVM`?]()
+- 3.[什么是 `MVP`?]()
+- 4.[什么是 `CDD`?]()
+- 5.[项目的组件化？]()
+    - 1.[说一下你了解的项目组件化方案？]()
+    - 2.[什么样的团队及项目适合采用组件化的形式进行开发？]()
+    - 3.[组件之间的通信方式。]()
+    - 4.[各组件之间的解耦。]()
+- 6.[还了解哪些项目架构？你之前所在公司的架构师什么样的，简单说一下？]()
+
+## 7.消息传递的方式
+
+- 1.[说一下 `NSNotification` 的实现机制？]()
+- 2.[说一下 `NSNotification` 的特点。]()
+- 3.[简述 `KVO` 的实现机制。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3简述-kvo-的实现机制)
+- 4.[`KVO` 在使用过程中有哪些注意点？有没有使用过其他优秀的 `KVO` 三方替代框架？]() 
+- 5.[简述 `KVO` 的注册依赖键是什么？]()
+- 6.[如何做到 `KVO` 手动通知？]()
+- 7.[在什么情况下会触发 `KVO`?]()
+- 8.[给实例变量赋值时，是否会触发 `KVO`?]()
+- 9.[`Delegate`通常用什么关键字修饰？为什么？]()
+- 10[`通知` 和 `代理` 有什么区别？各自适应的场景？]()
+- 11.[`__block` 的解释以及在 `ARC` 和 `MRC` 下有什么不同？]()
+- 12.[`Block` 的内存管理。]()
+- 13.[`Block` 自动截取变量。]()
+- 14.[`Block` 处理循环引用。]()
+- 15.[`Block` 有几种类型？分别是什么？]()
+- 补充：[`Block` 用什么修饰？copy，assign，strong有什么区别？]()
+- 补充：[`Block` 后面携带参数的时候，有数量限制吗？为什么？]()
+- 补充：[消息通知有几种？如何判断是否发送通知。]()
+>>>>>>> dd9c98df29253de416f08edd70bc1dd3699489dc
 
 
 
@@ -323,11 +496,18 @@
 - 11.LRU(最少最近使用)缓存
 
 
+<<<<<<< HEAD
 ## iOS设计模式
 - 1.编程中的六大设计原则？
 - 2.如何设计一个图片缓存框架？
 - 3.如何设计一个时长统计框架？
 - 4.如何实现 App 换肤（夜间模式）？
+=======
+- 1.[编程中的六大设计原则？ ]()
+- 2.[如何设计一个图片缓存框架？ ]()
+- 3.[如何设计一个时长统计框架？ ]()
+- 4.类工厂模式
+>>>>>>> dd9c98df29253de416f08edd70bc1dd3699489dc
 - 5.外观模式
 - 6.中介者模式
 - 7.访问者模式
@@ -452,6 +632,7 @@
 - 4.崩溃的处理
 - 补充：各个app之间是怎么相互切换的
 
+<<<<<<< HEAD
 ## 其他问题
 - 补充：在OC中对象方法的几种访问权限，分别是什么？
 - 补充：列出 #import 和 #include 的区别，另外什么时候使用@class？
@@ -472,6 +653,38 @@
 - 补充：描述iOS 10的一些新特性（包括系统和开发环境）
 - 14.App 上有一数据列表，客户端和服务端均没有任何缓存，当服务端有数据更新时，该列表在 wifi 下能获取到数据，在 4G 下刷新不到，但是在 4g 环境下其他 App 都可以正常打开，分析其产生的原因？
 - 15.是否了解链式编程？
+=======
+## 24.其他问题
+- 1.[`UIView` 和 `CALayer` 是什么关系？]()
+- 补充：[在OC中对象方法的几种访问权限，分别是什么？]()
+- 补充：[列出 #import 和 #include 的区别，另外什么时候使用@class？]()
+- 2.[`Bounds` 和 `Frame` 的区别?]()
+- 3.[`nil`、`NIL`、`NSNULL` 有什么区别？]()
+- 4.[如何实现一个线程安全的 `NSMutableArray`?]()
+- 5.[如何定义一台 `iOS` 设备的唯一性?]()
+- 6.[如何高性能的画一个圆角？]()
+- 7.[`load` 和 `Initialize` 的区别?]()
+- 8.[`Designated Initializer`的规则？]()
+- 9.[`App` 编译过程有了解吗？]()
+- 10.[`JS` 和 `Native` 交互。]()
+- 11.[使用 `atomic` 一定是线程安全的吗？]()
+- 12.[`LoadView`方法了解吗？]()
+- 13.[说一下对 `APNS` 的认识？]()
+- 14.[实现 `isEqual` 和 `hash` 方法时要注意什么？]()
+- 15.[`UIButton` 的父类是什么？`UILabel` 的父类又是什么？]()
+- 16.[实现一个控件，可以浮在任意界面的上层并支持拖动？]()
+- 17.[解释一下 `copy` 关键字涉及的方方面面，说的越全越好。]()
+- 18.[说一下控制器 `View` 的生命周期，一旦收到内存警告会如何处理？]()
+- 19.[简述事件传递、事件响应机制。]()
+- 20.[说一下对 `Super` 关键字的理解。]()
+- 21.[了解 `逆变` 和 `协变` 吗？]()
+- 22.[`@synthesize` 和 `@dynamic` 分别有什么作用？]()
+- 23.[`Obj-C` 中的反射机制了解吗？]()
+- 24.[`atomic` 修饰的属性是绝对安全的吗？为什么？]()
+- 25.[`id` 和 `instanceType` 有什么区别？]()
+- 补充：[简述Xcode7和Xcode8的异同]()
+- 补充：[描述iOS 10的一些新特性（包括系统和开发环境）]()
+>>>>>>> dd9c98df29253de416f08edd70bc1dd3699489dc
 
 
 
@@ -660,6 +873,7 @@ __block int i = 0;
 ### 15.为什么 NSTimer 有时候不好使？（不同类型的Mode）
 ### 16.PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
 ### 17.什么是异步绘制？
+<<<<<<< HEAD
 ### 18.如何检测 App 运行过程中是否卡顿？
 
 ## UIKit
@@ -711,6 +925,118 @@ __block int i = 0;
 ### 11.说一下 OSI 七层模型的协议?
 ### 12.大文件下载 的功能有什么注意点？
 ### 13.断点续传 功能该怎么实现？
+=======
+
+
+## 4.网络
+### 1.`NSUrlConnect`相关知识。
+### 2.`NSUrlSession`相关知识。
+### 3.`Http` 和 `Https` 的区别？为什么更加安全？
+
+* 区别
+    - HTTPS = HTTP + SSL/TLS;HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议要比http协议安全。
+    - https协议需要到ca申请证书，一般免费证书很少，需要交费。
+    - http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。
+    - http和https使用的是完全不同的连接方式,用的端口也不一样,前者是80,后者是443。
+    - http的连接很简单,是无状态的。
+    - HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议要比http协议安全。
+* HTTPS连接建立流程
+    - 客户端发送报文，包含TLS版本号，加密算法，随机数C
+    - 服务端发送加密算法、随机数S，和证书
+    - 客户端验证服务器证书
+    - 客户端组装会话秘钥
+    - 客户端发送报文，服务器端的公钥对预主秘钥进行加密传输
+    - 服务端通过私钥解密得到预主秘钥
+    - 服务端组装会话秘钥
+    - 客户端发送加密握手消息
+    - 服务器端发送加密握手消息
+    - 注意：会话秘钥： 随机数S + 随机数C + 预主秘钥
+* HTTPS解决的问题：
+    - 信任主机的问题
+        - 采用https 的server 必须从CA 申请一个用于证明服务器用途类型的证书. 改证书只有用于对应的server 的时候,客户度才信任次主机. 所以目前所有的银行系统网站,关键部分应用都是https 的. 客户通过信任该证书,从而信任了该主机. 其实这样做效率很低,但是银行更侧重安全. 这一点对我们没有任何意义,我们的server ,采用的证书不管自己issue 还是从公众的地方issue, 客户端都是自己人,所以我们也就肯定信任该server.
+    - 通讯过程中的数据的泄密和被窜改
+        - 一般意义上的https, 就是 server 有一个证书.
+            - 主要目的是保证server 就是他声称的server. 这个跟第一点一样.
+            - 服务端和客户端之间的所有通讯,都是加密的.
+                - 具体讲,是客户端产生一个对称的密钥,通过server 的证书来交换密钥. 一般意义上的握手过程.
+                - 加下来所有的信息往来就都是加密的. 第三方即使截获,也没有任何意义.因为他没有密钥. 当然窜改也就没有什么意义了.
+        - 少许对客户端有要求的情况下,会要求客户端也必须有一个证书.
+            - 这里客户端证书,其实就类似表示个人信息的时候,除了用户名/密码, 还有一个CA 认证过的身份. 应为个人证书一般来说上别人无法模拟的,所有这样能够更深的确认自己的身份.
+            - 目前少数个人银行的专业版是这种做法,具体证书可能是拿U盘作为一个备份的载体.       
+* HTTPS 一定是繁琐的.
+ - 本来简单的http协议,一个get一个response. 由于https 要还密钥和确认加密算法的需要.单握手就需要6/7 个往返.
+    - 任何应用中,过多的round trip 肯定影响性能.
+ - 接下来才是具体的http协议,每一次响应或者请求, 都要求客户端和服务端对会话的内容做加密/解密.
+    - 尽管对称加密/解密效率比较高,可是仍然要消耗过多的CPU,为此有专门的SSL 芯片. 如果CPU 信能比较低的话,肯定会降低性能,从而不能serve 更多的请求.
+    - 加密后数据量的影响. 所以，才会出现那么多的安全认证提示
+
+### 4.`Http`的请求方式有哪些？`Http` 有什么特性？
+### 5.解释一下 `三次握手` 和 `四次挥手`？解释一下为什么是`三次握手` 又为什么是 `四次挥手`？
+
+* tcp的三次握手
+    * 所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发，整个流程如下图所示：
+    * TCP三次握手
+        * 第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。
+        * 第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为 1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。
+        * 第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发 送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入 ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。
+* 补充：SYN攻击：
+    * 在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是 Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址 是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网 络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：
+  #netstat -nap | grep SYN_RECV
+* tcp的四次握手
+    * 所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，整个流程如下图所示：
+![image](https://upload-images.jianshu.io/upload_images/2744128-70075430fcb3ca99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+* TCP四次挥手
+    * 由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个 FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的 一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。
+        * 第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。
+        * 第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。
+        * 第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。
+        * 第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。
+* 原因
+    * 因为连接时服务端收到了客户端的SYN连接请求的报文后, 可以直接发送SYN+ACK报文, 其中的ACK报文是用来响应, SYN报文是用来同步的。
+    * 而当关闭连接时, 服务端收到FIN报文后, 很可能并不会马上就关闭Socket连接, 所以只能先回复一个ACK报文, 告诉客户端, 你发的FIN报文我收到了, 只有等到服务器的所有报文发送完了, 服务端才会发送FIN报文, 所以才需要四次挥手。
+
+### 6.`GET` 和 `POST` 请求的区别？
+* GET方法：
+    * GET方法提交数据不安全，数据置于请求行，客户端地址栏可见
+    * GET方法提交的数据大小有限
+    * GET方法不可以设置书签
+* POST方法：
+    * POST方法提交数据安全，数据置于消息主体内，客户端不可见
+    * POST方法提交的数据大小没有限制
+    * POST方法可以设置书签
+
+### 7.`HTTP` 请求报文 和 响应报文的结构？
+### 8.什么是 `Mimetype` ? 
+### 9.数据传输的加密过程？ 
+### 10.说一下 `TCP/IP` 五层模型的协议? 
+* OSI七层模型：
+    * OSI七层网络模型称为开发式系统互联网参考模型，是一个逻辑上的定义和规范；
+    * 把网络从逻辑上分为七层，每一层都有相应的物理设备 
+    * OSI七层网络模型是一种框架式的设计方法，最主要的功能就是帮助不同类型的主机实现数据传输； 
+    * 最大的优点就是将服务、接口和协议三个概念明确的区分起来 
+    * 复杂且不实用；经常使用的是TCP/IP四层模型。
+* 各部分及功能
+    * 应用层：针对你特定应用的协议 
+    * 表示层：设备固定的数据格式和网络标准数据格式之间的转化 
+    * 会话层：通信管理，负责建立和单开通信连接，管理传输层 以下分层 
+    * 传输层：管理两个节点之间的数据传递。负责可靠传输 
+    * 网络层：地址管理和路由选择 
+    * 数据链路层：互联设备之间传送和识别数据帧 
+    * 物理层：界定连接器和网线之间的规格
+* TCP/IP四（五）层模型。
+    * 每一层都呼叫它的下一层提供的网络来完成自己的需求。（如果是四层模型数据链路层和物理层在一层） 
+    * 物理层：负责光电信号传递方式。集线器工作在物理层。以太网协议。 
+    * 数据链路层：负责设备之间的数据帧的传输和识别。交换机工作在数据链路层。例如网卡设备的驱动，帧同步，冲突检测，数据差错校验等工作。 
+    * 网络层：负责地址管理和路由选择。路由器工作在网络层。 
+    * 传输层：负责两台主机之间的数据传输。 
+    * 应用层：负责应用程序之间的沟通。网络编程主要针对的就是应用层。
+    * 传输层和网络层的封装在操作系统完成。应用层的封装在应用程序中完成。 
+数据链路层和物理层的封装在设备驱动程序与网络接口中完成。 
+
+### 11.说一下 `OSI` 七层模型的协议? 
+### 12.`大文件下载` 的功能有什么注意点？ 
+### 13.`断点续传` 功能该怎么实现？ 
+>>>>>>> dd9c98df29253de416f08edd70bc1dd3699489dc
 ### 14.封装一个网络框架有哪些注意点？
 ### 15.Wireshark、Charles、Paw 等工具会使用吗？
 ### 16.NSUrlProtocol用过吗？用在什么地方了？
