@@ -17,181 +17,181 @@
 ## 数据结构及算法
 
 ### 数据结构
-- 1.数组
-- 2.字符串
-- 3.链表
-- 4.树
-- 5.栈
-- 6.队列
-- 7.哈希表（有哪些功能是通过哈希表实现的）
+- 1.[数组](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1数组)
+- 2.[字符串](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2字符串)
+- 3.[链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3链表)
+- 4.[树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4树)
+- 5.[栈](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5栈)
+- 6.[队列](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6队列)
+- 7.哈希表（有哪些功能是通过哈希表实现的[）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7哈希表有哪些功能是通过哈希表实现的)
 
 ### 算法
 #### 基本概念
-- 时间复杂度
-- 空间复杂度
+- [时间复杂度](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#时间复杂度)
+- [空间复杂度](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#空间复杂度)
 
 #### 常见的摘要算法
-- HEX编码
-- Base64
-- MD5
-- SHA1
-- SHA256
-- MAC算法
+- [HEX编码](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#hex编码)
+- [Base64](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#base64)
+- [MD5](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#md5)
+- [SHA1](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#sha1)
+- [SHA256](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#sha256)
+- [MAC算法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#mac算法)
 
 #### 常见对称加密算法
-- AES
-- DES
-- 3DES
-- Blowfish
+- [AES](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#aes)
+- [DES](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#des)
+- [3DES](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3des)
+- [Blowfish](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#--blowfish)
 
 #### 常见的排序算法
-- 快速排序
-- 堆排序
-- 冒泡排序
-- 选择排序
-- 希尔排序
-- 归并排序
+- [快速排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#快速排序)
+- [堆排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#堆排序)
+- [冒泡排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#冒泡排序)
+- [选择排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#选择排序)
+- [希尔排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#希尔排序)
+- [归并排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#归并排序/)
 
 #### 常见的字符编码方法
-- ASCII
-- ISO-8859-1
-- GB2312
-- GBK
-- UTF-8
-- UTF-16
-- Unicode
+- [ASCII](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#ascii)
+- [ISO-8859-1](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#iso-8859-1)
+- [GB2312](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#gb2312)
+- [GBK](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#gbk)
+- [UTF-8](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#utf-8)
+- [UTF-16](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#utf-16)
+- [Unicode](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#unicode)
 
 [推荐一个很好的算法总结](https://github.com/CyC2018/Interview-Notebook)
 
 #### 常考算法题
-- 1.字符串反转 
-- 2.链表反转
-- 3.有序数组合并
-- 4.查找第一个只出现一次的字符
-- 5.查找两个子视图的共同父视图
-- 6.无序数组中的中位数
-- 7.两数之和为特定值
-- 8.求出数组中连续数字的和值
-- 9.白鼠与毒酒的算法问题
-- 10.在一个数组中找出前四个最大的数字。
-- 11.假如有 10亿 条数据，每条数据的大小在 10k-100k 之间，我们有一台内存为 4G 的电脑，如何算出播放次数最多的一条微博？
-- 12.如何打印一个矩阵？
-- 13.如何验证一个 IP 地址的有效性？
-- 14.栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？
-- 15.二维数组查找一个值。
-- 补充：插入排序
+- 1.[字符串反转](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1字符串反转) 
+- 2.[链表反转](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2链表反转)
+- 3.[有序数组合并](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3有序数组合并)
+- 4.[查找第一个只出现一次的字符](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4查找第一个只出现一次的字符)
+- 5.[查找两个子视图的共同父视图](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5查找两个子视图的共同父视图)
+- 6.[无序数组中的中位数](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6无序数组中的中位数)
+- 7.[两数之和为特定值](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7两数之和为特定值)
+- 8.[求出数组中连续数字的和值](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8求出数组中连续数字的和值)
+- 9.[白鼠与毒酒的算法问题](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9白鼠与毒酒的算法问题)
+- 10.[在一个数组中找出前四个最大的数字。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10在一个数组中找出前四个最大的数字)
+- 11.[假如有 10亿 条数据，每条数据的大小在 10k-100k 之间，我们有一台内存为 4G 的电脑，如何算出播放次数最多的一条微博？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11假如有-10亿-条数据每条数据的大小在-10k-100k-之间我们有一台内存为-4g-的电脑如何算出播放次数最多的一条微博)
+- 12.[如何打印一个矩阵？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12如何打印一个矩阵)
+- 13.[如何验证一个 IP 地址的有效性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12如何打印一个矩阵)
+- 14.[栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14栈中储存着一组无序的数字不用遍历的方式如何找出最小值)
+- 15.[二维数组查找一个值。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15二维数组查找一个值)
+- [补充：插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充插入排序)
 
 ## iOS 内存管理
-- 1.讲一下 `iOS` 内存管理的理解？(三种方案的结合)
-- 2.使用自动引用计（ARC）数应该遵循的原则?
-- 3.ARC 自动内存管理的原则?
-- 4.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
-- 5.ARC 的 retainCount 怎么存储的？
-- 6.简要说一下 @autoreleasePool 的数据结构？
-- 7.__weak 和 _Unsafe_Unretain 的区别？
-- 8.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
-- 9.__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
-- 10.说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。
-- 补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
-- 11.ARC 在编译时做了哪些工作？
-- 12.ARC 在运行时做了哪些工作？
-- 13.函数返回一个对象时，会对对象 autorelease 么？为什么？
-- 14.说一下什么是 悬垂指针？什么是 野指针?
-- 15.内存管理默认的关键字是什么？
-- 16.内存中的5大区分别是什么？
-- 17.是否了解 深拷贝 和 浅拷贝 的概念，集合类深拷贝如何实现？
-- 18.BAD_ACCESS 在什么情况下出现?
-- 19.讲一下 @dynamic 关键字？
-- 20.@autoreleasrPool 的释放时机？
-- 21.retain、release 的实现机制？
-- 补充：在OC里 alloc 和 retain 语义相反的方法是？
-- 补充：realease作用是什么和 autorelease 有什么区别？
-- 22.能不能简述一下 Dealloc 的实现机制？
-- 23.在 MRC 下如何重写属性的 Setter 和 Getter?
-- 24.在 Obj-C 中，如何检测内存泄漏？你知道哪些方式？
+- 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合)
+- 2.[使用自动引用计（ARC）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2使用自动引用计arc数应该遵循的原则)
+- 3.[ARC 自动内存管理的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3arc-自动内存管理的原则)
+- 4.[访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4访问-__weak-修饰的变量是否已经被注册在了-autoreleasepool-中为什么)
+- 5.[ARC 的 retainCount 怎么存储的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5arc-的-retaincount-怎么存储的)
+- 6.[简要说一下 @autoreleasePool 的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6简要说一下-autoreleasepool-的数据结构)
+- 7.[__weak 和 _Unsafe_Unretain 的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7__weak-和-_unsafe_unretain-的区别)？
+- 8.[为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
+- 9.[__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
+- 10.[说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
+- [补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
+- 11.[ARC 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
+- 12.[ARC 在运行时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12arc-在运行时做了哪些工作)
+- 13.[函数返回一个对象时，会对对象 autorelease 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13函数返回一个对象时会对对象-autorelease-么为什么)
+- 14.[说一下什么是 悬垂指针？什么是 野指针?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14说一下什么是-悬垂指针什么是-野指针)
+- 15.[内存管理默认的关键字是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15内存管理默认的关键字是什么)
+- 16.[内存中的5大区分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16内存中的5大区分别是什么)
+- 17.[是否了解 深拷贝 和 浅拷贝 的概念，集合类深拷贝如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17是否了解-深拷贝-和-浅拷贝-的概念集合类深拷贝如何实现)
+- 18.[BAD_ACCESS 在什么情况下出现?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18bad_access-在什么情况下出现)
+- 19.[讲一下 @dynamic 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19讲一下-dynamic-关键字)
+- 20.[@autoreleasrPool 的释放时机？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20autoreleasrpool-的释放时机)
+- 21.[retain、release 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21retainrelease-的实现机制)
+- [补充：在OC里 alloc 和 retain 语义相反的方法是？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充在oc里-alloc-和-retain-语义相反的方法是)
+- [补充：realease作用是什么和 autorelease 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充realease作用是什么和-autorelease-有什么区别)
+- 22.[能不能简述一下 Dealloc 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22能不能简述一下-dealloc-的实现机制)
+- 23.[在 MRC 下如何重写属性的 Setter 和 Getter?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23在-mrc-下如何重写属性的-setter-和-getter)
+- 24.[在 Obj-C 中，如何检测内存泄漏？你知道哪些方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24在-obj-c-中如何检测内存泄漏你知道哪些方式)
 
 ## Runtime
-- 1.实例对象的数据结构？
-- 2.类对象的数据结构？
-- 3.元类对象的数据结构?
-- 4.Obj-C 对象、类的本质是通过什么数据结构实现的？
-- 5.Obj-C 中的类信息存放在哪里？
-- 6.一个 NSObject 对象占用多少内存空间？
-- 7.说一下对 class_rw_t 的理解？
-- 8.说一下对 class_ro_t 的理解？
-- 9.Category 的实现原理？
-- 10.如何给 Category 添加属性？关联对象以什么形式进行存储？
-- 11.Category 有哪些用途？
-- 补充：Category的优缺点
-- 12.Category 和 Extension 有什么区别？
-- 13.Category 可不可以添加实例对象？为什么？
-- 14.Category 在编译过后，是在什么时机与原有的类合并到一起的？
-- 15.说一下 Method Swizzling? 说一下在实际开发中你在什么场景下使用过?
-- 16.如何实现动态添加方法和属性？
-- 17.说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）
-- 18.说一下 Runtime 消息解析。
-- 19.说一下 Runtime 消息转发。
-- 20.如何运用 Runtime 字典转模型？
-- 21.如何运用 Runtime 进行模型的归解档？
-- 22.在 Obj-C 中为什么叫发消息而不叫函数调用？
-- 23.说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）
-- 24.说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？
-- 25.是否了解 Type Encoding?
-- 26.Objective-C 如何实现多重继承？
+- 1.[实例对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1实例对象的数据结构)
+- 2.[类对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2类对象的数据结构)
+- 3.[元类对象的数据结构?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3元类对象的数据结构)
+- 4.[Obj-C 对象、类的本质是通过什么数据结构实现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4obj-c-对象类的本质是通过什么数据结构实现的)
+- 5.[Obj-C 中的类信息存放在哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5obj-c-中的类信息存放在哪里)
+- 6.[一个 NSObject 对象占用多少内存空间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6一个-nsobject-对象占用多少内存空间)
+- 7.[说一下对 class_rw_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下对-class_rw_t-的理解)
+- 8.[说一下对 class_ro_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下对-class_ro_t-的理解)
+- 9.[Category 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9category-的实现原理)
+- 10.[如何给 Category 添加属性？关联对象以什么形式进行存储？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10如何给-category-添加属性关联对象以什么形式进行存储)
+- 11.[Category 有哪些用途？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11category-有哪些用途)
+- [补充：Category的优缺点](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充category的优缺点)
+- 12.[Category 和 Extension 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12category-和-extension-有什么区别)
+- 13.[Category 可不可以添加实例对象？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13category-可不可以添加实例对象为什么)
+- 14.[Category 在编译过后，是在什么时机与原有的类合并到一起的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14category-在编译过后是在什么时机与原有的类合并到一起的)
+- 15.[说一下 Method Swizzling? 说一下在实际开发中你在什么场景下使用过?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15说一下-method-swizzling-说一下在实际开发中你在什么场景下使用过)
+- 16.[如何实现动态添加方法和属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16如何实现动态添加方法和属性)
+- 17.[说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17说一下对-isa-指针的理解-对象的isa-指针指向哪里isa-指针有哪两种类型注意区分不同对象)
+- 18.[说一下 Runtime 消息解析。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18说一下-runtime-消息解析)
+- 19.[说一下 Runtime 消息转发。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19说一下-runtime-消息转发)
+- 20.[如何运用 Runtime 字典转模型？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20如何运用-runtime-字典转模型)
+- 21.[如何运用 Runtime 进行模型的归解档？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21如何运用-runtime-进行模型的归解档)
+- 22.[在 Obj-C 中为什么叫发消息而不叫函数调用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22在-obj-c-中为什么叫发消息而不叫函数调用)
+- 23.[说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23说一下对-runtime-的理解主要讲一下消息机制是对上述的总结)
+- 24.[说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24说一下-runtime-的方法缓存存储的形式数据结构以及查找的过程)
+- 25.[是否了解 Type Encoding?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25是否了解-type-encoding)
+- 26.[Objective-C 如何实现多重继承？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26objective-c-如何实现多重继承)
 
 ## Runloop
-- 1.Runloop 和线程的关系？
-- 2.讲一下 Runloop 的 Mode?(越详细越好)
-- 3.讲一下 Observer ？（Mode中的重点）
-- 4.讲一下 Runloop 的内部实现逻辑？（运行过程）
-- 5.你所知的哪些三方框架使用了 Runloop?（AFNetworking、Texture 等）
-- 6.autoreleasePool 在何时被释放？
-- 7.解释一下 事件响应 的过程？
-- 8.解释一下 手势识别 的过程？
-- 9.解释一下 GCD 在 Runloop 中的使用？
-- 10.解释一下 NSTimer，以及 NSTimer 的循环引用。
-- 11.AFNetworking 中如何运用 Runloop?
-- 12.PerformSelector 的实现原理？
-- 13.利用 runloop 解释一下页面的渲染的过程？
-- 14.如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？
-- 15.为什么 NSTimer 有时候不好使？（不同类型的Mode）
-- 16.PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
-- 17.什么是异步绘制？
-- 18.如何检测 App 运行过程中是否卡顿？
+- 1.[Runloop 和线程的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1runloop-和线程的关系)
+- 2.[讲一下 Runloop 的 Mode?(越详细越好)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2讲一下-runloop-的-mode越详细越好)
+- 3.[讲一下 Observer ？（Mode中的重点）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3讲一下-observer-mode中的重点)
+- 4.[讲一下 Runloop 的内部实现逻辑？（运行过程）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4讲一下-runloop-的内部实现逻辑运行过程)
+- 5.[你所知的哪些三方框架使用了 Runloop?（AFNetworking、Texture 等）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5你所知的哪些三方框架使用了-runloopafnetworkingtexture-等)
+- 6.[autoreleasePool 在何时被释放？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6autoreleasepool-在何时被释放)
+- 7.[解释一下 事件响应 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7解释一下-事件响应-的过程)
+- 8.[解释一下 手势识别 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8解释一下-手势识别-的过程)
+- 9.[解释一下 GCD 在 Runloop 中的使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9解释一下-gcd-在-runloop-中的使用)
+- 10.[解释一下 NSTimer，以及 NSTimer 的循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10解释一下-nstimer以及-nstimer-的循环引用)
+- 11.[AFNetworking 中如何运用 Runloop?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11afnetworking-中如何运用-runloop)
+- 12.[PerformSelector 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12performselector-的实现原理)
+- 13.[利用 runloop 解释一下页面的渲染的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13利用-runloop-解释一下页面的渲染的过程)
+- 14.[如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14如何使用-runloop-实现一个常驻线程这种线程一般有什么作用)
+- 15.[为什么 NSTimer 有时候不好使？（不同类型的Mode）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15为什么-nstimer-有时候不好使不同类型的mode)
+- 16.[PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16performselectorafterdelay这个方法在子线程中是否起作用为什么怎么解决)
+- 17.[什么是异步绘制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17什么是异步绘制)
+- 18.[如何检测 App 运行过程中是否卡顿？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18如何检测-app-运行过程中是否卡顿)
 
 ## UIKit
-- 1.UIView 和 CALayer 是什么关系？
-- 2.Bounds 和 Frame 的区别?
-- 3.TableViewCell 如何根据 UILabel 内容长度自动调整高度?
-- 4.LoadView方法了解吗？
-- 5.UIButton 的父类是什么？UILabel 的父类又是什么？
-- 6.实现一个控件，可以浮在任意界面的上层并支持拖动？
-- 7.说一下控制器 View 的生命周期，一旦收到内存警告会如何处理？
-- 8.如何暂停一个 UIView 中正在播放的动画？暂停后如何恢复？
-- 9.说一下 UIView 的生命周期？
-- 10.UIViewController 的生命周期？
-- 11.如何以通用的方法找到当前显示的ViewController?
-- 12.setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？
+- 1.[UIView 和 CALayer 是什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1uiview-和-calayer-是什么关系)
+- 2.[Bounds 和 Frame 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2bounds-和-frame-的区别)
+- 3.[TableViewCell 如何根据 UILabel 内容长度自动调整高度?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3tableviewcell-如何根据-uilabel-内容长度自动调整高度)
+- 4.[LoadView方法了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4loadview方法了解吗)
+- 5.[UIButton 的父类是什么？UILabel 的父类又是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5uibutton-的父类是什么uilabel-的父类又是什么)
+- 6.[实现一个控件，可以浮在任意界面的上层并支持拖动？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6实现一个控件可以浮在任意界面的上层并支持拖动)
+- 7.[说一下控制器 View 的生命周期，一旦收到内存警告会如何处理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下控制器-view-的生命周期一旦收到内存警告会如何处理)
+- 8.[如何暂停一个 UIView 中正在播放的动画？暂停后如何恢复？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8如何暂停一个-uiview-中正在播放的动画暂停后如何恢复)
+- 9.[说一下 UIView 的生命周期？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9说一下-uiview-的生命周期)
+- 10.[UIViewController 的生命周期？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10uiviewcontroller-的生命周期)
+- 11.[如何以通用的方法找到当前显示的ViewController?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11如何以通用的方法找到当前显示的viewcontroller)
+- 12.[setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12setneedsdisplay-和-layoutifneeded-两者是什么关系)
 
 ## Foundation
-- 1.`Bounds` 和 `Frame` 的区别?
-- 1.`nil`、`NIL`、`NSNULL` 有什么区别？
-- 2.如何实现一个线程安全的 `NSMutableArray`?
-- 3.如何定义一台 iOS 设备的唯一性?
-- 4.`atomic` 修饰的属性是绝对安全的吗？为什么？
-- 5.实现 `isEqual` 和 `hash` 方法时要注意什么？
-- 6.`id` 和 `instanceType` 有什么区别？
-- 7.简述事件传递、事件响应机制。
-- 8.说一下对 `Super` 关键字的理解。
-- 9.了解 逆变 和 协变 吗？
-- 10.`@synthesize` 和 `@dynamic` 分别有什么作用？
-- 11.Obj-C 中的反射机制了解吗？
-- 12.`typeof` 和 `__typeof`，`typeof` 的区别?
-- 13.如何判断一个文件在沙盒中是否存在？
-- 14.头文件导入的方式？
-- 15.如何将 Obj-C 代码改变为 C++/C 的代码？
-- 16.知不知道在哪里下载苹果的源代码？
-- 17.objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？
+- 1.[`Bounds` 和 `Frame` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1bounds-和-frame-的区别)
+- 2.[`nil`、`NIL`、`NSNULL` 有什么区别？](https://note.youdao.com/)
+- 3.[如何实现一个线程安全的 `NSMutableArray`?](https://note.youdao.com/)
+- 4.[如何定义一台 iOS 设备的唯一性?](https://note.youdao.com/)
+- 5.[`atomic` 修饰的属性是绝对安全的吗？为什么？](https://note.youdao.com/)
+- 6.[实现 `isEqual` 和 `hash` 方法时要注意什么？](https://note.youdao.com/)
+- 7.[`id` 和 `instanceType` 有什么区别？](https://note.youdao.com/)
+- 8.[简述事件传递、事件响应机制。](https://note.youdao.com/)
+- 9.[说一下对 `Super` 关键字的理解。](https://note.youdao.com/)
+- 10.[了解 逆变 和 协变 吗？](https://note.youdao.com/)
+- 11.[`@synthesize` 和 `@dynamic` 分别有什么作用？](https://note.youdao.com/)
+- 12.[Obj-C 中的反射机制了解吗？](https://note.youdao.com/)
+- 13.[`typeof` 和 `__typeof`，`typeof` 的区别?](https://note.youdao.com/)
+- 14.[如何判断一个文件在沙盒中是否存在？](https://note.youdao.com/)
+- 15.[头文件导入的方式？](https://note.youdao.com/)
+- 16.[如何将 Obj-C 代码改变为 C++/C 的代码？](https://note.youdao.com/)
+- 17.[知不知道在哪里下载苹果的源代码？](https://note.youdao.com/)
+- 18.[objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？](https://note.youdao.com/)
 
 
 ## 网络
@@ -678,23 +678,23 @@ __block int i = 0;
 
 ## Foundation
 ### 1.`Bounds` 和 `Frame` 的区别?
-### 1.`nil`、`NIL`、`NSNULL` 有什么区别？
-### 2.如何实现一个线程安全的 `NSMutableArray`?
-### 3.如何定义一台 iOS 设备的唯一性?
-### 4.`atomic` 修饰的属性是绝对安全的吗？为什么？
-### 5.实现 `isEqual` 和 `hash` 方法时要注意什么？
-### 6.`id` 和 `instanceType` 有什么区别？
-### 7.简述事件传递、事件响应机制。
-### 8.说一下对 `Super` 关键字的理解。
-### 9.了解 逆变 和 协变 吗？
-### 10.`@synthesize` 和 `@dynamic` 分别有什么作用？
-### 11.Obj-C 中的反射机制了解吗？
-### 12.`typeof` 和 `__typeof`，`typeof` 的区别?
-### 13.如何判断一个文件在沙盒中是否存在？
-### 14.头文件导入的方式？
-### 15.如何将 Obj-C 代码改变为 C++/C 的代码？
-### 16.知不知道在哪里下载苹果的源代码？
-### 17.objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？
+### 2.`nil`、`NIL`、`NSNULL` 有什么区别？
+### 3.如何实现一个线程安全的 `NSMutableArray`?
+### 4.如何定义一台 iOS 设备的唯一性?
+### 5.`atomic` 修饰的属性是绝对安全的吗？为什么？
+### 6.实现 `isEqual` 和 `hash` 方法时要注意什么？
+### 7.`id` 和 `instanceType` 有什么区别？
+### 8.简述事件传递、事件响应机制。
+### 9.说一下对 `Super` 关键字的理解。
+### 10.了解 逆变 和 协变 吗？
+### 11.`@synthesize` 和 `@dynamic` 分别有什么作用？
+### 12.Obj-C 中的反射机制了解吗？
+### 13.`typeof` 和 `__typeof`，`typeof` 的区别?
+### 14.如何判断一个文件在沙盒中是否存在？
+### 15.头文件导入的方式？
+### 16.如何将 Obj-C 代码改变为 C++/C 的代码？
+### 17.知不知道在哪里下载苹果的源代码？
+### 18.objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？
 
 
 ## 网络
