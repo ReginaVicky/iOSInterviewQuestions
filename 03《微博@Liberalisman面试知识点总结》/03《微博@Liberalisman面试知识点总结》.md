@@ -80,7 +80,7 @@
 - 14.[栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14栈中储存着一组无序的数字不用遍历的方式如何找出最小值)
 - 15.[二维数组查找一个值。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15二维数组查找一个值)
 - [补充：插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充插入排序)
-- [补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）](https://note.youdao.com/)
+- [补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
 
 ## iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合)
@@ -624,12 +624,6 @@ __block int i = 0;
 * 拓展一下，如果不是100楼层，是N楼层，曾怎么计算呢？
 * 再次拓展，如果我们有三个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 * 如果我们有M个鸡蛋，有k次机会，我们最大可以测试多少层楼？
-
-
-
-
-
-
 
 
 ## iOS 内存管理
