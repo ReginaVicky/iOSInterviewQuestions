@@ -585,10 +585,128 @@ __block int i = 0;
 #### 补充：插入排序
 
 ## iOS 内存管理
+
 ### 1.讲一下 `iOS` 内存管理的理解？(三种方案的结合)
+
+OC中的内存管理主要有三种方式：ARC、MRC、自动释放池
+* MRC（Mannul Reference Counting）手动引用计数
+* ARC（automatic reference counting）自动引用计数
+* 在5.0版本以前，OC内存管理遵循“谁创建、谁释放、谁引用、谁管理”的机制，当创建或引用一个对象的时候，需要向她发送alloc、copy、retain消息，当释放该对象时需要发送release消息，当对象引用计数为0时，系统将释放该对象，其实这也是手动管理机制。
+* 在5.0以后，引用自动管理机制，其实管理机制和手动管理机制一样，只是不再需要调用retain、release、autorelease；它编译时的特性，当你使用ARC时，在适当位置插入release和autorelease；它引用strong和weak关键字，strong修饰的指针变量指向对象时，当指针指向新值或者指针不复存在，相关联的对象就会自动释放，而weak修饰的指针变量指向对象，当对象的拥有者指向新值或者不存在时weak修饰的指针会自动置为nil。如果使用alloc、copy或者retain一个对象时，你就有义务，向它发送一条release或者autorelease消息。其他方法创建的对象，不需要由自己来管理内存
+* 自动释放池：（NSAutoRealeasePool）可以通过创建和释放内存池控制内存申请和收回的时机。向一个对象发送一条autorelease消息，这个对象并不会立即销毁，而是将这个对象放入了自动释放池，待池子释放时，它会向池子中每一个对象发送一条release详细，以此来释放对象。向一个对象发送release消息，并不意味着这个对象被销毁了，而是当这个对象的引用计数为0时，系统才会调用dealloc方法，释放该对象和对象本身他所拥有的实例。
+
+也就是说，iOS中对内存管理的机制（堆内存），是通过 retainCount 的机制来决定对象是否需要释放。每一个对象都有一个与之关联的retainCount， 每次runloop迭代结束后，都会检查对象的 retainCount，如果retainCount等于0，就说明该对象没有地方需要继续使用它，可以被释放掉了。无论是手动管理内存，还是ARC机制，都是通过对retainCount来进行内存管理的。
+
+#### 引用计数如何储存（三种方案的结合）
+
+* 第一种方案：TaggedPointer
+    - 一个普通的iOS程序，如果没有Tagged Pointer对象，从32位机器迁移到64位机器中后，虽然逻辑没有任何变化，但像NSNumber、NSDate一类的对象所占用的内存会翻倍，进而浪费内存。为了存储和访问一个NSNumber对象，我们需要在堆上为其分配内存，另外还要维护它的引用计数，管理它的生命期。这些都给程序增加了额外的逻辑，造成运行效率上的损失。为了改进上面提到的内存占用和效率问题，苹果提出了Tagged Pointer对象。
+    - 我们将一个对象的指针拆成两部分，一部分直接保存数据，另一部分作为特殊标记，表示这是一个特别的指针，不指向任何一个地址。
+    - Tagged Pointer特点
+        - Tagged Pointer专门用来存储小的对象，例如NSNumber和NSDate
+        - Tagged Pointer指针的值不再是地址了，而是真正的值。所以，实际上它不再是一个对象了，它只是一个披着对象皮的普通变量而已。所以，它的内存并不存储在堆中，也不需要malloc和free。
+        - 在内存读取上有着3倍的效率，创建时比以前快106倍。
+    - 总体来说，如果一个对象使用了Tagged Pointer技术（比如NSString，NSNumber等），指针里面会直接存数据内容，不会再作为“指针”指向其它地址，从Runtime来理解就是不会使用isa指针，也就不会继承苹果的内存管理方式（Reference Counting）。
+    - 注意：所有对象都有 isa 指针，而Tagged Pointer其实是没有的，因为它不是真正的对象。 因为不是真正的对象，所以如果你直接访问Tagged Pointer的isa成员的话，在编译时将会有如下警告：
+    ![image](https://res.infoq.com/articles/deep-understanding-of-tagged-pointer/zh/resources/0519063.jpg)
+   
+应该换成相应的方法调用，如 isKindOfClass 和 object_getClass。只要避免在代码中直接访问对象的isa变量，即可避免这个问题。
+    
+* 第二种方案：isa 指针（NONPOINTER_ISA）
+    - 指针的内存空间很大，有时候可以优化指针，在指针中存储一部分内容。
+    - 不同架构下的64位环境中isa指针结构:
+    
+```
+union isa_t 
+{
+    isa_t() { }
+    isa_t(uintptr_t value) : bits(value) { }
+
+    Class cls;
+    uintptr_t bits;
+
+#if SUPPORT_NONPOINTER_ISA
+# if __arm64__
+#   define ISA_MASK        0x00000001fffffff8ULL
+#   define ISA_MAGIC_MASK  0x000003fe00000001ULL
+#   define ISA_MAGIC_VALUE 0x000001a400000001ULL
+    struct {
+        uintptr_t indexed           : 1;
+        uintptr_t has_assoc         : 1;
+        uintptr_t has_cxx_dtor      : 1;
+        uintptr_t shiftcls          : 30; // MACH_VM_MAX_ADDRESS 0x1a0000000
+        uintptr_t magic             : 9;
+        uintptr_t weakly_referenced : 1;
+        uintptr_t deallocating      : 1;
+        uintptr_t has_sidetable_rc  : 1;
+        uintptr_t extra_rc          : 19;
+#       define RC_ONE   (1ULL<<45)
+#       define RC_HALF  (1ULL<<18)
+    };
+
+# elif __x86_64__
+#   define ISA_MASK        0x00007ffffffffff8ULL
+#   define ISA_MAGIC_MASK  0x0000000000000001ULL
+#   define ISA_MAGIC_VALUE 0x0000000000000001ULL
+    struct {
+        uintptr_t indexed           : 1;
+        uintptr_t has_assoc         : 1;
+        uintptr_t has_cxx_dtor      : 1;
+        uintptr_t shiftcls          : 44; // MACH_VM_MAX_ADDRESS 0x7fffffe00000
+        uintptr_t weakly_referenced : 1;
+        uintptr_t deallocating      : 1;
+        uintptr_t has_sidetable_rc  : 1;
+        uintptr_t extra_rc          : 14;
+#       define RC_ONE   (1ULL<<50)
+#       define RC_HALF  (1ULL<<13)
+    };
+
+# else
+    // Available bits in isa field are architecture-specific.
+#   error unknown architecture
+# endif
+
+// SUPPORT_NONPOINTER_ISA
+#endif
+
+};
+
+```
+
+   - 只有arm64架构的设备支持优化，下面列出了isa指针中变量对应的含义:
+ 
+变量名 | 含义
+---|---
+indexed | 0 表示普通的isa指针，1 表示使用优化，存储引用计数
+has_assoc | 表示该对象是否包含 associated object，如果没有，则析构时会更快
+has_cxx_dtor | 表示该对象是否有 C++ 或 ARC 的析构函数，如果没有，则析构时更快
+shiftcls | 类的指针
+magic | 固定值为 0xd2，用于在调试时分辨对象是否未完成初始化
+weakly_referenced | 表示该对象是否有过weak对象，如果没有，则析构时更快
+deallocating | 表示该对象是否正在析构
+has_sidetable_rc | 表示该对象的引用计数值是否过大无法存储在isa指针
+extra_rc | 存储引用计数值减一后的结果 
+
+* 第三种方案：散列表
+    - 散列表（Hash table，也叫哈希表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。
+    - 散列表就是把Key通过一个固定的算法函数既所谓的散列函数转换成一个整型数字即散列值，然后就将该数字对数组长度进行取余，取余结果就当作数组的下标，将value存储在以该数字为下标的数组空间里。而当使用散列表进行查询的时候，就是再次使用散列函数将key转换为对应的数组下标，并定位到该空间获取value，如此一来，就可以充分利用到数组的定位性能进行数据定位。
+    - 哈希表的本质是一个数组，数组中每一个元素称为一个箱子(bin)，箱子中存放的是键值对。
+    - 散列表来存储引用计数具体是用DenseMap类来实现，实现中有锁保证其安全性。
+    - DenseMap类中包含好多映射实例到其引用计数的键值对，并支持用 DenseMapIterator 迭代器快速查找遍历这些键值对。
+    - 引用计数表、weak表都是散列表；
+
 ### 2.使用自动引用计（ARC）数应该遵循的原则?
+
+
+
 ### 3.ARC 自动内存管理的原则?
+
+
+
 ### 4.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
+
+
+
 ### 5.ARC 的 retainCount 怎么存储的？
 ### 6.简要说一下 @autoreleasePool 的数据结构？
 ### 7.__weak 和 _Unsafe_Unretain 的区别？
@@ -912,6 +1030,40 @@ __block int i = 0;
 ## 源代码阅读
 ### 1.YYKit
 ### 2.SDWebImage
+#### 面试常见问题
+#### 1.看过sdwebimage的源码吗？说一下sdwebimage的原理
+- SDWebImage加载图片的流程
+    * 入口 setImageWithURL:placeholderImage:options:会先把 placeholderImage显示，然后 SDWebImageManager根据 URL 开始处理图片。
+    * 进入SDWebImageManager类中downloadWithURL:delegate:options:userInfo:，交给 SDImageCache从缓存查找图片是否已经下载 queryDiskCacheForKey:delegate:userInfo:.
+    * 先从内存图片缓存查找是否有图片，如果内存中已经有图片缓存，SDImageCacheDelegate回调 imageCache:didFindImage:forKey:userInfo:到 SDWebImageManager。
+    * SDWebImageManagerDelegate 回调 webImageManager:didFinishWithImage: 到 UIImageView+WebCache,等前端展示图片。
+    * 如果内存缓存中没有，生成 ｀NSOperation ｀ 添加到队列，开始从硬盘查找图片是否已经缓存。
+    * 根据 URL的MD5值Key在硬盘缓存目录下尝试读取图片文件。这一步是在 NSOperation 进行的操作，所以回主线程进行结果回调 notifyDelegate:。
+    * 如果上一操作从硬盘读取到了图片，将图片添加到内存缓存中（如果空闲内存过小， 会先清空内存缓存）。SDImageCacheDelegate'回调 imageCache:didFindImage:forKey:userInfo:`。进而回调展示图片。
+    * 如果从硬盘缓存目录读取不到图片，说明所有缓存都不存在该图片，需要下载图片， 回调 imageCache:didNotFindImageForKey:userInfo:。
+    * 共享或重新生成一个下载器 SDWebImageDownloader开始下载图片。
+    * 图片下载由 NSURLConnection来做，实现相关 delegate 来判断图片下载中、下载完成和下载失败。
+    * connection:didReceiveData: 中利用 ImageIO做了按图片下载进度加载效果。
+    * connectionDidFinishLoading: 数据下载完成后交给 SDWebImageDecoder做图片解码处理。
+    * 图片解码处理在一个 NSOperationQueue完成，不会拖慢主线程 UI.如果有需要 对下载的图片进行二次处理，最好也在这里完成，效率会好很多。
+    * 在主线程 notifyDelegateOnMainThreadWithInfo: 宣告解码完成 imageDecoder:didFinishDecodingImage:userInfo: 回调给 SDWebImageDownloader`。
+    * imageDownloader:didFinishWithImage:回调给 SDWebImageManager告知图片 下载完成。
+    * 通知所有的 downloadDelegates下载完成，回调给需要的地方展示图片。
+    * 将图片保存到 SDImageCache中，内存缓存和硬盘缓存同时保存。写文件到硬盘 也在以单独 NSOperation 完成，避免拖慢主线程。
+    * SDImageCache 在初始化的时候会注册一些消息通知， 在内存警告或退到后台的时 候清理内存图片缓存，应用结束的时候清理过期图片。
+#### 2.说一下SDWebImage的缓存策略？
+- 有一个专门的 Cache 分类用来处理图片的缓存。 这里面也有两个类 SDImageCache 和 SDImageCacheConfig。 大部分的缓存处理都在 SDImageCache 这个类中实现。
+- Memory 和 Disk 双缓存
+    * 
+
+#### 3.磁盘缓存时间，默认的缓存路径，怎么处理图片的名称?默认的超时时间是多少?最大并发数？
+#### 4.该框架内部对内存警告的处理方式?（或者问：当app接收到内存警告时，SDWebImage做了什么？）
+#### 5.NSCache和字典的区别？
+#### 6.如何计算图片的成本?
+#### 7.保证错误的URL不会被尝试重新下载，使用什么来下载图片的 
+#### 8.sdwebimage是一个异步下载图片的三方，怎么保证线程安全的？
+#### 9.如果一个页面 加载图片很卡 ，什么原因，会跟sdwebimage有关吗，还是跟图片渲染有关？
+
 ### 3.AFNetworking
 ### 4.SVProgressHub 
 ### 5.Texture（ASDK）
