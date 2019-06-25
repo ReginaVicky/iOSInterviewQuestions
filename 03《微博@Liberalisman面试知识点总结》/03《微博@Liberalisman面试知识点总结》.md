@@ -863,11 +863,24 @@ extra_rc | 存储引用计数值减一后的结果
 
 ### 2.使用自动引用计（ARC）数应该遵循的原则?
 
+* ARC规则：
+    - 不能使用retain/release/retainCount/autorelease
+    - 不能使用NSAllocateObject/NSDeallocateObject
+    - 必须遵守内存管理的方法命名规则
+    - 不要显式调用dealloc
+    - 使用@autoreleasepool块替代NSAutoreleasePool
+    - 不能使用区域NSZone
+    - 对象型变量不能作为c语言结构体的成员
+    - 显式转换id和void*
+
 
 
 ### 3.ARC 自动内存管理的原则?
 
-
+* 自己生成的对象，自己持有
+* 非自己生成的对象，自己可以持有
+* 自己持有的对象不再需要时，需要对其进行释放
+* 非自己持有的对象无法释放
 
 ### 4.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
 
