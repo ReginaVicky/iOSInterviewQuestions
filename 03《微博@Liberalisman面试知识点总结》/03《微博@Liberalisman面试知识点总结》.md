@@ -645,6 +645,124 @@ OC中的内存管理主要有三种方式：ARC、MRC、自动释放池
 
 也就是说，iOS中对内存管理的机制（堆内存），是通过 retainCount 的机制来决定对象是否需要释放。每一个对象都有一个与之关联的retainCount， 每次runloop迭代结束后，都会检查对象的 retainCount，如果retainCount等于0，就说明该对象没有地方需要继续使用它，可以被释放掉了。无论是手动管理内存，还是ARC机制，都是通过对retainCount来进行内存管理的。
 
+#### OC的内存机制可以简单概括为：谁持有(retain)谁释放(release)。retain引用计数+1，release反之。
+
+例如
+
+```
+// MRC代码
+NSObject * obj = [[NSObject alloc] init]; //引用计数为1
+
+//不需要的时候
+[obj release] //引用计数减1
+
+//持有这个对象
+[obj retain] //引用计数加1
+
+//放到AutoReleasePool
+[obj autorelease]//在auto release pool释放的时候，引用计数减1
+```
+
+```
+// ARC代码
+NSObject * obj;
+{
+    obj = [[NSObject alloc] init]; //引用计数为1
+}
+NSLog(@"%@",obj);
+```
+* 我们可以先来看看ratain和release内部是如何实现的。
+    - retain
+    
+```
+- (id)retain {
+    return ((id)self)->rootRetain();
+}
+
+inline id objc_object::rootRetain()
+{
+    if (isTaggedPointer()) return (id)this;
+    return sidetable_retain();
+}
+```
+可以看出retain底层是调用了sidetable_retain()
+
+```
+id objc_object::sidetable_retain()
+{
+#if SUPPORT_NONPOINTER_ISA
+    assert(!isa.nonpointer);
+#endif
+    SideTable& table = SideTables()[this];//获取引用计数表
+    
+    table.lock(); // 加锁
+    size_t& refcntStorage = table.refcnts[this]; // 根据对象的引用计数
+    if (! (refcntStorage & SIDE_TABLE_RC_PINNED)) {
+        refcntStorage += SIDE_TABLE_RC_ONE;
+    }
+    table.unlock(); // 解锁
+
+    return (id)this;
+}
+```
+SideTable数据结构：
+
+```
+struct SideTable {
+    spinlock_t slock;
+    RefcountMap refcnts;
+    weak_table_t weak_table;
+
+    // 省略...
+};
+```
+通过代码可以看出，SideTable拥有一个自旋锁，一个引用计数map。这个引用计数的map以对象的地址作为key，引用计数作为value
+
+* release
+
+```
+- (oneway void)release {
+    ((id)self)->rootRelease();
+}
+
+inline bool objc_object::rootRelease()
+{
+    if (isTaggedPointer()) return false;
+    return sidetable_release(true);
+}
+```
+
+```
+uintptr_t objc_object::sidetable_release(bool performDealloc)
+{
+#if SUPPORT_NONPOINTER_ISA
+    assert(!isa.nonpointer);
+#endif
+    SideTable& table = SideTables()[this];
+
+    bool do_dealloc = false;
+
+    table.lock(); // 加锁
+    RefcountMap::iterator it = table.refcnts.find(this); // 先找到对象的地址
+    if (it == table.refcnts.end()) {
+        do_dealloc = true; //引用计数小于阈值，最后执行dealloc
+        table.refcnts[this] = SIDE_TABLE_DEALLOCATING;
+    } else if (it->second < SIDE_TABLE_DEALLOCATING) {
+        // SIDE_TABLE_WEAKLY_REFERENCED may be set. Don't change it.
+        do_dealloc = true;
+        it->second |= SIDE_TABLE_DEALLOCATING;
+    } else if (! (it->second & SIDE_TABLE_RC_PINNED)) {
+        it->second -= SIDE_TABLE_RC_ONE; //引用计数减去1
+    }
+    table.unlock(); // 解锁
+    if (do_dealloc  &&  performDealloc) {
+        ((void(*)(objc_object *, SEL))objc_msgSend)(this, SEL_dealloc);
+    }
+    return do_dealloc;
+}
+```
+release过程：查找map，对引用计数减1，如果引用计数小于阈值，则调用SEL_dealloc
+
 #### 引用计数如何储存（三种方案的结合）
 
 * 第一种方案：TaggedPointer
