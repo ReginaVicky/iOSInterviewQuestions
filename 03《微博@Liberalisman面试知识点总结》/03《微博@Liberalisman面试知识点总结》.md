@@ -874,6 +874,20 @@ extra_rc | 存储引用计数值减一后的结果
 
 
 ### 5.ARC 的 retainCount 怎么存储的？
+
+* 采用散列表（引用计数表）来管理引用计数。
+![image](http://upload-images.jianshu.io/upload_images/131615-d1212b1150b575e7.png)
+
+GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹果的实现，则是保存在引用计数表的记录中。
+* 通过内存卡头部管理引用计数的好处如下：
+    - 少量代码即可完成
+    - 能够统一管理引用计数用内存块与对象用内存块
+* 通过引用计数表管理引用计数的好处如下：
+    - 对象用内存块的分配无需考虑内存块头部
+    - 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
+* 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
+![image](http://upload-images.jianshu.io/upload_images/131615-6ebbb4f2275a7362.png)
+
 ### 6.简要说一下 @autoreleasePool 的数据结构？
 ### 7.__weak 和 _Unsafe_Unretain 的区别？
 ### 8.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
