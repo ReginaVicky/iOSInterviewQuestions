@@ -1093,11 +1093,55 @@
 - 调用Cookie时，由于可校验Cookie的有效期，以及发送方的域、路径、协议等信息，所以正规发布的Cookie内的数据不会因来自为他Web站点和攻击者的攻击而泄漏。
 - Cookie的规格标准文档有以下4种。
 ##### 由网景公司颁布的规格标准
+- 网景通信公司设计并开发了Cookie，并制定相关的规格标准。1994年前后，Cookie正式应用在网景浏览器中。目前最为普及的Cookie方式也是以此为基准的。
 ##### RFC2109
+- 某公司尝试以独立技术对Cookie规格进行标准化统筹。原本的意图是想和网景公司制定的标准交互应用，可惜发生了微妙的差异。现在该标准已淡出了人们的视线。
 ##### RFC2965
+- 为终结Internet Explorer浏览器与Netscape Navigator的标准差异而导致的浏览器战争，RFC2965内定了新的HTTP首部Set-Cookie2和Cookie2。
 ##### RFC6265
+- 将网景公司制定的标准作为业界试试标准，重新定义Cookie标准后的产物。
+- 目前使用最广泛的Cookie标准缺不是RFC中定义的任何一个。而是在网景公司制定的标准上进行扩展后的产物。
+- 下面的表格内列举了与Cookie相关的首部字段说明。
+
+![IMG_0836.JPG](https://upload-images.jianshu.io/upload_images/1197643-e27fbefe635a6497.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![IMG_0837.JPG](https://upload-images.jianshu.io/upload_images/1197643-0435fd9177c37a46.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 #### Set-Cookie
+
+![IMG_0838.PNG](https://upload-images.jianshu.io/upload_images/1197643-65dca8a430a186f4.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 当服务器准备开始管理客户端的状态时，会事先告知各种信息。
+- 下面的表格列举了Set-Cookie的字段值
+
+![IMG_0839.JPG](https://upload-images.jianshu.io/upload_images/1197643-b56ab08375ea0147.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+##### expires属性
+- Cookie的expires属性指定浏览器可发送Cookie的有效期。
+- 当省略expires属性时，其有效期仅限于维持浏览器回话时间段内，这通常限于浏览器应用程序被关闭之前。
+- 另外，一旦Cookie从服务器端发送至客户端，服务器端就不存在可以显示删除Cookie的方法。但可通过覆盖已过期的Cookie，实现对客户端Cookie的实质性删除操作。
+##### path属性
+- Cookie的path属性可用于限制指定Cookie的发送范围的文件目录。不过另有办法可避开这项限制，看来对其作为安全机制的效果不能抱有期待。
+##### domain属性
+- 通过Cookie的domain属性指定的域名可做到与结尾匹配一致。比如，当指定example.com后，除example.com以外，www.example.com或www2.example.com等都可以发送Cookie；
+- 因此，除了针对具体指定的多个域名发送Cookie之外，不指定domain属性显得更安全。
+##### secure属性
+- Cookie的secure属性用于限制Web页面仅在HTTP安全连接时，才可以发送Cookie。
+- 发送Cookie时，指定secure属性的方法如下所示
+
+![IMG_0840.PNG](https://upload-images.jianshu.io/upload_images/1197643-1b4230b7fde8fe2a.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 以上例子仅当在https://www.example.com/安全连接的情况下才会进行Cookie的回收。也就是说，即使域名相同，HTTP://www.example.com/也不会发生Cookie回收行为。
+- 当省略secure属性时，不论HTTP还是HTTPS，都会对Cookie进行回收。
+
+##### HttpOnly属性
+- Cookie的HttpOnly属性是Cookie的拓展功能，它使JavaScript脚本无法获得Cookie。其主要目的为防止跨站脚本攻击对Cookie的信息窃取。
+- 发送指定HttpOnly属性的Cookie的方法如下所示：
+
+![IMG_0841.PNG](https://upload-images.jianshu.io/upload_images/1197643-880caf2bf2e92d74.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 通过上述设置，通常从Web页面内还可以对Cookie进行读取操作。但使用JavaScript的document.cookie就无法读取附加HttpOnly属性后的Cookie的内容了，因此，也就无法在XSS中利用JavaScript劫持Cookie了。
+- 虽然是独立的拓展功能，但Internet Explorer 6 SPI以上版本等当下的主流浏览器都已经支持该拓展了，该拓展并非是为了防止XSS而开发的。
 #### Cookie
+
+![IMG_0842.PNG](https://upload-images.jianshu.io/upload_images/1197643-b20fd6feb215c558.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 首部字段Cookie会告知服务器，当客户端想获得HTTP状态管理支持时，就会在请求中包含从服务器接收到的Cookie。接收到多个Cookie时，同样可以以多个Cookie形式发送。
+
 ### 6.8 其他首部字段
 #### X-Frame-Options
 #### X-XXS-Protection
