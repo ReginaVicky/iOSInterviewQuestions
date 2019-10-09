@@ -1143,11 +1143,46 @@
 - 首部字段Cookie会告知服务器，当客户端想获得HTTP状态管理支持时，就会在请求中包含从服务器接收到的Cookie。接收到多个Cookie时，同样可以以多个Cookie形式发送。
 
 ### 6.8 其他首部字段
+- HTTP首部字段是可以自行拓展的。所以在Web服务器和浏览器的应用上，会出现各种非标准的首部字段。
+- 接下来，我们就一些最为常见的首部字段进行说明
+    * X-Frame-Options 
+    * X-XXS-Protection
+    * DNT
+    * P3P
 #### X-Frame-Options
+
+![IMG_0843.PNG](https://upload-images.jianshu.io/upload_images/1197643-c254bd7d05703349.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 首部字段X-Frame-Options属于HTTP响应首部，用于控制网站内容在其他Web网站的Frame标签内的显示问题。其主要目的是为了防止点击劫持攻击。
+- 首部字段X-Frame-Options有以下两个可指定的字段值。
+    * DENY：拒绝
+    * SAMEORIGIN：仅同源域名下的页面匹配时许可。支持该首部字段的浏览器有Internet Explorer 8、Firefox 3.6.9+、Chrome 4.1.249.1024+、Safari 4+和Opera 10.50+等。
+    * 能在所有的Web服务器端预先设定好X-Frame-Options字段值是最理想的状态
+##### 对apache2.conf的配置实例
+
+![IMG_0844.PNG](https://upload-images.jianshu.io/upload_images/1197643-04bc81a3e2ea74cf.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 #### X-XXS-Protection
+
+![IMG_0845.PNG](https://upload-images.jianshu.io/upload_images/1197643-da18a9a54ce28efb.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 首部字段X-XXS-Protection属于HTTP响应首部，它是针对跨站脚本攻击的一种对策，用于控制浏览器XSS防护机制的开关；
+- 首部字段X-XXS-Protection可指定的字段值如下：
+    * 0：将XSS过滤设置成无效状态
+    * 1：将XSS过滤设置成有效状态
 #### DNT
+![IMG_0846.JPG](https://upload-images.jianshu.io/upload_images/1197643-7590a82446ce4bbb.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![IMG_0847.PNG](https://upload-images.jianshu.io/upload_images/1197643-9749f550cd78a1f2.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 首部字段DNT属于HTTP请求首部，其中DNT是Do Not Track的简称，意为拒绝个人信息被收集，是表示拒绝被精准广告追踪的一种方法。
+- 首部字段DNT可指定的字段值如下。
+    * 0：同意被追踪；
+    * 1：不同意被追踪；
+    * 由于首部字段DNT的工鞥具备有效性，所以Web服务器需要对DNT做对应的支持。
 #### P3P
-#### X-XXS-Protection
+![IMG_0848.PNG](https://upload-images.jianshu.io/upload_images/1197643-60dcc5fe69bd71cb.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 首部字段P3P属于HTTP响应首部，通过利用P3P技术，可以让Web网站上的个人隐私变成一种仅供程序可理解的形式，以达到保护用户隐私的目的。
+- 要进行P3P的设定，需按一下操作步骤进行：
+    * 步骤1：创建P3P隐私
+    * 步骤2：创建P3P隐私对照文件后，保存命名在/w3c/p3p.xml
+    * 步骤3：从P3P隐私中新建Compactpolicies后，输出到HTTP响应中。
 ## 第七章 确保Web安全的HTTPS
 ### 7.1 
 
