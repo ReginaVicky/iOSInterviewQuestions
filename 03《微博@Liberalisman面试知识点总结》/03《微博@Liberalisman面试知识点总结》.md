@@ -634,6 +634,8 @@ __block int i = 0;
 ![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/690)
 * 如果我们有M个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
+#### 补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+
 
 ## iOS 内存管理
 
