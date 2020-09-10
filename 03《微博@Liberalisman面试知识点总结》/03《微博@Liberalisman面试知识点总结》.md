@@ -81,6 +81,7 @@
 - 15.[二维数组查找一个值。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15二维数组查找一个值)
 - [补充：插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充插入排序)
 - [补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
+- 补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
 
 ## iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合)
@@ -198,6 +199,7 @@
 ## 网络
 - 1.[NSUrlConnect相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1nsurlconnect相关知识)
 - 2.[NSUrlSession相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2nsurlsession相关知识)
+- 补充：简要说一下Https；
 - 3.[Http 和 Https 的区别？为什么更加安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3http-和-https-的区别为什么更加安全)
 - 4.[Http的请求方式有哪些？Http 有什么特性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4http的请求方式有哪些http-有什么特性)
 - 5.[解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5解释一下-三次握手-和-四次挥手解释一下为什么是三次握手-又为什么是-四次挥手)
@@ -613,7 +615,8 @@ __block int i = 0;
     - 第X次。可以从第X+(X-1)+(X-2)+...+(X-(X-2))+1层扔下来，这就是最高可能尝试到的楼层X*(X+1)/2，下面所有的楼层都可以在X次尝试中到达。
     - 当最高楼层为100时，可列出不等式：最高可能尝试到的楼层X*(X+1)/2 > 100，解出X=14次。这就是最稳定的最快寻找到该楼层的扔鸡蛋次数。也就是说第一次扔鸡蛋要从14楼开始扔。14+13+12+11+...+2+1 = 105层，也就是14次尝试一定可以在1-105层中找到那个第N层。推出了公式X*(X+1)/2后，要想编程求任意总楼层条件下，就都很方便了。
 
-        ![image](http://s10.sinaimg.cn/mw690/6c813dbdg7c4397a1bfd9&690)
+   ![image](https://upload-images.jianshu.io/upload_images/1197643-f14862e6af2c67c9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/198)
+   
 * 动态规划法——找最优解常用方法
 
 在我们编程解决问题的过程中，如果遇到最优问题的时候，往往可以先尝试一下动态规划的方法。而动态规划的方法，首要的我们要找到构成这个最优问题的最优子问题。所以，下面的分析，我们首先尝试动态规划的方法，如何解决这个问题，这也是典型的程序员的思路；其次，在众多的问题当中，有不少可以直接归结为数学方程式，如果我们能够写出数学方程式，那么，答案将是更加的简洁、美妙（比如上一种方法推导出来的公式）。
@@ -625,10 +628,10 @@ __block int i = 0;
 * 推广动态规划的方法，可以推广为n层楼，m个鸡蛋。如下分析： 假设f{n,m}表示n层楼、m个鸡蛋时找到最高楼层的最少尝试次数。当第一个鸡蛋从第i层扔下，如果碎了，还剩m-1个鸡蛋，为确定下面楼层中的安全楼层，还需要f{i-1,m-1}次，找到子问题；不碎的话，上面还有n-i层，还需要f[n-i,m]次，又一个子问题。 状态转移方程如下： f{n, m} = min(1 + max(f{i - 1, m - 1}, f{n - i, m}) ) 其中： i为(1, n), f{i, 1} = 1
 * 拓展一下，如果不是100楼层，是N楼层，曾怎么计算呢？
 
-![image](http://s6.sinaimg.cn/mw690/6c813dbdgdaa3ed5ea475&690)
+![image](https://upload-images.jianshu.io/upload_images/1197643-336110312293e97a.png?imageMogr2/auto-orient/strip|imageView2/2/w/283)
 * 再次拓展，如果我们有三个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
-![image](http://s9.sinaimg.cn/mw690/6c813dbdgdaa3f1096268&690)
+![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/690)
 * 如果我们有M个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
 
@@ -639,9 +642,9 @@ __block int i = 0;
 OC中的内存管理主要有三种方式：ARC、MRC、自动释放池
 * MRC（Mannul Reference Counting）手动引用计数
 * ARC（automatic reference counting）自动引用计数
-* 在5.0版本以前，OC内存管理遵循“谁创建、谁释放、谁引用、谁管理”的机制，当创建或引用一个对象的时候，需要向她发送alloc、copy、retain消息，当释放该对象时需要发送release消息，当对象引用计数为0时，系统将释放该对象，其实这也是手动管理机制。
+* 在5.0版本以前，OC内存管理遵循“谁创建、谁释放、谁引用、谁管理”的机制，当创建或引用一个对象的时候，需要向她发送alloc、copy、retain消息，当释放该对象时需要发送release消息，当对象引用计数为0时，系统将释放该对象，其实这就是手动管理机制。
 * 在5.0以后，引用自动管理机制，其实管理机制和手动管理机制一样，只是不再需要调用retain、release、autorelease；它编译时的特性，当你使用ARC时，在适当位置插入release和autorelease；它引用strong和weak关键字，strong修饰的指针变量指向对象时，当指针指向新值或者指针不复存在，相关联的对象就会自动释放，而weak修饰的指针变量指向对象，当对象的拥有者指向新值或者不存在时weak修饰的指针会自动置为nil。如果使用alloc、copy或者retain一个对象时，你就有义务，向它发送一条release或者autorelease消息。其他方法创建的对象，不需要由自己来管理内存
-* 自动释放池：（NSAutoRealeasePool）可以通过创建和释放内存池控制内存申请和收回的时机。向一个对象发送一条autorelease消息，这个对象并不会立即销毁，而是将这个对象放入了自动释放池，待池子释放时，它会向池子中每一个对象发送一条release详细，以此来释放对象。向一个对象发送release消息，并不意味着这个对象被销毁了，而是当这个对象的引用计数为0时，系统才会调用dealloc方法，释放该对象和对象本身他所拥有的实例。
+* 自动释放池：（NSAutoRealeasePool）可以通过创建和释放内存池控制内存申请和收回的时机。向一个对象发送一条autorelease消息，这个对象并不会立即销毁，而是将这个对象放入了自动释放池，待池子释放时，它会向池子中每一个对象发送一条release消息，以此来释放对象。向一个对象发送release消息，并不意味着这个对象被销毁了，而是当这个对象的引用计数为0时，系统才会调用dealloc方法，释放该对象和对象本身他所拥有的实例。
 
 也就是说，iOS中对内存管理的机制（堆内存），是通过 retainCount 的机制来决定对象是否需要释放。每一个对象都有一个与之关联的retainCount， 每次runloop迭代结束后，都会检查对象的 retainCount，如果retainCount等于0，就说明该对象没有地方需要继续使用它，可以被释放掉了。无论是手动管理内存，还是ARC机制，都是通过对retainCount来进行内存管理的。
 
@@ -706,17 +709,20 @@ id objc_object::sidetable_retain()
 }
 ```
 SideTable数据结构：
-
+SideTable 这个结构体，我给他起名引用计数和弱引用依赖表，因为它主要用于管理对象的引用计数和 weak 表。在 NSObject.mm 中声明其数据结构：
 ```
 struct SideTable {
+// 保证原子操作的自旋锁
     spinlock_t slock;
+    // 引用计数的 hash 表
     RefcountMap refcnts;
+    // weak 引用全局 hash 表
     weak_table_t weak_table;
 
     // 省略...
 };
 ```
-通过代码可以看出，SideTable拥有一个自旋锁，一个引用计数map。这个引用计数的map以对象的地址作为key，引用计数作为value
+通过代码可以看出，SideTable拥有一个自旋锁，一个引用计数map。这个引用计数的map以对象的地址作为key，引用计数作为value；对于 slock 和 refcnts 两个成员不用多说，第一个是为了防止竞争选择的自旋锁，第二个是协助对象的 isa 指针的 extra_rc 共同引用计数的变量。这里主要看 weak 全局 hash 表的结构与作用。
 
 * release
 
@@ -884,7 +890,7 @@ extra_rc | 存储引用计数值减一后的结果
 
 ### 4.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
 
-
+* 在访问__weak修饰的变量时，必定要访问注册到autoreleasepool的对象，这是因为：__weak修饰符只持有对象的弱引用，他不能持有对象实例，所以在超出其变量作用域时，对象即被释放。 而在访问引用对象的过程中，该对象可能被废弃，而如果把要访问的对象注册到autoreleasepool中，在@autoreleasepool块结束之前都能确保该对象存在。
 
 ### 5.ARC 的 retainCount 怎么存储的？
 
@@ -902,6 +908,7 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ![image](http://upload-images.jianshu.io/upload_images/131615-6ebbb4f2275a7362.png)
 
 ### 6.简要说一下 @autoreleasePool 的数据结构？
+
 ### 7.__weak 和 _Unsafe_Unretain 的区别？
 ### 8.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
 ### 9.__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
@@ -1011,6 +1018,7 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ## 网络
 ### 1.NSUrlConnect相关知识。
 ### 2.NSUrlSession相关知识。
+### 补充：简要说一下Https；
 ### 3.Http 和 Https 的区别？为什么更加安全？
 ### 4.Http的请求方式有哪些？Http 有什么特性？
 ### 5.解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？
