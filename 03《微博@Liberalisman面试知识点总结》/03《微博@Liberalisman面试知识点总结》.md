@@ -615,7 +615,7 @@ __block int i = 0;
     - 第X次。可以从第X+(X-1)+(X-2)+...+(X-(X-2))+1层扔下来，这就是最高可能尝试到的楼层X*(X+1)/2，下面所有的楼层都可以在X次尝试中到达。
     - 当最高楼层为100时，可列出不等式：最高可能尝试到的楼层X*(X+1)/2 > 100，解出X=14次。这就是最稳定的最快寻找到该楼层的扔鸡蛋次数。也就是说第一次扔鸡蛋要从14楼开始扔。14+13+12+11+...+2+1 = 105层，也就是14次尝试一定可以在1-105层中找到那个第N层。推出了公式X*(X+1)/2后，要想编程求任意总楼层条件下，就都很方便了。
 
-   ![image](https://upload-images.jianshu.io/upload_images/1197643-f14862e6af2c67c9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/198)
+   ![image](https://upload-images.jianshu.io/upload_images/1197643-f14862e6af2c67c9.jpg)
    
 * 动态规划法——找最优解常用方法
 
@@ -628,10 +628,10 @@ __block int i = 0;
 * 推广动态规划的方法，可以推广为n层楼，m个鸡蛋。如下分析： 假设f{n,m}表示n层楼、m个鸡蛋时找到最高楼层的最少尝试次数。当第一个鸡蛋从第i层扔下，如果碎了，还剩m-1个鸡蛋，为确定下面楼层中的安全楼层，还需要f{i-1,m-1}次，找到子问题；不碎的话，上面还有n-i层，还需要f[n-i,m]次，又一个子问题。 状态转移方程如下： f{n, m} = min(1 + max(f{i - 1, m - 1}, f{n - i, m}) ) 其中： i为(1, n), f{i, 1} = 1
 * 拓展一下，如果不是100楼层，是N楼层，曾怎么计算呢？
 
-![image](https://upload-images.jianshu.io/upload_images/1197643-336110312293e97a.png?imageMogr2/auto-orient/strip|imageView2/2/w/283)
+![image](https://upload-images.jianshu.io/upload_images/1197643-336110312293e97a.png)
 * 再次拓展，如果我们有三个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
-![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/690)
+![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg)
 * 如果我们有M个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
 
