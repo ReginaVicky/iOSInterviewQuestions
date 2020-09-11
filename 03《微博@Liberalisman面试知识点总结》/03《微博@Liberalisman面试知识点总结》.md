@@ -174,7 +174,7 @@
 - 10.[UIViewController 的生命周期？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10uiviewcontroller-的生命周期)
 - 11.[如何以通用的方法找到当前显示的ViewController?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11如何以通用的方法找到当前显示的viewcontroller)
 - 12.[setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12setneedsdisplay-和-layoutifneeded-两者是什么关系)
-- 补充：多个类型的cell如何优雅加载？
+- [补充：多个类型的cell如何优雅加载？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充多个类型的cell如何优雅加载)
 
 ## Foundation
 - 1.[`Bounds` 和 `Frame` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1bounds-和-frame-的区别)
