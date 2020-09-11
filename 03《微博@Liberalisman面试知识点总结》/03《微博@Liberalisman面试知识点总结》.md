@@ -81,7 +81,7 @@
 - 15.[二维数组查找一个值。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15二维数组查找一个值)
 - [补充：插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充插入排序)
 - [补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
-- 补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+- [补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0)
 
 ## iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合)
@@ -174,6 +174,7 @@
 - 10.[UIViewController 的生命周期？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10uiviewcontroller-的生命周期)
 - 11.[如何以通用的方法找到当前显示的ViewController?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11如何以通用的方法找到当前显示的viewcontroller)
 - 12.[setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12setneedsdisplay-和-layoutifneeded-两者是什么关系)
+- 补充：多个类型的cell如何优雅加载？
 
 ## Foundation
 - 1.[`Bounds` 和 `Frame` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1bounds-和-frame-的区别)
@@ -615,7 +616,7 @@ __block int i = 0;
     - 第X次。可以从第X+(X-1)+(X-2)+...+(X-(X-2))+1层扔下来，这就是最高可能尝试到的楼层X*(X+1)/2，下面所有的楼层都可以在X次尝试中到达。
     - 当最高楼层为100时，可列出不等式：最高可能尝试到的楼层X*(X+1)/2 > 100，解出X=14次。这就是最稳定的最快寻找到该楼层的扔鸡蛋次数。也就是说第一次扔鸡蛋要从14楼开始扔。14+13+12+11+...+2+1 = 105层，也就是14次尝试一定可以在1-105层中找到那个第N层。推出了公式X*(X+1)/2后，要想编程求任意总楼层条件下，就都很方便了。
 
-   ![image](https://upload-images.jianshu.io/upload_images/1197643-f14862e6af2c67c9.jpg)
+   ![image](https://upload-images.jianshu.io/upload_images/1197643-f14862e6af2c67c9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/198)
    
 * 动态规划法——找最优解常用方法
 
@@ -628,14 +629,30 @@ __block int i = 0;
 * 推广动态规划的方法，可以推广为n层楼，m个鸡蛋。如下分析： 假设f{n,m}表示n层楼、m个鸡蛋时找到最高楼层的最少尝试次数。当第一个鸡蛋从第i层扔下，如果碎了，还剩m-1个鸡蛋，为确定下面楼层中的安全楼层，还需要f{i-1,m-1}次，找到子问题；不碎的话，上面还有n-i层，还需要f[n-i,m]次，又一个子问题。 状态转移方程如下： f{n, m} = min(1 + max(f{i - 1, m - 1}, f{n - i, m}) ) 其中： i为(1, n), f{i, 1} = 1
 * 拓展一下，如果不是100楼层，是N楼层，曾怎么计算呢？
 
-![image](https://upload-images.jianshu.io/upload_images/1197643-336110312293e97a.png)
+![image](https://upload-images.jianshu.io/upload_images/1197643-336110312293e97a.png?imageMogr2/auto-orient/strip|imageView2/2/w/283)
 * 再次拓展，如果我们有三个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
-![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg)
+![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/690)
 * 如果我们有M个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
 #### 补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
 
+##### 题解一
+- 对于排序的数组，数组中出现次数超过一半的数字一定会出现在数组的中间。于是先将数组排序，然后输出中位数即可。但是由于输入的数组不一定满足要求，所以别忘了检查得到的数字是否真的在数组中出现的次数超过一半。
+- 时间复杂度为O(nlogn)，空间复杂度为O(1)。
+##### 题解二
+- 一个直观的解法是使用哈希表。遍历一遍数组，将数组中每个元素出现的次数存入哈希表，然后遍历哈希表，找出出现次数大于一半的数字。
+- 时间复杂度为O(n)，空间复杂度为O(n)。
+##### 题解三
+- 考虑数组的特性，若数组中有一个数字出现的次数超过了数组长度的一半，那么数组中第 n/2 大的数字一定是这个数字。
+- 可以借助快排的思想来寻找特定的下标，这里我们需要寻找的下标就是 n/2，每次 Partition 都可以将 pivot放置到其对应的位置，且所有小于pivot的数字都在 pivot 左边，大于 pivot 的数字都在 pivot右边。排序后数组中的下标为数组长度一半的数字即为数组中第 n/2 大的数字（数组的中位数）。
+- 为了找到这个数字，我们可以使用递归，如果 pivot 的坐标小于 n/2，那么继续在 pivot 右边进行查找；如果 pivot 的坐标大于 n/2，那么继续在 pivot 左边进行查找；如果 pivot 的坐标刚好等于n/2，那么就返回数组中对应的数字。
+- 最后别忘了检查得到的数字是否真的在数组中出现的次数超过一半，毕竟上述算法得到的只是这个数组中第 n/2大的数字，并不保证这个数字出现次数超过一半。
+- 时间复杂度为O(n)，空间复杂度为O(1)。
+##### 题解四
+- 还有另外一种巧妙的方法。遍历数组，同时维护两个变量：一个是数组中的一个数字，另一个是次数。在遍历数组时，第一个数字作为守方，设置count=1，接下来的数字进行攻击。在遇到相同元素时守方即count加1，遇到不同元素时count-1。在count为0时，新的数字成为新的守方，接受接下来的攻击。
+- 若数组中有一个出现次数超过一半的数字，那么它一定是最终的胜利者。但也有可能不存在这与的数字，所以在结束之后也要像之前一样进行检查。
+- 时间复杂度为O(n)，空间复杂度为O(1)。
 
 ## iOS 内存管理
 
@@ -995,6 +1012,18 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ### 10.UIViewController 的生命周期？
 ### 11.如何以通用的方法找到当前显示的ViewController?
 ### 12.setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？
+### 补充：多个类型的cell如何优雅加载？
+#### 题解一
+- 一种就是常见的if else，但是如果修改的话，就会代码很多，一旦修改，就会修改太多，太繁琐了；
+
+#### 题解二
+- modle，根据model来对应cell，cell面向model开发，一般都是一个类型的数据（model）对应一种类型的cell，所以类型是固定的，所以我们用一个枚举来定义所有类型的cell，cellType或者model就知道如何去处理相应的cell了；但是会有重复的操作和数据处理。
+
+#### 题解三
+- Model：对 Cell 类型进行更高层次的抽象，将model抽出相同的数据，定义BaseModel，通过继承的方式，分为数据类型 DataModel 和非数据类型 SpecialModel 两种，进行定义，通过多层继承可进一步避免重复定义变量。将非数据类型也定义为类型的好处是，将这部分 UI 控制逻辑下沉到 Model 创建之处：网络/持久化数据 Entity -> UIModel，在这个过程中，创建额外的非数据型UIModel，只要数据创建好，后期就不用再理相关逻辑了。
+- Cell：定义BaseCell, Cell子类型通过运行时动态创建，UI显示通过CardBaseView作为容器，加载到Cell 的ContentView上。
+- 通过一系列解耦，将变化分散到两端：Model 和 View；
+- View：因为是View放置在Cell的ContentView上，因此，View的Delegate是Cell，Cell通过消息转发实现回调，避免Cell实现中手写回调中转。
 
 ## Foundation
 ### 1.`Bounds` 和 `Frame` 的区别?
@@ -1050,6 +1079,7 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ### 补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
 ### 补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？
 ### 补充：https的缓存问题。
+
 
 ## 多线程
 ### 补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
@@ -1176,6 +1206,7 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ## 音频处理
 
 ## 视频处理
+### 补充：AVFoundation原理
 
 ## 图像处理
 ### 1.图像的压缩、解压。
