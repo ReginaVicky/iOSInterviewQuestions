@@ -82,7 +82,7 @@
 - [补充：插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充插入排序)
 - 补充：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
 - [补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
-- [补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0)
+- [补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0或者是问给定一个大小为-n-的数组找到其中的众数众数是指在数组中出现次数大于--n2--的元素)
 
 ## iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合)
@@ -234,6 +234,7 @@
 [补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充使用异步请求的方式抓取一个网站的内容请考虑超时状态码的异常情况请用原生api或者socketcocoa-socket)
 - [补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充在网络请求中如何处理网络网速慢网络中断网络抖动等等网络问题)
 - [补充：https的缓存问题。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充https的缓存问题)
+- 补充：你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果
 
 ## 多线程
 - [补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
@@ -1182,6 +1183,126 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ### 补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
 ### 补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？
 ### 补充：https的缓存问题。
+### 补充：你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果
+#### 思路一：操作依赖：NSOperation 操作依赖和优先级（不适用，异步网络请求并不是立刻返回，无法保证回调时再开启下一个网络请求）
+
+```
+[operationB addDependency:operationA]; // 操作B依赖于操作
+```
+#### 思路二：逻辑判断：在上一个网络请求的响应回调中进行下一网络请求的激活（不适用，可能拿不到回调）
+#### 思路三：线程同步 -- 组队列（dispatch_group）
+- 当group里所有事件都完成GCD API有两种方式发送通知，第一种是DispatchGroup.wait，会阻塞当前进程，等所有任务都完成或等待超时。第二种方法是使用DispatchGroup.notify，异步执行闭包，不会阻塞当前线程。
+
+```
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_group_t group = dispatch_group_create();
+dispatch_group_async(group, queue, ^{ /*加载图片1 */ });
+dispatch_group_async(group, queue, ^{ /*加载图片2 */ });
+dispatch_group_async(group, queue, ^{ /*加载图片3 */ }); 
+dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        // 合并图片… …
+});
+```
+
+```
+//阻塞当前的线程,直到dispatch group中的所有任务完成才会返回,可能会卡住主线程,造成页面卡顿,谨慎使用
+dispatch_group_wait(serviceGroup,DISPATCH_TIME_FOREVER);
+```
+
+#### 思路四：线程同步 --阻塞任务（dispatch_barrier）也叫栅栏函数：
+
+```
+/* 创建并发队列 */
+dispatch_queue_t concurrentQueue = dispatch_queue_create("test.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
+/* 添加两个并发操作A和B，即A和B会并发执行 */
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationA");
+});
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationB");
+});
+/* 添加barrier障碍操作，会等待前面的并发操作结束，并暂时阻塞后面的并发操作直到其完成 */
+dispatch_barrier_async(concurrentQueue, ^(){
+    NSLog(@"OperationBarrier!");
+});
+/* 继续添加并发操作C和D，要等待barrier障碍操作结束才能开始 */
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationC");
+});
+dispatch_async(concurrentQueue, ^(){
+    NSLog(@"OperationD");
+});
+```
+#### 思路五：线程同步 -- 信号量机制（dispatch_semaphore）：
+
+```
+/* 创建一个信号量 */
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+/* 任务1 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 耗时任务1 */
+    NSLog(@"任务1开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务1结束");
+    /* 任务1结束，发送信号告诉任务2可以开始了 */
+    dispatch_semaphore_signal(semaphore);
+});
+
+/* 任务2 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 等待任务1结束获得信号量, 无限等待 */
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    /* 如果获得信号量则开始任务2 */
+    NSLog(@"任务2开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务2结束");
+});
+[NSThread sleepForTimeInterval:10];
+```
+- 或者
+
+```
+/* 创建一个信号量 */
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+/* 任务1 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 耗时任务1 */
+    NSLog(@"任务1开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务1结束");
+    /* 任务1结束，发送信号告诉任务2可以开始了 */
+    dispatch_semaphore_signal(semaphore);
+});
+/* 任务2 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 等待任务1结束获得信号量, 无限等待 */
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    /* 如果获得信号量则开始任务2 */
+    NSLog(@"任务2开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务2结束");
+});
+
+//我们每一次遍历，都让其dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)，这个时候线程会等待，阻塞当前线程，直到dispatch_semaphore_signal(sem)调用之后，而我们dispatch_semaphore_signal(sem)是在网络请求的回调里调用的
+
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    for (int i=0; i<10; i++) {
+        
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            NSLog(@"%d---%d",i,i);
+            dispatch_semaphore_signal(sem);
+        }];
+        
+        [task resume];
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"end");
+    });
+```
 
 
 ## 多线程
