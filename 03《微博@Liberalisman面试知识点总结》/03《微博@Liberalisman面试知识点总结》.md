@@ -80,8 +80,9 @@
 - 14.[栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14栈中储存着一组无序的数字不用遍历的方式如何找出最小值)
 - 15.[二维数组查找一个值。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15二维数组查找一个值)
 - [补充：插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充插入排序)
+- 补充：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
 - [补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
-- [补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0)
+- [补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0)
 
 ## iOS 内存管理
 - 1.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1讲一下-ios-内存管理的理解三种方案的结合)
@@ -101,6 +102,9 @@
 - 14.[说一下什么是 悬垂指针？什么是 野指针?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14说一下什么是-悬垂指针什么是-野指针)
 - 15.[内存管理默认的关键字是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15内存管理默认的关键字是什么)
 - 16.[内存中的5大区分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16内存中的5大区分别是什么)
+- 补充：iOS程序内存的每个分区怎么存储（举例说明）
+- 补充：block一般存在哪里（分ARC和MRC）
+- 补充：代码区存储的是什么？
 - 17.[是否了解 深拷贝 和 浅拷贝 的概念，集合类深拷贝如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17是否了解-深拷贝-和-浅拷贝-的概念集合类深拷贝如何实现)
 - 18.[BAD_ACCESS 在什么情况下出现?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18bad_access-在什么情况下出现)
 - 19.[讲一下 @dynamic 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19讲一下-dynamic-关键字)
@@ -587,6 +591,85 @@ __block int i = 0;
 #### 14.栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？
 #### 15.二维数组查找一个值。
 #### 补充：插入排序
+#### 补充：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+##### 方法一：最笨效率最低的办法，两个for循环，找出出现相同数字的次数
+
+```
+- (void)test1{
+    NSArray *array = @[@"1",@"1",@"2",@"2",@"3",@"3",@"4",@"4",@"5",@"6"];
+   
+    for (int i = 0; i < array.count; i++) {
+        NSString *itemi = array[i];
+         int count = 0;
+        for (int j = 0; j<array.count; j++) {
+             NSString *itemj = array[j];
+            if ([itemi isEqualToString:itemj]) {
+                count++;
+            }
+        }
+        if (count == 1) {
+            NSLog(@"只出现一次数为：%@", array[i]);
+        }
+    }
+}
+```
+##### 方法二：利用数组比较元素的方法，如果数组中没有出现该元素则添加，如果该元素出现了则删除该元素
+
+```
+- (void)test2{
+    NSArray *array = @[@"1",@"1",@"2",@"2",@"3",@"3",@"4",@"4",@"5",@"6"];
+    
+    NSMutableArray *mArray = [[NSMutableArray alloc] init];
+   
+    for (int i = 0; i < array.count; i++) {
+         NSString *item = array[i];
+        if (![mArray containsObject:item]) {
+            [mArray addObject:item];
+        }else{
+            [mArray removeObject:item];
+        }
+    }
+    NSLog(@"只出现一次数为：%@", mArray);
+}
+
+```
+##### 方法三：直接遍历整个数组，建成hash的数组。最后再遍历一次hash，取出对应key的数组有几个元素，如果有一个元素的key则是要找的只出现一次的元素。
+
+```
+- (void)test3{
+    NSArray *array = @[@"1",@"1",@"2",@"2",@"3",@"3",@"4",@"4",@"5",@"6"];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (int i = 0; i < array.count; i++) {
+        NSString *item = array[i];
+       // 如果字典中不存在该key
+        if (![[dict allKeys] containsObject:item]) {
+            NSMutableArray *mArray = [[NSMutableArray alloc] init];
+            [mArray addObject:item];
+            [dict setObject:mArray forKey:item];
+        }
+        else{
+            // 如果字典中存在key,则取出数组增加元素
+            NSMutableArray *mArray = [dict objectForKey:item];
+            [mArray addObject:item];
+        }
+        
+    }
+    
+    NSArray *keyArr = dict.allKeys;
+// 遍历字典，取出的数组如果只有一个元素的则是我们要找的
+    for (int i = 0; i < keyArr.count; i++) {
+        NSString *key = keyArr[i];
+        NSMutableArray *arr = [dict objectForKey:key];
+        if (arr.count == 1) {
+            NSLog(@"只出现一个数为：%@", key);
+        }
+    }
+    
+}
+```
+
+
 #### 补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）
 
 解释：两个鸡蛋一样，只有在达到某个楼层高度时，才会摔碎。可以假设这个摔碎临界楼层是N。
@@ -635,7 +718,7 @@ __block int i = 0;
 ![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/690)
 * 如果我们有M个鸡蛋，有k次机会，我们最大可以测试多少层楼？
 
-#### 补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+#### 补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。
 
 ##### 题解一
 - 对于排序的数组，数组中出现次数超过一半的数字一定会出现在数组的中间。于是先将数组排序，然后输出中位数即可。但是由于输入的数组不一定满足要求，所以别忘了检查得到的数字是否真的在数组中出现的次数超过一半。
@@ -938,7 +1021,27 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ### 13.函数返回一个对象时，会对对象 autorelease 么？为什么？
 ### 14.说一下什么是 悬垂指针？什么是 野指针?
 ### 15.内存管理默认的关键字是什么？
+
 ### 16.内存中的5大区分别是什么？
+- 栈区：编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。
+- 堆区：由程序员分配和释放，如果程序员不释放，程序结束时，可能会由操作系统回收 ，比如在iOS 中 alloc 都是存放在堆中。
+- 全局区：全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量存放在一块区域，未初始化的全局变量和静态变量在相邻的另一块区域，程序结束后由系统释放。
+- 文字常量区：存放常量字符串，程序结束后由系统释放程序结束释放。
+- 代码区：存放函数的二进制代码
+
+### 补充：iOS程序内存的每个分区怎么存储（举例说明）
+- 栈区：存放的局部变量、先进后出、一旦出了作用域就会被销毁；函数跳转地址，现场保护等，内存地址从高到低分配。
+- 堆区：堆区的地址是从低到高分配，通过程序员通过alloc手动分配。
+- 全局区：包含两个部分，未初始化区，初始化区域。全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域；
+- 代码区存放于低地址，栈区存放于高地址。区与区之间并不是连续的。堆区的内存是应用程序共享的，堆中的内存分配是系统负责的；当引用计数为0的时候，系统会回收该内存。
+
+### 补充：block一般存在哪里（分ARC和MRC）
+- 在 MRC 下，Block 默认是分配在栈上的，除非进行显式执行的copy方法，只要block没有引用外部的局部变量，block放在全局区里面
+- 在ARC的中，对象默认是用__strong修饰的，所以大部分情况下编译器都会将 block从栈自动复制到堆上。有一个特殊情况，如果仅仅定义了block没有赋值给变量的话，仍是在栈上。这种情况下随着作用域结束，block将会销毁回收。
+
+### 补充：代码区存储的是什么？
+- 代码区存放的是程序中函数编译后的CPU指令
+
 ### 17.是否了解 深拷贝 和 浅拷贝 的概念，集合类深拷贝如何实现？
 ### 18.BAD_ACCESS 在什么情况下出现?
 ### 19.讲一下 @dynamic 关键字？
@@ -1287,8 +1390,12 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
     * SDImageCache 在初始化的时候会注册一些消息通知， 在内存警告或退到后台的时 候清理内存图片缓存，应用结束的时候清理过期图片。
 #### 2.说一下SDWebImage的缓存策略？
 - 有一个专门的 Cache 分类用来处理图片的缓存。 这里面也有两个类 SDImageCache 和 SDImageCacheConfig。 大部分的缓存处理都在 SDImageCache 这个类中实现。
+- SDImageCache 中有一个叫做 memCache 的属性，它是一个 NSCache 对象，用于实现我们对图片的 Memory Cache，其实就是接受系统的内存警告通知，然后清除掉自身的图片缓存。Disk Cache，也就是文件缓存，SDWebImage 会将图片存放到 NSCachesDirectory目录中，然后为每一个缓存文件生成一个 md5 文件名, 存放到文件中。
 - Memory 和 Disk 双缓存
-    * 
+    * Memory(内存)中查找：SDImageCache 类的 queryDiskCacheForKey方法，查询图片缓存，queryDiskCacheForKey 方法内部， 先会查询 Memory Cache ，如果查找到就直接返回，反之进入下面的硬盘查找。
+    * Disk(硬盘) 中查找：如果 Memory Cache查找不到， 就会查询 Disk Cache，查询Disk Cache 的时候有一个小插曲，就是如果 Disk Cache 查询成功，还会把得到的图片再次设置到 Memory Cache 中。这样做可以最大化那些高频率展现图片的效率。如果找不到就进入下面的网络下载。
+    * 网路下载：请求网络使用的是imageDownloader属性，这个示例专门负责下载图片数据。如果下载失败， 会把失败的图片地址写入failedURLs集合，为什么要有这个 failedURLs 呢，因为SDWebImage默认会有一个对上次加载失败的图片拒绝再次加载的机制。也就是说，一张图片在本次会话加载失败了，如果再次加载就会直接拒绝，SDWebImage这样做可能是为了提高性能。如果下载图片成功了，接下来就会使用 [self.imageCache storeImage]方法将它写入缓存，同时也会写入硬盘，并且调用 completedBlock 告诉前端显示图片。
+    * Disk(硬盘)缓存清理策略：SDWebImage 会在每次 APP 结束的时候执行清理任务。清理缓存的规则分两步进行。第一步先清除掉过期的缓存文件。如果清除掉过期的缓存之后，空间还不够。那么就继续按文件时间从早到晚排序，先清除最早的缓存文件，直到剩余空间达到要求。
 
 #### 3.磁盘缓存时间，默认的缓存路径，怎么处理图片的名称?默认的超时时间是多少?最大并发数？
 #### 4.该框架内部对内存警告的处理方式?（或者问：当app接收到内存警告时，SDWebImage做了什么？）
@@ -1297,6 +1404,60 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 #### 7.保证错误的URL不会被尝试重新下载，使用什么来下载图片的 
 #### 8.sdwebimage是一个异步下载图片的三方，怎么保证线程安全的？
 #### 9.如果一个页面 加载图片很卡 ，什么原因，会跟sdwebimage有关吗，还是跟图片渲染有关？
+#### 补充：SDWebImage是如何做到Url不变的情况下，更新图片内容的？
+- SDWebImage它是基于URL作为Key来实现图片缓存机制的。大多数情况下，片与URL是一一对应的，即使服务器修改了图片也会相应的变更URL。但是在少数情况下，服务器修改了图片后不会变更相应的URL，也就是说图片本身的内容变了然而它的URL没有变化，那么按照对SDWebImage的常规使用方法的话，客户端肯定更新不到同一URL对应到服务器已变更的图片内容。
+- 客户端第一次请求图片时，Charles抓包得知response header里有一个名为Last-Modified、数据是时间戳的键值对。
+- 客户端第二次及以后请求图片时，通过Charles抓包发现，服务器返回304 not modified状态，说明服务器在接收客户端请求后通过某种判断逻辑得出结论：“客户端已缓存的图片与服务器图片都是最新的”，那么服务器如何判断的呢？
+- 通过查阅HTTP协议相关的资料得知，与服务器返回的Last-Modified相对应的request header里可以加一个名为If-Modified-Since的key，value即是服务器回传的服务端图片最后被修改的时间，第一次图片请求时If-Modified-Since的值为空，第二次及以后的客户端请求会把服务器回传的Last-Modified值作为If-Modified-Since的值传给服务器，这样服务器每次接收到图片请求时就将If-Modified-Since与Last-Modified进行比较，如果客户端图片已陈旧那么返回状态码200、Last-Modified、图片内容，客户端存储Last-Modified和图片；如果客户端图片是最新的那么返回304 Not Modified、不会返回Last-Modified、图片内容。
+- Apache比较时是看If-Modified-Since之后有没有更新图片，Nginx比较时是看If-Modified-Since与Last-Modified是否相等，所以对于Apache服务器环境客户端每次都要严格的存储服务器回传的Last-Modified以便下次请求时作为If-Modified-Since的值传给服务器，对于Nginx服务器环境客户端不必存储服务器回传的Last-Modified，每次请求时只需将图片自身的fileModificationDate作为If-Modified-Since的值传服务器即可。在实际开发中，如果遇到明明传了If-Modified-Since、服务器图片也变更了、但是客户端却请求不到最新的图片的情况时，那么就需要查看一下服务器对这两个时间戳的比较逻辑。
+- 那么，现在我们可以回到SDWebImage上来了。通过查看SDWebImageDownloader的源码得知，它开放了一个headersFilter的block，意在让开发者可以对所有图片请求追加一些额外的header，这正合我意。那么我们就可以在诸如AppDelegate didFinishLaunching的地方追加如下代码：
+
+```
+SDWebImageDownloader *imgDownloader = SDWebImageManager.sharedManager.imageDownloader;
+imgDownloader.headersFilter  = ^NSDictionary *(NSURL *url, NSDictionary *headers) {
+
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    NSString *imgKey = [SDWebImageManager.sharedManager cacheKeyForURL:url];
+    NSString *imgPath = [SDWebImageManager.sharedManager.imageCache defaultCachePathForKey:imgKey];
+    NSDictionary *fileAttr = [fm attributesOfItemAtPath:imgPath error:nil];
+
+    NSMutableDictionary *mutableHeaders = [headers mutableCopy];
+
+    NSDate *lastModifiedDate = nil;
+
+    if (fileAttr.count > 0) {
+        if (fileAttr.count > 0) {
+            lastModifiedDate = (NSDate *)fileAttr[NSFileModificationDate];
+        }
+
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    formatter.dateFormat = @"EEE, dd MMM yyyy HH:mm:ss z";
+
+    NSString *lastModifiedStr = [formatter stringFromDate:lastModifiedDate];
+    lastModifiedStr = lastModifiedStr.length > 0 ? lastModifiedStr : @"";
+    [mutableHeaders setValue:lastModifiedStr forKey:@"If-Modified-Since"];
+
+    return mutableHeaders;
+};
+
+```
+- 然后，加载图片的地方以前怎么写还是怎么写，但别忘了Option是SDWebImageRefreshCached
+
+```
+NSURL *imgURL = [NSURL URLWithString:@"http://handy-img-storage.b0.upaiyun.com/3.jpg"];  
+[[self imageView] sd_setImageWithURL:imgURL  
+                    placeholderImage:nil  
+                             options:SDWebImageRefreshCached];
+                             
+```
+- 经测试，服务器只修改图片不变更URL的时候，客户端也可以更新到最新的图片。
+从以上第一段代码内容可以看出我采用的是与ngix服务器比较逻辑对应的代码，BTW:我测试的服务器是又拍云，说明又拍云的比较逻辑是等与不等的关系判断，不是大小关系的判断。
+- 这里顺便说一下，如果服务器的环境是类似于Apache的比较逻辑时，客户端可以把Last-Modified存放在图片的名称上(这需要修改SDWebImage源码，不建议)，或者用一个plist文件存放图片key名称与时间的对应关系(这个不用修改源码)。
+- OK，到此这次的主题已得到完美解决。
+- 其实，在抓取服务器返回的数据包时，还发现response header中还有一个ETag，与之相对应的request header中可以追加一个If-None-Match的key，这对header与Last-Modified、If-Modified-Since的作用是相同的，即服务器是否需要返回最新的图片，当然它们在服务器端的判断逻辑应该是等与不等的判断，Etag在客户端的存储同样可以采用在plist文件中存放图片key名称与Etag的对应关系。
 
 ### 3.AFNetworking
 ### 4.SVProgressHub 
