@@ -80,7 +80,7 @@
 - 14.[栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14栈中储存着一组无序的数字不用遍历的方式如何找出最小值)
 - 15.[二维数组查找一个值。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15二维数组查找一个值)
 - [补充：插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充插入排序)
-- 补充：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+- [补充：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充给定一个非空整数数组除了某个元素只出现一次以外其余每个元素均出现两次找出那个只出现了一次的元素)
 - [补充：100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置？）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
 - [补充：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0或者是问给定一个大小为-n-的数组找到其中的众数众数是指在数组中出现次数大于--n2--的元素)
 
@@ -96,15 +96,16 @@
 - 9.[__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
 - 10.[说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
 - [补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
+- 补充：automic的实现机制；
 - 11.[ARC 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
 - 12.[ARC 在运行时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12arc-在运行时做了哪些工作)
 - 13.[函数返回一个对象时，会对对象 autorelease 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13函数返回一个对象时会对对象-autorelease-么为什么)
 - 14.[说一下什么是 悬垂指针？什么是 野指针?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14说一下什么是-悬垂指针什么是-野指针)
 - 15.[内存管理默认的关键字是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15内存管理默认的关键字是什么)
 - 16.[内存中的5大区分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16内存中的5大区分别是什么)
-- 补充：iOS程序内存的每个分区怎么存储（举例说明）
-- 补充：block一般存在哪里（分ARC和MRC）
-- 补充：代码区存储的是什么？
+- [补充：iOS程序内存的每个分区怎么存储（举例说明）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16内存中的5大区分别是什么)
+- [补充：block一般存在哪里（分ARC和MRC）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充block一般存在哪里分arc和mrc)
+- [补充：代码区存储的是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充代码区存储的是什么)
 - 17.[是否了解 深拷贝 和 浅拷贝 的概念，集合类深拷贝如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17是否了解-深拷贝-和-浅拷贝-的概念集合类深拷贝如何实现)
 - 18.[BAD_ACCESS 在什么情况下出现?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18bad_access-在什么情况下出现)
 - 19.[讲一下 @dynamic 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19讲一下-dynamic-关键字)
@@ -234,7 +235,7 @@
 [补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充使用异步请求的方式抓取一个网站的内容请考虑超时状态码的异常情况请用原生api或者socketcocoa-socket)
 - [补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充在网络请求中如何处理网络网速慢网络中断网络抖动等等网络问题)
 - [补充：https的缓存问题。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充https的缓存问题)
-- 补充：你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果
+- [补充：你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充你平时怎么解决网络请求的依赖关系当一个接口的请求需要依赖于另一个网络请求的结果)
 
 ## 多线程
 - [补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
@@ -1015,8 +1016,37 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ### 7.__weak 和 _Unsafe_Unretain 的区别？
 ### 8.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
 ### 9.__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
+
 ### 10.说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。
+- Strong：修饰符表示指向并持有该对象，其修饰对象的引用计数会加1。该对象只要引用计数不为0就不会被销毁。当然可以通过将变量强制赋值 nil 来进行销毁。
+- weak：修饰符指向但是并不持有该对象，引用计数也不会加1。在 Runtime 中对该属性进行了相关操作，无需处理，可以自动销毁。weak用来修饰对象，多用于避免循环引用的地方。weak 不可以修饰基本数据类型。
+- assign：主要用于修饰基本数据类型，例如NSInteger，CGFloat，存储在栈中，内存不用程序员管理。assign是可以修饰对象的，但是会出现问题。
+- copy：关键字和strong类似，copy多用于修饰有可变类型的不可变对象上NSString,NSArray,NSDictionary上。
+- __unsafe_unretain：类似于weak，但是当对象被释放后，指针已然保存着之前的地址，被释放后的地址变为僵尸对象，访问被释放的地址就会出问题，所以说他是不安全的。
+- __autoreleasing：将对象赋值给附有__autoreleasing修饰的变量等同于 ARC 无效时调用对象的autorelease方法,实质就是扔进了自动释放池。
+
 ### 补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
+- readwrite：可读可写特性,需要生成setter和getter方法时使用, 可被外界读取和修改；
+- readonly：只读特性,只会生成getter方法,只可被外界读取, 不能修改；
+- assign：赋值特性,作用于非OC对象的赋值,setter方法将参数传给变量；
+- retain：持有特性,他的setter方法会释放旧址,然后引用住新值, 并且将新值的引用计数+1,只能作用于OC对象(基本数据类型和CoreFoundation对象没有引用计数的概念, 因此不能用retain)
+- copy
+    * 复制特性,此属性只对遵守了NSCopying协议的对象类型有效,一般作用于NSString,NSArray,NSDictionary等有可变类型的对象
+    * 如果copy的是不可变类型,就不会开辟新的内存空间, 并且为指针拷贝, 指向同一个内存地址:浅拷贝
+    * 如果copy的是可变类型, 就会开辟新的内存空间, 并且将内容copy下来单独保存: 深拷贝
+    * 注意: 如果在系统中创建内容相同的不可变字符串, 系统会自动做出优化, 指向同一块内存空间
+- nonatomic
+    * 非原子性,即非线程安全的,不给变量提供线程锁保护, 这样会提高性能
+    * 在iOS的移动端,一般不会出现多线程访问同一个属性的情况,就算发生情况,atomic也不能完美的保证安全, 并且还需要手动增加线程锁,因此对于变量都应该使用nonatomic
+- atomic
+    * atomic会给属性加上一个同步锁,这是为了防止多线程同时访问属性出现异常需要添加的属性,但是这样会增加额外的内存开销并且在变编程习惯中,我们都应该避免多线程访问统一资源
+    * 即便是使用atomic,在多线程时也无法完全保证线程安全, 往往是需要手动添加线程锁
+
+### 补充：automic的实现机制；
+- 添加属性时使用了automic声明的，系统会自动在setter和getter方法中添加锁来实现读写安全。
+- 通过源码查看发现automic的原理是使用OSSPinLock来实现的，这种自旋锁会出现优先级反转导致死锁的问题，所以不推荐automic。
+- 在iOS 10之后系统推荐使用os_unfair_lock来代替OSSPinlock，并且automic在iOS10之后也使用os_unfair_lock来实现了。
+
 ### 11.ARC 在编译时做了哪些工作？
 ### 12.ARC 在运行时做了哪些工作？
 ### 13.函数返回一个对象时，会对对象 autorelease 么？为什么？
@@ -1157,11 +1187,57 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 ### 3.Http 和 Https 的区别？为什么更加安全？
 ### 4.Http的请求方式有哪些？Http 有什么特性？
 ### 5.解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？
+* tcp的三次握手
+    * 所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发，整个流程如下图所示：
+    * TCP三次握手
+        * 第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。
+        * 第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为 1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。
+        * 第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发 送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入 ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。
+* 补充：SYN攻击：
+    * 在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是 Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址 是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网 络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：
+  #netstat -nap | grep SYN_RECV
+* tcp的四次握手
+    * 所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，整个流程如下图所示：
+![image](https://upload-images.jianshu.io/upload_images/2744128-70075430fcb3ca99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+* TCP四次挥手
+    * 由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个 FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的 一方将执行主动关闭，而另一方则执行被动关闭，上图描述的即是如此。
+        * 第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。
+        * 第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。
+        * 第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。
+        * 第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。
+* 原因
+    * 因为连接时服务端收到了客户端的SYN连接请求的报文后, 可以直接发送SYN+ACK报文, 其中的ACK报文是用来响应, SYN报文是用来同步的。
+    * 而当关闭连接时, 服务端收到FIN报文后, 很可能并不会马上就关闭Socket连接, 所以只能先回复一个ACK报文, 告诉客户端, 你发的FIN报文我收到了, 只有等到服务器的所有报文发送完了, 服务端才会发送FIN报文, 所以才需要四次挥手。
+
 ### 6.GET 和 POST 请求的区别？
 ### 7.HTTP 请求报文 和 响应报文的结构？
 ### 8.什么是 Mimetype ?
 ### 9.数据传输的加密过程？
 ### 10.说一下 TCP/IP 五层模型的协议?
+* OSI七层模型：
+    * OSI七层网络模型称为开发式系统互联网参考模型，是一个逻辑上的定义和规范；
+    * 把网络从逻辑上分为七层，每一层都有相应的物理设备 
+    * OSI七层网络模型是一种框架式的设计方法，最主要的功能就是帮助不同类型的主机实现数据传输； 
+    * 最大的优点就是将服务、接口和协议三个概念明确的区分起来 
+    * 复杂且不实用；经常使用的是TCP/IP四层模型。
+* 各部分及功能
+    * 应用层：针对你特定应用的协议 
+    * 表示层：设备固定的数据格式和网络标准数据格式之间的转化 
+    * 会话层：通信管理，负责建立和单开通信连接，管理传输层 以下分层 
+    * 传输层：管理两个节点之间的数据传递。负责可靠传输 
+    * 网络层：地址管理和路由选择 
+    * 数据链路层：互联设备之间传送和识别数据帧 
+    * 物理层：界定连接器和网线之间的规格
+* TCP/IP四（五）层模型。
+    * 每一层都呼叫它的下一层提供的网络来完成自己的需求。（如果是四层模型数据链路层和物理层在一层） 
+    * 物理层：负责光电信号传递方式。集线器工作在物理层。以太网协议。 
+    * 数据链路层：负责设备之间的数据帧的传输和识别。交换机工作在数据链路层。例如网卡设备的驱动，帧同步，冲突检测，数据差错校验等工作。 
+    * 网络层：负责地址管理和路由选择。路由器工作在网络层。 
+    * 传输层：负责两台主机之间的数据传输。 
+    * 应用层：负责应用程序之间的沟通。网络编程主要针对的就是应用层。
+    * 传输层和网络层的封装在操作系统完成。应用层的封装在应用程序中完成。 
+数据链路层和物理层的封装在设备驱动程序与网络接口中完成。
+
 ### 11.说一下 OSI 七层模型的协议?
 ### 12.大文件下载 的功能有什么注意点？
 ### 13.断点续传 功能该怎么实现？
@@ -1307,6 +1383,22 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
 ## 多线程
 ### 补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
+- 好处：
+    - 使用线程可以把占据时间长的程序中的任务放到后台去处理
+    - 用户界面可以更加吸引人，这样比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度
+    - 程序的运行效率可能提高
+    - 在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。
+- 缺点：
+    - 如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换。
+    - 更多的线程需要更多的内存空间。
+    - 线程的中止需要考虑其对程序运行的影响。
+- 实现多线程的方法：
+    - NSObject的类方法 
+        - -(void)performSelectornBackground/OnMainThread:(SEL)aSelector withObject:(id)arg
+    - NSThread
+    - NSOperation
+    - GCD
+
 ### 1.NSThread相关知识？
 ### 2.GCD 相关知识？
 ### 3.NSOperation 和 NSOperationQueue相关知识？
@@ -1364,6 +1456,115 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 ### 1.说一下 NSNotification 的实现机制？
 ### 2.说一下 NSNotification 的特点。
 ### 3.简述 KVO 的实现机制。
+- 概述
+    * KVO，即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则其观察者就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。
+    * KVO其实也是“观察者”设计模式的一种应用。这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑与视图控制 这两个功能的解耦合。
+    
+- 实现原理
+    * KVO 是基于运行时实现的 isa   Class   NSKVONotifying_Person
+    * 基本的原理：当观察某对象A时，KVO机制动态创建一个对象A当前类的子类，并为这个新的子类重写了被观察属性keyPath的setter 方法。setter 方法随后负责通知观察对象属性的改变状况。
+    * 基本的步骤：
+        - 注册观察者，实施监听；
+        - 在回调方法中处理属性发生的变化；
+        - 移除观察者
+    * Apple 使用了 isa 混写（isa-swizzling）来实现 KVO 。当观察对象A时，KVO机制动态创建一个新的名为： NSKVONotifying_A的新类，该类继承自对象A的本类，且KVO为NSKVONotifying_A重写观察属性的setter 方法，setter 方法会负责在调用原 setter 方法之前和之后，通知所有观察对象属性值的更改情况。（备注： isa 混写（isa-swizzling）isa：is a kind of ； swizzling：混合，搅合；）
+        - NSKVONotifying_A类剖析：在这个过程，被观察对象的 isa 指针从指向原来的A类，被KVO机制修改为指向系统新创建的子类 NSKVONotifying_A类，来实现当前类属性值改变的监听；所以当我们从应用层面上看来，完全没有意识到有新的类出现，这是系统“隐瞒”了对KVO的底层实现过程，让我们误以为还是原来的类。但是此时如果我们创建一个新的名为“NSKVONotifying_A”的类()，就会发现系统运行到注册KVO的那段代码时程序就崩溃，因为系统在注册监听的时候动态创建了名为NSKVONotifying_A的中间类，并指向这个中间类了。（isa 指针的作用：每个对象都有isa 指针，指向该对象的类，它告诉 Runtime 系统这个对象的类是什么。所以对象注册为观察者时，isa指针指向新子类，那么这个被观察的对象就神奇地变成新子类的对象（或实例）了。） 因而在该对象上对 setter 的调用就会调用已重写的 setter，从而激活键值通知机制。
+        - 子类setter方法剖析：KVO的键值观察通知依赖于 NSObject 的两个方法:willChangeValueForKey:和 didChangevlueForKey:，在存取数值的前后分别调用2个方法：被观察属性发生改变之前，willChangeValueForKey:被调用，通知系统该 keyPath 的属性值即将变更；当改变发生后， didChangeValueForKey: 被调用，通知系统该 keyPath 的属性值已经变更；之后observeValueForKey:ofObject:change:context: 也会被调用。且重写观察属性的setter 方法这种继承方式的注入是在运行时而不是编译时实现的。
+
+- KVC与KVO的不同？
+    * KVC(键值编码)，即Key-Value Coding，一个非正式的Protocol，使用字符串(键)访问一个对象实例变量的机制。而不是通过调用Setter、Getter方法等显式的存取方式去问。
+    * KVO(键值监听)，即Key-Value Observing，它提供一种机制,当指定的对象的属性被修改后,对象就会接受到通知，前提是执行了setter方法、或者使用了KVC赋值。
+
+- 和notification(通知)的区别？
+    * notification比KVO多了发送通知的一步。两者都是一对多，但是对象之间直接的交互，notification明显得多，需要notificationCenter来做为中间交互。而KVO如我们介绍的，设置观察者->处理属性变化，至于中间通知这一环，则隐秘多了，只留一句“交由系统通知”，具体的可参照以上实现过程的剖析。
+notification的优点是监听不局限于属性的变化，还可以对多种多样的状态变化进行监听，监听范围广，例如键盘、前后台等系统通知的使用也更显灵活方便。
+
+- 与delegate的不同？
+    * 和delegate一样，KVO和NSNotification的作用都是类与类之间的通信。但是与delegate不同的是：
+这两个都是负责发送接收通知，剩下的事情由系统处理，所以不用返回值；而delegate 则需要通信的对象通过变量(代理)联系；
+delegate一般是一对一，而这两个可以一对多。
+
+- 总结
+    * 对比其他的回调方式，KVO机制的运用的实现，更多的由系统支持，相比notification、delegate等更简洁些，并且能够提供观察属性的最新值以及原始值；但是相应的在创建子类、重写方法等等方面的内存消耗是很巨大的。所以对于两个类之间的通信，我们可以根据实际开发的环境采用不同的方法，使得开发的项目更加简洁实用。
+    * 另外需要注意的是，由于这种继承方式的注入是在运行时而不是编译时实现的，如果给定的实例没有观察者，那么KVO不会有任何开销，因为此时根本就没有KVO代码存在。但是即使没有观察者，委托和NSNotification还是得工作，这也是KVO此处零开销观察的优势。
+    * 异步:监听通知 主线程:发出通知 接收通知代码在主线程
+    * 主线程:监听通知 异步:发出通知 接收通知代码在异步
+    * 注意:在接收通知代码中 可以加上主队列任务
+    * 总结:接收通知代码 由 发出通知线程决定, KVO也一样
+
+- 代码
+```
+#import "ViewController.h"
+#import "Person.h"
+
+@interface ViewController ()
+/** p1 */
+@property (strong, nonatomic) Person *p1;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // 1.什么是通知
+    
+    // 3个对象
+    self.p1 = [[Person alloc] init];
+    self.p1.name = @"p1";
+    //打印监听前类信息
+    [p1 printInfo];
+    // KVO是监听对象的属性值的改变的
+    [self.p1 addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    self.p1.name = @"123";
+    //打印监听后类信息
+     [p1 printInfo];
+     [p1 removeObserver:self forKeyPath:@"name"];
+     //打印移除监听后类信息
+     [p1 printInfo];
+}
+
+// 这个方法时属于 NSObject 类的，任何对象都可以作为观察者
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    NSLog(@"监听到了%@的%@属性发生了改变", object, keyPath);
+    NSLog(@"%@", change);
+}
+
+@end
+
+person类方法：
+
+-(void)printInfo
+{
+    NSLog(@"isa:%@, supper class:%@", NSStringFromClass(object_getClass(self)),
+          class_getSuperclass(object_getClass(self)));
+    
+    NSLog(@"self:%@, [self superclass]:%@", self, [self superclass]);
+    
+    NSLog(@"age setter function pointer:%p", class_getMethodImplementation(object_getClass(self), @selector(setAge:)));
+    
+    NSLog(@"name setter function pointer:%p", class_getMethodImplementation(object_getClass(self), @selector(setName:)));
+    NSLog(@"printInfo function pointer:%p", class_getMethodImplementation(object_getClass(self), @selector(printInfo)));
+}
+```
+- KVO为子类的观察者属性重写调用存取方法的工作原理在代码中相当于：
+    * 上述例子中，当 p1.name 的值改变时，p1对象的 isa 指针会指向 NSKVONotifying_Person，意味着，在程序运行时，会动态生成一个 NSKVONotifying_Person 类，该类继承于 Person，而且该类中也有个 -setName: 方法，方法中在设置 name 的同时实现了：
+```
+- (void)setName:(NSString *)name
+{
+    [super setName:name];
+    
+    // 这两个方法底层会调用observer的- (void)observeValueForKeyPath: ofObject: change: context:这个方法
+    [self willChangeValueForKey:@"age"];
+    [self didChangeValueForKey:@"age"];
+}
+
+```
+- 观察者观察的是属性，只有遵循 KVO 变更属性值的方式才会执行KVO的回调方法，例如是否执行了setter方法、或者是否使用了KVC赋值。
+如果赋值没有通过setter方法或者KVC，而是直接修改属性对应的成员变量，例如：仅调用_name = @"newName"，这时是不会触发kvo机制，更加不会调用回调方法的。
+所以使用KVO机制的前提是遵循 KVO 的属性设置方式来变更属性值。
+
 ### 4.KVO 在使用过程中有哪些注意点？有没有使用过其他优秀的 KVO 三方替代框架？
 ### 5.简述 KVO 的注册依赖键是什么？
 ### 6.如何做到 KVO 手动通知？
