@@ -874,9 +874,9 @@ uintptr_t objc_object::sidetable_release(bool performDealloc)
 ```
 release过程：查找map，对引用计数减1，如果引用计数小于阈值，则调用SEL_dealloc
 
-#### 引用计数如何储存（三种方案的结合）
+#### 关于内存管理的方案（三种方案的结合）
 
-* 第一种方案：TaggedPointer
+* 第一种方案：Tagged Pointer（标记指针）
     - 一个普通的iOS程序，如果没有Tagged Pointer对象，从32位机器迁移到64位机器中后，虽然逻辑没有任何变化，但像NSNumber、NSDate一类的对象所占用的内存会翻倍，进而浪费内存。为了存储和访问一个NSNumber对象，我们需要在堆上为其分配内存，另外还要维护它的引用计数，管理它的生命期。这些都给程序增加了额外的逻辑，造成运行效率上的损失。为了改进上面提到的内存占用和效率问题，苹果提出了Tagged Pointer对象。
     - 我们将一个对象的指针拆成两部分，一部分直接保存数据，另一部分作为特殊标记，表示这是一个特别的指针，不指向任何一个地址。
     - Tagged Pointer特点
@@ -1535,6 +1535,95 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
 ### 补充：runtime如何通过selector找到对应的IMP地址？
 - 每一个类对象中都一个方法列表,方法列表中记录着方法的名称,方法实现,以及参数类型,其实selector本质就是方法名称,通过这个方法名称就可以在方法列表中找到对应的方法实现.
 
+### 补充：使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？
+- 无论在MRC下还是ARC下均不需要，被关联的对象在生命周期内要比对象本身释放的晚很多，它们会在被 NSObject -dealloc 调用的object_dispose()方法中释放。
+
+```
+1、调用 -release ：引用计数变为零
+对象正在被销毁，生命周期即将结束. 
+不能再有新的 __weak 弱引用，否则将指向 nil.
+调用 [self dealloc]
+
+2、 父类调用 -dealloc 
+继承关系中最直接继承的父类再调用 -dealloc 
+如果是 MRC 代码 则会手动释放实例变量们（iVars）
+继承关系中每一层的父类 都再调用 -dealloc
+
+>3、NSObject 调 -dealloc 
+只做一件事：调用 Objective-C runtime 中object_dispose() 方法
+
+>4. 调用 object_dispose()
+为 C++ 的实例变量们（iVars）调用 destructors
+为 ARC 状态下的 实例变量们（iVars） 调用 -release 
+解除所有使用 runtime Associate方法关联的对象 
+解除所有 __weak 引用 
+调用 free()
+
+```
+### 补充：runtime如何实现weak变量的自动置nil？知道SideTable吗？
+- runtime 对注册的类会进行布局，对于 weak 修饰的对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
+- 更细一点的回答：
+    * 初始化时：runtime会调用objc_initWeak函数，初始化一个新的weak指针指向对象的地址。
+    * 添加引用时：objc_initWeak函数会调用objc_storeWeak() 函数，objc_storeWeak()的作用是更新指针指向，创建对应的弱引用表。
+    * 释放时,调用clearDeallocating函数。clearDeallocating函数首先根据对象地址获取所有weak指针地址的数组，然后遍历这个数组把其中的数据设为nil，最后把这个entry从weak表中删除，最后清理对象的记录。
+- SideTable结构体是负责管理类的引用计数表和weak表
+#### 详解：
+##### 初始化时：runtime会调用objc_initWeak函数，初始化一个新的weak指针指向对象的地址。
+
+```
+{
+    NSObject *obj = [[NSObject alloc] init];
+    id __weak obj1 = obj;
+}
+```
+- 当我们初始化一个weak变量时，runtime会调用 NSObject.mm 中的objc_initWeak函数。
+
+```
+// 编译器的模拟代码
+ id obj1;
+ objc_initWeak(&obj1, obj);
+/*obj引用计数变为0，变量作用域结束*/
+ objc_destroyWeak(&obj1);
+```
+- 通过objc_initWeak函数初始化“附有weak修饰符的变量（obj1）”，在变量作用域结束时通过objc_destoryWeak函数释放该变量（obj1）。
+##### 添加引用时：objc_initWeak函数会调用objc_storeWeak() 函数，objc_storeWeak()的作用是更新指针指向，创建对应的弱引用表。
+- objc_initWeak函数将“附有weak修饰符的变量（obj1）”初始化为0（nil）后，会将“赋值对象”（obj）作为参数，调用objc_storeWeak函数。
+
+```
+obj1 = 0；
+obj_storeWeak(&obj1, obj);
+```
+- 也就是说：weak 修饰的指针默认值是 nil （在Objective-C中向nil发送消息是安全的）然后obj_destroyWeak函数将0（nil）作为参数，调用objc_storeWeak函数。
+
+```
+objc_storeWeak(&obj1, 0);
+```
+- 前面的源代码与下列源代码相同。
+
+```
+// 编译器的模拟代码
+id obj1;
+obj1 = 0;
+objc_storeWeak(&obj1, obj);
+/* ... obj的引用计数变为0，被置nil ... */
+objc_storeWeak(&obj1, 0);
+```
+- objc_storeWeak函数把第二个参数的赋值对象（obj）的内存地址作为键值，将第一个参数__weak修饰的属性变量（obj1）的内存地址注册到weak表中。如果第二个参数（obj）为0（nil），那么把变量（obj1）的地址从weak表中删除。由于一个对象可同时赋值给多个附有__weak修饰符的变量中，所以对于一个键值，可注册多个变量的地址。可以把objc_storeWeak(&a,b)理解为：objc_storeWeak(value,key)，并且当key变nil，将value置nil。在b非nil时，a和b指向同一个内存地址，在b变nil时，a变nil。此时向a发送消息不会崩溃：在Objective-C中向nil发送消息是安全的。
+##### 释放时,调用clearDeallocating函数。clearDeallocating函数首先根据对象地址获取所有weak指针地址的数组，然后遍历这个数组把其中的数据设为nil，最后把这个entry从weak表中删除，最后清理对象的记录。
+- 当weak引用指向的对象被释放时，又是如何去处理weak指针的呢？当释放对象时，其基本流程如下：
+    * 调用objc_release
+    * 因为对象的引用计数为0，所以执行dealloc
+    * 在dealloc中，调用了_objc_rootDealloc函数
+    * 在_objc_rootDealloc中，调用了object_dispose函数
+    * 调用objc_destructInstance
+    * 最后调用objc_clear_deallocating
+- 对象被释放时调用的objc_clear_deallocating函数:
+    * 从weak表中获取废弃对象的地址为键值的记录
+    * 将包含在记录中的所有附有weak修饰符变量的地址，赋值为nil
+    * 将weak表中该记录删除
+    * 从引用计数表中删除废弃对象的地址为键值的记录
+- 其实Weak表是一个hash（哈希）表，Key是weak所指对象的地址，Value是weak指针的地址（这个地址的值是所指对象指针的地址）数组。
+
 ## Runloop
 ### 补充：RunLoop概念
 - RunLoop是通过内部维护的事件循环(Event Loop)来对事件/消息进行管理的一个对象。
@@ -1858,7 +1947,48 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
     * 直接使用GCD替代！
 
 ### 11.AFNetworking 中如何运用 Runloop?
+- AFURLConnectionOperation 这个类是基于 NSURLConnection 构建的，其希望能在后台线程接收 Delegate 回调。为此 AFNetworking 单独创建了一个线程，并在这个线程中启动了一个 RunLoop：
+
+```
++ (void)networkRequestThreadEntryPoint:(id)__unused object {
+    @autoreleasepool {
+        [[NSThread currentThread] setName:@"AFNetworking"];
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        [runLoop run];
+    }
+}
+
++ (NSThread *)networkRequestThread {
+    static NSThread *_networkRequestThread = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _networkRequestThread = [[NSThread alloc] initWithTarget:self selector:@selector(networkRequestThreadEntryPoint:) object:nil];
+        [_networkRequestThread start];
+    });
+    return _networkRequestThread;
+}
+```
+- RunLoop 启动前内部必须要有至少一个 Timer/Observer/Source，所以 AFNetworking 在 [runLoop run] 之前先创建了一个新的 NSMachPort 添加进去了。通常情况下，调用者需要持有这个 NSMachPort (mach_port) 并在外部线程通过这个 port 发送消息到 loop 内；但此处添加 port 只是为了让 RunLoop 不至于退出，并没有用于实际的发送消息。
+
+```
+- (void)start {
+    [self.lock lock];
+    if ([self isCancelled]) {
+        [self performSelector:@selector(cancelConnection) onThread:[[self class] networkRequestThread] withObject:nil waitUntilDone:NO modes:[self.runLoopModes allObjects]];
+    } else if ([self isReady]) {
+        self.state = AFOperationExecutingState;
+        [self performSelector:@selector(operationDidStart) onThread:[[self class] networkRequestThread] withObject:nil waitUntilDone:NO modes:[self.runLoopModes allObjects]];
+    }
+    [self.lock unlock];
+}
+```
+- 当需要这个后台线程执行任务时，AFNetworking 通过调用 [NSObject performSelector:onThread:..] 将这个任务扔到了后台线程的 RunLoop 中。
+
 ### 12.PerformSelector 的实现原理？
+- 当调用 NSObject 的 performSelecter:afterDelay: 后，实际上其内部会创建一个Timer并添加到当前线程的 RunLoop 中。所以如果当前线程没有RunLoop，则这个方法会失效。
+- 当调用 performSelector:onThread:时，实际上其会创建一个 Timer加到对应的线程去，同样的，如果对应线程没有 RunLoop 该方法也会失效。
+
 ### 13.利用 runloop 解释一下页面的渲染的过程？
 - 当我们调用 [UIView setNeedsDisplay]时，这时会调用当前 View.layer 的 [view.layer setNeedsDisplay]方法。
 - 这等于给当前的layer打上了一个脏标记，而此时并没有直接进行绘制工作。而是会到当前的Runloop即将休眠，也就是 beforeWaiting 时才会进行绘制工作。
@@ -1870,6 +2000,22 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 - 至此绘制的过程结束。
 
 ### 14.如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？
+* 为当前线程开启一个RunLoop（第一次调用 [NSRunLoop currentRunLoop]方法时实际是会先去创建一个RunLoop）
+* 向当前RunLoop中添加一个Port/Source等维持RunLoop的事件循环（如果RunLoop的mode中一个item都没有，RunLoop会退出）
+* 启动该RunLoop
+
+```
+@autoreleasepool {
+        
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        
+        [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        
+        [runLoop run];
+        
+    }
+```
+
 ### 15.为什么 NSTimer 有时候不好使？（不同类型的Mode）
 
 - 因为创建的 NSTimer 默认是被加入到了 defaultMode，所以当 Runloop 的 Mode 变化时，当前的 NSTimer 就不会工作了。
@@ -1886,6 +2032,9 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 - Timer就被添加到多个mode上，这样即使RunLoop由kCFRunLoopDefaultMode切换到UITrackingRunLoopMode下，也不会影响接收Timer事件
 
 ### 16.PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
+- 不起作用，子线程默认没有 Runloop，也就没有 Timer。
+- 解决的办法是可以使用 GCD 来实现：Dispatch_after
+
 ### 17.什么是异步绘制？
 - 异步绘制，就是可以在子线程把需要绘制的图形，提前在子线程处理好。将准备好的图像数据直接返给主线程使用，这样可以降低主线程的压力。
 - 异步绘制的过程
@@ -2197,6 +2346,8 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 ### 补充：iOS线程间怎么通信？
 ### 补充：Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
 ### 补充：请说明同步请求与异步请求的区别?
+### 补充：如何把异步线程转换成同步任务进行单元测试？
+
 
 
 ## 项目架构
@@ -2216,6 +2367,12 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
 ## 消息传递的方式
 ### 1.说一下 NSNotification 的实现机制？
+- 使用观察者模式来实现的用于跨层传递信息的机制。传递方式是一对多的。
+- 如果实现通知机制？
+    * 应用服务提供商从服务器端把要发送的消息和设备令牌（device token）发送给苹果的消息推送服务器APNs。
+    * APNs根据设备令牌在已注册的设备（iPhone、iPad、iTouch、mac等）查找对应的设备，将消息发送给相应的设备。
+    * 客户端设备接将接收到的消息传递给相应的应用程序，应用程序根据用户设置弹出通知消息。
+
 ### 2.说一下 NSNotification 的特点。
 ### 3.简述 KVO 的实现机制。
 - 概述
@@ -2334,11 +2491,263 @@ person类方法：
 ### 8.给实例变量赋值时，是否会触发 KVO?
 ### 9.Delegate通常用什么关键字修饰？为什么？
 ### 10通知 和 代理 有什么区别？各自适应的场景？
+#### 分类
+- 分类的作用？
+    * 声明私有方法，分解体积大的类文件，把framework的私有方法公开
+- 分类的特点
+    * 运行时决议，可以为系统类添加分类 。
+    * 说得详细些，在运行时时期，将 Category 中的实例方法列表、协议列表、属性列表添加到主类中后（所以Category中的方法在方法列表中的位置是在主类的同名方法之前的），然后会递归调用所有类的 load 方法，这一切都是在main函数之前执行的。
+- 分类可以添加哪些内容？
+    * 实例方法，类方法，协议，属性（添加getter和setter方法，并没有实例变量，添加实例变量需要用关联对象）
+- 如果工程里有两个分类A和B，两个分类中有一个同名的方法，哪个方法最终生效？
+    * 取决于分类的编译顺序，最后编译的那个分类的同名方法最终生效，而之前的都会被覆盖掉(这里并不是真正的覆盖，因为其余方法仍然存在，只是访问不到，因为在动态添加类的方法的时候是倒序遍历方法列表的，而最后编译的分类的方法会放在方法列表前面，访问的时候就会先被访问到，同理如果声明了一个和原类方法同名的方法，也会覆盖掉原类的方法)。
+- 如果声明了两个同名的分类会怎样？
+    * 会报错，所以第三方的分类，一般都带有命名前缀
+- 分类能添加成员变量吗？
+    * 不能。只能通过关联对象(objc_setAssociatedObject)来模拟实现成员变量，但其实质是关联内容，所有对象的关联内容都放在同一个全局容器哈希表中:AssociationsHashMap,由AssociationsManager统一管理。
+#### 扩展
+- 一般用扩展做什么？
+    * 声明私有属性，声明方法（没什么意义），声明私有成员变量
+- 扩展的特点
+    * 编译时决议，只能以声明的形式存在，多数情况下寄生在宿主类的.m中，不能为系统类添加扩展。
+#### 代理（Delegate）
+- 代理是一种设计模式，以@protocol形式体现，一般是一对一传递。
+- 一般以weak关键词以规避循环引用。
+
 ### 11.__block 的解释以及在 ARC 和 MRC 下有什么不同？
 ### 12.Block 的内存管理。
 ### 13.Block 自动截取变量。
+#### 局部变量截获 是值截获。 比如:
+
+```
+    NSInteger num = 3;
+    
+    NSInteger(^block)(NSInteger) = ^NSInteger(NSInteger n){
+        
+        return n*num;
+    };
+    
+    num = 1;
+    
+    NSLog(@"%zd",block(2));
+```
+- 这里的输出是6而不是2，原因就是对局部变量num的截获是值截获。
+- 同样，在block里如果修改变量num，也是无效的，甚至编译器会报错。
+
+```
+NSMutableArray * arr = [NSMutableArray arrayWithObjects:@"1",@"2", nil];
+    
+    void(^block)(void) = ^{
+        
+        NSLog(@"%@",arr);//局部变量
+        
+        [arr addObject:@"4"];
+    };
+    
+    [arr addObject:@"3"];
+    
+    arr = nil;
+    
+    block();
+```
+- 打印为1，2，3
+- 局部对象变量也是一样，截获的是值，而不是指针，在外部将其置为nil，对block没有影响，而该对象调用方法会影响
+#### 局部静态变量截获 是指针截获。
+
+```
+static  NSInteger num = 3;
+    
+    NSInteger(^block)(NSInteger) = ^NSInteger(NSInteger n){
+        
+        return n*num;
+    };
+    
+    num = 1;
+    
+    NSLog(@"%zd",block(2));
+```
+- 输出为2，意味着num=1这里的修改num值是有效的，即是指针截获。
+- 同样，在block里去修改变量m，也是有效的。
+#### 全局变量，静态全局变量截获：不截获,直接取值。
+- 我们同样用clang编译看下结果。
+
+```
+static NSInteger num3 = 300;
+
+NSInteger num4 = 3000;
+
+- (void)blockTest
+{
+    NSInteger num = 30;
+    
+    static NSInteger num2 = 3;
+    
+    __block NSInteger num5 = 30000;
+    
+    void(^block)(void) = ^{
+        
+        NSLog(@"%zd",num);//局部变量
+        
+        NSLog(@"%zd",num2);//静态变量
+        
+        NSLog(@"%zd",num3);//全局变量
+        
+        NSLog(@"%zd",num4);//全局静态变量
+        
+        NSLog(@"%zd",num5);//__block修饰变量
+    };
+    
+    block();
+}
+```
+- 编译后
+
+```
+struct __WYTest__blockTest_block_impl_0 {
+  struct __block_impl impl;
+  struct __WYTest__blockTest_block_desc_0* Desc;
+  NSInteger num;//局部变量
+  NSInteger *num2;//静态变量
+  __Block_byref_num5_0 *num5; // by ref//__block修饰变量
+  __WYTest__blockTest_block_impl_0(void *fp, struct __WYTest__blockTest_block_desc_0 *desc, NSInteger _num, NSInteger *_num2, __Block_byref_num5_0 *_num5, int flags=0) : num(_num), num2(_num2), num5(_num5->__forwarding) {
+    impl.isa = &_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
+};
+```
+-  impl.isa = &_NSConcreteStackBlock;这里注意到这一句，即说明该block是栈block）
+可以看到局部变量被编译成值形式，而静态变量被编成指针形式，全局变量并未截获。而__block修饰的变量也是以指针形式截获的，并且生成了一个新的结构体对象：
+
+```
+struct __Block_byref_num5_0 {
+  void *__isa;
+__Block_byref_num5_0 *__forwarding;
+ int __flags;
+ int __size;
+ NSInteger num5;
+};
+```
+- 该对象有个属性：num5，即我们用__block修饰的变量。这里__forwarding是指向自身的(栈block)。一般情况下，如果我们要对block截获的局部变量进行赋值操作需添加__block修饰符，而对全局变量，静态变量是不需要添加__block修饰符的。另外，block里访问self或成员变量都会去截获self。
+
 ### 14.Block 处理循环引用。
 ### 15.Block 有几种类型？分别是什么？
+- 分为全局Block(_NSConcreteGlobalBlock)、栈Block(_NSConcreteStackBlock)、堆Block(_NSConcreteMallocBlock)三种形式其中栈Block存储在栈(stack)区，堆Block存储在堆(heap)区，全局Block存储在已初始化数据(.data)区
+- 不使用外部变量的block是全局block
+- 比如：
+
+```
+NSLog(@"%@",[^{
+        NSLog(@"globalBlock");
+    } class]);
+```
+- 输出：
+
+```
+__NSGlobalBlock__
+```
+- 使用外部变量并且未进行copy操作的block是栈block
+- 比如
+
+```
+NSInteger num = 10;
+    NSLog(@"%@",[^{
+        NSLog(@"stackBlock:%zd",num);
+    } class]);
+```
+- 输出：
+
+```
+__NSStackBlock__
+```
+- 日常开发常用于这种情况:
+
+```
+[self testWithBlock:^{
+    NSLog(@"%@",self);
+}];
+
+- (void)testWithBlock:(dispatch_block_t)block {
+    block();
+
+    NSLog(@"%@",[block class]);
+}
+```
+- 对栈block进行copy操作，就是堆block，而对全局block进行copy，仍是全局block
+    * 比如堆1中的全局进行copy操作，即赋值：
+
+```
+void (^globalBlock)(void) = ^{
+        NSLog(@"globalBlock");
+    };
+
+ NSLog(@"%@",[globalBlock class]);
+```
+- 输出：
+
+```
+__NSGlobalBlock__
+```
+- 仍是全局block
+- 而对2中的栈block进行赋值操作：
+
+```
+NSInteger num = 10;
+
+void (^mallocBlock)(void) = ^{
+
+        NSLog(@"stackBlock:%zd",num);
+    };
+
+NSLog(@"%@",[mallocBlock class]);
+```
+- 输出：
+
+```
+__NSMallocBlock__
+```
+- 对栈blockcopy之后，并不代表着栈block就消失了，左边的mallock是堆block，右边被copy的仍是栈block
+- 比如:
+
+```
+[self testWithBlock:^{
+    
+    NSLog(@"%@",self);
+}];
+
+- (void)testWithBlock:(dispatch_block_t)block
+{
+    block();
+    
+    dispatch_block_t tempBlock = block;
+    
+    NSLog(@"%@,%@",[block class],[tempBlock class]);
+}
+```
+- 输出：
+
+```
+__NSStackBlock__,__NSMallocBlock__
+```
+- 即如果对栈Block进行copy，将会copy到堆区，对堆Block进行copy，将会增加引用计数，对全局Block进行copy，因为是已经初始化的，所以什么也不做。
+- 另外，__block变量在copy时，由于__forwarding的存在，栈上的__forwarding指针会指向堆上的__forwarding变量，而堆上的__forwarding指针指向其自身，所以，如果对__block的修改，实际上是在修改堆上的__block变量。
+- 即__forwarding指针存在的意义就是，无论在任何内存位置，都可以顺利地访问同一个__block变量。
+- 另外由于block捕获的__block修饰的变量会去持有变量，那么如果用__block修饰self，且self持有block，并且block内部使用到__block修饰的self时，就会造成多循环引用，即self持有block，block 持有__block变量，而__block变量持有self，造成内存泄漏。
+- 比如:
+
+```
+__block typeof(self) weakSelf = self;
+    
+    _testBlock = ^{
+        
+        NSLog(@"%@",weakSelf);
+    };
+    
+    _testBlock();
+```
+- 如果要解决这种循环引用，可以主动断开__block变量对self的持有，即在block内部使用完weakself后，将其置为nil，但这种方式有个问题，如果block一直不被调用，那么循环引用将一直存在。所以，我们最好还是用__weak来修饰self
+
 ### 16.说一下什么是Block?
 ### 17.Dispatch_block_t这个有没有用过？解释一下？
 ### 补充：Block 用什么修饰？copy，assign，strong有什么区别？
@@ -2456,6 +2865,16 @@ person类方法：
 ### 13.桥接模式
 ### 14.代理委托模式
 ### 15.单例模式
+### 补充：单例弊端？
+- 优点：
+    * 一个类只被实例化一次，提供了对唯一实例的受控访问。
+    * 节省系统资源
+    * 允许可变数目的实例。
+- 缺点：
+    * 一个类只有一个对象，可能造成责任过重，在一定程度上违背了“单一职责原则”。
+    * 由于单利模式中没有抽象层，因此单例类的扩展有很大的困难。
+    * 滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为的单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；如果实例化的对象长时间不被利用，系统会认为是垃圾而被回收，这将导致对象状态的丢失。
+
 ### 16.类工厂模式
 
 
@@ -2624,6 +3043,34 @@ NSURL *imgURL = [NSURL URLWithString:@"http://handy-img-storage.b0.upaiyun.com/3
 ### 5.Texture（ASDK）
 
 ## iOS逆向及安全
+### 补充：怎么防止反编译？
+- 本地数据加密。
+    * iOS应用防反编译加密技术之一：对NSUserDefaults，sqlite存储文件数据加密，保护帐号和关键信息
+- URL编码加密。
+    * iOS应用防反编译加密技术之二：对程序中出现的URL进行编码加密，防止URL被静态分析
+- 网络传输数据加密。
+    * iOS应用防反编译加密技术之三：对客户端传输数据提供加密方案，有效防止通过网络接口的拦截获取数据
+- 方法体，方法名高级混淆。
+    * iOS应用防反编译加密技术之四：对应用程序的方法名和方法体进行混淆，保证源码被逆向后无法解析代码
+- 程序结构混排加密。
+    * iOS应用防反编译加密技术之五：对应用程序逻辑结构进行打乱混排，保证源码可读性降到最低
+
+### 补充：项目中网络层如何做安全处理？
+- 尽量使用https
+    * https可以过滤掉大部分的安全问题。https在证书申请，服务器配置，性能优化，客户端配置上都需要投入精力，所以缺乏安全意识的开发人员容易跳过https，或者拖到以后遇到问题再优化。https除了性能优化麻烦一些以外其他都比想象中的简单，如果没精力优化性能，至少在注册登录模块需要启用https，这部分业务对性能要求比较低。
+- 不要传输明文密码
+    * 不知道现在还有多少app后台是明文存储密码的。无论客户端，server还是网络传输都要避免明文密码，要使用hash值。客户端不要做任何密码相关的存储，hash值也不行。存储token进行下一次的认证，而且token需要设置有效期，使用refresh，token去申请新的token。
+- Post并不比Get安全
+    * 事实上，Post和Get一样不安全，都是明文。参数放在QueryString或者Body没任何安全上的差别。在Http的环境下，使用Post或者Get都需要做加密和签名处理。
+- 不要使用301跳转
+    * 301跳转很容易被Http劫持攻击。移动端http使用301比桌面端更危险，用户看不到浏览器地址，无法察觉到被重定向到了其他地址。如果一定要使用，确保跳转发生在https的环境下，而且https做了证书绑定校验。
+- http请求都带上MAC
+    * 所有客户端发出的请求，无论是查询还是写操作，都带上MAC（Message Authentication Code）。MAC不但能保证请求没有被篡改（Integrity），还能保证请求确实来自你的合法客户端（Signing）。当然前提是你客户端的key没有被泄漏，如何保证客户端key的安全是另一个话题。MAC值的计算可以简单的处理为hash（request params＋key）。带上MAC之后，服务器就可以过滤掉绝大部分的非法请求。MAC虽然带有签名的功能，和RSA证书的电子签名方式却不一样，原因是MAC签名和签名验证使用的是同一个key，而RSA是使用私钥签名，公钥验证，MAC的签名并不具备法律效应。
+- http请求使用临时密钥
+    * 高延迟的网络环境下，不经优化https的体验确实会明显不如http。在不具备https条件或对网络性能要求较高且缺乏https优化经验的场景下，http的流量也应该使用AES进行加密。AES的密钥可以由客户端来临时生成，不过这个临时的AES key需要使用服务器的公钥进行加密，确保只有自己的服务器才能解开这个请求的信息，当然服务器的response也需要使用同样的AES key进行加密。由于http的应用场景都是由客户端发起，服务器响应，所以这种由客户端单方生成密钥的方式可以一定程度上便捷的保证通信安全。
+- AES使用CBC模式
+    * 不要使用ECB模式，记得设置初始化向量，每个block加密之前要和上个block的秘文进行运算。
+
 ## Coretext
 ## 项目组件化
 ### 1.说一下你之前项目的组件化方案？
@@ -2664,6 +3111,41 @@ NSURL *imgURL = [NSURL URLWithString:@"http://handy-img-storage.b0.upaiyun.com/3
 
 ### 2.如何使用 `Instruments` 进行性能调优？(Time Profiler、Zombies、Allocations、Leaks)
 ### 3.如何优化 `APP` 的启动时间
+- App启动过程
+    * 解析Info.plist
+    * 加载相关信息，例如闪屏
+    * 沙箱建立、权限检查
+    * Mach-O加载
+    * 如果是胖二进制文件，寻找合适当前CPU类别的部分
+    * 加载所有依赖的Mach-O文件（递归调用Mach-O加载的方法）
+    * 定位内部、外部指针引用，例如字符串、函数等
+    * 执行声明为attribute((constructor))的C函数
+    * 加载类扩展（Category）中的方法
+    * C++静态对象加载、调用ObjC的 +load 函数
+    * 程序执行
+    * 调用main()
+    * 调用UIApplicationMain()
+    * 调用applicationWillFinishLaunching
+- 影响启动性能的因素
+    * main()函数之前耗时的影响因素
+        * 动态库加载越多，启动越慢。
+        * ObjC类越多，启动越慢
+        * C的constructor函数越多，启动越慢
+        * C++静态对象越多，启动越慢
+        * ObjC的+load越多，启动越慢
+    * main()函数之后耗时的影响因素
+        * 执行main()函数的耗时
+        * 执行applicationWillFinishLaunching的耗时
+        * rootViewController及其childViewController的加载、view及其subviews的加载
+
+### 补充：今日头条的启动优化方案
+- 针对于今日头条这个App我们可以优化的点如下：
+    * 纯代码方式而不是storyboard加载首页UI。
+    * 对didFinishLaunching里的函数考虑能否挖掘可以延迟加载或者懒加载，需要与各个业务方pm和rd共同check 对于一些已经下线的业务，删减冗余代码。
+    * 对于一些与UI展示无关的业务，如微博认证过期检查、图片最大缓存空间设置等做延迟加载。
+    * 对实现了+load()方法的类进行分析，尽量将load里的代码延后调用。
+    * 上面统计数据显示展示feed的导航控制器页面(NewsListViewController)比较耗时，对于viewDidLoad以及viewWillAppear方法中尽量去尝试少做，晚做，不做。
+
 ### 4.如何对 `APP` 进行内存、电量、网络流量的优化
 ### 5.如何有效降低 `APP` 包的大小？
 - 可执行文件
@@ -2776,6 +3258,19 @@ label.layer.masksToBounds = true
     * 硬件检测优化
         * 用户移动、摇晃、倾斜设备时，会产生动作(motion)事件，这些事件由加速度计、陀螺仪、磁力计等硬件检测。在不需要检测的场合，应该及时关闭这些硬件
 
+### 补充：假如Controller太臃肿，如何优化？
+- 将网络请求抽象到单独的类中
+    * 方便在基类中处理公共逻辑；
+    * 方便在基类中处理缓存逻辑，以及其它一些公共逻辑；
+    * 方便做对象的持久化。
+- 将界面的封装抽象到专门的类中
+    * 构造专门的 UIView 的子类，来负责这些控件的拼装。这是最彻底和优雅的方式，不过稍微麻烦一些的是，你需要把这些控件的事件回调先接管，再都一一暴露回 Controller。
+- 构造 ViewModel
+    * 借鉴MVVM。具体做法就是将 ViewController 给 View 传递数据这个过程，抽象成构造 ViewModel 的过程。
+- 专门构造存储类
+    * 专门来处理本地数据的存取。
+- 整合常量
+
 ## 调试技巧 & 软件使用
 ### 1.`LLDB` 调试。
 ### 2.断点调试- breakPoint。
@@ -2799,6 +3294,126 @@ label.layer.masksToBounds = true
 ### 1.`load` 和 `Initialize` 的区别?
 ### 2.`Designated Initializer`的规则？
 ### 3.`App` 编译过程有了解吗？
+### 补充：介绍下App启动的完成过程？
+- 先加载Main函数
+- 在Main函数里的 UIApplicationMain方法中，创建Application对象 创建Application的Delegate对象
+- 创建主循环，代理对象开始监听事件
+- 启动完毕会调用 didFinishLaunching方法，并在这个方法中创建UIWindow
+- 设置UIWindow的根控制器是谁
+- 如果有storyboard，会根据info.plist中找到应用程序的入口storyboard并加载箭头所指的控制器
+- 显示窗口
+- 其中在didFinishLaunching方法到窗口显示其中有AppDelegate,ViewController,MainView（控制器的View）,ChildView（子控件的View）的18个方法：
+    * AppDelegate中的：
+        * application:didFinishLaunchingWithOptions:
+        * applicationDidBecomeActive:
+    * ViewController中的：
+        * loadView
+        * viewDidLoad
+        * load
+        * initialize
+        * viewWillAppear
+        * viewWillLayoutSubviews
+        * viewDidLayoutSubviews
+        * viewDidAppear
+    * MainView（控制器的View）中的
+        * initWithCoder（如果没有storyboard就会调用initWithFrame，这里两种方法视为一种）
+        * awakeFromNib
+        * layoutSubviews
+        * drawRect
+    * ChildView（子控件View）中的：
+        * initWithCoder（如果没有storyboard就会调用initWithFrame，这里两种方法视为一种）
+        * awakeFromNib
+        * layoutSubviews
+        * drawRect
+- 十八个方法排个顺序
+
+```
++ (void)load; //这是应用程序启动就会调用的方法，在这个方法里写的代码最先调用
+
++ (void)initialize; //这个是需要用到本类时才调用，这个方法里一般写设置导航控制器的主题啊之类的，
+//如果在后面的方法设置导航栏主题就晚了！（当然在上面的方法里也能写）
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
+//这个方法里面会创建UIWindow，设置根控制器并展现，
+//比如某些应用程序要加载授权页面也是在这加，也可以设置观察者，监听到通知切换根控制器
+
+ChildView - (instancetype)initWithCoder:(NSCoder *)aDecoder;
+//这里反正我是万万没想到，childView的initwithcoder会在MainView的方法之前调用，
+//父的都还没出来，就先整子控件？ 有了解比较透彻的博友恳请告诉我谢谢。
+
+MainView - (instancetype)initWithCoder:(NSCoder *)aDecoder;
+// 就是关于应用程序的数据存储后的解档操作。
+
+MainView - (void)awakeFromNib;
+//在这个方法里设置view的背景等一系列普通操作，不要写关于frame的还不准，
+//在使用IB的时候才会涉及到此方法的使用，当.nib文件被加载的时候，
+//会发送一个awakeFromNib的消息到.nib文件中的每个对象，
+//每个对象都可以定义自己的awakeFromNib函数来响应这个消息，执行一些必要的操作。
+
+ChildView - (void)awakeFromNib
+//子控件也有本方法，重写父类的方法。基本用法同上
+
+- (void)loadView; 
+//创建视图的层次结构，这里需要注意，
+//在没有创建控制器的view的情况下不能直接写 self.view 因为self.view的底层是：
+    if（_view == nil）{
+　   　_view = [self loadView]
+    }
+//所以这么写会直接造成死循环。
+//如果重写这个loadView方法里面什么都不写，会显示黑屏
+
+- (void)viewDidLoad;
+//卧槽，这个方法是用的最多的方法，但是在之后的开发中就会发现越来越不靠谱，
+//很多东西都还没加载完毕，各种取值都不准确，很少在这里面写东西了。 
+//这里只是把视图元件加载完成
+
+- (void)viewWillAppear:(BOOL)animated;
+//视图将要出现，这个方法用的非常多，比如如果要设置导航栏的setNavigationBarHiden:animate: 
+//就必须要在这里写，才能完美契合，不卡跳。 还有很多比如监听屏幕旋转啦，
+ 
+//viewWillTransitionToSize:可能要在本方法里再调一次，
+//或者就是新到这个界面要reloadData或是自动下拉刷新等 都是写在本方法里
+
+- (void)viewWillLayoutSubviews;
+//视图将要布局子视图，苹果建议的设置界面布局属性的方法，
+//这个方法和viewWillAppear里，系统的底层都是没有写任何代码的，也就是说这里面不写super 也是可以的
+
+MainView  - (void)layoutSubviews;
+//在这个方法里一般设置子控件的frame，因为这里相当于是布局基本完成了，
+//设置时取到的frame或者是self.bounds才最准，如果在awakeFromeNib里写会不准确 。
+//还有这里要切记千万不能把super layoutSubviews忘了，可能最后都很难找到这个bug
+
+- (void)viewDidLayoutSubviews;
+//这个方法我也是玩玩没想到，控制器的view的子控件还没有布局好呢，怎么这个控制器就已经说布局全部完成了？
+//那后边的布局就不等了？ 有独到见解的也恳请你告诉我，这其中苹果的意思到底是什么。
+
+ChildView - (void)layoutSubviews;
+//控制器的子控件里的子控件的布局就在这里写了。
+
+MainView - (void)drawRect:(CGRect)rect;
+//因为默认所有额UI控件都是画上去的，在这一步就是把所有的东西画上去，
+//有时候需要用到Quartz2D的知识的时候都是在这个方法里话，但也是要注意别忘了写super，
+//不然系统原本的东西就都画不上来了，这里要建议尽可能使用贝塞尔路径画图形，
+//因为系统默认的那个上下文画法有时可能会内存泄露。drawRect方法只能在加载时调用一次，
+//如果后面还需要调用，比如下载进度的圆弧，需要一直刷帧，
+//就要使用setNeedsDisplay来定时多次调用本方法
+
+ChildView - (void)drawRect:(CGRect)rect;
+//view的子控件内部的画图方法，有时可以自己自定义label 中间带个删除线的（用来写打折前的原价） 就是在这里画根线 。
+
+- (void)viewDidAppear:(BOOL)animated;
+//把上面的画图都画完了，这里就会显示，视图完全加载完成。
+//在这里的操作可能就是设置页面的一些动画,或者是设置tableView，collectionView，
+//QQ聊天页面啥的滚动到底部scrollToIndexPath之类的代码操作
+
+- (void)applicationDidBecomeActive:(UIApplication *)application;
+//最后这是AppDelegate的应用程序获取焦点方法，真正到了这里，才是所有东西全部加载完毕，应用程序整装待发保持最佳状态等待用户操作。
+//这个方法中一般会写关于弹出键盘的方法，比如有的用户登录界面为了更好的用户体验，
+//就让你在刚打开程序来到登录界面的时候，光标的焦点就自动在账号的文本框里闪烁，
+//也就是设置账号文本框为第一响应者。键盘在页面加载完毕后从下方弹出，这种代码一般就在本方法写。
+
+```
+
 ### 4.`JS` 和 `Native` 交互。
 ### 5.`LoadView`方法了解吗？
 ### 6.说一下对 `APNS` 的认识？
@@ -2813,3 +3428,16 @@ label.layer.masksToBounds = true
 ### 补充：描述iOS 10的一些新特性（包括系统和开发环境）
 ### 14.App 上有一数据列表，客户端和服务端均没有任何缓存，当服务端有数据更新时，该列表在 wifi 下能获取到数据，在 4G 下刷新不到，但是在 4g 环境下其他 App 都可以正常打开，分析其产生的原因？
 ### 15.是否了解链式编程？
+### 补充：dSYM你是如何分析的
+- 我们在iOS开发过程中一定会跟符号表（dSYM文件）打交道，它是我们不可或缺的定位bug的小帮手。我们都知道，每次编译都会生成一个dSYM文件，当我们的应用程序出现奔溃时，dSYM文件能帮我们定位到应用程序的代码奔溃到哪里了。
+- 符号表是内存地址与函数名、文件名、行号的映射表。符号表元素如下所示：
+
+```
+<起始地址> <结束地址> <函数> [<文件名:行号>]
+```
+- dSYM是如何分析的
+    * 方法1 使用XCode，这种方法可能是最容易的方法了。
+        * 要使用Xcode符号化 crash log，你需要下面所列的3个文件：crash报告（.crash文件），符号文件(.dsymb文件)，应用程序文件(appName.app文件，把IPA文件后缀改为zip，然后解压，Payload目录下的appName.app文件),这里的appName是你的应用程序的名称。把这3个文件放到同一个目录下，打开Xcode的Window菜单下的organizer，然后点击Devices tab，然后选中左边的Device Logs。然后把.crash文件拖到Device Logs或者选择下面的import导入.crash文件。这样你就可以看到crash的详细log了。
+        * 方法2 使用命令行工具symbolicatecrash，有时候Xcode不能够很好的符号化crash文件。我们这里介绍如何通过symbolicatecrash来手动符号化crash log。在处理之前，请依然将“.app“, “.dSYM”和 ".crash"文件放到同一个目录下。现在打开终端(Terminal)然后输入如下的命令：export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer，然后输入命令：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash appName.crash appName.app > appName.log；现在，符号化的crash log就保存在appName.log中了。
+        * 方法3 使用命令行工具atos，如果你有多个“.ipa”文件，多个".dSYMB"文件，你并不太确定到底“dSYMB”文件对应哪个".ipa"文件，那么，这个方法就非常适合你。特别当你的应用发布到多个渠道的时候，你需要对不同渠道的crash文件，写一个自动化的分析脚本的时候，这个方法就极其有用。
+            
