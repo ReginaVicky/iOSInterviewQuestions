@@ -96,7 +96,7 @@
 - 9.[__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9__weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
 - 10.[说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
 - [补充：简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
-- 补充：automic的实现机制；
+- [补充：automic的实现机制；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充automic的实现机制)
 - 11.[ARC 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11arc-在编译时做了哪些工作)
 - 12.[ARC 在运行时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12arc-在运行时做了哪些工作)
 - 13.[函数返回一个对象时，会对对象 autorelease 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13函数返回一个对象时会对对象-autorelease-么为什么)
@@ -145,8 +145,13 @@
 - 24.[说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24说一下-runtime-的方法缓存存储的形式数据结构以及查找的过程)
 - 25.[是否了解 Type Encoding?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25是否了解-type-encoding)
 - 26.[Objective-C 如何实现多重继承？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26objective-c-如何实现多重继承)
+- [补充：runtime如何通过selector找到对应的IMP地址？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充runtime如何通过selector找到对应的imp地址)
+- [补充：使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充使用runtime-associate方法关联的对象需要在主对象dealloc的时候释放么)
+- [补充：runtime如何实现weak变量的自动置nil？知道SideTable吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充runtime如何实现weak变量的自动置nil知道sidetable吗)
 
 ## Runloop
+- [补充：RunLoop概念](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充runloop概念)
+- [补充：RunLoop的数据结构](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充runloop的数据结构)
 - 1.[Runloop 和线程的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1runloop-和线程的关系)
 - 2.[讲一下 Runloop 的 Mode?(越详细越好)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2讲一下-runloop-的-mode越详细越好)
 - 3.[讲一下 Observer ？（Mode中的重点）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3讲一下-observer-mode中的重点)
@@ -157,12 +162,13 @@
 - 8.[解释一下 手势识别 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8解释一下-手势识别-的过程)
 - 9.[解释一下 GCD 在 Runloop 中的使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9解释一下-gcd-在-runloop-中的使用)
 - 10.[解释一下 NSTimer，以及 NSTimer 的循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10解释一下-nstimer以及-nstimer-的循环引用)
-- 补充：NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?
+- [补充：NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充nstimer准吗谈谈你的看法如果不准该怎样实现一个精确的nstimer)
 - 11.[AFNetworking 中如何运用 Runloop?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11afnetworking-中如何运用-runloop)
 - 12.[PerformSelector 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12performselector-的实现原理)
 - 13.[利用 runloop 解释一下页面的渲染的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13利用-runloop-解释一下页面的渲染的过程)
 - 14.[如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14如何使用-runloop-实现一个常驻线程这种线程一般有什么作用)
 - 15.[为什么 NSTimer 有时候不好使？（不同类型的Mode）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15为什么-nstimer-有时候不好使不同类型的mode)
+- [补充：滑动tableView时，定时器还会生效吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充滑动tableview时定时器还会生效吗)
 - 16.[PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16performselectorafterdelay这个方法在子线程中是否起作用为什么怎么解决)
 - 17.[什么是异步绘制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17什么是异步绘制)
 - 18.[如何检测 App 运行过程中是否卡顿？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18如何检测-app-运行过程中是否卡顿)
@@ -350,6 +356,7 @@
 - 13.[桥接模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13桥接模式)
 - 14.[代理委托模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14代理委托模式)
 - 15.[单例模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15单例模式)
+- [补充：单例弊端？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充单例弊端)
 - 16.[类工厂模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16类工厂模式)
 
 
@@ -425,6 +432,9 @@
 - 5.Texture（ASDK）
 
 ## iOS逆向及安全
+- [补充：怎么防止反编译？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充怎么防止反编译)
+- [补充：项目中网络层如何做安全处理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充项目中网络层如何做安全处理)
+
 ## Coretext
 ## 项目组件化
 - 1.说一下你之前项目的组件化方案？
@@ -435,16 +445,19 @@
 ## 性能优化
 - 1.[如何提升 `tableview` 的流畅度？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1如何提升-tableview-的流畅度)
 - 2.[如何使用 `Instruments` 进行性能调优？(Time Profiler、Zombies、Allocations、Leaks)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2如何使用-instruments-进行性能调优time-profilerzombiesallocationsleaks)
-- 3.[如何优化 `APP` 的启动时间？（感谢 @静待海棠花开 的提醒）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3如何优化-app-的启动时间感谢-静待海棠花开-的提醒)
-- 4.[如何对 `APP` 进行内存、电量、网络流量的优化？（感谢 @静待海棠花开 的提醒）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4如何对-app-进行内存电量网络流量的优化感谢-静待海棠花开-的提醒)
+- 3.[如何优化 `APP` 的启动时间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3如何优化-app-的启动时间)
+- [补充：今日头条的启动优化方案](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充今日头条的启动优化方案)
+- 4.[如何对 `APP` 进行内存、电量、网络流量的优化？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4如何对-app-进行内存电量网络流量的优化)
 - 5.[如何有效降低 `APP` 包的大小？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5如何有效降低-app-包的大小)
 - 6.[日常如何检查内存泄露？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6日常如何检查内存泄露)
 - 7.[能不能说一下物理屏幕显示的原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7能不能说一下物理屏幕显示的原理)
 - 8.[解释一下什么是屏幕卡顿、掉帧？该如何避免？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8解释一下什么是屏幕卡顿掉帧该如何避免)
 - 9.[什么是 `离屏渲染`？什么情况下会触发？该如何应对？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9什么是-离屏渲染什么情况下会触发该如何应对)
+- [补充：如何检测离屏渲染？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充如何检测离屏渲染)
 - 10.[如何高性能的画一个圆角？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10如何高性能的画一个圆角)
 - 11.[如何优化 APP 的内存？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11如何优化-app-的内存)
 - 12.[如何优化 APP 的电量？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12如何优化-app-的电量)
+- [补充：假如Controller太臃肿，如何优化？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充假如controller太臃肿如何优化)
 
 ## 调试技巧 & 软件使用
 - 1.`LLDB` 调试。
@@ -469,6 +482,7 @@
 - 1.[`load` 和 `Initialize` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1load-和-initialize-的区别)
 - 2.[`Designated Initializer`的规则？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2designated-initializer的规则)
 - 3.[`App` 编译过程有了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3app-编译过程有了解吗)
+- [补充：介绍下App启动的完成过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充介绍下app启动的完成过程)
 - 4.[`JS` 和 `Native` 交互。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4js-和-native-交互)
 - 5.[`LoadView`方法了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5loadview方法了解吗)
 - 6.[说一下对 `APNS` 的认识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6说一下对-apns-的认识)
@@ -483,7 +497,7 @@
 - [补充：描述iOS 10的一些新特性（包括系统和开发环境）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充描述ios-10的一些新特性包括系统和开发环境)
 - 14.[App 上有一数据列表，客户端和服务端均没有任何缓存，当服务端有数据更新时，该列表在 wifi 下能获取到数据，在 4G 下刷新不到，但是在 4g 环境下其他 App 都可以正常打开，分析其产生的原因？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14app-上有一数据列表客户端和服务端均没有任何缓存当服务端有数据更新时该列表在-wifi-下能获取到数据在-4g-下刷新不到但是在-4g-环境下其他-app-都可以正常打开分析其产生的原因)
 - 15.[是否了解链式编程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15是否了解链式编程)
-
+- [补充：dSYM你是如何分析的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充dsym你是如何分析的)
 
 
 ## 25.计算题
