@@ -2286,6 +2286,87 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 
 ## UIKit
 ### 1.UIView 和 CALayer 是什么关系？
+- 首先从继承关系来分析两者：UIView : UIResponder，CALayer : NSObject。
+#### UIView
+- UIView 响应事件，UIView 继承 UIResponder，而 UIResponder 是响应者对象，所以UIView 响应事件
+- 实现了如下 API，所以继承自 UIResponder 的都具有响应事件的能力：
+
+```
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesEstimatedPropertiesUpdated:(NSSet<UITouch *> *)touches NS_AVAILABLE_IOS(9_1);
+```
+- 并且 UIView 提供了以下两个方法，来进行 iOS 中的事件的响应及传递（响应者链）：
+
+```
+- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event;
+- (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event;  
+```
+#### CALayer 绘制 UI
+- CALayer 绘制 UI：CALayer 没有继承自 UIResponder，所以CALayer不具备响应处理事件的能力。CALayer 是 QuartzCore中的类，是一个比较底层的用来绘制内容的类。
+#### UIView 对 CALayer 封装属性
+- UIView 中持有一个 layer 对象，同时这个 layer 对象 delegate，UIView 和 CALayer 协同工作。
+- 平时我们对 UIView 设置 frame、center、bounds 等位置信息，其实都是UIView对CALayer进一层封装，使得我们可以很方便地设置控件的位置；例如圆角、阴影等属性，UIView就没有进一步封装，所以我们还是需要去设置 Layer 的属性来实现功能。
+- Frame 属性主要是依赖：bounds、anchorPoint、transform、和position。
+- 我们这主要说一下 anchorPoint 和position如何影响 Frame 的：anchorPoint锚点是相对于当前Layer的一个点，position 是 Layer 中 anchorPoint 锚点在 superLayer 中的点，即 position 是由 anchorPoint 来确认的。
+- 这里有几个通用的公式：
+
+```
+position.x = frame.origin.x + anchorPoint.x * bounds.size.width；  
+position.y = frame.origin.y + anchorPoint.y * bounds.size.height；
+  
+frame.origin.x = position.x - anchorPoint.x * bounds.size.width；  
+frame.origin.y = position.y - anchorPoint.y * bounds.size.height；    
+```
+- 故有：
+    * position 是 layer 中的 anchorPoint 在 superLayer 中的位置坐标。
+    * 单独修改 position 与 anchorPoint 中任何一个属性都不影响另一个属性。
+#### UIView 是 CALayer 的代理
+- UIView 持有一个 CALayer 的属性，并且是该属性的代理，用来提供一些 CALayer 行的数据，例如动画和绘制。
+
+```
+//绘制相关
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
+
+//动画相关
+- (nullable id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event;
+```
+#### 动画相关
+- Layer 中很多属性都是 animatable 的，这就意味着修改这些属性会产生隐式动画。当是如果修改 UIView主Layer的话，此时隐式动画会失效，因为：UIView 默认情况下禁止了 layer 动画，但是在 animation block 中又重新启用了它们。
+- 当一个 animatable 属性变化时，Layer 会询问代理方法该如何处理这个动画，即需要在代理方法中返回合适的 CAAction 对象。
+- 属性改变时 layer会向view请求一个动作，而一般情况下 view 将返回一个NSNull，只有当属性改变发生在动画 block 中时，view 才会返回实际的动作。
+#### 绘制相关
+- CALayer 在屏幕上绘制东西是因为 CALayer 内部有一个 contents (CGImage)的属性，contents 也被称为寄宿图。绘制相关的 API 如下：
+
+```
+- (void)displayLayer:(CALayer *)layer;
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
+
+- (void)drawRect:(CGRect)rect
+```
+#### drawRect 方法实现
+- 平时为自定义View添加空间或者在上下文画图都会使用到这个函数，但是如果当我们实现了这个方法的时候，这个时候会生成一张寄宿图，这个寄宿图的尺寸是 layer 的宽 * 高*contentsScale，其实算出来的是有多少像素。然后每个像素占用4个字节，总共消耗的内存大小为：宽 * 高 * contentsScale * 4 字节。
+- 这里跟我们图片显示是一个道理：一张图片需要解压成位图才能显示到屏幕上，图片的颜色空间一般是RGBA，每个像素点需要包含RGBA四个信息，所以一张图片解压成位图需要占用内存大小为：像素宽 * 像素高 * 4 个字节。（PS：将图片解压成位图是比较耗时的，这就是为什么通常会在子线程解压图片，然后再到主线程中显示，避免卡主主线程）
+- 所以在使用 drawRect方法来实现功能之前，需要看看是否有替代方案，避免产生寄宿图增加程序的内存，使用 CAShapeLayer 来绘制是一个不错的方案。
+#### UILabel 绘制文字占用内存的情况
+- 这里讲到绘制占用内存的情况，我们简单来了解下 Label 绘制文字占用的内存情况，实例代码如下：
+
+```
+//绘制一个全屏的 Label
+        UILabel *label1 = [[UILabel alloc] initWithFrame:self.view.bounds];
+    label1.text = @"11111";
+    [self.view addSubview:label1];
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:self.view.bounds];
+    label2.text = @"😀11111";
+    [self.view addSubview:label2];
+```
+- 绘制一个全屏的 Label，按理由需要占用内存：宽 * 高 * 4，iPhone 6SP 像素为：1242 * 2208，全屏差不多是占用 10 M 左右，但是 label1 大概会占用 3 M左右， label2 会占用 10 M左右；其实这里是因为如果使用黑白位图，苹果会优化颜色空间，这里每个像素就只会占用 1 个字节，比 4 字节节省 75% 的空间。
+#### 总结
+- 如果确定是不需要交互的，可以将 UIView 替换成 CALayer，来省去UIView封装带来的损耗，AsyncDisplayKit 库利用 ASDisplayNode 来替代UIView来节省资源。
+
 ### 2.Bounds 和 Frame 的区别?
 #### frame
 - 是每个view必备的属性，代表的是当前视图的位置和大小，没有设置他，当前视图是看不到的。
@@ -2328,8 +2409,54 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 ### 5.UIButton 的父类是什么？UILabel 的父类又是什么？
 ### 6.实现一个控件，可以浮在任意界面的上层并支持拖动？
 ### 7.说一下控制器 View 的生命周期，一旦收到内存警告会如何处理？
+
+![image](https://upload-images.jianshu.io/upload_images/1434508-370daf660ff330e4.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+- Phone下每个app可用的内存是被限制的，如果一个app使用的内存超过20M，则系统会向该app发送Memory Warning消息。
+- 当应用程序占用了大约20MB内存时，iphone开始发出内存警告。当应用程序所占内存大约为30MB时，iphone OS会关闭应用程序。收到此消息后，app必须正确处理，否则可能出错或者出现内存泄露。app收到Memory Warning后会调用：
+    * UIApplication::didReceiveMemoryWarning
+    * UIApplicationDelegate::applicationDidReceiveMemoryWarning
+- 然后调用当前所有的viewController进行处理。因此处理的主要工作是在viewController。
+- 我们知道，创建viewcontroller时，执行顺序是loadview -> viewDidLoad。
+- 当收到内存警告时，如果viewcontroller未显示（在后台），会执行didReceiveMemoryWarning -> viewDidUnLoad；如果viewcontroller当前正在显示（在前台），则只执行didReceiveMemoryWarning。
+当重新显示该viewController时，执行过viewDidUnLoad的viewcontroller（即原来在后台）会重新调用loadview -> viewDidLoad。
+- 重载didReceiveMemoryWarning时，一定调用这个函数的super实现来允许父类（一般是UIVIewController）释放self.view。self.view释放之后，会调用下面的viewDidUnload函数.也就是说，尽管self.view是被处理了，但是outlets的变量因为被retain过，所以不会被释放，为了解决这个问题，就需要在viewDidUnload中释放这些retain过的outlets变量。通常controller会保存nib文件建立的views的引用，但是也可能会保存着loadView函数创建的对象的引用。
+
+#### 生命周期
+- loadView： 加载view
+- viewDidLoad： view加载完毕
+- viewWillAppear： 控制器的view将要显示
+- viewWillLayoutSubviews：控制器的view将要布局子控件
+- viewDidLayoutSubviews：控制器的view布局子控件完成
+- viewDidAppear: 控制器的view完全显示
+- viewWillDisappear： 控制器的view即将消失的时候
+- viewDidDisappear： 控制器的view完全消失的时候
+- 控制器的view是延迟加载的：创建控制器并不一定会创建控制器的view，等用到时再加载
+- 补充：
+    * 如果a控制器push到b控制器,那么a和b的View都不会被销毁,因为它的控制器还存在，有一个强引用引用着它(除非内存警告会销毁a的View)如果b控制器pop到a控制器,那么b的View会被销毁a和b都在导航控制器的栈里被管理,就是个数组
+    * 此时如果你打印会发现方法的调用顺序是:
+        * 控制器b的View的viewDidLoad
+        * 控制器b的View的viewWillAppear
+        * 控制器a的View的viewDidDisappear
+#### 内存警告的处理
+- 两个内存警告
+    * 当application接收到内存警告的时候，会先通知它的代理，代理在接收到内存警告的时候会调用applicationDidReceiveMemoryWarning方法
+    * 之后代理会通知它的window,window会通知它的根控制器，根控制器会通知它的子控制器,内存警告是由上往下一层一层往下传的,最后传给控制器View,控制器View会调用它的didReceiveMemoryWarning方法
+- 内存警告的处理
+
+![image](https://upload-images.jianshu.io/upload_images/6950351-dd67f46bce6d4073.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+
+- 
+
 ### 8.如何暂停一个 UIView 中正在播放的动画？暂停后如何恢复？
 ### 9.说一下 UIView 的生命周期？
+- viewDidLoad
+- viewWillAppear
+- viewWillLayoutSubviews
+- viewDidLayoutSubviews
+- viewDidAppear
+- viewWillDisappear
+- viewDidDisappear
+
 ### 10.UIViewController 的生命周期？
 ### 11.如何以通用的方法找到当前显示的ViewController?
 ### 12.setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？
@@ -3679,6 +3806,12 @@ __block typeof(self) weakSelf = self;
 #### 7.保证错误的URL不会被尝试重新下载，使用什么来下载图片的 
 #### 8.sdwebimage是一个异步下载图片的三方，怎么保证线程安全的？
 #### 9.如果一个页面 加载图片很卡 ，什么原因，会跟sdwebimage有关吗，还是跟图片渲染有关？
+#### 补充：如果收到内存警告怎么办
+- 如果使用了SDWebImage框架,使用如下代码,可以有效的减少内存:
+
+```
+[[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];//清除内存中通过SDWebImage框架下载的图片,建议在收到内存警告时在调用
+```
 #### 补充：SDWebImage是如何做到Url不变的情况下，更新图片内容的？
 - SDWebImage它是基于URL作为Key来实现图片缓存机制的。大多数情况下，片与URL是一一对应的，即使服务器修改了图片也会相应的变更URL。但是在少数情况下，服务器修改了图片后不会变更相应的URL，也就是说图片本身的内容变了然而它的URL没有变化，那么按照对SDWebImage的常规使用方法的话，客户端肯定更新不到同一URL对应到服务器已变更的图片内容。
 - 客户端第一次请求图片时，Charles抓包得知response header里有一个名为Last-Modified、数据是时间戳的键值对。
