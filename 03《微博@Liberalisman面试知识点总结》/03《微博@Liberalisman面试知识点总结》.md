@@ -21,6 +21,8 @@
 - 2.[字符串](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2字符串)
 - 3.[链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3链表)
 - 4.[树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4树)
+    * 红黑树
+    * 二叉搜索树
 - 5.[栈](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5栈)
 - 6.[队列](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6队列)
 - 7.[哈希表（有哪些功能是通过哈希表实现的）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7哈希表有哪些功能是通过哈希表实现的)
@@ -213,6 +215,7 @@
 - 1.[NSUrlConnect相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1nsurlconnect相关知识)
 - 2.[NSUrlSession相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2nsurlsession相关知识)
 - 补充：简要说一下Https；
+- 补充：简要说一下http；
 - 3.[Http 和 Https 的区别？为什么更加安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3http-和-https-的区别为什么更加安全)
 - 4.[Http的请求方式有哪些？Http 有什么特性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4http的请求方式有哪些http-有什么特性)
 - 5.[解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5解释一下-三次握手-和-四次挥手解释一下为什么是三次握手-又为什么是-四次挥手)
@@ -229,6 +232,7 @@
 - 16.[NSUrlProtocol用过吗？用在什么地方了？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16nsurlprotocol用过吗用在什么地方了)
 - 17.[如何在测试过程中 MOCK 各种网络环境？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17如何在测试过程中-mock-各种网络环境)
 - 18.[DNS 的解析过程？网络的 DNS 优化。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#18dns-的解析过程网络的-dns-优化)
+- 补充：DNS劫持和预防；
 - 19.[Post请求体有哪些格式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19post请求体有哪些格式)
 - 20.[网络请求的状态码都大致代表什么意思？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20网络请求的状态码都大致代表什么意思)
 - 21.[抓包软件 Charles 的原理是什么？说一下中间人攻击的过程。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21抓包软件-charles-的原理是什么说一下中间人攻击的过程)
@@ -243,8 +247,11 @@
 - [补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充在网络请求中如何处理网络网速慢网络中断网络抖动等等网络问题)
 - [补充：https的缓存问题。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充https的缓存问题)
 - [补充：你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充你平时怎么解决网络请求的依赖关系当一个接口的请求需要依赖于另一个网络请求的结果)
+- 补充：http的header和body
+- 
 
 ## 多线程
+- 补充：进程和线程、多进程和多线程
 - [补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
 - 1.[NSThread相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1nsthread相关知识)
 - 2.[GCD 相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2gcd-相关知识)
@@ -279,6 +286,7 @@
 - [补充：dispatch_once如何实现一次性代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充dispatch_once如何实现一次性代码)
 - [补充：如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充如何用gcd同步若干个异步调用如根据若干个url异步加载多张图片然后在都下载完成后合成一张整图)
 - [补充：线程与进程的区别和联系?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充线程与进程的区别和联系)
+- 补充：互斥锁和自旋锁区别及应用场景；
 - [补充：iOS线程间怎么通信？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充ios线程间怎么通信)
 - [补充：Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充object-c中创建线程的方法是什么如果在主线程中执行代码方法是什么如果想延时执行代码方法又是什么)
 - [补充：请说明同步请求与异步请求的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充请说明同步请求与异步请求的区别)
@@ -1037,6 +1045,8 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 
 ### 8.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
 ### 9.__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
+- 用的弱引用 - weak表。也是一张 哈希表。
+- 被 weak 修饰的指针变量所指向的地址是 key ，所有指向这块内存地址的指针会被添加在一个数组里，这个数组是 Value。当内存地址销毁，数组里的所有对象被置为 nil。
 
 ### 10.说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。
 - Strong：修饰符表示指向并持有该对象，其修饰对象的引用计数会加1。该对象只要引用计数不为0就不会被销毁。当然可以通过将变量强制赋值 nil 来进行销毁。
@@ -1077,9 +1087,68 @@ objc_autoreleaseReturnValue会检视当前方法返回之后即将要执行的�
 - 根据代码执行的上下文语境，在适当的位置插入 retain，release
 
 ### 13.函数返回一个对象时，会对对象 autorelease 么？为什么？
+- 会 ，为了延长返回对象的生命周期，给其他使用者留足调用的时间
+
 ### 14.说一下什么是 悬垂指针？什么是 野指针?
 - 悬垂指针：指针指向的内存已经被释放了，但是指针还存在，这就是一个 悬垂指针 或者说 迷途指针
 - 野指针：没有进行初始化的指针，其实都是 野指针
+
+### 补充：循环引用
+- 循环引用的实质：多个对象相互之间有强引用，不能释放让系统回收。
+- 如何解决循环引用？
+    * 避免产生循环引用，通常是将 strong 引用改为 weak 引用。 比如在修饰属性时用weak 在block内调用对象方法时，使用其弱引用，
+    * 还可以使用__block来修饰变量，在MRC下，__block不会增加其引用计数，避免了循环引用，在ARC下，__block修饰对象会被强引用，无法避免循环引用，需要手动解除。
+- 在合适时机去手动断开循环引用。
+    * 代理(delegate)循环引用属于相互循环引用
+        * delegate 是iOS中开发中比较常遇到的循环引用，一般在声明delegate的时候都要使用弱引用 weak,或者assign,当然怎么选择使用assign还是weak，MRC的话只能用assign，在ARC的情况下最好使用weak，因为weak修饰的变量在释放后自动指向nil，防止野指针存在
+    * NSTimer循环引用属于相互循环使用
+        * 在控制器内，创建NSTimer作为其属性，由于定时器创建后也会强引用该控制器对象，那么该对象和定时器就相互循环引用了。如何解决呢？这里我们可以使用手动断开循环引用：
+如果是不重复定时器，在回调方法里将定时器invalidate并置为nil即可。如果是重复定时器，在合适的位置将其invalidate并置为nil即可
+    * block循环引用
+
+```
+@property (copy, nonatomic) dispatch_block_t myBlock;
+@property (copy, nonatomic) NSString *blockString;
+
+- (void)testBlock {
+    self.myBlock = ^() {
+        NSLog(@"%@",self.blockString);
+    };
+}
+```
+- 由于block会对block中的对象进行持有操作,就相当于持有了其中的对象，而如果此时block中的对象又持有了该block，则会造成循环引用。
+- 解决方案就是使用__weak修饰self即可
+
+```
+__weak typeof(self) weakSelf = self;
+
+self.myBlock = ^() {
+        NSLog(@"%@",weakSelf.blockString);
+ };
+```
+- 并不是所有block都会造成循环引用。只有被强引用了的block才会产生循环引用，而比如dispatch_async(dispatch_get_main_queue(), ^{}),[UIView animateWithDuration:1animations:^{}]这些系统方法等或者block并不是其属性而是临时变量,即栈block
+
+```
+[self testWithBlock:^{
+    NSLog(@"%@",self);
+}];
+
+- (void)testWithBlock:(dispatch_block_t)block {
+    block();
+}
+```
+- 还有一种场景，在block执行开始时self对象还未被释放，而执行过程中，self被释放了，由于是用weak修饰的，那么weakSelf也被释放了，此时在block里访问weakSelf时，就可能会发生错误(向nil对象发消息并不会崩溃，但也没任何效果)。对于这种场景，应该在block中对 对象使用__strong修饰，使得在block期间对对象持有，block执行结束后，解除其持有。
+
+```
+__weak typeof(self) weakSelf = self;
+
+self.myBlock = ^() {
+
+        __strong __typeof(self) strongSelf = weakSelf;
+
+        [strongSelf test];
+ };
+```
 
 ### 15.内存管理默认的关键字是什么？
 - MRC
@@ -1166,7 +1235,13 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
 - 二者的实现机制类似，概括讲就是通过第一层 hash 算法，找到 指针变量 所对应的 sideTable。然后再通过一层 hash 算法，找到存储 引用计数 的 size_t，然后对其进行增减操作。retainCount 不是固定的 1，SIZE_TABLE_RC_ONE 是一个宏定义，实际上是一个值为 4 的偏移量。
 
 ### 补充：在OC里 alloc 和 retain 语义相反的方法是？
+- OC 使用了一种叫做引用计数的机制来管理对象，如果对一个对象使用了alloc、[Mutable]copy，retain，那么你必须使用相应的realease或者autorelease。也可以理解为自己生成的对象，自己持有。非自己生成的对象，自己也能持有。不在需要自己持有的对象时释放。非自己持有的对象无法释放。生成并持有对象<alloc,new,copy,mutableCopy 等>，持有对象<retain>，释放对象
+<release>,废弃对象<dealloc>。
+
 ### 补充：realease作用是什么和 autorelease 有什么区别？
+- realease释放对象，防止内存泄漏；
+- 如果插入，该函数若用weak指针持有函数返回值，马上会将其置为nil；为了解决这个问题，用Autorelease，就是用autorelease来代替release，将要释放的对象先放入一个“释放池”，而不是马上释放。
+
 ### 22.能不能简述一下 Dealloc 的实现机制？
 - Dealloc 调用流程
     * 首先调用 _objc_rootDealloc()
@@ -1407,6 +1482,47 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 
 ### 补充：Category的优缺点
 ### 12.Category 和 Extension 有什么区别？
+- extension 在编译期决定，它就是类的一部分，在编译期和头文件里的@interface以及实现文件里的@implement 一起形成一个完整的类，它伴随类的产生而产生，亦随之一起消亡。extension一般用来隐藏类的私有信息，你必须有一个类的源码才能为一个类添加extension，所以你无法为系统的类比如 NSString 添加 extension。
+- 但是 category 则完全不一样，它是在运行期决定的。就 category 和 extension 的区别来看，我们可以推导出一个明显的事实，extension 可以添加实例变量，而 category 是无法添加实例变量的
+- category 的加载是发生在运行时，加载 category 的过程：
+    * 把 category 的实例方法、协议以及属性添加到类上。
+    * 把 category 的类方法和协议添加到类的 metaclass 上。
+- 其中需要注意的是：
+    * category 的方法没有「完全替换掉」原来类已经有的方法，也就是说如果 category 和原来类都有 methodA，那么 category 附加完成之后，类的方法列表里会有两个 methodA。
+    * category 的方法被放到了新方法列表的前面，而原来类的方法被放到了新方法列表的后面，这也就是我们平常所说的category 的方法会「覆盖」掉原来类的同名方法，这是因为运行时在查找方法的时候是顺着方法列表的顺序查找的，它只要一找到对应名字的方法，就会返回
+- 在类和 category中都可以有+load方法，那么有两个问题：
+    * 在类的 +load方法调用的时候，我们可以调用 category 中声明的方法么？答案是：可以调用，因为附加 category 到类的工作会先于 +load方法的执行。
+    * 这么些个+load方法，调用顺序是咋样的呢？答案是：+load的执行顺序是先类，后 category，而 category 的+load 执行顺序是根据编译顺序决定的。虽然对于 +load的执行顺序是这样，但是对于「覆盖」掉的方法，则会先找到最后一个编译的 category 里的对应方法。
+- 上面讲到的方法覆盖，还有一个补充问题：怎么调用到原来类中被 category 覆盖掉的方法？对于这个问题，我们已经知道 category 其实并不是完全替换掉原来类的同名方法，只是 category 在方法列表的前面而已，所以我们只要顺着方法列表找到最后一个对应名字的方法，就可以调用原来类的方法：
+
+```
+    // 假设被覆盖的方法名叫 printName。
+    Class currentClass = [MyClass class];
+    MyClass *my = [[MyClass alloc] init];
+
+    if (currentClass) {
+        unsigned int methodCount;
+        Method *methodList = class_copyMethodList(currentClass, &methodCount);
+        IMP lastImp = NULL;
+        SEL lastSel = NULL;
+        for (NSInteger i = 0; i < methodCount; i++) {
+            Method method = methodList[i];
+            NSString *methodName = [NSString stringWithCString:sel_getName(method_getName(method)) encoding:NSUTF8StringEncoding];
+            if ([@"printName" isEqualToString:methodName]) {
+                lastImp = method_getImplementation(method);
+                lastSel = method_getName(method);
+            }
+        }
+        typedef void (*fn)(id,SEL);
+
+        if (lastImp != NULL) {
+            fn f = (fn) lastImp;
+            f(my, lastSel);
+        }
+        free(methodList);
+    }
+```
+
 ### 13.Category 可不可以添加实例对象？为什么？
 ### 14.Category 在编译过后，是在什么时机与原有的类合并到一起的？
 - 程序启动后，通过编译之后，Runtime 会进行初始化，调用 _objc_init。
@@ -1493,7 +1609,13 @@ union isa_t
 ### 20.如何运用 Runtime 字典转模型？
 ### 21.如何运用 Runtime 进行模型的归解档？
 ### 22.在 Obj-C 中为什么叫发消息而不叫函数调用？
+- OC中的方法调用其实都是转成了objc_msgSend函数的调用，给receiver（方法调用者）发送了一条消息（selector方法名）
+- objc_msgSend底层有3大阶段，消息发送（当前类、父类中查找）、动态方法解析、消息转发
+
 ### 23.说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）
+- OC中的方法调用其实都是转成了objc_msgSend函数的调用，给receiver（方法调用者）发送了一条消息（selector方法名）
+- objc_msgSend底层有3大阶段，消息发送（当前类、父类中查找）、动态方法解析、消息转发
+
 ### 24.说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？
 - cache_t增量扩展的哈希表结构。哈希表内部存储的 bucket_t。
 - bucket_t 中存储的是 SEL 和 IMP的键值对。
@@ -1546,8 +1668,20 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
 
 ### 25.是否了解 Type Encoding?
 ### 26.Objective-C 如何实现多重继承？
+- Object-c的类没有多继承,只支持单继承,如果要实现多继承的话，可使用如下几种方式间接实现
+- 通过组合实现：A和B组合，作为C类的组件
+- 通过协议实现：C类实现A和B类的协议方法
+- 消息转发实现：forwardInvocation:方法
+
 ### 补充：runtime如何通过selector找到对应的IMP地址？
 - 每一个类对象中都一个方法列表,方法列表中记录着方法的名称,方法实现,以及参数类型,其实selector本质就是方法名称,通过这个方法名称就可以在方法列表中找到对应的方法实现.
+
+### 补充：runtime具体应用
+- 利用关联对象（AssociatedObject）给分类添加属性
+- 遍历类的所有成员变量（修改textfield的占位文字颜色、字典转模型、自动归档解档）
+- 交换方法实现（交换系统的方法）
+- 利用消息转发机制解决方法找不到的异常问题
+- KVC 字典转模型
 
 ### 补充：使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？
 - 无论在MRC下还是ARC下均不需要，被关联的对象在生命周期内要比对象本身释放的晚很多，它们会在被 NSObject -dealloc 调用的object_dispose()方法中释放。
@@ -1668,6 +1802,14 @@ int main(int argc, char * argv[]) {
 ```
 - UIApplicationMain函数一直没有返回，而是不断地接收处理消息以及等待休眠，所以运行程序之后会保持持续运行状态。
 
+### 内核态和用户态
+- CPU的两种工作状态：内核态和用户态
+- 内核态
+    * 系统中既有操作系统的程序，也由普通用户的程序。为了安全和稳定性操作系统的程序不能随便访问,这就是内核态
+    * 内核态可以使用所有的硬件资源
+- 用户态
+    * 不能直接使用系统资源，也不能改变CPU的工作状态，并且只能访问这个用户程序自己的存储空间
+
 ### 补充：RunLoop的数据结构
 - NSRunLoop(Foundation)是CFRunLoop(CoreFoundation)的封装，提供了面向对象的API
 RunLoop 相关的主要涉及五个类：
@@ -1697,6 +1839,9 @@ RunLoop 相关的主要涉及五个类：
     * kCFRunLoopAllActivities：监听所有状态
 - 各数据结构之间的联系
     * 线程和RunLoop一一对应， RunLoop和Mode是一对多的，Mode和source、timer、observer也是一对多的
+    * 一个RunLoop对象中包含若干个运行模式。而每一个运行模式下有3包含若干个输入源、定时源、观察者
+    * 每次RunLoop启动时，只能指定其中一个运行模式，这个运行模式被称为当前运行模式
+    * 如果需要切换运行模式，只能退出当前Loop，再重新制定一个运行模式进入，这样做主要是为了分隔开不同组的输入源、定时源、观察者，让其互不影响
 
 ### 1.Runloop 和线程的关系？
 - 线程和RunLoop是一一对应的,其映射关系是保存在一个全局的 Dictionary 里
@@ -1780,7 +1925,7 @@ dispatch_async(dispatch_get_global_queue(0, 0), ^{
 ```
 
 ### 2.讲一下 Runloop 的 Mode?(越详细越好)
-- 关于Mode首先要知道一个RunLoop 对象中可能包含多个Mode，且每次调用 RunLoop 的主函数时，只能指定其中一个 Mode(CurrentMode)。切换 Mode，需要重新指定一个 Mode 。主要是为了分隔开不同的 Source、Timer、Observer，让它们之间互不影响。
+- 关于Mode首先要知道一个RunLoop 对象中可能包含多个Mode，且每次调用 RunLoop 的主函数时，只能指定其中一个Mode(CurrentMode)。切换 Mode，需要重新指定一个Mode。主要是为了分隔开不同的Source、Timer、Observer，让它们之间互不影响。
 - 当RunLoop运行在Mode1上时，是无法接受处理Mode2或Mode3上的Source、Timer、Observer事件的总，共是有五种CFRunLoopMode:
     * kCFRunLoopDefaultMode：默认模式，主线程是在这个运行模式下运行
     * UITrackingRunLoopMode：跟踪用户交互事件（用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他Mode影响）
@@ -1802,27 +1947,46 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 ```
 
 ### 4.讲一下 Runloop 的内部实现逻辑？（运行过程）
+
+![image](https://upload-images.jianshu.io/upload_images/1782258-2f8dd696ecbf0275.png?imageMogr2/auto-orient/strip|imageView2/2/w/572)
+
 - 对于RunLoop而言最核心的事情就是保证线程在没有消息的时候休眠，在有消息时唤醒，以提高程序性能。RunLoop这个机制是依靠系统内核来完成的（苹果操作系统核心组件Darwin中的Mach）。
 - RunLoop通过mach_msg()函数接收、发送消息。它的本质是调用函数mach_msg_trap()，相当于是一个系统调用，会触发内核状态切换。在用户态调用 mach_msg_trap()时会切换到内核态；内核态中内核实现的mach_msg()函数会完成实际的工作。
 - 即基于port的source1，监听端口，端口有消息就会触发回调；而source0，要手动标记为待处理和手动唤醒RunLoop
 - Mach消息发送机制，大致逻辑为：
-    * 通知观察者 RunLoop 即将启动。
-    * 通知观察者即将要处理Timer事件。
-    * 通知观察者即将要处理source0事件。
-    * 处理source0事件。
-    * 如果基于端口的源(Source1)准备好并处于等待状态，进入步骤9。
-    * 通知观察者线程即将进入休眠状态。
-    * 将线程置于休眠状态，由用户态切换到内核态，直到下面的任一事件发生才唤醒线程。
+    * 1.通知观察者 RunLoop 即将启动。
+    * 2.通知观察者即将要处理Timer事件。
+    * 3.通知观察者即将要处理source0事件。
+    * 4.处理source0事件。
+    * 5.如果基于端口的源(Source1)准备好并处于等待状态，进入步骤9。
+    * 6.通知观察者线程即将进入休眠状态。
+    * 7.将线程置于休眠状态，由用户态切换到内核态，直到下面的任一事件发生才唤醒线程。
         * 一个基于 port 的Source1 的事件(图里应该是source0)。
         * 一个 Timer 到时间了。
         * RunLoop 自身的超时时间到了。
         * 被其他调用者手动唤醒。
-    * 通知观察者线程将被唤醒。
-    * 处理唤醒时收到的事件。
+    * 8.通知观察者线程将被唤醒。
+    * 9.处理唤醒时收到的事件。
         * 如果用户定义的定时器启动，处理定时器事件并重启RunLoop。进入步骤2。
         * 如果输入源启动，传递相应的消息。
         * 如果RunLoop被显示唤醒而且时间还没超时，重启RunLoop。进入步骤2
-    * 通知观察者RunLoop结束。
+    * 10.通知观察者RunLoop结束。
+
+### 补充：RunLoop实战使用
+#### NSTimer的使用
+#### ImageView推迟显示
+- 当界面中含有UITableView，而且每个UITableViewCell里边都有图片。这时候当我们滚动UITableView的时候，如果有一堆的图片需要显示，那么可能会出现卡顿的现象。
+- 我们应该推迟图片的显示，也就是ImageView推迟显示图片。有两种方法：
+    * 监听UIScrollView的滚动
+        * 因为UITableView继承自UIScrollView，所以我们可以通过监听UIScrollView的滚动，实现UIScrollView相关delegate即可。
+    * 利用PerformSelector设置当前线程的RunLoop的运行模式
+        * 利用performSelector方法为UIImageView调用setImage:方法，并利用inModes将其设置为RunLoop下NSDefaultRunLoopMode运行模式。
+
+```
+[self.imageView performSelector:@selector(setImage:) withObject:[UIImage imageNamed:@"tupian"] afterDelay:4.0 inModes:NSDefaultRunLoopMode];
+```
+
+#### 后台常驻线程
 
 ### 5.你所知的哪些三方框架使用了 Runloop?（AFNetworking、Texture 等）
 - AFURLConnectionOperation 这个类是基于 NSURLConnection 构建的，其希望能在后台线程接收 Delegate 回调。为此 AFNetworking 单独创建了一个线程，并在这个线程中启动了一个 RunLoop：
@@ -1914,6 +2078,10 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 ```
 
 ### 8.解释一下 手势识别 的过程？
+- 当 _UIApplicationHandleEventQueue()识别了一个手势时，其首先会调用Cancel将当前的touchesBegin/Move/End 系列回调打断。随后系统将对应的UIGestureRecognizer 标记为待处理。
+- 苹果注册了一个 Observer 监测 BeforeWaiting (Loop即将进入休眠) 事件，这个 Observer 的回调函数是 _UIGestureRecognizerUpdateObserver()，其内部会获取所有刚被标记为待处理的GestureRecognizer，并执行GestureRecognizer 的回调。
+- 当有 UIGestureRecognizer的变化(创建/销毁/状态改变)时，这个回调都会进行相应处理。
+
 ### 9.解释一下 GCD 在 Runloop 中的使用？
 ### 10.解释一下 NSTimer，以及 NSTimer 的循环引用。
 - NSTimer 其实就是 CFRunLoopTimerRef，他们之间是 toll-free bridged 的。一个 NSTimer 注册到 RunLoop 后，RunLoop 会为其重复的时间点注册好事件。例如 10:00, 10:10, 10:20 这几个时间点。RunLoop 为了节省资源，并不会在非常准确的时间点回调这个Timer。Timer 有个属性叫做 Tolerance (宽容度)，标示了当时间点到后，容许有多少最大误差。
@@ -2030,6 +2198,64 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
     }
 ```
 
+### 补充：NSThread+runloop实现常驻线程
+- NSThread在实际开发中比较常用到的场景就是去实现常驻线程。
+- 由于每次开辟子线程都会消耗cpu，在需要频繁使用子线程的情况下，频繁开辟子线程会消耗大量的cpu，而且创建线程都是任务执行完成之后也就释放了，不能再次利用，那么如何创建一个线程可以让它可以再次工作呢？也就是创建一个常驻线程。
+- 首先常驻线程既然是常驻，那么我们可以用GCD实现一个单例来保存NSThread
+
+```
++ (NSThread *)shareThread {
+    
+    static NSThread *shareThread = nil;
+    
+    static dispatch_once_t oncePredicate;
+    
+    dispatch_once(&oncePredicate, ^{
+        
+        shareThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadTest) object:nil];
+
+        [shareThread setName:@"threadTest"];
+        
+        [shareThread start];
+    });
+    
+    return shareThread;
+}
+```
+- 可以用runloop来让线程常驻
+
+```
++ (NSThread *)shareThread {
+    
+    static NSThread *shareThread = nil;
+    
+    static dispatch_once_t oncePredicate;
+    
+    dispatch_once(&oncePredicate, ^{
+        
+        shareThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadTest2) object:nil];
+        
+        [shareThread setName:@"threadTest"];
+        
+        [shareThread start];
+    });
+    
+    return shareThread;
+}
+
++ (void)threadTest
+{
+    @autoreleasepool {
+        
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        
+        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        
+        [runLoop run];
+    }
+}
+```
+
 ### 15.为什么 NSTimer 有时候不好使？（不同类型的Mode）
 
 - 因为创建的 NSTimer 默认是被加入到了 defaultMode，所以当 Runloop 的 Mode 变化时，当前的 NSTimer 就不会工作了。
@@ -2061,6 +2287,42 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 ## UIKit
 ### 1.UIView 和 CALayer 是什么关系？
 ### 2.Bounds 和 Frame 的区别?
+#### frame
+- 是每个view必备的属性，代表的是当前视图的位置和大小，没有设置他，当前视图是看不到的。
+- 在iOS坐标系中以左上角为坐标原点，往右为X正方向，往下是Y正方向
+- frame中的位置是以父视图的坐标系为标准来确定当前视图的位置
+- 同样的默认情况下，本视图的左上角就是子视图的坐标原点
+- 更改frame中位置，则当前视图的位置会发生改变
+- 更改frame的大小，则当前视图以当前视图的左上角为基准的进行大小的修改
+#### bounds
+- 是每个View都有的属性，这个属性我们一般不进行设置，他同样代表位置和大小；
+每个视图都有自己的坐标系，且这个坐标系默认以自身的左上角为坐标原点，所有子视图以这个坐标系的原点为基准点。
+- bounds的位置代表的是子视图看待当前视图左上角的位置;bounds的大小代表当前视图的大小；
+- 更改bounds中的位置对于当前视图没有影响，相当于更改了当前视图的坐标系，对于子视图来说当前视图的左上角已经不再是(0,0), 而是改变后的坐标，坐标系改了，那么所有子视图的位置也会跟着改变
+- 更改bounds的大小，bounds的大小代表当前视图的长和宽，修改长宽后，中心点继续保持不变, 长宽进行改变；通过bounds修改长宽看起来就像是以中心点为基准点对长宽两边同时进行缩放；
+#### frame和bounds
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-188e8cb0157b3cee.png?imageMogr2/auto-orient/strip|imageView2/2/w/779)
+
+- 因为是View A是顶层视图，所以其实相当于覆盖在框架上，因此位置从父视图的（0，0）开始，大小为550*400
+- 默认情况下，本视图的坐标系是没有发生改变的即当前视图(view A)的左上角就是所有子视图的原点，大小就是当前视图的大小.
+- 因为View B是ViewA的子视图，所以ViewB的frame位置需要以View A的左上角为参照，因此位置为(200, 100), 大小为200*250
+- bounds在默认情况下本视图的坐标系是没有发生改变的即当前视图(viewB)的左上角就是当前视图所有子视图的原点.
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-2844fc5a83246fca.png?imageMogr2/auto-orient/strip|imageView2/2/w/893)
+
+- 在上一个例子的基础上，我们更改了view A的bounds后，view B看待View A的左上角就已经发生改变了；这个时候我们看待View A的左上角就不是坐标原点了，而是我们通过bounds设置后的坐标，如图也就是(0, 100);
+在View B的frame没有保存不变的基础上，我们View B的位置向上移动了100
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-ed92b2bc1640b1bd.png?imageMogr2/auto-orient/strip|imageView2/2/w/935)
+
+#### 总结
+- frame不管对于位置还是大小，改变的都是自己本身
+- frame的位置是以父视图的坐标系为参照，从而确定当前视图在父视图中的位置
+- frame的大小改变时，当前视图的左上角位置不会发生改变，只是大小发生改变
+- bounds改变位置时，改变的是子视图的位置，自身没有影响；其实就是改变了本身的坐标系原点，默认本身坐标系的原点是左上角
+- bounds的大小改变时，当前视图的中心点不会发生改变，当前视图的大小发生改变，看起来效果就想缩放一样
+
 ### 3.TableViewCell 如何根据 UILabel 内容长度自动调整高度?
 ### 4.LoadView方法了解吗？
 ### 5.UIButton 的父类是什么？UILabel 的父类又是什么？
@@ -2086,6 +2348,42 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 
 ## Foundation
 ### 1.`Bounds` 和 `Frame` 的区别?
+#### frame
+- 是每个view必备的属性，代表的是当前视图的位置和大小，没有设置他，当前视图是看不到的。
+- 在iOS坐标系中以左上角为坐标原点，往右为X正方向，往下是Y正方向
+- frame中的位置是以父视图的坐标系为标准来确定当前视图的位置
+- 同样的默认情况下，本视图的左上角就是子视图的坐标原点
+- 更改frame中位置，则当前视图的位置会发生改变
+- 更改frame的大小，则当前视图以当前视图的左上角为基准的进行大小的修改
+#### bounds
+- 是每个View都有的属性，这个属性我们一般不进行设置，他同样代表位置和大小；
+每个视图都有自己的坐标系，且这个坐标系默认以自身的左上角为坐标原点，所有子视图以这个坐标系的原点为基准点。
+- bounds的位置代表的是子视图看待当前视图左上角的位置;bounds的大小代表当前视图的大小；
+- 更改bounds中的位置对于当前视图没有影响，相当于更改了当前视图的坐标系，对于子视图来说当前视图的左上角已经不再是(0,0), 而是改变后的坐标，坐标系改了，那么所有子视图的位置也会跟着改变
+- 更改bounds的大小，bounds的大小代表当前视图的长和宽，修改长宽后，中心点继续保持不变, 长宽进行改变；通过bounds修改长宽看起来就像是以中心点为基准点对长宽两边同时进行缩放；
+#### frame和bounds
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-188e8cb0157b3cee.png?imageMogr2/auto-orient/strip|imageView2/2/w/779)
+
+- 因为是View A是顶层视图，所以其实相当于覆盖在框架上，因此位置从父视图的（0，0）开始，大小为550*400
+- 默认情况下，本视图的坐标系是没有发生改变的即当前视图(view A)的左上角就是所有子视图的原点，大小就是当前视图的大小.
+- 因为View B是ViewA的子视图，所以ViewB的frame位置需要以View A的左上角为参照，因此位置为(200, 100), 大小为200*250
+- bounds在默认情况下本视图的坐标系是没有发生改变的即当前视图(viewB)的左上角就是当前视图所有子视图的原点.
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-2844fc5a83246fca.png?imageMogr2/auto-orient/strip|imageView2/2/w/893)
+
+- 在上一个例子的基础上，我们更改了view A的bounds后，view B看待View A的左上角就已经发生改变了；这个时候我们看待View A的左上角就不是坐标原点了，而是我们通过bounds设置后的坐标，如图也就是(0, 100);
+在View B的frame没有保存不变的基础上，我们View B的位置向上移动了100
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-ed92b2bc1640b1bd.png?imageMogr2/auto-orient/strip|imageView2/2/w/935)
+
+#### 总结
+- frame不管对于位置还是大小，改变的都是自己本身
+- frame的位置是以父视图的坐标系为参照，从而确定当前视图在父视图中的位置
+- frame的大小改变时，当前视图的左上角位置不会发生改变，只是大小发生改变
+- bounds改变位置时，改变的是子视图的位置，自身没有影响；其实就是改变了本身的坐标系原点，默认本身坐标系的原点是左上角
+- bounds的大小改变时，当前视图的中心点不会发生改变，当前视图的大小发生改变，看起来效果就想缩放一样
+
 ### 2.`nil`、`NIL`、`NSNULL` 有什么区别？
 ### 3.如何实现一个线程安全的 `NSMutableArray`?
 ### 4.如何定义一台 iOS 设备的唯一性?
@@ -2107,9 +2405,39 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 
 ## 网络
 ### 1.NSUrlConnect相关知识。
+- NSURLConnection 是 iOS 开发中最经典的网络请求方案。虽然在苹果公司推出 NSURLSession 后已经不推荐使用 NSURLConnection 了（NSURLConnection 在 iOS 9 被宣布弃用了），但是在一些早先构建的项目和框架中可能任使用了 NSURLConnection 技术，所以还是有必要了解 NSURLConnection。
+- NSURLConnection 使用步骤
+    * 创建一个 NSURL 对象，用于设置请求路径。
+    * 创建一个 NSURLRequest 对象，并设置请求头、请求体等请求参数。
+    * 创建一个 NSURLResponse 对象用于接收响应数据，一般用 NSURLResponse 的子类 NSHPPTURLResponse。
+    * 使用 NSURLConnection 发送同步或异步请求。
+    * 可以使用 NSURLConnectionDelegate 监听网络请求的响应。
+
 ### 2.NSUrlSession相关知识。
+- 在 iOS 9.0 之后，以前使用的 NSURLConnection 被弃用，苹果推荐使用 NSURLSession 来替换NSURLConnection 完成网路请求相关操作。
+- NSURLSession 使用步骤
+    * NSURLSession 的使用非常简单，先根据会话对象创建一个请求Task，然后执行该Task即可。
+    * NSURLSessionTask 本身是一个抽象类，在使用的时候，通常是根据具体的需求使用它的几个子类。
+
 ### 补充：简要说一下Https；
 ### 3.Http 和 Https 的区别？为什么更加安全？
+- HTTP协议
+    * HTTP（Hypertext Transfer Protocol）协议是超文本传输协议，是互联网上应用最为广泛的一种网络协议。简单来说，HTTP 是客户端和服务器端之间请求和应答的标准。
+- HTTP 协议工作过程，分为4个步骤：
+    * 客户端与服务器需要建立连接。例如，单击某个超链接，浏览器和服务器将建立通信连接。
+    * 建立连接后，客户端发送一个请求给服务器，请求方式的格式为：统一资源标识符（URL）、协议版本号，后边是MIME信息包括请求修饰符、客户端信息和可能的内容。
+    * 服务器接收到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码，后面是 MIME 信息包括服务器信息、实体信息和可能的内容。
+    * 客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上，然后客户机与服务器断开连接。
+- HTTPS协议
+    * HTTPS（Secure Hypertext Transfer Protocol）安全超文本传输协议它是一个安全通信通道，它基于HTTP开发，用于在客户计算机和服务器之间交换信息。它使用安全套接字层(SSL)进行信息交换，简单来说它是HTTP的安全版。
+- HTTPS和HTTP的区别：
+    * https协议需要到ca申请证书，一般免费证书很少，需要交费。
+    * http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。
+    * http和https使用的是完全不同的连接方式,用的端口也不一样,前者是80,后者是443。
+    * http的连接很简单,是无状态的。
+    * HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议要比http协议安全。
+- iOS9中新增App Transport Security（简称ATS）特性, 让原来请求时候用到的HTTP，全部都转向TLS1.2协议进行传输，这意味着所有的HTTP协议都强制使用了HTTPS协议进行传输。如果我们在iOS9下直接进行HTTP请求是会报错，系统会告诉我们不能直接使用HTTP进行请求，需要在Info.plist中控制ATS的配置。
+
 ### 4.Http的请求方式有哪些？Http 有什么特性？
 ### 5.解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？
 * tcp的三次握手
@@ -2135,7 +2463,19 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
     * 而当关闭连接时, 服务端收到FIN报文后, 很可能并不会马上就关闭Socket连接, 所以只能先回复一个ACK报文, 告诉客户端, 你发的FIN报文我收到了, 只有等到服务器的所有报文发送完了, 服务端才会发送FIN报文, 所以才需要四次挥手。
 
 ### 6.GET 和 POST 请求的区别？
+- ET请求：参数在地址后拼接，没有请求数据，不安全（因为所有参数都拼接在地址后面），不适合传输大量数据（长度有限制，为1024个字节）。
+- GET提交、请求的数据会附在URL之后，即把数据放置在HTTP协议头<requestline>中。以分割URL和传输数据，多个参数用&连接。如果数据是英文字母或数字，原样发送，如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用BASE64加密。
+- POST请求：参数在请求数据区放着，相对GET请求更安全，并且数据大小没有限制。把提交的数据放置在HTTP包的包体<request-body>中.
+- ET提交的数据会在地址栏显示出来，而POST提交，地址栏不会改变。
+- GET提交时，传输数据就会受到URL长度限制，POST由于不是通过URL传值，理论上书不受限。
+- POST的安全性要比GET的安全性高；
+- 通过GET提交数据，用户名和密码将明文出现在URL上，比如登陆界面有可能被浏览器缓存。
+
 ### 7.HTTP 请求报文 和 响应报文的结构？
+- HTTP超文本传输协议，是短连接，是客户端主动发送请求，服务器做出响应，服务器响应之后，链接断开。HTTP是一个属于应用层面向对象的协议，HTTP有两类报文：请求报文和响应报文。
+- HTTP请求报文：一个HTTP请求报文由请求行、请求头部、空行和请求数据4部分组成。
+- HTTP响应报文：由三部分组成：状态行、消息报头、响应正文。
+
 ### 8.什么是 Mimetype ?
 ### 9.数据传输的加密过程？
 ### 10.说一下 TCP/IP 五层模型的协议?
@@ -2164,8 +2504,221 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 数据链路层和物理层的封装在设备驱动程序与网络接口中完成。
 
 ### 11.说一下 OSI 七层模型的协议?
+- OSI模型，即开放式通信系统互联参考模型，是国际标准化组织(ISO)提出的一个试图使各种计算机在世界范围内互连为网络的标准框架，简称OSI。
+- 0SI／RM协议是由IS0(国际标准化组织)制定的，它有三个基本的功能：
+    * 提供给开发者一个必须的
+    * 通用的概念以便开发完善
+    * 可以用来解释连接不同系统的框架
+- OSI的层次划分：OSI将计算机网络体系结构(architecture)划分为以下七层：
+    * 物理层  Physical Layer：物理接口规范，传输比特流,网卡是工作在物理层的。
+    * 数据链路层  Data Link Layer：成帧，保证帧的无误传输，MAC地址，形成EHTHERNET帧
+    * 网络层  Network Layer：路由选择，流量控制，IP地址，形成IP包
+    * 传输层  Transport Layer：端口地址，如HTTP对应80端口。TCP和UDP工作于该层,还有就是差错校验和流量控制。
+    * 会话层  Session Layer：组织两个会话进程之间的通信,并管理数据的交换使用NETBIOS和WINSOCK协议。QQ等软件进行        通讯因该是工作在会话层的。
+    * 表示层  Presentation Layer：使得不同操作系统之间通信成为可能。
+    * 应用层 Application Layer：对应于各个应用软件
+
 ### 12.大文件下载 的功能有什么注意点？
+- 大文件下载分四步：
+    * NSURLSessionConfiguration初始化
+    * NSURLSession初始化
+    * 创建NSURLSessionDownloadTask
+    * 实现四个代理方法
+#### NSURLSessionConfiguration初始化
+- 在初始化NSURLSession之前需要配置NSURLSessionConfiguration，有三种模式可以选择。
+
+```
+//默认模式，使用的是持久化的硬盘缓存
+defaultSessionConfiguration;
+//仅使用内存缓存，不会做持久存储到磁盘等，在session被释放后，数据会被清除，一般用于浏览器的无痕浏览
+ephemeralSessionConfiguration;
+//后台传输模式，咱们主要用的是这个模式，
+backgroundSessionConfigurationWithIdentifier
+
+```
+#### NSURLSession初始化
+- NSURLSessionConfiguration配置好以后就可以设置NSURLSession了，注意,文件下载只需要有一个Session就够了，要下载多个文件可以创建多个NSURLSessionDownloadTask。
+
+```
+//默认单线程执行大文件下载
+NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+queue.maxConcurrentOperationCount = 1;//这里可以设置它的最大并发数
+        
+//创建会话
+self.session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:queue];
+```
+#### 创建NSURLSessionDownloadTask
+- session设置完以后就可以进行下载操作了，一行代码的事儿
+
+```
+NSURLSessionDownloadTask *downloadTask = [self.session downloadTaskWithURL:[NSURL URLWithString:urlStr]];
+```
+
+#### 实现四个代理方法
+
+```
+#pragma mark - NSURLSessionDownloadDelegate
+/**
+ 每次传一个包调用一次该方法,可以从中获得下载进度,速度和文件大小
+
+ @param session 当前的session会话
+ @param downloadTask 当前的下载任务NSURLSessionDownloadTask
+ @param bytesWritten 这次传递过来的数据量
+ @param totalBytesWritten 目前为止下载了多少的数据
+ @param totalBytesExpectedToWrite 一共有多少的数据要下载
+ */
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    //进度
+    float progress = 1.0 * totalBytesWritten / totalBytesExpectedToWrite;
+    self.downloadProgressBlock(progress);
+}
+
+/**
+ 下载完成后，会调用该方法
+
+ @param session 当前的session会话
+ @param downloadTask 当前的下载任务NSURLSessionDownloadTask
+ @param location 文件下载下来后系统自动保存的地址，location下的文件会被系统自动删除
+ */
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask
+didFinishDownloadingToURL:(nonnull NSURL *)location {
+    //移动文件到自己想要保存的路径下,location下的文件会被系统自动删除
+    NSError *saveError = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *savePath = [self savePathWithUrl:downloadTask.taskDescription];
+    if ([fileManager fileExistsAtPath:savePath]) {
+        [fileManager removeItemAtPath:savePath error:nil];
+    }
+    BOOL success = [fileManager moveItemAtPath:location.path toPath:savePath error:&saveError];
+    if (success) {
+        NSLog(@"文件下载完成,路径为 == %@", savePath);
+        self.downloadSuccessBlock([NSURL URLWithString:savePath]);
+        //删除之前保存的用来断点续传的resumeData
+        [self removeDownloadTmpFileWithUrl:downloadTask.taskDescription];
+    } else {
+        NSLog(@"在转移文件时发生错误 %@", saveError);
+    }
+}
+
+#pragma mark - NSURLSessionTaskDelegate
+/**
+ 每次任务结束后调用，结束并不代表它下载完了，有以下几种情况
+ 1、没错误
+ 2、用户取消下载
+ 3、进程在后台被杀死了
+ 4、其他错误
+ 偷偷说一句，这个error里面有断点续传需要的resumeData
+ @param session 当前的session会话
+ @param task 当前的下载任务NSURLSessionTask，
+            NSURLSessionDownloadTask继承它
+ @param error 错误信息
+ */
+-(void)URLSession:(nonnull NSURLSession *)session
+             task:(nonnull NSURLSessionTask *)task
+didCompleteWithError:(nullable NSError *)error {
+    if (error) {
+        
+        //用户取消下载会回调一个error,
+        if ([error.localizedDescription isEqualToString:@"cancelled"]) {
+            return;
+        }
+        
+        //如果是在后台进程被杀死了,则保存一下resumeData
+        if ([error.userInfo objectForKey:NSURLErrorBackgroundTaskCancelledReasonKey]) {
+            [self saveDownloadTmpFileWithResumeData:[error.userInfo objectForKey:NSURLSessionDownloadTaskResumeData] url:task.taskDescription];
+        }
+        
+        //暂时就是出任何错都让resumeData保存一下吧
+        [self saveDownloadTmpFileWithResumeData:[error.userInfo objectForKey:NSURLSessionDownloadTaskResumeData] url:task.taskDescription];
+        NSLog(@"error = %@", error);
+    }
+}
+
+#pragma mark - NSURLSessionDelegate
+//应用处于后台,所有下载任务已经完成，且其他代理方法都调用完以后调用
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
+    NSLog(@"应用在后台该做的事儿都做完了");
+}
+```
+
+### 补充：后台下载
+- 在AppDelegate中调用一行代码
+
+```
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    //调用这句,防止应用在进入后台后所有任务被终止
+    [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+    }];
+}
+```
+调用完这个代码以后，App即使被压入后台，应用会继续把没执行完的任务执行完，一般是3分钟，在后台中应用任务完成后会调用上面介绍的四个回调，应用被强制杀死会走下面这个回调
+
+```
+-(void)URLSession:(nonnull NSURLSession *)session
+             task:(nonnull NSURLSessionTask *)task
+didCompleteWithError:(nullable NSError *)error {
+//如果是在后台进程被杀死了,则保存一下resumeData，用于以后断点续传
+        if ([error.userInfo objectForKey:NSURLErrorBackgroundTaskCancelledReasonKey]) {
+              NSData *resumeData = [error.userInfo objectForKey:NSURLSessionDownloadTaskResumeData];
+        }
+}
+
+```
+
 ### 13.断点续传 功能该怎么实现？
+- 断点续传需要在创建NSURLSessionDownloadTask的时候传入resumeData，这样任务它就知道了上次的文件已经下载到这了，那就接着下载
+#### 保存resumeData
+- 一般在什么时刻保存resumeData呢
+- 暂停下载
+
+```
+[downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
+        if (!isRemove) {
+            //将目前传递的文件数据resumeData存储到Document中
+            [self saveDownloadTmpFileWithResumeData:resumeData url:urlStr];
+        } else {
+            [self removeDownloadTmpFileWithUrl:urlStr];
+        }
+}];
+```
+- 应用被强行杀死
+
+```
+//如果是在后台进程被杀死了,则保存一下resumeData
+if ([error.userInfo objectForKey:NSURLErrorBackgroundTaskCancelledReasonKey]) {
+        //将目前传递的文件数据resumeData存储到Document中
+        [self saveDownloadTmpFileWithResumeData:[error.userInfo objectForKey:NSURLSessionDownloadTaskResumeData] url:task.taskDescription];
+}
+```
+- 下载过程中出现任何错误时
+#### 在下次再下载这个文件时用resumeData创建NSURLSessionDownloadTask
+
+```
+        NSURLSessionDownloadTask *downloadTask = nil;
+        //之前是否有过这个文件的下载任务
+        if ([self.resumeDataDic.allKeys containsObject:base64Url]) {
+            //到document中找找有没有之前下载过一些的resumeData文件
+            //有resumeData就恢复下载
+            downloadTask = [self.session downloadTaskWithResumeData:self.resumeDataDic[base64Url]];
+        } else {
+            //之前没下载过这个文件,就从头下载吧
+            downloadTask = [self.session downloadTaskWithURL:[NSURL URLWithString:urlStr]];
+        }
+        
+        //设置任务描述标签为文件url
+        downloadTask.taskDescription = urlStr;
+        //存储downloadTask对象
+        self.downloadTaskDic[base64Url] = downloadTask;
+        
+        //启动任务
+        [downloadTask resume];
+```
+
 ### 14.封装一个网络框架有哪些注意点？
 ### 15.Wireshark、Charles、Paw 等工具会使用吗？
 ### 16.NSUrlProtocol用过吗？用在什么地方了？
@@ -2307,6 +2860,49 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
 
 ## 多线程
+### 补充：进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步
+- 进程：
+    * 进程是一个具有一定独立功能的程序关于某次数据集合的一次运行活动，它是操作系统分配资源的基本单元.
+    * 进程是指在系统中正在运行的一个应用程序，就是一段程序的执行过程,我们可以理解为手机上的一个app.
+    * 每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内，拥有独立运行所需的全部资源
+- 线程：
+    * 程序执行流的最小单元，线程是进程中的一个实体.
+    * 一个进程要想执行任务,必须至少有一条线程.应用程序启动的时候，系统会默认开启一条线程,也就是主线程
+- 进程和线程的关系
+    * 线程是进程的执行单元，进程的所有任务都在线程中执行
+    * 线程是 CPU 分配资源和调度的最小单位
+    * 一个程序可以对应多个进程(多进程),一个进程中可有多个线程,但至少要有一条线程
+    * 同一个进程内的线程共享进程资源
+- 多进程，打开mac的活动监视器，可以看到很多个进程同时运行：
+    * 进程是程序在计算机上的一次执行活动。当你运行一个程序，你就启动了一个进程。显然，程序是死的(静态的)，进程是活的(动态的)。
+    * 进程可以分为系统进程和用户进程。凡是用于完成操作系统的各种功能的进程就是系统进程，它们就是处于运行状态下的操作系统本身;所有由用户启动的进程都是用户进程。进程是操作系统进行资源分配的单位。
+    * 进程又被细化为线程，也就是一个进程下有多个能独立运行的更小的单位。在同一个时间里，同一个计算机系统中如果允许两个或两个以上的进程处于运行状态，这便是多进程。
+- 多线程
+    * 同一时间，CPU只能处理1条线程，只有1条线程在执行。多线程并发执行，其实是CPU快速地在多条线程之间调度（切换）。如果CPU调度线程的时间足够快，就造成了多线程并发执行的假象
+    * 如果线程非常非常多，CPU会在N多线程之间调度，消耗大量的CPU资源，每条线程被调度执行的频次会降低（线程的执行效率降低）
+    * 多线程的优点:
+        * 能适当提高程序的执行效率
+        * 能适当提高资源利用率（CPU、内存利用率）
+    * 多线程的缺点:
+        * 开启线程需要占用一定的内存空间（默认情况下，主线程占用1M，子线程占用512KB），如果开启大量的线程，会占用大量的内存空间，降低程序的性能
+        * 线程越多，CPU在调度线程上的开销就越大
+        * 程序设计更加复杂：比如线程之间的通信、多线程的数据共享
+- 任务
+    * 就是执行操作的意思，也就是在线程中执行的那段代码。在 GCD 中是放在 block 中的。执行任务有两种方式：同步执行（sync）和异步执行（async）
+    * 同步(Sync)：同步添加任务到指定的队列中，在添加的任务执行结束之前，会一直等待，直到队列里面的任务完成之后再继续执行，即会阻塞线程。只能在当前线程中执行任务(是当前线程，不一定是主线程)，不具备开启新线程的能力。
+    * 异步(Async)：线程会立即返回，无需等待就会继续执行下面的任务，不阻塞当前线程。可以在新的线程中执行任务，具备开启新线程的能力(并不一定开启新线程)。如果不是添加到主队列上，异步会在子线程中执行任务
+- 队列
+    * 队列（Dispatch Queue）：这里的队列指执行任务的等待队列，即用来存放任务的队列。队列是一种特殊的线性表，采用 FIFO（先进先出）的原则，即新任务总是被插入到队列的末尾，而读取任务的时候总是从队列的头部开始读取。每读取一个任务，则从队列中释放一个任务
+    * 在 GCD 中有两种队列：串行队列和并发队列。两者都符合 FIFO（先进先出）的原则。两者的主要区别是：执行顺序不同，以及开启线程数不同。
+    * 串行队列（Serial Dispatch Queue）：同一时间内，队列中只能执行一个任务，只有当前的任务执行完成之后，才能执行下一个任务。（只开启一个线程，一个任务执行完毕后，再执行下一个任务）。主队列是主线程上的一个串行队列,是系统自动为我们创建的
+    * 并发队列（Concurrent Dispatch Queue）：同时允许多个任务并发执行。（可以开启多个线程，并且同时执行任务）。并发队列的并发功能只有在异步（dispatch_async）函数下才有效
+- 并行与串行：决定了任务的执行方式
+    * 并行：多个任务并发（同时）执行。类型迅雷，多个任务同时开启下载
+    * 串行：一个任务执行完毕后，再执行下一个任务。类似浏览器的一个接一个下载
+- 同步和异步：决定了可不可以开启新的线程
+    * 同步：在当前线程中执行任务，不具备开启新线程的能力
+    * 异步：在新的线程中执行任务，具备开启新线程的能力
+
 ### 补充：谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
 - 好处：
     - 使用线程可以把占据时间长的程序中的任务放到后台去处理
@@ -2323,11 +2919,61 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     - NSThread
     - NSOperation
     - GCD
+- NSThread:(两种创建方式)
+
+```
+[NSThread detachNewThreadSelector:@selector(doSomething:) toTarget:self withObject:nil];
+ 
+NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(doSomething:) object:nil];
+ 
+[myThread start];
+```
+- 优点：NSThread 比其他两个轻量级。 
+- 缺点：需要自己管理线程的生命周期，线程同步，线程同步时对数据的加锁会有一定的系统开销。
+- Cocoa Operation
+
+```
+NSOperationQueue*oprationQueue= [[NSOperationQueuealloc] init];
+ 
+oprationQueueaddOperationWithBlock:^{
+ 
+//这个block语句块在子线程中执行
+ 
+}
+```
+- 优点：不需要关心线程管理，数据同步的事情。 Cocoa Operation 相关的类是 NSOperation ，NSOperationQueue。NSOperation是个抽象类，使用它必须用它的子类，可以实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation。创建NSOperation子类的对象，把对象添加到NSOperationQueue队列里执行，我们会把我们的执行操作放在NSOperation中main函数中。
+- GCD Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法，GCD是一个替代诸如NSThread, NSOperationQueue, NSInvocationOperation等技术的很高效和强大的技术。它让程序平行排队的特定任务，根据可用的处理资源，安排他们在任何可用的处理器核心上执行任务，一个任务可以是一个函数(function)或者是一个block。 dispatch queue分为下面三种： private dispatch queues，同时只执行一个任务，通常用于同步访问特定的资源或数据。 global dispatch queue，可以并发地执行多个任务，但是执行完成的顺序是随机的。 Main dispatch queue 它是在应用程序主线程上执行任务的。
 
 ### 1.NSThread相关知识？
+
 ### 2.GCD 相关知识？
 ### 3.NSOperation 和 NSOperationQueue相关知识？
+- 操作（Operation）：
+    * 执行操作的意思，换句话说就是你在线程中执行的那段代码。
+    * 在 GCD 中是放在 block 中的。在 NSOperation 中，使用 NSOperation子类NSInvocationOperation、NSBlockOperation，或者自定义子类来封装操作。
+- 操作队列（Operation Queues）：
+    * 这里的队列指操作队列，即用来存放操作的队列。不同于 GCD 中的调度队列 FIFO（先进先出）的原则。NSOperationQueue 对于添加到队列中的操作，首先进入准备就绪的状态（就绪状态取决于操作之间的依赖关系），然后进入就绪状态的操作的开始执行顺序（非结束执行顺序）由操作之间相对的优先级决定（优先级是操作对象自身的属性）。
+    * 操作队列通过设置最大并发操作数（maxConcurrentOperationCount）来控制并发、串行。
+    * NSOperationQueue 为我们提供了两种不同类型的队列：主队列和自定义队列。主队列运行在主线程之上，而自定义队列在后台执行。
+
+### 补充：NSOperationQueue的优点
+- NSOperation、NSOperationQueue 是苹果提供给我们的一套多线程解决方案。实际上 NSOperation、NSOperationQueue 是基于 GCD 更高一层的封装，完全面向对象。但是比 GCD 更简单易用、代码可读性也更高。
+- 可以添加任务依赖，方便控制执行顺序
+- 可以设定操作执行的优先级
+- 任务执行状态控制:isReady,isExecuting,isFinished,isCancelled如果只是重写NSOperation的main方法，由底层控制变更任务执行及完成状态，以及任务退出，如果重写了NSOperation的start方法，自行控制任务状态
+系统通过KVO的方式移除isFinished==YES的NSOperation
+- 可以设置最大并发量
+
 ### 补充：NSOperation与GCD的关系？
+- GCD是面向底层的C语言的API，NSOpertaionQueue用GCD构建封装的，是GCD的高级抽象。
+- GCD执行效率更高，而且由于队列中执行的是由block构成的任务，这是一个轻量级的数据结构，写起来更方便
+- GCD只支持FIFO的队列，而NSOperationQueue可以通过设置最大并发数，设置优先级，添加依赖关系等调整执行顺序
+- NSOperationQueue甚至可以跨队列设置依赖关系，但是GCD只能通过设置串行队列，或者在队列内添加barrier(dispatch_barrier_async)任务，才能控制执行顺序,较为复杂
+- NSOperationQueue因为面向对象，所以支持KVO，可以监测operation是否正在执行（isExecuted）、是否结束（isFinished）、是否取消（isCanceld）
+- 实际项目开发中，很多时候只是会用到异步操作，不会有特别复杂的线程关系管理，所以苹果推崇的且优化完善、运行快速的GCD是首选
+- 如果考虑异步操作之间的事务性，顺序行，依赖关系，比如多线程并发下载，GCD需要自己写更多的代码来实现，而NSOperationQueue已经内建了这些支持
+- 不论是GCD还是NSOperationQueue，我们接触的都是任务和队列，都没有直接接触到线程，事实上线程管理也的确不需要我们操心，系统对于线程的创建，调度管理和释放都做得很好。而NSThread需要我们自己去管理线程的生命周期，还要考虑线程同步、加锁问题，造成一些性能上的开销
+
 ### 4.如何实现线性编程？
 ### 5.说一下 GCD 并发队列实现机制？
 ### 补充：GCD的并行队列一定会开辟新的线程？
@@ -2338,6 +2984,14 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 ### 10.同步锁 - Synchronized(self) {// code}
 ### 11.信号量 - dispatch_semaphore。
 ### 12.自旋锁 - OSSpinLock 。
+- 是一种用于保护多线程共享资源的锁，与一般互斥锁（mutex）不同之处在于当自旋锁尝试获取锁时以忙等待（busy waiting）的形式不断地循环检查锁是否可用。当上一个线程的任务没有执行完毕的时候（被锁住），那么下一个线程会一直等待（不会睡眠），当上一个线程的任务执行完毕，下一个线程会立即执行。
+在多CPU的环境中，对持有锁较短的程序来说，使用自旋锁代替一般的互斥锁往往能够提高程序的性能。
+- 自旋锁会忙等: 所谓忙等，即在访问被锁资源时，调用者线程不会休眠，而是不停循环在那里，直到被锁资源释放锁。
+
+### 补充：互斥锁
+- 当上一个线程的任务没有执行完毕的时候（被锁住），那么下一个线程会进入睡眠状态等待任务执行完毕，当上一个线程的任务执行完毕，下一个线程会自动唤醒然后执行任务。
+- 互斥锁会休眠: 所谓休眠，即在访问被锁资源时，调用者线程会休眠，此时cpu可以调度其他线程工作。直到被锁资源释放锁。此时会唤醒休眠线程。
+
 ### 13.多功能锁 - pthread_mutex
 ### 14.分步锁 - NSDistributedLock。
 ### 15.如何确保线程安全？
@@ -2346,6 +3000,15 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 ### 18.多线程有哪些优缺点？
 ### 19.如何自定义 NSOperation ?
 ### 20.GCD 与 NSOperationQueue 有哪些异同？
+- GCD是面向底层的C语言的API，NSOpertaionQueue用GCD构建封装的，是GCD的高级抽象。
+- GCD执行效率更高，而且由于队列中执行的是由block构成的任务，这是一个轻量级的数据结构，写起来更方便
+- GCD只支持FIFO的队列，而NSOperationQueue可以通过设置最大并发数，设置优先级，添加依赖关系等调整执行顺序
+- NSOperationQueue甚至可以跨队列设置依赖关系，但是GCD只能通过设置串行队列，或者在队列内添加barrier(dispatch_barrier_async)任务，才能控制执行顺序,较为复杂
+- NSOperationQueue因为面向对象，所以支持KVO，可以监测operation是否正在执行（isExecuted）、是否结束（isFinished）、是否取消（isCanceld）
+- 实际项目开发中，很多时候只是会用到异步操作，不会有特别复杂的线程关系管理，所以苹果推崇的且优化完善、运行快速的GCD是首选
+- 如果考虑异步操作之间的事务性，顺序行，依赖关系，比如多线程并发下载，GCD需要自己写更多的代码来实现，而NSOperationQueue已经内建了这些支持
+- 不论是GCD还是NSOperationQueue，我们接触的都是任务和队列，都没有直接接触到线程，事实上线程管理也的确不需要我们操心，系统对于线程的创建，调度管理和释放都做得很好。而NSThread需要我们自己去管理线程的生命周期，还要考虑线程同步、加锁问题，造成一些性能上的开销
+
 ### 补充：你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?
 ### 21.解释一下多线程中的死锁？
 ### 补充：列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。
@@ -2366,8 +3029,17 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
 ## 项目架构
 ### 1.什么是 MVC?
+- MVC最大的优势就是快速开发，当项目初期，追求快速上线的时候可以使用MVC，并且苹果提供了MVC的官方支持，项目初期无疑选择MVC是最佳的。
+- MVC结构简单即使对于经验不那么丰富的开发者来讲维护起来也较为容易。
+
 ### 2.什么是 MVVM?
+- MVVM的优势就是，任务均摊每部分都承担各自的责任，结构清晰更加符合软件设计原则
+- 其次就是可测试性强，我们只需要测试ViewModel就能够轻易的测试UI上的问题
+- 通过观察者模式，来进行属性绑定，代码量将会小的多
+
 ### 3.什么是 MVP?
+- 通过观察者模式，来进行属性绑定，代码量将会小的多
+
 ### 4.什么是 CDD?
 ### 5.项目的组件化？
 #### 1.说一下你了解的项目组件化方案？
@@ -2529,6 +3201,16 @@ person类方法：
 - 一般以weak关键词以规避循环引用。
 
 ### 11.__block 的解释以及在 ARC 和 MRC 下有什么不同？
+### 补充：在block内如何修改block外部变量?
+- 默认情况下,在block中访问的外部变量是复制过去的,即:写操作不对原变量生效
+- 这里是把栈中的a,复制了一份到堆中(只是一个简单的值传递,堆中的暂且称之为b,下面也这样称呼),两个内存空间,所以修改栈中的a,不影响堆中的b.
+- 如果我们想要修改外部变量的值,我们可以加上__block来进行操作
+- 为什么加上__block就生效了？
+    * Block不允许修改外部变量的值,这里所说的外部变量的值,指的是.__block 所起到的作用就是只要观察到该变量被 block 所持有,就会将a包装成一个结构体__Block_byref_a_0,初始化a=0,然后将该结构体的指针传递到了堆中.因而在block内部也可以修改外部变量的值.a在结构体里变成了一个属性(该结构体持有局部的原始变量),也有__forwarding这个指针. 这时候栈里面结构体的__forwarding 指向了堆中的结构体,堆中结构体的__forwarding 指向了自己,这就保证了无论是栈中的还是堆中的,都是访问的同一个值a
+- Block不允许修改外部变量的值这样的设计,应该是考虑到了block的特殊性,block也属于“函数”的范畴,变量进入block,实际就是已经改变了作用域.在几个作用域之间进行切换时,如果不加上这样的限制,变量的可维护性将大大降低.又比如我想在block内声明了一个与外部同名的变量,此时是允许呢还是不允许呢?
+- 可以看到,定义后和block内部内存地址是一样的,我们都知道 block 内部的变量会被放到堆区,“block内部”打印的是堆地址,因而也就可以知道,“定义后”打印的也是堆的地址.
+- 结论:a在定义前是在栈区(),进入block区域后,变成了堆区.这才是__block关键字的作用
+
 ### 12.Block 的内存管理。
 ### 13.Block 自动截取变量。
 #### 局部变量截获 是值截获。 比如:
@@ -3303,6 +3985,78 @@ label.layer.masksToBounds = true
 ### 补充：各个app之间是怎么相互切换的
 
 ## 其他问题
+### 补充：面向对象的三个要素
+- 封装
+    * 封装，就是将客观事物抽象为逻辑实体，实体的属性和功能相结合，形成一个有机的整体。并对实体的属性和功能实现进行访问控制，向信任的实体开放，对不信任的实体隐藏。，通过开放的外部接口即可访问，无需知道功能如何实现。
+    * 也就是说，封装主要有以下目的：
+        * 可隐藏实体实现的细节
+        * 提高安全性，设定访问控制，只允许具有特定权限的使用者调用。
+        * 简化编程，调用方无需知道功能是怎么实现的，即可调用。
+- 继承
+    * 继承，在继承机制下形成有层级的类，使得低层级的类可以延用高层级类的特征和方法。继承的实现方式有两种：实现继承、接口继承。
+    * 实现继承：直接使用基类公开的属性和方法，无需额外编码。
+    * 接口继承：仅使用接口公开的属性和方法名称，需要子类实现。
+    * 也就是说，继承有以下目的：
+        * 复用代码，减少类的冗余代码，减少开发工作量。
+        * 使得类与类之间产生关系，为多态的实现打下基础。
+- 多态
+    * 多态，是指一个类的同名方法，在不同情况下的实现细节不同。多态机制实现不同的内部实现结构共用同一个外部接口。
+    * 也就是说，多态有以下目的：
+        * 一个外部接口可被多个同类使用。
+        * 不同对象调用同个方法，可有不同实现。
+
+### 补充：多态？
+- 多态实现的三个必要条件是：继承、重写（子类继承父类后，对继承的方法重新定义）、父类应用指向子类对象。所以，多态的实现是基于继承的。
+
+### 补充：Java，python，OC运行效率孰高？
+- OC最高，OC大于java大于python
+- oc方法调用的需要经历查缓存，查方法表，查父类方法表，如果都差不多就会进行动态方法决议，如果还是不行，就执行消息转发机制，如果还是无法处理就crash。但是大部分在方法缓存的时候就能找到，苹果有函数缓存机制，当缓存生效时性能与c差不多。
+- Java是静态语言静态编译的，直接执行，速度上要比Python快的很多。而Python动态类型语言，一边执行一边编译，所以要比Java慢。
+
+### 补充：Property，其中copy如何？
+- 用途：
+    * NSString、NSArray、NSDictionary 等等经常使用copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary；
+    * lock 也经常使用 copy 关键字
+- block 使用 copy 是从 MRC 遗留下来的“传统”,在 MRC 中,方法内部的 block 是在栈区的,使用 copy 可以把它放到堆区.在 ARC 中写不写都行：对于 block 使用 copy 还是 strong 效果是一样的，但写上 copy 也无伤大雅，还能时刻提醒我们：编译器自动对 block 进行了 copy 操作。如果不写 copy ，该类的调用者有可能会忘记或者根本不知道“编译器会自动对 block 进行了 copy 操作”，他们有可能会在调用之前自行拷贝属性值。这种操作多余而低效。
+- 下面做下解释：
+    * copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。
+    * 当属性类型为 NSString 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString 类的实例。这个类是 NSString 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。
+    * 用 @property 声明 NSString、NSArray、NSDictionary 经常使用 copy 关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary，他们之间可能进行赋值操作，为确保对象中的字符串值不会无意间变动，应该在设置新属性值时拷贝一份。
+
+### 补充：Property(nonatomatic, copy) NSMutableArray有什么问题？
+- 两个问题：
+    * 添加,删除,修改数组内的元素的时候,程序会因为找不到对应的方法而崩溃.因为copy就是复制一个不可变 NSArray 的对象；
+    * 使用了 atomic 属性会严重影响性能 ；
+- 第一个问题：
+    * 因为父类指针可以指向子类对象,使用 copy 的目的是为了让本对象的属性不受外界影响,使用 copy 无论给我传入是一个可变对象还是不可对象,我本身持有的就是一个不可变的副本.
+- 第二个问题：
+    * 该属性使用了同步锁，会在创建时生成一些额外的代码用于帮助编写多线程程序，这会带来性能问题，通过声明nonatomic可以节省这些虽然很小但是不必要额外开销。
+    * 在默认情况下，由编译器所合成的方法会通过锁定机制确保其原子性(atomicity)。如果属性具备 nonatomic 特质，则不使用同步锁。请注意，尽管没有名为“atomic”的特质(如果某属性不具备 nonatomic 特质，那它就是“原子的”(atomic))。
+    * 在iOS开发中，你会发现，几乎所有属性都声明为 nonatomic。
+    * 一般情况下并不要求属性必须是“原子的”，因为这并不能保证“线程安全” ( thread safety)，若要实现“线程安全”的操作，还需采用更为深层的锁定机制才行。例如，一个线程在连续多次读取某属性值的过程中有别的线程在同时改写该值，那么即便将属性声明为atomic，也还是会读到不同的属性值。
+    * 因此，开发iOS程序时一般都会使用 nonatomic 属性。但是在开发 Mac OS X 程序时，使用atomic 属性通常都不会有性能瓶颈。
+
+### 补充：Copy和MutableCopy的区别？
+#### 对非集合类对象的 copy 与 mutableCopy 操作；
+- 在非集合类对象中：对 immutable 对象进行 copy 操作，是指针复制，mutableCopy 操作时内容复制；对 mutable 对象进行 copy 和 mutableCopy 都是内容复制。用代码简单表示如下：
+    * [immutableObject copy] // 浅复制
+    * [immutableObject mutableCopy] //深复制
+    * [mutableObject copy] //深复制
+    * [mutableObject mutableCopy] //深复制
+- 用 @property声明NSString、NSArray、NSDictionary 经常使用 copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary，他们之间可能进行赋值操作，为确保对象中的字符串值不会无意间变动，应该在设置新属性值时拷贝一份。
+
+#### 对集合类对象的 copy 与 mutableCopy 操作。
+- 集合类对象是指 NSArray、NSDictionary、NSSet ... 之类的对象。
+- 集合类对象中，对 immutable 对象进行 copy，是指针复制， mutableCopy 是内容复制；对 mutable 对象进行 copy 和 mutableCopy 都是内容复制。但是：集合对象的内容复制仅限于对象本身，对象元素仍然是指针复制。
+
+### 补充：解释下类别的原理
+### 补充：解释下封装，重载
+### 补充：OC存在多重继承吗？
+### 补充：了解表视图吗，解释一下复用原理
+### 补充：说明一下表视图的滑动卡顿的优化方法
+### 补充：viewDidLoad和viewDidAppear的调用时机（一次和多次的区别）；
+### 补充：页面间的传值方式有哪些（公有属性，公有方法和协议，block传值，通知，extern全局变量传值，NSUserDefault简单数据存储传值）；
+### 补充：
 ### 补充：在OC中对象方法的几种访问权限，分别是什么？
 ### 补充：列出 #import 和 #include 的区别，另外什么时候使用@class？
 ### 1.`load` 和 `Initialize` 的区别?
