@@ -616,6 +616,185 @@ __block int i = 0;
 #### 14.栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？
 #### 15.二维数组查找一个值。
 #### 补充：插入排序
+#### 补充：有一个很大的整形数据，转成二进制求1的个数
+#### 补充：缓存淘汰算法 LRU 和 LFU
+- 缓存是一个计算机思维，对于重复的计算，缓存其结果，下次再算这个任务的时候，不去真正的计算，而是直接返回结果，能加快处理速度。当然有些会随时间改变的东西，缓存会失效，得重新计算。
+- 比如缓存空间只有2个，要缓存的数据有很多，1，2，3，4，5，那么当缓存空间满了，需要淘汰一个缓存出去，其中淘汰算法有 LRU，LFU，FIFO，SC二次机会，老化算法，时钟工作集算法等等。
+- LRU，最近最少使用，把数据加入一个链表中，按访问时间排序，发生淘汰的时候，把访问时间最旧的淘汰掉。比如有数据 1，2，1，3，2，此时缓存中已有（1，2）当3加入的时候，得把后面的2淘汰，变成（3，1）
+- LFU，最近不经常使用，把数据加入到链表中，按频次排序，一个数据被访问过，把它的频次+1，发生淘汰的时候，把频次低的淘汰掉。比如有数据1，1，1，2，2，3缓存中有（1(3次)，2(2次)）当3加入的时候，得把后面的2淘汰，变成（1(3次)，3(1次)）
+- 区别：LRU 是得把 1 淘汰。
+- 显然LRU对于循环出现的数据，缓存命中不高比如，这样的数据，1，1，1，2，2，2，3，4，1，1，1，2，2，2.....当走到3，4的时候，1，2会被淘汰掉，但是后面还有很多1，2
+- LFU对于交替出现的数据，缓存命中不高比如，1，1，1，2，2，3，4，3，4，3，4，3，4，3，4，3，4......
+由于前面被（1(3次)，2(2次)）3加入把2淘汰，4加入把3淘汰，3加入把4淘汰，然而3，4才是最需要缓存的，1去到了3次，谁也淘汰不了它了。
+
+#### 补充：LRU缓存机制：
+> 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
+> 获取数据 get(key) - 如果关键字 (key) 存在于缓存中，则获取关键字的值（总是正数），否则返回 -1。
+> 写入数据 put(key,value)-如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字/值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。
+> 进阶:你是否可以在 O(1) 时间复杂度内完成这两种操作？
+
+- 思路大概是：维护一个按数据未使用时长升序的双链表（即最近使用的数据放在表头），建立hash表映射至双链表中的结点，并采用拉链法解决哈希冲突，哈希地址采用取余法。
+- 最难的是 put 操作，分析一下有几种情形：
+    * hash表中已有与该密钥（key）相同的数据，则无论缓存容量是否满，直接替换双链表中结点的数据值，并将其更新至双链表表头；
+    * hash表中没有与该密钥（key）的数据，那我们肯定要创建结点来存放该（密钥\数据），分两种情况：
+        * 缓存容量没满，那我们直接创建一个hash表的结点和双链表的结点，并存入（密钥\数据）及建立映射，再更新至双链表表头就可以了;
+        * 缓存容量满了，这时有两种办法：
+            * 删除双链表中最后一个数据结点（即最久未使用的数据），并删除其对应的hash表中的结点，然后和①操作类似；
+            * 删除hash表中最久未使用数据的结点，并根据密钥（key）建立一个新的结点，将其映射至双链表最后一个数据结点，改变该数据结点的密钥\数据值，再对其更新至双链表表头，相当于利用了该数据结点，避免了删除和新增这两步操作。
+- 采用的是第二种方法
+
+```
+#define Nothingness -1
+
+struct node{
+    int key;
+    int value;
+    struct node* prev;
+    struct node* next;
+};//双向链表
+
+struct hash{
+    struct node* unused;//数据的未使用时长
+    struct hash* next;//拉链法解决哈希冲突
+};//哈希表结构
+
+typedef struct {    
+    int size;//当前缓存大小
+    int capacity;//缓存容量
+    struct hash* table;//哈希表
+    //维护一个双向链表用于记录 数据的未使用时长
+    struct node* head;//后继 指向 最近使用的数据
+    struct node* tail;//前驱 指向 最久未使用的数据    
+} LRUCache;
+
+struct hash* HashMap(struct hash* table, int key, int capacity)
+{//哈希地址
+    int addr = key % capacity;//求余数
+    return &table[addr];
+}
+
+void HeadInsertion(struct node* head, struct node* cur)
+{//双链表头插法
+    if (cur->prev == NULL && cur->next == NULL)
+    {// cur 不在链表中        
+        cur->prev = head;
+        cur->next = head->next;
+        head->next->prev = cur;
+        head->next = cur;
+    }
+    else
+    {// cur 在链表中
+        struct node* fisrt = head->next;//链表的第一个数据结点
+        if ( fisrt != cur)
+        {//cur 是否已在第一个
+            cur->prev->next = cur->next;//改变前驱结点指向
+            cur->next->prev = cur->prev;//改变后继结点指向
+            cur->next = fisrt;//插入到第一个结点位置
+            cur->prev = head;
+            head->next = cur;
+            fisrt->prev = cur;
+        }
+    }
+}
+
+LRUCache* lRUCacheCreate(int capacity) {
+    /*if (capacity <= 0)
+    {//传参检查
+        return NULL;
+    }*/
+    LRUCache* obj = (LRUCache*)malloc(sizeof(LRUCache));
+    obj->table = (struct hash*)malloc(capacity * sizeof(struct hash));
+    memset(obj->table, 0, capacity * sizeof(struct hash));
+    obj->head = (struct node*)malloc(sizeof(struct node));
+    obj->tail = (struct node*)malloc(sizeof(struct node));
+    //创建头、尾结点并初始化
+    obj->head->prev = NULL;
+    obj->head->next = obj->tail;
+    obj->tail->prev = obj->head;
+    obj->tail->next = NULL;
+    //初始化缓存 大小 和 容量 
+    obj->size = 0;
+    obj->capacity = capacity;
+    return obj;
+}
+
+int lRUCacheGet(LRUCache* obj, int key) {
+    struct hash* addr = HashMap(obj->table, key, obj->capacity);//取得哈希地址
+    addr = addr->next;//跳过头结点
+    if (addr == NULL){
+        return Nothingness;
+    }
+    while ( addr->next != NULL && addr->unused->key != key)
+    {//寻找密钥是否存在
+        addr = addr->next;
+    }
+    if (addr->unused->key == key)
+    {//查找成功
+        HeadInsertion(obj->head, addr->unused);//更新至表头
+        return addr->unused->value;
+    }
+    return Nothingness;
+}
+
+void lRUCachePut(LRUCache* obj, int key, int value) {
+    struct hash* addr = HashMap(obj->table, key, obj->capacity);//取得哈希地址
+    if (lRUCacheGet(obj, key) == Nothingness)
+    {//密钥不存在
+        if (obj->size >= obj->capacity)
+        {//缓存容量达到上限
+            struct node* last = obj->tail->prev;//最后一个数据结点
+            struct hash* remove = HashMap(obj->table, last->key, obj->capacity);//舍弃结点的哈希地址
+            struct hash* ptr = remove;
+            remove = remove->next;//跳过头结点
+            while (remove->unused->key != last->key)
+            {//找到最久未使用的结点
+                ptr = remove;
+                remove = remove->next;
+            }
+            ptr->next = remove->next;//在 table[last->key % capacity] 链表中删除结点
+            remove->next = NULL;
+            remove->unused = NULL;//解除映射
+            free(remove);//回收资源
+            struct hash* new_node = (struct hash*)malloc(sizeof(struct hash));
+            new_node->next = addr->next;//连接到 table[key % capacity] 的链表中
+            addr->next = new_node;
+            new_node->unused = last;//最大化利用双链表中的结点，对其重映射(节约空间)
+            last->key = key;//重新赋值
+            last->value = value;
+            HeadInsertion(obj->head, last);//更新最近使用的数据
+        }
+        else
+        {//缓存未达上限
+            //创建(密钥\数据)结点,并建立映射
+            struct hash* new_node = (struct hash*)malloc(sizeof(struct hash));
+            new_node->unused = (struct node*)malloc(sizeof(struct node));
+            new_node->next = addr->next;//连接到 table[key % capacity] 的链表中
+            addr->next = new_node;
+            new_node->unused->prev = NULL;//标记该结点是新创建的,不在双向链表中
+            new_node->unused->next = NULL;
+            new_node->unused->key = key;//插入密钥
+            new_node->unused->value = value;//插入数据
+            HeadInsertion(obj->head,new_node->unused);//更新最近使用的数据
+            ++(obj->size);//缓存大小+1
+        }
+    }
+    else
+    {//密钥已存在
+    // lRUCacheGet 函数已经更新双链表表头，故此处不用更新
+        obj->head->next->value = value;//替换数据值
+    }
+}
+
+void lRUCacheFree(LRUCache* obj) {
+    free(obj->table);
+    free(obj->head);
+    free(obj->tail);
+    free(obj);
+}
+```
+
+#### 补充：行间的换页算法有哪些
+#### 补充：山脉数组找目标值(要求logN的时间复杂度)
 #### 补充：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
 ##### 方法一：最笨效率最低的办法，两个for循环，找出出现相同数字的次数
 
@@ -1200,6 +1379,9 @@ NSDictionary shallowCopyDict = [[NSDictionary alloc] initWithDictionary:someDict
 NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:oldArray]];
 ```
 
+### 补充：完全深拷贝和不完全深拷贝
+### 补充：什么是虚拟内存，虚拟内存和物理内存的关系和区别
+
 ### 18.BAD_ACCESS 在什么情况下出现?
 - 访问了已经被销毁的内存空间，就会报出这个错误。
 根本原因是有 悬垂指针 没有被释放。
@@ -1313,6 +1495,8 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
 - 泄露的内存主要有以下两种：
     * Laek Memory 这种是忘记 Release 操作所泄露的内存。
     * Abandon Memory 这种是循环引用，无法释放掉的内存。
+
+补充：介绍界面卡顿的优化有哪些可以优化的点。
 
 ## Runtime
 ### 1.实例对象的数据结构？
@@ -1532,6 +1716,12 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 - 最后是调用 reMethodizeClass:，这个方法是重新方法化的意思。
 - 在 reMethodizeClass: 方法内部会调用 attachCategories: ，这个方法会传入 Class 和 Category ，会将方法列表，协议列表等与原有的类合并。最后加入到 class_rw_t 结构体中。
 
+### 补充：动态库和静态库的区别
+### 补充：+load 和 initialized方法的区别
+### 补充：+load的调用时机
+### 补充：+load分类中的处理
+### 补充：分类和类别的区别
+### 补充：关联对象的原理
 ### 15.说一下 Method Swizzling? 说一下在实际开发中你在什么场景下使用过?
 - 简单说就是进行方法交换
 - 在Objective-C中调用一个方法，其实是向一个对象发送消息，查找消息的唯一依据是selector的名字。利用Objective-C的动态特性，可以实现在运行时偷换selector对应的方法实现，达到给方法挂钩的目的。
@@ -2033,6 +2223,8 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 - 第二个 Observer 监视了两个事件： BeforeWaiting(准备进入休眠) 时调用_objc_autoreleasePoolPop() 和 _objc_autoreleasePoolPush() 释放旧的池并创建新池；Exit(即将退出Loop) 时调用 _objc_autoreleasePoolPop() 来释放自动释放池。这个 Observer 的 order 是 2147483647，优先级最低，保证其释放池子发生在其他所有回调之后。
 - 在主线程执行的代码，通常是写在诸如事件回调、Timer回调内的。这些回调会被 RunLoop 创建好的 AutoreleasePool 环绕着，所以不会出现内存泄漏，开发者也不必显示创建 Pool 了。
 
+### 补充：介绍UIResponder的继承链。然后说事件响应链。
+
 ### 7.解释一下 事件响应 的过程？
 - 响应者：响应者为响应事件的UIResponder子类对象，如UIButton、UIView等；
 - 响应链：响应链是由链接在一起的响应者（UIResponse子类）组成的。
@@ -2531,6 +2723,8 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 
 
 ## 网络
+### 你了解的网络协议
+### 补充：HTTP和TCP、UDP的联系
 ### 1.NSUrlConnect相关知识。
 - NSURLConnection 是 iOS 开发中最经典的网络请求方案。虽然在苹果公司推出 NSURLSession 后已经不推荐使用 NSURLConnection 了（NSURLConnection 在 iOS 9 被宣布弃用了），但是在一些早先构建的项目和框架中可能任使用了 NSURLConnection 技术，所以还是有必要了解 NSURLConnection。
 - NSURLConnection 使用步骤
@@ -2540,13 +2734,161 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
     * 使用 NSURLConnection 发送同步或异步请求。
     * 可以使用 NSURLConnectionDelegate 监听网络请求的响应。
 
+### 补充：NSURLSession GET 请求方法
+- 确定请求路径（一般由公司的后台开发人员以接口文档的方式提供），GET请求参数直接跟在URL后面。
+- 创建请求对象（默认包含了请求头和请求方法【GET】），此步骤可以省略。
+- 创建会话对象（NSURLSession）。
+- 根据会话对象创建请求任务（NSURLSessionDataTask）。
+- 执行请求 Task。
+- 当得到服务器返回的响应后，解析数据（XML 或者 JSON）。
+- 第一种方法：
+```
+-(void)getByNSURLSession1
+{
+    //对请求路径的说明
+    //http://120.25.226.186:32812/login?username=520it&pwd=520&type=JSON
+    //协议头+主机地址+接口名称+？+参数1&参数2&参数3
+    //协议头(http://)+主机地址(120.25.226.186:32812)+接口名称(login)+？+参数1(username=520it)&参数2(pwd=520)&参数3(type=JSON)
+    //GET请求，直接把请求参数跟在URL的后面以？隔开，多个参数之间以&符号拼接
+    
+    //1.确定请求路径
+    NSURL *url = [NSURL URLWithString:@"http://120.25.226.186:32812/login?username=520it&pwd=520it&type=JSON"];
+    
+    //2.创建请求对象
+    //请求对象内部默认已经包含了请求头和请求方法（GET）
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    //3.获得会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+      
+    //4.根据会话对象创建一个Task(发送请求）
+    /*
+     第一个参数：请求对象
+     第二个参数：completionHandler回调（请求完成【成功|失败】的回调）
+               data：响应体信息（期望的数据）
+               response：响应头信息，主要是对服务器端的描述
+               error：错误信息，如果请求失败，则error有值
+     */
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error == nil) {
+            //6.解析服务器返回的数据
+            //说明：（此处返回的数据是JSON格式的，因此使用NSJSONSerialization进行反序列化处理）
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            
+            NSLog(@"%@",dict);
+        }
+    }];
+    
+    //5.执行任务
+    [dataTask resume];
+}
+
+//这是 NSURLSession 发送GET请求的第一种方法
+```
+- 第二种方法：
+
+```
+-(void)getByNSURLSession2
+{
+    //1.确定请求路径
+    NSURL *url = [NSURL URLWithString:@"http://120.25.226.186:32812/login?username=520it&pwd=520it&type=JSON"];
+    
+    //2.获得会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    //3.根据会话对象创建一个Task(发送请求）
+    /*
+     第一个参数：请求路径
+     第二个参数：completionHandler回调（请求完成【成功|失败】的回调）
+               data：响应体信息（期望的数据）
+               response：响应头信息，主要是对服务器端的描述
+               error：错误信息，如果请求失败，则error有值
+     注意：
+        1）该方法内部会自动将请求路径包装成一个请求对象，该请求对象默认包含了请求头信息和请求方法（GET）
+        2）如果要发送的是POST请求，则不能使用该方法
+     */
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        //5.解析数据
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        NSLog(@"%@",dict);
+        
+    }];
+    
+    //4.执行任务
+    [dataTask resume];
+}
+
+//这是 NSURLSession 发送GET请求的第二种方法
+
+```
+
 ### 2.NSUrlSession相关知识。
 - 在 iOS 9.0 之后，以前使用的 NSURLConnection 被弃用，苹果推荐使用 NSURLSession 来替换NSURLConnection 完成网路请求相关操作。
 - NSURLSession 使用步骤
     * NSURLSession 的使用非常简单，先根据会话对象创建一个请求Task，然后执行该Task即可。
     * NSURLSessionTask 本身是一个抽象类，在使用的时候，通常是根据具体的需求使用它的几个子类。
 
+### 补充：NSURLSession POST请求方法
+- 确定请求路径（一般由公司的后台开发人员以接口文档的方式提供）。
+- 创建可变的请求对象（因为需要修改），此步骤不可以省略。
+- 修改请求方法为POST。
+- 设置请求体，把参数转换为二进制数据并设置请求体。
+- 创建会话对象（NSURLSession）。
+- 根据会话对象创建请求任务（NSURLSessionDataTask）。
+- 执行任务 Task。
+- 当得到服务器返回的响应后，解析数据（XML 或者 JSON）。
+
+```
+-(void)postByNSURLSession
+{
+    //对请求路径的说明
+    //http://120.25.226.186:32812/login
+    //协议头+主机地址+接口名称
+    //协议头(http://)+主机地址(120.25.226.186:32812)+接口名称(login)
+    //POST请求需要修改请求方法为POST，并把参数转换为二进制数据设置为请求体
+    
+    //1.创建会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    //2.根据会话对象创建task
+    NSURL *url = [NSURL URLWithString:@"http://120.25.226.186:32812/login"];
+    
+    //3.创建可变的请求对象
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    //4.修改请求方法为POST
+    request.HTTPMethod = @"POST";
+    
+    //5.设置请求体
+    request.HTTPBody = [@"username=520it&pwd=520it&type=JSON" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //6.根据会话对象创建一个Task(发送请求）
+    /*
+     第一个参数：请求对象
+     第二个参数：completionHandler回调（请求完成【成功|失败】的回调）
+                data：响应体信息（期望的数据）
+                response：响应头信息，主要是对服务器端的描述
+                error：错误信息，如果请求失败，则error有值
+     */
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        //8.解析数据
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+        NSLog(@"%@",dict);
+        
+    }];
+    
+    //7.执行任务
+    [dataTask resume];
+}
+
+// 发送POST请求的方法
+```
+
 ### 补充：简要说一下Https；
+### 补充：HTTPS的原理
 ### 3.Http 和 Https 的区别？为什么更加安全？
 - HTTP协议
     * HTTP（Hypertext Transfer Protocol）协议是超文本传输协议，是互联网上应用最为广泛的一种网络协议。简单来说，HTTP 是客户端和服务器端之间请求和应答的标准。
@@ -2566,6 +2908,21 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 - iOS9中新增App Transport Security（简称ATS）特性, 让原来请求时候用到的HTTP，全部都转向TLS1.2协议进行传输，这意味着所有的HTTP协议都强制使用了HTTPS协议进行传输。如果我们在iOS9下直接进行HTTP请求是会报错，系统会告诉我们不能直接使用HTTP进行请求，需要在Info.plist中控制ATS的配置。
 
 ### 4.Http的请求方式有哪些？Http 有什么特性？
+- 根据HTTP标准，HTTP请求可以使用多种请求方法。
+- HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。
+- HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
+- GET 请求指定的页面信息，并返回实体主体。
+- HEAD 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头。
+- POST 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。
+- PUT 从客户端向服务器传送的数据取代指定的文档的内容。
+- DELETE 请求服务器删除指定的页面。
+- Http 有什么特性
+    * 简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。
+    * 灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。
+    * 无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。
+    * 无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。
+    * 支持B/S及C/S模式。B/S即Browser/Server,浏览器/服务器，C/S即Client/Server,客户端/服务器
+
 ### 5.解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？
 * tcp的三次握手
     * 所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。在socket编程中，这一过程由客户端执行connect来触发，整个流程如下图所示：
@@ -2597,6 +2954,10 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 - GET提交时，传输数据就会受到URL长度限制，POST由于不是通过URL传值，理论上书不受限。
 - POST的安全性要比GET的安全性高；
 - 通过GET提交数据，用户名和密码将明文出现在URL上，比如登陆界面有可能被浏览器缓存。
+
+### 补充：GET请求参数一定是放在URL中的么？
+- 不是，还可以放在body中，可以防止数据篡改
+- 其实质就是用socket封装
 
 ### 7.HTTP 请求报文 和 响应报文的结构？
 - HTTP超文本传输协议，是短连接，是客户端主动发送请求，服务器做出响应，服务器响应之后，链接断开。HTTP是一个属于应用层面向对象的协议，HTTP有两类报文：请求报文和响应报文。
@@ -2852,18 +3213,42 @@ if ([error.userInfo objectForKey:NSURLErrorBackgroundTaskCancelledReasonKey]) {
 ### 17.如何在测试过程中 MOCK 各种网络环境？
 ### 18.DNS 的解析过程？网络的 DNS 优化。
 ### 19.Post请求体有哪些格式？
+### 补充：POST请求参数能放在URL中么为啥
 ### 20.网络请求的状态码都大致代表什么意思？
+- 状态代码有三位数字组成，第一个数字定义了响应的类别，共分五种类别:
+    * 1xx：指示信息--表示请求已接收，继续处理
+    * 2xx：成功--表示请求已被成功接收、理解、接受
+    * 3xx：重定向--要完成请求必须进行更进一步的操作
+    * 4xx：客户端错误--请求有语法错误或请求无法实现
+    * 5xx：服务器端错误--服务器未能实现合法的请求
+    * 200 OK //客户端请求成功
+    * 400 BadRequest//客户端请求有语法错误，不能被服务器所理解
+    * 403 Forbidden//服务器收到请求，但是拒绝提供服务
+    * 404 NotFound//请求资源不存在，eg：输入了错误的URL
+    * 500 Internal Server Error //服务器发生不可预期的错误
+    * 503 Server Unavailable //服务器当前不能处理客户端的请求，一段时间后可能恢复正常
+
+### 补充：说说为什么要设计304这个状态码
 ### 21.抓包软件 Charles 的原理是什么？说一下中间人攻击的过程。
+### 补充：你知道常见的网络攻击么
 ### 22.如何判断一个请求是否结束？
+### 补充：Web登录时怎么保持会话状态的
 ### 23.SSL 传输协议？说一下 SSL 验证过程？
 ### 24.解释一下 Http 的持久连接？
+### 补充：你知道cookie和session的区别么
 ### 25.说一下传输控制协议 - TCP ?
 ### 26.说一下用户数据报协议 - UDP ?
 ### 27.谈一谈网络中的 session 和 cookie?
 ### 28.发送网络请求的时候，如果带宽 1M，如何针对某些请求，限制其流量?
+### 补充：在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计
 ### 补充：使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
 ### 补充：在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？
 ### 补充：https的缓存问题。
+### 补充：说说点击一个按钮后打开一个web页面从发送网络请求到页面展示都做了啥
+### 补充：为什么能通过一个URL就能请求到对应的资源（域名解析等）
+### 补充：如果客户端上有个按钮，点击会触发一次网络请求，在短时间内快速点击，怎么处理（从客户端以及服务端角度思考）
+### 补充：判断一个字符串是不是ipv6地址（要求尽全力的考虑所有异常的情况）
+### 补充：
 ### 补充：你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果
 #### 思路一：操作依赖：NSOperation 操作依赖和优先级（不适用，异步网络请求并不是立刻返回，无法保证回调时再开启下一个网络请求）
 
@@ -3071,6 +3456,7 @@ oprationQueueaddOperationWithBlock:^{
 - 优点：不需要关心线程管理，数据同步的事情。 Cocoa Operation 相关的类是 NSOperation ，NSOperationQueue。NSOperation是个抽象类，使用它必须用它的子类，可以实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation。创建NSOperation子类的对象，把对象添加到NSOperationQueue队列里执行，我们会把我们的执行操作放在NSOperation中main函数中。
 - GCD Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法，GCD是一个替代诸如NSThread, NSOperationQueue, NSInvocationOperation等技术的很高效和强大的技术。它让程序平行排队的特定任务，根据可用的处理资源，安排他们在任何可用的处理器核心上执行任务，一个任务可以是一个函数(function)或者是一个block。 dispatch queue分为下面三种： private dispatch queues，同时只执行一个任务，通常用于同步访问特定的资源或数据。 global dispatch queue，可以并发地执行多个任务，但是执行完成的顺序是随机的。 Main dispatch queue 它是在应用程序主线程上执行任务的。
 
+### 补充：多线程容易出现的问题，怎么解决
 ### 1.NSThread相关知识？
 
 ### 2.GCD 相关知识？
@@ -3119,6 +3505,7 @@ oprationQueueaddOperationWithBlock:^{
 - 当上一个线程的任务没有执行完毕的时候（被锁住），那么下一个线程会进入睡眠状态等待任务执行完毕，当上一个线程的任务执行完毕，下一个线程会自动唤醒然后执行任务。
 - 互斥锁会休眠: 所谓休眠，即在访问被锁资源时，调用者线程会休眠，此时cpu可以调度其他线程工作。直到被锁资源释放锁。此时会唤醒休眠线程。
 
+### 补充：自旋锁和互斥锁的区别
 ### 13.多功能锁 - pthread_mutex
 ### 14.分步锁 - NSDistributedLock。
 ### 15.如何确保线程安全？
@@ -3716,6 +4103,7 @@ __block typeof(self) weakSelf = self;
 ## 图像处理
 ### 1.图像的压缩、解压。
 ### 2.一张物理体积20KB、分辨率为 200 * 300 的图片，在内存中占用多大的空间？
+### 补充：GLSurfaceView的相关知识，OpenGL，Shader，绘制流程。
 
 ## iOS 动画
 ### 1.简要说一下常用的动画库。
@@ -3765,6 +4153,9 @@ __block typeof(self) weakSelf = self;
 ### 6.简述 `SSL` 加密的过程用了哪些加密方法，为何这么作？
 ### 7.是否了解 `iOS` 的签名机制？
 ### 8.如何对 `APP` 进行重签名？
+### 补充：在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计
+### 常见的加密算法
+### 对称加密算法和非对称加密算法的区别
 
 ## 源代码阅读
 ### 1.YYKit
