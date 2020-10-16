@@ -3651,6 +3651,13 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
 - 上面是查询散列表函数，其中cache_hash(k, m)是静态内联方法，将传入的key和mask进行&操作返回uint32_t索引值。do-while循环查找过程，当发生冲突cache_next方法将索引值减1。
 
 ### 25.是否了解 Type Encoding?
+- 类型编码
+- 为了完善 Runtime 机制，编译器将方法的返回值类型和参数的类型编码成字符串，并且将这个字符串与方法的选择器(selector)关联起来。这个字符串就是类型编码
+- 通过编译指令@encode()，则可以获得对应的类型编码。传递的类型可以是基本数据类型，比如int，指针(pointer)，结构体(struct)或者联合(union),还可以是一个类名，任何类型都可以。事实上，适用于@sizeof()的类型都适用于@encode()。
+- 常用的@encode指令：
+
+![image](https://upload-images.jianshu.io/upload_images/11544062-818801b9af677f1a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+
 ### 26.Objective-C 如何实现多重继承？
 - Object-c的类没有多继承,只支持单继承,如果要实现多继承的话，可使用如下几种方式间接实现
 - 通过组合实现：A和B组合，作为C类的组件
