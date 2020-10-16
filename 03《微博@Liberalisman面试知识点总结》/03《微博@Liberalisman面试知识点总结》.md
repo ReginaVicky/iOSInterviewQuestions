@@ -654,12 +654,672 @@ __block int i = 0;
 #### - Blowfish
 
 ### 常见的排序算法
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-af954dfa5ba39bca.png?imageMogr2/auto-orient/strip|imageView2/2/w/678)
+
+#### 插入排序
+- 插入排序，一般也被称为直接插入排序。对于少量元素的排序，它是一个有效的算法 [1] 。插入排序是一种最简单的[排序]方法，它的基本思想是将一个记录插入到已经排好序的有序表中，从而一个新的、记录数增1的有序表。在其实现过程使用双层循环，外层循环对除了第一个元素之外的所有元素，内层循环对当前元素前面有序表进行待插入位置查找，并进行移动
+- 思想：插入排序是指在待排序的元素中，假设前面n-1(其中n>=2)个数已经是排好顺序的，现将第n个数插到前面已经排好的序列中，然后找到合适自己的位置，使得插入第n个数的这个序列也是排好顺序的。按照此法对所有元素进行插入，直到整个序列排为有序的过程，称为插入排序
+- 特性：
+    * 如果当前牌索引大于0，并且前一张牌比后一张牌大
+    * 如果判断的时候，相等，那么是不稳定排序，会交换两个相等的元素的位置，这里只是compare为大于
+    * 时间复杂度取决于逆序对的数量，如，10，9，8，3，2，1，【10，1】，【9，2】，【8，3】，互为逆序对，最后面的牌，需要经历很远的路程，才可以排到前面
+    * 时间复杂度与逆序对的数量成正比
+    * 逆序对的数量越多，插入排序的时间复杂度越高
+    * 时间复杂度为O(n^2),最好的时间复杂度为O(n),如果没有逆序对，就是最优的情况
+    * 属于稳定排序
+    * 数量不大的时候，插入排序的效率很高
+
+- 算法时间复杂度。
+    * 最好的情况下：正序有序(从小到大)，这样只需要比较n次，不需要移动。因此时间复杂度为O(n)
+    * 最坏的情况下：逆序有序,这样每一个元素就需要比较n次，共有n个元素，因此实际复杂度为O(n­2)
+    * 平均情况下：O(n­2)
+- 稳定性。
+    * 理解性记忆比死记硬背要好。因此，我们来分析下。稳定性，就是有两个相同的元素，排序先后的相对位置是否变化，主要用在排序时有多个排序规则的情况下。在插入排序中，K1是已排序部分中的元素，当K2和K1比较时，直接插到K1的后面(没有必要插到K1的前面，这样做还需要移动！！)，因此，插入排序是稳定的。
+- 几种算法实现
+    * 每次拿到当前元素之后和前面的元素挨个比较，如果比当前元素小，就交换元素位置，以此类推，所以这种算法会频繁交换
+    * 每次拿当前元素和前面的元素进行比较，如果前面的元素比当前元素大，那么将前面的元素向后移动，然后记录当前要插入的元素的位置，这种算法优于前面，因为每次只需要移动一次元素位置即可
+    * 基于二分法查找优化，每次拿到当前元素之后，去前面已经排好序的数组中查找要插入的位置，查找基于二分法查找，这样效率大大提高于之前的每次交换，然后拿到要插入的元素的位置之后，再移动一次元素的位置。
+
+```
+//
+//  SCXInsertionSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/12.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXInsertionSoft.h"
+
+@implementation SCXInsertionSoft
+// 插入排序更优的优化
+- (NSArray *)soft:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    for (int i = 1 ; i < soft.count; i ++) {
+        // 原始位置元素
+        NSNumber *cur = soft[i];
+        // 从第一个位置开始查找当前这个位置的元素应该放的位置，因为是依次查找，所以顺便排序了
+        // 这个当前元素应该插入的索引
+        int index = [self binarySearch:soft index:i];
+        // 找到这个index之后开始挪动元素位置，区间为[index,begin);
+        for (int j = i ; j > index; j --) {
+            soft[j] = soft[j - 1];
+        }
+        soft[index] = cur;
+    }
+    return soft.copy;
+}
+
+/// 二分查找找到index位置应该插入的位置
+/// @param arr 查找的数组
+/// @param index 要查找区间最大值
+/// @return 元素的索引
+// 下面的另一个二分查找的方法有弊端，比如有重复的元素，1，2，3，5，5，5，5，5，6，7，8，其中有多个5，在我们二分查找的过程中可能元素个数的不同，返回5的索引位置也不同，这样是不行的，我们应该返回第一个元素的位置，不影响原来相同元素位置的排序，这样才是稳定的
+- (int)binarySearch:(NSArray *)arr index:(int)index{
+    if (arr == nil || arr.count <= 0 || index >= arr.count) {
+        return -1;
+    }
+    NSNumber *obj = arr[index];
+    // 开始索引
+    int begin = 0;
+    // 结束索引
+    // 区间为[begin,end);,左闭由开
+    int end = index;
+    int value = obj.intValue;
+    while (begin < end) {
+        int mid = (begin + end) >> 1;
+        NSNumber *midValue = arr[mid];
+        // 要查找的值在左边
+        if (value < midValue.intValue) {
+            // 更改end的位置
+            end = mid;
+        } else {
+            // 这里是找到第一个大于当前值得位置，因为如果valu比midValue大的话，那么插入的位置肯定在后面
+            // 如果vaalue 和 midvalue 相等的话，我们这里也向后查找，如上面举的例子，存在好几个5，那么第一次出现5的位置并不一定是我们要找的位置，但是我们可以确定，一定在这个值得后面。
+            // 要查找的值在右边
+            // 更改begin的位置
+            begin = mid + 1;
+        }
+    }
+    return begin;
+}
+/// 二分查找
+/// @param arr 查找的数组
+/// @param obj 要查找的值
+/// @return 元素的索引
+- (int)binarySearch1:(NSArray *)arr obj1:(NSNumber *)obj{
+    if (arr == nil || arr.count <= 0 || obj == nil) {
+        return -1;
+    }
+    // 开始索引
+    int begin = 0;
+    // 结束索引
+    // 区间为[begin,end);,左闭由开
+    int end = arr.count;
+    int value = obj.intValue;
+    while (begin < end) {
+        int mid = (begin + end) >> 1;
+        NSNumber *midValue = arr[mid];
+        // 要查找的值在左边
+        if (value < midValue.intValue) {
+            // 更改end的位置
+            end = mid;
+        } else if (value > midValue.intValue){
+            // 要查找的值在右边
+            // 更改begin的位置
+            begin = mid + 1;
+        } else {
+            // 命中
+            return mid;
+        }
+    }
+    return -1;
+}
+// 插入排序优化
+-(NSArray *)soft2:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    // 插入排序的优化的思想就是将元素向后挪，挪出一个位置之后，再将待插入的元素放进去
+    // 1，2，4，5，然后插入3,相当于,1,2,[],4,5,4和5，向后挪动了，中间留了一个位置给3，最后把3放进去
+    for (int i = 1 ; i < soft.count - 1; i ++) {
+        int index = i;
+        // 当前待插入的元素
+        NSNumber *cur = soft[index];
+        while (index > 0 && [self compareA:soft[index - 1] valueB:cur]) {
+            // 比当前要插入的对象要大的那个元素往后移动，流出来当前位置给要插入的那个元素
+            // 下面的插入排序方法，这里每次都需要交换，三行代码，这里只需要向后挪动，一行代码
+            soft[index] = soft[index - 1];
+            index --;
+        }
+        // 将腾出来的那个位置赋值
+        soft[index] = cur;
+    }
+    
+    return soft.copy;
+}
+// 普通插入排序
+-(NSArray *)soft1:(NSArray *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    // 把插入排序看成打扑克牌，每次抓一张牌然后插入到已经有的牌当中，原来抓到手的牌是有序的，插入之后还是有序的。
+    // 每次抓取一张牌
+    for (int i = 1; i < soft.count - 1; i ++) {
+        // 如果当前牌索引大于0，并且前一张牌比后一张牌大
+        // 如果判断的时候，相等，那么是不稳定排序，会交换两个相等的元素的位置，这里只是compare为大于
+        // 时间复杂度取决于逆序对的数量，如，10，9，8，3，2，1，【10，1】，【9，2】，【8，3】，互为逆序对，最后面的牌，需要经历很远的路程，才可以排到前面
+        // 时间复杂度与逆序对的数量成正比
+        // 逆序对的数量越多，插入排序的时间复杂度越高
+        // 时间复杂度为O(n^2),最好的时间复杂度为O(n),如果没有逆序对，就是最优的情况
+        // 属于稳定排序
+        // 数量不大的时候，插入排序的效率很高
+        int index = i;
+        while (index > 0 && [self compareA:soft[index - 1] valueB:soft[index]]) {
+            // 交换牌的位置
+            NSNumber *tmp = soft[index];
+            soft[index] = soft[index - 1];
+            soft[index - 1] = tmp;
+            
+            // 一次向前推，直到排到最前面有序的位置
+            index --;
+        }
+    }
+    return soft.copy;
+}
+- (BOOL)compareA:(NSNumber *)valueA valueB:(NSNumber *)valueB{
+    return valueA.intValue > valueB.intValue;
+}
+@end
+
+```
+
 #### 快速排序
+- 思想：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序
+- 说明：最核心的思想是将小的部分放在左边，大的部分放到右边，实现分割。
+- 快速排序算法通过多次比较和交换来实现排序，其排序流程如下：
+    * 首先设定一个分界值，通过该分界值将数组分成左右两部分。
+    * 将大于或等于分界值的数据集中到数组右边，小于分界值的数据集中到数组的左边。此时，左边部分中各元素都小于或等于分界值，而右边部分中各元素都大于或等于分界值。
+    * 然后，左边和右边的数据可以独立排序。对于左侧的数组数据，又可以取一个分界值，将该部分数据分成左右两部分，同样在左边放置较小值，右边放置较大值。右侧的数组数据也可以做类似处理。
+    * 重复上述过程，可以看出，这是一个递归定义。通过递归将左侧部分排好序后，再递归排好右侧部分的顺序。当左、右两个部分各数据排序完成后，整个数组的排序也就完成了。
+- 算法复杂度
+    * 最好的情况下：因为每次都将序列分为两个部分(一般二分都复杂度都和logN相关)，故为 O(N*logN)
+    * 最坏的情况下：基本有序时，退化为冒泡排序，几乎要比较N*N次，故为O(N*N)
+- 稳定性
+    * 由于每次都需要和中轴元素交换，因此原来的顺序就可能被打乱。如序列为 5 3 3 4 3 8 9 10 11会将3的顺序打乱。所以说，快速排序是不稳定的！
+- 代码
+
+```
+//
+//  SCXQuickSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/14.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXQuickSoft.h"
+@interface SCXQuickSoft()
+@property(nonatomic,strong) NSMutableArray *softArr;
+@end
+@implementation SCXQuickSoft
+-(NSArray *)soft:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    self.softArr = soft;
+    [self beginSoft:0 end:soft.count];
+    return soft.copy;
+}
+- (void)beginSoft:(NSInteger)begin end:(NSInteger)end{
+    if (end - begin < 2) {
+        return;
+    }
+    // 找到轴点，然后依次在进行分割
+    // 时间复杂度 O(n)
+    NSInteger pivotIndex = [self pivotIndex:begin end:end];
+    // 左半边
+    // T(n/2)
+    [self beginSoft:begin end:pivotIndex];
+    // 右半边
+    // T(n/2)
+    [self beginSoft:pivotIndex+1 end:end];
+    // 如果左右分布均匀，此时为最好的情况想，总时间复杂度 T(n) = 2 * T(n/2) + O(n) = O(nlogn)
+    // 如果分布不均匀，如，7，6，5，4，3，2，1，7 为轴点，7右边的都比7小，那么需要将每一个都调到7的左边
+    // T(n) = T(n - 1) + O(n) =O(n^2)
+}
+
+/// 获取轴点位置，也就是那个分割点的位置，每次将序列分为两个，这个分割点的左边都比这个轴点小，右边都比这个轴点大
+/// @param begin 开始位置
+/// @param end 结束位置
+- (NSInteger)pivotIndex:(NSInteger)begin end:(NSInteger)end{
+    /*
+     1.取出第一元素来一次进行比较，从后往前比较
+     2.如果后面的元素比当前元素大，那么不用动，然后end--
+     ,如果发现后面的元素小于等于当前轴点元素，那么将end的位置的元素，
+     覆盖当前begin位置的元素，然后从begin开始比较,
+     调到步骤3
+     3.如果发现当前元素大小比轴点元素大小小，那么begin++，
+     如果当前元素比轴点元素大，那么将begin位置的元素赋值给end，
+     然后再从end往回比较，
+     调到步骤2.
+     
+     */
+    
+    // 为了优化，随机选择一个元素和begin位置元素作为交换，不要每次都选第一个，有局限性
+    int rand = begin + (arc4random() %(end - begin + 1));
+    NSNumber *tmp = self.softArr[begin];
+    self.softArr[begin] = self.softArr[rand];
+    self.softArr[rand] = tmp;
+    
+    // 1. 取出来第一个元素，当做轴点元素,备份
+    NSNumber *first = self.softArr[begin];
+    // 最后一个元素的位置
+    end --;
+    // begin 和 end 没有重合
+    while (begin < end) {
+        // 最后一个元素，从后往前走
+        while (begin < end) {
+            // 取出最后一个元素，然后和轴点元素比较
+            NSNumber *last = self.softArr[end];
+            // 2. 从后往前比较，如果后面的比前面大，那么不用交换，end--
+            if (last.intValue > first.intValue) {
+                // 2. 后面的大，一直往前走就可以
+                end --;
+            } else {
+                // 2. 后面的比前面的小或者等于，需要调换位置
+                // 2. 将end元素覆盖到begin位置，然后begin++，然后调用，从begin开始，从前往后比较。
+                self.softArr[begin++] = last;
+                break;
+            }
+        }
+        
+        // 如果这时候begin和end重合了，那么久说明找到了
+        // 3.如果没有重合，就说明掉头了，需要从前往后走
+        while (begin < end) {
+            // 3。取出第一个元素，和当前轴点元素作比较
+            NSNumber *last = self.softArr[begin];
+            // 3.如果当前元素比轴点元素小，那么只需要begin++ 就可以，继续向后找
+            // 等于放到下面是为了均匀分割，分布均匀之后，效率会大大增高，差别很大
+            if (first.intValue > last.intValue) {
+                begin ++;
+            } else {
+                // 3. 如果当前位置元素比轴点元素大，那么需要将这个begin位置的元素，覆盖到end位置，然后end--；
+                // 2. 然后跳到步骤2，从后往前走
+                self.softArr[end--] = last;
+                break;;
+            }
+        }
+        
+    }
+    // 然后将备份的元素放到轴点位置
+    self.softArr[begin] = first;
+    // 当开始哨兵和结束的哨兵位置重合的时候，就是轴点的位置，说明已经分割好了
+    return begin;
+}
+@end
+```
+
 #### 堆排序
+- 思想：
+    * 堆排序实际上是对选择排序的一个优化，选择排序每次都要选出一个最大值，相当于从头遍历到尾去选择最大值，时间复杂度为O(n)，在加上外层遍历n-1次，所有时间复杂度为O(n^2)，而堆排序在选择最大值的时候有优势，所以堆排序是对选择排序的一个优化。
+    * 利用完全二叉树中双亲节点和孩子节点之间的内在关系，在当前无序区中选择关键字最大(或者最小)的记录。也就是说，以最小堆为例，根节点为最小元素，较大的节点偏向于分布在堆底附近。
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-ba7f66b5e558da7f.png?imageMogr2/auto-orient/strip|imageView2/2/w/431)
+- 操作流程
+    * 对数组元素进行原地建堆，然后执行后面的操作，直到堆的元素数量为1
+    * 交换堆顶元素与尾元素，相当于最大值和最小值的交换
+    * 然后将堆的数量减去一
+    * 因为堆顶元素被交换之后不符合大顶堆或者小顶堆的要求，需要对0位置的元素进行一次 siftDown 下滤操作。
+
+- 算法复杂度
+    * 最坏情况下，接近于最差情况下：O(N*logN)，因此它是一种效果不错的排序算法。
+- 稳定性
+    * 堆排序需要不断地调整堆，因此它是一种不稳定的排序！
+- 代码
+
+```
+//
+//  SCXHeapSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/11.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXHeapSoft.h"
+@interface SCXHeapSoft(){
+    
+    int _size;
+}
+
+@end
+@implementation SCXHeapSoft
+-(NSArray *)soft:(NSArray *)arr{
+    // 建堆
+    NSMutableArray *soft = arr.mutableCopy;
+    _size = soft.count;
+    // 自下而上下滤
+    for (NSInteger i = (_size >> 1) - 1; i >= 0; i --) {
+        [self siftDown:i arr:soft];
+    }
+    while (_size > 1) {
+        // 将堆顶和堆尾元素互换
+        // size --
+        NSNumber *tmp = soft[--_size];
+        soft[_size] = soft[0];
+        soft[0] = tmp;
+        
+        // 将第0个元素下滤，保证除了最后一个元素之外，其余的元素组成一个堆
+        [self siftDown:0 arr:soft];
+    }
+    return soft.copy;
+}
+// 下滤
+- (void)siftDown:(NSInteger)index arr:(NSMutableArray *)_array{
+    //第一个叶子节点的索引就是非叶子节点的数量，因为为完全二叉树，所以，要么没有左右子节点，要么只有左节点，不可能出现只有右子节点的情况
+    // index < 第一个叶子节点的索引，这样就能保证他能和有子节点的进行交换
+    // 必须保证index 位置为非叶子节点，因为这样可以找到左节点，或者左右节点，进行交换
+    // 非叶子节点的数量为 二叉树节点数量除以二
+    if (index >= _array.count) {
+        return;
+    }
+    id obj = _array[index];
+    // 第一个非叶子节点的索引
+    NSInteger half = _size >> 1;
+    while (index < half) {
+        // 要么只有左子节点
+        // 要么右左右子节点
+        // 左子节点的索引为 2i +1 ,右子节点的索引为 2i+2
+        NSInteger leftIndex = (index << 1) + 1;
+        id leftObjf = _array[leftIndex];
+        NSInteger rightIndex = leftIndex +1;
+        
+        
+        // 选出最大值
+        id maxObj = leftObjf;
+        NSInteger maxIndex = leftIndex;
+        if (rightIndex < _size ) {
+            id rightObj = _array[rightIndex];
+            if ([self compareA:rightObj valueB:leftObjf]) {
+                // 右节点比左节点大
+                maxObj = rightObj;
+                maxIndex = rightIndex;
+            }
+        }
+        
+        // 选出左右最大的节点和index之后，和当前节点进行比较
+        if ([self compareA:obj valueB:maxObj]) {
+            // 如果当前节点比左右子节点中最大的那一个都打大，就退出不用交换了
+            break;
+        }
+        // 如果当前节点比左右节点中的其中一个小，那么将当前位置，赋值为最大值,将最大值一次上滤，然后自己下沉，记住位置
+        _array[index] = maxObj;
+        index = maxIndex;
+    }
+    _array[index] = obj;
+}
+- (BOOL)compareA:(NSNumber *)valueA valueB:(NSNumber *)valueB{
+    return valueA.intValue > valueB.intValue;
+}
+@end
+```
+
 #### 冒泡排序
+- 基本思想：通过无序区中相邻记录关键字间的比较和位置的交换,使关键字最小的记录如气泡一般逐渐往上“漂浮”直至“水面”。
+- 原理
+    * 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+    * 对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
+    * 针对所有的元素重复以上的步骤，除了最后一个。
+    * 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+
+- 时间复杂度
+    * 最好情况下：正序有序，则只需要比较n次。故，为O(n)
+    * 最坏情况下:逆序有序，则需要比较(n-1)+(n-2)+……+1，故，为O(N*N)
+- 稳定性
+    * 排序过程中只交换相邻两个元素的位置。因此，当两个数相等时，是没必要交换两个数的位置的。所以，它们的相对位置并没有改变，冒泡排序算法是稳定的！
+- 代码(c版) 
+
+```
+//
+//  SCXBubbleSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/11.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXBubbleSoft.h"
+
+@implementation SCXBubbleSoft
+-(NSArray *)soft:(NSArray *)arr{
+    // 改进，因为冒泡排序每次是找到最大值，比如遍历之后，后面四个已经是有序的，那么每次就不需要遍历后面几个了，记住最开始的那个有序的位置就可以了
+    NSMutableArray *soft = arr.mutableCopy;
+    for (int i = soft.count - 1 ; i > 0; i --) {
+        int end = 1;
+        for ( int j = 1; j <= i; j ++) {
+            NSNumber *pre = soft[j - 1];
+            NSNumber *current = soft[j];
+            if (pre.intValue > current.intValue) {
+                NSNumber *tmp = pre;
+                soft[j - 1] = current;
+                soft[j] = tmp;
+                // 当前排序的索引
+                end = j;
+            }
+        }
+        // 如果上面的for循环里面的 end 没有赋值，说明就没有交换，说明就是有序的，就不需要排序了
+        i = end;
+    }
+    return soft.copy;;
+}
+-(NSArray *)soft1:(NSArray *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    for (int i = 0 ; i < soft.count - 1; i ++) {
+        for ( int j = 1; j < soft.count - 1 - i; j ++) {
+            NSNumber *pre = soft[j - 1];
+            NSNumber *current = soft[j];
+            if (pre.intValue > current.intValue) {
+                NSNumber *tmp = pre;
+                soft[j - 1] = current;
+                soft[j] = tmp;
+            }
+        }
+        
+    }
+    return soft.copy;;
+}
+@end
+```
+
 #### 选择排序
+- 思想：选择排序是一种简单直观的[排序算法]。它的工作原理是：第一次从待排序的[数据元素]中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。以此类推，直到全部待排序的数据元素的个数为零。选择排序是不稳定的排序方法。
+- 思路
+    * 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-9048e08e9155b963.png?imageMogr2/auto-orient/strip|imageView2/2/w/275)
+
+- 时间复杂度。
+    * 最好情况下：交换0次，但是每次都要找到最小的元素，因此大约必须遍历N*N次，因此为O(N*N)。减少了交换次数！
+    * 最坏情况下，平均情况下：O(N*N)
+- 稳定性
+    * 选择排序是给每个位置选择当前元素最小的，比如给第一个位置选择最小的，在剩余元素里面给第二个元素选择第二小的，依次类推，直到第n-1个元素，第n个元素不用选择了，因为只剩下它一个最大的元素了。那么，在一趟选择，如果一个元素比当前元素小，而该小的元素又出现在一个和当前元素相等的元素后面，那么交换后稳定性就被破坏了。举个例子，序列5 8 5 2 9 ，我们知道第一遍选择第1个元素5会和2交换，那么原序列中两个5的相对前后顺序就被破坏了，所以选择排序是一个不稳定的排序算法
+- 代码(c版)
+
+```
+
+//
+//  SCXSelectionSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/11.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXSelectionSoft.h"
+
+@implementation SCXSelectionSoft
+-(NSArray *)soft:(NSArray *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    // 需要遍历多少趟
+    for (int i = soft.count - 1; i > 0; i --) {
+        
+        // 假设最大的是第一个元素
+        int index = 0;
+        // 每次遍历除了最后几个已经排好序的元素之外，其余的元素
+        // 如果当前的元素比最大值的这个位置的元素要大，更改最大值的位置，继续遍历
+        for (int j = 1 ; j <= i; j ++) {
+            NSNumber *current = soft[j];
+            NSNumber *max = soft[index];
+            if (current.intValue > max.intValue) {
+                index = j;
+            }
+        }
+        // 找到最大元素的位置，将其放到最后
+        if (index != i) {
+            NSNumber *tmp = soft[i];
+            soft[i] = soft[index];
+            soft[index] = tmp;
+        }
+    }
+    return soft.copy;
+}
+@end
+```
+
 #### 希尔排序
+- 思想：希尔排序也是一种插入排序方法,实际上是一种分组插入方法。先取定一个小于n的整数d1作为第一个增量,把表的全部记录分成d1个组,所有距离为d1的倍数的记录放在同一个组中,在各组内进行直接插入排序；然后,取第二个增量d2(＜d1),重复上述的分组和排序,直至所取的增量dt=1
+- 时间复杂度。
+    * 最好情况：由于希尔排序的好坏和步长d的选择有很多关系，因此，目前还没有得出最好的步长如何选择(现在有些比较好的选择了，但不确定是否是最好的)。所以，不知道最好的情况下的算法时间复杂度。
+    * 最坏情况下：O(N*logN)，最坏的情况下和平均情况下差不多。
+    * 平均情况下：O(N*logN)
+- 稳定性。
+    * 由于多次插入排序，我们知道一次插入排序是稳定的，不会改变相同元素的相对顺序，但在不同的插入排序过程中，相同的元素可能在各自的插入排序中移动，最后其稳定性就会被打乱，所以shell排序是不稳定的。
+- 代码(c版)
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-b07115db43096672.png?imageMogr2/auto-orient/strip|imageView2/2/w/522)
+
 #### 归并排序
+- 思想：不断的将当前序列，分割成两个子序列,直到分割到一个元素不能分割为止，不断的将两个子序列合并成一个有序序列，直到最后只剩下一个有序序列。
+- 算法时间复杂度
+    * 最好的情况下：一趟归并需要n次，总共需要logN次，因此为O(N*logN)
+    * 最坏的情况下，接近于平均情况下，为O(N*logN)
+    * 明：对长度为n的文件，需进行logN 趟二路归并，每趟归并的时间为O(n)，故其时间复杂度无论是在最好情况下还是在最坏情况下均是O(nlgn)。
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-96053f74b9b11315.png?imageMogr2/auto-orient/strip|imageView2/2/w/360)
+
+- 稳定性
+    * 归并排序最大的特色就是它是一种稳定的排序算法。归并过程中是不会改变元素的相对位置的。
+- 缺点
+    * 它需要O(n)的额外空间。但是很适合于多链表排序。
+- 代码
+
+```
+
+//
+//  SCXMergeSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/13.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXMergeSoft.h"
+/*
+ 1. 不断的将当前序列，分割成两个子序列,直到分割到一个元素不能分割为止
+ 2. 不断的将两个子序列合并成一个有序序列，直到最后只剩下一个有序序列
+ */
+@interface SCXMergeSoft()
+@property (nonatomic , strong) NSMutableArray *softArr;
+@property (nonatomic , strong) NSMutableArray *leftArr;
+@end
+@implementation SCXMergeSoft
+- (NSArray *)soft:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    self.softArr = soft;
+    self.leftArr = [NSMutableArray arrayWithCapacity:(soft.count) >> 1];
+    [self binary:0 end:soft.count];
+    return soft.copy;;
+}
+- (void)binary:(int)begin end:(int) end{
+    // 至少要有两个元素
+    if (end - begin < 2) {
+        return;
+    }
+    int mid = (end + begin ) >> 1;
+    // 将左边的不断的拆分，直到拆分到一个元素
+    [self binary:begin end:mid];
+    // 将右边的不断的拆分，直到拆分到一个元素
+    [self binary:mid end:end];
+    // 不断的将两个元素合并
+    [self merge:begin mid:mid end:end];
+}
+/*
+ merge 的原理:
+ 比如一个数组[1,6,2,7,3,8,4,9];
+ 1.我们经过不断的拆分之后变成1,6  2,7 3,8 4,9 ,这样的
+ 2. 然后将上面拆分出来的一个一个数据，两个连个再次合并到一起，[1,6],[2,7],[3,8],[4,9]
+ 然后再变成[1,2,6,7],[3,4,8,9]
+ 然后再变成[1,2,3,4,6,7,8,9];
+ 这个流程
+ 3.其实我们最终的目的其实就是将所有的元素合并到一个大数组里面，其实我们的最后[1,2,3,4,6,7,8,9];，一次，这个数据就是最终的大数组，而他是由之前的两份数据得来的，所以我们可以将大数组拆分成一个小数组，然后每次将小数组的元素和当前大数组剩余的元素作比较，然后依次比较添加，什么意思呢？
+ 
+ 将 [1,2,3,4,6,7,8,9]; ，的左一半copy出来，其余元素不变，也就是
+ [1,2,3,4,6,7,8,9]; 和 [1,2,3,4,];
+ 或者你可以理解为
+ [null,null,null,null,6,7,8,9]; 和 [1,2,3,4]; 最后将这两个合并不就是 [1,2,3,4,6,7,8,9];吗
+ 
+ 
+ */
+- (void)merge:(int)begin mid:(int)mid end:(int) end{
+    // 定义标记,对应于数组的索引
+    // 左边的开始位置的标记
+    int lb = 0;
+    // 左边的结束位置的标记
+    int le = mid - begin;
+    // 右边开始位置的标记
+    int rb = mid;
+    // 右边结束位置的标记
+    int re = end;
+    // 整个大数组的标记
+    int ab = begin;
+    
+    // 左边备份的数组
+    for (int i = lb; i < le; i ++) {
+        self.leftArr[i] = self.softArr[begin + i];
+    }
+    NSLog(@"----%@",self.leftArr);
+    // 左右进行比对
+    while (lb < le) {
+        // 左边没有排完，就将左边的依次放到大数组里面
+        // 如果左边排完了，右边不动就行
+        // 判断如果左边拿出来的元素比右边拿出来的元素小，就放到大数组里面
+        NSNumber *left = self.leftArr[lb];
+        NSNumber *right = self.softArr[rb];
+        // 如果右边的大或者右边排完了，那么就跳出来这if，跑到下面去，因为右边的大，肯定是将左边放进去，或者右边的所有元素都取完了，那么也跑到else里面
+        if (rb< re && left.intValue > right.intValue ) {
+            // 如果左边的大于等于右边的，就将右边的放入大数组的前面
+            self.softArr[ab++] = right;
+            rb++;
+        } else {
+            // 如果右边的比左边大或者等于左边当前取出的，就将左边的先取出来放到数组里面，这样可以保证算法的稳定性
+            self.softArr[ab++] = left;
+            lb++;
+            
+        }
+    }
+    NSLog(@"~~~~~%@",self.softArr);
+}
+@end
+```
+
+#### 基数排序
+- 思想：它是一种非比较排序。它是根据位的高低进行排序的，也就是先按个位排序，然后依据十位排序……以此类推。示例如下：
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-46b92b43b25fa8f0.png?imageMogr2/auto-orient/strip|imageView2/2/w/899)
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-f165a8bada6ae8d8.png?imageMogr2/auto-orient/strip|imageView2/2/w/907)
+
+- 算法的时间复杂度
+    * 分配需要O(n),收集为O(r),其中r为分配后链表的个数，以r=10为例，则有0～9这样10个链表来将原来的序列分类。而d，也就是位数(如最大的数是1234，位数是4，则d=4)，即"分配-收集"的趟数。因此时间复杂度为O(d*(n+r))。
+- 稳定性
+    * 基数排序过程中不改变元素的相对位置，因此是稳定的！
+- 适用情况：如果有一个序列，知道数的范围(比如1～1000)，用快速排序或者堆排序，需要O(N*logN)，但是如果采用基数排序，则可以达到O(4*(n+10))=O(n)的时间复杂度。算是这种情况下排序最快的！！
 
 ### 常见的字符编码方法
 #### ASCII
@@ -671,23 +1331,778 @@ __block int i = 0;
 #### Unicode
 
 ### 常考算法题
-#### 1.字符串反转 
+#### 1.字符串反转
+- 做法就是，设立两个begin和end哨兵，然后将这两个哨兵对应的值进行交换，当 begin >=end 的时候，结束
+
+```
+void reverseStr(char *chr){
+    char *begin = chr;
+    char *end = chr + strlen(chr) - 1;
+    while (begin < end) {
+        char temp = *begin;
+        *(begin ++) = *end;
+        *(end --) = temp;
+    }
+}
+
+```
+
 #### 2.链表反转
+- 1->2->3->4->NULL 听过反转之后变成 4->3->2->1->NULL
+##### 头插法：
+- 头插法需要我们定义一个新的头结点作为新的链表，然后利用头插法，将原来的链表的每一个节点取出来，然后去新的链表里面做头插法，这样就可以反转了，这里需要一个新的头结点，和遍历原来链表的一个P指针。
+
+```
+
+/// 构造一个链表
+struct Node *constructList(void){
+    // 当前节点
+    struct Node *cur = NULL;
+    // 头结点
+    struct Node *head = NULL;
+    for (int i = 1 ; i < 5 ; i ++) {
+        struct Node *node = malloc(sizeof(struct Node));
+        node->data = i;
+        // 如果头结点为空
+        if (head == NULL) {
+            // 将当前节点赋值为头结点
+            head = node;
+        } else {
+            // 将当前节点的next指向这个新的节点，形成链表
+            cur->next = node;
+        }
+        // 将当前节点赋向后移动
+        cur = node;
+    }
+    cur->next = NULL;
+    return head;
+}
+
+```
+- 上面的代码是构造一个链表，构造一个链表的思想就是，创建一个节点，然后如果当前有头结点，就将当前节点的next指向新创建的节点，然后将当前节点向后移动，如果当前没有头结点，就将头结点和当前节点都赋值为新创建的节点.
+
+```
+/// 链表的反转
+/// @param head 头结点
+struct Node * reverseList(struct Node *head){
+    // 新链表哨兵指针
+    struct Node *newHead = NULL;
+    // 旧链表哨兵指针
+    struct Node *p = head;
+    // 旧链表遍历完毕
+    while (p != NULL) {
+        // 下一个节点
+        struct Node *temp = p->next;
+        // 将这个节点头插到新的链表里面
+        p->next = newHead;
+        // 更改新链表的头位置
+        newHead = p;
+        // 旧链表的头向后移动
+        p = temp;
+    }
+    return newHead;
+}
+
+```
+- 上面的代码是反转一个链表，反转链表的思想就是新建一个链表然后利用头插法，先从原来的链表里面按照顺序一个个取，取出来之后到新的链表里面进行头插，就形成了头插。
+
 #### 3.有序数组合并
+- 第一种方法：始终比较两个数组的首元素大小，然后将小者 shift 出来 push 到结果数组中去，因为总是会将数组首元素较小的那个移出，故不用改变比较数组的索引值，一直固定为 0 就行了。最后不要忘记将长度值大于 0 的数组中的元素移出放置到结果数组中。
+
+```
+/* 清空了原来的两个有序数组 */
+function mergeTwoSortedArr (arr1, arr2) {
+  var retArr = [];
+  /* 遍历比较两个数组的首元素大小，小者 shift 出来 push 到结果数组中去 */
+  while (arr1.length > 0 && arr2.length > 0) {
+    if (arr1[0] < arr2[0]) {
+      retArr.push(arr1.shift());
+    } else if (arr1[0] > arr2[0]) {
+      retArr.push(arr2.shift());
+    } else {
+      retArr.push(arr1.shift());
+      retArr.push(arr2.shift());
+    }
+  }
+  /* 将数组（最多有一个）剩余元素移出放置到结果数组中 */
+  while (arr1.length > 0) {
+    retArr.push(arr1.shift());
+  }
+  while (arr2.length > 0) {
+    retArr.push(arr2.shift());
+  }
+  return retArr;
+}
+
+// 示例
+var arr1 = [2, 3, 5];
+var arr2 = [3, 4, 7, 9];
+console.log(mergeTwoSortedArr(arr1, arr2));   // [2, 3, 3, 4, 5, 7, 9]
+```
+- 第二种：没有影响原来的两个有序数组，通过遍历比较两个数组当前元素的大小，小者 push 到结果数组中去，相应数组索引加一，然后再进行循环比较。同样，最后不要忘记将未遍历过的数组元素复制到结果数组中。
+
+```
+/* 未对原来的两个有序数组做改动 */
+function mergeTwoSortedArr (arr1, arr2) {
+  var retArr = [];
+  var len1 = arr1.length;
+  var len2 = arr2.length;
+  var i = 0, j = 0;
+  /* 遍历比较两个数组当前元素的大小，小者 push 到结果数组中去，相应数组索引加一 */
+  while (i < len1 && j < len2) {
+    if (arr1[i] < arr2[j]) {
+      retArr.push(arr1[i]);
+      i++;
+    } else if(arr1[i] > arr2[j]) {
+      retArr.push(arr2[j]);
+      j++;
+    } else {
+      retArr.push(arr1[i], arr1[i]);
+      i++;
+      j++;
+    }
+  }
+  /* 将数组（最多有一个）剩余元素 push 到结果数组中 */
+  for (; i < len1; i++) {
+    retArr.push(arr1[i]);
+  }
+  for (; j < len2; j++) {
+    retArr.push(arr2[j]);
+  }
+  return retArr;
+}
+
+// 示例
+var arr1 = [2, 3, 5];
+var arr2 = [3, 4, 7, 9];
+console.log(mergeTwoSortedArr(arr1, arr2));   // [2, 3, 3, 4, 5, 7, 9]
+```
+
+#### 补充：假设某个数组中只有数字 1 和 2，进行排序，使得数字 1 位于数组前部分，数字 2 位于后部分。
+- 使用双指针的方法
+- 解法步骤：
+    * 设置一个头指针、一个尾指针，头指针首先指向数组的第一个元素（索引为0），而尾指针则指向数组的最后一个元素（索引为len-1，假定数组的长度为 len）；
+    * 然后比较这两个一前一后元素的大小：
+        * 若两值不相等，则较小的 1 放在前面，较大的 2 放在后面，头指针往后移动一步，尾指针向前移动一步；
+        * 若两值相等且都等于1，则头指针往后移动一步，尾指针不移动；
+        * 若两值相等且都等于2，则尾指针往前移动一步，头指针不移动。
+    * 接着再次比较头、尾指针指向元素的大小，决定是否交换值以及移动指针；
+    * 依照以上步骤进行指针移动、元素大小比较，便可使得数字1位于数组前部分，数字2位于数组后部分。
+- 注意点：上面循环进行操作的条件是头指针索引值小于尾指针索引值。
+- 书写的代码如下：
+
+```
+function sortOneTwoInArr (arr) {
+  var len = arr.length;
+  var head = 0;
+  var tail = len - 1;
+  /* 遍历数组，对 1 和 2 进行排序 */
+  while (head < tail) {
+    // 若头、尾指针指向的元素大小相等则只移
+    // 动一个指针，否则同时移动两个指针
+    if (arr[head] === arr[tail]) {
+      if (arr[head] === 1) {
+        head++;
+      } else if (arr[head] === 2) {
+        tail--;
+      }
+    } else {
+      if (arr[head] > arr[tail]) {
+        [arr[head], arr[tail]] = [arr[tail], arr[head]];
+      }
+      head++;
+      tail--;
+    }
+  }
+  return arr;
+}
+
+/* 测试用例 */
+var arr1 = [];
+var arr2 = [1];
+var arr3 = [2];
+var arr4 = [1, 2, 1, 2];
+var arr5 = [1, 1, 2, 2];
+var arr6 = [1, 2, 2, 1, 1];
+var arr7 = [2, 2, 1, 1, 2];
+console.log(sortOneTwoInArr(arr6));            // [1, 1, 1, 2, 2]
+```
+
 #### 4.查找第一个只出现一次的字符
+- 方式一：
+    * 遍历每一个字符，然后取出遍历的当前字符与剩下的字符做比较，判断剩下的字符串中是否有当前遍历的这个字符，如果没有，则是在字符串中出现一次的，而第一个出现的，就是要查找的。
+
+```
+    /**
+     * 使用便利的方式，时间复杂度是O(n^2)
+     * @param str
+     */
+    private static void printFirstCharOnlyOnce(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            // 截去第i个字符
+            String temp = str.substring(0, i) + str.substring(i + 1);
+            // 判断截去第i个字符后剩下的字符串中是否还有与第i个字符相同的字符
+            int index = temp.indexOf(str.charAt(i));
+            // 如果剩下的字符中没有与第i个字符相同的字符存在，则返回-1
+            // 第一次出现index=-1的时候，说明第i个字符就是第一个出现一次的字符
+            if (index == -1) {
+                String c = String.valueOf(str.charAt(i));
+                System.out.println(c);
+                break;
+            }
+        }
+    }
+```
+- 方式二：
+    * 直接使用hash表来查询，即使用HashMap来实现；首先遍历字符串的每一个字符，将字符作为HashMap的key，然后使用Integer作为HashMap的value，当key相同的时候，value就加1。遍历完之后，再对HashMap做遍历，找出key对应的value=1的key，第一个key就是查找第一个只出现一次的字符
+
+```
+    /**
+    * 时间复杂度为O(n)
+    */
+    private static void printFirstCharOnlyOnce(String str) {
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (hashMap.containsKey(str.charAt(i))) {
+                int value = hashMap.get(str.charAt(i));
+                hashMap.put(str.charAt(i), value + 1);
+            } else {
+                hashMap.put(str.charAt(i), 1);
+            }
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            if (hashMap.get(str.charAt(i)) == 1) {
+                System.out.println(str.charAt(i));
+                break;
+            }
+        }
+    }
+```
+- 方式三：
+    * 借助ASCII码，将字符的ASCII码作为在int数组的索引位置，而该字符出现的次数就是对应的int数组的索引位置的值
+
+```
+    private static void printFirstCharOnlyOnce(String str) {
+        int[] hash = new int[256];
+        for (int i = 0; i < str.length(); i++) {
+            int temp = str.charAt(i);
+            hash[temp]++;
+        }
+
+        for (int i=0;i<str.length();i++) {
+            int temp = str.charAt(i);
+            if (hash[temp] == 1) {
+                System.out.println(str.charAt(i));
+                break;
+            }
+        }
+    }
+```
+
 #### 5.查找两个子视图的共同父视图
+
+```
+- (NSArray <UIView *> *)findCommonSuperView:(UIView *)viewOne other:(UIView *)viewOther
+{
+    NSMutableArray *result = [NSMutableArray array];
+    
+    // 查找第一个视图的所有父视图
+    NSArray *arrayOne = [self findSuperViews:viewOne];
+    // 查找第二个视图的所有父视图
+    NSArray *arrayOther = [self findSuperViews:viewOther];
+    
+    int i = 0;
+    // 越界限制条件
+    while (i < MIN((int)arrayOne.count, (int)arrayOther.count)) {
+        // 倒序方式获取各个视图的父视图
+        UIView *superOne = [arrayOne objectAtIndex:arrayOne.count - i - 1];
+        UIView *superOther = [arrayOther objectAtIndex:arrayOther.count - i - 1];
+        
+        // 比较如果相等 则为共同父视图
+        if (superOne == superOther) {
+            [result addObject:superOne];
+            i++;
+        }
+        // 如果不相等，则结束遍历
+        else{
+            break;
+        }
+    }
+    
+    return result;
+}
+
+- (NSArray <UIView *> *)findSuperViews:(UIView *)view
+{
+    // 初始化为第一父视图
+    UIView *temp = view.superview;
+    // 保存结果的数组
+    NSMutableArray *result = [NSMutableArray array];
+    while (temp) {
+        [result addObject:temp];
+        // 顺着superview指针一直向上查找
+        temp = temp.superview;
+    }
+    return result;
+}
+```
+
 #### 6.无序数组中的中位数
-#### 7.两数之和为特定值
+- 中位数，就是数组排序后处于数组最中间的那个元素。如果数组长度是奇数，最中间就是位置为(n+1)/2的那个元素；如果数组长度是偶数，中位数就是位置n/2和位置为n/2+1的两个元素的和除以2的结果。
+- 第一种方法是先排序，然后找中位数；第二种方法是，用快速排序，然后找中位数
+- 基于快速排序查找中位数
+    * 定义一个key，一般取数组最右边的元素为key，然后再定义两个变量start和end
+    * start为首元素索引，end为尾元素索引
+    * 然后从后往前找，找到第一个比key小的元素，没找到则end--，找到则将当前start位置的元素值置为当前end位置的元素值
+    * 然后再start++
+    * 接着再从前往后找，找到第一个比key大的元素，没找到则start++，找到则将当前end位置的元素值置为当前start位置的元素值
+    * 最后当start==end的时候，将当前start位置的元素值置为key
+    * 接着递归调用，按当前start==end的位置，分成两半
+    * 左边到start-1，右边从start+1开始
+    * 求中位数，如果数组长度为奇数，则是第(n+1)/2个，即下标为(n+1)/2-1，如果数组长度为偶数，则是第n/2和n/2+1个之和除以2，即下标为n/2-1和n/2的两个数的和除以2；
+
+```
+    /**
+     * 基于快速排序查找中位数
+     * 定义一个key，一般取数组最右边的元素为key，然后再定义两个变量start和end
+     * start为首元素索引，end为尾元素索引
+     * 然后从后往前找，找到第一个比key小的元素，没找到则end--，找到则将当前start位置的元素值置为当前end位置的元素值
+     * 然后再start++
+     * 接着再从前往后找，找到第一个比key大的元素，没找到则start++，找到则将当前end位置的元素值置为当前start位置的元素值
+     * 最后当start==end的时候，将当前start位置的元素值置为key
+     * 接着递归调用，按当前start==end的位置，分成两半
+     * 左边到start-1，右边从start+1开始
+     *
+     * @param array
+     * @param left
+     * @param right
+     */
+    private static void quickSortSearchMedian(int[] array, int left, int right) {
+        if (left < 0) {
+            return;
+        }
+        if (right >= array.length) {
+            return;
+        }
+        if (left >= right) {
+            return ;
+        }
+        int key = array[left];
+        int start = left;
+        int end = right;
+        while (start < end) {
+            // 从右边往左边找，找到第一个小于key的值，则索引--
+            while (start < end && array[end] >= key) {
+                end--;
+            }
+            if (start < end) {
+                array[start] = array[end];
+                start++;
+            }
+            // 从左边往右边找，找到第一个大于key的值，则索引++
+            while (start < end && array[start] <= key) {
+                start++;
+            }
+            if (start < end) {
+                array[end] = array[start];
+                end--;
+            }
+        }
+        // start == end
+        array[start] = key;
+        quickSortSearchMedian(array, left, start - 1);
+        quickSortSearchMedian(array, start + 1, right);
+    }
+
+    /**
+     * 求中位数
+     * 如果数组长度为奇数，则是第(n+1)/2个，即下标为(n+1)/2-1
+     * 如果数组长度为偶数，则是第n/2和n/2+1个之和除以2，即下标为n/2-1和n/2的两个数的和除以2
+     * @param array
+     */
+    public static void searchMedian(int[] array) {
+        quickSortSearchMedian(array, 0, array.length - 1);
+        if ((array.length % 2) == 0) {
+            int i = array[array.length/2-1];
+            int j = array[array.length/2];
+            System.out.println((i+j)/2.0);
+        } else {
+            System.out.println(array[(array.length + 1) / 2 - 1]);
+        }
+    }
+```
+
+#### 7.两数之和为特定值（给定一个无序数组和一个目标值，要去从数组中选择两个数，使他们的和等于目标值。）
+- 穷举法：O（n^2）
+- 采用哈希算法确定某个数是否存在数组中：O（n）
+- 先排序，然后从左右两边进行调整
+
 #### 8.求出数组中连续数字的和值
+
 #### 9.白鼠与毒酒的算法问题
+- 一个酒窖里有一千桶酒， 其中有一桶是毒酒 ， 白鼠喝了毒酒一个星期后会死去。 
+现在问给你多少只白鼠（最少的），在一个星期内确定那桶毒酒。
+- 设有 N 桶酒，有一桶是毒酒，编号从0 到 N-1,最少要 K 只白鼠，显然：
+> 当N=2，K=1 
+当N=3，K=2 
+当N=4，K=2 
+4桶酒编号0，1，2，3 
+K=2，设有白鼠A和白鼠B 
+A喝0,1，B喝0,2 
+一星期后，有4种可能状态 
+A死B死(0号有毒)，A死B活(1号有毒)，A活B死(2号有毒)，A活B活(3号有毒) 
+- 猜想白鼠的最终状态只有死活两种可能，通过白鼠一星期后的状态可以算出毒酒编号
+- 很自然想到二进制
+> 当N=4时，0=00,1=01,2=10,3=11 
+当N=8，K=3 
+0=000,1=001,2=010,3=011，4=100，5=101，6=110，7=111 
+白鼠A,B,C 
+A喝0，1，2，3 (0XX) 
+B喝0，1，4，5 (X0X) 
+C喝0，2，4，6 (XX0) 
+ABC的最终状态可以确定毒酒编号 
+当N=1000时，可以类推至少要10只，你可以这样推出这10只白鼠具体是喝哪些编号的酒，规律很明显了 
+- 回过来再想想，1000之内的任意一个数都可以用一个10位的二进制数表示(不够的话前面补0),白鼠与数位对应，第几位为0，则说明第几位的白鼠死了，而这个二进制的编号即为毒酒编号
+
+#### 补充：背包问题
+- 背包问题是指在给定条件下 如何获得最高价值的问题
+- 给定一个重量限制，和几种不同物品的价值和重量，每种物品只有一个，寻找能拿到的最大价值是多少
+- 01背包问题根本指的是，同种物品有且最高只有一个，在给定限制下，如何获得最大收益
+- 思路一：枚举：找出所有组合
+- 思路二：动态规划
+    * 问题的关键在于我们是否要选择当前物品，选取了当前物品是否是最大的价值，做一个n^2的算法
+    * 内层循环表示寻找合适的大小，外层循环表示第几件物品，每次内层循环，我们第一个要找的是我们是否能放下当前物品。放下当前物品后，是否比放上一件物品的价值高，选取高者。之后继续查找剩余空间能否放下之前的物品，如果能那么和上一轮的结果比取高者。
+
+```
+#include<iostream>
+using namespace std;
+const int maxn = 1000;
+int dp[20];
+int value[20],weight[20];
+
+int main(){
+    int n,limitw;
+    cin>>n>>limitw;
+    for (int i=1;i<=n;i++){
+        cin>>value[i]>>weight[i];
+    }
+    cout<<"0 1 2 3 4 5 6 7 8 9 10\n";   //更好的观察算法
+    for(int i=1;i<=n;i++){
+        for(int j=limitw;j>=weight[i];j--){
+            dp[j]=max(dp[j-weight[i]]+value[i],dp[j]);
+            cout<<dp[j]<<" ";   //更好的观察算法
+        }
+        cout<<"\n"; //更好的观察算法
+    }
+
+    cout<<dp[limitw];
+    return 0;
+}
+```
+
+
+##### 补充：多重背包问题
+- 有N种物品，第i种物品的体积是C，价值是W，每种物品的数量都是有限的，为N。现有容量为V的背包，放入若干物品，在总体积不超过V的条件下，使总价值尽可能大。
+- 每种物品数量为1的多重背包问题，和背包问题一样，把物品拆分成一件一件的；
+
+```
+#include<iostream>
+using namespace std;
+int dp[1010];       //背包大小
+int w[10],c[21],n[21];  //价值,体积,数量
+int main(){
+    int N,V;
+    cin>>N>>V;
+    for(int i=1;i<=N;i++){
+        cin>>w[i]>>c[i]>>n[i];
+    }
+    for(int i=1;i<=N;i++){  //第几件物品
+        for(int j=V;j>=0;j--){  //背包大小，优化空间复杂度一定要反着放
+            for(int k=0;k<=n[i];k++){   //这里其实把物品当做一个一个往里面放
+                if(j>=c[i]*k){
+                    dp[j]=max(dp[j-c[i]*k]+w[i]*k,dp[j]);
+                }
+            }
+        }
+    }
+    cout<<dp[V]<<endl;
+    return 0;
+}
+```
+
+##### 补充：完全背包问题
+- 在多重背包问题上把每种物品的数量取消限制
+- 解决思路：转换成多重背包问题
+- 因为虽然物品数量没有上限，但其实物品数量的上限就是背包的上限，只需要处理数量*体积<剩余空间。
+
+```
+#include<stdio.h>
+#include<algorithm>
+#include<iostream>
+using namespace std;
+int dp[1010];       //背包大小
+int w[10],c[21];  //价值,体积
+int main(){
+    int N,V;
+    cin>>N>>V;
+    for(int i=1;i<=N;i++){
+        cin>>w[i]>>c[i];
+    }
+    for(int i=1;i<=N;i++){  //第几件物品
+        for(int j=1;j<=V;j++){  //背包大小
+            dp[j]=max(dp[j-c[i]]+w[i],dp[j]);
+        }
+    }
+    cout<<dp[V]<<endl;
+    return 0;
+}
+
+```
+
+#### 补充：实现数组的随机排序（含洗牌算法）
+- 有时，我们需要将一个数组内的元素顺序进行打乱，达到随机排序的目的。首先想到的是 Math.random() 方法结合数组的 sort() 方法。
+- Math.random() 结合 sort() 方法，Math.random() 方法用于产生一个介于 0 和 1 之间的随机数（含 0 但不包括 1）。数组的 sort() 方法可以有两种用法：
+    * 用法一：在不传入可选的函数参数时，将会对数组的每一个元素应用 toString() 方法，通过比较字符串大小的方式升序排列所有的数组项。
+    * 用法二：编写比较函数并作为参数传入，假设有以下比较函数（补充一点关于下面参数 a、b 的说明，若 a 为数组的第一个元素，则 b 为第二个元素，依次类推……），
+    * 如果你想将 a 变量排列在变量 b 的前面位置，则比较函数返回负数（即上述 val 为负数）；若想将 a 变量排列在变量 b 的后面，则返回正数（即上述 val 为正数）；若不需要改变 a、b 变量之间的顺序，则返回 0（即上述 val 为 0）。
+
+```
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+arr.sort(function (a, b) {
+  return Math.random() - 0.5;
+});
+console.log(arr);
+```
+##### 洗牌算法
+- 洗牌原理，该算法需要遍历整个数组，当遍历到第 i（i 为数组元素的索引）个元素时，从 0 到 i 随机挑选出一个数字，记为 index，然后对索引为 i 和 index 的数组元素进行互换，直至遍历结束。如此下来，也即完成了数组的随机排序。
+- 代码
+
+```
+var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+function shuffle (arr) {
+  var len = arr.length;
+  for (var i = 0; i < len; i++) {
+    // 生成 0 到 i 之间的随机整数
+    var index = Math.floor(Math.random() * (i + 1));
+    // 使用 ES6 中的解构赋值完成两个变量值的交换
+    [arr[i], arr[index]] = [arr[index], arr[i]];
+  }
+  return arr;
+}
+console.log('Shuffled arr: ', shuffle(arr));
+```
+
 #### 10.在一个数组中找出前四个最大的数字。
-#### 11.假如有 10亿 条数据，每条数据的大小在 10k-100k 之间，我们有一台内存为 4G 的电脑，如何算出播放次数最多的一条微博？
+- 和下面这个题的逻辑差不多
+#### 补充：最小的K个数，输入n个整数，找出其中最小的K个数。
+- 第一种方式：普通的排序算法，排序之后自然可以得到最小的k个数，但时间复杂度高达O(NlogN)，
+- 第二种方式：用快排将数组排序，输出前k小的数。
+- 基于快速排序
+    * 定义一个key，一般取数组最右边的元素为key，然后再定义两个变量start和end
+    * start为首元素索引，end为尾元素索引
+    * 然后从后往前找，找到第一个比key小的元素，没找到则end--，找到则将当前start位置的元素值置为当前end位置的元素值
+    * 然后再start++
+    * 接着再从前往后找，找到第一个比key大的元素，没找到则start++，找到则将当前end位置的元素值置为当前start位置的元素值
+    * 最后当start==end的时候，将当前start位置的元素值置为key
+    * 接着递归调用，按当前start==end的位置，分成两半
+    * 左边到start-1，右边从start+1开始
+    * 查找前K小，就从左边输出
+- 但上面两种方式是有限制的，需要一次性将全部数据装入内存，对于求解海量数据的top k问题是无能为力的。
+- 还有一种方式：BFPRT算法
+    * 时间复杂度仅为O(N)
+    * 在时间复杂度O(N)内，从无序的数组中找到第k小的数。显而易见的是，如果我们找到了第k小的数，那么想求arr中最小的k个数，只需再遍历一遍数组，把小于第k小的数都搜集起来，再把不足部分用第k小的数补全即可。
+    * BFPRT算法的过程
+        * 假设BFPRT算法的函数是int select(int[] arr, int k)，该函数的功能为在arr中找到第k小的数，然后返回该数。select(arr, k)的过程如下：
+            * 将arr中的n个元素划分成 n/5 组，每组5个元素，如果最后的组不够5个元素，那么最后剩下的元素为一组（n%5 个元素）。时间复杂度O(1)
+            * 对每个组进行排序，比如选择简单的插入排序，只针对每个组最多5个元素之间的组内排序，组与组之间不排序。时间复杂度 N/5O(1)
+            * 找到每个组的中位数，如果元素个数为偶数可以找下中位数，让这些中位数组成一个新的数组，记为mArr。时间复杂度O(N/5)
+            * 递归调用select(mArr, mArr.length / 2)，意义是找到mArr这个数组的中位数x，即中位数的中位数。时间复杂度T(N/2)
+            * 根据上面得到的x划分整个arr数组（partition过程），划分的过程为：在arr中，比x小的都在x左边，比x大的都在x右边，x在中间。时间复杂度O(N)
+            * 假设划分完成后，x在arr中的位置记为i，关于i与k的相对大小，有如下三种情况：
+                * 如果 i = k，说明x为整个数组中第k小的数，直接返回。时间复杂度O(1)
+                * 如果 i < k，说明x处在第k小的数左边，应该在x的右边继续寻找，所以递归调用select函数，在右半区寻找第k-i小的数。时间复杂度不超过T(7/10N + 6)
+                * 如果 i > k，说明x处在第k小的数右边，应该在x的左边继续寻找，所以递归调用select函数，在左半区寻找第k小的数。时间复杂度同样不超过T(7/10N + 6)
+- 针对海量数据的top k问题
+    * 实现了一种时间复杂度为O(Nlogk)的有效算法：初始时一次性从文件中读取k个数据，并建立一个有k个数的最大堆，代表目前选出的最小的k个数。然后从文件中一个一个的读取剩余数据，如果读取的数据比堆顶元素小，则把堆顶元素替换成当前的数，然后从堆顶向下重新进行堆调整；否则不进行任何操作，继续读取下一个数据。直到文件中的所有数据读取完毕，堆中的k个数就是海量数据中最小的k个数（如果是找最大的k个数，则使用最小堆）。
+- 对于从海量数据(N)中找出TOP K，这种算法仅需一次性将k个数装入内存，其余数据从文件一个一个读即可，所以它是针对海量数据TOP K问题最为有效的算法
+
+#### 补充：找出数组中第 k 大的数字及其出现次数
+- 比如说数组 [1, 2, 4, 4, 3, 5]，第 2 大的数字是 4，出现了 2 次
+- 大体的思路
+    * 既然涉及到数字大小的问题，那就要对给定数组进行排序，题目要求“第k大”的数字，故选择降序的方式更有利于后面的查找；
+    * 需要遍历数组，对当前遍历到的数组元素的大小排名和 k 值进行比较，若排名大于k值则结束循环；如果排名等于 k 值，则将该数组元素记为第 k 大的数字，且次数加一；
+    * 我们先将数组的第一项定为第 1 大的数字，然后比较第一项和第二项是否相等，若相等则第二项也为第 1 大；如果不相等则数组第二项为第 2 大的数字。依次类推，可获知每次遍历的数组元素的大小排名。
+- 边界判断
+    * 给定的 k 值是否大于或等于 1（保证没有第 0 大的数字），且k值小于或等于数组的长度（因为数组经降序排序后，值最小的数组元素的大小排名值不可能比数组长度值更大）。这条判断隐含了数组不能为空的条件。
+    * 遍历结束时，k值不能超出值最小的数组元素的大小排名，若超出了，说明数组中不存在这样的数字。
+- 代码
+
+```
+function findKthNum (arr, k) {
+  var len = arr.length;
+  // 对给定的 k 值进行判断，确保 len >= k >= 1
+  if (k > len || k < 1) {
+    console.log("There doesn't exists the number you want !");
+    return;
+  }
+  // 获得数组的副本
+  var _arr = arr.slice();
+  // 遍历数组时，当前数组元素的大小排名
+  var rank = 1;
+  // 第 k 大的数字
+  var num = 0;
+  // 第 k 大数字的出现次数
+  var count = 0;
+  // 对 _arr 进行降序排序
+  _arr.sort(function (a, b) {
+    return b - a;
+  });
+  for (var i = 0; i < len; i++) {
+    var j = i + 1;
+    // 对当前数组元素的大小排名和 k 值进行比较，若排名大
+    // 于 k 值则结束循环；如果排名等于 k 值，则将该数组
+    // 元素记为第 k 大的数字，且次数加一。
+    if (rank > k) {
+      break;
+    } else if (rank == k) {
+      num = _arr[i];
+      count++;
+    }
+    // 若当前遍历的数组项与下一项数字不相等，则说明下一个
+    // 数字的排名值比当前遍历数字的排名刚好大 1
+    if ((j < len) && (_arr[i] != _arr[j])) {
+      rank++;
+    }
+  }
+  // 遍历结束时，若最后遍历的数组元素的大小排名小于给定的 k 值，则说
+  // 明数组中没有第 k 大的数字，即 k 值超出了所有数组元素的大小排名。
+  if (rank < k) {
+    console.log("There doesn't exists the number you want !");
+  } else {
+    console.log('第' + k + '大的数字：' + num, '出现次数：' + count);
+  }
+}
+```
+- 测试数据
+
+```
+// 正常情况，findKthNum(arr1, 2)
+var arr1 = [1, 2, 4, 4, 3, 5];
+
+// 数组为空，findKthNum(arr2, 2)
+var arr2 = [];
+
+// k 值小于 1，findKthNum(arr3, 0)
+var arr3 = [1, 2, 4, 4, 3, 5];
+
+// k 值大于数组长度，findKthNum(arr4, 7)
+var arr4 = [1, 2, 4, 4, 3, 5];
+
+// k 值超出了所有数组元素的大小排名，findKthNum(arr5, 6)
+var arr5 = [1, 2, 4, 4, 3, 5];
+```
+
+#### 11.假如有 10亿 条数据，每条数据的大小在 10k-100k 之间，我们有一台内存为4G的电脑，如何算出播放次数最多的一条数据？
 #### 12.如何打印一个矩阵？
+- 例如：输出一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字
+- 顺时针打印矩阵
+##### 思路一：
+- 将复杂的矩阵拆解成若干个圈，循环打印矩阵，每次打印其中一个圈，设起点坐标为(start,start)，矩阵的行数为rows，矩阵的列数为columns，循环结束条件为 rows>start * 2，并且columns>start * 2将打印一圈拆解为四部分：
+    * 第一步：从左到右打印一行
+    * 第二步：从上到下打印一列
+    * 第三步：从右到左打印一行
+    * 第四步：从下到上打印一列
+- 需要注意的是最后一步打印，所以在每一行打印时要做好条件判断:
+    * 能走到最后一圈，从左到右必定会打印
+    * 结束行号大于开始行号，需要从上到下打印
+    * 结束列号大于开始列号，需要从右到左打印
+    * 结束行号大于开始行号+1，需要从下到上打印
+
 #### 13.如何验证一个 IP 地址的有效性？
+- IPv4 地址由十进制数和点来表示，每个地址包含4个十进制数，其范围为 0 - 255
+- IPv4 地址内的数不会以 0 开头
+- IPv6 地址由 8 组 16 进制的数字来表示，每组表示 16 比特。
+- 正则表达式
+
+```
+String pattern = "^(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}$";
+```
+
+```
+/**
+ * 有效IP地址
+ */
+public class Code_07_IsValidIP {
+    public static String getIp(String ip) {
+        if (ip == null || ip.length() == 0) return "Neither";
+
+        if (ip.startsWith(":") || ip.startsWith(".")
+                || ip.endsWith(":") || ip.endsWith(".")
+        )
+            return "Neither";
+
+        String[] split = ip.split("\\.");
+        if (split.length == 4) {
+            int n = 1;
+            for (int i = 0; i < 4; i++) {
+                try {
+                    n = Integer.parseInt(split[i]);
+                    if (n < 0 || n > 255) return "Neither";
+                    if (split[i].length() > 1 && (split[i].startsWith("0") || split[i].startsWith(".")))
+                        return "Neither";
+                } catch (Exception e) {
+                    return "Neither";
+                }
+            }
+            return "IPv4";
+        } else {
+            split = ip.split(":");
+            if (split.length == 8) {
+                long n = -1;
+                for (int i = 0; i < 8; i++) {
+                    try {
+                        if (split[i].length() > 4 || split[i].startsWith(".")) return "Neither";
+                        n = Long.parseLong(split[i], 16);
+                        if (n < 0) return "Neither";
+                    } catch (Exception e) {
+                        return "Neither";
+                    }
+                }
+                return "IPv6";
+            } else {
+                return "Neither";
+            }
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getIp("256.256.256.256"));
+        System.out.println(getIp("2001:0db8:85a3:0:0:8A2E:0370:7334"));
+        System.out.println(getIp("172.16.254.1"));
+    }
+}
+```
+
 #### 14.栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值？
+
 #### 15.二维数组查找一个值。
-#### 补充：插入排序
+- 例子： 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+- 方法一：穷举法
+- 方法二：双索引查找
+    * 二维数组是有序的，通过观察发现，若我们选取数组右上角的数字作为查找的起始点，如果等于目标值，则直接返回true；否则：如果大于目标值，则在该列左侧进行查找，如果小于目标值，则在该行下方进行查找。这样重复迭代，每查找一次就缩小查找范围，直到找到要查找的数字，或者查找范围为空。
+
 #### 补充：有一个很大的整形数据，转成二进制求1的个数
+- 思路一：1）移位法。位操作。首先，判断这个数的最后一位是否为1，如果为1，那么计算器加1，然后通过右移丢弃掉最后一位，循环执行该操作直到这个数等于0位置。在判断二进制表示的最后一位是否为1时，可以采用与运算来达到这个目的。
+- 思路二：一个数的二进制形式中1的个数等于将这个数和这个数减一的值相与，将相与的到的数作为新的数。接着和其减一相与，知道结果变为0，中间的相与的次数。
+- 
+
+#### 补充：判断一个正数是否是2的乘方
+- 思路一：
+    * 从int temp = 1开始，每次循环比较是否与number相等，不相等就让temp增大一倍(temp = temp*2)，如此循环比较，直到相等为止。这个方法的时间复杂度是O(LogN)
+
 #### 补充：缓存淘汰算法 LRU 和 LFU
 - 缓存是一个计算机思维，对于重复的计算，缓存其结果，下次再算这个任务的时候，不去真正的计算，而是直接返回结果，能加快处理速度。当然有些会随时间改变的东西，缓存会失效，得重新计算。
 - 比如缓存空间只有2个，要缓存的数据有很多，1，2，3，4，5，那么当缓存空间满了，需要淘汰一个缓存出去，其中淘汰算法有 LRU，LFU，FIFO，SC二次机会，老化算法，时钟工作集算法等等。
@@ -866,6 +2281,79 @@ void lRUCacheFree(LRUCache* obj) {
 
 #### 补充：行间的换页算法有哪些
 #### 补充：山脉数组找目标值(要求logN的时间复杂度)
+- 山脉数组：顶峰向左是递增的；顶峰向右是递减的
+- 首先找出顶峰节点，在往两边的递增递减数据使用二分
+
+```
+// 找到峰顶
+// 在峰顶左边 递增数组
+// 在峰顶右边 递减数组
+func findPeakSlope(pStart, pEnd int, pMountainArr *MountainArray) int {
+    for pStart < pEnd {
+        mid := pStart + (pEnd-pStart)/2
+        midNum := pMountainArr.get(mid)
+        if pMountainArr.get(mid+1) > midNum {
+            pStart = mid + 1
+        } else {
+            pEnd = mid
+        }
+    }
+    return pStart
+}
+
+// 递增排序
+func FindPositiveSlope(pStart, pEnd, pTarget int, pMountainArr *MountainArray) int {
+    mid := (pStart + pEnd) / 2
+    for pStart <= pEnd {
+        if pMountainArr.get(mid) == pTarget {
+            return mid
+        }
+        if pMountainArr.get(mid) > pTarget {
+            pEnd = mid - 1
+        } else {
+            pStart = mid + 1
+        }
+        mid = (pStart + pEnd) / 2
+    }
+    return -1
+}
+
+// 递减排序
+func FindBackSlope(pStart, pEnd, pTarget int, pMountainArr *MountainArray) int {
+    mid := (pStart + pEnd) / 2
+    for pStart <= pEnd {
+        if pMountainArr.get(mid) == pTarget {
+            return mid
+        }
+        if pMountainArr.get(mid) > pTarget {
+            pStart = mid + 1
+        } else {
+            pEnd = mid - 1
+        }
+        mid = (pStart + pEnd) / 2
+    }
+    return -1
+}
+func findInMountainArray(target int, mountainArr *MountainArray) int {
+    // 错误处理
+    if mountainArr.length() == 0 {
+        return -1
+    }
+    // 二分查找
+    peakIndex := findPeakSlope(0, mountainArr.length()-1, mountainArr)
+    if mountainArr.get(peakIndex) == target {
+        return peakIndex
+    }
+    // 递增
+    r := FindPositiveSlope(0, peakIndex-1, target, mountainArr)
+    if r != -1 {
+        return r
+    }
+    r = FindBackSlope(peakIndex+1, mountainArr.length()-1, target, mountainArr)
+    return r
+}
+```
+
 #### 补充：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
 ##### 方法一：最笨效率最低的办法，两个for循环，找出出现相同数字的次数
 
@@ -1294,6 +2782,8 @@ GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹�
 - _Unsafe_Unretain不会置为 nil，容易出现 悬垂指针，发生崩溃。但是 _Unsafe_Unretain 比 __weak 效率高。
 
 ### 8.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
+- 避免内存峰值，及时释放不需要的内存空间
+
 ### 9.__weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
 - 用的弱引用 - weak表。也是一张 哈希表。
 - 被 weak 修饰的指针变量所指向的地址是 key ，所有指向这块内存地址的指针会被添加在一个数组里，这个数组是 Value。当内存地址销毁，数组里的所有对象被置为 nil。
@@ -1451,7 +2941,33 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 ```
 
 ### 补充：完全深拷贝和不完全深拷贝
+- 完全深拷贝:在做深拷贝的时候,我们拷贝的对象具有多层,每一层我们都需要拷贝对象,而不是简单的指针拷贝。
+- 默认状态下深拷贝指的是不完全深拷贝, 如要实现完全深拷贝, 则要重写copyWithZone: 方法, 自行实现完全深拷贝的
+
 ### 补充：什么是虚拟内存，虚拟内存和物理内存的关系和区别
+- 操作系统有虚拟内存与物理内存之分
+- 在虚拟内存出现之前，程序寻址用的都是物理地址，因此程序能寻址的范围是有限的，具体程序可以寻址的范围有多大取决于CPU的地址线条数。
+- 比如在32位平台下，寻址的范围是2^32也就是4G，并且这是固定的，如果没有虚拟内存，且每次开启一个进程都分配出来4G的物理内存，就会出现很多问题：
+    * 因为物理内存是有限的，当有多个进程要执行的时候，对每个进程都要分配4G内存，很显然你内存若小一点，这很快就分配完了，于是没有得到分配资源的进程就只能等待。当一个进程执行完后，再将等待的进程装入内存。这种频繁的装入内存的操作是很没效率的。
+    * 由于指令都是直接访问物理内存的，那么进程就可以修改其他进程的数据，甚至会修改内核地址空间的数据，这是我们不想看到的。
+    * 因为内存是随机分配的，所以程序运行的地址也是不正确的。
+- 为了解决上述问题，于是就出现了虚拟内存。
+
+#### 虚拟内存原理及与物理内存的关系
+- 一个进程运行时会被分配4G的虚拟内存。进程有了虚拟内存后，每个进程都认为自己拥有4G的内存空间，当然这只是每个进程认为的。但实际上，虚拟内存对应的实际物理内存，可能只对应的分配了一点点的物理内存，实际使用了多少内存，就会对应多少物理内存。
+- 进程得到的这4G虚拟内存是一个连续的地址空间（这也只是进程认为），而实际上，它的数据是存储在多个物理内存碎片的，还有一部分存储在外部磁盘存储器上，在需要时将数据交换进物理内存。
+- 进程开始要访问一个地址，它可能会经历下面的过程
+    * 进程每次要访问地址空间上的某一个地址时，都需要把地址翻译为实际物理内存地址。
+    * 所有进程共享一整块物理内存，每个进程只把自己目前需要访问的虚拟地址空间映射到物理内存上。
+    * 进程需要知道哪些虚拟内存地址空间上的数据在物理内存上，哪些不在（可能这部分存储在磁盘上），若在物理内存上存在，则需要进一步知道数据存储在物理内存上的具体位置，这都需要通过页表来记录。
+    * 页表的每一个表项分两部分，第一部分记录此页是否在物理内存上，第二部分记录物理内存页的地址（如果在的话）。
+    * 当进程访问某个虚拟地址的时候，就会先去看页表，如果发现对应的数据不在物理内存上，就会发生缺页异常。
+    * 缺页异常的处理过程，操作系统立即阻塞该进程，并将硬盘里对应的页换入内存，然后使该进程就绪，如果内存已经满了，没有空地方了，那就找一个页覆盖，至于具体覆盖的哪个页，就需要看操作系统的页面置换算法是怎么设计的了。
+
+#### 总结
+- 当每个进程创建的时候，内核会为进程分配4G的虚拟内存，当进程还没有开始运行时，这只是一个内存布局。实际上并不立即就把虚拟内存对应位置的程序数据和代码（比如.text .data段）拷贝到物理内存中，只是建立好虚拟内存和磁盘文件之间的映射关系（叫做存储器映射）。这个时候数据和代码还是在磁盘上的。当运行到对应的程序时，进程去访问页表，发现页表中地址没有存放在物理内存上，而是在磁盘上，于是发生缺页异常，于是将磁盘上的数据拷贝到物理内存中。
+- 外在进程运行过程中，通过malloc来动态分配内存时，也只是分配了虚拟内存，即为这块虚拟内存对应的页表项做相应设置，当进程真正访问到此数据时，才引发缺页异常。
+- 可以认为虚拟空间都被映射到了磁盘空间中（事实上也是按需要映射到磁盘空间上，通过mmap，mmap是用来建立虚拟空间和磁盘空间的映射关系的）
 
 ### 18.BAD_ACCESS 在什么情况下出现?
 - 访问了已经被销毁的内存空间，就会报出这个错误。
@@ -1601,8 +3117,57 @@ struct objc_class : objc_object {
     * data: 顾名思义，就是数据。是一个被封装好的 class_rw_t 。
 
 ### 3.元类对象的数据结构?
+- 元类对象和类对象的数据结构是一样的
+- 类对象就是 objc_class。
+
+```
+struct objc_class : objc_object {
+    // Class ISA;
+    Class superclass; //父类指针
+    cache_t cache;             // formerly cache pointer and vtable 方法缓存
+    class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags 用于获取地址
+
+    class_rw_t *data() { 
+        return bits.data(); // &FAST_DATA_MASK 获取地址值
+    }
+```
+- 它的结构相对丰富一些。继承自objc_object结构体，所以包含isa指针
+    * isa：指向元类
+    * superClass: 指向父类
+    * Cache: 方法的缓存列表
+    * data: 顾名思义，就是数据。是一个被封装好的 class_rw_t 。
+
 ### 4.Obj-C 对象、类的本质是通过什么数据结构实现的？
+- OC的对象、类都是基于C/C++当中结构体实现的
+
+```
+struct NSObject_IMPL {
+    Class isa;
+};
+// Class其实就是一个指针，类型如下
+// typedef struct objc_class *Class;
+```
+
+### 补充：一个NSObject对象占用多少内存?
+- 可以看到NSObject_IMPL内部的isa是指向struct objc_class，说明isa是一个指针，在64位系统中该对象占用8个字节，但是实际分配了16个字节。我们需要用到下面两个函数
+
 ### 5.Obj-C 中的类信息存放在哪里？
+- 存放在类对象里面
+- 实例对象在内存中存储的信息，主要包括：
+    * isa指针
+    * 其他成员变量(具体的值的信息等)
+- 类对象在内存中存储的信息，主要包括：
+    * isa指针
+    * superclass指针
+    * 类的成员变量信息（ivar）（变量名称之类）
+    * 类的属性信息（@property）
+    * 类的协议信息（protocol）
+    * 类的对象方法信息（instance method）
+- 元类对象和类对象的内存结构是一样的，但是用途不一样，在内存中存储的信息，主要包括：
+    * isa指针
+    * superclass指针
+    * 类的类方法信息（class method）
+
 ### 6.一个 NSObject 对象占用多少内存空间？
 - 受限于内存分配的机制，一个 NSObject对象都会分配 16byte 的内存空间。
 - 但是实际上在 64位 下，只使用了 8byte;
@@ -1732,13 +3297,34 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 ```
 
 ### 11.Category 有哪些用途？
+- 给一个类添加新的方法，可以为系统的类扩展功能。
 - 给系统类添加方法、属性（需要关联对象）。
 - 对某个类大量的方法，可以实现按照不同的名称归类。
 
-### 补充：Category的优缺点
+### 补充：Category 中都可以添加哪些内容？
+- 实例方法、类方法、协议、属性（只生成 setter 和 getter 方法的声明，不会生成 setter 和 getter 方法的实现以及下划线成员变量）；
+- 默认情况下，由于分类底层结构的限制，不能添加成员变量到分类中，但可以通过关联对象来间接实现这种效果。
+
+### 补充：Category（类别）的优缺点
+- 优点：
+    * 可以按需加载不同的分类。
+    * 有很多用途，见上面
+- 缺点：
+    * 不能直接添加成员变量，但可以通过关联对象实现这种效果；
+    * 分类方法会“覆盖”同名的宿主类方法，如果使用不当会造成问题。
+- 特点：
+    * 运行时决议
+    * 可以有声明，可以有实现
+    * 可以为系统的类添加分类
+    * 运行时决议：Category编译之后的底层结构时struct category_t，里面存储着分类的对象方法、类方法、属性、协议信息，这时候分类中的数据还没有合并到类中，而是在程序运行的时候通过Runtime机制将所有分类数据合并到类（类对象、元类对象）中去。（这是分类最大的特点，也是分类和扩展的最大区别，扩展是在编译的时候就将所有数据都合并到类中去了）
+- 注意点：
+    * 分类方法会“覆盖”同名的宿主类方法，如果使用不当会造成问题；
+    * 同名分类方法谁能生效取决于编译顺序，最后参与编译的分类中的同名方法会最终生效；
+    * 名字相同的分类会引起编译报错。
+
 ### 12.Category 和 Extension 有什么区别？
 - extension 在编译期决定，它就是类的一部分，在编译期和头文件里的@interface以及实现文件里的@implement 一起形成一个完整的类，它伴随类的产生而产生，亦随之一起消亡。extension一般用来隐藏类的私有信息，你必须有一个类的源码才能为一个类添加extension，所以你无法为系统的类比如 NSString 添加 extension。
-- 但是 category 则完全不一样，它是在运行期决定的。就 category 和 extension 的区别来看，我们可以推导出一个明显的事实，extension 可以添加实例变量，而 category 是无法添加实例变量的
+- 但是 category则完全不一样，它是在运行期决定的。就 category 和extension的区别来看，我们可以推导出一个明显的事实，extension 可以添加实例变量，而 category 是无法添加实例变量的
 - category 的加载是发生在运行时，加载 category 的过程：
     * 把 category 的实例方法、协议以及属性添加到类上。
     * 把 category 的类方法和协议添加到类的 metaclass 上。
@@ -1779,6 +3365,26 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 ```
 
 ### 13.Category 可不可以添加实例对象？为什么？
+- Category可以动态添加属性，但是不能直接添加实例变量。
+- 原因：
+    * 分类没有自己的isa指针.“类最开始生成了很多基本属性，比如IvarList，MethodList。分类只会将自己的method attach到主类，并不会影响到主类的IvarList。这就是为什么分类里面不能增加成员变量的原因”，实例变量没有setter和getter方法。也没有自己的isa指针。所以，就算系统不报错也不能用。
+- runtime给Category动态添加属性，也就是关联对象
+
+### 补充：Category不能添加实例变量，那为什么能添加属性？
+- 在分类转化为c++文件中可以看出_category_t结构体中，存放着类名，对象方法列表，类方法列表，协议列表，以及属性列表。
+
+```
+struct _category_t {
+    const char *name;  //哪个类的分类 LSPerson
+    struct _class_t *cls; //这个值没用到传的为0，要扩展的类对象，编译期间这个值是不会有的，在app被runtime加载时才会根据name对应到类对象
+    const struct _method_list_t *instance_methods;//对象方法列表，这个category所有的-方法
+    const struct _method_list_t *class_methods;//类方法列表，这个category所有的+方法
+    const struct _protocol_list_t *protocols;//协议列表，这个category实现的protocol，比较不常用在category里面实现协议，但是确实支持的
+    const struct _prop_list_t *properties;//属性列表，这个category所有的property，这也是category里面可以定义属性的原因，不过这个property不会@synthesize实例变量，一般有需求添加实例变量属性时会采用objc_setAssociatedObject和objc_getAssociatedObject方法绑定方法绑定，不过这种方法生成的与一个普通的实例变量完全是两码事。
+};
+```
+
+
 ### 14.Category 在编译过后，是在什么时机与原有的类合并到一起的？
 - 程序启动后，通过编译之后，Runtime 会进行初始化，调用 _objc_init。
 - 然后会 map_images。
@@ -1788,11 +3394,81 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 - 在 reMethodizeClass: 方法内部会调用 attachCategories: ，这个方法会传入 Class 和 Category ，会将方法列表，协议列表等与原有的类合并。最后加入到 class_rw_t 结构体中。
 
 ### 补充：动态库和静态库的区别
+- 动态库和静态库的本质区别是，动态库是在程序运行时链接的，而静态库在编译时把代码加入目标程序，那么程序运行时就不需要了。所以使用静态库时生成的目标程序可以脱离源码运行，而动态库生成的目标程序，还需要先安装库才行
+- 使用gcc编译的静态库，在生成目标程序链接的过程中也只能用gcc编译；同理使用g++编译的静态库在生成目标程序链接的过程中也只能用g++编译。否则会报错"undefined reference to 'Fun1()'
+- 用gcc编译目标程序时，main.c中可以不需要#include "lib.h",会报warning,但是不会报error;但是用g++编译时，一定要加 #include "lib.h",不然编译不通过，因此用g++编译的静态库，还需要它的所有头文件才能使用。
+- 当你更改库文件的一些宏定义或者其他东西时，需要重新编译静态库，不然你的修改没有起作用。
+
 ### 补充：+load 和 initialized方法的区别
+- 两个方法的调用方式
+    * load是拿到函数地址直接进行调用
+    * initialize是通过objc_msgSend()进行调用的
+- 两个方法的调用时机
+    * load是runtime加载类，分类的时候调用的(只调用一次)，在main函数之前
+    * initialize是类第一次接收到消息时调用的，而且每个类只能被初始化一次(父类initialize方法可能被调用多次)，在main函数之后
+- 两个方法的调用顺序
+    * load
+        * 先调用类的load方法，先编译的类优先调用，调用子类的load的之前，会先调用父类的load方法
+        * 再调用分类的load方法，先编译的分类优先先调用(只看编译顺序，不区分是父类的分类还是子类的分类)
+    * 先初始化父类，再初始化子类(可能最终调用的是父类的initialize方法)
+
 ### 补充：+load的调用时机
+- load方法调用时机其实就是在程序运行，Runtime进行load_images时调用的，在main函数之前，父类子类分类的调用顺序是：先调用类，后调用所有分类；调用类会先递归调用父类，后调用子类；分类和类的调用顺序没有关系，是根据Mach-O文件的顺序进行调用的。
+
+### 补充：分类实现了类的initialize方法，那么类的方法initialize还会调用吗？为什么？
+- 分类中实现的类的initialize方法，那么类的方法就不会调用了。
+- 之所以出现这种覆盖的假象，是因为map_images操作方法的时候，加载顺序：先加载父类->再子类->所有类的分类。所以方法存进类的方法的顺序是：先添加类，后添加分类。但是在Runtime查找imp的时候，是倒序查找类的方法列表中第一个出现的方法，只要找到第一个就直接返回了，所以会出现分类方法覆盖类方法的假象。
+
+### 补充：分类与类中同样方法，调用顺序？
+- 同样的方法优先调用分类。如果两个分类有同一个方法，调用顺序则取决于编译顺序。
+
+### 补充：分类的对象方法是如何添加到类对象方法列表中的？
+- 首先内存扩充。扩展存对象方法的数组大小
+- 其次内存移动。将原来类对象方法列表数据移到后面
+- 最后内存拷贝。将分类中方法拷贝到原来列表指向位置。
+
+### 补充：memmove和memcpy的区别？
+- memmove会根据内存大小，移动方向，数量来移动内存；
+- memcpy是按照一定规则一个地址一个地址拷贝。
+- memmove能保证原数据完整性，内部移动最好不要使用memcpy，外部内存移动可以使用。
+
+### 分类和类拓展的区别
+- category 是在运行时才会将数据合并到类信息中。
+- class extension 在编译时就会将数 据编译到类信息中
+
 ### 补充：+load分类中的处理
-### 补充：分类和类别的区别
+### 补充：category 中有load 方法吗？ load 方法什么时候调用？ load 方法能继承吗？
+- 有load
+- 在runtime加载类、分类的时候调用。
+- load方法可以继承，但是通常我们不会主动调用。都是系统自动调用。如果我们主动调用的，也就是[KCPerson load]手动调用，这样就变成消息发送机制流程了。
+
 ### 补充：关联对象的原理
+- 关联对象的的api就只有三个
+
+```
+// 用于给对象添加关联对象，传入 nil 则可以移除已有的关联对象;
+  objc_setAssociatedObject(id _Nonnull object, const void * _Nonnull key,
+                         id _Nullable value, objc_AssociationPolicy policy)
+
+// 用于获取关联对象                        
+  objc_getAssociatedObject(id _Nonnull object, const void * _Nonnull key)
+
+// 移除所有的关联对象
+  objc_removeAssociatedObjects(id _Nonnull object)
+```
+- 注: objc_removeAssociatedObjects 函数我们一般是用不上的, 因为这个函数会移除一个对象的所有关联对象, 将该对象恢复成“原始”状态. 这样做就很有可能把别人添加的关联对象也一并移除, 这并不是我们所希望的. 所以一般的做法是通过给 objc_setAssociatedObject 函数传入 nil 来移除某个已有的关联对象. 不过我猜测对象析构时系统会直接调用这个移除所有关联对象.
+#### objc_setAssociatedObject
+- AssociationsManager 是顶级管理者,维护了一个从 spinlock_t 锁到 AssociationsHashMap 哈希表的单例键值对映射;
+- AssociationsHashMap 是一个无序的哈希表, 维护了从对象地址到 ObjectAssociationMap 的映射; ObjectAssociationMap 是一个 C++ 中的 map ，维护了从 key 到 ObjcAssociation 的映射，即关联记录;
+- ObjcAssociation 是一个 C++ 的类,表示一个具体的关联结构, 主要包括两个实例变量, _policy 表示关联策略, _value表示关联对象.
+- 每一个对象地址对应一个 ObjecAssociationMap 对象，而一个 ObjectAssociationMap 对象保存着这个对象的若干个关联记录ObjectAssociation, 每个 ObjectAssociation 则保存了被关联的对象和关联策略.
+
+#### objc_getAssociatedObject
+- objc_getAssociatedObject 函数对我们来说就是小菜一碟了.这个函数先根据对象地址在 AssociationsHashMap 中查找其对应的 ObjectAssociationMap 对象, 如果能找到则进一步根据 key 在 ObjectAssociationMap 对象中查找这个 key 所对应的关联结构 ObjcAssociation ,如果能找到则返回 ObjcAssociation 对象的 value 值，否则返回 nil .
+
+#### objc_removeAssociatedObjects
+- 这个函数负责移除一个对象的所有关联对象, 具体实现也是先根据对象的地址获取其对应的 ObjectAssociationMap 对象，然后将所有的关联结构保存到一个 vector 中, 最终释放 vector 中保存的所有关联对象.
+
 ### 15.说一下 Method Swizzling? 说一下在实际开发中你在什么场景下使用过?
 - 简单说就是进行方法交换
 - 在Objective-C中调用一个方法，其实是向一个对象发送消息，查找消息的唯一依据是selector的名字。利用Objective-C的动态特性，可以实现在运行时偷换selector对应的方法实现，达到给方法挂钩的目的。
@@ -1805,6 +3481,33 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 ![image](https://upload-images.jianshu.io/upload_images/11034989-c18ff3c6e3ab50c5.png?imageMogr2/auto-orient/strip|imageView2/2/w/648)
 
 ### 16.如何实现动态添加方法和属性？
+- 动态添加属性
+
+```
+// 用于给对象添加关联对象，传入 nil 则可以移除已有的关联对象;
+  objc_setAssociatedObject(id _Nonnull object, const void * _Nonnull key,
+                         id _Nullable value, objc_AssociationPolicy policy)
+
+// 用于获取关联对象                        
+  objc_getAssociatedObject(id _Nonnull object, const void * _Nonnull key)
+
+// 移除所有的关联对象
+  objc_removeAssociatedObjects(id _Nonnull object)
+```
+- 动态添加方法
+    * 为什么动态添加方法，为有些方法可能会就不会用到，所以OC都是懒加载机制
+
+### 补充：利用Runtime交换方法
+- 有的时候，系统的类不能满足要求时,例如系统类(NSString,UIImage)可能并不能满足我们的要求,解决办法:
+    * 往往是给系统自带的类添加分类，就是对原有的类进行扩充方法，但是切记扩充的方法不要和系统的类相同.
+    * 或者自定义一个类继承系统的类，再重写父类底层的方法。可以达到给系统的类自定义某个功能的目的。
+    * 要求外界调用的类方法必须是系统的类方法，上述两种情况就满足不了条件，可以使用Runtime运行时机制，方法：
+        * 创建分类
+        * 写一个这样功能的方法
+        * 用系统的方法与有这个功能的方法交换
+        * 调用imageNamed，先会调用分类的load方法，在load方法实现交换，然后才会去调用分类的ZBimageNamed
+        * 具体步骤:在分类中调用load方法，导入runtime框架，load方法中写上获取两个交换的类的类名，然后写上method_exchangexxxxx,实现交换。外界调用imageNamed：的方法，实际上调用了ZBimageNamed。
+
 ### 17.说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）
 - isa 等价于 is kind of
 - 实例对象 isa 指向类对象
@@ -1865,10 +3568,30 @@ union isa_t
 }
 ```
 
+### 补充：说一下 Runtime 消息发送。
+
+![image](https://upload-images.jianshu.io/upload_images/5796542-aae846adbc49d9c0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1021)
+
 ### 18.说一下 Runtime 消息解析。
+- 在自己的类对象的缓存和方法列表中都没有找到方法，并且在父类的类对象的缓存和方法列表中都没有找到方法时，这时候就会启动动态方法解析。
+- lookUpImpOrForward这个方法。在这个方法中前半部分是在自己的类对象以及父类对象中查找方法，后半部分就是处理在自己的类对象和父类对象中都找到不这个方法
+- 其中_class_resolveMethod()的实现：就是判断是类对象还是元类对象，如果是类对象则说明调用的实例方法，则调用类的resolveInstanceMethod:方法，如果是元类对象，则说明是调用的类方法，则调用类的resolveClassMethod:方法。
+- 动态方法解析是当第一步中方法查找失败时会进行的，当调用的是对象方法时，动态方法解析是在resolveInstanceMethod:方法中实现的，当调用的是类方法时，动态方法解析是在resolveClassMethod:方法中实现的。利用动态方法解析和runtime，我们可以给一个没有实现的方法添加方法实现。
+- 当第一步方法查找找不到方法时，就会进行第二步动态方法解析，由于调用的是对象方法，所以会执行resolveInstanceMethod:方法中的代码，在这个方法中，使用runtime的API，给类对象中动态添加了test方法的实现，这个实现是test2方法的实现。当动态方法解析结束后还会返回去进行方法查找，这次能够查找到test方法及其实现了，也就能够成功调用test方法了。
+
+![image](https://upload-images.jianshu.io/upload_images/5796542-e6ad23b13a86a4e2.png?imageMogr2/auto-orient/strip|imageView2/2/w/921)
+
 ### 19.说一下 Runtime 消息转发。
+- 进行动态方法解析结束之后，会从头开始再进行消息发送这一步，如果在动态方法解析的时候有动态添加方法实现，那么就能找到方法实现并返回方法实现，不再执行下面的代码；如果在动态方法解析的时候没有做什么事，那么就不能找到方法实现，这时候由于triedResolver标志位已经置为YES，也就不会再进入动态消息解析，而是会进入消息转发。
+- 调用_objc_msgForward_impcache函数
+- 消息转发首先依赖于- (id)forwardingTargetForSelector:(SEL)aSelector这个方法，若是这个方法直接返回了一个消息转发对象，则会通过objc_msgSend()把这个消息转发给消息转发对象了。若是这个方法没有实现或者实现了但是返回值为空，则会跑去执行后面的- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector这个函数以及- (void)forwardInvocation:(NSInvocation *)anInvocation这个函数。
+
+![image](https://upload-images.jianshu.io/upload_images/5796542-b19c544c6b2be02e.png?imageMogr2/auto-orient/strip|imageView2/2/w/1013)
+
 ### 20.如何运用 Runtime 字典转模型？
+
 ### 21.如何运用 Runtime 进行模型的归解档？
+
 ### 22.在 Obj-C 中为什么叫发消息而不叫函数调用？
 - OC中的方法调用其实都是转成了objc_msgSend函数的调用，给receiver（方法调用者）发送了一条消息（selector方法名）
 - objc_msgSend底层有3大阶段，消息发送（当前类、父类中查找）、动态方法解析、消息转发
