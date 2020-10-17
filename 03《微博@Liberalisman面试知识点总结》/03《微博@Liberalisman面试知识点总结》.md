@@ -3394,6 +3394,8 @@ struct _category_t {
 - 在 reMethodizeClass: 方法内部会调用 attachCategories: ，这个方法会传入 Class 和 Category ，会将方法列表，协议列表等与原有的类合并。最后加入到 class_rw_t 结构体中。
 
 ### 补充：动态库和静态库的区别
+- 静态库在编译时期:commond+shift+N(即新建工程)----->FrameWork&library—>Cocoa Touch Static Libiary
+- 动态库在运行时期:commond+shift+N(即新建工程)----->FrameWork&library—>Cocoa Touch Libiary
 - 动态库和静态库的本质区别是，动态库是在程序运行时链接的，而静态库在编译时把代码加入目标程序，那么程序运行时就不需要了。所以使用静态库时生成的目标程序可以脱离源码运行，而动态库生成的目标程序，还需要先安装库才行
 - 使用gcc编译的静态库，在生成目标程序链接的过程中也只能用gcc编译；同理使用g++编译的静态库在生成目标程序链接的过程中也只能用g++编译。否则会报错"undefined reference to 'Fun1()'
 - 用gcc编译目标程序时，main.c中可以不需要#include "lib.h",会报warning,但是不会报error;但是用g++编译时，一定要加 #include "lib.h",不然编译不通过，因此用g++编译的静态库，还需要它的所有头文件才能使用。
@@ -4025,6 +4027,8 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 - 在主线程执行的代码，通常是写在诸如事件回调、Timer回调内的。这些回调会被 RunLoop 创建好的 AutoreleasePool 环绕着，所以不会出现内存泄漏，开发者也不必显示创建 Pool 了。
 
 ### 补充：介绍UIResponder的继承链。然后说事件响应链。
+- 首先要先了解响应者对象UIResponder，只有继承UIResponder的的类，才能处理事件。
+- 我们可以看出UIApplication，UIView，UIViewController都是继承自UIResponder类，可以响应和处理事件。
 
 ### 7.解释一下 事件响应 的过程？
 - 响应者：响应者为响应事件的UIResponder子类对象，如UIButton、UIView等；
@@ -4276,6 +4280,25 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
         * 设置该 Bitmap 为 layer.contents 属性的值。
 
 ### 18.如何检测 App 运行过程中是否卡顿？
+#### 什么原因导致了卡顿
+- 死锁
+- 抢锁
+- 大量的Ui绘制,复杂的UI，图文混排
+- 主线程大量IO、大量计算
+
+#### Analyze 静态分析
+- Analyze静态分析是Xcode自带的一个强大的性能调优工具，它能够在不运行程序的情况下直接对代码进行分析。能够快速的分析出项目中的逻辑错误、内存管理错误、声明错误、API调用错误等。
+- 使用方法：Xcode -> Product -> Analyze
+
+#### Instruments 动态分析
+- Instruments也是Xcode自带的性能调优工具，它能够在程序运行的情况下对代码进行分析。能够方便地分析出代码中出现的内存泄漏、僵尸对象等和程序性能、内存分配情况。
+- 使用方法：Xcode -> Open Developer Tool -> Instruments
+
+#### RunLoop方式
+- 首先在主线程注册了runloop observer的回调myRunLoopObserver
+每次小循环都会记录一下kCFRunLoopAfterWaiting的时间_waitStartTime，并且在kCFRunLoopBeforeWaiting制空。
+- 另外开了一个子线程并开启他的runloop（模仿了AFNetworking的方式），并加上一个timer每隔1秒去进行监测。
+- 如果当前时长与_waitStartTime差距大于2秒，则认为有卡顿情况，并记录了当前堆栈信息。
 
 ## UIKit
 ### 1.UIView 和 CALayer 是什么关系？
@@ -4398,8 +4421,33 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 - bounds的大小改变时，当前视图的中心点不会发生改变，当前视图的大小发生改变，看起来效果就想缩放一样
 
 ### 3.TableViewCell 如何根据 UILabel 内容长度自动调整高度?
+- 将需要改变高度的UILabel的Line设置为0。Line代表UILabel能显示的最多行数
+- 重写estimatedHeightForRowAtIndexPath方法
+    * 因为系统是先获取cell的高度，再获取cell的view。也就是先调用heightForRowAtIndexPath，再调用cellForRowAtIndexPath。在cellForRowAtIndexPath被调用之前，你的label是没有被设置文本内容的，因此它获取到的高度，并不是你想要的。那么我们必须想办法让系统在获取了cell之后，再获取cell的高度。方法就是，重写estimatedHeightForRowAtIndexPath
+    * 它会返回一个估计高度，有了这个方法后，tableview会先调用它获取估计高度，然后获取cell，最后获取真实高度。那么最后的真实高度，就是我们希望的高度。estimatedHeightForRowAtIndexPath的返回值可以随意，返回多少都可以，让它延迟获取真实的高度。
+- 重写heightForRowAtIndexPath，真实高度返回值为UITableViewAutomaticDimension
+- 或者在viewDidLoad中直接用
+
+```
+self.tableView.estimatedRowHeight = 10
+self.tableView.rowHeight = UITableViewAutomaticDimension
+```
+
 ### 4.LoadView方法了解吗？
+- loadView作用,用来创建控制器的View.
+- 当控制器的View,第一次使用的时候调用.
+- loadView底层原理:
+    * 先判断当前控制器是不是从storyBoard当中加载的,如果是从storyBoard加载的控制器.那么它就会从storyBoard当中加载的控制器的View,设置当前控制器的view.
+    * 当前控制器是不是从xib当中加载的,如果是从xib当中加载的话,把xib当中指定的View,设置为当前控制器的View.
+    * 如果也不是从xib加载的,它会创建空白的view.
+- 一但重写了loadView方法,就说明要自己定义View.
+- 一般使用的场景:当控制器的View一显示时,就是一张图片,或者UIWebView.
+节省内存
+
 ### 5.UIButton 的父类是什么？UILabel 的父类又是什么？
+- UIControl 
+- UIView
+
 ### 6.实现一个控件，可以浮在任意界面的上层并支持拖动？
 ### 7.说一下控制器 View 的生命周期，一旦收到内存警告会如何处理？
 
@@ -4451,8 +4499,73 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 - viewDidDisappear
 
 ### 10.UIViewController 的生命周期？
+- loadView： 加载view
+- viewDidLoad： view加载完毕
+- viewWillAppear： 控制器的view将要显示
+- viewWillLayoutSubviews：控制器的view将要布局子控件
+- viewDidLayoutSubviews：控制器的view布局子控件完成
+- viewDidAppear: 控制器的view完全显示
+- viewWillDisappear： 控制器的view即将消失的时候
+- viewDidDisappear： 控制器的view完全消失的时候
+
 ### 11.如何以通用的方法找到当前显示的ViewController?
+- 场景：在处理 URL Router 跳转的时候，经常需要得到“当前最上层的视图控制器”来进行视图跳转。
+- 方法一：
+    * Podfile添加pod 'CJBaseHelper/UIViewControllerCJHelper'，并pod update或pod install
+    * 库引入成功后，直接使用如下方法即可。即：
+
+```
+UIViewController *vc = [UIViewControllerCJHelper findCurrentShowingViewController];
+或
+UIViewController *vc = [UIViewControllerCJHelper findCurrentShowingViewControllerFrom:self];
+```
+
+### 补充：如何在多次presentViewController后直接返回到指定层
+- 场景：如果多个控制器都通过 present 的方式跳转呢？比如从A跳转到B，从B跳转到C，从C跳转到D，如何由D直接返回到A呢？
+- 可以通过 presentingViewController 一直找到A控制器，然后调用A控制器的 dismissViewControllerAnimated 方法。方法如下：
+
+```
+UIViewController *controller = self;
+while(controller.presentingViewController != nil){
+    controller = controller.presentingViewController;
+}
+[controller dismissViewControllerAnimated:YES completion:nil];
+```
+- presentedViewController 与 presentingViewController
+    * 假设从A控制器通过present的方式跳转到了B控制器，那么 A.presentedViewController 就是B控制器；B.presentingViewController 就是A控制器。
+
+### 补充：如何通过视图(view)获取该视图所在的控制器(viewController)
+
+```
++ (nullable UIViewController *)findBelongViewControllerForView:(UIView *)view {
+    UIResponder *responder = view;
+    while ((responder = [responder nextResponder]))
+        if ([responder isKindOfClass: [UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+    return nil;
+}
+```
+
 ### 12.setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？
+- setNeedsDisplay会调用drawRect方法重画页面
+- setNeedsLayout会调用layoutSubviews，页面才会发生变化。
+- 调用layoutIfNeed不会触发VC中viewDidLayoutSubviews 和 viewWillLayoutSubviews 里面重写 views的布局
+
+### 补充：什么情况下会调用layoutSubviews ？
+- 调用setNeedsLayout  layoutIfNeed，直接调用setLayoutSubviews
+- addsubview时触发layoutSubviews
+- 改变一个view的frame会触发layoutSubviews
+- 改变view的size会触发父view的layoutSubviews
+- 滚动会触发layoutSubviews
+- 旋转Screen会触发父UIView上的layoutSubviews事件
+
+### 补充：什么情况会调用draw rect方法
+- controller的loadView、viewdidLoad方法调用之后，view即将出现在屏幕之前系统调用drawRect。
+- sizeToFit方法调用之后。
+- 设置contetMode为UIViewCOntentModelRedraw，之后每次更改frame的时候调用redraw方法。
+- 调用setNeedsDisplay方法。
+
 ### 补充：多个类型的cell如何优雅加载？
 #### 题解一
 - 一种就是常见的if else，但是如果修改的话，就会代码很多，一旦修改，就会修改太多，太繁琐了；
@@ -4505,27 +4618,261 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 - bounds的大小改变时，当前视图的中心点不会发生改变，当前视图的大小发生改变，看起来效果就想缩放一样
 
 ### 2.`nil`、`NIL`、`NSNULL` 有什么区别？
-### 3.如何实现一个线程安全的 `NSMutableArray`?
-### 4.如何定义一台 iOS 设备的唯一性?
-### 5.`atomic` 修饰的属性是绝对安全的吗？为什么？
-### 6.实现 `isEqual` 和 `hash` 方法时要注意什么？
-### 7.`id` 和 `instanceType` 有什么区别？
-### 8.简述事件传递、事件响应机制。
-### 9.说一下对 `Super` 关键字的理解。
-### 10.了解 逆变 和 协变 吗？
-### 11.`@synthesize` 和 `@dynamic` 分别有什么作用？
-### 12.Obj-C 中的反射机制了解吗？
-### 13.`typeof` 和 `__typeof`，`typeof` 的区别?
-### 14.如何判断一个文件在沙盒中是否存在？
-### 15.头文件导入的方式？
-### 16.如何将 Obj-C 代码改变为 C++/C 的代码？
-### 17.知不知道在哪里下载苹果的源代码？
-### 1.objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？
+- nil、NIL 可以说是等价的，都代表内存中一块空地址。
+- NSNULL 代表一个指向 nil 的对象。
 
+### 3.如何实现一个线程安全的 `NSMutableArray`?
+- NSMutableArray是线程不安全的，当有多个线程同时对数组进行操作的时候可能导致崩溃或数据错误
+- 线程锁：使用线程锁对数组读写时进行加锁
+- 派发队列：多用派发队列，少用同步锁中指出：使用“串行同步队列”，将读取操作及写入操作都安排在同一个队列里，即可保证数据同步。
+- 而通过并发队列，结合GCD的栅栏块（barrier）来不仅实现数据同步线程安全，还比串行同步队列方式更高效。
+
+### 4.如何定义一台 iOS 设备的唯一性?
+- UUID+keyChain存储
+- 获取UUID
+
+```
+[[UIDevice currentDevice] identifierForVendor] UUIDString]
+```
+- 当你升级或者重装软件的时候，UUID会发生变化，这时候我们再去获取UUID时，得到的值和以前的不一样，但其实还是同一台设备
+- keychain：是钥匙串的意思，是苹果公司Mac OS中的密码管理系统。keychain里保存的信息不会因App被删除而丢失，在用户重新安装App后依然有效，数据还在。所以我们可以将UUID存储到keychain里面，需要用到的时候从keychain中取，这样可以保证UUID的唯一性。
+
+### 5.`atomic` 修饰的属性是绝对安全的吗？为什么？
+- 不一定安全，所谓的安全只是局限于 Setter、Getter 的访问器方法而言的
+- 方法里加入一些互斥锁，目的就是防止多(条)线程访问同一个内存地址，造成数据错误。
+- 但是不能保证多线程安全，当开启两个异步线程频繁的去对ojb执行+1操作的时候，就不是线程安全的，解决方法是加锁
+
+### 6.实现 `isEqual` 和 `hash` 方法时要注意什么？
+- hash
+    * 对关键属性的hash值进行位或运算作为hash值
+- isEqual
+    * ==运算符判断是否是同一对象,因为同一对象必然完全相同
+    * 判断是否是同一类型,这样不仅可以提高判等的效率, 还可以避免隐式类型转换带来的潜在风险
+    * 判断对象是否是nil, 做参数有效性检查
+    * 各个属性分别使用默认判等方法进行判断
+    * 返回所有属性判等的与结果
+
+### 7.`id` 和 `instanceType` 有什么区别？
+- 相同点
+    * instancetype 和 id 都是万能指针，指向对象。
+- 不同点：
+    * id 在编译的时候不能判断对象的真实类型，instancetype 在编译的时候可以判断对象的真实类型。
+    * id 可以用来定义变量，可以作为返回值类型，可以作为形参类型；instancetype只能作为返回值类型。
+
+### 8.简述事件传递、事件响应机制。
+#### UIResponder的继承链
+- 首先要先了解响应者对象UIResponder，只有继承UIResponder的的类，才能处理事件。
+- 我们可以看出UIApplication，UIView，UIViewController都是继承自UIResponder类，可以响应和处理事件。
+
+#### 事件响应的过程？
+- 响应者：响应者为响应事件的UIResponder子类对象，如UIButton、UIView等；
+- 响应链：响应链是由链接在一起的响应者（UIResponse子类）组成的。
+- 事件传递：获得响应链后，将事件由第一响应者往application传递的过程；
+- 事件的传递过程
+
+![image](https://upload-images.jianshu.io/upload_images/4986510-8e8307e475ec486f.png)
+
+- 苹果基于mach port注册了一个Source1用来接收系统事件，其回调函数为 __IOHIDEventSystemClientQueueCallback()。
+- 当一个硬件事件(触摸/锁屏/摇晃等)发生后，首先由 IOKit.framework 生成一个 IOHIDEvent 事件并由 SpringBoard 接收。SpringBoard只接收按键(锁屏/静音等)，触摸，加速，接近传感器等几种 Event，随后用 mach port 转发给需要的 App 进程。随后苹果注册的那个Source1就会触发回调，并调用_UIApplicationHandleEventQueue()进行应用内部的分发。
+- _UIApplicationHandleEventQueue() 会把IOHIDEvent 处理并包装成 UIEvent 进行处理或分发，其中包括识别 UIGesture/处理屏幕旋转/发送给UIWindow等。通常事件比如 UIButton 点击、touchesBegin/Move/End/Cancel 事件都是在这个回调中完成的。
+- 其实说白了就是：当iOS程序发生触摸事件后，系统会利用Runloop将事件加入到UIApplication的任务队列中；UIApplication分发触摸事件到UIWindow，然后UIWindow依次向下分发给UIView；UIView调用hitTest:withEvent:方法看看自己能否处理事件，以及触摸点是否在自己上面；如果满足条件，就遍历UIView上的子控件。重复上面的动作；直到找到最顶层的一个满足条件（既能处理触摸事件，触摸点又在上面）的子控件，此子控件就是我们需要找到的第一响应者。
+
+```
+// 此方法返回的View是本次点击事件需要的最佳View
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+
+// 判断一个点是否落在范围内
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+//返回最适合处理事件的视图，最好在父视图中指定子视图的响应
+
+// 因为所有的视图类都是继承BaseView
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+   // 1.判断当前控件能否接收事件
+   if (self.userInteractionEnabled == NO || self.hidden == YES || self.alpha <= 0.01) return nil;
+   // 2. 判断点在不在当前控件
+   if ([self pointInside:point withEvent:event] == NO) return nil;
+   // 3.从后往前遍历自己的子控件
+   NSInteger count = self.subviews.count;
+   for (NSInteger i = count - 1; i >= 0; i--) {
+       UIView *childView = self.subviews[I];
+       // 把当前控件上的坐标系转换成子控件上的坐标系
+    CGPoint childP = [self convertPoint:point toView:childView];
+      UIView *fitView = [childView hitTest:childP withEvent:event];
+       if (fitView) { // 寻找到最合适的view
+           return fitView;
+       }
+   }
+   // 循环结束,表示没有比自己更合适的view
+   return self;
+   
+}
+```
+
+#### 手势识别的过程？
+- 当 _UIApplicationHandleEventQueue()识别了一个手势时，其首先会调用Cancel将当前的touchesBegin/Move/End 系列回调打断。随后系统将对应的UIGestureRecognizer 标记为待处理。
+- 苹果注册了一个 Observer 监测 BeforeWaiting (Loop即将进入休眠) 事件，这个 Observer 的回调函数是 _UIGestureRecognizerUpdateObserver()，其内部会获取所有刚被标记为待处理的GestureRecognizer，并执行GestureRecognizer 的回调。
+- 当有 UIGestureRecognizer的变化(创建/销毁/状态改变)时，这个回调都会进行相应处理。
+
+### 9.说一下对 `Super` 关键字的理解。
+- 使用super关键字发送消息会被编译器转化为调用objc_msgSendSuper以及相关函数
+
+```
+id objc_msgSendSuper(struct objc_super *super, SEL op, ...);
+```
+- 这里的super已经不再是我们调用时写的[super init]的super了，这里指代的是struct objc_super结构体指针。
+
+### 10.了解 逆变 和 协变 吗？
+- __covariant:协变, 子类转父类 
+- __contravariant:逆变 父类转子类
+- 协变和逆变的作用就是，对象相互赋值时，对象属性(泛型)的处理
+- 协变:`对象(属性泛型子类)`赋予`对象( 属性泛型父类)`
+- 逆变:`对象(属性泛型父类)`赋予`对象( 属性泛型子类)`
+
+### 11.`@synthesize` 和 `@dynamic` 分别有什么作用？
+- @property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var;
+- @synthesize 的语义是如果你没有手动实现 setter 方法和 getter方法，那么编译器会自动为你加上这两个方法。
+- @dynamic 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供 getter 即可）。
+- 假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var =someVar，由于缺setter方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺 getter方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。
+
+### 12.Obj-C 中的反射机制了解吗？
+- iOS反射机制：运行时选择创建哪个实例，并动态选择调用哪个方法。
+- 常用判断方法
+
+```
+// 当前对象是否这个类或其子类的实例
+- (BOOL)isKindOfClass:(Class)aClass;
+// 当前对象是否是这个类的实例
+- (BOOL)isMemberOfClass:(Class)aClass;
+// 当前对象是否遵守这个协议
+- (BOOL)conformsToProtocol:(Protocol *)aProtocol;
+// 当前对象是否实现这个方法
+- (BOOL)respondsToSelector:(SEL)aSelector;
+```
+- 获取Class的三种方法
+
+```
+// 通过字符串获取class  
+Class class = NSClassFromString(@"NSString");  
+NSLog(@"class type : %@", class);  
+
+// 直接用class 来创建对象 ,通过对象来获取class 
+id str = [[class alloc] init];   
+NSLog(@"%@", [str class]);  
+
+// 通过类来获取class  
+NSLog(@"%d", class==NSString.class);   
+```
+- 实际应用
+    * 根据后台推送过来的数据，进行动态页面跳转，跳转到页面后根据返回到数据执行对应的操作。
+- OC中使用反射的优点
+    * 松耦合，类与类之间不需要太多依赖
+    * 构建灵活
+- OC中使用反射的缺点
+    * 不利于维护。使用反射模糊了程序内部实际发生的事情，隐藏了程序的逻辑。这种绕过源码的方式比直接代码更为复杂，增加了维护成本。
+    * 性能较差。使用反射匹配字符串间接命中内存比直接命中内存的方式要慢。当然，这个程度取决于使用场景，如果只是作为程序中很少涉及的部分，这个性能上的影响可以忽略不计。但是，如果在性能很关键的应用核心逻辑中使用反射，性能问题就尤其重要了
+
+### 13.`typeof` 和 `__typeof`，`typedef` 的区别?
+#### typeof
+- 是一个一元运算，放在一个运算数之前，运算数可以是任意类型。
+- 可以理解为：我们根据typeof（）括号里面的变量，自动识别变量类型并返回该类型。
+- typeof 常见运用于Block中，避免循环引用发生的问题。
+
+#### 补充：typeof、__typeof__、__typeof的区别
+- 我们经常会看到有的人是这样使用的__weak __typeof__(self) wself = self;有的是这样使用的__weak typeof(self) wself = self;, 有的是这样使用的__weak __typeof(self) wself = self;, 这三种方式有什么区别呢
+- __typeof__()和 typeof() 和 __typeof()等都是C语言的扩展, 要表达的意思都是一样的, 这个时候需要说到C的发展, 其中两个阶段, GNUC 和 标准C在GNUC环境下, 其扩展是支持直接写__typeof__()和typeof()和__typeof()而在标准C环境下, 其扩展是以__开头, 所以其只能写成__typeof__()和__typeof()
+
+#### typedef：
+- 定义一种类型的别名，而不只是简单的宏替换。
+- typedef 常用于命名（枚举和Block）
+
+### 14.如何判断一个文件在沙盒中是否存在？
+- 通常我们在模拟器中运行项目时，如果需要查看沙盒中的文件，只需要按住command+shift+g，然后将文件路径复制进去点击前往，就能查看到沙盒中的文件
+- 在真机测试时查看沙盒
+    * 点击xcode菜单中的window选项，然后选择Devices and Simulators选项
+    * 然后窗口中的TeachersSide就是在真机测试运行的项目。
+    * 然后Download文件
+    * 然后显示包内容
+
+### 15.头文件导入的方式？
+
+### 16.如何将 Obj-C 代码改变为 C++/C 的代码？
+- clang -rewrite-objc -fobjc-arc -fobjc-runtime=macosx-10.13 main.m
+
+### 17.知不知道在哪里下载苹果的源代码？
+- https://opensource.apple.com/source
+
+### 18.objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？
+- 全部返回 Class 类对象
+- class 方法
+    * class 方法无论是类对象还是实例对象都可以调用，可以嵌套，返回永远是自身的类对象。
+- object_getClass 方法
+    * object_getClass 和 class 同样可以嵌套，但是 object_getClass 得到的是他的 isa 指向的地址。
+- objc_getClass 方法
+    * objc_getClass 无法嵌套，因为参数 是 char 类型，效果和 class 相同
 
 ## 网络
 ### 你了解的网络协议
+- 协议是网络中计算机或设备之间进行通信的一系列规则的集合。常用协议有IP、TCP、HTTP、POP3、SMTP等。
+- TCP/IP协议
+    * 中译名为传输控制协议/因特网互联协议，又名网络通讯协议，是Internet最基本的协议
+    * 不是TCP和IP这两个协议的合称，而是指因特网整个TCP/IP协议族
+- IP
+    * Internet层协议
+    * Internet协议,负责TCP/IP主机间提供数据报服务，进行数据封装并产生协议头,IP数据包中含有发送它的主机的地址（源地址）和接收它的主机的地址（目的地址）
+- ICMP
+    * Internet层协议
+    * Internet控制报文协议。ICMP协议其实是IP协议的的附属协议，IP协议用它来与其它主机或路由器交换错误报文和其它的一些网络情况，在ICMP包中携带了控制信息和故障恢复信息
+    * PING是最常用的基于ICMP的服务
+- ARP
+    * Internet层协议
+    * 地址解析协议
+- RARP
+    * Internet层协议
+    * 逆向地址解析协议
+- TCP
+    * 传输层(主机-主机层)协议
+    * 传输控制协议
+    * 面向连接的可靠通信协议，通过三次握手建立连接
+    * 由于TCP是面向连接的所以只能用于端到端的通讯
+- UDP
+    * 传输层(主机-主机层)协议
+    * 用户数据报协议
+    * 面向无连接的不可靠通讯协议
+    * 由于通讯不需要连接，所以可以实现广播发送
+- HTTP
+    * 应用层协议
+    * 超文本传输协议,默认端口80
+    * 是用于从WWW服务器传输超文本到本地浏览器的传输协议
+    * 是客户端浏览器或其他程序与Web服务器之间的应用层通信协议
+    * HTTP连接最显著的特点是客户端发送的每次请求都需要服务器回送响应，在请求结束后，会主动释放连接。从建立连接到关闭连接的过程称为“一次连接”“短连接”。
+- FTP
+    * 应用层协议
+    * 文件传输协议
+
 ### 补充：HTTP和TCP、UDP的联系
+#### HTTP和TCP
+- Http协议是建立在TCP协议基础之上的，当浏览器需要从服务器获取网页数据的时候，会发出一次Http请求。Http会通过TCP建立起一个到服务器的连接通道，当本次请求需要的数据完毕后，Http会立即将TCP连接断开，这个过程是很短的。所以Http连接是一种短连接，是一种无状态的连接
+- 随着时间的推移，html页面变得复杂了,每次都需要建立一次tcp连接就显得低效了,从HTTP/1.1起，默认都开启了Keep-Alive，保持连接特性.简单地说，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的TCP连接不会关闭,但是Keep-Alive不会永久保持连接,它有一个保持时间.后来，通过Session,Cookie等相关技术，也能保持一些用户的状态。但是还是每次都使用一个连接，依然是无状态连接。
+- http是应用层协议，tcp是传输层。http使用tcp传输文本数据
+
+#### HTTP和UDP
+
+### ### 补充：简要说一下Socket
+- Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。
+- 套接字（socket）是通信的基石，是支持TCP/IP协议的网络通信的基本操作单元。它是网络通信过程中端点的抽象表示，包含进行网络通信必须的五种信息：连接使用的协议，本地主机的IP地址，本地进程的协议端口，远地主机的IP地址，远地进程的协议端口。
+- 用层通过传输层进行数据通信时，TCP会遇到同时为多个应用程序进程提供并发服务的问题。多个TCP连接或多个应用程序进程可能需要通过同一个CP协议端口传输数据。为了区别不同的应用程序进程和连接，许多计算机操作系统为应用程序与TCP／IP协议交互提供了套接字(Socket)接口。应用层可以和传输层通过Socket接口，区分来自不同应用程序进程或网络连接的通信，实现数据传输的并发服务。
+- 建立socket连接
+    * 建立Socket连接至少需要一对套接字，其中一个运行于客户端，称为ClientSocket，另一个运行于服务器端，称为ServerSocket。
+    * 套接字之间的连接过程分为三个步骤：服务器监听，客户端请求，连接确认。
+        * 服务器监听：服务器端套接字并不定位具体的客户端套接字，而是处于等待连接的状态，实时监控网络状态，等待客户端的连接请求。
+        * 客户端请求：指客户端的套接字提出连接请求，要连接的目标是服务器端的套接字。为此，客户端的套接字必须首先描述它要连接的服务器的套接字，指出服务器端套接字的地址和端口号，然后就向服务器端套接字提出连接请求。
+        * 连接确认：当服务器端套接字监听到或者说接收到客户端套接字的连接请求时，就响应客户端套接字的请求，建立一个新的线程，把服务器端套接字的描述发给客户端，一旦客户端确认了此描述，双方就正式建立连接。而服务器端套接字继续处于监听状态，继续接收其他客户端套接字的连接请求。
+- SOCKET连接与TCP连接
+    * 创建Socket连接时，可以指定使用的传输层协议，Socket可以支持不同的传输层协议（TCP或UDP），当使用TCP协议进行连接时，该Socket连接就是一个TCP连接。
+- Socket连接与HTTP连接
+    * 由于通常情况下Socket连接就是TCP连接，因此Socket连接一旦建立，通信双方即可开始相互发送数据内容，直到双方连接断开。但在实际网络应用中，客户端到服务器之间的通信往往需要穿越多个中间节点，例如路由器、网关、防火墙等，大部分防火墙默认会关闭长时间处于非活跃状态的连接而导致Socket 连接断连，因此需要通过轮询告诉网络，该连接处于活跃状态。而HTTP连接使用的是“请求—响应”的方式，不仅在请求时需要先建立连接，而且需要客户端向服务器发出请求后，服务器端才能回复数据。很多情况下，需要服务器端主动向客户端推送数据，保持客户端与服务器数据的实时与同步。此时若双方建立的是Socket连接，服务器就可以直接将数据传送给客户端；若双方建立的是HTTP连接，则服务器需要等到客户端发送一次请求后才能将数据传回给客户端，因此，客户端定时向服务器端发送连接请求，不仅可以保持在线，同时也是在“询问”服务器是否有新的数据，如果有就将数据传给客户端。
+- Socket为长连接：通常情况下Socket 连接就是 TCP 连接，因此 Socket连接一旦建立,通讯双方开始互发数据内容，直到双方断开连接。在实际应用中，由于网络节点过多，在传输过程中，会被节点断开连接，因此要通过轮询高速网络，该节点处于活跃状态。很多情况下，都是需要服务器端向客户端主动推送数据，保持客户端与服务端的实时同步。若双方是Socket连接，可以由服务器直接向客户端发送数据。若双方是HTTP连接，则服务器需要等客户端发送请求后，才能将数据回传给客户端。因此，客户端定时向服务器端发送请求，不仅可以保持在线，同时也询问服务器是否有新数据，如果有就将数据传给客户端。
+
 ### 1.NSUrlConnect相关知识。
 - NSURLConnection 是 iOS 开发中最经典的网络请求方案。虽然在苹果公司推出 NSURLSession 后已经不推荐使用 NSURLConnection 了（NSURLConnection 在 iOS 9 被宣布弃用了），但是在一些早先构建的项目和框架中可能任使用了 NSURLConnection 技术，所以还是有必要了解 NSURLConnection。
 - NSURLConnection 使用步骤
@@ -4766,7 +5113,116 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 - HTTP响应报文：由三部分组成：状态行、消息报头、响应正文。
 
 ### 8.什么是 Mimetype ?
+- MIME是描述消息内容类型的因特网标准。
+- 使用场景：无论是我们使用NSURLConnection还是使用第三方框架AFN，在我们上传文件的时候，我们都需要指定上传文件的类型，例如：image/png、text/html等。接下来，我就详细说明一下文件的MIMEType获取方法。
+- 怎样获取
+- 方法一：写一个分类
+
+```
+/*
+ * 第一种方式获得MIMEType
+ * 说明：
+ * 1、你可以将此方法写成分类，以便今后方便使用。
+ * 2、这里请求的方式我采用的是NSURLConnection的方式发送的请求，大家可以采取其他的方式，在iOS7.0之后本方式已经弃用了。
+ * 参数解释：
+ * path : 文件的路径。
+ */
+
+- (void)getMimeType:(NSString *)path{
+    // 创建URL 
+    NSURL *url = [NSURL fileURLWithPath:path];
+    // 创建请求对象
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    // 发送异步请求 在请求的
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        NSLog(@"%@",response.MIMEType);
+    }];
+}
+```
+- 方法二：采用C语言库的方式进行获取
+
+```
+/* 
+ * 第二种方式获得MIMEType
+ * 说明：
+ * 1、这种方式使用了C语言的API进行实现的，要使用它，首先要引入入 <MobileCoreServices/MobileCoreServices.h>这个库。
+ * 2、相关的使用在AFURLRequestSerialization.m文件中，在此框架中采用的是内联函数的方式进行描述的。关于内联函数，读者请先自行百度。
+ * 参数解释：
+ * extension : 这个是文件的拓展名。
+ */
+// 方法实现
+static inline NSString * AFContentTypeForPathExtension(NSString *extension) {
+    NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
+    NSString *contentType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
+    if (!contentType) {
+        return @"application/octet-stream";
+    } else {
+        return contentType;
+    }
+}
+// 方法调用 打印为 image/png
+AFContentTypeForPathExtension(@"png");
+
+-----------------------------------------------------------------华丽丽的分割线------------------------------------------------------------------
+
+/*
+ * 说明：
+ * 1、知道了这个函数是如何使用的之后我们可以进行相关改造，使其更方便的使用。
+ * 2、这里传入文件的路径会自动截取,并且添加了相关的过滤条件，这里的参数和方式一中的相同。
+ */
+// 方法实现
+- (NSString *)mimeTypeForFileAtPath:(NSString *)path
+{
+    // 这里使用文件管理者的相关方法判断文件路径是否有后缀名
+    if (![[[NSFileManager alloc] init] fileExistsAtPath:path]) {
+        return nil;
+    }
+    // [path pathExtension] 获得文件的后缀名 MIME类型字符串转化为UTI字符串 
+    CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)[path pathExtension], NULL);
+    // UTI字符串转化为后缀扩展名
+    CFStringRef MIMEType = UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
+    CFRelease(UTI);
+    // application/octet-stream，此参数表示通用的二进制类型。
+    if (!MIMEType) {
+        return @"application/octet-stream";
+    }
+    return (__bridge NSString *)(MIMEType);
+}
+// 方法调用 打印为image/png
+[self mimeTypeForFileAtPath:@"/Users/Desktop/icon.png"]
+```
+
 ### 9.数据传输的加密过程？
+- iOS中数据加密有下面几种方式
+    * 使用数字证书锁定来保证不被中间人拦截，将服务器返回的数据和我的当地证书进行对比，确保是从服务器返回回来的。证书有ca证书，也可以自己给自己签发证书。像12306购票。
+        * 证书锁定尽管带了较高的安全性，但是这种安全性的提高却牺牲了灵活性。一旦当证书发生变化时，我们的客户端也必须随之升级，除此之外，我们的服务端不得不为了兼容以前的客户端而做出一些妥协或者说直接停用以前的客户端，
+    * 使用https协议请求网页，post来请求网页数据，保证用户的账号密码不被被人获取到。
+    * 使用苹果自己的SSKeyChain钥匙串，将用户的账号密码保存在钥匙串中。钥匙串拱了错误处理，如果保存出错，会在判断后打印出出错的信息。
+        * 使用SSKeyChain我们进行下面两步骤操作：
+            * 在工程中加入Security.framework框架。
+            * 把SSKeychain.h和SSKeychain.m加到项目文件夹。
+
+```
+//获取所有账号
++ (NSArray *)allAccounts;
+//通过账号名字获取服务名
++ (NSArray *)accountsForService:(NSString *)serviceName;
+//通过服务名和账号获取密码
++ (NSString *)passwordForService:(NSString*)serviceNameaccount:(NSString *)account;
+//通过服务名和账号删除密码
++ (BOOL)deletePasswordForService:(NSString*)serviceNameaccount:(NSString *)account;
+//通过服务名和账号设置密码
++ (BOOL)setPassword:(NSString *)passwordforService:(NSString*)serviceName account:(NSString *)account;
+```
+- 
+    * 最保险的加密算法是非对称加密。非对称加密公钥加密私钥解密。缺点是要耗费时间。
+        * 首先AES为对称加密，加密解密用同一个密钥，RSA为非对称加密，加密解密过程需要使用到一个公钥和一个私钥。
+        * 第一步首先对数据进行签名。取出字典中数据的所有value，转换成字符串格式然后进行拼接，然后使用客户端的私钥进行签名，得到签名字符串，然后以加入到原始数据的字典里。之后将这个新的添加了签名的字典转换成json格式的字符串，便得到需要加密的数据。这里要注意的是，验签成功的条件是，最终传输的json字符串中的数据需要和和你签名的value字符串顺序一致，当然忽略签名数据。
+        * 这里有一个坑。我在实现这部分功能的时候，为了保持顺序一致，先按照key给数据进行了排序，取这个顺序的value进行拼接并签名，然后使用如下方式整个数据进行转json字符串。
+        * 这时候，iOS 11和以后的版本和之前的版本得到的结果的顺序是不一样的。iOS 11以后的顺序和按照key排序得到的顺序是一致的，而iOS 11之前的版本是另一个固定的顺序，这就导致直接使用这个数据的话iOS 11之前的版本会验签失败。处理这种情况，我的思路有两种，一是换一种转json的方式，自己写一个转json的逻辑自己控制顺序，二是转换出字符串之后把取出各个key的位置，排个序，按这个顺序重新拼一下value，签名，之后替换掉原来的签名。
+        * 得到了数据之后，客户端本地生成一个随机字符串作为AES密钥，然后使用该密钥对数据进行加密得到加密之后的数据1，再使用服务器公钥对AES密钥进行加密，得到加密之后的数据2，给服务器传输这两个数据。
+        * 接收返回的数据时，先用客户端私钥对返回数据的数据2进行解密，取得AES密钥，再使用该密钥对数据1进行解密得到返回数据。
+
 ### 10.说一下 TCP/IP 五层模型的协议?
 * OSI七层模型：
     * OSI七层网络模型称为开发式系统互联网参考模型，是一个逻辑上的定义和规范；
@@ -5049,7 +5505,6 @@ if ([error.userInfo objectForKey:NSURLErrorBackgroundTaskCancelledReasonKey]) {
 ### 补充：为什么能通过一个URL就能请求到对应的资源（域名解析等）
 ### 补充：如果客户端上有个按钮，点击会触发一次网络请求，在短时间内快速点击，怎么处理（从客户端以及服务端角度思考）
 ### 补充：判断一个字符串是不是ipv6地址（要求尽全力的考虑所有异常的情况）
-### 补充：
 ### 补充：你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果
 #### 思路一：操作依赖：NSOperation 操作依赖和优先级（不适用，异步网络请求并不是立刻返回，无法保证回调时再开启下一个网络请求）
 
@@ -5761,13 +6216,15 @@ __block typeof(self) weakSelf = self;
 
 ### 16.说一下什么是Block?
 ### 17.Dispatch_block_t这个有没有用过？解释一下？
-### 补充：Block 用什么修饰？copy，assign，strong有什么区别？
-### 补充：Block 后面携带参数的时候，有数量限制吗？为什么？
+### 补充：Block用什么修饰？copy，assign，strong有什么区别？
+### 补充：Block后面携带参数的时候，有数量限制吗？为什么？
 ### 补充：消息通知有几种？如何判断是否发送通知。
 
 
 
 ## 数据存储
+### 补充：如何判断一个文件在沙盒中是否存在？
+### 补充：
 ### 1.Sqlite3
 #### 1.简单说一下 Sqlite3
 #### 2.Sqlite3 常用的执行语句
