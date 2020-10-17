@@ -6010,9 +6010,165 @@ oprationQueueaddOperationWithBlock:^{
 - GCD Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法，GCD是一个替代诸如NSThread, NSOperationQueue, NSInvocationOperation等技术的很高效和强大的技术。它让程序平行排队的特定任务，根据可用的处理资源，安排他们在任何可用的处理器核心上执行任务，一个任务可以是一个函数(function)或者是一个block。 dispatch queue分为下面三种： private dispatch queues，同时只执行一个任务，通常用于同步访问特定的资源或数据。 global dispatch queue，可以并发地执行多个任务，但是执行完成的顺序是随机的。 Main dispatch queue 它是在应用程序主线程上执行任务的。
 
 ### 补充：多线程容易出现的问题，怎么解决
+- 线程安全问题，当多个线程访问同一块资源时，很容易引发数据错乱和数据安全问题。加锁
+
 ### 1.NSThread相关知识？
+- NSThread创建线程，有三种创建方式：
+    * init方式
+    * detachNewThreadSelector创建好之后自动启动
+    * performSelectorInBackground创建好之后也是直接启动
+
+```
+/** 方法一，需要start */
+NSThread *thread1 = [[NSThread alloc] initWithTarget:self selector:@selector(doSomething1:) object:@"NSThread1"];
+// 线程加入线程池等待CPU调度，时间很快，几乎是立刻执行
+[thread1 start];
+    
+/** 方法二，创建好之后自动启动 */
+[NSThread detachNewThreadSelector:@selector(doSomething2:) toTarget:self withObject:@"NSThread2"];
+    
+/** 方法三，隐式创建，直接启动 */
+[self performSelectorInBackground:@selector(doSomething3:) withObject:@"NSThread3"];
+
+- (void)doSomething1:(NSObject *)object {
+    // 传递过来的参数
+    NSLog(@"%@",object);
+    NSLog(@"doSomething1：%@",[NSThread currentThread]);
+}
+
+- (void)doSomething2:(NSObject *)object {
+    NSLog(@"%@",object);
+    NSLog(@"doSomething2：%@",[NSThread currentThread]);
+}
+
+- (void)doSomething3:(NSObject *)object {
+    NSLog(@"%@",object);
+    NSLog(@"doSomething3：%@",[NSThread currentThread]);
+}
+```
+- NSThread的类方法
+- 返回当前线程
+
+```
+// 当前线程
+[NSThread currentThread];
+NSLog(@"%@",[NSThread currentThread]);
+
+// 如果number=1，则表示在主线程，否则是子线程
+打印结果：<NSThread: 0x608000261380>{number = 1, name = main}
+```
+- 阻塞休眠
+
+```
+//休眠多久
+[NSThread sleepForTimeInterval:2];
+//休眠到指定时间
+[NSThread sleepUntilDate:[NSDate date]];
+```
+- 类方法补充
+
+```
+//退出线程
+[NSThread exit];
+//判断当前线程是否为主线程
+[NSThread isMainThread];
+//判断当前线程是否是多线程
+[NSThread isMultiThreaded];
+//主线程的对象
+NSThread *mainThread = [NSThread mainThread];
+```
+- NSThread的一些属性
+
+```
+//线程是否在执行
+thread.isExecuting;
+//线程是否被取消
+thread.isCancelled;
+//线程是否完成
+thread.isFinished;
+//是否是主线程
+thread.isMainThread;
+//线程的优先级，取值范围0.0到1.0，默认优先级0.5，1.0表示最高优先级，优先级高，CPU调度的频率高
+ thread.threadPriority;
+```
 
 ### 2.GCD 相关知识？
+- GCD的特点
+    * GCD会自动利用更多的CPU内核
+    * GCD自动管理线程的生命周期（创建线程，调度任务，销毁线程等）
+    * 程序员只需要告诉 GCD 想要如何执行什么任务，不需要编写任何线程管理代码
+- GCD的基本概念
+    * 任务（block）：任务就是将要在线程中执行的代码，将这段代码用block封装好，然后将这个任务添加到指定的执行方式（同步执行和异步执行），等待CPU从队列中取出任务放到对应的线程中执行。
+    * 同步（sync）：一个接着一个，前一个没有执行完，后面不能执行，不开线程。
+    * 异步（async）：开启多个新线程，任务同一时间可以一起执行。异步是多线程的代名词
+    * 队列：装载线程任务的队形结构。(系统以先进先出的方式调度队列中的任务执行)。在GCD中有两种队列：串行队列和并发队列。
+    * 并发队列：线程可以同时一起进行执行。实际上是CPU在多条线程之间快速的切换。（并发功能只有在异步（dispatch_async）函数下才有效）
+    * 串行队列：线程只能依次有序的执行。
+    * GCD总结：将任务(要在线程中执行的操作block)添加到队列(自己创建或使用全局并发队列)，并且指定执行任务的方式(异步dispatch_async，同步dispatch_sync)
+- 队列的创建方法
+    * 使用dispatch_queue_create来创建队列对象，传入两个参数，第一个参数表示队列的唯一标识符，可为空。第二个参数用来表示串行队列（DISPATCH_QUEUE_SERIAL）或并发队列（DISPATCH_QUEUE_CONCURRENT）。
+
+```
+// 串行队列
+dispatch_queue_t queue = dispatch_queue_create("test", DISPATCH_QUEUE_SERIAL);
+// 并发队列
+dispatch_queue_t queue1 = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
+```
+- GCD的队列还有另外两种：
+    * 主队列：主队列负责在主线程上调度任务，如果在主线程上已经有任务正在执行，主队列会等到主线程空闲后再调度任务。通常是返回主线程更新UI的时候使用。dispatch_get_main_queue()
+
+```
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 耗时操作放在这里
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 回到主线程进行UI操作
+            
+        });
+    });
+```
+- 
+    * 全局并发队列：全局并发队列是就是一个并发队列，是为了让我们更方便的使用多线程。dispatch_get_global_queue(0, 0)
+
+```
+//全局并发队列
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//全局并发队列的优先级
+#define DISPATCH_QUEUE_PRIORITY_HIGH 2 // 高优先级
+#define DISPATCH_QUEUE_PRIORITY_DEFAULT 0 // 默认（中）优先级
+#define DISPATCH_QUEUE_PRIORITY_LOW (-2) // 低优先级
+#define DISPATCH_QUEUE_PRIORITY_BACKGROUND INT16_MIN // 后台优先级
+//iOS8开始使用服务质量，现在获取全局并发队列时，可以直接传0
+dispatch_get_global_queue(0, 0);
+```
+- 同步/异步/任务、创建方式
+    * 同步（sync）使用dispatch_sync来表示。
+    * 异步（async）使用dispatch_async。
+    * 任务就是将要在线程中执行的代码，将这段代码用block封装好。
+
+```
+    // 同步执行任务
+    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+        // 任务放在这个block里
+        NSLog(@"我是同步执行的任务");
+
+    });
+    // 异步执行任务
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 任务放在这个block里
+        NSLog(@"我是异步执行的任务");
+
+    });
+```
+- GCD的使用：由于有多种队列（串行/并发/主队列）和两种执行方式（同步/异步），所以他们之间可以有多种组合方式。
+    * 串行同步：执行完一个任务，再执行下一个任务。不开启新线程。
+    * 串行异步：开启新线程，但因为任务是串行的，所以还是按顺序执行任务。
+    * 并发同步：因为是同步的，所以执行完一个任务，再执行下一个任务。不会开启新线程。
+    * 并发异步：任务交替执行，开启多线程。
+    * 主队列同步：如果在主线程中运用这种方式，则会发生死锁，程序崩溃。
+        * 主队列同步造成死锁的原因：如果在主线程中运用主队列同步，也就是把任务放到了主线程的队列中。而同步对于任务是立刻执行的，那么当把第一个任务放进主队列时，它就会立马执行。可是主线程现在正在处理syncMain方法，任务需要等syncMain执行完才能执行。syncMain执行到第一个任务的时候，又要等第一个任务执行完才能往下执行第二个和第三个任务。这样syncMain方法和第一个任务就开始了互相等待，形成了死锁。
+    * 主队列异步：在主线程中任务按顺序执行。
+
 ### 3.NSOperation 和 NSOperationQueue相关知识？
 - 操作（Operation）：
     * 执行操作的意思，换句话说就是你在线程中执行的那段代码。
@@ -6042,13 +6198,52 @@ oprationQueueaddOperationWithBlock:^{
 
 ### 4.如何实现线性编程？
 ### 5.说一下 GCD 并发队列实现机制？
+- Dispatch queue是一个对象，它可以接收任务，并将任务以先到先执行的顺序来执行。
+- Dispatch queue可以使并发的或串行的。并发任务会基于系统负载来合适地并发执行，串行队列同一时间只执行单一任务。
+- GCD共有三种队列类型：
+    * mainqueue：通过dispatch_get_main_queue()获得，这是一个与主线程相关的串行队列。
+    * global queue：全局队列是并发队列，由整个进程共享。存在着高、中、低三种优先级的全局队列。调用dispath_get_global_queue并传入优先级来访问队列。
+    * 用户队列：通过函数dispatch_queue_create创建的队列，这些队列是串行的。
+- 串行队列，一次只执行一个任务，在队列中采用先入先出的方式从runloop中取出任务
+- 并发队列，可一次性执行多个任务，同样也是采用先入先出的方式取出任务，但是利用多线程来实现并发：
+
 ### 补充：GCD的并行队列一定会开辟新的线程？
+- 同步执行:在GCD里是sync,不会开启新线程,只会在当前线程进行操作.
+- 异步执行:在GCD里是async,可以另外开启一个新的线程执行任务.
+
 ### 6.NSLock？是否会出现死锁？
+- NSLock是非递归锁，当同一线程重复获取同一非递归锁时，就会发生死锁。
+
+```
+      NSLock *m_lock;
+      [m_lock lock]; // 成功上锁
+      do something....
+      [m_lock lock]; // 上面已经上锁，这里阻塞等待锁释放，不会再执行下面，锁永远得不到释放，即死锁
+      do something....
+      [m_lock unlock]; // 不会执行到
+      do something....
+      [m_lock unlock];
+
+   于是，断点跟踪堆栈中相关问题函数的调用关系，企图找到如上所示的嵌套上锁代码，结果如下：
+```
+- 另一方面，用NSRecursiveLock或者@synchronized替代NSLock，就可以成功登录了。因为同一线程重复获取同一递归锁，不会发生死锁。
+
 ### 7.NSContion
+- NSCondition的对象实际上作为一个锁和一个线程检查器，锁上之后其他线程也能上锁，而之后可以根据条件决定是否继续运行线程，即线程是否要进入waiting状态，经测试，直接进入waiting状态，当其他中线程的该锁执行signal或者broadcast方法时，线程被唤醒，继续运行之后的方法
+
 ### 8.条件锁 - NSContionLock
+- NSConditionLock状语从句：NSLock类似，遵循都NSLocking协议，方法都类似，多只是一个了condition属性，每个以及操作都多了一个关于condition属性的方法，例如tryLock，tryLockWhenCondition:，NSConditionLock可以称为条件锁，只有condition参数与初始化时候的condition相等，lock才能正确进行加锁操作。而unlockWithCondition:并非当Condition符合条件时才解锁，否则解锁之后，修改Condition的值
+
 ### 9.递归锁 - NSRecursiveLock
+- NSRecursiveLock是递归归锁，他和NSLock的区别在于，NSRecursiveLock可以在一个线程中重复加锁（反正单线程内部任务是按顺序执行的，不会出现资源竞争问题），NSRecursiveLock会记录上锁和解锁的次数，当两者平衡的时候，才会释放锁，其他线程才可以上锁成功。
+
 ### 10.同步锁 - Synchronized(self) {// code}
+- 在引用计数表的数据结构里，一张sideTable表利用分离锁被分成了多个部分。
+- 这样可以对一张表的多个部分，同时进行操作，提升了效率
+
 ### 11.信号量 - dispatch_semaphore。
+- 如果获取不到`锁`，重置当前线程中断，暂停，直到其他线程释放`锁`时，会唤醒当前线程。
+
 ### 12.自旋锁 - OSSpinLock 。
 - 是一种用于保护多线程共享资源的锁，与一般互斥锁（mutex）不同之处在于当自旋锁尝试获取锁时以忙等待（busy waiting）的形式不断地循环检查锁是否可用。当上一个线程的任务没有执行完毕的时候（被锁住），那么下一个线程会一直等待（不会睡眠），当上一个线程的任务执行完毕，下一个线程会立即执行。
 在多CPU的环境中，对持有锁较短的程序来说，使用自旋锁代替一般的互斥锁往往能够提高程序的性能。
@@ -6061,10 +6256,28 @@ oprationQueueaddOperationWithBlock:^{
 ### 补充：自旋锁和互斥锁的区别
 ### 13.多功能锁 - pthread_mutex
 ### 14.分步锁 - NSDistributedLock。
+- 在引用计数表的数据结构里，一张sideTable表利用分离锁被分成了多个部分。
+- 这样可以对一张表的多个部分，同时进行操作，提升了效率
+
 ### 15.如何确保线程安全？
 ### 16.NSMutableArray、和 NSMutableDictionary是线程安全的吗？NSCache呢？
+- 在做缓存时，优先使用NSCache而不是NSDictionary，我们熟悉的框架SDWebimage就是采用的NSCache。
+- NSCache 优点如下：
+    * 系统资源将要减少时，它可以自动减少减去缓存。
+    * 可以设置最大缓存数量。
+    * 可以设置最大占用内存值。
+    * NSCache 线程是安全的
+
 ### 17.多线程的 并行 和 并发 有什么区别？
+- 并行：充分利用计算机的多核，在多个线程上同步进行
+- 并发：在一条线程上通过快速切换，让人感觉在同步进行
+
 ### 18.多线程有哪些优缺点？
+- 创建线程是需要花费资源的
+    * 一条主线程占用1M，一条子线程占用512Kb。
+    * 线程的切换也是需要花费资源的
+- 优点就是提升效率，充分利用了计算机的多核特性
+
 ### 19.如何自定义 NSOperation ?
 ### 20.GCD 与 NSOperationQueue 有哪些异同？
 - GCD是面向底层的C语言的API，NSOpertaionQueue用GCD构建封装的，是GCD的高级抽象。
@@ -6075,21 +6288,96 @@ oprationQueueaddOperationWithBlock:^{
 - 实际项目开发中，很多时候只是会用到异步操作，不会有特别复杂的线程关系管理，所以苹果推崇的且优化完善、运行快速的GCD是首选
 - 如果考虑异步操作之间的事务性，顺序行，依赖关系，比如多线程并发下载，GCD需要自己写更多的代码来实现，而NSOperationQueue已经内建了这些支持
 - 不论是GCD还是NSOperationQueue，我们接触的都是任务和队列，都没有直接接触到线程，事实上线程管理也的确不需要我们操心，系统对于线程的创建，调度管理和释放都做得很好。而NSThread需要我们自己去管理线程的生命周期，还要考虑线程同步、加锁问题，造成一些性能上的开销
+- 使用场合：
+    * 任务之间不太相互依赖：GCD
+    * 任务之间有依赖或要监听任务的执行情况：NSOperationQueue
 
 ### 补充：你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?
 ### 21.解释一下多线程中的死锁？
+- 死锁是由于多个线程（进程）在执行过程中，因为争夺资源而造成的互相等待现象，你可以理解为卡主了。产生死锁的必要条件有四个：
+    * 互斥条件 ： 指进程对所分配到的资源进行排它性使用，即在一段时间内某资源只由一个进程占用。如果此时还有其它进程请求资源，则请求者只能等待，直至占有资源的进程用毕释放。
+    * 请求和保持条件 ： 指进程已经保持至少一个资源，但又提出了新的资源请求，而该资源已被其它进程占有，此时请求进程阻塞，但又对自己已获得的其它资源保持不放。
+    * 不可剥夺条件 ： 指进程已获得的资源，在未使用完之前，不能被剥夺，只能在使用完时由自己释放。
+    * 环路等待条件 ： 指在发生死锁时，必然存在一个进程——资源的环形链，即进程集合{P0，P1，P2，···，Pn}中的P0正在等待一个P1占用的资源；P1正在等待P2占用的资源，……，Pn正在等待已被P0占用的资源
+
 ### 补充：列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。
+- 死锁：死锁就是队列引起的循环等待
+    * 主队列同步，在主线程中运用主队列同步，也就是把任务放到了主线程的队列中。同步对于任务是立刻执行的，那么当把任务放进主队列时，它就会立马执行,只有执行完这个任务，viewDidLoad才会继续向下执行。而viewDidLoad和任务都是在主队列上的，由于队列的先进先出原则，任务又需等待viewDidLoad执行完毕后才能继续执行，viewDidLoad和这个任务就形成了相互循环等待，就造成了死锁。
+想避免这种死锁，可以将同步改成异步dispatch_async,或者将dispatch_get_main_queue换成其他串行或并行队列，都可以解决。
+    * 
+    * 
+### 补充：dispatch_sync 和 dispatch_async 区别
+- dispatch_async(queue,block) async 异步队列，dispatch_async 函数会立即返回, block会在后台异步执行。
+- dispatch_sync(queue,block) sync 同步队列，dispatch_sync函数不会立即返回，及阻塞当前线程,等待 block同步执行完成。
+
 ### 22.子线程是否会出现死锁？说一下场景？
 ### 23.多线程技术在使用过程中有哪些注意事项？
 ### 补充：并行和并发的区别？串行/并行、同步异步的区别?
+- 同步和异步的区别
+    * 同步：发出一个调用时，在没有得到结果之前，该调用就不返回。但是一旦调用返回，就得到返回值了。注意这个返回是指CUP返回执行的数据段部分，所以目前来看只是阻塞了CPU的数据段部分，并不耽误CPU干别的，所以即使是同步也不见得是阻塞模式。
+    * 异步：调用在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在调用发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这个调用。
+- 进程和线程的区别
+    * 进程：一个可执行的程序
+    * 线程指的是一个独立的代码执行路径，线程是代码执行路径的最小分支
+- 串行和并行的区别
+    * 串行：串行是一次只能执行一个任务
+    * 并行：并行是一次能执行多个任务
+- 并行和并发的区别
+    * 并行是CPU的多核芯同时执行多个任务
+    * 并发是单核CPU交替执行两个任务
+
 ### 补充：请说明同步请求与异步请求的区别?
+- 同步请求：使用主线程一次性获得所有请求数据，这就导致一个比较容易出现的问题，当请求的数据比较大时，就会出现卡顿现象，也就是阻塞主线程
+- 异步请求：异步请求就是再创建一个线程，使用这个线程进行请求数据，逐步请求数据，这样就可以不断获得数据然后进行界面更新，不至于造成卡顿现象
+
 ### 补充：默认最大并发？
+- dispatch_semaphore_creat SignalCount = dispatch_semaphore_creat(10).
+- 这个地方后面的这个10，是一个整数，可以是1，2，3，。。。表示在信号等待的时候，下一次收到的的信号量，说白了，就是这个数字控制的最大并发数。
+- 队列的最大并发数控制在10。
+
 ### 补充：dispatch_once如何实现一次性代码？
 ### 补充：如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）
+- 使用Dispatch Group追加block到Global Group Queue,这些block如果全部执行完毕，就会执行Main Dispatch Queue中的结束处理的block。
+
+```
+-(void)test
+{
+    //获取并发队列
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    //获取组
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue, ^{
+
+        NSLog(@"线程：%@--加载图片1", [NSThread currentThread]);
+        });
+    
+    dispatch_group_async(group, queue, ^{
+        
+      NSLog(@"线程：%@--加载图片2", [NSThread currentThread]);;
+    });
+    
+    dispatch_group_async(group, queue, ^{
+        
+        NSLog(@"线程：%@--加载图片3", [NSThread currentThread]);
+    });
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+      
+      NSLog(@"线程：%@--合并图片", [NSThread currentThread]);
+    });
+    
+}
+```
+
 ### 补充：线程与进程的区别和联系?
 ### 补充：iOS线程间怎么通信？
-### 补充：Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
+### 补充：ObjectC中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
 ### 补充：请说明同步请求与异步请求的区别?
+- 同步请求：使用主线程一次性获得所有请求数据，这就导致一个比较容易出现的问题，当请求的数据比较大时，就会出现卡顿现象，也就是阻塞主线程
+- 异步请求：异步请求就是再创建一个线程，使用这个线程进行请求数据，逐步请求数据，这样就可以不断获得数据然后进行界面更新，不至于造成卡顿现象
+
 ### 补充：如何把异步线程转换成同步任务进行单元测试？
 
 
