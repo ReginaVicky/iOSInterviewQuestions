@@ -2861,14 +2861,27 @@ viewController强引用view对象，同时view强引用button对象，那么你�
 - 重载didReceiveMemoryWarning时，一定调用这个函数的super实现来允许父类（一般是UIVIewController）释放self.view。self.view释放之后，会调用下面的viewDidUnload函数.也就是说，尽管self.view是被处理了，但是outlets的变量因为被retain过，所以不会被释放，为了解决这个问题，就需要在viewDidUnload中释放这些retain过的outlets变量。通常controller会保存nib文件建立的views的引用，但是也可能会保存着loadView函数创建的对象的引用。
 
 #### 生命周期
-- loadView： 加载view
-- viewDidLoad： view加载完毕
-- viewWillAppear： 控制器的view将要显示
-- viewWillLayoutSubviews：控制器的view将要布局子控件
-- viewDidLayoutSubviews：控制器的view布局子控件完成
-- viewDidAppear: 控制器的view完全显示
-- viewWillDisappear： 控制器的view即将消失的时候
-- viewDidDisappear： 控制器的view完全消失的时候
+- 单个viewController
+    * loadView： 加载view
+    * viewDidLoad： view加载完毕
+    * viewWillAppear： 控制器的view将要显示
+    * viewWillLayoutSubviews：控制器的view将要布局子控件
+    * viewDidLayoutSubviews：控制器的view布局子控件完成
+    * viewDidAppear: 控制器的view完全显示
+    * viewWillDisappear： 控制器的view即将消失的时候
+    * viewDidDisappear： 控制器的view完全消失的时候
+- 多个viewControllers跳转
+    * 当我们点击push的时候首先会加载下一个界面然后才会调用界面的消失方法
+    * loadView：ViewController2
+    * viewDidLoad：ViewController2
+    * viewWillDisappear：ViewController1 将要消失
+    * viewWillAppear：ViewController2 将要出现
+    * viewWillLayoutSubviews ViewController2
+    * viewDidLayoutSubviews ViewController2
+    * viewWillLayoutSubviews:ViewController1
+    * viewDidLayoutSubviews:ViewController1
+    * viewDidDisappear:ViewController1 完全消失
+    * viewDidAppear:ViewController2 完全出现
 - 控制器的view是延迟加载的：创建控制器并不一定会创建控制器的view，等用到时再加载
 - 补充：
     * 如果a控制器push到b控制器,那么a和b的View都不会被销毁,因为它的控制器还存在，有一个强引用引用着它(除非内存警告会销毁a的View)如果b控制器pop到a控制器,那么b的View会被销毁a和b都在导航控制器的栈里被管理,就是个数组
@@ -2885,13 +2898,27 @@ viewController强引用view对象，同时view强引用button对象，那么你�
 ![image](https://upload-images.jianshu.io/upload_images/6950351-dd67f46bce6d4073.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
 
 ### 10.说一下 UIView 的生命周期？
-- viewDidLoad
-- viewWillAppear
-- viewWillLayoutSubviews
-- viewDidLayoutSubviews
-- viewDidAppear
-- viewWillDisappear
-- viewDidDisappear
+- 单个viewController
+    * viewDidLoad
+    * viewWillAppear
+    * viewWillLayoutSubviews
+    * viewDidLayoutSubviews
+    * viewDidAppear
+    * viewWillDisappear
+    * viewDidDisappear
+- 多个viewControllers跳转
+    * 当我们点击push的时候首先会加载下一个界面然后才会调用界面的消失方法
+    * loadView：ViewController2
+    * viewDidLoad：ViewController2
+    * viewWillDisappear：ViewController1 将要消失
+    * viewWillAppear：ViewController2 将要出现
+    * viewWillLayoutSubviews ViewController2
+    * viewDidLayoutSubviews ViewController2
+    * viewWillLayoutSubviews:ViewController1
+    * viewDidLayoutSubviews:ViewController1
+    * viewDidDisappear:ViewController1 完全消失
+    * viewDidAppear:ViewController2 完全出现
+
 
 ### 11.说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？
 - 1,-(void)applicationWillResignActive:(UIApplication *)application.
@@ -9958,6 +9985,34 @@ fmdb（iOS平台的SQLite数据库框架）
 - Reachability：网络状态监听模块 对应AFNetworkReachabilityManager
 - Seriaalization：网络通信信息序列化、反序列化模块 对应 AFURLResponseSerialization
 - UIKit：对于iOS UIKit的扩展库
+
+### FFmpeg
+#### 基本概念
+- 一般情况下，视频流从加载都准备播放是需要经过解协议、解封装、解编码这样的过程，其中协议指的就是流媒体协议；封装是的是视频的封装格式；编码又分为视频编码和音频编码。
+
+![image](https://upload-images.jianshu.io/upload_images/22877992-6ecfa0942d6e6cb6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1007)
+
+- 协议一般有 HTTP 、RTSP、RTMP 等，我们就最常见的就是 HTTP 网络协议，而 RTSP 和 RTMP 一般用于直播流或支持带有控制信令的常见，比如远程监控。
+- 视频封装协议指的是我们常见的 MP4 、AVI 、RMVB 、MKV、TS、FLV 等常见后缀格式，它们所表示的就是多媒体的封装协议，就是在传输过程中把音频和视频打包都一起的封装，所以播放前是需要把这部分内容解开，提取出对应音频编码和视频编码。
+- 音频编码
+    * 音频编码指的是音频数据的编码方式，常见的如：MP3、 PCM、WAV、AAC、AC-3 等，因为音频的原始数据大小一般不适合直接传入，比如原始大小一般可以按照采样率 * 声道数 * 样本格式 去计算，假设前面那个 MOV 的音频采样率是 44100 、样本格式是 16 bit 、单声道、24 秒，那么它原始音频大小应该是
+> 44100 * 16 * 1 * 24 / 8 ≈ 2MB
+    * 而实际将音频信息提取出来的大小，如下图大概只有 200 多K，这就是音频编码的作用。
+    * 所以一般都会音频传输会采用各种编码格式进行压缩和去冗余，其中比如 WAV/PCM 编码的音频质量比较好，但是体积会比较大；MP3 有损压缩能在音频质量还可以的情况下压缩音频的体积；AAC 也是有损压缩，但是又有分有 LC-AAC、HE-AAC等。
+- 视频编码
+    * 视频编码指的就是画面图像的编码压缩方式，一般有 H263、H264、HEVC（H265）、MPEG-2 、MPEG-4 等，其中H264 是目前比较常见的编码方式。
+    * 通常情况下我们理解的画面是 RGB 组合出来，而目前视频领域可能更多使用 YUV 格式，其中 Y 表示的是亮度（灰度），而 U 和 V表示的是色度（饱和度）。
+    * YUV 是对 RGB 的特殊处理和叠加来获取颜色，比如 YUV420 可以理解对色度以 2：1 的抽样率进行存储，然后亮度透过色度来显示画面，更多 YUV 的这里就不展开讨论，而为什么使用 YUV 其中有一点因素就是为了兼容以前的黑白电视。
+    * 为什么不直接用原始 YUV ？这里假设上面的 MOV 视频直接使用 YUV420 的格式，那么一帧的大小就会是：
+> 如果在这个基础上，算上帧率（30）和一个视频的时长（一小时），那一部视频原始大小就会是天文数字，这样的情况明显不符合网络传输，所以才有了视频编码用于压缩图像。
+- 在视频压缩里，又有几个概念需要知道，比如：
+    * IPB 帧是一种常见的帧压缩方法，其中 I 帧属于关键帧是每个画面的参考帧； P 帧是前向预测帧；B 帧是双向预测帧。简单来说就是 I 帧自己就可以得到一个完整画面，而 P 帧需要前面的 I 帧或者 P 帧来帮助解码得到一个完整画面，而 B 帧则需要前面的 I/P 帧或者后面的 P 帧来协助形成一个画面。
+    * 还有一个叫 IDR 帧的概念，因为 H264 采用的是多帧预测，导致 I 帧不能作为独立的观察条件，所以多出一个叫 IDR 帧的特殊 I 帧用于参考，IDR 帧最关键的概念就是：在解码器过程中一旦收到 IDR 帧，就会立即清空参考帧缓冲区，并将IDR帧作为被参考帧。
+    * 在视频解码里还有一个叫 DTS（Decoding Time Stamp） 和 PTS（Presentation Time Stamp）的存在，DTS主要用于视频的解码，PTS主要用于在解码阶段对视频进行同步和输出。
+    * GOP（Group Of Picture）就是两个 I 帧之间的距离，一般 GOP 设置得越大，画面的效果就会越好，到那时需要解码的时间就会越长。 所以如果码率固定而 GOP 值越大，P/B帧 数量会越多，画面质量就会越高。
+
+#### 
+
 
 
 
