@@ -15,16 +15,27 @@
 # 索引
 ## 数据结构及算法
 
-### 数据结构
-- 1.[数组](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1数组)
-- 2.[字符串](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2字符串)
-- 3.[链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3链表)
-- 4.[树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4树)
+## 数据结构
+- 1.数据结构
+    * 1.数据结构的存储一般常用的有几种？各有什么特点？
+    * 2.集合结构 线性结构 树形结构 图形结构
+- 2.数组
+    * 1.数组和链表的区别
+- 3.字符串
+    * 1.字符匹配 & 字符去重
+- 4.链表
+    * 1.单向链表 双向链表 循环链表
+- 5.树
     * 二叉搜索树
+        * 1.输入一棵二叉树的根结点，求该树的深度？
+        * 2.输入一课二叉树的根结点，判断该树是不是平衡二叉树？
     * 红黑树
-- 5.[栈](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5栈)
-- 6.[队列](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6队列)
-- 7.[哈希表（有哪些功能是通过哈希表实现的）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7哈希表有哪些功能是通过哈希表实现的)
+- 6.栈
+    * 1.堆、栈和队列 分别是什么？
+- 7.队列
+- 8.哈希表（有哪些功能是通过哈希表实现的）
+
+
 
 ### 算法
 #### 基本概念
@@ -657,18 +668,46 @@
 # 数据结构及算法
 
 ## 数据结构
-### 1.数组
-### 2.字符串
-### 3.链表
-### 4.树
-### 5.栈
-### 6.队列
-### 7.哈希表（有哪些功能是通过哈希表实现的）
+### 1.数据结构
+#### 1.数据结构的存储一般常用的有几种？各有什么特点？
+#### 2.集合结构 线性结构 树形结构 图形结构
+### 2.数组
+#### 1.数组和链表的区别
+### 3.字符串
+#### 1.字符匹配 & 字符去重
+### 4.链表
+#### 1.单向链表 双向链表 循环链表
+### 5.树
+#### 二叉搜索树
+##### 1.输入一棵二叉树的根结点，求该树的深度？
+##### 2.输入一课二叉树的根结点，判断该树是不是平衡二叉树？
+#### 红黑树
+### 6.栈
+#### 1.堆、栈和队列 分别是什么？
+### 7.队列
+### 8.哈希表（有哪些功能是通过哈希表实现的）
 
 ## 算法
 ### 基本概念
 #### 时间复杂度
+- 时间频度
+    * 一个算法执行所耗费的时间,从理论上是不能算出来的,必须上机运行测试才能知道.但我们不可能也没有必要对每个算法都上机测试,只需知道哪个算法花费的时间多,哪个算法花费的时间少就可以了.并且一个算法花费的时间与算法中语句的执行次数成正比例,哪个算法中语句执行次数多,它花费时间就多.一个算法中的语句执行次数称为语句频度或时间频度.记为T(n).
+- 时间复杂度
+    * 一般情况下,算法中基本操作重复执行的次数是问题规模n的某个函数,用T(n)表示,若有某个辅助函数f(n),使得当n趋近于无穷大时,T（n)/f(n)的极限值为不等于零的常数,则称f(n)是T(n)的同数量级函数.记作T(n)=O(f(n)),称O(f(n)) 为算法的渐进时间复杂度,简称时间复杂度.
+    * 在各种不同算法中,若算法中语句执行次数为一个常数,则时间复杂度为O(1),另外,在时间频度不相同时,时间复杂度有可能相同,如T(n)=n2+3n+4与T(n)=4n2+2n+1它们的频度不同,但时间复杂度相同,都为O(n2).
+- 按数量级递增排列,常见的时间复杂度有：
+    * O(1)称为常量级，算法的时间复杂度是一个常数。
+    * O(n)称为线性级，时间复杂度是数据量n的线性函数。
+    * O(n²)称为平方级，与数据量n的二次多项式函数属于同一数量级。
+    * O(n³)称为立方级，是n的三次多项式函数。
+    * O(logn)称为对数级，是n的对数函数。
+    * O(nlogn)称为介于线性级和平方级之间的一种数量级
+    * O(2ⁿ)称为指数级，与数据量n的指数函数是一个数量级。
+    * O(n!)称为阶乘级，与数据量n的阶乘是一个数量级。
+    * 它们之间的关系是： O(1)<O(logn)<O(n)<O(nlogn)<O(n²)<O(n³)<O(2ⁿ)<O(n!)，随着问题规模n的不断增大,上述时间复杂度不断增大,算法的执行效率越低.
+
 #### 空间复杂度
+- 评估执行程序所需的存储空间。可以估算出程序对计算机内存的使用程度。不包括算法程序代码和所处理的数据本身所占空间部分。通常用所使用额外空间的字节数表示。其算法比较简单，记为S(n)=O(f(n))，其中，n表示问题规模。
 
 ### 常见的摘要算法
 #### HEX编码
@@ -9804,6 +9843,14 @@ fmdb（iOS平台的SQLite数据库框架）
 
 ## 视频处理
 ### 补充：AVFoundation原理
+- AFNetworking 底层原理分析
+- AFNetworking是封装的NSURLSession的网络请求，由五个模块组成：分别由NSURLSession,Security,Reachability,Serialization,UIKit五部分组成
+- NSURLSession：网络通信模块（核心模块） 对应 AFNetworking中的 AFURLSessionManager和对HTTP协议进行特化处理的AFHTTPSessionManager,AFHTTPSessionManager是继承于AFURLSessionmanager的
+- Security：网络通讯安全策略模块 对应 AFSecurityPolicy
+- Reachability：网络状态监听模块 对应AFNetworkReachabilityManager
+- Seriaalization：网络通信信息序列化、反序列化模块 对应 AFURLResponseSerialization
+- UIKit：对于iOS UIKit的扩展库
+
 
 
 ## 图像处理
