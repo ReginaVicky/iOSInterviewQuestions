@@ -16,24 +16,24 @@
 ## 数据结构及算法
 
 ## 数据结构
-- 1.数据结构
-    * 1.数据结构的存储一般常用的有几种？各有什么特点？
-    * 2.集合结构 线性结构 树形结构 图形结构
-- 2.数组
-    * 1.数组和链表的区别
-- 3.字符串
-    * 1.字符匹配 & 字符去重
-- 4.链表
-    * 1.单向链表 双向链表 循环链表
-- 5.树
-    * 二叉搜索树
-        * 1.输入一棵二叉树的根结点，求该树的深度？
-        * 2.输入一课二叉树的根结点，判断该树是不是平衡二叉树？
-    * 红黑树
-- 6.栈
-    * 1.堆、栈和队列 分别是什么？
-- 7.队列
-- 8.哈希表（有哪些功能是通过哈希表实现的）
+- 1.[数据结构](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1数据结构)
+    * 1.[数据结构的存储一般常用的有几种？各有什么特点？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1数据结构的存储一般常用的有几种各有什么特点)
+    * 2.[集合结构 线性结构 树形结构 图形结构](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2集合结构-线性结构-树形结构-图形结构)
+- 2.[数组](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2数组)
+    * 1.[数组和链表的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1数组和链表的区别)
+- 3.[字符串](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3字符串)
+    * 1.[字符匹配 & 字符去重](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1字符匹配--字符去重)
+- 4.[链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4链表)
+    * 1.[单向链表 双向链表 循环链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1单向链表-双向链表-循环链表)
+- 5.[树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5树)
+    * [二叉搜索树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#二叉搜索树)
+        * 1.[输入一棵二叉树的根结点，求该树的深度？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1输入一棵二叉树的根结点求该树的深度)
+        * 2.[输入一课二叉树的根结点，判断该树是不是平衡二叉树？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2输入一课二叉树的根结点判断该树是不是平衡二叉树)
+    * [红黑树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#红黑树)
+- 6.[栈](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6栈)
+    * 1.[堆、栈和队列 分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1堆栈和队列-分别是什么)
+- 7.[队列](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7队列)
+- 8.[哈希表（有哪些功能是通过哈希表实现的）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8哈希表有哪些功能是通过哈希表实现的)
 
 
 
@@ -226,9 +226,9 @@
 - 3.[元类对象的数据结构?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3元类对象的数据结构)
 - 4.[Obj-C 对象、类的本质是通过什么数据结构实现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4obj-c-对象类的本质是通过什么数据结构实现的)
 - 5.[类方法和实例方法有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5类方法和实例方法有什么区别)
-- 6.[Obj-C 中的类信息存放在哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6obj-c-中的类信息存放在哪里
+- 6.[Obj-C 中的类信息存放在哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6obj-c-中的类信息存放在哪里)
 - 7.[一个 NSObject 对象占用多少内存空间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7一个-nsobject-对象占用多少内存空间)
-- 8.[说一下对 class_rw_t 的理解？]https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下对-class_rw_t-的理解)
+- 8.[说一下对 class_rw_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下对-class_rw_t-的理解)
 - 9.[说一下对 class_ro_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9说一下对-class_ro_t-的理解)
 - 10.[介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10介绍一下分类能用分类做什么内部是如何实现的它为什么会覆盖掉原来的方法)
 - 11.[Category 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11category-的实现原理)
@@ -278,7 +278,7 @@
 - [补充：内核态和用户态](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充内核态和用户态)
 - 2.[RunLoop的数据结构](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2runloop的数据结构)
 - 3.[猜想runloop内部是如何实现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3猜想runloop内部是如何实现的)
-- 4.[runloop是来做什么的？runloop和线程有什么关系？主线程默认开启了runloop么？子线程呢？]https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4runloop是来做什么的runloop和线程有什么关系主线程默认开启了runloop么子线程呢)
+- 4.[runloop是来做什么的？runloop和线程有什么关系？主线程默认开启了runloop么？子线程呢？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4runloop是来做什么的runloop和线程有什么关系主线程默认开启了runloop么子线程呢)
 - 5.[Runloop 和线程的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5runloop-和线程的关系)
 - 6.[讲一下 Runloop 的 Mode?(越详细越好)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6讲一下-runloop-的-mode越详细越好)
 - 7.[讲一下 Observer ？（Mode中的重点）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7讲一下-observer-mode中的重点)
@@ -329,7 +329,7 @@
 - 21.[dispatch_sync 和 dispatch_async 区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21dispatch_sync-和-dispatch_async-区别)
 - 22.[NSLock？是否会出现死锁？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22nslock是否会出现死锁)
 - 23.[NSContion](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23nscontion)
-- 24.[条件锁 - NSContionLock]](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24条件锁---nscontionlock)
+- 24.[条件锁 - NSContionLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24条件锁---nscontionlock)
 - 25.[递归锁 - NSRecursiveLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25递归锁---nsrecursivelock)
 - 26.[同步锁 - Synchronized(self) {// code}](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26同步锁---synchronizedself--code)
 - 27.[信号量 - dispatch_semaphore](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27信号量---dispatch_semaphore)
@@ -342,7 +342,7 @@
 - 34.[NSMutableArray、和 NSMutableDictionary是线程安全的吗？NSCache呢？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#34nsmutablearray和-nsmutabledictionary是线程安全的吗nscache呢)
 - 35.[解释一下多线程中的死锁？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#35解释一下多线程中的死锁)
 - 36.[列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#36列举几种进程的同步机制进程的通信途径死锁及死锁的处理方法)
-- 37.[子线程是否会出现死锁？说一下场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37子线程是否会出现死锁说一下场景
+- 37.[子线程是否会出现死锁？说一下场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37子线程是否会出现死锁说一下场景)
 - 38.[请说明同步请求与异步请求的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38请说明同步请求与异步请求的区别)
 - 39.[默认最大并发？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39默认最大并发)
 - 40.[dispatch_once如何实现一次性代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40dispatch_once如何实现一次性代码)
@@ -644,7 +644,7 @@
 - 7.[解释下类别的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7解释下类别的原理)
 - 8.[解释下封装，重载](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8解释下封装重载)
 - 9.[OC存在多重继承吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9oc存在多重继承吗)
-- 10.[了解表视图吗，解释一下复用原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10了解表视图吗解释一下复用原理
+- 10.[了解表视图吗，解释一下复用原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10了解表视图吗解释一下复用原理)
 - 11.[说明一下表视图的滑动卡顿的优化方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11说明一下表视图的滑动卡顿的优化方法)
 - 12.[viewDidLoad和viewDidAppear的调用时机（一次和多次的区别）；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12viewdidload和viewdidappear的调用时机一次和多次的区别)
 - 13.[页面间的传值方式有哪些（公有属性，公有方法和协议，block传值，通知，extern全局变量传值，NSUserDefault简单数据存储传值）；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13页面间的传值方式有哪些公有属性公有方法和协议block传值通知extern全局变量传值nsuserdefault简单数据存储传值)
@@ -670,17 +670,125 @@
 ## 数据结构
 ### 1.数据结构
 #### 1.数据结构的存储一般常用的有几种？各有什么特点？
+- 数据结构的存储一般常用的有两种 顺序存储结构 和 链式存储结构
+- 顺序存储结构:
+    * 比如，数组，1-2-3-4-5-6-7-8-9-10，存储是按顺序的。再比如栈和队列等
+- 链式存储结构:
+    * 比如，数组，1-2-3-4-5-6-7-8-9-10，链式存储就不一样了 1(地址)-2(地址)-7(地址)-4(地址)-5(地址)-9(地址)-8(地址)-3(地址)-6(地址)-10(地址)。每个数字后面跟着一个地址 而且存储形式不再是顺序
+
 #### 2.集合结构 线性结构 树形结构 图形结构
+
 ### 2.数组
 #### 1.数组和链表的区别
+- 数组
+    * 数组元素在内存上连续存放，可以通过下标查找元素；插入、删除需要移动大量元素，比较适用于元素很少变化的情况
+- 链表
+    * 链表中的元素在内存中不是顺序存储的，查找慢，插入、删除只需要对元素指针重新赋值，效率高
+
 ### 3.字符串
 #### 1.字符匹配 & 字符去重
 ### 4.链表
 #### 1.单向链表 双向链表 循环链表
+- 单向链表 A->B->C->D->E->F->G->H. 这就是单向链表 H 是头 A 是尾 像一个只有一个头的火车一样 只能一个头拉着跑
+
+![image](https://upload-images.jianshu.io/upload_images/12311242-b8b156df351244ec.png?imageMogr2/auto-orient/strip|imageView2/2/w/690)
+
+- 双向链表
+
+![image](https://upload-images.jianshu.io/upload_images/12311242-1e239e3e44cb5169.png?imageMogr2/auto-orient/strip|imageView2/2/w/690)
+
+- 循环链表
+    * 循环链表是与单向链表一样，是一种链式的存储结构，所不同的是，循环链表的最后一个结点的指针是指向该循环链表的第一个结点或者表头结点，从而构成一个环形的链。发挥想象力 A->B->C->D->E->F->G->H->A. 绕成一个圈。就像蛇吃自己的这就是循环 不需要去死记硬背哪些理论知识。
+
 ### 5.树
 #### 二叉搜索树
 ##### 1.输入一棵二叉树的根结点，求该树的深度？
+- 二叉树的结点定义如下：
+
+```
+struct BinaryTreeNode
+{
+    int m_nValue ；
+    BinaryTreeNode* m_pLeft;
+    BinarvTreeNode* m_pRight ；
+}
+```
+- 如果一棵树只有一个结点，它的深度为1。
+- 如果根结点只有左子树而没有右子树，那么树的深度应该是其左子树的深度加1；同样，如果根结点只有右子树而没有左子树，那么树的深度应该是其右子树的深度加1。
+- 如果既有右子树又有左子树，那该树的深度就是其左、右子树深度的较大值再加1。
+
+```
+int TreeDepth(TreeNode* pRoot)
+{
+    if(pRoot == nullptr)
+        return 0;
+    int left = TreeDepth(pRoot->left);
+    int right = TreeDepth(pRoot->right);
+
+    return (left>right) ? (left+1) : (right+1);
+}
+```
+
 ##### 2.输入一课二叉树的根结点，判断该树是不是平衡二叉树？
+- 重复遍历结点
+    * 先求出根结点的左右子树的深度，然后判断它们的深度相差不超过1，如果否，则不是一棵二叉树；如果是，再用同样的方法分别判断左子树和右子树是否为平衡二叉树，如果都是，则这就是一棵平衡二叉树。
+- 遍历一遍结点
+    * 遍历结点的同时记录下该结点的深度，避免重复访问。
+- 方法1:
+
+```
+struct TreeNode{
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+};
+ 
+int TreeDepth(TreeNode* pRoot){
+    if(pRoot==NULL)
+        return 0;
+    int left=TreeDepth(pRoot->left);
+    int right=TreeDepth(pRoot->right);
+    return left>right?(left+1):(right+1);
+}
+ 
+bool IsBalanced(TreeNode* pRoot){
+    if(pRoot==NULL)
+        return true;
+    int left=TreeDepth(pRoot->left);
+    int right=TreeDepth(pRoot->right);
+    int diff=left-right;
+    if(diff>1 || diff<-1)
+        return false;
+    return IsBalanced(pRoot->left) && IsBalanced(pRoot->right);
+}
+
+```
+- 方法2
+
+```
+bool IsBalanced_1(TreeNode* pRoot,int& depth){
+    if(pRoot==NULL){
+        depth=0;
+        return true;
+    }
+    int left,right;
+    int diff;
+    if(IsBalanced_1(pRoot->left,left) && IsBalanced_1(pRoot->right,right)){
+        diff=left-right;
+        if(diff<=1 || diff>=-1){
+            depth=left>right?left+1:right+1;
+            return true;
+        }
+    }
+    return false;
+}
+ 
+bool IsBalancedTree(TreeNode* pRoot){
+    int depth=0;
+    return IsBalanced_1(pRoot,depth);
+} 
+```
+
 #### 红黑树
 ### 6.栈
 #### 1.堆、栈和队列 分别是什么？
