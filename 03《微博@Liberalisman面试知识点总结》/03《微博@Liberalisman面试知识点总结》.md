@@ -517,123 +517,140 @@
 ## Core ML
 
 ## 代码管理、持续集成、项目托管
-- 1.[Git](https://note.youdao.com/)
-    * 1.`git pull` 和 `git fetch` 的区别？
-    * 2.`git merge` 和 `git rebase` 的区别？
-    * 3.如何在本地新建一个分支，并 push 到远程服务器上？
-    * 4.如果 fork 了一个别人的仓库，怎样与源仓库保持同步
-    * 5.总结一下 Git 常用的命令？
-- 2.Svn
-- 3.CocoaPods
-    * 1.说一下 `CocoaPods` 的原理？
-    * 2.如何让自己写的框架支持 `CocoaPods`？
-    * 3.`pod update` 和 `pod install` 有什么区别？
-    * 4.`Podfile.lock` 文件起什么作用？
-    * 5.CocoaPods 常用指令？
-    * 6.在使用 CocoaPods 中遇到过哪些问题？
-    * 7.如何使用 CocoaPods 集成远程私有库？
-    * 8.如果自己写的库需要依赖其他的三方库，该怎么办？
-    * 9.CocoaPods 中的 Subspec 字段有什么用处？
-- 4.Carthage
-- 5.Fastlane
-- 6.Jenkins
-- 7.fir.im
-- 8.蒲公英
-- 9.TestFlight
+- 1.[Git](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1git)
+    * 1.[`git pull` 和 `git fetch` 的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1git-pull-和-git-fetch-的区别)
+    * 2.[`git merge` 和 `git rebase` 的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2git-merge-和-git-rebase-的区别)
+    * 3.[如何在本地新建一个分支，并 push 到远程服务器上？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3如何在本地新建一个分支并-push-到远程服务器上)
+    * 4.[如果 fork 了一个别人的仓库，怎样与源仓库保持同步](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4如果-fork-了一个别人的仓库怎样与源仓库保持同步)
+    * 5.[总结一下 Git 常用的命令？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5总结一下-git-常用的命令)
+- 2.[Svn](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2svn)
+- 3.[CocoaPods](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3cocoapods)
+    * 1.[说一下 `CocoaPods` 的原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下-cocoapods-的原理)
+    * 2.[如何让自己写的框架支持 `CocoaPods`？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2如何让自己写的框架支持-cocoapods)
+    * 3.[`pod update` 和 `pod install` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3pod-update-和-pod-install-有什么区别)
+    * 4.[`Podfile.lock` 文件起什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4podfilelock-文件起什么作用)
+    * 5.[CocoaPods 常用指令？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5cocoapods-常用指令)
+    * 6.[在使用 CocoaPods 中遇到过哪些问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6在使用-cocoapods-中遇到过哪些问题)
+    * 7.[如何使用 CocoaPods 集成远程私有库？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7如何使用-cocoapods-集成远程私有库)
+    * 8.[如果自己写的库需要依赖其他的三方库，该怎么办？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8如果自己写的库需要依赖其他的三方库该怎么办)
+    * 9.[CocoaPods 中的 Subspec 字段有什么用处？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9cocoapods-中的-subspec-字段有什么用处)
+- 4.[Carthage](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4carthage)
+- 5.[Fastlane](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5fastlane)
+- 6.[Jenkins](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6jenkins)
+- 7.[fir.im](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7firim)
+- 8.[蒲公英](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8蒲公英)
+- 9.[TestFlight](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9testflight)
 
 ## 数据安全及加密
-- 1.RSA非对称加密  
-- 2.AES对称加密
-- 3.DES加密
-- 4.Base64加密
-- 5.MD5加密
-- 6.简述 `SSL` 加密的过程用了哪些加密方法，为何这么作？
-- 7.是否了解 `iOS` 的签名机制？
-- 8.如何对 `APP` 进行重签名？
-- 9.在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计
-- 10.常见的加密算法
-- 11.对称加密算法和非对称加密算法的区别
+- 1.[RSA非对称加密](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1rsa非对称加密)
+- 2.[AES对称加密](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2aes对称加密)
+- 3.[DES加密](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3des加密)
+- 4.[Base64加密](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4base64加密)
+- 5.[MD5加密](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5md5加密)
+- 6.[简述 `SSL` 加密的过程用了哪些加密方法，为何这么作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6简述-ssl-加密的过程用了哪些加密方法为何这么作)
+- 7.[是否了解 `iOS` 的签名机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7是否了解-ios-的签名机制)
+- 8.[如何对 `APP` 进行重签名？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8如何对-app-进行重签名)
+- 9.[在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9在https建立连接的时候都用了哪些加密算法为什么要这么设计)
+- 10.[常见的加密算法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10常见的加密算法)
+- 11.[对称加密算法和非对称加密算法的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11对称加密算法和非对称加密算法的区别)
 
 
 ## 源代码阅读
-- 1.YYKit
+- 1.[YYKit](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1yykit)
 - 2.SDWebImage
-    * 1.看过sdwebimage的源码吗？说一下sdwebimage的原理
-    * 2.说一下SDWebImage的缓存策略？
-    * 3.磁盘缓存时间，默认的缓存路径，怎么处理图片的名称?默认的超时时间是多少?最大并发数？
-    * 4.该框架内部对内存警告的处理方式?（或者问：当app接收到内存警告时，SDWebImage做了什么？）
-    * 5.NSCache和字典的区别？
-    * 6.如何计算图片的成本?
-    * 7.保证错误的URL不会被尝试重新下载，使用什么来下载图片的 
-    * 8.sdwebimage是一个异步下载图片的三方，怎么保证线程安全的？
-    * 9.如果一个页面 加载图片很卡 ，什么原因，会跟sdwebimage有关吗，还是跟图片渲染有关？
-    * 10.如果收到内存警告怎么办
-    * 11.SDWebImage是如何做到Url不变的情况下，更新图片内容的？
+    * 1.[看过sdwebimage的源码吗？说一下sdwebimage的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1看过sdwebimage的源码吗说一下sdwebimage的原理)
+    * 2.[说一下SDWebImage的缓存策略？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2说一下sdwebimage的缓存策略)
+    * 3.[磁盘缓存时间，默认的缓存路径，怎么处理图片的名称?默认的超时时间是多少?最大并发数？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3磁盘缓存时间默认的缓存路径怎么处理图片的名称默认的超时时间是多少最大并发数)
+    * 4.[该框架内部对内存警告的处理方式?（或者问：当app接收到内存警告时，SDWebImage做了什么？）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4该框架内部对内存警告的处理方式或者问当app接收到内存警告时sdwebimage做了什么)
+    * 5.[NSCache和字典的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nscache和字典的区别)
+    * 6.[如何计算图片的成本?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6如何计算图片的成本)
+    * 7.[保证错误的URL不会被尝试重新下载，使用什么来下载图片的 ](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7保证错误的url不会被尝试重新下载使用什么来下载图片的)
+    * 8.[sdwebimage是一个异步下载图片的三方，怎么保证线程安全的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8sdwebimage是一个异步下载图片的三方怎么保证线程安全的)
+    * 9.[如果一个页面 加载图片很卡 ，什么原因，会跟sdwebimage有关吗，还是跟图片渲染有关？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9如果一个页面-加载图片很卡-什么原因会跟sdwebimage有关吗还是跟图片渲染有关)
+    * 10.[如果收到内存警告怎么办](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10如果收到内存警告怎么办)
+    * 11.[SDWebImage是如何做到Url不变的情况下，更新图片内容的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11sdwebimage是如何做到url不变的情况下更新图片内容的)
 - 3.AFNetworking
 - 4.SVProgressHub 
 - 5.Texture（ASDK）
 
 
 ## iOS逆向及安全
-- 1.怎么防止反编译？
-- 2.项目中网络层如何做安全处理？
+- 1.[怎么防止反编译？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1怎么防止反编译)
+- 2.[项目中网络层如何做安全处理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2项目中网络层如何做安全处理)
 
 
 ## Coretext
 ## 项目组件化
-- 1.说一下你之前项目的组件化方案？
-- 2.项目的组件化模块应该如何划分？
-- 3.如何集成本地私有库？
-- 4.如何集成远程私有库？
+- 1.[说一下你之前项目的组件化方案？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下你之前项目的组件化方案)
+- 2.[项目的组件化模块应该如何划分？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2项目的组件化模块应该如何划分)
+- 3.[如何集成本地私有库？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3如何集成本地私有库)
+- 4.[如何集成远程私有库？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4如何集成远程私有库)
 
 
 ## 性能优化
-- 1.如何提升 `tableview` 的流畅度？
-- 2.如何使用 `Instruments` 进行性能调优？(Time Profiler、Zombies、Allocations、Leaks)
-- 3.如何优化 `APP` 的启动时间
-- 4.今日头条的启动优化方案
-- 5.如何对 `APP` 进行内存、电量、网络流量的优化
-- 6.如何有效降低 `APP` 包的大小？
-- 7.日常如何检查内存泄露？
-- 8.能不能说一下物理屏幕显示的原理？
-- 9.解释一下什么是屏幕卡顿、掉帧？该如何避免？
-- 10.什么是 `离屏渲染`？什么情况下会触发？该如何应对？
-- 11.如何检测离屏渲染？
-- 12.如何高性能的画一个圆角？
-- 13.如何优化 APP 的内存？
-- 14.如何优化 APP 的电量？
-- 15.假如Controller太臃肿，如何优化？
+- 1.[如何提升 `tableview` 的流畅度？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1如何提升-tableview-的流畅度)
+- 2.[如何使用 `Instruments` 进行性能调优？(Time Profiler、Zombies、Allocations、Leaks)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2如何使用-instruments-进行性能调优time-profilerzombiesallocationsleaks)
+- 3.[如何优化 `APP` 的启动时间](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3如何优化-app-的启动时间)
+- 4.[今日头条的启动优化方案](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4今日头条的启动优化方案)
+- 5.[如何对 `APP` 进行内存、电量、网络流量的优化](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5如何对-app-进行内存电量网络流量的优化)
+- 6.[如何有效降低 `APP` 包的大小？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6如何有效降低-app-包的大小)
+- 7.[日常如何检查内存泄露？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7日常如何检查内存泄露)
+- 8.[能不能说一下物理屏幕显示的原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8能不能说一下物理屏幕显示的原理)
+- 9.[解释一下什么是屏幕卡顿、掉帧？该如何避免？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9解释一下什么是屏幕卡顿掉帧该如何避免)
+- 10.[什么是 `离屏渲染`？什么情况下会触发？该如何应对？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10什么是离屏渲染什么情况下会触发该如何应对)
+- 11.[如何检测离屏渲染？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11如何检测离屏渲染)
+- 12.[如何高性能的画一个圆角？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12如何高性能的画一个圆角)
+- 13.[如何优化 APP 的内存？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13如何优化-app-的内存)
+- 14.[如何优化 APP 的电量？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14如何优化-app-的电量)
+- 15.[假如Controller太臃肿，如何优化？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15假如controller太臃肿如何优化)
+
+
+## 调试技巧 & 软件使用
+- 1.[`LLDB` 调试。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1lldb-调试)
+- 2.[断点调试- breakPoint。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2断点调试--breakpoint)
+- 3.[`NSAssert` 的使用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3nsassert-的使用)
+- 4.[`Charles` 的使用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4charles-的使用)
+- 5.[`Reveal` 的使用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5reveal-的使用)
+- 6.[iOS 常见的崩溃类型有哪些？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6ios-常见的崩溃类型有哪些)
+- 7.[当页面 AutoLayout 出现了问题，怎样快速调试？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7当页面-autolayout-出现了问题怎样快速调试)
+
+
+## 扩展问题
+- 1.[无痕埋点](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1无痕埋点)
+- 2.[APM（应用程序性能监测）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2apm应用程序性能监测)
+- 3.[Hot Patch（热修补）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3hot-patch热修补)
+- 4.[崩溃的处理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4崩溃的处理)
+- [补充：各个app之间是怎么相互切换的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充各个app之间是怎么相互切换的)
 
 
 ## 其他问题
-- 1.面向对象的三个要素
-- 2.多态？
-- 3.Java，python，OC运行效率孰高？
-- 4.Property，其中copy如何？
-- 5.Property(nonatomatic, copy) NSMutableArray有什么问题？
-- 6.Copy和MutableCopy的区别？
-- 7.解释下类别的原理
-- 8.解释下封装，重载
-- 9.OC存在多重继承吗？
-- 10.了解表视图吗，解释一下复用原理
-- 11.说明一下表视图的滑动卡顿的优化方法
-- 12.viewDidLoad和viewDidAppear的调用时机（一次和多次的区别）；
-- 13.页面间的传值方式有哪些（公有属性，公有方法和协议，block传值，通知，extern全局变量传值，NSUserDefault简单数据存储传值）；
-- 14.在OC中对象方法的几种访问权限，分别是什么？
-- 15.列出 #import 和 #include 的区别，另外什么时候使用@class？
-- 16.`load` 和 `Initialize` 的区别?
-- 17.`Designated Initializer`的规则？
-- 18.`App` 编译过程有了解吗？
-- 19.介绍下App启动的完成过程？
-- 20.`JS` 和 `Native` 交互。
-- 21.`LoadView`方法了解吗？
-- 22.说一下对 `APNS` 的认识？
-- 23.简述Xcode7和Xcode8的异同
-- 24.描述iOS 10的一些新特性（包括系统和开发环境）
-- 25.App 上有一数据列表，客户端和服务端均没有任何缓存，当服务端有数据更新时，该列表在 wifi 下能获取到数据，在 4G 下刷新不到，但是在 4g 环境下其他 App 都可以正常打开，分析其产生的原因？
-- 26.是否了解链式编程？
-- 27.dSYM你是如何分析的
-
+- 1.[面向对象的三个要素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1面向对象的三个要素)
+- 2.[多态？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2多态)
+- 3.[Java，python，OC运行效率孰高？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3javapythonoc运行效率孰高)
+- 4.[Property，其中copy如何？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4property其中copy如何)
+- 5.[Property(nonatomatic, copy) NSMutableArray有什么问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5propertynonatomatic-copy-nsmutablearray有什么问题)
+- 6.[Copy和MutableCopy的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6copy和mutablecopy的区别)
+- 7.[解释下类别的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7解释下类别的原理)
+- 8.[解释下封装，重载](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8解释下封装重载)
+- 9.[OC存在多重继承吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9oc存在多重继承吗)
+- 10.[了解表视图吗，解释一下复用原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10了解表视图吗解释一下复用原理
+- 11.[说明一下表视图的滑动卡顿的优化方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11说明一下表视图的滑动卡顿的优化方法)
+- 12.[viewDidLoad和viewDidAppear的调用时机（一次和多次的区别）；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12viewdidload和viewdidappear的调用时机一次和多次的区别)
+- 13.[页面间的传值方式有哪些（公有属性，公有方法和协议，block传值，通知，extern全局变量传值，NSUserDefault简单数据存储传值）；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13页面间的传值方式有哪些公有属性公有方法和协议block传值通知extern全局变量传值nsuserdefault简单数据存储传值)
+- 14.[在OC中对象方法的几种访问权限，分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14在oc中对象方法的几种访问权限分别是什么)
+- 15.[列出 #import 和 #include 的区别，另外什么时候使用@class？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15列出-import-和-include-的区别另外什么时候使用class)
+- [16.`load` 和 `Initialize` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16load-和-initialize-的区别)
+- [17.`Designated Initializer`的规则？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17designated-initializer的规则)
+- [18.`App` 编译过程有了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18app-编译过程有了解吗)
+- 19.[介绍下App启动的完成过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19介绍下app启动的完成过程)
+- 20.[`JS` 和 `Native` 交互。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20js-和-native-交互)
+- 21.[`LoadView`方法了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21loadview方法了解吗)
+- 22.[说一下对 `APNS` 的认识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22说一下对-apns-的认识)
+- 23.[简述Xcode7和Xcode8的异同](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23简述xcode7和xcode8的异同)
+- 24.[描述iOS 10的一些新特性（包括系统和开发环境）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24描述ios-10的一些新特性包括系统和开发环境)
+- 25.[App 上有一数据列表，客户端和服务端均没有任何缓存，当服务端有数据更新时，该列表在 wifi 下能获取到数据，在 4G 下刷新不到，但是在 4g 环境下其他 App 都可以正常打开，分析其产生的原因？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25app-上有一数据列表客户端和服务端均没有任何缓存当服务端有数据更新时该列表在-wifi-下能获取到数据在-4g-下刷新不到但是在-4g-环境下其他-app-都可以正常打开分析其产生的原因)
+- 26.[是否了解链式编程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26是否了解链式编程)
+- 27.[dSYM你是如何分析的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27dsym你是如何分析的)
 
 
 
@@ -9808,6 +9825,7 @@ fmdb（iOS平台的SQLite数据库框架）
 ## ARKit
 
 ## Core ML
+
 
 ## 代码管理、持续集成、项目托管
 ### 1.Git
