@@ -16,151 +16,152 @@
 ## 数据结构及算法
 
 ### 数据结构
-- 1.数组
-- 2.字符串
-- 3.链表
-- 4.树
+- 1.[数组](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1数组)
+- 2.[字符串](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2字符串)
+- 3.[链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3链表)
+- 4.[树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4树)
     * 二叉搜索树
     * 红黑树
-- 5.栈
-- 6.队列
-- 7.哈希表（有哪些功能是通过哈希表实现的）
+- 5.[栈](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5栈)
+- 6.[队列](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6队列)
+- 7.[哈希表（有哪些功能是通过哈希表实现的）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7哈希表有哪些功能是通过哈希表实现的)
 
 ### 算法
 #### 基本概念
-- 时间复杂度
-- 空间复杂度
+- [时间复杂度](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#时间复杂度)
+- [空间复杂度](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#空间复杂度)
 
 #### 常见的摘要算法
-- HEX编码
-- Base64
-- MD5
-- SHA1
-- SHA256
-- MAC算法
+- [HEX编码](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#hex编码/)
+- [Base64](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#base64)
+- [MD5](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#md5)
+- [SHA1](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#sha1)
+- [SHA256](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#sha256)
+- [MAC算法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#mac算法)
 
 #### 常见对称加密算法
-- AES
-- DES
-- 3DES
-- Blowfish
+- [AES](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#aes)
+- [DES](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#des)
+- [3DES](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3des)
+- [Blowfish](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#--blowfish)
 
 #### 常见的排序算法
-- 插入排序
-- 快速排序
-- 堆排序
-- 冒泡排序
-- 选择排序
-- 希尔排序
-- 归并排序
-- 基数排序
+- [插入排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#插入排序)
+- [快速排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#快速排序)
+- [堆排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#堆排序)
+- [冒泡排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#冒泡排序)
+- [选择排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#选择排序)
+- [希尔排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#希尔排序)
+- [归并排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#归并排序)
+- [基数排序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#基数排序)
 
 #### 常见的字符编码方法
-- ASCII
-- ISO-8859-1
-- GB2312
-- GBK
-- UTF-8
-- UTF-16
-- Unicode
+- [ASCII](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#ascii)
+- [ISO-8859-1](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#iso-8859-1)
+- [GB2312](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#gb2312)
+- [GBK](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#gbk)
+- [UTF-8](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#utf-8)
+- [UTF-16](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#utf-16)
+- [Unicode](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#unicode)
+
 [推荐一个很好的算法总结](https://github.com/CyC2018/Interview-Notebook)
 
 ### 常考算法题
-- 1.字符串反转
-- 2.链表反转
-- 3.有序数组合并
-- 4.假设某个数组中只有数字1和2，进行排序，使得数字 1位于数组前部分，数字2位于后部分
-- 5.查找第一个只出现一次的字符
-- 6.查找两个子视图的共同父视图
-- 7.无序数组中的中位数
-- 8.两数之和为特定值
-- 9.求出数组中连续数字的和值
-- 10.白鼠与毒酒的算法问题
-- 11.背包问题
-- 补充：多重背包问题
-- 补充：完全背包问题
-- 12.实现数组的随机排序（含洗牌算法）
-- 补充：洗牌算法
-- 13.在一个数组中找出前四个最大的数字
-- 14.最小的K个数，输入n个整数，找出其中最小的K个数
-- 15.找出数组中第 k 大的数字及其出现次数
-- 16.假如有 10亿 条数据，每条数据的大小在 10k-100k 之间，我们有一台内存为4G的电脑，如何算出播放次数最多的一条微博？
-- 17.如何打印一个矩阵
-- 18.如何验证一个 IP 地址的有效性
-- 19.栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值
-- 20.二维数组查找一个值
-- 21.有一个很大的整形数据，转成二进制求1的个数
-- 22.判断一个正数是否是2的乘方
-- 23.缓存淘汰算法 LRU 和 LFU
-- 24.LRU缓存机制
-- 25.行间的换页算法有哪些
-- 26.山脉数组找目标值(要求logN的时间复杂度)
-- 27.给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素
-- 28.100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置
-- 29.数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为n的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素
+- 1.[字符串反转](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1字符串反转)
+- 2.[链表反转](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2链表反转)
+- 3.[有序数组合并](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3有序数组合并)
+- 4.[假设某个数组中只有数字1和2，进行排序，使得数字 1位于数组前部分，数字2位于后部分](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4假设某个数组中只有数字1和2进行排序使得数字1位于数组前部分数字2位于后部分)
+- 5.[查找第一个只出现一次的字符](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5查找第一个只出现一次的字符)
+- 6.[查找两个子视图的共同父视图](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6查找两个子视图的共同父视图)
+- 7.[无序数组中的中位数](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7无序数组中的中位数)
+- 8.[两数之和为特定值](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8两数之和为特定值)
+- 9.[求出数组中连续数字的和值](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9求出数组中连续数字的和值)
+- 10.[白鼠与毒酒的算法问题](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10白鼠与毒酒的算法问题)
+- 11.[背包问题](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11背包问题)
+- 补充：[多重背包问题](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充多重背包问题)
+- 补充：[完全背包问题](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充完全背包问题/)
+- 12.[实现数组的随机排序（含洗牌算法）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12实现数组的随机排序含洗牌算法)
+- [补充：洗牌算法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充洗牌算法)
+- 13.[在一个数组中找出前四个最大的数字](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13在一个数组中找出前四个最大的数字)
+- 14.[最小的K个数，输入n个整数，找出其中最小的K个数](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14最小的k个数输入n个整数找出其中最小的k个数)
+- 15.[找出数组中第 k 大的数字及其出现次数](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15找出数组中第-k-大的数字及其出现次数)
+- 16.[假如有 10亿 条数据，每条数据的大小在 10k-100k 之间，我们有一台内存为4G的电脑，如何算出播放次数最多的一条微博？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16假如有-10亿-条数据每条数据的大小在-10k-100k-之间我们有一台内存为4g的电脑如何算出播放次数最多的一条微博)
+- 17.[如何打印一个矩阵](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17如何打印一个矩阵)
+- 18.[如何验证一个 IP 地址的有效性](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18如何验证一个-ip-地址的有效性)
+- 19.[栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19栈中储存着一组无序的数字不用遍历的方式如何找出最小值)
+- 20.[二维数组查找一个值](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20二维数组查找一个值)
+- 21.[有一个很大的整形数据，转成二进制求1的个数](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21有一个很大的整形数据转成二进制求1的个数/)
+- 22.[判断一个正数是否是2的乘方](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22判断一个正数是否是2的乘方)
+- 23.[缓存淘汰算法 LRU 和 LFU](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23缓存淘汰算法-lru-和-lfu)
+- 24.[LRU缓存机制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24lru缓存机制)
+- 25.[行间的换页算法有哪些](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25行间的换页算法有哪些)
+- 26.[山脉数组找目标值(要求logN的时间复杂度)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26山脉数组找目标值要求logn的时间复杂度)
+- 27.[给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27给定一个非空整数数组除了某个元素只出现一次以外其余每个元素均出现两次找出那个只出现了一次的元素)
+- 28.[100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
+- 29.[数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为n的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0或者是问给定一个大小为n的数组找到其中的众数众数是指在数组中出现次数大于--n2--的元素)
 
 
 ## UIKit
-- 1.UIView 和 CALayer 是什么关系？
-- 2.Bounds 和 Frame 的区别?
-- 3.TableViewCell 如何根据 UILabel 内容长度自动调整高度?
-- 4.LoadView方法了解吗？
-- 5.UIButton 的父类是什么？UILabel 的父类又是什么？
-- 6.IBOutlet连出来的视图属性为什么可以被设置成weak?
-- 7.IB中User Defined Runtime Attributes如何使用？
-- 8.实现一个控件，可以浮在任意界面的上层并支持拖动？
-- 9.说一下控制器View的生命周期，一旦收到内存警告会如何处理？
-- 10.说一下 UIView 的生命周期？
-- 11.说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？
-- 12.如何暂停一个 UIView 中正在播放的动画？暂停后如何恢复？
-- 13.如何以通用的方法找到当前显示的ViewController?
-- 14.如何在多次presentViewController后直接返回到指定层
-- 15.如何通过视图(view)获取该视图所在的控制器(viewController)
-- 16.setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？
-- 17.什么情况下会调用layoutSubviews ？
-- 18.什么情况会调用draw rect方法
-- 19.多个类型的cell如何优雅加载？
-- 20.UICollectionView自定义layout如何实现？
-- 21.用StoryBoard开发界面有什么弊端？如何避免？
+- 1.[UIView 和 CALayer 是什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1uiview-和-calayer-是什么关系)
+- 2.[Bounds 和 Frame 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2bounds-和-frame-的区别)
+- 3.[TableViewCell 如何根据 UILabel 内容长度自动调整高度?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3tableviewcell如何根据uilabel内容长度自动调整高度)
+- 4.[LoadView方法了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4loadview方法了解吗)
+- 5.[UIButton 的父类是什么？UILabel 的父类又是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5uibutton-的父类是什么uilabel-的父类又是什么)
+- 6.[IBOutlet连出来的视图属性为什么可以被设置成weak?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6iboutlet连出来的视图属性为什么可以被设置成weak)
+- 7.[IB中User Defined Runtime Attributes如何使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7ib中user-defined-runtime-attributes如何使用)
+- 8.[实现一个控件，可以浮在任意界面的上层并支持拖动？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8实现一个控件可以浮在任意界面的上层并支持拖动)
+- 9.[说一下控制器View的生命周期，一旦收到内存警告会如何处理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9说一下控制器view的生命周期一旦收到内存警告会如何处理)
+- 10.[说一下 UIView 的生命周期？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10说一下-uiview-的生命周期)
+- 11.[说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11说一下appdelegate的几个方法从后台到前台调用了哪些方法第一次启动调用了哪些方法从前台到后台调用了哪些方法)
+- 12.[如何暂停一个 UIView 中正在播放的动画？暂停后如何恢复？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12如何暂停一个-uiview-中正在播放的动画暂停后如何恢复)
+- 13.[如何以通用的方法找到当前显示的ViewController?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13如何以通用的方法找到当前显示的viewcontroller)
+- 14.[如何在多次presentViewController后直接返回到指定层](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14如何在多次presentviewcontroller后直接返回到指定层)
+- 15.[如何通过视图(view)获取该视图所在的控制器(viewController)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15如何通过视图view获取该视图所在的控制器viewcontroller)
+- 16.[setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16setneedsdisplay-和-layoutifneeded-两者是什么关系)
+- 17.[什么情况下会调用layoutSubviews ？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17什么情况下会调用layoutsubviews-)
+- 18.[什么情况会调用draw rect方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18什么情况会调用draw-rect方法)
+- 19.[多个类型的cell如何优雅加载？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19多个类型的cell如何优雅加载)
+- 20.[UICollectionView自定义layout如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20uicollectionview自定义layout如何实现)
+- 21.[用StoryBoard开发界面有什么弊端？如何避免？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21用storyboard开发界面有什么弊端如何避免)
 
 ## Foundation
-- 1.nil`、`NIL`、`NSNULL` 有什么区别？
-- 2.如何实现一个线程安全的 `NSMutableArray`?
-- 3.如何定义一台 iOS 设备的唯一性?
-- 4.atomic` 修饰的属性是绝对安全的吗？为什么？
-- 5.实现 `isEqual` 和 `hash` 方法时要注意什么？
-- 6.`id` 和 `instanceType` 有什么区别？
-- 7.简述事件传递、事件响应机制。
-- 8.说一下对 `Super` 关键字的理解。
-- 9.了解 逆变 和 协变 吗？
-- 10.`@synthesize` 和 `@dynamic` 分别有什么作用？
-- 11.Obj-C 中的反射机制了解吗？
-- 12.`typeof` 和 `__typeof`，`typeof` 的区别?
-- 13.头文件导入的方式？
-- 14.如何将 Obj-C 代码改变为 C++/C 的代码？
-- 15.知不知道在哪里下载苹果的源代码？
-- 16.objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？
-- 17.NSCache优于NSDictionary的几点？
-- 18.知不知道DesignatedInitializer？使用它的时候有什么需要注意的问题？
-- 19.实现description方法能取到什么效果？
+- 1.[nil`、`NIL`、`NSNULL` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1nilnilnsnull-有什么区别)
+- 2.[如何实现一个线程安全的 `NSMutableArray`?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2如何实现一个线程安全的-nsmutablearray)
+- 3.[如何定义一台 iOS 设备的唯一性?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3如何定义一台-ios-设备的唯一性)
+- 4.[atomic` 修饰的属性是绝对安全的吗？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4atomic-修饰的属性是绝对安全的吗为什么)
+- 5.[实现 `isEqual` 和 `hash` 方法时要注意什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5实现-isequal-和-hash-方法时要注意什么)
+- 6.[`id` 和 `instanceType` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6id-和-instancetype-有什么区别)
+- 7.[简述事件传递、事件响应机制。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7简述事件传递事件响应机制)
+- 8.[说一下对 `Super` 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下对-super-关键字的理解)
+- 9.[了解 逆变 和 协变 吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9了解-逆变-和-协变-吗)
+- 10.[`@synthesize` 和 `@dynamic` 分别有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10synthesize-和-dynamic-分别有什么作用)
+- 11.[Obj-C 中的反射机制了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11obj-c-中的反射机制了解吗)
+- 12.[`typeof` 和 `__typeof`，`typeof` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12typeof-和-__typeoftypeof-的区别)
+- 13.[头文件导入的方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13头文件导入的方式)
+- 14.[如何将 Obj-C 代码改变为 C++/C 的代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14如何将-obj-c-代码改变为-cc-的代码)
+- 15.[知不知道在哪里下载苹果的源代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15知不知道在哪里下载苹果的源代码)
+- 16.[objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16objc_getclassobject_getclassclass-这三个方法用来获取类对象有什么不同)
+- 17.[NSCache优于NSDictionary的几点？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17nscache优于nsdictionary的几点)
+- 18.[知不知道DesignatedInitializer？使用它的时候有什么需要注意的问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18知不知道designatedinitializer使用它的时候有什么需要注意的问题)
+- 19.[实现description方法能取到什么效果？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19实现description方法能取到什么效果)
 
 
 ## iOS 内存管理
-- 补充：为什么说Objective-C是一门动态的语言？
-- 1.说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。
-- 2.简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
-- 3.automic的实现机制；
-- 4.atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？
-- 5..@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
-- 6.@property 后面可以有哪些修饰符？
-- 7.@property中有哪些属性关键字？/ @property 后面可以有哪些修饰符
-- 8.什么情况使用 weak 关键字，相比 assign 有什么不同？
-- 9.@protocol 和 category 中如何使用 @property
-- 10.__weak 和 _Unsafe_Unretain 的区别
-- 11._weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
-- 12.runtime如何实现weak变量的自动置nil？
-- 13.weak属性需要在dealloc中置nil么？
-- 14.runtime 如何实现 weak 属性
+- [补充：为什么说Objective-C是一门动态的语言？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充为什么说objective-c是一门动态的语言)
+- 1.[说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
+- 2.[简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
+- 3.[automic的实现机制；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3automic的实现机制)
+- 4.[atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4atomic是绝对的线程安全么为什么如果不是那应该如何实现)
+- 5.[@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5property-的本质是什么ivargettersetter-是如何生成并添加到这个类中的)
+- 6.[@property 后面可以有哪些修饰符？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6property-后面可以有哪些修饰符)
+- 7.[@property中有哪些属性关键字？/ @property 后面可以有哪些修饰符](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7property中有哪些属性关键字-property-后面可以有哪些修饰符)
+- 8.[什么情况使用 weak 关键字，相比 assign 有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8什么情况使用-weak-关键字相比-assign-有什么不同)
+- 9.[@protocol 和 category 中如何使用 @property](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9protocol-和-category-中如何使用-property)
+- 10.[__weak 和 _Unsafe_Unretain 的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10__weak-和-_unsafe_unretain-的区别)
+- 11.[_weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11_weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
+- 12.[runtime如何实现weak变量的自动置nil？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12runtime如何实现weak变量的自动置nil)
+- 13.[weak属性需要在dealloc中置nil么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13weak属性需要在dealloc中置nil么)
+- 14.[runtime 如何实现 weak 属性](https://note.youdao.com/)
 - 15.怎么用 copy 关键字？
 - 16.如何令自己所写的对象具有拷贝功能?
 - 17.这个写法会出什么问题： @property (copy) NSMutableArray *array;
@@ -3537,7 +3538,7 @@ typedef struct {
 也即:
 在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。
 
-- 14.runtime 如何实现 weak 属性
+### 14.runtime 如何实现 weak 属性
 - 要实现 weak 属性，首先要搞清楚 weak 属性的特点：
     * weak 此特质表明该属性定义了一种“非拥有关系” (nonowning relationship)。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质同 assign 类似， 然而在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。
 - 那么 runtime 如何实现 weak 变量的自动置nil？
