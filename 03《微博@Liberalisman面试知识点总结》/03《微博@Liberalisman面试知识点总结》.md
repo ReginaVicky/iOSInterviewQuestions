@@ -6180,7 +6180,7 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 - 以上两个分支，最终 CALayer 都会将位图提交到 Backing Store，最后提交给 GPU。
 - 至此绘制的过程结束。
 
-### ### 22.如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？
+### 22.如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？
 * 为当前线程开启一个RunLoop（第一次调用 [NSRunLoop currentRunLoop]方法时实际是会先去创建一个RunLoop）
 * 向当前RunLoop中添加一个Port/Source等维持RunLoop的事件循环（如果RunLoop的mode中一个item都没有，RunLoop会退出）
 * 启动该RunLoop
