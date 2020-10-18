@@ -285,205 +285,209 @@
 - 19.[AFN为什么添加一条常驻线程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19afn为什么添加一条常驻线程)
 - 20.[PerformSelector 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20performselector-的实现原理)
 - 21.[利用 runloop 解释一下页面的渲染的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21利用-runloop-解释一下页面的渲染的过程)
-- 22.[如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23nsthreadrunloop实现常驻线程)
-- 23.[NSThread+runloop实现常驻线程](https://note.youdao.com/)
-- 24.为什么 NSTimer 有时候不好使？（不同类型的Mode）
-- 25.滑动tableView时，定时器还会生效吗？
-- 26.以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？
-- 27.PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
-- 28.什么是异步绘制？
-- 29.如何检测 App 运行过程中是否卡顿？
+- 22.[如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22如何使用-runloop-实现一个常驻线程这种线程一般有什么作用)
+- 23.[NSThread+runloop实现常驻线程](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23nsthreadrunloop实现常驻线程)
+- 24.[为什么 NSTimer 有时候不好使？（不同类型的Mode）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24为什么-nstimer-有时候不好使不同类型的mode)
+- 25.[滑动tableView时，定时器还会生效吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25滑动tableview时定时器还会生效吗)
+- 26.[以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26以-scheduledtimerwithtimeinterval的方式触发的timer在滑动页面上的列表时timer会暂定回调为什么如何解决)
+- 27.[PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27performselectorafterdelay这个方法在子线程中是否起作用为什么怎么解决)
+- 28.[什么是异步绘制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28什么是异步绘制)
+- 29.[如何检测 App 运行过程中是否卡顿？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29如何检测-app-运行过程中是否卡顿)
 
 ## 多线程
-- 1.进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步
-- 2.iOS线程间怎么通信？
-- 3.谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
-- 4.多线程容易出现的问题，怎么解决
-- 5.NSThread相关知识？
-- 6.GCD 相关知识？
-- 7.说一下 GCD 并发队列实现机制
-- 8.GCD的并行队列一定会开辟新的线程？
-- 9.如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）
-- 10.GCD的一些常用的函数？（group，barrier，信号量，线程同步）
-- 11.GCD的队列（dispatch_queue_t）分哪两种类型？
-- 12.dispatch_barrier_async的作用是什么？
-- 13.苹果为什么要废弃dispatch_get_current_queue？
-- 14.NSOperation 和 NSOperationQueue相关知识？
-- 15.如何自定义 NSOperation ?
-- 16.NSOperationQueue的优点
-- 17.NSOperation与GCD的关系？
-- 18.GCD 与 NSOperationQueue 有哪些异同？
-- 19.你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?
-- 20.如何使用队列来避免资源抢夺？
-- 21.dispatch_sync 和 dispatch_async 区别
-- 22.NSLock？是否会出现死锁？
-- 23.NSContion
-- 24.条件锁 - NSContionLock]
-- 25.递归锁 - NSRecursiveLock
-- 26.同步锁 - Synchronized(self) {// code}
-- 27.信号量 - dispatch_semaphore
-- 28.自旋锁 - OSSpinLock
-- 29.互斥锁
-- 30.互斥锁和自旋锁区别及应用场景
-- 31.多功能锁 - pthread_mutex
-- 32.分步锁 - NSDistributedLock
-- 33.如何确保线程安全？
-- 34.NSMutableArray、和 NSMutableDictionary是线程安全的吗？NSCache呢？
-- 35.解释一下多线程中的死锁？
-- 36.列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。
-- 37.子线程是否会出现死锁？说一下场景？
-- 38.请说明同步请求与异步请求的区别?
-- 39.默认最大并发？
-- 40.dispatch_once如何实现一次性代码？
-- 41.Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
-- 42.如何把异步线程转换成同步任务进行单元测试？
-- 43.如何实现线性编程？
+- 1.[进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1进程和线程多进程和多线程任务和队列并行与串行同步和异步)
+- 2.[iOS线程间怎么通信？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2ios线程间怎么通信)
+- 3.[谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
+- 4.[多线程容易出现的问题，怎么解决](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4多线程容易出现的问题怎么解决)
+- 5.[NSThread相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nsthread相关知识)
+- 6.[GCD 相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6gcd-相关知识)
+- 7.[说一下 GCD 并发队列实现机制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下-gcd-并发队列实现机制)
+- 8.[GCD的并行队列一定会开辟新的线程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8gcd的并行队列一定会开辟新的线程)
+- 9.[如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9如何用gcd同步若干个异步调用如根据若干个url异步加载多张图片然后在都下载完成后合成一张整图)
+- 10.[GCD的一些常用的函数？（group，barrier，信号量，线程同步）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10gcd的一些常用的函数groupbarrier信号量线程同步)
+- 11.[GCD的队列（dispatch_queue_t）分哪两种类型？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11gcd的队列dispatch_queue_t分哪两种类型)
+- 12.[dispatch_barrier_async的作用是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12dispatch_barrier_async的作用是什么)
+- 13.[苹果为什么要废弃dispatch_get_current_queue？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13苹果为什么要废弃dispatch_get_current_queue)
+- 14.[NSOperation 和 NSOperationQueue相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14nsoperation-和-nsoperationqueue相关知识)
+- 15.[如何自定义 NSOperation ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15如何自定义-nsoperation-)
+- 16.[NSOperationQueue的优点](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16nsoperationqueue的优点)
+- 17.[NSOperation与GCD的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17nsoperation与gcd的关系)
+- 18.[GCD 与 NSOperationQueue 有哪些异同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18gcd-与-nsoperationqueue-有哪些异同)
+- 19.[你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19你们项目中为什么多线程用gcd而不用nsoperation呢-你有没有发现国外的大牛他们多线程都是用nsoperation-你能告诉我他们这样做的理由吗)
+- 20.[如何使用队列来避免资源抢夺？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20如何使用队列来避免资源抢夺)
+- 21.[dispatch_sync 和 dispatch_async 区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21dispatch_sync-和-dispatch_async-区别)
+- 22.[NSLock？是否会出现死锁？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22nslock是否会出现死锁)
+- 23.[NSContion](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23nscontion)
+- 24.[条件锁 - NSContionLock]](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24条件锁---nscontionlock)
+- 25.[递归锁 - NSRecursiveLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25递归锁---nsrecursivelock)
+- 26.[同步锁 - Synchronized(self) {// code}](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26同步锁---synchronizedself--code)
+- 27.[信号量 - dispatch_semaphore](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27信号量---dispatch_semaphore)
+- 28.[自旋锁 - OSSpinLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28自旋锁---osspinlock)
+- 29.[互斥锁](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29互斥锁)
+- 30.[互斥锁和自旋锁区别及应用场景](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30互斥锁和自旋锁区别及应用场景)
+- 31.[多功能锁 - pthread_mutex](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31多功能锁---pthread_mutex)
+- 32.[分步锁 - NSDistributedLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#32分步锁---nsdistributedlock)
+- 33.[如何确保线程安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#33如何确保线程安全)
+- 34.[NSMutableArray、和 NSMutableDictionary是线程安全的吗？NSCache呢？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#34nsmutablearray和-nsmutabledictionary是线程安全的吗nscache呢)
+- 35.[解释一下多线程中的死锁？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#35解释一下多线程中的死锁)
+- 36.[列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#36列举几种进程的同步机制进程的通信途径死锁及死锁的处理方法)
+- 37.[子线程是否会出现死锁？说一下场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37子线程是否会出现死锁说一下场景
+- 38.[请说明同步请求与异步请求的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38请说明同步请求与异步请求的区别)
+- 39.[默认最大并发？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39默认最大并发)
+- 40.[dispatch_once如何实现一次性代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40dispatch_once如何实现一次性代码)
+- 41.[Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41object-c中创建线程的方法是什么如果在主线程中执行代码方法是什么如果想延时执行代码方法又是什么)
+- 42.[如何把异步线程转换成同步任务进行单元测试？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42如何把异步线程转换成同步任务进行单元测试)
+- 43.[如何实现线性编程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#43如何实现线性编程)
+
 
 ## 网络
-- 1.你了解的网络协议
-- 2.NSUrlConnect相关知识。
-- 3.NSURLSession GET 请求方法
-- 4.NSUrlSession相关知识。
-- 5.NSURLSession POST请求方法
-- 6.简要说一下http
-- 7.说一下传输控制协议 - TCP ?
-- 8.说一下用户数据报协议 - UDP ?
-- 9.HTTP和TCP、UDP的联系
-- 10.简要说一下Https；
-- 11.HTTPS的原理
-- 12.简要说一下Socket
-- 13.Http 和 Https 的区别？为什么更加安全？
-- 14.Http的请求方式有哪些？Http 有什么特性？
-- 15.解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？
-- 16.GET 和 POST 请求的区别？
-- 17.GET请求参数一定是放在URL中的么？
-- 18.Post请求体有哪些格式？
-- 19.POST请求参数能放在URL中么为啥
-- 20.HTTP 请求报文 和 响应报文的结构？
-- 21.在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计
-- 22.https的缓存问题。
-- 23.什么是 Mimetype ?
-- 24.数据传输的加密过程？
-- 25.说一下 TCP/IP 五层模型的协议?
-- 26.说一下 OSI 七层模型的协议?
-- 27.大文件下载 的功能有什么注意点？
-- 28.后台下载
-- 29.断点续传 功能该怎么实现？
-- 30.封装一个网络框架有哪些注意点？
-- 31.NSUrlProtocol用过吗？用在什么地方了？
-- 32.如何在测试过程中 MOCK 各种网络环境？
-- 33.DNS 的解析过程？网络的 DNS 优化。
-- 34.DNS劫持和预防
-- 35.网络请求的状态码都大致代表什么意思？
-- 36.说说为什么要设计304这个状态码
-- 37.Wireshark、Charles、Paw 等工具会使用吗？
-- 38.抓包软件 Charles 的原理是什么？说一下中间人攻击的过程。
-- 39.你知道常见的网络攻击么
-- 40.如何判断一个请求是否结束？
-- 41.Web登录时怎么保持会话状态的
-- 42.SSL 传输协议？说一下 SSL 验证过程？
-- 43.解释一下 Http 的持久连接？
-- 44.你知道cookie和session的区别么
-- 45.发送网络请求的时候，如果带宽 1M，如何针对某些请求，限制其流量?
-- 46.使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
-- 47.在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？
-- 48.说说点击一个按钮后打开一个web页面从发送网络请求到页面展示都做了啥
-- 49.为什么能通过一个URL就能请求到对应的资源（域名解析等）
-- 50.如果客户端上有个按钮，点击会触发一次网络请求，在短时间内快速点击，怎么处理（从客户端以及服务端角度思考）
-- 51.判断一个字符串是不是ipv6地址（要求尽全力的考虑所有异常的情况）
-- 52.你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果
+- 1.[你了解的网络协议](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1你了解的网络协议)
+- 2.[NSUrlConnect相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2nsurlconnect相关知识)
+- 3.[NSURLSession GET 请求方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3nsurlsession-get-请求方法)
+- 4.[NSUrlSession相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4nsurlsession相关知识)
+- 5.[NSURLSession POST请求方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nsurlsession-post请求方法)
+- 6.[简要说一下http](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6简要说一下http)
+- 7.[说一下传输控制协议 - TCP ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下传输控制协议---tcp-)
+- 8.[说一下用户数据报协议 - UDP ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下用户数据报协议---udp-)
+- 9.[HTTP和TCP、UDP的联系](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9http和tcpudp的联系)
+- 10.[简要说一下Https；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10简要说一下https)
+- 11.[HTTPS的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11https的原理)
+- 12.[简要说一下Socket](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12简要说一下socket)
+- 13.[Http 和 Https 的区别？为什么更加安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13http-和-https-的区别为什么更加安全)
+- 14.[Http的请求方式有哪些？Http 有什么特性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14http的请求方式有哪些http-有什么特性)
+- 15.[解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15解释一下-三次握手-和-四次挥手解释一下为什么是三次握手-又为什么是-四次挥手)
+- 16.[GET 和 POST 请求的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16get-和-post-请求的区别)
+- 17.[GET请求参数一定是放在URL中的么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17get请求参数一定是放在url中的么)
+- 18.[Post请求体有哪些格式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18post请求体有哪些格式)
+- 19.[POST请求参数能放在URL中么为啥](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19post请求参数能放在url中么为啥)
+- 20.[HTTP 请求报文 和 响应报文的结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20http-请求报文-和-响应报文的结构)
+- 21.[在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21在https建立连接的时候都用了哪些加密算法为什么要这么设计)
+- 22.[https的缓存问题。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22https的缓存问题)
+- 23.[什么是 Mimetype ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23什么是-mimetype-)
+- 24.[数据传输的加密过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24数据传输的加密过程)
+- 25.[说一下 TCP/IP 五层模型的协议?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25说一下-tcpip-五层模型的协议)
+- 26.[说一下 OSI 七层模型的协议?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26说一下-osi-七层模型的协议)
+- 27.[大文件下载 的功能有什么注意点？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27大文件下载-的功能有什么注意点)
+- 28.[后台下载](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28后台下载)
+- 29.[断点续传 功能该怎么实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29断点续传-功能该怎么实现)
+- 30.[封装一个网络框架有哪些注意点？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30封装一个网络框架有哪些注意点)
+- 31.[NSUrlProtocol用过吗？用在什么地方了？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31nsurlprotocol用过吗用在什么地方了)
+- 32.[如何在测试过程中 MOCK 各种网络环境？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#32如何在测试过程中-mock-各种网络环境)
+- 33.[DNS 的解析过程？网络的 DNS 优化。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#33dns-的解析过程网络的-dns-优化)
+- 34.[DNS劫持和预防](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#34dns劫持和预防)
+- 35.[网络请求的状态码都大致代表什么意思？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#35网络请求的状态码都大致代表什么意思)
+- 36.[说说为什么要设计304这个状态码](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#36说说为什么要设计304这个状态码)
+- 37.[Wireshark、Charles、Paw 等工具会使用吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37wiresharkcharlespaw-等工具会使用吗)
+- 38.[抓包软件 Charles 的原理是什么？说一下中间人攻击的过程。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38抓包软件-charles-的原理是什么说一下中间人攻击的过程)
+- 39.[你知道常见的网络攻击么](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39你知道常见的网络攻击么)
+- 40.[如何判断一个请求是否结束？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40如何判断一个请求是否结束)
+- [补充：用户需要上传和下载一个重要的资料文件，应该如何判断用户本次是否上传成功和下载成功了?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充用户需要上传和下载一个重要的资料文件应该如何判断用户本次是否上传成功和下载成功了)
+- 41.[Web登录时怎么保持会话状态的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41web登录时怎么保持会话状态的)
+- 42.[SSL 传输协议？说一下 SSL 验证过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42ssl-传输协议说一下-ssl-验证过程)
+- 43.[解释一下 Http 的持久连接？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#43解释一下-http-的持久连接)
+- 44.[你知道cookie和session的区别么](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#44你知道cookie和session的区别么)
+- 45.[发送网络请求的时候，如果带宽 1M，如何针对某些请求，限制其流量?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#45发送网络请求的时候如果带宽-1m如何针对某些请求限制其流量)
+- 46.[使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#46使用异步请求的方式抓取一个网站的内容请考虑超时状态码的异常情况请用原生api或者socketcocoa-socket)
+- 47.[在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#47在网络请求中如何处理网络网速慢网络中断网络抖动等等网络问题)
+- 48.[说说点击一个按钮后打开一个web页面从发送网络请求到页面展示都做了啥](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#48说说点击一个按钮后打开一个web页面从发送网络请求到页面展示都做了啥)
+- 49.[为什么能通过一个URL就能请求到对应的资源（域名解析等）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#49为什么能通过一个url就能请求到对应的资源域名解析等)
+- 50.[如果客户端上有个按钮，点击会触发一次网络请求，在短时间内快速点击，怎么处理（从客户端以及服务端角度思考）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#50如果客户端上有个按钮点击会触发一次网络请求在短时间内快速点击怎么处理从客户端以及服务端角度思考)
+- 51.[判断一个字符串是不是ipv6地址（要求尽全力的考虑所有异常的情况）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51判断一个字符串是不是ipv6地址要求尽全力的考虑所有异常的情况)
+- 52.[你平时怎么解决网络请求的依赖关系：当一个接口的请求需要依赖于另一个网络请求的结果](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52你平时怎么解决网络请求的依赖关系当一个接口的请求需要依赖于另一个网络请求的结果)
+
 
 ## 消息传递的方式
-- 1.说一下 NSNotification 的实现机制？
-- 2.说一下 NSNotification 的特点。
-- 3.简述 KVO 的实现机制。或者是KVO的使用？实现原理？（为什么要创建子类来实现）
-- 4.KVO 在使用过程中有哪些注意点？有没有使用过其他优秀的 KVO 三方替代框架？
-- 5.消息通知有几种？如何判断是否发送通知。
-- 6.简述 KVO 的注册依赖键是什么？
-- 7.如何做到 KVO手动通知？，如何手动触发一个value的KVO
-- 8.在什么情况下会触发 KVO?
-- 9.给实例变量赋值时，是否会触发 KVO?
-- 10.Delegate通常用什么关键字修饰？为什么？
-- 11.通知 和 代理 有什么区别？各自适应的场景？
-- 12.说一下什么是Block?
-- 13.Block 有几种类型？分别是什么？
-- 14.Block 用什么修饰？copy，assign，strong有什么区别？
-- 15.Block 后面携带参数的时候，有数量限制吗？为什么？
-- 16.__block 的解释以及在 ARC 和 MRC 下有什么不同？
-- 17.Block 的内存管理。
-- 18.Block 自动截取变量。
-- 19.Block 处理循环引用。
-- 20.使用block时什么情况会发生引用循环，如何解决？
-- 21.在block内如何修改block外部变量？
-- 22.使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？
-- 23.Dispatch_block_t这个有没有用过？解释一下？
-- 24.addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？
-- 25.KVC和KVO的keyPath一定是属性么？
-- 26.如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？
-- 27.apple用什么方式实现对一个对象的KVO？
-- 28.KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）
-- 29.KVC的keyPath中的集合运算符如何使用？
+- 1.[说一下 NSNotification 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下-nsnotification-的实现机制)
+- 2.[说一下 NSNotification 的特点。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2说一下-nsnotification-的特点)
+- 3.[简述 KVO 的实现机制。或者是KVO的使用？实现原理？（为什么要创建子类来实现）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3简述-kvo-的实现机制或者是kvo的使用实现原理为什么要创建子类来实现)
+- 4.[KVO 在使用过程中有哪些注意点？有没有使用过其他优秀的 KVO 三方替代框架？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4kvo-在使用过程中有哪些注意点有没有使用过其他优秀的-kvo-三方替代框架)
+- 5.[消息通知有几种？如何判断是否发送通知。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5消息通知有几种如何判断是否发送通知)
+- 6.[简述 KVO 的注册依赖键是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6简述-kvo-的注册依赖键是什么)
+- 7.[如何做到 KVO手动通知？，如何手动触发一个value的KVO](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7如何做到-kvo手动通知如何手动触发一个value的kvo)
+- 8.[在什么情况下会触发 KVO?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8在什么情况下会触发-kvo)
+- 9.[给实例变量赋值时，是否会触发 KVO?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9给实例变量赋值时是否会触发-kvo)
+- 10.[Delegate通常用什么关键字修饰？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10delegate通常用什么关键字修饰为什么)
+- 11.[通知 和 代理 有什么区别？各自适应的场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11通知-和-代理-有什么区别各自适应的场景)
+- 12.[说一下什么是Block?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12说一下什么是block)
+- 13.[Block 有几种类型？分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13block-有几种类型分别是什么)
+- 14.[Block 用什么修饰？copy，assign，strong有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14block-用什么修饰copyassignstrong有什么区别)
+- 15.[Block 后面携带参数的时候，有数量限制吗？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15block-后面携带参数的时候有数量限制吗为什么)
+- 16.[__block 的解释以及在 ARC 和 MRC 下有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16__block-的解释以及在-arc-和-mrc-下有什么不同)
+- [补充：在block内如何修改block外部变量?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充在block内如何修改block外部变量)
+- 17.[Block 的内存管理。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17block-的内存管理)
+- 18.[Block 自动截取变量。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18block-自动截取变量)
+- 19.[Block 处理循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19block-处理循环引用)
+- 20.[使用block时什么情况会发生引用循环，如何解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20使用block时什么情况会发生引用循环如何解决)
+- 21.[在block内如何修改block外部变量？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21在block内如何修改block外部变量)
+- 22.[使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22使用系统的某些block-api如uiview的block版本写动画时是否也考虑引用循环问题)
+- 23.[Dispatch_block_t这个有没有用过？解释一下？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23dispatch_block_t这个有没有用过解释一下)
+- 24.[addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24addobserverforkeypathoptionscontext各个参数的作用分别是什么observer中需要实现哪个方法才能获得kvo回调)
+- 25.[KVC和KVO的keyPath一定是属性么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25kvc和kvo的keypath一定是属性么)
+- 26.[如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26如何关闭默认的kvo的默认实现并进入自定义的kvo实现)
+- 27.[apple用什么方式实现对一个对象的KVO？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27apple用什么方式实现对一个对象的kvo)
+- 28.[KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28kvc的使用实现原理kvc拿到key以后是如何赋值的知不知道集合操作符能不能访问私有属性能不能直接访问_ivar)
+- 29.[KVC的keyPath中的集合运算符如何使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29kvc的keypath中的集合运算符如何使用)
 
 ## 项目架构
-- 1.什么是 MVC?
-- 2.什么是 MVVM?
-- 3.什么是 MVP?
-- 4.什么是 CDD?
-- 5.项目的组件化？
-    * 1.说一下你了解的项目组件化方案？
-    * 2.什么样的团队及项目适合采用组件化的形式进行开发？
-    * 3.组件之间的通信方式。
-    * 4.各组件之间的解耦。
-- 6.还了解哪些项目架构？你之前所在公司的架构师什么样的，简单说一下？
-- 7.从宏观上来讲 App 可以分为哪些层？
-- 8.多工程连编之静态库
+- 1.[什么是 MVC?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1什么是-mvc)
+- 2.[什么是 MVVM?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2什么是-mvvm)
+- 3.[什么是 MVP?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3什么是-mvp)
+- 4.[什么是 CDD?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4什么是-cdd)
+- 5.[项目的组件化？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5项目的组件化)
+    * 1.[说一下你了解的项目组件化方案？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下你了解的项目组件化方案)
+    * 2.[什么样的团队及项目适合采用组件化的形式进行开发？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2什么样的团队及项目适合采用组件化的形式进行开发)
+    * 3.[组件之间的通信方式。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3组件之间的通信方式)
+    * 4.[各组件之间的解耦。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4各组件之间的解耦)
+- 6.[还了解哪些项目架构？你之前所在公司的架构师什么样的，简单说一下？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6还了解哪些项目架构你之前所在公司的架构师什么样的简单说一下)
+- 7.[从宏观上来讲 App 可以分为哪些层？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7从宏观上来讲-app-可以分为哪些层)
+- 8.[多工程连编之静态库](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8多工程连编之静态库)
 
 
 ## iOS设计模式
-- 1.编程中的六大设计原则？
-- 2.如何设计一个图片缓存框架？
-- 3.如何设计一个时长统计框架？
-- 4.如何实现 App 换肤（夜间模式）？
-- 5.外观模式
-- 6.中介者模式
-- 7.访问者模式
-- 8.装饰模式
-- 9.观察者模式
-- 10.责任链模式
-- 11.命令模式
-- 12.适配器模式
-- 13.桥接模式
-- 14.代理委托模式
-- 15.单例模式
-- 补充：单例弊端？
-- 16.类工厂模式
+- 1.[编程中的六大设计原则？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1编程中的六大设计原则)
+- 2.[如何设计一个图片缓存框架？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2如何设计一个图片缓存框架)
+- 3.[如何设计一个时长统计框架？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3如何设计一个时长统计框架)
+- 4.[如何实现 App 换肤（夜间模式）？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4如何实现-app-换肤夜间模式)
+- 5.[外观模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5外观模式)
+- 6.[中介者模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6中介者模式)
+- 7.[访问者模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7访问者模式)
+- 8.[装饰模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8装饰模式)
+- 9.[观察者模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9观察者模式)
+- 10.[责任链模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10责任链模式)
+- 11.[命令模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11命令模式)
+- 12.[适配器模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12适配器模式)
+- 13.[桥接模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13桥接模式)
+- 14.[代理委托模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14代理委托模式)
+- 15.[单例模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15单例模式)
+- [补充：单例弊端？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充单例弊端)
+- [16.类工厂模式](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16类工厂模式)
 
 
 ## 数据存储
-- 1.如何判断一个文件在沙盒中是否存在？
-- 2.数据持久化的几个方案（fmdb用没用过）
-- 3.简要介绍沙盘
-- 4.Sqlite3
-    * 1.简单说一下 Sqlite3
-    * 2.Sqlite3 常用的执行语句
-    * 3.Sqlite3 在不同版本的APP，数据库结构变化了，如何处理?
-- 5.FMDB (Sqlite3 的封装)
-- 6.Realm
-- 7.NSKeyArchieve
-- 8.Preperfence
-- 9.Plist
-- 10.CoreDate
-- 11.Keychain
-- 12.UIPasteBoard
-- 13.FoundationDB
-- 14.LRU(最少最近使用)缓存
+- 1.[如何判断一个文件在沙盒中是否存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1如何判断一个文件在沙盒中是否存在)
+- 2.[数据持久化的几个方案（fmdb用没用过）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2数据持久化的几个方案fmdb用没用过)
+- 3.[简要介绍沙盘](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3简要介绍沙盘)
+- 4.[Sqlite3](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4sqlite3)
+    * 1.[简单说一下 Sqlite3](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1简单说一下-sqlite3)
+    * 2.[Sqlite3 常用的执行语句](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2sqlite3-常用的执行语句)
+    * 3.[Sqlite3 在不同版本的APP，数据库结构变化了，如何处理?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3sqlite3在不同版本的app数据库结构变化了如何处理)
+- 5.[FMDB (Sqlite3 的封装)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5fmdb-sqlite3-的封装)
+- 6.[Realm](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6realm)
+- 7.[NSKeyArchieve](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7nskeyarchieve)
+- 8.[Preperfence](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8preperfence)
+- 9.[Plist](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9plist)
+- 10.[CoreDate](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10coredate)
+- 11.[Keychain](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11keychain)
+- 12.[UIPasteBoard](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12uipasteboard)
+- 13.[FoundationDB](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13foundationdb)
+- 14.[LRU(最少最近使用)缓存](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14lru最少最近使用缓存)
 
 
 ## WebView
-- 1.说一下 JS 和 OC 互相调用的几种方式？
-- 2.在使用 WKWedView 时遇到过哪些问题？
-- 3.是否了解 UIWebView 的插件化？
-- 4.是否了解 SFSafariViewController ？
+- 1.[说一下 JS 和 OC 互相调用的几种方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下-js-和-oc-互相调用的几种方式)
+- 2.[在使用 WKWedView 时遇到过哪些问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2在使用-wkwedview-时遇到过哪些问题)
+- 3.[是否了解 UIWebView 的插件化？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3是否了解-uiwebview-的插件化)
+- 4.[是否了解 SFSafariViewController ？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4是否了解-sfsafariviewcontroller-)
 
 
 ## 音频处理
@@ -493,18 +497,18 @@
 
 
 ## 图像处理
-- 1.图像的压缩、解压。
-- 2.一张物理体积20KB、分辨率为 200 * 300 的图片，在内存中占用多大的空间？
-- 3.GLSurfaceView的相关知识，OpenGL，Shader，绘制流程。
+- 1.[图像的压缩、解压。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1图像的压缩解压)
+- 2.[一张物理体积20KB、分辨率为 200 * 300 的图片，在内存中占用多大的空间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2一张物理体积20kb分辨率为-200--300-的图片在内存中占用多大的空间)
+- 3.[GLSurfaceView的相关知识，OpenGL，Shader，绘制流程。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3glsurfaceview的相关知识openglshader绘制流程)
 
 
 ## iOS 动画
-- 1.简要说一下常用的动画库。
-- 2.请说一下对 CALayer 的认识。
-- 3.解释一下 CALayer.contents 属性。
-- 4.在 iOS 中，动画有哪几种类型？
-- 5.隐式动画
-- 6.显式动画
+- 1.[简要说一下常用的动画库。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1简要说一下常用的动画库)
+- 2.[请说一下对 CALayer 的认识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2请说一下对-calayer-的认识)
+- 3.[解释一下 CALayer.contents 属性。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3解释一下-calayercontents-属性)
+- 4.[在 iOS 中，动画有哪几种类型？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4在-ios-中动画有哪几种类型)
+- 5.[隐式动画](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5隐式动画)
+- 6.[显式动画](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6显式动画)
 
 ## 蓝牙
 
@@ -513,7 +517,7 @@
 ## Core ML
 
 ## 代码管理、持续集成、项目托管
-- 1.Git
+- 1.[Git](https://note.youdao.com/)
     * 1.`git pull` 和 `git fetch` 的区别？
     * 2.`git merge` 和 `git rebase` 的区别？
     * 3.如何在本地新建一个分支，并 push 到远程服务器上？
@@ -9804,6 +9808,32 @@ fmdb（iOS平台的SQLite数据库框架）
 ## ARKit
 
 ## Core ML
+
+## 代码管理、持续集成、项目托管
+### 1.Git
+#### 1.`git pull` 和 `git fetch` 的区别？
+#### 2.`git merge` 和 `git rebase` 的区别？
+#### 3.如何在本地新建一个分支，并 push 到远程服务器上？
+#### 4.如果 fork 了一个别人的仓库，怎样与源仓库保持同步
+#### 5.总结一下 Git 常用的命令？
+### 2.Svn
+### 3.CocoaPods
+#### 1.说一下 `CocoaPods` 的原理？
+#### 2.如何让自己写的框架支持 `CocoaPods`？
+#### 3.`pod update` 和 `pod install` 有什么区别？
+#### 4.`Podfile.lock` 文件起什么作用？
+#### 5.CocoaPods 常用指令？
+#### 6.在使用 CocoaPods 中遇到过哪些问题？
+#### 7.如何使用 CocoaPods 集成远程私有库？
+#### 8.如果自己写的库需要依赖其他的三方库，该怎么办？
+#### 9.CocoaPods 中的 Subspec 字段有什么用处？
+### 4.Carthage
+### 5.Fastlane
+### 6.Jenkins
+### 7.fir.im
+### 8.蒲公英
+### 9.TestFlight
+
 
 ## 数据安全及加密
 ### 1.RSA非对称加密  
