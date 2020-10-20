@@ -134,6 +134,8 @@
 - 19.[多个类型的cell如何优雅加载？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19多个类型的cell如何优雅加载)
 - 20.[UICollectionView自定义layout如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20uicollectionview自定义layout如何实现)
 - 21.[用StoryBoard开发界面有什么弊端？如何避免？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21用storyboard开发界面有什么弊端如何避免)
+- 22.iOS滑块验证
+
 
 ## Foundation
 - 1.[nil`、`NIL`、`NSNULL` 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1nilnilnsnull-有什么区别)
@@ -3172,6 +3174,22 @@ delete动画与插入类似，提供正确的final 属性即可
 * 错误定位困难
     - Storyboard的初学者应该对此深有体会。排除BAD_EXCUSE错误不说，单单是有提示的错误，就足以让人在代码和Storyboard之间来回摸索，却无法找到解决方案。
 
+### 22.iOS滑块验证
+#### 拼图的验证
+- 思路：
+    * 1.创建一个背景图片和一个滑块，需要注意的是我们需要压缩背景的显示图片到指定的尺寸目的是为了从这图片上截取某一块的时候frame对的上
+    * 2 创建一个从可移动的图片，从背景图的随机位置截取某一部分，并绘制贝塞尔曲线
+    * 3 创建一个遮罩层UIView （上面加入一个CAShapeLayer CAShapeLayer的贝塞尔曲线和截取图片的一样）
+    * 4 拉动滑块移动让图片位置随着Slider的value值改变而改变frame
+    * 5 判断可移动图片与遮罩层的frame的x值相差是否在误差范围内
+
+#### 文本按顺序点击的验证
+- 思路：
+    * 创建普通的背景图和滑块。。。
+    * 获取多个随机汉字并打乱顺序
+    * 创建随机位置的按钮文本（x值固定，y值随机）
+
+
 
 ## Foundation
 ### 1.nil`、`NIL`、`NSNULL` 有什么区别？
@@ -4831,6 +4849,9 @@ objc_autoreleaseReturnValue会检视当前方法返回之后即将要执行的�
 - 第一个 Observer监视的事件是Entry(即将进入Loop)，其回调内会调用_objc_autoreleasePoolPush()创建自动释放池。其 order是-2147483647，优先级最高，保证创建释放池发生在其他所有回调之前。
 - 第二个 Observer监视了两个事件：BeforeWaiting(准备进入休眠) 时调用_objc_autoreleasePoolPop() 和_objc_autoreleasePoolPush()释放旧的池并创建新池；Exit(即将退出Loop)时调用_objc_autoreleasePoolPop() 来释放自动释放池。这个Observer的order是2147483647，优先级最低，保证其释放池子发生在其他所有回调之后。
 - 在主线程执行的代码，通常是写在诸如事件回调、Timer回调内的。这些回调会被RunLoop创建好的AutoreleasePool环绕着，所以不会出现内存泄漏，开发者也不必显示创建 Pool 了。
+- 在子线程autoreleasePool的释放
+    * 子线程执行完任务被释放
+    * 当pthread_exit退出时，触发了_pthread_tsd_cleanup，触发AutoreleasePoolPage的tls_dealloc(void*)，然后回收autorelease对象
 
 ### 38.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
 - 避免内存峰值，及时释放不需要的内存空间
