@@ -116,15 +116,15 @@
 - 27.[给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27给定一个非空整数数组除了某个元素只出现一次以外其余每个元素均出现两次找出那个只出现了一次的元素)
 - 28.[100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
 - 29.[数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为n的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0或者是问给定一个大小为n的数组找到其中的众数众数是指在数组中出现次数大于--n2--的元素)
-- 30.怎么判断一条链表有环
-- 31.求数组的最长子数组
-- 32.回文算法，最长回文子串之 Manacher 算法
-- 33.判断一个字符串是不是对称的字符串，比如 abba 或者 aba 这样的就是对称的。
-- 34.hash 算法的原理
-- 35.二叉树逐层打印
-- 36.找出一个页面中漏出部分面积最大的试图，重合的部分按照最上层的面积算漏出
-- 37.一个坦克从一个空间的起点到终点，中间在某些位置上有阻隔的情况下，判断从起点到终点是否有可行路径。
-- 38.二叉树翻转
+- 30.[怎么判断一条链表有环](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#30怎么判断一条链表有环)
+- 31.[求数组的最长子数组](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#31求数组的最长子数组)
+- 32.[回文算法，最长回文子串之 Manacher 算法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#32回文算法最长回文子串之-manacher-算法)
+- 33.[判断一个字符串是不是对称的字符串，比如 abba 或者 aba 这样的就是对称的。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#33判断一个字符串是不是对称的字符串比如-abba-或者-aba-这样的就是对称的)
+- 34.[hash 算法的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#34hash-算法的原理)
+- 35.[二叉树逐层打印](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#35二叉树逐层打印)
+- 36.[找出一个页面中漏出部分面积最大的试图，重合的部分按照最上层的面积算漏出](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#36找出一个页面中漏出部分面积最大的试图重合的部分按照最上层的面积算漏出)
+- 37.[一个坦克从一个空间的起点到终点，中间在某些位置上有阻隔的情况下，判断从起点到终点是否有可行路径。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#37一个坦克从一个空间的起点到终点中间在某些位置上有阻隔的情况下判断从起点到终点是否有可行路径)
+- 38.[二叉树翻转，将二叉树的两个孩子换位置，即左变右，右变左。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#38二叉树翻转将二叉树的两个孩子换位置即左变右右变左)
 
 
 ## UIKit
@@ -133,7 +133,7 @@
 - 3.[TableViewCell 如何根据 UILabel 内容长度自动调整高度?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3tableviewcell如何根据uilabel内容长度自动调整高度)
 - 4.[LoadView方法了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4loadview方法了解吗)
 - 5.[UIButton 的父类是什么？UILabel 的父类又是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5uibutton-的父类是什么uilabel-的父类又是什么)
-- 补充：UIButton防止多次点击
+- [补充：UIButton防止多次点击](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充uibutton防止多次点击)
 - 6.[IBOutlet连出来的视图属性为什么可以被设置成weak?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6iboutlet连出来的视图属性为什么可以被设置成weak)
 - 7.[IB中User Defined Runtime Attributes如何使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7ib中user-defined-runtime-attributes如何使用)
 - 8.[实现一个控件，可以浮在任意界面的上层并支持拖动？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8实现一个控件可以浮在任意界面的上层并支持拖动)
@@ -153,7 +153,6 @@
 - 22.iOS滑块验证
 - 23.控件的点击事件和添加在上边的手势谁先响应，并说明原因
 - CoreAnimation 和 CoreGraphic 的区别
-- 
 
 
 
@@ -170,13 +169,13 @@
 - 10.[`@synthesize` 和 `@dynamic` 分别有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10synthesize-和-dynamic-分别有什么作用)
 - 11.[Obj-C 中的反射机制了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11obj-c-中的反射机制了解吗)
 - 12.[`typeof` 和 `__typeof`，`typeof` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12typeof-和-__typeoftypeof-的区别)
-- 补充：self + weakSelf + strongSelf ?
+- [补充：self + weakSelf + strongSelf ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充self--weakself--strongself-)
 - 13.[头文件导入的方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13头文件导入的方式)
 - 14.[如何将 Obj-C 代码改变为 C++/C 的代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14如何将-obj-c-代码改变为-cc-的代码)
 - 15.[知不知道在哪里下载苹果的源代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15知不知道在哪里下载苹果的源代码)
 - 16.[objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16objc_getclassobject_getclassclass-这三个方法用来获取类对象有什么不同)
 - 17.[NSCache优于NSDictionary的几点？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17nscache优于nsdictionary的几点)
-- 补充：NSCache，NSDictionary，NSArray的区别
+- [补充：NSCache，NSDictionary，NSArray的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充nscachensdictionarynsarray的区别)
 - 18.[知不知道DesignatedInitializer？使用它的时候有什么需要注意的问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18知不知道designatedinitializer使用它的时候有什么需要注意的问题)
 - 19.[实现description方法能取到什么效果？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19实现description方法能取到什么效果)
 
@@ -212,7 +211,7 @@
 - 26.[什么是虚拟内存，虚拟内存和物理内存的关系和区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26什么是虚拟内存虚拟内存和物理内存的关系和区别)
 - 27.[block一般存在哪里（分ARC和MRC）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27block一般存在哪里分arc和mrc)
 - 28.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28讲一下-ios-内存管理的理解三种方案的结合)
-- 补充：对象引用计数放哪里？
+- [补充：对象引用计数放哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充对象引用计数放哪里)
 - 29.[使用自动引用计（ARC）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29使用自动引用计arc数应该遵循的原则)
 - 30.[ARC 自动内存管理的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30arc-自动内存管理的原则)
 - 31.[ARC 的 retainCount 怎么存储的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31arc-的-retaincount-怎么存储的)
@@ -4063,6 +4062,9 @@ indexOfObjectIdenticalTo:
     * atomic会给属性加上一个同步锁,这是为了防止多线程同时访问属性出现异常需要添加的属性,但是这样会增加额外的内存开销并且在变编程习惯中,我们都应该避免多线程访问统一资源
     * 即便是使用atomic,在多线程时也无法完全保证线程安全, 往往是需要手动添加线程锁
 
+### 补充：assign 修饰对象可能存在的问题
+- 对象开辟的空间是在堆空间，指针开辟的空间是在栈上，使用assign修饰，当对象销毁时并不会将指针置为nil。所以当堆空间的对象销毁时指向对象的指针仍然存在，会造成野指针，当访问该对象时会crash报错EXC_BAD_ACCESS。因为基本数据类型的空间开辟也在栈空间，同样由系统进行销毁，所以不存在野指针的情况。使用weak修饰对象时当对象销毁时指针也会被置为nil，所以用weak不会造成野指针。
+
 ### 3.automic的实现机制；
 - 添加属性时使用了automic声明的，系统会自动在setter和getter方法中添加锁来实现读写安全。
 - 通过源码查看发现automic的原理是使用OSSPinLock来实现的，这种自旋锁会出现优先级反转导致死锁的问题，所以不推荐automic。
@@ -5625,6 +5627,8 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
 - 当你同时重写了 setter 和 getter 时，系统就不会生成 ivar（实例变量/成员变量）。这时候有两种选择：
     * 要么如第14行：手动创建 ivar
     * 要么如第17行：使用@synthesize foo = _foo; ，关联 @property 与 ivar。
+
+### 补充：说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
 
 ### 51.说一下什么是 悬垂指针？什么是 野指针?
 - 悬垂指针：指针指向的内存已经被释放了，但是指针还存在，这就是一个 悬垂指针 或者说 迷途指针
