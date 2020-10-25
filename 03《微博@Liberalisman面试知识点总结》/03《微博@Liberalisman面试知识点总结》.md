@@ -111,6 +111,14 @@
 - 28.[100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28100层楼扔两个鸡蛋寻找使鸡蛋摔碎的楼层最快要扔多少次google经典的面试题有一个100层的楼你手里现在有两个一模一样的鸡蛋它们有可能都在一楼就摔碎也可能从一百层楼摔下来没事要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置)
 - 29.[数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为n的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0或者是问给定一个大小为n的数组找到其中的众数众数是指在数组中出现次数大于--n2--的元素)
 - 30.怎么判断一条链表有环
+- 31.求数组的最长子数组
+- 32.回文算法
+- 33.判断一个字符串是不是对称的字符串，比如 abba 或者 aba 这样的就是对称的。
+- 34.hash 算法的原理
+- 35.二叉树逐层打印
+- 36.找出一个页面中漏出部分面积最大的试图，重合的部分按照最上层的面积算漏出
+- 37.一个坦克从一个空间的起点到终点，中间在某些位置上有阻隔的情况下，判断从起点到终点是否有可行路径。
+- 38.二叉树翻转
 
 
 ## UIKit
@@ -119,6 +127,7 @@
 - 3.[TableViewCell 如何根据 UILabel 内容长度自动调整高度?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3tableviewcell如何根据uilabel内容长度自动调整高度)
 - 4.[LoadView方法了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4loadview方法了解吗)
 - 5.[UIButton 的父类是什么？UILabel 的父类又是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5uibutton-的父类是什么uilabel-的父类又是什么)
+- 补充：UIButton防止多次点击
 - 6.[IBOutlet连出来的视图属性为什么可以被设置成weak?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6iboutlet连出来的视图属性为什么可以被设置成weak)
 - 7.[IB中User Defined Runtime Attributes如何使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7ib中user-defined-runtime-attributes如何使用)
 - 8.[实现一个控件，可以浮在任意界面的上层并支持拖动？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8实现一个控件可以浮在任意界面的上层并支持拖动)
@@ -136,6 +145,10 @@
 - 20.[UICollectionView自定义layout如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20uicollectionview自定义layout如何实现)
 - 21.[用StoryBoard开发界面有什么弊端？如何避免？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21用storyboard开发界面有什么弊端如何避免)
 - 22.iOS滑块验证
+- 23.控件的点击事件和添加在上边的手势谁先响应，并说明原因
+- CoreAnimation 和 CoreGraphic 的区别
+- 
+
 
 
 ## Foundation
@@ -151,11 +164,13 @@
 - 10.[`@synthesize` 和 `@dynamic` 分别有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10synthesize-和-dynamic-分别有什么作用)
 - 11.[Obj-C 中的反射机制了解吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11obj-c-中的反射机制了解吗)
 - 12.[`typeof` 和 `__typeof`，`typeof` 的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12typeof-和-__typeoftypeof-的区别)
+- 补充：self + weakSelf + strongSelf ?
 - 13.[头文件导入的方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13头文件导入的方式)
 - 14.[如何将 Obj-C 代码改变为 C++/C 的代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14如何将-obj-c-代码改变为-cc-的代码)
 - 15.[知不知道在哪里下载苹果的源代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15知不知道在哪里下载苹果的源代码)
 - 16.[objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16objc_getclassobject_getclassclass-这三个方法用来获取类对象有什么不同)
 - 17.[NSCache优于NSDictionary的几点？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17nscache优于nsdictionary的几点)
+- 补充：NSCache，NSDictionary，NSArray的区别
 - 18.[知不知道DesignatedInitializer？使用它的时候有什么需要注意的问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18知不知道designatedinitializer使用它的时候有什么需要注意的问题)
 - 19.[实现description方法能取到什么效果？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19实现description方法能取到什么效果)
 
@@ -164,6 +179,7 @@
 - [补充：为什么说Objective-C是一门动态的语言？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充为什么说objective-c是一门动态的语言)
 - 1.[说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
 - 2.[简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
+- 补充：assign 修饰对象可能存在的问题
 - 3.[automic的实现机制；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3automic的实现机制)
 - 4.[atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4atomic是绝对的线程安全么为什么如果不是那应该如何实现)
 - 5.[@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5property-的本质是什么ivargettersetter-是如何生成并添加到这个类中的)
@@ -190,6 +206,7 @@
 - 26.[什么是虚拟内存，虚拟内存和物理内存的关系和区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26什么是虚拟内存虚拟内存和物理内存的关系和区别)
 - 27.[block一般存在哪里（分ARC和MRC）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27block一般存在哪里分arc和mrc)
 - 28.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28讲一下-ios-内存管理的理解三种方案的结合)
+- 补充：对象引用计数放哪里？
 - 29.[使用自动引用计（ARC）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29使用自动引用计arc数应该遵循的原则)
 - 30.[ARC 自动内存管理的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30arc-自动内存管理的原则)
 - 31.[ARC 的 retainCount 怎么存储的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31arc-的-retaincount-怎么存储的)
@@ -212,6 +229,7 @@
 - 48.[@synthesize和@dynamic分别有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#48synthesize和dynamic分别有什么作用)
 - 49.[@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#49synthesize合成实例变量的规则是什么假如property名为foo存在一个名为_foo的实例变量那么还会自动合成新变量么)
 - 50.[在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#50在有了自动合成属性实例变量之后synthesize还有哪些使用场景)
+- 补充：说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
 - 51.[说一下什么是 悬垂指针？什么是 野指针?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51说一下什么是-悬垂指针什么是-野指针)
 - 52.[objc中向一个nil对象发送消息将会发生什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52objc中向一个nil对象发送消息将会发生什么)
 - 53.[objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#53objc中向一个对象发送消息obj-foo和objc_msgsend函数之间有什么关系)
@@ -313,6 +331,7 @@
 - 2.[iOS线程间怎么通信？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2ios线程间怎么通信)
 - 3.[谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
 - 4.[多线程容易出现的问题，怎么解决](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4多线程容易出现的问题怎么解决)
+- 补充：多线程的安全隐患+11种同步解决方案
 - 5.[NSThread相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nsthread相关知识)
 - 6.[GCD 相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6gcd-相关知识)
 - 7.[说一下 GCD 并发队列实现机制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下-gcd-并发队列实现机制)
@@ -361,9 +380,11 @@
 - 4.[NSUrlSession相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4nsurlsession相关知识)
 - 5.[NSURLSession POST请求方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nsurlsession-post请求方法)
 - 6.[简要说一下http](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6简要说一下http)
+- 补充：Http2.0如1.x的区别
 - 7.[说一下传输控制协议 - TCP ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下传输控制协议---tcp-)
 - 8.[说一下用户数据报协议 - UDP ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下用户数据报协议---udp-)
 - 9.[HTTP和TCP、UDP的联系](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9http和tcpudp的联系)
+- 补充：TCP 协议如何保证可靠传输
 - 10.[简要说一下Https；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10简要说一下https)
 - 11.[HTTPS的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11https的原理)
 - 12.[简要说一下Socket](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12简要说一下socket)
@@ -391,6 +412,7 @@
 - 34.[DNS劫持和预防](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#34dns劫持和预防)
 - 35.[网络请求的状态码都大致代表什么意思？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#35网络请求的状态码都大致代表什么意思)
 - 36.[说说为什么要设计304这个状态码](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#36说说为什么要设计304这个状态码)
+- 补充：讲一下网络造成卡顿的原因
 - 37.[Wireshark、Charles、Paw 等工具会使用吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37wiresharkcharlespaw-等工具会使用吗)
 - 38.[抓包软件 Charles 的原理是什么？说一下中间人攻击的过程。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38抓包软件-charles-的原理是什么说一下中间人攻击的过程)
 - 39.[你知道常见的网络攻击么](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39你知道常见的网络攻击么)
@@ -640,6 +662,7 @@
 ## 其他问题
 - 1.[面向对象的三个要素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1面向对象的三个要素)
 - 2.[多态？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2多态)
+- 补充： bitcode 的理解和作用
 - 3.[Java，python，OC运行效率孰高？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3javapythonoc运行效率孰高)
 - 4.[Property，其中copy如何？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4property其中copy如何)
 - 5.[Property(nonatomatic, copy) NSMutableArray有什么问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5propertynonatomatic-copy-nsmutablearray有什么问题)
@@ -2874,6 +2897,112 @@ self.tableView.rowHeight = UITableViewAutomaticDimension
 - UIControl 
 - UIView
 
+### 补充：UIButton防止多次点击
+#### 设置enabled或userInteractionEnabled属性
+* 通过UIButton的enabled属性和userInteractionEnabled属性控制按钮是否可点击。此方案在逻辑上比较清晰、易懂，但具体代码书写分散，常常涉及多个地方。
+
+```
+- (void)tapBtn:(UIButton *)btn {
+    NSLog(@"按钮点击...");
+    btn.enabled = NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        btn.enabled = YES;
+    });
+}
+```
+#### 借助cancelPreviousPerformRequestsWithTarget:selector:object实现
+- 通过 NSObject 的两个方法
+- 实现步骤如下:
+    * 创建一个UIButton的分类，使用runtime增加public属性cs_eventInterval和private属性cs_eventInvalid。
+    * 在+load方法中使用runtime将UIButton的-sendAction:to:forEvent:方法与自定义的cs_sendAction:to:forEvent:方法进行交换
+    * 使用cs_eventInterval作为控制cs_eventInvalid的计时因子，用cs_eventInvalid控制UIButton的event事件是否有效。
+
+```
+// 此方法会在连续点击按钮时取消之前的点击事件，从而只执行最后一次点击事件
++ (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget selector:(SEL)aSelector object:(nullable id)anArgument;
+// 多长时间后做某件事情
+- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;
+```
+
+```
+/** 方法一 */
+- (void)tapBtn:(UIButton *)btn {
+    NSLog(@"按钮点击了...");
+    // 此方法会在连续点击按钮时取消之前的点击事件，从而只执行最后一次点击事件
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(buttonClickedAction:) object:btn];
+    // 多长时间后做某件事情
+    [self performSelector:@selector(buttonClickedAction:) withObject:btn afterDelay:2.0];
+}
+
+- (void)buttonClickedAction:(UIButton *)btn {
+    NSLog(@"真正开始执行业务 - 比如网络请求...");
+}
+```
+- 通过runtime交换方法实现
+
+```
+@interface UIButton (Extension)
+
+/** 时间间隔 */
+@property(nonatomic, assign)NSTimeInterval cs_eventInterval;
+
+@end
+```
+
+```
+#import "UIButton+Extension.h"
+#import <objc/runtime.h>
+
+static char *const kEventIntervalKey = "kEventIntervalKey"; // 时间间隔
+static char *const kEventInvalidKey = "kEventInvalidKey";   // 是否失效
+
+@interface UIButton()
+
+/** 是否失效 - 即不可以点击 */
+@property(nonatomic, assign)BOOL cs_eventInvalid;
+
+@end
+
+@implementation UIButton (Extension)
+
++ (void)load {
+    // 交换方法
+    Method clickMethod = class_getInstanceMethod(self, @selector(sendAction:to:forEvent:));
+    Method cs_clickMethod = class_getInstanceMethod(self, @selector(cs_sendAction:to:forEvent:));
+    method_exchangeImplementations(clickMethod, cs_clickMethod);
+}
+
+#pragma mark - click
+
+- (void)cs_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
+    if (!self.cs_eventInvalid) {
+        self.cs_eventInvalid = YES;
+        [self cs_sendAction:action to:target forEvent:event];
+        [self performSelector:@selector(setCs_eventInvalid:) withObject:@(NO) afterDelay:self.cs_eventInterval];
+    }
+}
+
+#pragma mark - set | get
+
+- (NSTimeInterval)cs_eventInterval {
+    return [objc_getAssociatedObject(self, kEventIntervalKey) doubleValue];
+}
+
+- (void)setCs_eventInterval:(NSTimeInterval)cs_eventInterval {
+    objc_setAssociatedObject(self, kEventIntervalKey, @(cs_eventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)cs_eventInvalid {
+    return [objc_getAssociatedObject(self, kEventInvalidKey) boolValue];
+}
+
+- (void)setCs_eventInvalid:(BOOL)cs_eventInvalid {
+    objc_setAssociatedObject(self, kEventInvalidKey, @(cs_eventInvalid), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+```
+
+
 ### 6.IBOutlet连出来的视图属性为什么可以被设置成weak?
 - 官方文档里面说：一般的IBOutlet直接关联到viewcontroller。但是跟其关联的控件并不是添加在controller上，而是添加到controller的view上，比如[self.view addSubView：xxx]; 这个时候self.view已经对xxx 强引用过了，self.view才是持有xxx的对象。这样子才符合引用计数的规则。所以直接IBOutlet顶级view的时候肯定是strong的。
 - 其实质是：使用storyboard创建的viewController，那么会有一个叫 _topLevelObjectsToKeepAliveFromStoryboard的私有数组强引用所有top level的对象，同时top level对象强引用所有子对象，那么vc没必要再强引用top level对象的子对象。
@@ -3422,6 +3551,23 @@ NSLog(@"%d", class==NSString.class);
 - 定义一种类型的别名，而不只是简单的宏替换。
 - typedef 常用于命名（枚举和Block）
 
+### 补充：self + weakSelf + strongSelf ?
+
+```
+__weak __typeof(self)weakSelf = self;    //1
+
+[self.context performBlock:^{      
+    [weakSelf doSomething];          //2
+     __strong __typeof(weakSelf)strongSelf = weakSelf;  //3
+    [strongSelf doAnotherSomething];        
+}];
+```
+- 1.使用__weak __typeof是在编译的时候,另外创建一个局部变量weak对象来操作self，引用计数不变。block 会将这个局部变量捕获为自己的属性，访问这个属性，从而达到访问 self的效果，因为他们的内存地址都是一样的。
+- 2.因为weakSelf和self是两个变量,doSomething有可能就直接对self自身引用计数减到0了.所以在[weakSelf doSomething]的时候,你很难控制这里self是否就会被释放了.weakSelf只能看着.
+- __strong __typeof在编译的时候,实际是对weakSelf的强引用.指针连带关系self的引用计数会增加.但是你这个是在block里面,生命周期也只在当前block的作用域.所以,当这个block结束,strongSelf随之也就被释放了.不会影响block外部的self的生命周期.
+- 在 Block 内如果需要访问self的方法、变量，建议使用 weakSelf。
+- 如果在 Block 内需要多次 访问 self，则需要使用 strongSelf。
+
 ### 13.头文件导入的方式？
 ### 14.如何将 Obj-C 代码改变为 C++/C 的代码？
 - clang -rewrite-objc -fobjc-arc -fobjc-runtime=macosx-10.13 main.m
@@ -3599,6 +3745,43 @@ self.cache.delegate = self;
 ![image](https://camo.githubusercontent.com/c30bb9b1a4d03a949190145b441ed3ebc888504b/68747470733a2f2f7374617469632e6f736368696e612e6e65742f75706c6f6164732f696d672f3230313630322f31363232313931345f664678622e706e67)
 
 通过输出结果,我们可以看出: 当收到内存警告，而我们又调用removeAllObjects 之后，则无法再次往缓存中添加数据;
+
+### 补充：NSCache，NSDictionary，NSArray的区别
+#### NSArray
+- NSArray作为一个存储对象的有序集合，可能是被使用最多的集合类。
+- 性能特征
+    * 在数组的开头和结尾插入/删除元素通常是一个O(1)操作，而随机的插入/删除通常是 O(N)的。
+- 有用的方法
+    * NSArray的大多数方法使用isEqual:来检查对象间的关系(例如containsObject:)。有一个特别的方法
+
+```
+indexOfObjectIdenticalTo:
+```
+- 用来检查指针相等，如果你确保在同一个集合中搜索，那么这个方法可以很大的提升搜索速度。
+
+#### NSDictionary
+- 一个字典存储任意的对象键值对。 由于历史原因，初始化方法使用相反的对象到值的方法
+
+```
+[NSDictionary dictionaryWithObjectsAndKeys:object, key, nil]
+```
+- 而新的快捷语法则从key开始
+
+```
+@{key : value, ...}
+```
+- NSDictionary中的键是被拷贝的并且需要是恒定的。如果在一个键在被用于在字典中放入一个值后被改变，那么这个值可能就会变得无法获取了。一个有趣的细节，在NSDictionary中键是被拷贝的，而在使用一个toll-free桥接的CFDictionary时却只被retain。CoreFoundation类没有通用对象的拷贝方法，因此这时拷贝是不可能的(*)。这只适用于使用CFDictionarySetValue()的时候。如果通过setObject:forKey使用toll-free桥接的CFDictionary，苹果增加了额外处理逻辑来使键被拷贝。反过来这个结论则不成立 — 转换为CFDictionary的NSDictionary对象，对其使用CFDictionarySetValue()方法会调用回setObject:forKey并拷贝键。
+
+#### NSCache
+- NSCache是一个非常奇怪的集合。在iOS 4/Snow Leopard中加入，默认为可变并且线程安全的。这使它很适合缓存那些创建起来代价高昂的对象。它自动对内存警告做出反应并基于可设置的成本清理自己。与NSDictionary相比，键是被retain而不是被拷贝的。
+- NSCache的回收方法是不确定的，NSCache可以设置撑自动回收实现了NSDiscardableContent协议的对象。实现该属性的一个比较流行的类是同时间加入的NSPurgeableData，但是在OS X 10.9之前，是非线程安全的
+- NSCache性能
+    * 那么NSCache如何承受NSMutableDictionary的考验?加入的线程安全必然会带来一些消耗。
+
+#### iOS 构建缓存时选 NSCache 而非NSDictionary
+- 当系统资源将要耗尽时，NSCache可以自动删减缓存。如果采用普通的字典，那么就要自己编写挂钩，在系统通知时手动删减缓存，NSCache会先行删减时间最久为被使用的对象
+- NSCache 并不会拷贝键，而是会保留它。此行为用NSDictionary也可以实现，但是需要编写比较复杂的代码。NSCache对象不拷贝键的原因在于，很多时候键都是不支持拷贝操作的对象来充当的。因此NSCache对象不会自动拷贝键，所以在键不支持拷贝操作的情况下，该类比字典用起来更方便
+- NScache是线程安全的，NSDictionary不是。在开发者自己不编写加锁代码的前提下，多个线程可以同时访问NSCache。对缓存来说，线程安全通常是很重要的，因为开发者可能在某个线程中读取数据，此时如果发现缓存里找不着指定的键，那么就要下载该键对应的数据了
 
 ### 18.知不知道DesignatedInitializer？使用它的时候有什么需要注意的问题？
 ### 19.实现description方法能取到什么效果？
@@ -4854,6 +5037,56 @@ extra_rc | 存储引用计数值减一后的结果
     * DenseMap类中包含好多映射实例到其引用计数的键值对，并支持用 DenseMapIterator 迭代器快速查找遍历这些键值对。
     * 引用计数表、weak表都是散列表；
 
+### 补充：对象引用计数放哪里？
+- 采用散列表（引用计数表）来管理引用计数。
+
+![image](http://upload-images.jianshu.io/upload_images/131615-d1212b1150b575e7.png)
+
+- GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹果的实现，则是保存在引用计数表的记录中。
+- 通过内存卡头部管理引用计数的好处如下：
+    * 少量代码即可完成
+    * 能够统一管理引用计数用内存块与对象用内存块
+- 通过引用计数表管理引用计数的好处如下：
+    * 对象用内存块的分配无需考虑内存块头部
+    * 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
+- 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
+
+![image](http://upload-images.jianshu.io/upload_images/131615-6ebbb4f2275a7362.png)
+
+- 我们先看看 struct objc_class 的结构
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-6ff583180e68579d.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+
+- 再看看 isa结构
+    * 在arm64架构之前，isa就是一个普通的指针，存储着Class、Meta-Class对象的内存地址
+    * 从arm64架构开始，对isa进行了优化，变成了一个共用体（union）结构，还使用位域来存储更多的信息
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-c370f62a02d018a9.png?imageMogr2/auto-orient/strip|imageView2/2/w/1198)
+
+- isa结构体
+
+```
+/** isa_t 结构体 */
+union isa_t {
+    Class cls;
+    uintptr_t bits;
+    struct {
+        uintptr_t nonpointer        : 1;
+        uintptr_t has_assoc         : 1;
+        uintptr_t has_cxx_dtor      : 1;
+        uintptr_t shiftcls          : 33;
+        uintptr_t magic             : 6;
+        uintptr_t weakly_referenced : 1;
+        uintptr_t deallocating      : 1;
+        uintptr_t has_sidetable_rc  : 1;
+        uintptr_t extra_rc          : 19;
+    };
+};
+```
+- extra_rc：表示该对象的引用计数值，实际上是引用计数值减 1，例如，如果对象的引用计数为 10，那么 extra_rc 为 9。如果引用计数大于 10，则需要使用到下面的 has_sidetable_rc。
+- has_sidetable_rc：当对象引用计数大于 10 时，则has_sidetable_rc 的值为 1，那么引用计数会存储在一个叫 SideTable 的类的属性中，这是一个散列表。
+- 对象引用计数就存放在extra_rc中；
+
 ### 29.使用自动引用计（ARC）数应该遵循的原则?
 - ARC规则：
     * 不能使用retain/release/retainCount/autorelease
@@ -4885,13 +5118,23 @@ extra_rc | 存储引用计数值减一后的结果
     * 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
 - 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
 
-![image](http://upload-images.jianshu.io/upload_images/131615-6ebbb4f2275a7362.png)
-
 ### 32.ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
 - 对应基本数据类型默认关键字是 atomic,readwrite,assign
 - 对于普通的 Objective-C 对象 atomic,readwrite,strong
 
 ### 33.ARC通过什么方式帮助开发者管理内存？
+- 采用散列表（引用计数表）来管理引用计数。
+
+![image](http://upload-images.jianshu.io/upload_images/131615-d1212b1150b575e7.png)
+
+- GNUstep将引用计数保存在对象占用内存块头部的变量中，而苹果的实现，则是保存在引用计数表的记录中。
+- 通过内存卡头部管理引用计数的好处如下：
+    * 少量代码即可完成
+    * 能够统一管理引用计数用内存块与对象用内存块
+- 通过引用计数表管理引用计数的好处如下：
+    * 对象用内存块的分配无需考虑内存块头部
+    * 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
+- 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
 
 ### 34.ARC 在编译时做了哪些工作？
 - 主要是指 weak 关键字。weak 修饰的变量能够在引用计数为0 时被自动设置成 nil，显然是有运行时逻辑在工作的。
@@ -6849,6 +7092,400 @@ oprationQueueaddOperationWithBlock:^{
 ### 4.多线程容易出现的问题，怎么解决
 - 线程安全问题，当多个线程访问同一块资源时，很容易引发数据错乱和数据安全问题。加锁
 
+### 补充：多线程的安全隐患+11种同步解决方案
+#### 多线程的安全隐患
+- 资源共享
+    * 1块资源可能会被多个线程共享，也就是多个线程可能会访问同一块资源
+    * 比如多个线程访问同一个对象、同一个变量、同一个文件
+    * 当多个线程访问同一块资源时，很容易引发数据错乱和数据安全问题
+
+#### 多线程安全隐患的解决方案
+- 解决方案：使用线程同步技术（同步，就是协同步调，按预定的先后次序进行）
+- 常见的线程同步技术是：加锁
+
+#### iOS中的线程同步方案
+- OSSpinLock
+- os_unfair_lock
+- pthread_mutex
+- dispatch_semaphore
+- dispatch_queue(DISPATCH_QUEUE_SERIAL)
+- NSLock
+- NSRecursiveLock
+- NSCondition
+- NSConditionLock
+- @synchronized
+
+##### OSSpinLock
+- OSSpinLock叫做”自旋锁”，等待锁的线程会处于忙等（busy-wait）状态，一直占用着CPU资源
+- 目前已经不再安全，可能会出现优先级反转问题
+- 如果等待锁的线程优先级较高，它会一直占用着CPU资源，优先级低的线程就无法释放锁
+- 需要导入头文件#import <libkern/OSAtomic.h>
+- 重要方法
+    * OSSpinLock lock = OS_SPINLOCK_INIT; 初始化锁
+    * bool result = OSSpinLockTry(&_lock); 尝试加锁(如果需要等待,就不尝试加锁,直接返回false,如果不需要等待就加锁,返回true)
+    * OSSpinLockLock(&_lock);// 加锁
+    * OSSpinLockUnlock(&_lock); //解锁
+- 代码例子如下
+```
+#import <libkern/OSAtomic.h>
+@property (assign, nonatomic) OSSpinLock lock;
+
+// 初始化锁
+self.lock = OS_SPINLOCK_INIT;
+
+/** 卖1张票 */
+- (void)saleTicket {
+    // 加锁
+    OSSpinLockLock(&_lock);
+    
+    int oldTicketsCount = self.ticketsCount;
+    sleep(.2);
+    oldTicketsCount--;
+    self.ticketsCount = oldTicketsCount;
+    
+    NSLog(@"还剩%d张票 - %@", oldTicketsCount, [NSThread currentThread]);
+    
+    // 解锁
+    OSSpinLockUnlock(&_lock);
+}
+```
+- 执行结果
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-00a374659301b683.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+
+##### os_unfair_lock
+- os_unfair_lock用于取代不安全的OSSpinLock ，从iOS10开始才支持
+- 从底层调用看，等待os_unfair_lock锁的线程会处于休眠状态，并非忙等
+- 需要导入头文件#import <os/lock.h>
+- 重要方法
+    * os_unfair_lock moneyLock = OS_UNFAIR_LOCK_INIT; //初始化
+    * os_unfair_lock_trylock(&_ticketLock); // 尝试加锁
+    * os_unfair_lock_lock(&_ticketLock); // 加锁
+    * os_unfair_lock_unlock(&_ticketLock); // 解锁
+
+##### pthread_mute
+- mutex叫做”互斥锁”，等待锁的线程会处于休眠状态
+- 需要导入头文件#import <pthread.h>
+- 重要方法
+
+```
+// 初始化属性
+pthread_mutexattr_t attr;
+pthread_mutexattr_init(&attr);
+pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_DEFAULT);
+// 初始化锁
+pthread_mutex_init(mutex, &attr);
+// 尝试加锁
+pthread_mutex_trylock(&_ticketMutex);
+// 加锁
+pthread_mutex_lock(&_ticketMutex);
+// 解锁
+pthread_mutex_unlock(&_ticketMutex);
+// 销毁属性
+pthread_mutexattr_destroy(&attr);
+```
+
+##### pthread_mutex递归锁实现
+
+```
+- (void)__initMutex:(pthread_mutex_t *)mutex {
+    // 递归锁：允许同一个线程对一把锁进行重复加锁
+    
+    // 初始化属性
+    pthread_mutexattr_t attr;
+    pthread_mutexattr_init(&attr);
+    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+    // 初始化锁
+    pthread_mutex_init(mutex, &attr);
+    // 销毁属性
+    pthread_mutexattr_destroy(&attr);
+}
+```
+- 调用
+
+```
+- (void)otherTest {
+    pthread_mutex_lock(&_mutex);
+    NSLog(@"%s", __func__);
+    
+    static int count = 0;
+    if (count < 10) {
+        count++;
+        [self otherTest];
+    }
+    
+    pthread_mutex_unlock(&_mutex);
+}
+```
+- 打印结果
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-c31e8cf6db0e5f33.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+
+##### pthread_mutex – 条件
+![image](https://upload-images.jianshu.io/upload_images/1653926-93853471e6f19941.png?imageMogr2/auto-orient/strip|imageView2/2/w/578)
+
+##### NSLock
+- NSLock是对mutex普通锁的封装
+- 重要方法如下
+    * NSLock *lock = [[NSLock alloc] init];初始化
+    * [lock lock] 加锁
+    * [lock unlock] 解锁
+    
+##### NSRecursiveLock
+- NSRecursiveLock也是对mutex递归锁的封装，API跟NSLock基本一致
+
+##### NSCondition
+- NSCondition是对mutex和cond的封装
+- 重要方法
+
+```
+@interface NSCondition: NSObject <NSLocking>
+- (void)wait;   // 等待
+- (BOOL)waitUntilDate:(NSDate *)limit;  // 只等待到什么时候
+- (void)signal; // 发信号
+- (void)broadcast;  // 发广播
+@end
+```
+- 代码例子如下
+
+```
+- (void)otherTest {
+    // remove和add方法不确定谁先执行
+    [[[NSThread alloc] initWithTarget:self selector:@selector(__remove) object:nil] start];
+    
+    [[[NSThread alloc] initWithTarget:self selector:@selector(__add) object:nil] start];
+}
+
+// 删除数组中的元素
+- (void)__remove {
+    [self.condition lock];
+    NSLog(@"__remove - begin");
+    
+    if (self.data.count == 0) {
+        // 等待
+        [self.condition wait];
+    }
+    
+    [self.data removeLastObject];
+    NSLog(@"删除了元素");
+    
+    [self.condition unlock];
+}
+
+// 线程2
+// 往数组中添加元素
+- (void)__add {
+    [self.condition lock];
+    
+    sleep(1);
+    
+    [self.data addObject:@"Test"];
+    NSLog(@"添加了元素");
+    
+    // 信号
+    NSLog(@"发出信号");
+    [self.condition signal];
+    // 广播
+//    [self.condition broadcast];
+    
+    sleep(2);
+    
+    [self.condition unlock];
+}
+```
+- 运行结果
+![image](https://upload-images.jianshu.io/upload_images/1653926-1d04a525e9f81181.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+- 更改执行顺序
+
+```
+// 往数组中添加元素
+- (void)__add {
+    [self.condition lock];
+    
+    sleep(1);
+    
+    [self.data addObject:@"Test"];
+    NSLog(@"添加了元素");
+    
+    [self.condition unlock];
+    
+    sleep(2);
+    
+    // 信号
+    NSLog(@"发出信号");
+    [self.condition signal];
+    // 广播
+//    [self.condition broadcast];
+}
+```
+- 运行结果
+![image](https://upload-images.jianshu.io/upload_images/1653926-0e9290e6d6d760d6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+- wait不仅仅需要接受到信号后才能执行，而且必须具备加锁条件，这个时候才会接着往下执行。
+
+##### NSConditionLock
+- NSConditionLock是对NSCondition的进一步封装，可以设置具体的条件值
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-bd04c18c5f8dbbd0.png?imageMogr2/auto-orient/strip|imageView2/2/w/753)
+
+- 代码例子如下
+```
+@property (strong, nonatomic) NSConditionLock *conditionLock;
+
+- (instancetype)init {
+    if (self = [super init]) {
+//        [[NSConditionLock alloc] init]; // 默认为0
+        self.conditionLock = [[NSConditionLock alloc] initWithCondition:1];
+    }
+    return self;
+}
+
+- (void)otherTest {
+    [[[NSThread alloc] initWithTarget:self selector:@selector(__one) object:nil] start];
+    
+    [[[NSThread alloc] initWithTarget:self selector:@selector(__two) object:nil] start];
+    
+    [[[NSThread alloc] initWithTarget:self selector:@selector(__three) object:nil] start];
+}
+
+- (void)__one {
+    [self.conditionLock lockWhenCondition:1];
+    
+    NSLog(@"__one");
+    sleep(1);
+    
+    [self.conditionLock unlockWithCondition:2];
+}
+
+- (void)__two {
+    [self.conditionLock lockWhenCondition:2];
+    
+    NSLog(@"__two");
+    sleep(1);
+    
+    [self.conditionLock unlockWithCondition:3];
+}
+
+- (void)__three {
+    [self.conditionLock lockWhenCondition:3];
+    
+    NSLog(@"__three");
+    
+    [self.conditionLock unlock];
+}
+
+```
+- 执行结果
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-c179931160d4bcd5.png?imageMogr2/auto-orient/strip|imageView2/2/w/998)
+
+##### dispatch_queue
+- 直接使用GCD的串行队列，也是可以实现线程同步的
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-d43b964b97ab65c8.png?imageMogr2/auto-orient/strip|imageView2/2/w/847)
+
+- 代码例子如下
+
+```
+@property (strong, nonatomic) dispatch_queue_t ticketQueue;
+
+self.ticketQueue = dispatch_queue_create("ticketQueue", DISPATCH_QUEUE_SERIAL);
+
+- (void)__saleTicket {
+    dispatch_sync(self.ticketQueue, ^{
+        [super __saleTicket];
+    });
+}
+```
+
+##### dispatch_semaphore
+- semaphore叫做信号量
+- 信号量的初始值，可以用来控制线程并发访问的最大数量
+- 信号量的初始值为1，代表同时只允许1条线程访问资源，保证线程同步
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-aa2f430448fe4d91.png?imageMogr2/auto-orient/strip|imageView2/2/w/669)
+
+- 代码例子如下
+
+```
+@property (strong, nonatomic) dispatch_semaphore_t ticketSemaphore;
+@property (strong, nonatomic) dispatch_semaphore_t moneySemaphore;
+
+self.ticketSemaphore = dispatch_semaphore_create(1);
+self.moneySemaphore = dispatch_semaphore_create(1);
+
+- (void)__drawMoney {
+    dispatch_semaphore_wait(self.moneySemaphore, DISPATCH_TIME_FOREVER);
+    
+    [super __drawMoney];
+    
+    dispatch_semaphore_signal(self.moneySemaphore);
+}
+
+- (void)__saveMoney {
+    dispatch_semaphore_wait(self.moneySemaphore, DISPATCH_TIME_FOREVER);
+    
+    [super __saveMoney];
+    
+    dispatch_semaphore_signal(self.moneySemaphore);
+}
+
+- (void)__saleTicket {
+    dispatch_semaphore_wait(self.ticketSemaphore, DISPATCH_TIME_FOREVER);
+    
+    [super __saleTicket];
+    
+    dispatch_semaphore_signal(self.ticketSemaphore);
+}
+```
+
+##### @synchronized
+- @synchronized是对mutex递归锁的封装
+- 源码查看：objc4中的objc-sync.mm文件
+- @synchronized(obj)内部会生成obj对应的递归锁，然后进行加锁、解锁操作
+
+```
+@synchronized(obj) {
+    任务
+}
+```
+- obj 可以是同一个实例对象，类对象，静态变量
+- 代码例子如下
+
+```
+- (void)__drawMoney {
+    @synchronized([self class]) {
+        [super __drawMoney];
+    }
+}
+
+- (void)__saveMoney {
+    @synchronized([self class]) { // objc_sync_enter
+        [super __saveMoney];
+    } // objc_sync_exit
+}
+
+- (void)__saleTicket {
+    static NSObject *lock;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        lock = [[NSObject alloc] init];
+    });
+    
+    @synchronized(lock) {
+        [super __saleTicket];
+    }
+}
+
+// 递归锁 - 可以递归
+- (void)otherTest {
+    @synchronized([self class]) {
+        NSLog(@"123");
+        [self otherTest];
+    }
+}
+```
+
+
 ### 5.NSThread相关知识？
 - NSThread创建线程，有三种创建方式：
     * init方式
@@ -7747,6 +8384,17 @@ void func(dispatch_queue_t queue, dispatch_block_t block)
     * 所谓休眠，即在访问被锁资源时，调用者线程会休眠，此时cpu可以调度其他线程工作。直到被锁资源释放锁。此时会唤醒休眠线程。
 - 自旋锁会忙等:                              
     * 所谓忙等，即在访问被锁资源时，调用者线程不会休眠，而是不停循环在那里，直到被锁资源释放锁。
+- 什么情况使用自旋锁比较划算？
+    * 预计线程等待锁的时间很短
+    * 加锁的代码（临界区）经常被调用，但竞争情况很少发生
+    * CPU资源不紧张
+    * 多核处理器
+- 什么情况使用互斥锁比较划算？
+    * 预计线程等待锁的时间较长
+    * 单核处理器
+    * 临界区有IO操作
+    * 临界区代码复杂或者循环量大
+    * 临界区竞争非常激烈
 
 ### 31.多功能锁 - pthread_mutex
 - 如果函数存在递归调用,那么重复pthread_mutex_lock()加锁会导致死锁. 我们可以改变初始化时的属性, 将锁类型改为递归锁.
@@ -7789,6 +8437,45 @@ void func(dispatch_queue_t queue, dispatch_block_t block)
 - dispatch_semaphore_creat SignalCount = dispatch_semaphore_creat(10).
 - 这个地方后面的这个10，是一个整数，可以是1，2，3，。。。表示在信号等待的时候，下一次收到的的信号量，说白了，就是这个数字控制的最大并发数。
 - 队列的最大并发数控制在10。
+
+### 补充：FMDB如何保证线程安全
+- FMDatabaseQueue队列采用单例，只创建一个实例对象
+- FMDB内部如何保证线程安全
+- 采用 GCD 的串行队列实现的，内部实现如下
+
+```
+- (void)inDatabase:(__attribute__((noescape)) void (^)(FMDatabase *db))block {
+#ifndef NDEBUG
+    /* Get the currently executing queue (which should probably be nil, but in theory could be another DB queue
+     * and then check it against self to make sure we're not about to deadlock. */
+    FMDatabaseQueue *currentSyncQueue = (__bridge id)dispatch_get_specific(kDispatchQueueSpecificKey);
+    assert(currentSyncQueue != self && "inDatabase: was called reentrantly on the same queue, which would lead to a deadlock");
+#endif
+    
+    FMDBRetain(self);
+    
+    dispatch_sync(_queue, ^() {
+        
+        FMDatabase *db = [self database];
+        
+        block(db);
+        
+        if ([db hasOpenResultSets]) {
+            NSLog(@"Warning: there is at least one open result set around after performing [FMDatabaseQueue inDatabase:]");
+            
+#if defined(DEBUG) && DEBUG
+            NSSet *openSetCopy = FMDBReturnAutoreleased([[db valueForKey:@"_openResultSets"] copy]);
+            for (NSValue *rsInWrappedInATastyValueMeal in openSetCopy) {
+                FMResultSet *rs = (FMResultSet *)[rsInWrappedInATastyValueMeal pointerValue];
+                NSLog(@"query: '%@'", [rs query]);
+            }
+#endif
+        }
+    });
+    
+    FMDBRelease(self);
+}
+```
 
 ### 40.dispatch_once如何实现一次性代码？
 ### 41.Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
@@ -8005,6 +8692,62 @@ void func(dispatch_queue_t queue, dispatch_block_t block)
     * 服务器接收到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码，后面是 MIME 信息包括服务器信息、实体信息和可能的内容。
     * 客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上，然后客户机与服务器断开连接。
 
+### 补充：补充：Http2.0如1.x的区别
+#### HTTP1.0和HTTP1.1的区别
+- 长连接
+    * HTTP/1.0协议使用非持久连接,即在非持久连接下,一个tcp连接只传输一个Web对象；
+    * HTTP 1.1支持持久连接，也就是说长连接，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。一个包含有许多图像的网页文件的多个请求和应答可以在一个连接中传输，但每个单独的网页文件的请求和应答仍然需要使用各自的连接。HTTP1.1还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间。基于HTTP1.1协议的客户机与服务器的信息交换过程。
+    * HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接，而HTTP1.1默认支持长连接。
+    * 什么是Keep-Alive模式？
+        * 我们知道HTTP协议采用“请求-应答”模式，当使用普通模式，即非KeepAlive模式时，每个请求/应答客户和服务器都要新建一个连接，完成之后立即断开连接（HTTP协议为无连接的协议）；当使用Keep-Alive模式（又称持久连接、连接重用）时，Keep-Alive功能使客户端到服务器端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive功能避免了建立或者重新建立连接。
+        * http1.0中默认是关闭的，需要在http头加入"Connection:Keep-Alive"，才能启用Keep-Alive；http1.1中默认启用Keep-Alive，如果加入"Connection:close"，才关闭。目前大部分浏览器都是用http1.1协议，也就是说默认都会发起Keep-Alive的连接请求了，所以是否能完成一个完整的Keep-Alive连接就看服务器设置情况。
+    * 启用Keep-Alive的优点
+        * 从上面的分析来看，启用Keep-Alive模式肯定更高效，性能更高。因为避免了建立/释放连接的开销。
+        * HTTP是基于TCP/IP协议的，创建一个TCP连接是需要经过三次握手的,有一定的开销，如果每次通讯都要重新建立连接的话，对性能有影响。因此最好能维持一个长连接，可以用个长连接来发多个请求。
+- 缓存
+    * 在HTTP/1.0中，使用Expire头域来判断资源的fresh或stale，并使用条件请求（conditional request）来判断资源是否仍有效。例如，cache服务器通过If-Modified-Since头域向服务器验证资源的Last-Modefied头域是否有更新，源服务器可能返回304（Not Modified），则表明该对象仍有效；也可能返回200（OK）替换请求的Cache对象。
+    * 此外，HTTP/1.0中还定义了Pragma:no-cache头域，客户端使用该头域说明请求资源不能从cache中获取，而必须回源获取。
+    * HTTP/1.1在1.0的基础上加入了一些cache的新特性，当缓存对象的Age超过Expire时变为stale对象，cache不需要直接抛弃stale对象，而是与源服务器进行重新激活（revalidation）。
+    * HTTP/1.0中，If-Modified-Since头域使用的是绝对时间戳，精确到秒，但使用绝对时间会带来不同机器上的时钟同步问题。
+    * 而HTTP/1.1中引入了一个ETag头域用于重激活机制，它的值entity tag可以用来唯一的描述一个资源。请求消息中可以使用If-None-Match头域来匹配资源的entitytag是否有变化。
+    * 为了使caching机制更加灵活，HTTP/1.1增加了Cache-Control头域（请求消息和响应消息都可使用），它支持一个可扩展的指令子集：例如max-age指令支持相对时间戳；private和no-store指令禁止对象被缓存；no-transform阻止Proxy进行任何改变响应的行为。
+    * Cache使用关键字索引在磁盘中缓存的对象，在HTTP/1.0中使用资源的URL作为关键字。但可能存在不同的资源基于同一个URL的情况，要区别它们还需要客户端提供更多的信息，如Accept-Language和Accept-Charset头域。为了支持这种内容协商机制(content negotiation mechanism)，HTTP/1.1在响应消息中引入了Vary头域，该头域列出了请求消息中需要包含哪些头域用于内容协商。
+- 节约带宽
+    * HTTP/1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了。例如，客户端只需要显示一个文档的部分内容，又比如下载大文件时需要支持断点续传功能，而不是在发生断连后不得不重新下载完整的包。
+    * HTTP/1.1中在请求消息中引入了range头域，它允许只请求资源的某个部分。在响应消息中Content-Range头域声明了返回的这部分对象的偏移值和长度。如果服务器相应地返回了对象所请求范围的内容，则响应码为206（Partial Content），它可以防止Cache将响应误以为是完整的一个对象。
+    * 另外一种情况是请求消息中如果包含比较大的实体内容，但不确定服务器是否能够接收该请求（如是否有权限），此时若贸然发出带实体的请求，如果被拒绝也会浪费带宽。
+    * HTTP/1.1加入了一个新的状态码100（Continue）。客户端事先发送一个只带头域的请求，如果服务器因为权限拒绝了请求，就回送响应码401（Unauthorized）；如果服务器接收此请求就回送响应码100，客户端就可以继续发送带实体的完整请求了。注意，HTTP/1.0的客户端不支持100响应码。但可以让客户端在请求消息中加入Expect头域，并将它的值设置为100-continue。
+    * 节省带宽资源的一个非常有效的做法就是压缩要传送的数据。Content-Encoding是对消息进行端到端（end-to-end）的编码，它可能是资源在服务器上保存的固有格式（如jpeg图片格式）；在请求消息中加入Accept-Encoding头域，它可以告诉服务器客户端能够解码的编码方式。
+    * 而Transfer-Encoding是逐段式（hop-by-hop）的编码，如Chunked编码。在请求消息中加入TE头域用来告诉服务器能够接收的transfer-coding方式
+- Host域
+    * 在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。
+    * HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。此外，服务器应该接受以绝对路径标记的资源请求。
+- 消息传递
+    * HTTP消息中可以包含任意长度的实体，通常它们使用Content-Length来给出消息结束标志。但是，对于很多动态产生的响应，只能通过缓冲完整的消息来判断消息的大小，但这样做会加大延迟。如果不使用长连接，还可以通过连接关闭的信号来判定一个消息的结束。
+    * HTTP/1.1中引入了Chunkedtransfer-coding来解决上面这个问题，发送方将消息分割成若干个任意大小的数据块，每个数据块在发送时都会附上块的长度，最后用一个零长度的块作为消息结束的标志。这种方法允许发送方只缓冲消息的一个片段，避免缓冲整个消息带来的过载。
+    * 在HTTP/1.0中，有一个Content-MD5的头域，要计算这个头域需要发送方缓冲完整个消息后才能进行。而HTTP/1.1中，采用chunked分块传递的消息在最后一个块（零长度）结束之后会再传递一个拖尾（trailer），它包含一个或多个头域，这些头域是发送方在传递完所有块之后再计算出值的。发送方会在消息中包含一个Trailer头域告诉接收方这个拖尾的存在。
+- 内容协商
+- 错误提示
+    * HTTP/1.0中只定义了16个状态响应码，对错误或警告的提示不够具体。HTTP/1.1引入了一个Warning头域，增加对错误或警告信息的描述。
+    * 此外，在HTTP/1.1中新增了24个状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。
+
+#### HTTP1.1与HTTP2.0的区别
+- 多路复用
+    * HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。
+    * 当然HTTP1.1也可以多建立几个TCP连接，来支持处理更多并发的请求，但是创建TCP连接本身也是有开销的。
+    * TCP连接有一个预热和保护的过程，先检查数据是否传送成功，一旦成功过，则慢慢加大传输速度。因此对应瞬时并发的连接，服务器的响应就会变慢。所以最好能使用一个建立好的连接，并且这个连接可以支持瞬时并发的请求。
+- 数据压缩
+    * 我们知道，http请求和响应都是由【状态行、请求/响应头部、消息主题】三部分组成的。 一般而言，消息主体都会经过gzip压缩，或者本身传输的就是压缩过后的二进制文件（如图片、音频等），但是状态行和头部多是没有经过任何压缩，而是直接以纯文本的方式进行传输的。
+    * 然而，随着web功能越来越复杂，请求数量越来越多，随之而来的就是头部的流量越来越多，并且在建立初次链接之后的链接也要发送user-agent等信息，是在是一种浪费。
+    * 因此，http2提出了对请求和响应的头部进行压缩，即不再只是压缩主题部分，这种压缩方式就是HAPCK 。
+    * 通过压缩，头部大小可以减少一半之多，如果后面重复发送请求，那么可能压缩后的头部大小只有原始大小的 1/10。
+    * HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。
+- 服务器推送
+    * 当代网页使用了许多资源:HTML、样式表、脚本、图片等等。在HTTP/1.x中这些资源每一个都必须明确地请求。这可能是一个很慢的过程。浏览器从获取HTML开始，然后在它解析和评估页面的时候，增量地获取更多的资源。因为服务器必须等待浏览器做每一个请求，网络经常是空闲的和未充分使用的。
+    * 为了改善延迟，HTTP/2引入了server push，它允许服务端推送资源给浏览器，在浏览器明确地请求之前。一个服务器经常知道一个页面需要很多附加资源，在它响应浏览器第一个请求的时候，可以开始推送这些资源。这允许服务端去完全充分地利用一个可能空闲的网络，改善页面加载时间。
+    * 服务器端推送的这些资源其实存在客户端的某处地方，客户端直接从本地加载这些资源就可以了，不用走网络，速度自然是快很多的。
+    * 在协议层，HTTP/2 server push被push_promise 帧所驱动，一个PUSH_PROMISE描述了一个请求，即服务端预测浏览器将马上要发出的请求。浏览器一收到PUSH_PROMISE，它马上知道服务端将要传输这个资源。如果浏览器后续发现它需要这个资源，它会等待这个推送完成，而不是发送一个新的请求。这减少了浏览器花费在网络等待上的时间 。
+
 ### 7.说一下传输控制协议 - TCP ?
 - TCP协议(Transport control Protocol)是一种面向连接的、可靠的、基于字节流的传输层通信协议。
 - TCP的工作原理
@@ -8041,6 +8784,167 @@ void func(dispatch_queue_t queue, dispatch_block_t block)
 - http是应用层协议，tcp是传输层。http使用tcp传输文本数据
 
 #### HTTP和UDP
+
+### 补充：TCP 协议如何保证可靠传输
+- 应用数据被分割成TCP最认为适合发送的数据块大小；
+- TCP 给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层；
+- 校验和： TCP将保持它首部和数据的检验和，这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP将丢弃这个报文段和不确认收到此报文段；
+- TCP 的接收端会丢弃重复的数据；
+- 流量控制： TCP连接的每一方都有固定大小的缓冲空间，TCP 接收端只允许发送端发送接收端缓冲区能接纳的数据。当接收方来不及处理发送方的数据时，能提示发送方降低发送的速率，防止包丢失。TCP 使用的流量控制协议是可变大小的滑动窗口协议 （ TCP 利用滑动窗口实现流量控制）；
+- 拥塞控制： 当网络拥塞时，减少数据的发送；
+- ARQ 协议： 也是为了实现可靠传输的，它的基本原理就是每发完一个分组就停止发送，并等待对方确认，在收到确认之后，再发下一个分组；
+- 超时重传： 当TCP发出一个段后，会启动一个定时器，等待目的端确认收到这个报文段，如果不能及时收到这个确认，那么将重发这个报文段。
+
+### 补充：说一下可靠数据传输、流量控制(滑动窗口)、拥塞控制
+#### 可靠数据传输
+- 网络层服务（IP服务）是不可靠的。IP不保证数据报的交付，不保证数据报的按序交付，也不保证数据报中数据的完整性。
+- TCP则是在IP服务上创建了一种可靠数据传输服务
+- TCP的可靠数据传输服务确保一个进程从其接收缓存中读出的数据流是无损坏、无间隔、无冗余、按序的数据流。即该字节流与连接的另一端发出的字节流是完全相同的。
+- 作为TCP接收方，有三个与发送和重传有关的主要事件
+
+##### 从上层应用数据接收数据
+- 将数据封装到一个报文段中，并把报文段交付给IP。每个报文段都包含一个序号Seq，即该报文段第一个数据字节的字节流编号。如果定时器还没有为其他报文段而运行，则启动定时器(即不是每条报文段都会启动一个定时器，而是一共只启动一个定时器)，定时器的过期间隔是TimeoutInterval是由EstimatedRTT和DevRTT计算得来的:TCP的往返时间的估计与超时
+
+##### 超时
+- TCP通过重传引起超时的报文段来响应超时事件，然后重启定时器。
+- 而发送端超时有两种情况：发送数据超时，接收端发送ACK超时。这两种情况都会导致发送端在TimeoutInterval内接收不到ACK确认报文段。
+    * 如果是发送数据超时，直接重传即可。
+    * 而如果是接收端发送ACK超时，这种情况接收端实际上已经接收到发送端的数据了。那么当发送端超时重传时，接收端会丢弃重传的数据，同时再次发送ACK。
+- 而如果在TimeoutInterval后接收到了ACK，会收下ACK，但不做任何处理
+- TCP不会为没有数据的ACK超时重传
+- 以下两种情况：
+    * 如果在发送两条或多条数据报文段都超时，那么只会重传序号最小的那个，并重启定时器。只要其余报文段的ACK在新重启的定时器超时前到达，就不会重传。
+    * 如果发送序号为100和120的两条数据报文段，序号100的ACK丢失，但收到了序号120的ACK，由于累积确认机制，可以得出接收方已经接收到了序号100的报文段，这种情况也不会去重传。
+
+##### 接收到ACK
+- 用TCP状态变量SendBase指最早未被确认的字节的序号。则SendBase-1指接收方已正确按序接收到的数据的最后一个字节的序号。
+- 当收到ACK确认报文段后，会将ACK的值Y与SendBase比较。TCP采用累计确认的方法，所以Y确认来字节编号在Y之前的所有字节都已经收到。如果Y比SendBase小，不用理会；而如果Y比SendBase大，则该ACK是在确认一个或多个先前未被确认的报文段，因此要更新SendBase变量，如果当前还有未被确认的报文段，TCP还要重启定时器。
+- 通过超时重传，能保证接收到的数据是无损坏、无冗余的数据流，但并不能保证按序。
+- 而通过TCP滑动窗口，能够有效保证接收数据有序
+
+#### 流量控制
+- TCP连接的双方主机都会为该TCP连接分配缓存和变量。当该TCP连接收到正确、按序的字节后，就将数据放入接收缓存。上层的应用进程会从该缓存中读取数据，但不必是数据一到达就立即读取，因为此时应用程序可能在做其他事务。而如果应用层读取数据相对缓慢，而发送方发送得太多、太快，发送的数据就会很容易地使该连接的接收缓存溢出。
+- 所以，TCP为应用程序提供了流量控制服务（flow-control service），以消除发送方使接收方缓存溢出的可能性。
+- 流量控制是一个速度匹配服务，即发送方的发送速率与接收方应用程序的读取速率相匹配。
+作为全双工协议，TCP会话的双方都各自维护一个发送窗口和一个接收窗口（receive window）的变量来提供流量控制。而发送窗口的大小是由对方接收窗口来决定的，接收窗口用于给发送方一个指示--该接收方还有多少可用的缓存空间。
+
+![image](https://upload-images.jianshu.io/upload_images/11034989-6d17c5078d1357de.png?imageMogr2/auto-orient/strip|imageView2/2/w/1000)
+
+##### 发送窗口
+- 发送方的发送缓存内的数据都可以被分为4类:
+    * 已发送，已收到ACK
+    * 已发送，未收到ACK
+    * 未发送，但允许发送
+    * 未发送，但不允许发送
+- 则2和3属于发送窗口，发送窗口只有收到发送窗口内字节的ACK确认，才会移动发送窗口的左边界
+
+##### 接收窗口
+- 接收方的缓存数据分为3类：
+    * 已接收
+    * 未接收但准备接收
+    * 未接收而且不准备接收
+- 则2 属于接收窗口（这里的接收指接收数据并确认）
+- 接收窗口只有在前面所有的报文段都确认的情况下才会移动左边界。当在前面还有字节未接收但收到后面字节的情况下，会先接收下来，接收窗口不会移动，并不对后续字节发送ACK确认报文，以此确保发送端会对这些数据重传。
+- 我们定义以下变量：
+    * LastByteRead：接收方应用程序读取的数据流的最后一个字节编号。可以得知，这是接收缓存的起点
+    * LastByteRcvd：从网络中到达的并且已放入接收缓存中的数据流的最后一个自己的的编号。
+    * 可以得知：LastByteRcvd - LastByteRead <= RcvBuffer(接收缓存大小)
+    * 那么接收窗口rwnd =RcvBuffer - （LastByteRcvd - LastByteRead）
+    * rwnd是随时间动态变化的，如果rwnd为0，则意味着接收缓存已经满了。
+    * 接收端在回复给发送端的ACK中会包含该rwnd，发送端则会根据ACK中的接收窗口的值来控制发送窗口。
+    * 有一个问题，如果当发送rwnd为0的ACK后，发送端停止发送数据。等待一段时间后，接收方应用程序读取了一部分数据，接收端可以继续接收数据，于是给发送端发送报文告诉发送端其接收窗口大小，但这个报文不幸丢失了，我们知道，不含数据的ACK是不会超时重传的，于是就出现发送端等待接收端的ACK通知||接收端等待发送端发送数据的死锁状态。
+    * 为了处理这种问题，TCP引入了持续计时器（Persistence timer），当发送端收到对方的rwnd=0的ACK通知时，就启用该计时器，时间到则发送一个1字节的探测报文，对方会在此时回应自身的接收窗口大小，如果结果仍未0，则重设持续计时器，继续等待。
+
+#### 拥塞控制
+- TCP除了可靠传输服务外，另一个关键部分就是拥塞控制。
+- TCP让每一个发送方根据所感知到的网络拥塞程度来限制其能向连接发送流量的速率。
+- 可能有三个疑问：
+    * TCP发送方如何感知网络拥塞？
+    * TCP发送方如何限制其向连接发送流量的速率？
+    * 发送方感知到网络拥塞时，采用何种算法来改变其发送速率？
+- 这就是TCP的拥塞控制机制。
+- 前边说到，TCP连接的每一端都是由一个接收缓存、一个发送缓存和几个变量（LastByteRead、LastByteRcvd、rwnd等）组成。而运行在发送方的TCP拥塞控制机制会跟踪一个额外的变量，即拥塞窗口cwnd（congestion window）。它对一个TCP发送方能向网络中发送流量的速率进行了限制。
+- 发送方中未被确认的数据量不会超过cwnd和rwnd的最小值:min(rwnd,cwnd)
+
+##### TCP发送方如何感知网络拥塞？
+- 冗余ACK（duplicate ACK）：就是再次确认某个报文段的ACK，而发送方先前已经收到对该报文段的确认。
+- 冗余ACK的产生原因：
+    * 当接收端接收到失序报文段时，即该报文段序号大于下一个期望的、按序的报文段，检测到数据流中的间隔，即由报文段丢失，并不会对该报文段确认。TCP不使用否定确认，所以不能向发送方发送显式的否定确认，为了使接收方得知这一现象，会对上一个按序字节数据进行重复确认，这也就产生了一个冗余ACK。
+    * 因为发送方经常发送大量的报文段，如果其中一个报文段丢失，可能在定时器过期前，就会收到大量的冗余ACK。一旦收到3个冗余ACK（3个以下很可能是链路层的乱序引起的，无需处理），说明在这个已被确认3次的报文段之后的报文段已经丢失，TCP就会执行快速重传，即在该报文段的定时器过期之前重传丢失的报文段。
+- 将TCP发送方的丢包事件定义为：要么出现超时，要么收到来自接收方的3个冗余ACK。
+- 当出现过度的拥塞时，路由器的缓存会溢出，导致一个数据报被丢弃。丢弃的数据报接着会引起发送方的丢包事件。那么此时，发送方就认为在发送方到接收方的路径上出现了网络拥塞。
+
+##### TCP发送方如何限制其向连接发送流量的速率？
+- 当出现丢包事件时：应当降低TCP发送方的速率。
+- 当对先前未确认报文段的确认到达时，即接收到非冗余ACK时，应当增加发送方的速率。
+
+##### 发送方感知到网络拥塞时，采用何种算法来改变其发送速率？
+- 即TCP拥塞控制算法（TCP congestion control algorithm）
+- 包括三个主要部分：慢启动、拥塞避免、快速恢复，其中快速恢复并非是发送方必须的，慢启动和拥塞避免则是TCP强制要求的
+    * 慢启动
+        * 当一条TCP连接开始时，拥塞窗口cwnd的值通常置为一个MSS的较小值，这就使初始发送速率大约为MSS/RTT（RTT：往返时延，报文段从发出到对该报文段的确认被接收之间的时间量）。
+        * 而对TCP发送方来说，可用带宽可能比MSS/RTT大得多,TCP发送方希望迅速找到可用带宽的数量。因此，在慢启动状态，cwnd以一个MSS的值开始并且每当收到一个非冗余ACK就增加一个MSS。
+        * 最初cwnd值为1MSS，发送一个报文段M1。收到M1的确认后，cwnd增加为2MSS，这时可以发送两个报文段M2，M3。收到这两个报文段的确认后，cwnd则增加为4MSS，可以发送四个报文段，以此类推...
+        * 因此，TCP虽然发送速率起始慢，但在慢启动阶段以指数增长。
+        * 这种指数增长很显然不是无限制的，那么何时结束呢？
+            * 如果出现丢包事件，TCP发送方将ssthresh（慢启动阈值）设置为cwnd/2
+            * 发生由超时引起的丢包事件，并将cwnd重置为1MSS，重启慢启动
+            * 当TCP发送方的cwnd值达到或超过ssthresh，再继续翻倍显然不合适。这时将结束慢启动转移到拥塞避免模式。
+            * TCP发送方检测到3个冗余ACK，会结束慢启动，并快速重传，即在该报文段的定时器过期之前重传丢失的报文段。且进入快速恢复状态。
+    * 拥塞避免
+        * 一旦进入拥塞避免状态，cwnd的值大约是上次遇到拥塞时的值的一半，即距离拥塞并不遥远。因此，TCP无法每过一个RTT就将cwnd翻倍。而是每个RTT只增加1MSS，即每收到一个非冗余ACK，就将cwnd增加1/cwnd。即假如此时cwnd为10MSS，则每收到一个非冗余ACK，cwnd就增加1/10MSS，在10个报文段都收到确认后，拥塞窗口的值就增加了1MSS。
+        * 那么何时结束拥塞避免的线性增长（每RTT 1MSS）呢？
+            * 和慢启动一样，如果出现丢包事件，TCP发送方将ssthresh（慢启动阈值）设置为cwnd/2（加法增大， 乘法减小）
+            * 发生由超时引起的丢包事件，拥塞避免和慢启动处理的方式相同。即TCP发送方将ssthresh（慢启动阈值）设置为cwnd/2，并将cwnd重置为1MSS，重启慢启动
+            * TCP发送方检测到3个冗余ACK，cwnd为原来的一半加上3MSS，进入快速恢复状态。
+    * 快速恢复
+        * 快速恢复是由3个冗余ACK引起的。
+        * 在快速恢复中，对引起TCP进入快速恢复状态的缺失报文段，对收到的每个冗余ACK，cwnd增加1个MSS。最终，当对丢失报文段的一个ACK到达时，TCP在降低cwnd后进入拥塞避免状态。
+        * 如果出现超时，和之前一样，即TCP发送方将ssthresh（慢启动阈值）设置为cwnd/2，并将cwnd重置为1MSS，重启慢启动
+        * 快速恢复并非是必须的。
+        * TCP的拥塞控制是：每个RTT内cwnd线性（加性增）增加1MSS，然后出现3个冗余ACK事件时cwnd减半（乘性减），因此TCP拥塞控制常被称为加性增，乘性减拥塞控制方式。
+
+### 补充：TCP 的拥塞控制主要是四个算法
+- TCP 的拥塞控制主要是四个算法：1）慢启动；2）拥塞避免；3）拥塞发生；4）快速恢复。
+- 慢启动算法
+    * 慢启动的算法如下(cwnd 全称 Congestion Window)：
+        * 连接建好的开始先初始化 cwnd = 1，表明可以传一个 MSS（Max Segment Size）大小的数据。
+        * 每当收到一个 ACK，cwnd++; 呈线性上升。
+        * 每当过了一个 RTT，cwnd = cwnd*2; 呈指数上升。
+        * 还有一个 ssthresh（slow start threshold），是一个上限，当 cwnd >= ssthresh 时，就会进入「拥塞避免算法」。
+    * 所以，我们可以看到，如果网速很快的话，ACK 也会返回得快，RTT 也会短，那么，这个慢启动就一点也不慢。
+- 拥塞避免算法
+    * 前面说过，还有一个 ssthresh（slow start threshold），是一个上限，当 cwnd >= ssthresh 时，就会进入拥塞避免算法。一般来说 ssthresh 的值是 65535 字节，当 cwnd 达到这个值时后，算法如下：
+        * 收到一个 ACK 时，cwnd = cwnd + 1/cwnd。
+        * 当每过一个 RTT 时，cwnd = cwnd + 1。
+    * 这样就可以避免增长过快导致网络拥塞，慢慢的增加调整到网络的最佳值。很明显，是一个线性上升的算法。
+- 拥塞状态时的算法
+    * 当丢包的时候，会有两种情况：
+        * 等到 RTO 超时，重传数据包。TCP 认为这种情况太糟糕，反应也很强烈。
+            * sshthresh = cwnd/2。
+            * cwnd 重置为 1。
+            * 进入慢启动过程。
+        * 快速重传（Fast Retransmit）算法，也就是在收到 3 个 duplicate ACK 时就开启重传，而不用等到 RTO 超时。
+            * TCP Tahoe 的实现和 RTO 超时一样。
+            * TCP Reno的实现是：
+                * cwnd = cwnd/2。
+                * sshthresh = cwnd。
+                * 进入快速恢复算法（Fast Recovery）。
+    * 上面我们可以看到 RTO 超时后，sshthresh 会变成 cwnd 的一半，这意味着，如果 cwnd<=sshthresh 时出现的丢包，那么 TCP 的 sshthresh 就会减了一半，然后等 cwnd 又很快地以指数级增涨爬到这个地方时，就会成慢慢的线性增涨。我们可以看到，TCP 是怎么通过这种强烈地震荡快速而小心得找到网站流量的平衡点的。
+- 快速恢复算法
+    * TCP Reno 这个算法定义在 RFC5681。快速重传和快速恢复算法一般同时使用。快速恢复算法是认为，你还有 3 个 Duplicated Acks 说明网络也不那么糟糕，所以没有必要像 RTO 超时那么强烈。注意，正如前面所说，进入 Fast Recovery 之前，cwnd 和 sshthresh 已被更新：
+        * cwnd = cwnd /2
+        * sshthresh = cwnd
+    * 然后，真正的 Fast Recovery 算法如下：
+        * cwnd = sshthresh + 3 * MSS （3 的意思是确认有 3 个数据包被收到了）。
+        * 重传 Duplicated ACKs 指定的数据包。
+        * 如果再收到 duplicated ACKs，那么 cwnd = cwnd + 1。
+        * 如果收到了新的 ACK，那么 cwnd = sshthresh，然后就进入了拥塞避免的算法了。
+- 如果你仔细思考一下上面的这个算法，你就会知道，上面这个算法也有问题，那就是它依赖于 3 个重复的 ACKs。注意，3 个重复的 ACKs 并不代表只丢了一个数据包，很有可能是丢了好多包。但这个算法只会重传一个，而剩下的那些包只能等到 RTO 超时。于是，进入了恶梦模式：超时一个窗口就减半一下。多个超时会超成 TCP 的传输速度呈级数下降，而且也不会触发 Fast Recovery 算法了。
+- 1995 年，TCP New Reno（参见 RFC 6582 ）算法提出来，主要就是在没有 SACK 的支持下改进 Fast Recovery 算法：
+    * 当 sender 这边收到了 3 个 Duplicated ACKs，进入 Fast Retransimit 模式，开发重传重复 ACKs 指示的那个包。如果只有这一个包丢了，那么，重传这个包后回来的 ACK 会把整个已经被 sender 传输出去的数据 ACK 回来。如果没有的话，说明有多个包丢了。我们叫这个 ACK 为 Partial ACK。
+    * 一旦 Sender 这边发现了 Partial ACK 出现，那么，sender 就可以推理出来有多个包被丢了，于是乎继续重传 sliding window 里未被 ack 的第一个包。直到再也收不到了 Partial ACK，才真正结束 Fast Recovery 这个过程。
+    * 这个 Fast Recovery 的变更是一个非常激进的玩法，他同时延长了 Fast Retransmit 和 Fast Recovery 的过程。
 
 ### 10.简要说一下Https；
 ### 11.HTTPS的原理
@@ -8782,6 +9686,28 @@ tips: 因为我们处理时的思路一般先拦截请求，然后对请求进�
 ### 46.使用异步请求的方式抓取一个网站的内容，请考虑超时，状态码的异常情况（请用原生API或者Socket/Cocoa Socket）
 ### 47.在网络请求中，如何处理网络网速慢，网络中断、网络抖动等等网络问题？
 ### 48.说说点击一个按钮后打开一个web页面从发送网络请求到页面展示都做了啥
+- DNS解析
+- TCP连接
+- 发送HTTP请求
+- 服务器处理请求并返回HTTP报文
+- 浏览器解析渲染页面
+- 连接结束
+- 具体过程：
+    * HTTP请求阶段：向服务器发送请求
+        * 浏览器首先向 DNS域名解析服务器发送请求
+        * DNS 反解析：根据浏览器请求地址中的域名，到 DNS 服务器中找到对应的服务器外网 IP 地址
+        * 通过外网 IP 向对应服务器发送请求（首先访问的服务器 Web 站点管理工具，准确来说先基于工具在服务器上面创建很多服务，当有客户访问的时候，服务器会匹配出具体是请求哪个服务 ）
+        * 通过 URL 中携带的端口号找到服务器上对应的服务，以及服务所管理的项目源文件
+    * HTTP相应阶段：服务端把客户端需要的内容准备好，并且响应给客户
+        * 服务器端根据请求地址中路径名称，问号传参或者哈希值，把客户端需要的内容进行准备和处理
+        * 把准备的内容响应给客户端（如果请求的是 html 或 css 等这样的资源文件，服务器返回的是资源文件中的源代码[不是文件本身]）
+    * 浏览器渲染阶段
+        * 客户端浏览器接收到服务器返回代码，基于自己渲染引擎开始进行绘制和渲染
+            * 首先计算 DOM 结构，生成 DOM TREE
+            * 自上而下运行代码，加载 CSS 等资源内容
+            * 根据获取的 CSS 生成带样式的 RENDER TREE
+            * 开始渲染
+
 ### 49.为什么能通过一个URL就能请求到对应的资源（域名解析等）
 ### 50.如果客户端上有个按钮，点击会触发一次网络请求，在短时间内快速点击，怎么处理（从客户端以及服务端角度思考）
 ### 51.判断一个字符串是不是ipv6地址（要求尽全力的考虑所有异常的情况）
@@ -9822,6 +10748,8 @@ NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
 
 ## 项目架构
 ### 1.什么是 MVC?
+![image](https://upload-images.jianshu.io/upload_images/1653926-9abf7d3219aa5b1c.png?imageMogr2/auto-orient/strip|imageView2/2/w/974)
+
 - 视图（View）：用户界面。
 - 控制器（Controller）：业务逻辑
 - 模型（Model）：数据保存
@@ -9829,9 +10757,51 @@ NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
     * View 传送指令到 Controller
     * Controller 完成业务逻辑后，要求 Model 改变状态
     * Model 将新的数据发送到 View，用户得到反馈
-
+- MVC的弊端
+    * 厚重的View Controller
+        * M：模型model的对象通常非常的简单。根据Apple的文档，model应包括数据和操作数据的业务逻辑。而在实践中，model层往往非常薄，不管怎样，model层的业务逻辑不应被拖入到controller。
+        * V：视图view通常是UIKit控件（component，这里根据习惯译为控件）或者编码定义的UIKit控件的集合。View的如何构建（PS：IB或者手写界面）何必让Controller知晓，同时View不应该直接引用model（PS：现实中，你懂的！），并且仅仅通过IBAction事件引用controller。业务逻辑很明显不归入view，视图本身没有任何业务。
+        * C：控制器controller。Controller是app的“胶水代码”：协调模型和视图之间的所有交互。控制器负责管理他们所拥有的视图的视图层次结构，还要响应视图的loading、appearing、disappearing等等，同时往往也会充满我们不愿暴露的model的模型逻辑以及不愿暴露给视图的业务逻辑。网络数据的请求及后续处理，本地数据库操作，以及一些带有工具性质辅助方法都加大了Massive View Controller的产生。
+    * 遗失（无处安放）的网络逻辑
+        * 苹果使用的MVC的定义是这么说的：所有的对象都可以被归类为一个model，一个view，或是一个controller。
+        * 你可能试着把它放在Model对象里，但是也会很棘手，因为网络调用应该使用异步，这样如果一个网络请求比持有它的model生命周期更长，事情将变的复杂。显然View里面做网络请求那就更格格不入了，因此只剩下Controller了。若这样，这又加剧了Massive View Controller的问题。若不这样，何处才是网络逻辑的家呢？
+    * 较差的可测试性
+        * 由于View Controller混合了视图处理逻辑和业务逻辑，分离这些成分的单元测试成了一个艰巨的任务。
 
 ### 2.什么是 MVVM?
+- 一种可以很好地解决Massive View Controller问题的办法就是将 Controller 中的展示逻辑抽取出来，放置到一个专门的地方，而这个地方就是 viewModel 。MVVM衍生于MVC，是对 MVC 的一种演进，它促进了 UI 代码与业务逻辑的分离。它正式规范了视图和控制器紧耦合的性质，并引入新的组件。他们之间的结构关系如下：
+
+![image](https://upload-images.jianshu.io/upload_images/1653926-7ed45d1af126df79.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+
+- MVVM 的基本概念
+    * 在MVVM 中，view 和 view controller正式联系在一起，我们把它们视为一个组件
+    * view 和 view controller 都不能直接引用model，而是引用视图模型（viewModel）
+    * viewModel 是一个放置用户输入验证逻辑，视图显示逻辑，发起网络请求和其他代码的地方
+    * 使用MVVM会轻微的增加代码量，但总体上减少了代码的复杂性
+- MVVM 的注意事项
+    * view 引用viewModel ，但反过来不行（即不要在viewModel中引入#import UIKit.h，任何视图本身的引用都不应该放在viewModel中）
+    * viewModel 引用model，但反过来不行* MVVM 的使用建议
+    * MVVM 可以兼容你当下使用的MVC架构。
+    * MVVM 增加你的应用的可测试性。
+    * MVVM 配合一个绑定机制效果最好
+    * viewController 尽量不涉及业务逻辑，让 viewModel 去做这些事情。
+    * viewController 只是一个中间人，接收 view 的事件、调用 viewModel 的方法、响应 viewModel 的变化。
+    * viewModel 绝对不能包含视图 view（UIKit.h），不然就跟 view 产生了耦合，不方便复用和测试。
+    * viewModel之间可以有依赖。
+    * viewModel避免过于臃肿，否则重蹈Controller的覆辙，变得难以维护。
+- MVVM 的优势
+    * 低耦合：View 可以独立于Model变化和修改，一个 viewModel 可以绑定到不同的 View 上
+    * 可重用性：可以把一些视图逻辑放在一个 viewModel里面，让很多 view 重用这段视图逻辑
+    * 独立开发：开发人员可以专注于业务逻辑和数据的开发 viewModel，设计人员可以专注于页面设计
+    * 可测试：通常界面是比较难于测试的，而 MVVM 模式可以针对 viewModel来进行测试
+- MVVM 的弊端
+    * 数据绑定使得Bug 很难被调试。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问题。数据绑定使得一个位置的 Bug 被快速传递到别的位置，要定位原始出问题的地方就变得不那么容易了。
+    * 对于过大的项目，数据绑定和数据转化需要花费更多的内存（成本）。主要成本在于：
+        * 数组内容的转化成本较高：数组里面每项都要转化成Item对象，如果Item对象中还有类似数组，就很头疼。
+        * 转化之后的数据在大部分情况是不能直接被展示的，为了能够被展示，还需要第二次转化。
+        * 只有在API返回的数据高度标准化时，这些对象原型（Item）的可复用程度才高，否则容易出现类型爆炸，提高维护成本。
+    * 调试时通过对象原型查看数据内容不如直接通过NSDictionary/NSArray直观。
+    * 同一API的数据被不同View展示时，难以控制数据转化的代码，它们有可能会散落在任何需要的地方。
 - MVVM 模式将 Presenter改名为ViewModel，基本上与 MVP 模式完全一致。
 - 唯一的区别是，它采用双向绑定（data-binding）：View的变动，自动反映在 ViewModel，反之亦然。
 - MVVM的优势就是，任务均摊每部分都承担各自的责任，结构清晰更加符合软件设计原则
@@ -10166,6 +11136,541 @@ fmdb（iOS平台的SQLite数据库框架）
 
 ## WebView
 ### 1.说一下 JS 和 OC 互相调用的几种方式？
+#### UIWebView 拦截 URL
+##### JS 调用原生 OC
+- 我们可以利用 JS 发起一个假的 URL 请求，然后利用UIWebView的代理方法拦截这次请求，然后再做相应的处理。
+
+```
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL * url = [request URL];
+    if ([[url scheme] isEqualToString:@"firstclick"]) {  // firstClick://shareClick?title=分享的标题&content=分享的内容&url=链接地址&imagePath=图片地址
+        NSArray *params = [url.query componentsSeparatedByString:@"&"];
+        
+        NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
+        NSMutableString *strM = [NSMutableString string];
+        for (NSString *paramStr in params) {
+            NSArray *dictArray = [paramStr componentsSeparatedByString:@"="];
+            if (dictArray.count > 1) {
+                NSString *decodeValue = [dictArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                decodeValue = [decodeValue stringByRemovingPercentEncoding];
+                [tempDict setObject:decodeValue forKey:dictArray[0]];
+                [strM appendString:decodeValue];
+            }
+        }
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这是OC原生的弹出窗" message:strM delegate:self cancelButtonTitle:@"收到" otherButtonTitles:nil];
+        [alertView show];
+        NSLog(@"tempDic:%@",tempDict);
+        return NO;
+    }
+    return YES;
+}
+```
+- 相关问题：
+    * 为什么定义一个loadURL方法，不直接使用window.location.href?
+        * 因为如果当前网页正在使用window.location.href加载网页的同时，调用window.location.href去调用 OC 原生方法，会导致加载网页的操作被取消掉。同样的，如果连续使用window.location.href执行两次 OC 原生调用，也有可能导致第一次的操作被取消掉。所以我们使用自定义的loadURL，来避免这个问题。
+    * 为什么 loadURL 中的链接，使用统一的 scheme？
+        * 便于在 OC 中做拦截处理，减少在 JS 中调用一些 OC 没有实现的方法时，webView 做跳转。我再 OC 拦截 URL 时，根据 scheme即(firstclick）来区分是调用原生的方法还是正常的网页跳转。然后根据host（即//后面的部分shareClick）来区分执行什么操作。
+    * 为什么自定义一个asyncAlert方法？
+        * 因为有的 JS 调用是需要 OC 返回结果到 JS 的。stringByEvaluatingJavaScriptFromString是一个同步方法，会等待js方法执行完成。而弹出的alert也会阻塞界面等待用户响应，所以他们可能会造成死锁。导致 alert 卡死界面。如果回调的JS是一个耗时操作，那么建议将耗时的操作也放入setTimeout的function中。
+> 1.JS中的firstClick,在拦截到的url scheme全都被转化为小写。
+2.html 中需要设置编码，否则中文参数可能会出现编码问题。
+3.JS用打开一个iFrame的方式替代直接用document.location的方式，以避免多次请求，被替换覆盖的问题。
+
+##### OC 调用 JS
+
+```
+NSString *jsStr = [NSString stringWithFormat:@"showAlert('%@')",@"这里是JS中alert弹出的message"];
+[self.webView stringByEvaluatingJavaScriptFromString:jsStr];
+```
+
+- ==注意：该方法会同步返回一个字符串，因此是一个同步方法，可能会阻塞主线程。==
+- 在 html 文件中
+
+```
+function showAlert(message) {
+  alert(message);
+}
+```
+
+#### WKWebView拦截 URL
+##### JS调用 OC
+- 使用WKNavigationDelegate中的代理方法，拦截自定义的 URL 来实现 JS 调用 OC 方法。
+
+```
+#pragma mark - WKNavigationDelegate
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURL *URL = navigationAction.request.URL;
+    NSString *scheme = [URL scheme];
+    if ([scheme isEqualToString:@"haleyaction"]) {
+        [self handleCustomAction:URL];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
+```
+- ==注意点：如果实现了这个代理方法，就必须得调用decisionHandler这个 block，否则会导致 app 奔溃。block 参数是一个枚举值，WKNavigationActionPolicyCancel代表取消加载，相当于UIWebView的代理方法return NO的情况；WKNavigationActionPolicyAllow代表允许加载，相当于UIWebView的代理方法中 return YES的情况。==
+- 关于如何区分执行不同的OC方法，也与UIWebView的处理方式一样,通过URL的host来区分执行不同的方法：
+
+```
+#pragma mark - dealwith custom action
+
+- (void)handleCustomAction:(NSURL *)URL {
+    NSString *host = [URL host];
+    
+    if ([host isEqualToString:@"shareClick"]) {
+        [self share:URL];
+    } else if ([host isEqualToString:@"getLocation"]) {
+        [self getLocation:URL];
+    } else if ([host isEqualToString:@"setBGColor"]) {
+        [self setBGColor:URL];
+    } else if ([host isEqualToString:@"payAction"]) {
+        [self payAction:URL];
+    } else if ([host isEqualToString:@"shake"]) {
+        [self shakeAction];
+    } else if ([host isEqualToString:@"back"]) {
+        [self goBack];
+    }
+}
+```
+##### OC 调用 JS 方法
+- JS 调用OC 方法后，有的操作可能需要将结果返回给JS。这时候就是OC 调用JS 方法的场景。
+- WKWebView 提供了一个新的方法evaluateJavaScript:completionHandler:，实现OC 调用JS 等场景。
+
+```
+- (void)getLocation:(NSURL *)URL {
+    // 获取位置信息
+    NSLog(@"原生获取位置信息操作");
+    
+    // 将结果返回给 JS
+    NSString *jsStr = [NSString stringWithFormat:@"setLocation('%@')",@"广东省广州市白云区豪泉大厦"];
+    [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSLog(@"%@----%@",result, error);
+    }];
+}
+```
+- ==注意点：evaluateJavaScript:completionHandler:没有返回值，JS执行成功还是失败会在completionHandler 中返回。所以使用这个API就可以避免执行耗时的JS，或者alert 导致界面卡住的问题。==
+
+#### JavaScriptCore （UIWebView）
+##### JS 调用原生 OC
+- 在iOS 7之后，apple添加了一个新的库JavaScriptCore，用来做JS交互，因此JS与原生OC交互也变得简单了许多。
+- 首先导入JavaScriptCore库,然后在OC中获取JS的上下文。
+
+```
+JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+```
+- 再然后定义好JS需要调用的方法，例如JS要调用share方法：则可以在UIWebView加载url完成后，在其代理方法中添加要调用的share方法：
+
+```
+- (void)setupData {
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    //定义好JS要调用的方法, share就是调用的share方法名
+    context[@"share"] = ^() {
+        NSLog(@"+++++++Begin Log+++++++");
+        NSArray *args = [JSContext currentArguments];
+        NSMutableString *strM = [NSMutableString string];
+        for (JSValue *jsVal in args) {
+            NSLog(@"%@", jsVal.toString);
+            [strM appendString:jsVal.toString];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这是OC原生的弹出窗" message:strM delegate:self cancelButtonTitle:@"收到" otherButtonTitles:nil];
+            [alertView show];
+        });
+        
+        
+        NSLog(@"-------End Log-------");
+    };
+}
+```
+##### OC 调用 JS
+- OC 调用 JS 方法有多种，首先介绍使用JavaScriptCore框架的方式。
+- 方式一：使用JSContext 的方法-evaluateScript，可以实现 OC 调用 JS 方法
+
+```
+// 法一
+- (void)transferJS {
+    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    NSString *textJS = @"showAlert('这里是JS中alert弹出的message')";
+    [context evaluateScript:textJS];
+}
+
+// 法二
+- (void)transferJS {
+    NSString *textJS = @"showAlert('这里是JS中alert弹出的message')";
+    [[JSContext currentContext] evaluateScript:textJS];
+}
+```
+- 方式二：使用 JSValue 的方法-callWithArguments，也可以实现 OC 调用 JS 方法
+
+```
+JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+[context[@"showAlert"] callWithArguments:@[@"这里是JS中alert弹出的message"]];
+```
+
+#### MessageHandler(WKWebView)
+- 使用WKWebView的时候，如果想要实现JS调用OC方法，除了拦截URL之外，还有一种简单的方式。那就是利用WKWebView的新特性MessageHandler来实现JS调用原生方法。
+##### 怎么使用MessageHandler？
+- 创建WKWebViewConfiguration对象，配置各个API对应的MessageHandler。
+- WKUserContentController对象可以添加多个scriptMessageHandler。
+- 然后在界面即将显示的时候添加MessageHandler
+
+```
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // addScriptMessageHandler 很容易导致循环引用
+    // 控制器 强引用了WKWebView,WKWebView copy(强引用了）configuration， configuration copy （强引用了）userContentController
+    // userContentController 强引用了 self （控制器）
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"ScanAction"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"Location"];
+    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"Share"];
+}
+```
+- 需要注意的是addScriptMessageHandler很容易引起循环引用，导致控制器无法被释放，所以需要移除MessageHandler
+
+```
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // 因此这里要记得移除handlers
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"ScanAction"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"Location"];
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"Share"];
+}
+```
+##### 实现协议方法 - JS调用 OC
+- 这里实现了两个协议<WKUIDelegate,WKScriptMessageHandler>，WKUIDelegate是因为我在JS中弹出了alert 。WKScriptMessageHandler是因为我们要处理JS调用OC方法的请求。
+
+```
+#pragma mark - WKScriptMessageHandler
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    // message.body  --  Allowed types are NSNumber, NSString, NSDate, NSArray,NSDictionary, and NSNull.
+    if ([message.name isEqualToString:@"ScanAction"]) {
+        [self scanAction];
+    } else if ([message.name isEqualToString:@"Location"]) {
+        [self getLocation];
+    } else if ([message.name isEqualToString:@"Share"]) {
+        [self shareWithParams:message.body];
+    }
+}
+```
+- WKScriptMessage有两个关键属性name 和 body。
+- 因为我们给每一个OC方法取了一个name，那么我们就可以根据name 来区分执行不同的方法。body 中存着JS 要给OC 传的参数。
+- 关于参数body的解析，我就举一个body中放字典的例子，其他的稍后可以看demo。
+解析JS 调用OC 实现分享的参数：
+
+```
+- (void)shareWithParams:(NSDictionary *)params {
+    if (![params isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+    NSString *title = [params objectForKey:@"title"];
+    NSString *content = [params objectForKey:@"content"];
+    NSString *url = [params objectForKey:@"url"];
+    
+    // 在这里执行分享的操作
+    NSLog(@"在这里执行分享的操作");
+    
+    // 将分享结果返回给js
+    NSString *jsStr = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
+    [self.webView evaluateJavaScript:jsStr completionHandler:^(id result, NSError *error) {
+        NSLog(@"%@----%@",result, error);
+    }];
+}
+```
+- message.boby就是JS里传过来的参数。我们不同的方法先做一下容错性判断。然后正常取值就可以了。
+
+##### 处理HTML中JS调用
+
+```
+// 传字典              
+function shareClick(){
+  window.webkit.messageHandlers.Share.postMessage({title:'测试分享的标题',content:'测试分享的内容',url:'http://www.baidu.com'});
+}
+
+function shareResult(channel_id,share_channel,share_url) {
+    var content = channel_id+","+share_channel+","+share_url;
+    asyncAlert(content);
+    document.getElementById("returnValue").value = content;
+}
+            
+function asyncAlert(content) {
+    setTimeout(function(){
+        alert(content);
+    },1);
+}
+```
+##### OC调用JS
+- 这里使用WKWebView实现OC调用JS方法与之前说的文章一样，通过- evaluateJavaScript:completionHandler:
+
+```
+// 将分享结果返回给js
+NSString *jsStr = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
+[self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+    NSLog(@"%@----%@",result, error);
+}];
+```
+##### 使用MessageHandler的好处
+- 1.在JS中写起来简单，不用再用创建URL的方式那么麻烦了。
+- 2.JS传递参数更方便。使用拦截URL的方式传递参数，只能把参数拼接在后面，如果遇到要传递的参数中有特殊字符，如&、=、？等，必须得转换，否则参数解析肯定会出错。
+
+#### WebViewJavascriptBridge(UIWebView)
+##### 第一步，使用Pods 将WebViewJavascriptBridge库添加到工程中。
+##### 第二步，创建UIWebView和WebViewJavascriptBridge示例
+
+```
+#import <WebViewJavascriptBridge.h>
+
+@interface WebBridgeViewController ()
+/** webView */
+@property(nonatomic, strong)UIWebView *webView;
+/** bridge */
+@property(nonatomic, strong)WebViewJavascriptBridge *webViewBridge;
+
+@end
+```
+- 创建UIWebVIew
+
+```
+- (void)drawUI {
+    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.webView];
+    
+    NSURL *htmlURL = [[NSBundle mainBundle] URLForResource:@"index.html" withExtension:nil];
+    NSURLRequest *request = [NSURLRequest requestWithURL:htmlURL];
+    
+    // UIWebView 滚动的比较慢，这里设置为正常速度
+    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+    [self.webView loadRequest:request];
+}
+```
+> 这里不需要为UIWebViews设置代理，因为在创建WebViewJavascriptBridge的时候，UIWebView的代理已经被赋值给了WebViewJavascriptBridge。
+
+- 创建WebViewJavascriptBridge
+    * 因为WebViewJavascriptBridge实例，在控制器中多个地方用到，因此最好定义一个property或者实例变量存起来。
+
+```
+// WebViewJavascriptBridge
+self.webViewBridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
+[self.webViewBridge setWebViewDelegate:self];
+```
+- 然后看看bridgeForWebView:方法是如何实现的
+
+```
++ (instancetype)bridgeForWebView:(id)webView {
+    return [self bridge:webView];
+}
++ (instancetype)bridge:(id)webView {
+#if defined supportsWKWebView
+    if ([webView isKindOfClass:[WKWebView class]]) {
+        return (WebViewJavascriptBridge*) [WKWebViewJavascriptBridge bridgeForWebView:webView];
+    }
+#endif
+    if ([webView isKindOfClass:[WVJB_WEBVIEW_TYPE class]]) {
+        WebViewJavascriptBridge* bridge = [[self alloc] init];
+        [bridge _platformSpecificSetup:webView];
+        return bridge;
+    }
+    [NSException raise:@"BadWebViewType" format:@"Unknown web view type."];
+    return nil;
+}
+```
+- 其实{-bridgeForWebView }内部先去判断当前使用的是 WKWebView 还是 UIWebView，然后再分别初始化了一个WebViewJavascriptBridge对象，并为其实例变量_webView 和 _base赋值。
+
+##### 第三步，注册js 要调用的Native 功能。
+
+```
+- (void)registerNativeFunctions {
+    [self registShareFunction];
+    
+    [self registLocationFunction];
+    
+    [self registPayFunction];
+}
+
+- (void)registShareFunction {
+    [self.webViewBridge registerHandler:@"shareClick" handler:^(id data, WVJBResponseCallback responseCallback) {
+        // data 的类型与 JS中传的参数有关
+        NSDictionary *tempDic = data;
+        // 在这里执行分享的操作
+        NSString *title = [tempDic objectForKey:@"title"];
+        NSString *content = [tempDic objectForKey:@"content"];
+        NSString *url = [tempDic objectForKey:@"url"];
+        NSLog(@"JS 传递给 OC 的参数:%@",[NSString stringWithFormat:@"分享成功:%@,%@,%@",title,content,url]);
+        
+        // 将分享的结果返回到JS中
+        NSString *result = [NSString stringWithFormat:@"分享成功:%@,%@,%@",title,content,url];
+        responseCallback(result);
+    }];
+}
+```
+- - (void)registerHandler:(NSString *)handlerName handler:(WVJBHandler)handler 该方法由两个参数：第一个参数handlerName，是对这个功能起的一个别名。第二个参数handler，是一个block，也就是 Native 实现的功能。JS 要调用的 Native 实现其实就是 block 内{}内的代码功能。
+- 为了便于维护，我们可以将JS要调用的Native方法都集中到一起，然后单个功能再封装一个方法。
+
+##### 第四步，完成 HTML 必要的 JS 代码
+- HTML 中有一个必须要添加的JS方法，然后需要自动调用一次该方法。该方法是：
+
+```
+function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+    window.WVJBCallbacks = [callback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+}
+```
+- 上面这个方法的参数是一个function，这个方法的作用主要是在第一次加载HTML的时候起作用，目的是加载一次wvjbscheme://__BRIDGE_LOADED__，来触发往HTML中注入一些已经写好的JS方法。
+- 看看上面的方法与下面这个是不是很相似：
+
+```
+function loadURL(url) {
+    var iFrame;
+    iFrame = document.createElement("iframe");
+    iFrame.setAttribute("src", url);
+    iFrame.setAttribute("style", "display:none;");
+    iFrame.setAttribute("height", "0px");
+    iFrame.setAttribute("width", "0px");
+    iFrame.setAttribute("frameborder", "0");
+    document.body.appendChild(iFrame);
+    // 发起请求后这个iFrame就没用了，所以把它从dom上移除掉
+    iFrame.parentNode.removeChild(iFrame);
+    iFrame = null;
+}
+```
+- 添加完setupWebViewJavascriptBridge方法，需要在JS中主动调用一次该方法：
+
+```
+setupWebViewJavascriptBridge(function(bridge) {
+     bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+        alert('JS方法被调用:'+data);
+        responseCallback('js执行过了');
+     })
+})
+```
+- Native 需要调用的 JS 功能，也是需要先注册，然后再执行的。如果Native 需要调用的JS 功能有多个，那么这些功能都要在这里先注册，注册之后才能够被Native 调用。
+接下来需要好好分析一下JS 中这个方法的作用了。
+- 以下是分析的重点
+    * 首先调用setupWebViewJavascriptBridge，第一次执行的时候，由于window.WebViewJavascriptBridge和window.WVJBCallbacks都不存在，所以会继续往下执行，将参数callback（它是一个function）装进数组赋值给window.WVJBCallbacks。
+    * js 支持动态添加属性并赋值，这里window.WVJBCallbacks=[callback];就是动态添加属性，并赋值。 另外js中的全局变量都可以使用window.xxxx来调用;动态添加的属性也可以不加window.，直接使用
+    * WebViewJavascriptBridge 帮助JS调用Native的url 有两种，一种是wvjbscheme://__BRIDGE_LOADED__；而另一种是wvjbscheme://__WVJB_QUEUE_MESSAGE__。前者只有在调用setupWebViewJavascriptBridge的时候执行一次，一般来说这个url 如果没有页面应该只会执行一次。第二种url所有js调用Native 功能时，都会使用到。
+    * 在拦截到自定义的url 时，WebViewJavascriptBridge分了三种情况。
+3.1 如果是wvjbscheme://__BRIDGE_LOADED__,就往HMTL 中注入已经写好的js，这个js 在WebViewJavascriptBridge_JS中；
+3.2 如果是wvjbscheme://__WVJB_QUEUE_MESSAGE__,那就利用stringByEvaluatingJavaScriptFromString，取回调用js中callHandler传进去的参数。
+然后再从WebViewJavascriptBridge之前保存的Native 方法对应的block，调用对应的block。
+
+##### 第五步，调用 Native 功能
+- 利用之前注入的JS方法callHandler就可以调用Native 功能了。
+- 示例代码如下：
+
+```
+function shareClick() {
+    var params = {'title':'测试分享的标题','content':'测试分享的内容','url':'http://www.baidu.com'};
+    WebViewJavascriptBridge.callHandler('shareClick',params,function(response) {
+         alert(response);
+        document.getElementById("returnValue").value = response;
+     });
+}
+```
+- 这里callHandler前的WebViewJavascriptBridge,其实就是上一步注入到JS中的代码中，动态创建属性，动态赋值的属性。如下代码片段可以在WebViewJavascriptBridge_JS中找到。
+
+```
+window.WebViewJavascriptBridge = {
+  registerHandler: registerHandler,
+  callHandler: callHandler,
+  disableJavscriptAlertBoxSafetyTimeout: disableJavscriptAlertBoxSafetyTimeout,
+  _fetchQueue: _fetchQueue,
+  _handleMessageFromObjC: _handleMessageFromObjC
+ };
+```
+- 而callHandler 内部调用了另一个js function _doSend,而_doSend内部其实，就是把handlerName和 参数data，再加上callbackId 装成键值对，然后保存到数组sendMessageQueue，同时加载一次wvjbscheme://__WVJB_QUEUE_MESSAGE__。
+到此 利用WebViewJavascriptBridge实现JS 调用iOS Native 就完成了。
+
+##### 第六步，Native 调用 JS 功能
+- Native 调用js 的功能，也需要先在js 中为要调用的功能注册一个别名。
+- js 注册Native 要调用的功能
+
+```
+setupWebViewJavascriptBridge(function(bridge) {
+     bridge.registerHandler('testJSFunction', function(data, responseCallback) {
+        alert('JS方法被调用:'+data);
+        responseCallback('js执行过了');
+     })
+    // 注册其他的功能
+    //bridge.regsiterHandler.....
+})
+```
+- Native 调用功能的别名handlerName
+
+```
+//    // 如果不需要参数，不需要回调，使用这个
+//    [_webViewBridge callHandler:@"testJSFunction"];
+//    // 如果需要参数，不需要回调，使用这个
+//    [_webViewBridge callHandler:@"testJSFunction" data:@"一个字符串"];
+    // 如果既需要参数，又需要回调，使用这个
+    [_webViewBridge callHandler:@"testJSFunction" data:@"一个字符串" responseCallback:^(id responseData) {
+        NSLog(@"调用完JS后的回调：%@",responseData);
+    }];
+```
+- 而callHandler 方法又是如何实现调用js 方法的呢？
+callHandler 内部是将传递给js 的参数、handlerName、callbackId组合成字典，然后把字典转换成字符串，将转换后的字符串以参数的形式，通过stringByEvaluatingJavaScriptFromString传递给js ，js 中将传递过来的字符串转成json ，然后通过handlerName 获取对应的function执行。
+- 关键的几个代码段：
+
+```
+// 这里是Native 调用js ，把参数转换为字符串，执行js 中的_handleMessageFromObjC方法。
+- (void)_dispatchMessage:(WVJBMessage*)message {
+    NSString *messageJSON = [self _serializeMessage:message pretty:NO];
+    [self _log:@"SEND" json:messageJSON];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\'" withString:@"\\\'"];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
+    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
+    
+    NSString* javascriptCommand = [NSString stringWithFormat:@"WebViewJavascriptBridge._handleMessageFromObjC('%@');", messageJSON];
+    if ([[NSThread currentThread] isMainThread]) {
+        [self _evaluateJavascript:javascriptCommand];
+
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self _evaluateJavascript:javascriptCommand];
+        });
+    }
+}
+```
+- 下面这里是找到handlerName对应的function，并执行function。
+
+```
+var handler = messageHandlers[message.handlerName];
+    if (!handler) {
+     console.log("WebViewJavascriptBridge: WARNING: no handler for message from ObjC:", message);
+    } else {
+     handler(message.data, responseCallback);
+    }
+}
+```
+- 到这里 利用WebViewJavascriptBridge 实现Native 调用js 的功能就完成了。
+> 注意：JS 有动态参数的特性，调用js 的方法，可以传0个参数，1个参数，N个参数都可以。
+例如，我们在js中定义一个test()方法，我们可以调用test()，来执行这个方法；如果有参数要传进来，也可以调用test(xxx)；如果有多个参数，那么就用test(xxx,xxx)。当然如果我们定义的参数是test(a,b,c)，也可以少传参数，或者不传参数调用test()。
+
+##### 总结
+- 利用WebViewJavascriptBridge来实现JS与OC的交互的优点：
+    * 获取参数时，更方便一些，如果参数中有一些特殊符号或者url带参数，能够很好的解析。
+- 一些缺点：
+    * 做一次交互，需要执行的js与原生的交互步骤较多，至少有两次。
+    * 需要花较多的时间，理解WebViewJavascriptBridge的原理和使用步骤。
+
+#### WebViewJavascriptBridge(WKWebView)
+
 ### 2.在使用 WKWedView 时遇到过哪些问题？
 ### 3.是否了解 UIWebView 的插件化？
 ### 4.是否了解 SFSafariViewController ？
@@ -10182,6 +11687,36 @@ fmdb（iOS平台的SQLite数据库框架）
 - Reachability：网络状态监听模块 对应AFNetworkReachabilityManager
 - Seriaalization：网络通信信息序列化、反序列化模块 对应 AFURLResponseSerialization
 - UIKit：对于iOS UIKit的扩展库
+
+### AFN3.0与2.0区别，AFN4.0
+#### 发展历程
+- AFNetworking 1.0建立在NSURLConnection的基础API之上
+- AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。
+- AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。
+- AFNetworking 2.X将继续获得关键的隐患和安全补丁，但没有新的功能将被添加。Alamofire(Swift下的网络请求)软件基金会建议，所有的项目迁移到基于NSURLSession的API。
+
+#### 废弃与新增
+- 下面的类已从AFNetworking 3.0中废弃：
+    * AFURLConnectionOperation
+    * AFHTTPRequestOperation
+    * AFHTTPRequestOperationManager
+- 依次被下面三个类代替了，同时请求方法也跟着改变了
+    * AFURLSessionManager
+    * AFHTTPSessionManager
+    * AFNetworkReachabilityManager
+- 下面的类包含基于NSURLConnection的API的内部实现。他们已经被NSURLSession重构:
+    * UIImageView+AFNetworking
+    * UIWebView+AFNetworking
+    * UIButton+AFNetworking
+
+#### 迁移
+- AFHTTPRequestOperationManager与AFHTTPSessionManager
+    * 如果你以前使用 AFHTTPRequestOperationManager ， 你将需要迁移去使用 AFHTTPSessionManager。 以下的类在两者过渡间并没有变化：
+        * securityPolicy
+        * requestSerializer
+        * responseSerializer
+    * 接下来举一个关于AFHTTPSessionManager的简单例子。注意HTTP网络请求返回的不再是AFHTTPRequestOperation, 修改成为了NSURLSessionTask，并且成功和失败的Block块中的参数也变更为了NSURLSessionTask，而不再是AFHTTPRequestOperation。
+    * 
 
 ### 一个完整直播app功能
 
