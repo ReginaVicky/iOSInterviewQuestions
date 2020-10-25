@@ -26,6 +26,12 @@
 - 4.[链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4链表)
     * 1.[单向链表 双向链表 循环链表](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1单向链表-双向链表-循环链表)
 - 5.[树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5树)
+    * [二叉树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#二叉树)
+        * [基本概念](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#基本概念-1)
+        * [分类](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#分类)
+        * [存储结构](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#存储结构)
+        * [二叉查找树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#二叉查找树)
+        * [遍历顺序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#遍历顺序)
     * [二叉搜索树](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#二叉搜索树)
         * 1.[输入一棵二叉树的根结点，求该树的深度？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1输入一棵二叉树的根结点求该树的深度)
         * 2.[输入一课二叉树的根结点，判断该树是不是平衡二叉树？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2输入一课二叉树的根结点判断该树是不是平衡二叉树)
@@ -112,7 +118,7 @@
 - 29.[数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为n的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29数组中有一个数字出现的次数超过数组长度的一半请找出这个数字例如输入一个长度为9的数组123222542由于数字2在数组中出现了5次超过数组长度的一半因此输出2如果不存在则输出0或者是问给定一个大小为n的数组找到其中的众数众数是指在数组中出现次数大于--n2--的元素)
 - 30.怎么判断一条链表有环
 - 31.求数组的最长子数组
-- 32.回文算法
+- 32.回文算法，最长回文子串之 Manacher 算法
 - 33.判断一个字符串是不是对称的字符串，比如 abba 或者 aba 这样的就是对称的。
 - 34.hash 算法的原理
 - 35.二叉树逐层打印
@@ -2748,6 +2754,239 @@ func findInMountainArray(target int, mountainArr *MountainArray) int {
 - 若数组中有一个出现次数超过一半的数字，那么它一定是最终的胜利者。但也有可能不存在这与的数字，所以在结束之后也要像之前一样进行检查。
 - 时间复杂度为O(n)，空间复杂度为O(1)。
 
+### 30.怎么判断一条链表有环
+- 有环的定义：链表的尾结点指向了链表中的某个结点
+
+![image](https://upload-images.jianshu.io/upload_images/3738156-67be985aa4b3da78.png?imageMogr2/auto-orient/strip|imageView2/2/w/677)
+
+- 两种解决方案
+    * 方法一：使用p、q两个指针，p总是向前走，但q每次都从头开始走，对于每个结节点，看p走的步数是否和q一样。如果不一样，就存在环。如图，当p从6走到3时，总共需要6步，此时q从头head出发，只需要两步就到3，步数不等，存在环。
+    * 方法二：利用快慢指针，使用p、q两个指针，p每次向前走一步，q每次向前走两步，若在某个时候，p == q，则存在环。
+- 代码：
+- 第一步：创建有环单链表
+
+```
+/**
+ * 随机产生n个元素的值，建立带头结点的单链表L（尾插法）
+ */
+void CreatListTail(LinkList * L, int n){
+    
+    LinkList p,r;
+    int i;
+    
+    srand(time(0));                            /* 初始化随机数种子 */
+    *L = (LinkList)malloc(sizeof(Node));        /* L为整个线性表 */
+    r = *L;                                   /* r为指向尾部的结点 */
+    
+    for (i = 0; i < n; i++) {
+        
+        p = (LinkList)malloc(sizeof(Node));     /* 生成新节点 */
+        p->data = rand()%100 +1;               /* 随机生成100以内的数字 */
+        r->next = p;                          /* 将表尾终端结点的指针指针指向新节点 */
+        r = p;                                /* 将当前的新节点定义为表尾终端结点 */
+    }
+    
+    r->next = (*L)->next->next;                /* 尾部指向第二个结点(如果无环r->next = null) */
+}
+```
+- 用比较步数的方法【方法一】判断是否有环
+
+```
+/**
+ * 比较步数的方法
+ */
+int HasLoop(LinkList L){
+    
+    LinkList cur1 = L;                         /* 定义结点cur1 */
+    int pos1 = 0;                              /* cur1的步数 */
+    
+    while (cur1) {                             /* 结点cur1存在 */
+        
+        LinkList cur2 = L;                     /* 定义结点cur2 */
+        int pos2 = 0;                          /* cur2的步数 */
+        
+        while (cur2) {                         /* 结点cur2存在 */
+            
+            if (cur2 == cur1) {                /* 当cur2和cur1到达相同的结点时 */
+                
+                if (pos1 == pos2)              /* cur2和cur1走过的步数一样,说明没有环 */
+                    break;
+                else{                          /* 有环并返回1*/
+                    printf("环的位置在第%d个结点处.\n\n",pos2);
+                    return 1;
+                }
+
+            }
+            cur2 = cur2->next;                 /* 若果没有环，继续下一个结点 */
+            pos2++;                            /* cur2的步数自增 */
+        }
+        cur1 = cur1->next;                     /* cur1继续向后一个结点 */
+        pos1++;                                /* cur1的步数自增 */
+    }
+    return 0;
+}
+```
+- 用快慢指针【方法二】
+
+```
+/**
+ * 用快慢指针的方法
+ */
+int HasLoop2(LinkList L){
+
+    LinkList p = L;
+    LinkList q = L;
+    
+    while (p != NULL && q != NULL && q->next != NULL) {
+        
+        p = p->next;                          /* p每次走一步*/
+        
+        if (q->next != NULL) {
+            q = q->next->next;                /* p每次走两步*/
+        }
+        
+        printf("p:%d, q:%d \n", p->data,q->data);
+        
+        if (p == q) {
+            return 1;                        /* 当p和q相等，则表示有环 */
+        }
+    }
+    return 0;
+}
+```
+
+### 31.求数组的最长子数组
+### 32.回文算法，最长回文子串之 Manacher 算法
+- 最长回文子串：在计算机科学中，最长回文子串或最长对称因子问题是在一个字符串中查找一个最长连续子串，这个子串必须是回文。例如“banana”最长回文子串是“anana”。最长回文子串并不能保证是唯一的
+- 回文串可分为奇数回文串和偶数回文串。
+- 它们的区别是：奇数回文串关于它的“中点”满足“中心对称”，偶数回文串关于它“中间的两个点”满足“中心对称”。
+- 思路1：暴力匹配 Brute Force。
+    * 暴力匹配，虽然听起来并不是那么友好，但是我个人认为暴力解法虽然时间复杂度很高，但是它简单粗暴，编写正确的概率其实是很高的，完全可以使用暴力匹配算法检验我们编写的算法的正确性，并且在优化正确的前提下，通过和暴力匹配的比较，也可以体现我们优化算法的性能优势。
+    * 当然，“最长回文子串”在 LeetCode 上有标准的问题，我们编写好算法以后，可以提交到 LeetCode 上，运行 LeetCode 的测试用例检验我们实现的算法。
+- 思路2：中心扩散法。想法很简单，就是遍历每一个索引，以这个索引为中心，看看往两边扩散，最多能扩散多长的字符串。具体做法是利用“回文串”中心对称的特点，在枚举子串的过程中进行剪枝，在具体解这个问题的过程中，我们就要对可能产生的回文串是奇数长度和偶数长度进行考量，但是完全可以设计一种方法，兼容两种情况。
+- 思路3：动态规划。
+    * 定义状态：s[i, j] ：表示原始字符串的一个子串，i、j分别是索引，使用闭区间表示包括区间左右端点。
+    * dp[i, j]：如果子串 s[i,...,j] 是回文串，那么 dp[i, j] = true。即二维 dp：dp[i, j] 表示子串 s[i, j]（包括区间左右端点）是否构成回文串，是一个二维布尔型数组。
+    * 状态转移方程：在 dp[i, j] = true 的时候， dp[i + 1, j - 1] = true，因此，如果已知 dp[i + 1, j - 1]，就可以通过比较 s[i] 和 s[j] 并且考虑 dp[i + 1, j - 1] 进而得到 dp[i, j]。
+    * 如果 s[i, j] 是一个回文串，例如 “abccba”，那么 s[i+1, j-1] 也一定是一个回文串，根据这个递归的性质，我们可以写出状态转移方程。
+    * dp[i, j] = dp[i+1, j-1]，当然，此时我们要保证 [i+1, j-1] 能够形成区间，因此有i+1<=j-1，整理得 i-j <= -2，或者 j-i >=2。
+- 思路4：专门解决回文串的一个著名算法 Manacher 算法。
+    * Manacher 算法就是专门解决“最长回文子串”的一个算法，它的时间复杂度可以达到 O(n)
+    * [Manacher(1975)] 发现了一种线性时间算法，可以在列出给定字符串中从字符串头部开始的所有回文。并且，Apostolico, Breslauer & Galil (1995) 发现，同样的算法也可以在任意位置查找全部最大回文子串，并且时间复杂度是线性的。因此，他们提供了一种时间复杂度为线性的最长回文子串解法。替代性的线性时间解决 Jeuring (1994), Gusfield (1997)提供的，基于后缀树(suffix trees)。也存在已知的高效并行算法。
+    * 第 1 步：预处理，添加分隔符
+        * 分隔符是字符串中没有出现过的字符，这个分隔符的种类只有一个，即你不能同时添加 "#" 和 "?" 作为分隔符；
+        * 在字符串的首位置、尾位置和每个字符的“中间”都添加  个这个分隔符，可以很容易知道，如果这个字符串的长度是 len，那么添加的分隔符的个数就是 len + 1，得到的新的字符串的长度就是 2len + 1，显然它一定是奇数。
+        * 为什么要添加分隔符？
+            * 首先是正确性：添加了分隔符以后的字符串的回文性质与原始字符串是一样的。
+            * 其实是避免奇偶数讨论，对于使用“中心扩散法”判定回文串的时候，长度为奇数和偶数的判定是不同的，添加分隔符可以避免对奇偶性的讨论。
+    * 第 2 步：得到 p 数组
+        * 第 1 行 char 数组：这个数组就是待检测字符串加上分隔符以后的字符构成的数组。
+        * 第 2 行 index 数组：这个数组是索引数组，我们后面要利用到它，填写即索引从 0 开始写就好了。
+        * 回文半径：以 char[i] 作为回文中心，同时向左边、向右边进行扩散，直到不能构成回文串或者触碰到边界为止，能扩散的步数 + 1 ，即定义为 p 数组索引的值，也称之为回文半径。
+        * p-1 数组很简单了，把 p 数组的数 -1 就行了。于是：数组 p -1 的最大值就是最长的回文子串，可以在得到 p 数组的过程中记录这个最大值，并且记录最长回文子串。
+
+### 33.判断一个字符串是不是对称的字符串，比如 abba 或者 aba 这样的就是对称的。
+### 34.hash 算法的原理
+### 35.二叉树逐层打印
+- 请按层输出其的节点值，即：按从上到下，从左到右的顺序。
+- 因为我们不但需要按层来遍历，还需要按层来输出结果，所以我在代码中使用了两个队列，分别名为level和nextLevel，用于保存不同层的节点。
+- 最终，整个算法逻辑是：
+    * 判断输入参数是否是为空。
+    * 将根节点加入到队列level中。
+    * 如果level不为空，则：
+        * 将level加入到结果ans中。
+        * 遍历level的左子节点和右子节点，将其加入到nextLevel中。
+        * 将nextLevel赋值给level，重复第 3 步的判断。
+    * 将ans中的节点换成节点的值，返回结果。
+
+### 36.找出一个页面中漏出部分面积最大的试图，重合的部分按照最上层的面积算漏出
+### 37.一个坦克从一个空间的起点到终点，中间在某些位置上有阻隔的情况下，判断从起点到终点是否有可行路径。
+### 38.二叉树翻转，将二叉树的两个孩子换位置，即左变右，右变左。
+- 方法一：循环，栈存储（DFS，非递归)    
+    * 本质思想是，左右节点进行交换，循环翻转每个节点的左右子节点，将未翻转的子节点存入栈中，循环直到栈里所有节点都循环交换完为止。
+
+```
+       public TreeNode invertTree(TreeNode root) {          
+            if (root == null) {
+                return null;
+            }
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(root);           
+            while(!stack.isEmpty()) {
+                final TreeNode node = stack.pop();
+                final TreeNode left = node.left;
+                node.left = node.right;
+                node.right = left;           
+                if(node.left != null) {
+                    stack.push(node.left);
+                }
+                if(node.right != null) {
+                    stack.push(node.right);
+                }
+            }
+            return root;
+        }
+```
+
+- 方法二：循环，队列存储（BFS，非递归）
+    * 本质思想是，左右节点进行交换，循环翻转每个节点的左右子节点，将未翻转的子节点存入队列中，循环直到栈里所有节点都循环交换完为止。
+
+```
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            TreeNode left = node.left;
+            node.left = node.right;
+            node.right = left;
+            if (node.left != null) {
+                queue.offer(node.left);
+            }
+            if (node.right != null) {
+                queue.offer(node.right);
+            }
+        }
+        return root;
+    }
+```
+
+- 方法一、方法二伪代码：
+
+```
+1、判断根结点是否为空，为空则返回null；
+2、新建栈（队列），用于节点存储，初始存入根节点到栈（队列）里；
+3、while循环，栈（队列）为空时结束循环；
+  i.出栈（队列）一个节点，将该节点的左右子节点交互；
+  ii.判断左右子节点是否为null，非null则继续将左右节点入栈（队列）；
+4、循环交换结束，返回根节点;
+
+```
+- 方法三：递归
+    * 本质思想也是左右节点进行交换，交换前递归调用对根结点的左右节点分别进行处理，保证交换前左右节点已经翻转。
+
+```
+1、判断根结点是否为空，为空则返回null；
+2、交换跟节点的左右节点；
+3、递归交互左右子树；
+```
+
+```
+    public TreeNode invertTree(TreeNode node) {
+        if (node == null) {
+            return null;
+        }
+        TreeNode temp = node.left;
+        node.left = node.right;
+        node.right = temp;
+        invertTree(node.left);
+        invertTree(node.right);
+        return node;
+    }
+```
 
 ## UIKit
 ### 1.UIView 和 CALayer 是什么关系？
