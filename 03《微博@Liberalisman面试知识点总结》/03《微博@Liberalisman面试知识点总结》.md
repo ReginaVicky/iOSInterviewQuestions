@@ -337,7 +337,7 @@
 - 2.[iOS线程间怎么通信？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2ios线程间怎么通信)
 - 3.[谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
 - 4.[多线程容易出现的问题，怎么解决](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4多线程容易出现的问题怎么解决)
-- 补充：多线程的安全隐患+11种同步解决方案
+- [补充：多线程的安全隐患+11种同步解决方案](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充多线程的安全隐患11种同步解决方案)
 - 5.[NSThread相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nsthread相关知识)
 - 6.[GCD 相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6gcd-相关知识)
 - 7.[说一下 GCD 并发队列实现机制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下-gcd-并发队列实现机制)
@@ -373,6 +373,7 @@
 - 37.[子线程是否会出现死锁？说一下场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37子线程是否会出现死锁说一下场景)
 - 38.[请说明同步请求与异步请求的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38请说明同步请求与异步请求的区别)
 - 39.[默认最大并发？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39默认最大并发)
+- [补充：FMDB如何保证线程安全](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充fmdb如何保证线程安全)
 - 40.[dispatch_once如何实现一次性代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40dispatch_once如何实现一次性代码)
 - 41.[Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41object-c中创建线程的方法是什么如果在主线程中执行代码方法是什么如果想延时执行代码方法又是什么)
 - 42.[如何把异步线程转换成同步任务进行单元测试？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42如何把异步线程转换成同步任务进行单元测试)
@@ -386,15 +387,17 @@
 - 4.[NSUrlSession相关知识。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4nsurlsession相关知识)
 - 5.[NSURLSession POST请求方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nsurlsession-post请求方法)
 - 6.[简要说一下http](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6简要说一下http)
-- 补充：Http2.0如1.x的区别
+- [补充：Http2.0如1.x的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充补充http20如1x的区别)
 - 7.[说一下传输控制协议 - TCP ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下传输控制协议---tcp-)
 - 8.[说一下用户数据报协议 - UDP ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下用户数据报协议---udp-)
 - 9.[HTTP和TCP、UDP的联系](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9http和tcpudp的联系)
-- 补充：TCP 协议如何保证可靠传输
+- [补充：TCP 协议如何保证可靠传输](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充tcp-协议如何保证可靠传输)
+- [补充：说一下可靠数据传输、流量控制(滑动窗口)、拥塞控制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充说一下可靠数据传输流量控制滑动窗口拥塞控制)
+- [补充：TCP 的拥塞控制主要是四个算法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充tcp-的拥塞控制主要是四个算法)
 - 10.[简要说一下Https；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10简要说一下https)
 - 11.[HTTPS的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11https的原理)
-- 补充：服务器返回给客户端的证书跟它自己保留的证书一样吗
-- 补充：https 单项认证 双向认证
+- [补充：服务器返回给客户端的证书跟它自己保留的证书一样吗](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充服务器返回给客户端的证书跟它自己保留的证书一样吗)
+- [补充：https 单项认证 双向认证](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充https-单项认证-双向认证)
 - 12.[简要说一下Socket](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12简要说一下socket)
 - 13.[Http 和 Https 的区别？为什么更加安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13http-和-https-的区别为什么更加安全)
 - 14.[Http的请求方式有哪些？Http 有什么特性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14http的请求方式有哪些http-有什么特性)
@@ -671,6 +674,8 @@
 - 1.[面向对象的三个要素](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1面向对象的三个要素)
 - 2.[多态？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2多态)
 - 补充： bitcode 的理解和作用
+- 补充：事务的特征
+- 补充：事务的状态
 - 3.[Java，python，OC运行效率孰高？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3javapythonoc运行效率孰高)
 - 4.[Property，其中copy如何？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4property其中copy如何)
 - 5.[Property(nonatomatic, copy) NSMutableArray有什么问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5propertynonatomatic-copy-nsmutablearray有什么问题)
@@ -3078,12 +3083,12 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 
 ### 2.Bounds 和 Frame 的区别?
 #### frame
-- 是每个view必备的属性，代表的是当前视图的位置和大小，没有设置他，当前视图是看不到的。
+- 是每个view必备的属性，代表的是当前视图的位置和大小，没有设置frame，当前视图是看不到的。
 - 在iOS坐标系中以左上角为坐标原点，往右为X正方向，往下是Y正方向
 - frame中的位置是以父视图的坐标系为标准来确定当前视图的位置
 - 同样的默认情况下，本视图的左上角就是子视图的坐标原点
 - 更改frame中位置，则当前视图的位置会发生改变
-- 更改frame的大小，则当前视图以当前视图的左上角为基准的进行大小的修改
+- 更改frame的大小，则当前视图以当前视图的左上角为基准进行大小的修改
 #### bounds
 - 是每个View都有的属性，这个属性我们一般不进行设置，他同样代表位置和大小；
 每个视图都有自己的坐标系，且这个坐标系默认以自身的左上角为坐标原点，所有子视图以这个坐标系的原点为基准点。
@@ -3094,9 +3099,9 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 
 ![image](https://upload-images.jianshu.io/upload_images/1196725-188e8cb0157b3cee.png?imageMogr2/auto-orient/strip|imageView2/2/w/779)
 
-- 因为是View A是顶层视图，所以其实相当于覆盖在框架上，因此位置从父视图的（0，0）开始，大小为550*400
+- 因为是View A是顶层视图，所以其实相当于覆盖在框架上，因此位置从父视图的（0，0）开始，大小为500*400
 - 默认情况下，本视图的坐标系是没有发生改变的即当前视图(view A)的左上角就是所有子视图的原点，大小就是当前视图的大小.
-- 因为View B是ViewA的子视图，所以ViewB的frame位置需要以View A的左上角为参照，因此位置为(200, 100), 大小为200*250
+- 因为View B是ViewA的子视图，所以ViewB的frame位置需要以View A的左上角为参照，因此位置为(200, 100), 大小为200*150
 - bounds在默认情况下本视图的坐标系是没有发生改变的即当前视图(viewB)的左上角就是当前视图所有子视图的原点.
 
 ![image](https://upload-images.jianshu.io/upload_images/1196725-2844fc5a83246fca.png?imageMogr2/auto-orient/strip|imageView2/2/w/893)
@@ -3130,7 +3135,7 @@ self.tableView.rowHeight = UITableViewAutomaticDimension
 - loadView作用,用来创建控制器的View.
 - 当控制器的View,第一次使用的时候调用.
 - loadView底层原理:
-    * 先判断当前控制器是不是从storyBoard当中加载的,如果是从storyBoard加载的控制器.那么它就会从storyBoard当中加载的控制器的View,设置当前控制器的view.
+    * 先判断当前控制器是不是从storyBoard当中加载的,如果是从storyBoard加载的控制器.那么它就会把从storyBoard当中加载的控制器的View,设置成当前控制器的view.
     * 当前控制器是不是从xib当中加载的,如果是从xib当中加载的话,把xib当中指定的View,设置为当前控制器的View.
     * 如果也不是从xib加载的,它会创建空白的view.
 - 一但重写了loadView方法,就说明要自己定义View.
@@ -3624,7 +3629,16 @@ delete动画与插入类似，提供正确的final 属性即可
     * 获取多个随机汉字并打乱顺序
     * 创建随机位置的按钮文本（x值固定，y值随机）
 
-
+### 23.控件的点击事件和添加在上边的手势谁先响应，并说明原因
+- 只会响应手势
+- UIGestureRecognizer有个属性cancelsTouchesInView，这个属性默认值为YES，即当手势识别成功后，会发送touchesCancelled消息为view来结束view的响应。如果cancelsTouchesInView为NO，那么gestureRecognizer和view都可以响应。
+UIKit内置了6中手势识别器：
+    * UITapGestureRecognizer:点击（单击、双击、三连击等）手势。
+    * UIPinchGestureRecognizer：缩放手势。
+    * UIPanGestureRecognizer：拖拽手势。
+    * UISwipeGestureRecognizer：滑动手势。
+    * UIRotationGestureRecognizer：旋转手势。
+    * UILongPressGestureRecognizer：长按手势。
 
 ## Foundation
 ### 1.nil`、`NIL`、`NSNULL` 有什么区别？
@@ -5198,6 +5212,7 @@ uintptr_t objc_object::sidetable_release(bool performDealloc)
         * Tagged Pointer指针的值不再是地址了，而是真正的值。所以，实际上它不再是一个对象了，它只是一个披着对象皮的普通变量而已。所以，它的内存并不存储在堆中，也不需要malloc和free。
         * 在内存读取上有着3倍的效率，创建时比以前快106倍。
     * 总体来说，如果一个对象使用了Tagged Pointer技术（比如NSString，NSNumber等），指针里面会直接存数据内容，不会再作为“指针”指向其它地址，从Runtime来理解就是不会使用isa指针，也就不会继承苹果的内存管理方式（Reference Counting）。
+    * 比如NSNumber，除了8位标志位外，其余56位则用来存储数值本身内容。当存储用的数值超过56位存储上限的时候，那么NSNumber才会用真正的64位内存地址存储数值，然后用指针指向该内存地址。
     * 注意：所有对象都有 isa 指针，而Tagged Pointer其实是没有的，因为它不是真正的对象。 因为不是真正的对象，所以如果你直接访问Tagged Pointer的isa成员的话，在编译时将会有如下警告：
 
  ![image](https://res.infoq.com/articles/deep-understanding-of-tagged-pointer/zh/resources/0519063.jpg)
@@ -5297,42 +5312,6 @@ extra_rc | 存储引用计数值减一后的结果
     * 对象用内存块的分配无需考虑内存块头部
     * 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
 - 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
-
-![image](http://upload-images.jianshu.io/upload_images/131615-6ebbb4f2275a7362.png)
-
-- 我们先看看 struct objc_class 的结构
-
-![image](https://upload-images.jianshu.io/upload_images/1653926-6ff583180e68579d.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
-
-- 再看看 isa结构
-    * 在arm64架构之前，isa就是一个普通的指针，存储着Class、Meta-Class对象的内存地址
-    * 从arm64架构开始，对isa进行了优化，变成了一个共用体（union）结构，还使用位域来存储更多的信息
-
-![image](https://upload-images.jianshu.io/upload_images/1653926-c370f62a02d018a9.png?imageMogr2/auto-orient/strip|imageView2/2/w/1198)
-
-- isa结构体
-
-```
-/** isa_t 结构体 */
-union isa_t {
-    Class cls;
-    uintptr_t bits;
-    struct {
-        uintptr_t nonpointer        : 1;
-        uintptr_t has_assoc         : 1;
-        uintptr_t has_cxx_dtor      : 1;
-        uintptr_t shiftcls          : 33;
-        uintptr_t magic             : 6;
-        uintptr_t weakly_referenced : 1;
-        uintptr_t deallocating      : 1;
-        uintptr_t has_sidetable_rc  : 1;
-        uintptr_t extra_rc          : 19;
-    };
-};
-```
-- extra_rc：表示该对象的引用计数值，实际上是引用计数值减 1，例如，如果对象的引用计数为 10，那么 extra_rc 为 9。如果引用计数大于 10，则需要使用到下面的 has_sidetable_rc。
-- has_sidetable_rc：当对象引用计数大于 10 时，则has_sidetable_rc 的值为 1，那么引用计数会存储在一个叫 SideTable 的类的属性中，这是一个散列表。
-- 对象引用计数就存放在extra_rc中；
 
 ### 29.使用自动引用计（ARC）数应该遵循的原则?
 - ARC规则：
@@ -5767,7 +5746,7 @@ clang -rewrite-objc main.m
 ![image](http://hi.csdn.net/attachment/201201/19/0_1326963670oeC1.gif)
 
 ### 58.一个objc对象的isa的指针指向什么？有什么作用？
- sa指针是什么？
+- isa指针是什么？
     * 我们经常使用id来声明一个对象，本质上，我们创建的一个对象或实例其实就是一个struct objc_object结构体，而我们常用的id也就是这个结构体的指针。这个结构体只有一个成员变量，这是一个Class类型的变量isa，也是一个结构体									指针。面向对象中每一个对象都必须依赖一个类来创建，因此对象的isa指针就指向对象所属的类根据这个类模板能够创建出实例变量、实例方法等。
 - 对象的isa指针
     * 每个实例对象有个isa的指针,他指向对象的类
@@ -5914,6 +5893,39 @@ size_t class_getInstanceSize(Class cls)
 malloc_size((__bridge const void *)obj); 
 ```
 - 对象在分配内存空间时，会进行内存对齐，所以在 iOS 中，分配内存空间都是 16字节 的倍数。
+
+### 补充：如何计算一个结构体所占内存空间大小
+
+![image](https://upload-images.jianshu.io/upload_images/4164767-5ff7b347b7f39c20.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/828)
+
+- 例1：
+
+```
+struct WStruct {
+    double a;//8
+    int b;//4
+    char c;//1
+    short d;//2
+}WStruct1;
+```
+- 这样我们计算出WStruct1结构体所占用的内存应该为15字节
+- 因为系统自动做了内存对齐，内存对齐的规则：
+    * 数据成员对⻬规则：结构(struct)(或联合(union))的数据成员，第一个数据成员放在offset为0的地方，以后每个数据成员存储的起始位置要从该成员大小或者成员的子成员大小(只要该成员有子成员，比如说是数组，结构体等)的整数倍开始（比如int为4字节,则要从4的整数倍地址开始存储）。
+    * 结构体作为成员：如果一个结构里有某些结构体成员,则结构体成员要从其内部最大元素大小的整数倍地址开始存储.(struct a里存有struct b,b里有char,int ,double等元素,那b应该从8的整数倍开始存储.)
+    * 收尾工作：结构体的总大小，也就是sizeof的结果，必须是其内部最大成员的整数倍，不足的要补⻬
+- 我们假设从位置0开始存储，double占用8个字节，所以占用0-7位置的内存空间，由于0-7已经被double占用，在存储int的时候至少要从8号位置开始，我们知道int占用4个字节，8正好是4的整数倍所以int占用8-11的内存空间，接下来存储char，char占用1个字节，所以直接放在12内存地址，short占用2个字节的内存，但是开始存储的位置13并不是2的整数倍，所以我们需要将short的存储位置后移一个字节，从14开始存储，占用14-15内存空间，通过这种方式，WStruct1结构体就会占用16个字节的内存空间。
+- 例子2
+
+```
+struct WStruct2 {
+    double a;
+    char b;
+    int c;
+    short d;
+    struct WStruct e;
+}WStruct2;
+```
+- 我们假设从位置0开始存储，double占用8个字节，所以占用0-7位置的内存空间，由于0-7已经被double占用，在存储char的时候至少要从8号位置开始，我们知道char占用1个字节，然后开始储存int类型，是从9开始，但是9不是4的倍数，需要加3，是从12开始存储，int是4个字节，就到15位置，开始存储short，short是占2个字节，所以占用16，17位置，然后再储存WStruct结构体，第一个是double类型，占用8个字节，因为18不是8的倍数，所以需要加到23的位置，从24开始储存，然后用24加16是40，所以是占用40个字节；
 
 ### 8.说一下对 class_rw_t 的理解？
 - rw代表可读可写。
@@ -6749,6 +6761,10 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 
 ### 9.RunLoop实战使用
 #### NSTimer的使用
+- NSTimer 其实就是 CFRunLoopTimerRef，他们之间是 toll-free bridged 的。一个 NSTimer 注册到 RunLoop 后，RunLoop 会为其重复的时间点注册好事件。例如 10:00, 10:10, 10:20 这几个时间点。RunLoop 为了节省资源，并不会在非常准确的时间点回调这个Timer。Timer 有个属性叫做 Tolerance (宽容度)，标示了当时间点到后，容许有多少最大误差。
+- 如果某个时间点被错过了，例如执行了一个很长的任务，则那个时间点的回调也会跳过去，不会延后执行。就比如等公交，如果 10:10 时我忙着玩手机错过了那个点的公交，那我只能等 10:20 这一趟了。
+- CADisplayLink 是一个和屏幕刷新率一致的定时器（但实际实现原理更复杂，和 NSTimer 并不一样，其内部实际是操作了一个 Source）。如果在两次屏幕刷新之间执行了一个长任务，那其中就会有一帧被跳过去（和 NSTimer 相似），造成界面卡顿的感觉。在快速滑动 TableView 时，即使一帧的卡顿也会让用户有所察觉。Facebook 开源的 AsyncDisplayLink 就是为了解决界面卡顿的问题，其内部也用到了 RunLoop。
+
 #### ImageView推迟显示
 - 当界面中含有UITableView，而且每个UITableViewCell里边都有图片。这时候当我们滚动UITableView的时候，如果有一堆的图片需要显示，那么可能会出现卡顿的现象。
 - 我们应该推迟图片的显示，也就是ImageView推迟显示图片。有两种方法：
@@ -6762,7 +6778,22 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 ```
 
 #### 后台常驻线程
+* 为当前线程开启一个RunLoop（第一次调用 [NSRunLoop currentRunLoop]方法时实际是会先去创建一个RunLoop）
+* 向当前RunLoop中添加一个Port/Source等维持RunLoop的事件循环（如果RunLoop的mode中一个item都没有，RunLoop会退出）
+* 启动该RunLoop
 
+```
+@autoreleasepool {
+        
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        
+        [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        
+        [runLoop run];
+        
+    }
+```
+[link](https://note.youdao.com/)
 ### 10.你所知的哪些三方框架使用了 Runloop?（AFNetworking、Texture 等）
 - AFURLConnectionOperation 这个类是基于 NSURLConnection 构建的，其希望能在后台线程接收 Delegate 回调。为此 AFNetworking 单独创建了一个线程，并在这个线程中启动了一个 RunLoop：
 
@@ -6862,6 +6893,8 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 - 当有 UIGestureRecognizer的变化(创建/销毁/状态改变)时，这个回调都会进行相应处理。
 
 ### 15.解释一下 GCD 在 Runloop 中的使用？
+- GCD由 子线程 返回到 主线程,只有在这种情况下才会触发 RunLoop。会触发 RunLoop 的 Source 1 事件。
+
 ### 16.解释一下 NSTimer，以及 NSTimer 的循环引用。
 - NSTimer 其实就是 CFRunLoopTimerRef，他们之间是 toll-free bridged 的。一个 NSTimer 注册到 RunLoop 后，RunLoop 会为其重复的时间点注册好事件。例如 10:00, 10:10, 10:20 这几个时间点。RunLoop 为了节省资源，并不会在非常准确的时间点回调这个Timer。Timer 有个属性叫做 Tolerance (宽容度)，标示了当时间点到后，容许有多少最大误差。
 - 如果某个时间点被错过了，例如执行了一个很长的任务，则那个时间点的回调也会跳过去，不会延后执行。就比如等公交，如果 10:10 时我忙着玩手机错过了那个点的公交，那我只能等 10:20 这一趟了。
@@ -8542,6 +8575,18 @@ void func(dispatch_queue_t queue, dispatch_block_t block)
     * NSOperationQueue 为我们提供了两种不同类型的队列：主队列和自定义队列。主队列运行在主线程之上，而自定义队列在后台执行。
 
 ### 15.如何自定义 NSOperation ?
+- 自定义NSOperation分两种，一种是自定义非并发的NSOperation，一种是定义并发的NSOperation的。
+
+#### 定义非并发的NSOperation
+- 实现main方法，在main方法中执行自定义的任务
+
+#### 自定义并发的NSOperation
+- 自定义并发的NSOperation需要以下步骤：
+    * start方法：该方法必须实现，
+    * main:该方法可选，如果你在start方法中定义了你的任务，则这个方法就可以不实现，但通常为了代码逻辑清晰，通常会在该方法中定 义自己的任务
+    * isExecuting isFinished 主要作用是在线程状态改变时，产生适当的KVO通知
+    * isConcurrent :必须覆盖并返回YES;
+
 ### 16.NSOperationQueue的优点
 - NSOperation、NSOperationQueue 是苹果提供给我们的一套多线程解决方案。实际上 NSOperation、NSOperationQueue 是基于 GCD 更高一层的封装，完全面向对象。但是比 GCD 更简单易用、代码可读性也更高。
 - 可以添加任务依赖，方便控制执行顺序
@@ -8727,6 +8772,45 @@ void func(dispatch_queue_t queue, dispatch_block_t block)
 ```
 
 ### 40.dispatch_once如何实现一次性代码？
+- 单例模式（singleton）对Objective-C开发者来说并不陌生，常见的实现方式为：在类中编写名为sharedInstance的方法，该方法只会返回全类共用的单例实例，而不会在每次调用时都创建新的实例。共享实例的方法一般又会这样写：
+
+```
+@implementation EOCClass
+
++ (instancetype)sharedInstance
+{
+    static EOCClass *sharedInstance = nil;
+    @synchronized (self) {
+        if (!sharedInstance) {
+            sharedInstance = [[self alloc] init];
+        }
+    }
+    return sharedInstance;
+}
+@end
+```
+- 不过GCD引入了一项特性，能使单例实现起来更为容易。所用的函数是：
+
+```
+void dispatch_once(dispatch_once_t *predicate, dispatch_block_t block);
+```
+- 此函数接受类型为dispatch_once_t的特殊参数，笔者称其为“标记”（token），此外还接受参数。对于给定的标记来说，该函数保证相关的块必定会执行，且仅执行一次。首次调用该函数时，必然会执行块中的代码，最重要的一点在于，此操作完全是线程安全的。请注意，对于只需执行一次的块来说，每次调用函数时传入的标记都必须完全相同。因此，开发者通常将标记变量声明在static或global作用域里。
+- 刚才实现单例模式所用的sharedInstance方法，可以用此函数来改写：
+
+```
++ (instancetype)sharedInstance
+{
+    static EOCClass *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+
+    return sharedInstance;
+}
+```
+
 ### 41.Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
 ### 42.如何把异步线程转换成同步任务进行单元测试？
 ### 43.如何实现线性编程？
@@ -11065,7 +11149,8 @@ NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
     * 使用MVVM会轻微的增加代码量，但总体上减少了代码的复杂性
 - MVVM 的注意事项
     * view 引用viewModel ，但反过来不行（即不要在viewModel中引入#import UIKit.h，任何视图本身的引用都不应该放在viewModel中）
-    * viewModel 引用model，但反过来不行* MVVM 的使用建议
+    * viewModel 引用model，但反过来不行
+- MVVM 的使用建议
     * MVVM 可以兼容你当下使用的MVC架构。
     * MVVM 增加你的应用的可测试性。
     * MVVM 配合一个绑定机制效果最好
@@ -12527,7 +12612,52 @@ NSURL *imgURL = [NSURL URLWithString:@"http://handy-img-storage.b0.upaiyun.com/3
     * Abandon Memory这种是循环引用，无法释放掉的内存。
 
 ### 8.能不能说一下物理屏幕显示的原理？
+- CPU 计算好显示内容提交到 GPU，GPU 渲染完成后将渲染结果放入帧缓冲区，视频控制器收到VSync信号后逐行读取帧缓冲区的数据，再经过一定的数模转换传递给显示器显示。
+- iOS屏幕刷新机制
+    * 为了解决单缓存区的问题，iOS设备在这个过程中采取了如下图所示的双缓存区+VSync机制：
+        * GPU 会预先渲染好一帧放入一个缓存区内（前帧缓存）。
+        * 在显示器发出VSync后，视频控制器的指针会指向前帧缓存区并开始读取，GPU开始渲染下一帧，并将渲染结果放入另一个缓存区（后帧缓存）。
+        * 在显示器发出新的VSync后，视频控制器的指针会指向后帧缓存区并开始读取，GPU开始渲染下一帧，并将渲染结果放入前帧缓存区。
+- 双缓存和VSync造成的问题
+    * 每一帧画面要先经过CPU计算，再经过GPU渲染，最后存入缓存区供视频控制器读取。由于垂直同步的机制，如果在一个VSync时间内，CPU 或者 GPU 没有完成内容提交，则那一帧就会被丢弃，而这时显示屏会保留之前的内容不变，也就造成界面卡顿。
+- 为了降低双缓存造成界面卡顿的几率，有些设备（如安卓设备）会引入三缓存+VSync机制，但iOS设备一直都是双缓存+垂直同步机制。
+- 三缓存区的工作原理同双缓冲类似，只是多了一个 Back Buffer（图中的缓存区C）。三缓存区只是能降低界面卡顿的几率，并不能解决这个问题。
+
 ### 9.解释一下什么是屏幕卡顿、掉帧？该如何避免？
+- 图像显示相关的原理
+    * iOS系统中 CPU、GPU、显示器是以下面图中方式协同工作的。CPU和GPU是通过总线链接起来的，CPU 计算好显示内容提交到 GPU，GPU 渲染完成后将渲染结果放入帧缓冲区，视频控制器会按照 VSync 信号逐行读取帧缓冲区的数据，经过数模转换传递给显示器显示。 
+- 关于CPU和GPU的分工又有以下内容：
+    * CPU负责：
+        * 对象创建和销毁
+        * 对象属性调整
+        * 布局计算、文本的计算
+        * 排版、图片的格式转换和解码
+        * 图像的绘制
+    * GPU负责：
+        * 纹理的渲染
+        * 视图的混合
+        * 图形的生成
+- IOS视图卡顿掉帧的原因
+    * 标准情况下，页面滑动流畅是60FPs ，就是每一秒有60帧的画面刷新，每16.7ms(1/60秒)有一帧数据。上图两个VSync 之间的时间就是16.7ms。 如果CPU 和 GPU 加起来的处理时间超过了 16.7ms，就会造成掉帧甚至卡顿。当FPs 帧数低于30时，人的肉眼就能感觉到画面明显的卡顿。
+- 如何监控界面的卡顿
+    * 思路一：监控一秒钟内的帧数是否经常低于或远低于 60FPs。
+    * 思路二：监控每一帧的时长是否超时。
+- 思路一实现方法：用 CADisplayLinker 来计数
+> CADisplayLink可以以屏幕刷新的频率调用指定selector，iOS系统中正常的屏幕刷新率为60次/秒，只要在这个方法里面统计每秒这个方法执行的次数，通过次数/时间就可以得出当前屏幕的刷新率了。
+
+- 思路二实现方法：通过子线程监测主线程的RunLoop，判断两个状态RunLoop的状态区域之间的耗时是否达到一定阈值。
+> 开启子线程,实时计算这两个状态区域之间的耗时是否到达某个阀值,便能揪出这些性能杀手，假定连续6次超时50ms认为卡顿(当然也包含了单次超时300ms)
+
+- 如何优化掉帧卡顿
+    * 图像显示的工作是由CPU和GPU协同完成的， 那么优化的方向和思路就是尽量减少他们的处理时长。
+    * 对CPU处理的优化:
+        * 在子线程中进行对象的创建,调整和销毁，节省一部分CPU的时间
+        * 在子线程中预排版(布局计算,文本计算)，让主线程有更多的时间去响应用户的交互
+        * 对文本等异步绘制,图片编解码等内容进行 预渲染、预排版
+    * 对GPU处理的优化
+        * 尽量避免使用 CALayer 的 Border、corner、shadow、mask 等技术，这样能少触发离屏渲染
+        * 尽可能将多张图片合成为一张进行显示，减轻视图层级
+
 ### 10.什么是`离屏渲染`？什么情况下会触发？该如何应对？
 - 离屏渲染就是在当前屏幕缓冲区以外，新开辟一个缓冲区进行操作。
 - 离屏渲染出发的场景
@@ -12670,6 +12800,21 @@ label.layer.masksToBounds = true
 
 ### 2.多态？
 - 多态实现的三个必要条件是：继承、重写（子类继承父类后，对继承的方法重新定义）、父类应用指向子类对象。所以，多态的实现是基于继承的。
+
+### 补充：事务的特征
+- 事务的四个特征：
+    * 原子性 Atomic：事务中的所有操作要么都执行，要么都不执行
+    * 一致性 Consistency：事务执行的结果从一个状态到另一个状态时保持一致。即当事务提交成功时，保存一致性的结果；当事务提交不成功时，数据库将处在不一样的状态，这种状态应该撤销
+    * 隔离性 Isolation：并发执行事务时，事务之间不能互相干扰
+    * 持久性 Durability：事务一旦提交成功，数据修改是永久的
+- 原子性保持了事务的一致性，隔离性保证多个事务间不互相干扰。否则，即便每个事务都能确保数据的原子性和一致性，多个事务并发执行时，也可能出现不一致的状态。
+
+### 补充：事务状态
+- 活动状态：事务执行前的状态
+- 部分提交状态：事务的最后一条语句执行完毕，结果已经在内存缓冲区中，还没有写入磁盘
+- 失败状态：事务没有正常执行，应该回滚
+- 终止状态：事务回滚并且数据库恢复到事务执行前的状态
+- 提交状态：数据的更改完全写入磁盘
 
 ### 3.Java，python，OC运行效率孰高？
 - OC最高，OC大于java大于python
