@@ -3021,10 +3021,10 @@ int HasLoop2(LinkList L){
 #### CALayer 绘制 UI
 - CALayer 绘制 UI：CALayer 没有继承自 UIResponder，所以CALayer不具备响应处理事件的能力。CALayer 是 QuartzCore中的类，是一个比较底层的用来绘制内容的类。
 #### UIView 对 CALayer 封装属性
-- UIView 中持有一个 layer 对象，同时这个 layer 对象 delegate，UIView 和 CALayer 协同工作。
+- UIView 中持有一个 layer 对象，同时这个 layer 对象的 delegate 是，UIView ，所以，UIView 和 CALayer 是协同工作。
 - 平时我们对 UIView 设置 frame、center、bounds 等位置信息，其实都是UIView对CALayer进一层封装，使得我们可以很方便地设置控件的位置；例如圆角、阴影等属性，UIView就没有进一步封装，所以我们还是需要去设置 Layer 的属性来实现功能。
 - Frame 属性主要是依赖：bounds、anchorPoint、transform、和position。
-- 我们这主要说一下 anchorPoint 和position如何影响 Frame 的：anchorPoint锚点是相对于当前Layer的一个点，position 是 Layer 中 anchorPoint 锚点在 superLayer 中的点，即 position 是由 anchorPoint 来确认的。
+- 我们这主要说一下 anchorPoint 和 position 如何影响 Frame 的：anchorPoint锚点是相对于当前Layer的一个点，position 是 Layer 中 anchorPoint 锚点在 superLayer 中的点，即 position 是由 anchorPoint 来确认的。
 - 这里有几个通用的公式：
 
 ```
@@ -3038,7 +3038,7 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
     * position 是 layer 中的 anchorPoint 在 superLayer 中的位置坐标。
     * 单独修改 position 与 anchorPoint 中任何一个属性都不影响另一个属性。
 #### UIView 是 CALayer 的代理
-- UIView 持有一个 CALayer 的属性，并且是该属性的代理，用来提供一些 CALayer 行的数据，例如动画和绘制。
+- UIView 持有一个 CALayer 的属性，并且是该属性的代理，用来提供一些 CALayer 的数据，例如动画和绘制。
 
 ```
 //绘制相关
@@ -3061,8 +3061,8 @@ frame.origin.y = position.y - anchorPoint.y * bounds.size.height；
 - (void)drawRect:(CGRect)rect
 ```
 #### drawRect 方法实现
-- 平时为自定义View添加空间或者在上下文画图都会使用到这个函数，但是如果当我们实现了这个方法的时候，这个时候会生成一张寄宿图，这个寄宿图的尺寸是 layer 的宽 * 高*contentsScale，其实算出来的是有多少像素。然后每个像素占用4个字节，总共消耗的内存大小为：宽 * 高 * contentsScale * 4 字节。
-- 这里跟我们图片显示是一个道理：一张图片需要解压成位图才能显示到屏幕上，图片的颜色空间一般是RGBA，每个像素点需要包含RGBA四个信息，所以一张图片解压成位图需要占用内存大小为：像素宽 * 像素高 * 4 个字节。（PS：将图片解压成位图是比较耗时的，这就是为什么通常会在子线程解压图片，然后再到主线程中显示，避免卡主主线程）
+- 平时为自定义View添加空间或者在上下文画图都会使用到这个函数，但是如果当我们实现了这个方法的时候，这个时候会生成一张寄宿图，这个寄宿图的尺寸是 layer 的宽 * 高 * contentsScale，其实算出来的是有多少像素。然后每个像素占用4个字节，总共消耗的内存大小为：宽 * 高 * contentsScale * 4 字节。
+- 这里跟我们图片显示是一个道理：一张图片需要解压成位图才能显示到屏幕上，图片的颜色空间一般是RGBA，每个像素点需要包含RGBA四个信息，所以一张图片解压成位图需要占用内存大小为：像素宽 * 像素高 * 4 个字节。（PS：将图片解压成位图是比较耗时的，这就是为什么通常会在子线程解压图片，然后再到主线程中显示，避免卡住主线程）
 - 所以在使用 drawRect方法来实现功能之前，需要看看是否有替代方案，避免产生寄宿图增加程序的内存，使用 CAShapeLayer 来绘制是一个不错的方案。
 #### UILabel 绘制文字占用内存的情况
 - 这里讲到绘制占用内存的情况，我们简单来了解下 Label 绘制文字占用的内存情况，实例代码如下：
