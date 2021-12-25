@@ -3021,7 +3021,7 @@ int HasLoop2(LinkList L){
 #### CALayer 绘制 UI
 - CALayer 绘制 UI：CALayer 没有继承自 UIResponder，所以CALayer不具备响应处理事件的能力。CALayer 是 QuartzCore中的类，是一个比较底层的用来绘制内容的类。
 #### UIView 对 CALayer 封装属性
-- UIView 中持有一个 layer 对象，同时这个 layer 对象的 delegate 是，UIView ，所以，UIView 和 CALayer 是协同工作。
+- UIView 中持有一个 layer 对象，同时这个 layer 对象的 delegate 是 UIView ，所以，UIView 和 CALayer 是协同工作。
 - 平时我们对 UIView 设置 frame、center、bounds 等位置信息，其实都是UIView对CALayer进一层封装，使得我们可以很方便地设置控件的位置；例如圆角、阴影等属性，UIView就没有进一步封装，所以我们还是需要去设置 Layer 的属性来实现功能。
 - Frame 属性主要是依赖：bounds、anchorPoint、transform、和position。
 - 我们这主要说一下 anchorPoint 和 position 如何影响 Frame 的：anchorPoint锚点是相对于当前Layer的一个点，position 是 Layer 中 anchorPoint 锚点在 superLayer 中的点，即 position 是由 anchorPoint 来确认的。
