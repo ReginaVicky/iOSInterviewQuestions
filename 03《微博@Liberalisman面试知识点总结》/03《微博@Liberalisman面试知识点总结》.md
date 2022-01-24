@@ -182,10 +182,80 @@
 
 
 ## iOS 内存管理
+- 1.为什么说Objective-C是一门动态的语言？
+- 2.内存中的5大区分别是什么？
+- 3.iOS程序内存的每个分区怎么存储（举例说明）
+- 4.代码区存储的是什么？
+- 5.block一般存在哪里（分ARC和MRC）
+- 6.什么是虚拟内存，虚拟内存和物理内存的关系和区别？
+- 7.@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
+- 8.@protocol 和 category 中如何使用 @property
+- 9.@property中有哪些属性关键字？@property 后面可以有哪些修饰符？
+- 10.内存管理默认的关键字是什么？
+- 11.说一下对 readwrite、readonly、retain、copy、assign、nonatomic、automic、weak、strong、_Unsafe_Unretain 关键字的理解。
+- 12.automic的实现机制；
+- 13.atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？
+- 14.什么情况使用 weak 关键字，相比 assign 有什么不同？
+- 15.assign能修饰对象吗？assign修饰对象可能存在的问题
+- 16.__weak 和 _Unsafe_Unretain 的区别
+- 17._weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
+- 18.runtime如何实现weak变量的自动置nil？
+- 19.weak属性需要在dealloc中置nil么？
+- 20.runtime 如何实现 weak 属性
+- 21.怎么用 copy 关键字？
+- 22.如何令自己所写的对象具有拷贝功能?
+- 23.这个写法会出什么问题： @property (copy) NSMutableArray *array;
+- 24.用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
+- 25.如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？
+- 26.是否了解深拷贝和浅拷贝的概念，集合类深拷贝如何实现？
+- 27.完全深拷贝和不完全深拷贝
+- 28.讲一下 `iOS` 内存管理的理解？
+- 29.对象引用计数放哪里？
+- 30.使用自动引用计（ARC）数应该遵循的原则?
+- 31.ARC 自动内存管理的原则?
+- 32.ARC 的 retainCount 怎么存储的？
+- 33.ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
+- 34.ARC通过什么方式帮助开发者管理内存？
+- 35.ARC 在编译时做了哪些工作？
+- 36.ARC 在运行时做了哪些工作？
+- 37.简要说一下 @autoreleasePool 的数据结构？
+- 38.@autoreleasrPool 的释放时机？
+- 39.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
+- 40.函数返回一个对象时，会对对象 autorelease 么？为什么？
+- 41.autorelease实现逻辑
+- 42.realease作用是什么和 autorelease 有什么区别？
+- 43.不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）
+- 44.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
+- 45.在OC里 alloc 和 retain 语义相反的方法是？
+- 46.retain、release 的实现机制？
+- 47.能不能简述一下 Dealloc 的实现机制？
+- 48.在 MRC 下如何重写属性的 Setter 和 Getter?
+- 49.讲一下 @dynamic 关键字？
+- 50.@synthesize和@dynamic分别有什么作用？
+- 51.@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
+- 52.在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？
+- 53.说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
+- 54.分别说一下什么是悬垂指针？什么是 野指针?什么是僵尸对象？什么是空指针?
+- 55.objc中向一个nil对象发送消息将会发生什么？
+- 56.objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？
+- 57.BAD_ACCESS 在什么情况下出现?
+- 58.什么时候会报unrecognized selector的异常？
+- 59.objc使用什么机制管理对象内存？
+- 60.一个objc对象如何进行内存布局？（考虑有父类的情况）
+- 61.一个objc对象的isa的指针指向什么？有什么作用？
+- 62.能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？
+- 63.对象释放时机，是立即释放吗
+- 64.什么是内存泄露
+- 65.在Obj-C中，如何检测内存泄漏？你知道哪些方式？
+- 66.Core Foundation内存管理
+- 67.iOS常见内存问题及优化
+
+
+
 - [补充：为什么说Objective-C是一门动态的语言？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充为什么说objective-c是一门动态的语言)
 - 1.[说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
 - 2.[简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
-- 补充：assign 修饰对象可能存在的问题
+- 补充：assign能修饰对象吗？assign修饰对象可能存在的问题
 - 3.[automic的实现机制；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3automic的实现机制)
 - 4.[atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4atomic是绝对的线程安全么为什么如果不是那应该如何实现)
 - 5.[@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5property-的本质是什么ivargettersetter-是如何生成并添加到这个类中的)
@@ -226,6 +296,7 @@
 - 39.[函数返回一个对象时，会对对象 autorelease 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39函数返回一个对象时会对对象-autorelease-么为什么)
 - 40.[realease作用是什么和 autorelease 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40realease作用是什么和-autorelease-有什么区别)
 - 41.[不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41不手动指定autoreleasepool的前提下一个autorealese对象在什么时刻释放比如在一个vc的viewdidload中创建)
+- 补充：autorelease实现逻辑
 - 42.[访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42访问-__weak-修饰的变量是否已经被注册在了-autoreleasepool-中为什么)
 - 43.[在OC里 alloc 和 retain 语义相反的方法是？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#43在oc里-alloc-和-retain-语义相反的方法是)
 - 44.[retain、release 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#44retainrelease-的实现机制)
@@ -237,6 +308,7 @@
 - 50.[在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#50在有了自动合成属性实例变量之后synthesize还有哪些使用场景)
 - 补充：说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
 - 51.[说一下什么是 悬垂指针？什么是 野指针?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51说一下什么是-悬垂指针什么是-野指针)
+- 补充：什么是僵尸对象？什么是空指针?
 - 52.[objc中向一个nil对象发送消息将会发生什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52objc中向一个nil对象发送消息将会发生什么)
 - 53.[objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#53objc中向一个对象发送消息obj-foo和objc_msgsend函数之间有什么关系)
 - 54.[BAD_ACCESS 在什么情况下出现?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#54bad_access-在什么情况下出现)
@@ -246,6 +318,10 @@
 - 58.[一个objc对象的isa的指针指向什么？有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#58一个objc对象的isa的指针指向什么有什么作用)
 - 59.[能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#59能否向编译后得到的类中增加实例变量能否向运行时创建的类中添加实例变量为什么)
 - 60.[在Obj-C中，如何检测内存泄漏？你知道哪些方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#60在obj-c中如何检测内存泄漏你知道哪些方式)
+- 补充：对象释放时机，是立即释放吗
+- 补充：什么是内存泄露
+- 补充：Core Foundation内存管理
+- 补充：iOS常见内存问题及优化
 
 ## Runtime
 - 1.[实例对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1实例对象的数据结构)
@@ -338,6 +414,8 @@
 - 3.[谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
 - 4.[多线程容易出现的问题，怎么解决](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4多线程容易出现的问题怎么解决)
 - [补充：多线程的安全隐患+11种同步解决方案](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充多线程的安全隐患11种同步解决方案)
+-补充：iOS锁的原理
+-补充：iOS读写锁实现原理
 - 5.[NSThread相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5nsthread相关知识)
 - 6.[GCD 相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6gcd-相关知识)
 - 7.[说一下 GCD 并发队列实现机制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7说一下-gcd-并发队列实现机制)
@@ -378,6 +456,7 @@
 - 41.[Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41object-c中创建线程的方法是什么如果在主线程中执行代码方法是什么如果想延时执行代码方法又是什么)
 - 42.[如何把异步线程转换成同步任务进行单元测试？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42如何把异步线程转换成同步任务进行单元测试)
 - 43.[如何实现线性编程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#43如何实现线性编程)
+- 补充：面向协议编程特点
 
 
 ## 网络
@@ -394,6 +473,7 @@
 - [补充：TCP 协议如何保证可靠传输](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充tcp-协议如何保证可靠传输)
 - [补充：说一下可靠数据传输、流量控制(滑动窗口)、拥塞控制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充说一下可靠数据传输流量控制滑动窗口拥塞控制)
 - [补充：TCP 的拥塞控制主要是四个算法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充tcp-的拥塞控制主要是四个算法)
+- 补充：拥塞控制,为什么要将cwnd大小设为原来的一半?
 - 10.[简要说一下Https；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10简要说一下https)
 - 11.[HTTPS的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11https的原理)
 - [补充：服务器返回给客户端的证书跟它自己保留的证书一样吗](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充服务器返回给客户端的证书跟它自己保留的证书一样吗)
@@ -402,6 +482,7 @@
 - 13.[Http 和 Https 的区别？为什么更加安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13http-和-https-的区别为什么更加安全)
 - 14.[Http的请求方式有哪些？Http 有什么特性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14http的请求方式有哪些http-有什么特性)
 - 15.[解释一下 三次握手 和 四次挥手？解释一下为什么是三次握手 又为什么是 四次挥手？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15解释一下-三次握手-和-四次挥手解释一下为什么是三次握手-又为什么是-四次挥手)
+- 补充：四次挥手,为什么要有TIME_WAIT状态?为什么要等待2MLS?
 - 16.[GET 和 POST 请求的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16get-和-post-请求的区别)
 - 17.[GET请求参数一定是放在URL中的么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17get请求参数一定是放在url中的么)
 - 18.[Post请求体有哪些格式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18post请求体有哪些格式)
@@ -3435,7 +3516,7 @@ while(controller.presentingViewController != nil){
 - 调用layoutIfNeed不会触发VC中viewDidLayoutSubviews 和 viewWillLayoutSubviews 里面重写 views的布局
 
 ### 17.什么情况下会调用layoutSubviews ？
-- 调用setNeedsLayout  layoutIfNeed，直接调用setLayoutSubviews
+- 调用setNeedsLayout，直接调用setLayoutSubviews
 - addsubview时触发layoutSubviews
 - 改变一个view的frame会触发layoutSubviews
 - 改变view的size会触发父view的layoutSubviews
@@ -4046,7 +4127,7 @@ indexOfObjectIdenticalTo:
 
 
 ## iOS 内存管理
-### 补充：为什么说Objective-C是一门动态的语言
+### 1.为什么说Objective-C是一门动态的语言
 - 首先动态类型语言和静态类型语言
     * 动态类型语言
         * 动态类型语言是指在运行期间才去做数据类型检查的语言，也就是说，在用动态类型的语言编程时，永远也不用给任何变量指定数据类型，该语言会在你第一次赋值给变量时，在内部将数据类型记录下来。
@@ -4057,47 +4138,52 @@ indexOfObjectIdenticalTo:
     * 动态绑定：基于动态类型，在某个实例对象被确定后，起类型就被确定了。该对象的属性和响应的消息也被完全确定，这就是动态绑定
     * 动态加载：根据需求加载所需要的资源，这点很容易理解，对于ios开发来说，基本就是根据不同的急性左适配。最经典的例子就是在Retina设备上加载@2X的图片，而在老一些的普通设备上加载原图。随着Retina iPad的推出，和之后可能的Retina Mac的出现，这个特性相信会被越来越多的使用。让程序在运行时添加代码块以及其他资源。用户可以根据需要加载一些课指向代码和资源，而不是在启动时就加载所有组件。可执行代码中可以含有和程序运行时整合的新类。
 
-### 1.说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。
-- Strong：修饰符表示指向并持有该对象，其修饰对象的引用计数会加1。该对象只要引用计数不为0就不会被销毁。当然可以通过将变量强制赋值 nil 来进行销毁。
-- weak：修饰符指向但是并不持有该对象，引用计数也不会加1。在 Runtime 中对该属性进行了相关操作，无需处理，可以自动销毁。weak用来修饰对象，多用于避免循环引用的地方。weak 不可以修饰基本数据类型。
-- assign：主要用于修饰基本数据类型，例如NSInteger，CGFloat，存储在栈中，内存不用程序员管理。assign是可以修饰对象的，但是会出现问题。
-- copy：关键字和strong类似，copy多用于修饰有可变类型的不可变对象上NSString,NSArray,NSDictionary上。
-- __unsafe_unretain：类似于weak，但是当对象被释放后，指针已然保存着之前的地址，被释放后的地址变为僵尸对象，访问被释放的地址就会出问题，所以说他是不安全的。
-- __autoreleasing：将对象赋值给附有__autoreleasing修饰的变量等同于 ARC 无效时调用对象的autorelease方法,实质就是扔进了自动释放池。
+### 2.内存中的5大区分别是什么？
+- 栈区：编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。
+- 堆区：由程序员分配和释放，如果程序员不释放，程序结束时，可能会由操作系统回收 ，比如在iOS 中 alloc 都是存放在堆中。
+- 全局区：全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量存放在一块区域，未初始化的全局变量和静态变量在相邻的另一块区域，程序结束后由系统释放。
+- 文字常量区：存放常量字符串，程序结束后由系统释放程序结束释放。
+- 代码区：存放函数的二进制代码
 
-### 2.简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong
-- readwrite：可读可写特性,需要生成setter和getter方法时使用, 可被外界读取和修改；
-- readonly：只读特性,只会生成getter方法,只可被外界读取, 不能修改；
-- assign：赋值特性,作用于非OC对象的赋值,setter方法将参数传给变量；
-- retain：持有特性,他的setter方法会释放旧址,然后引用住新值, 并且将新值的引用计数+1,只能作用于OC对象(基本数据类型和CoreFoundation对象没有引用计数的概念, 因此不能用retain)
-- copy
-    * 复制特性,此属性只对遵守了NSCopying协议的对象类型有效,一般作用于NSString,NSArray,NSDictionary等有可变类型的对象
-    * 如果copy的是不可变类型,就不会开辟新的内存空间, 并且为指针拷贝, 指向同一个内存地址:浅拷贝
-    * 如果copy的是可变类型, 就会开辟新的内存空间, 并且将内容copy下来单独保存: 深拷贝
-    * 注意: 如果在系统中创建内容相同的不可变字符串, 系统会自动做出优化, 指向同一块内存空间
-- nonatomic
-    * 非原子性,即非线程安全的,不给变量提供线程锁保护, 这样会提高性能
-    * 在iOS的移动端,一般不会出现多线程访问同一个属性的情况,就算发生情况,atomic也不能完美的保证安全, 并且还需要手动增加线程锁,因此对于变量都应该使用nonatomic
-- atomic
-    * atomic会给属性加上一个同步锁,这是为了防止多线程同时访问属性出现异常需要添加的属性,但是这样会增加额外的内存开销并且在变编程习惯中,我们都应该避免多线程访问统一资源
-    * 即便是使用atomic,在多线程时也无法完全保证线程安全, 往往是需要手动添加线程锁
+### 3.iOS程序内存的每个分区怎么存储（举例说明）
+- 栈区：存放的局部变量、先进后出、一旦出了作用域就会被销毁；函数跳转地址，现场保护等，内存地址从高到低分配。
+- 堆区：堆区的地址是从低到高分配，通过程序员通过alloc手动分配。
+- 全局区：包含两个部分，未初始化区，初始化区域。全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域；
+- 代码区存放于低地址，栈区存放于高地址。区与区之间并不是连续的。堆区的内存是应用程序共享的，堆中的内存分配是系统负责的；当引用计数为0的时候，系统会回收该内存。
 
-### 补充：assign 修饰对象可能存在的问题
-- 对象开辟的空间是在堆空间，指针开辟的空间是在栈上，使用assign修饰，当对象销毁时并不会将指针置为nil。所以当堆空间的对象销毁时指向对象的指针仍然存在，会造成野指针，当访问该对象时会crash报错EXC_BAD_ACCESS。因为基本数据类型的空间开辟也在栈空间，同样由系统进行销毁，所以不存在野指针的情况。使用weak修饰对象时当对象销毁时指针也会被置为nil，所以用weak不会造成野指针。
+### 4.代码区存储的是什么？
+- 代码区存放的是程序中函数编译后的CPU指令
 
-### 3.automic的实现机制；
-- 添加属性时使用了automic声明的，系统会自动在setter和getter方法中添加锁来实现读写安全。
-- 通过源码查看发现automic的原理是使用OSSPinLock来实现的，这种自旋锁会出现优先级反转导致死锁的问题，所以不推荐automic。
-- 在iOS 10之后系统推荐使用os_unfair_lock来代替OSSPinlock，并且automic在iOS10之后也使用os_unfair_lock来实现了。
+### 5.block一般存在哪里（分ARC和MRC）
+- 在 MRC 下，Block 默认是分配在栈上的，除非进行显式执行的copy方法，只要block没有引用外部的局部变量，block放在全局区里面
+- 在ARC的中，对象默认是用__strong修饰的，所以大部分情况下编译器都会将block从栈自动复制到堆上。有一个特殊情况，如果仅仅定义了block没有赋值给变量的话，仍是在栈上。这种情况下随着作用域结束，block将会销毁回收。
 
-### 4.atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？
-- atomic 和 nonatomic 的区别在于，系统自动生成的 getter/setter 方法不一样。如果你自己写 getter/setter，那 atomic/nonatomic/retain/assign/copy 这些关键字只起提示作用，写不写都一样。
-- 其实质就是，atomic比nonatomic多了一个互斥加锁代码，避免该变量的读写不同步问题。
-- 对于atomic的属性，系统生成的 getter/setter 会保证 get、set 操作的完整性，不受其他线程影响。比如，线程 A 的 getter 方法运行到一半，线程 B 调用了 setter：那么线程 A 的 getter 还是能得到一个完好无损的对象。 而nonatomic就没有这个保证了。所以，nonatomic的速度要比atomic快。据说快大约20倍。
-- 不过atomic可并不能保证线程安全。如果线程 A 调了 getter，与此同时线程 B 、线程 C 都调了 setter——那最后线程 A get 到的值，3种都有可能：可能是 B、C set 之前原始的值，也可能是 B set 的值，也可能是 C set 的值。同时，最终这个属性的值，可能是 B set 的值，也有可能是 C set 的值。
-- 解决方案是加锁。
+### 6.什么是虚拟内存，虚拟内存和物理内存的关系和区别
+- 操作系统有虚拟内存与物理内存之分
+- 在虚拟内存出现之前，程序寻址用的都是物理地址，因此程序能寻址的范围是有限的，具体程序可以寻址的范围有多大取决于CPU的地址线条数。
+- 比如在32位平台下，寻址的范围是2^32也就是4G，并且这是固定的，如果没有虚拟内存，且每次开启一个进程都分配出来4G的物理内存，就会出现很多问题：
+    * 因为物理内存是有限的，当有多个进程要执行的时候，对每个进程都要分配4G内存，很显然你内存若小一点，这很快就分配完了，于是没有得到分配资源的进程就只能等待。当一个进程执行完后，再将等待的进程装入内存。这种频繁的装入内存的操作是很没效率的。
+    * 由于指令都是直接访问物理内存的，那么进程就可以修改其他进程的数据，甚至会修改内核地址空间的数据，这是我们不想看到的。
+    * 因为内存是随机分配的，所以程序运行的地址也是不正确的。
+- 为了解决上述问题，于是就出现了虚拟内存。
 
-### 5.@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
+#### 虚拟内存原理及与物理内存的关系
+- 一个进程运行时会被分配4G的虚拟内存。进程有了虚拟内存后，每个进程都认为自己拥有4G的内存空间，当然这只是每个进程认为的。但实际上，虚拟内存对应的实际物理内存，可能只对应的分配了一点点的物理内存，实际使用了多少内存，就会对应多少物理内存。
+- 进程得到的这4G虚拟内存是一个连续的地址空间（这也只是进程认为），而实际上，它的数据是存储在多个物理内存碎片的，还有一部分存储在外部磁盘存储器上，在需要时将数据交换进物理内存。
+- 进程开始要访问一个地址，它可能会经历下面的过程
+    * 进程每次要访问地址空间上的某一个地址时，都需要把地址翻译为实际物理内存地址。
+    * 所有进程共享一整块物理内存，每个进程只把自己目前需要访问的虚拟地址空间映射到物理内存上。
+    * 进程需要知道哪些虚拟内存地址空间上的数据在物理内存上，哪些不在（可能这部分存储在磁盘上），若在物理内存上存在，则需要进一步知道数据存储在物理内存上的具体位置，这都需要通过页表来记录。
+    * 页表的每一个表项分两部分，第一部分记录此页是否在物理内存上，第二部分记录物理内存页的地址（如果在的话）。
+    * 当进程访问某个虚拟地址的时候，就会先去看页表，如果发现对应的数据不在物理内存上，就会发生缺页异常。
+    * 缺页异常的处理过程，操作系统立即阻塞该进程，并将硬盘里对应的页换入内存，然后使该进程就绪，如果内存已经满了，没有空地方了，那就找一个页覆盖，至于具体覆盖的哪个页，就需要看操作系统的页面置换算法是怎么设计的了。
+
+#### 总结
+- 当每个进程创建的时候，内核会为进程分配4G的虚拟内存，当进程还没有开始运行时，这只是一个内存布局。实际上并不立即就把虚拟内存对应位置的程序数据和代码（比如.text .data段）拷贝到物理内存中，只是建立好虚拟内存和磁盘文件之间的映射关系（叫做存储器映射）。这个时候数据和代码还是在磁盘上的。当运行到对应的程序时，进程去访问页表，发现页表中地址没有存放在物理内存上，而是在磁盘上，于是发生缺页异常，于是将磁盘上的数据拷贝到物理内存中。
+- 外在进程运行过程中，通过malloc来动态分配内存时，也只是分配了虚拟内存，即为这块虚拟内存对应的页表项做相应设置，当进程真正访问到此数据时，才引发缺页异常。
+- 可以认为虚拟空间都被映射到了磁盘空间中（事实上也是按需要映射到磁盘空间上，通过mmap，mmap是用来建立虚拟空间和磁盘空间的映射关系的）
+
+### 7.@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
 - @property 的本质是什么？
     * @property = ivar + getter + setter;
 - 下面解释下：
@@ -4170,47 +4256,91 @@ typedef struct {
 
 也就是说我们每次在增加一个属性,系统都会在 ivar_list 中添加一个成员变量的描述,在 method_list 中增加 setter 与 getter 方法的描述,在属性列表中增加一个属性的描述,然后计算该属性在对象中的偏移量,然后给出 setter 与 getter 方法对应的实现,在 setter 方法中从偏移量的位置开始赋值,在 getter 方法中从偏移量开始取值,为了能够读取正确字节数,系统对象偏移量的指针类型进行了类型强转.
 
-### 6.@property 后面可以有哪些修饰符？
-- 常用的修饰符有4类：
-    * readonly,readwrite表示读写全线
-    * retain,copy,assign,strong,weak表示引用方式,涉及属性自动创建的setter的实现
-    * nonatomic,atomic意为原子特性,表示是否线程安全.
-    * getter,setter表示自定义的获取/设置方法.
+### 8.@protocol 和 category 中如何使用 @property
+- category和protocol都可以添加方法，也都可以添加@property 关键字
+- 在 protocol 中使用 property 只会生成 setter 和 getter 方法声明,我们使用属性的目的,是希望遵守我协议的对象能实现该属性，也就是说，在实现这个protocol协议的类中，我们要自己手动添加实例变量，并且需要实现setter和getter方法
+- category 使用 @property 也是只会生成 setter 和 getter 方法的声明,由于category不能添加实例变量，故必须通过运行时添加associated object的方法来添加实例变量，如果我们真的需要给 category 增加属性的实现,需要借助于运行时的两个函数：
+    * objc_setAssociatedObject
+    * objc_getAssociatedObject
 
-### 7.@property中有哪些属性关键字？/ @property 后面可以有哪些修饰符
+### 9.@property中有哪些属性关键字？/ @property 后面可以有哪些修饰符
 - 属性可以拥有的特质分为四类:
-
     * 原子性--- nonatomic 特质
-    
-        在默认情况下，由编译器合成的方法会通过锁定机制确保其原子性(atomicity)。如果属性具备 nonatomic 特质，则不使用自旋锁。请注意，尽管没有名为“atomic”的特质(如果某属性不具备 nonatomic 特质，那它就是“原子的” ( atomic) )，但是仍然可以在属性特质中写明这一点，编译器不会报错。若是自己定义存取方法，那么就应该遵从与属性特质相符的原子性。
-
+        * 在默认情况下，由编译器合成的方法会通过锁定机制确保其原子性(atomicity)。
+        * 如果属性具备nonatomic特质，则不使用自旋锁。请注意，尽管没有名为“atomic”的特质(如果某属性不具备 nonatomic 特质，那它就是“原子的” ( atomic) )，但是仍然可以在属性特质中写明这一点，编译器不会报错。若是自己定义存取方法，那么就应该遵从与属性特质相符的原子性。
     * 读/写权限---readwrite(读写)、readonly (只读)
+    * 内存管理语义---assign、strong、 weak、unsafe_unretained、copy表示引用方式,涉及属性自动创建的setter的实现
+    * 方法名---getter=<name> 、setter=<name>表示自定义的获取/设置方法.
 
-    * 内存管理语义---assign、strong、 weak、unsafe_unretained、copy
+#### getter=<name>的样式：
 
-    * 方法名---getter=<name> 、setter=<name>
-        * getter=<name>的样式：
 ```
 @property (nonatomic, getter=isOn) BOOL on;
 ```
-        
-- - - setter=<name>一般用在特殊的情境下，比如：
-    
-    在数据反序列化、转模型的过程中，服务器返回的字段如果以 init 开头，所以你需要定义一个 init 开头的属性，但默认生成的 setter 与 getter 方法也会以 init 开头，而编译器会把所有以 init 开头的方法当成初始化方法，而初始化方法只能返回 self 类型，因此编译器会报错。
 
-这时你就可以使用下面的方式来避免编译器报错：
+#### setter=<name>一般用在特殊的情境下，比如：
+- 在数据反序列化、转模型的过程中，服务器返回的字段如果以 init 开头，所以你需要定义一个init开头的属性，但默认生成的 setter 与 getter 方法也会以init开头，而编译器会把所有以 init 开头的方法当成初始化方法，而初始化方法只能返回 self 类型，因此编译器会报错。
+- 这时你就可以使用下面的方式来避免编译器报错：
 
 ```
 @property(nonatomic, strong, getter=p_initBy, setter=setP_initBy:)NSString *initBy;
 ```
-另外也可以用关键字进行特殊说明，来避免编译器报错：
+- 另外也可以用关键字进行特殊说明，来避免编译器报错：
 
 ```
 @property(nonatomic, readwrite, copy, null_resettable) NSString *initBy;
 - (NSString *)initBy __attribute__((objc_method_family(none)));
 ```
 
-### 8.什么情况使用 weak 关键字，相比 assign 有什么不同？
+### 10.内存管理默认的关键字是什么？
+- MRC
+
+```
+@property (atomic,readWrite,retain) UIView *view;
+```
+- ARC
+
+```
+@property (atomic,readWrite,strong) UIView *view;
+```
+- 如果改为基本数据类型，那就是 assign。
+
+### 11.说一下对readwrite、readonly、retain、copy、assign、nonatomic、automic、weak、strong、_Unsafe_Unretain、__autoreleasing 关键字的理解。
+- readwrite：可读可写特性,需要生成setter和getter方法时使用, 可被外界读取和修改；
+- readonly：只读特性,只会生成getter方法,只可被外界读取, 不能修改；
+- assign：赋值特性,作用于非OC对象的赋值,setter方法将参数传给变量；主要用于修饰基本数据类型，例如NSInteger，CGFloat，存储在栈中，内存不用程序员管理。assign是可以修饰对象的，但是会出现问题。问题是：
+    * - weak生成的成员变量是用__weak修饰的，assign生成的成员变量是用__unsafe_unretained修饰的；
+    * 对象开辟的空间是在堆空间，指针开辟的空间是在栈上，使用assign修饰，当对象销毁时并不会将指针置为nil。所以当堆空间的对象销毁时指向对象的指针仍然存在，会造成野指针，当访问该对象时会crash报错EXC_BAD_ACCESS。因为基本数据类型的空间开辟也在栈空间，同样由系统进行销毁，所以不存在野指针的情况。使用weak修饰对象时当对象销毁时指针也会被置为nil，所以用weak不会造成野指针。
+- retain：持有特性,他的setter方法会释放旧址,然后引用住新值, 并且将新值的引用计数+1,只能作用于OC对象(基本数据类型和CoreFoundation对象没有引用计数的概念, 因此不能用retain)
+- Strong：修饰符表示指向并持有该对象，其修饰对象的引用计数会加1。该对象只要引用计数不为0就不会被销毁。当然可以通过将变量强制赋值 nil 来进行销毁。
+- weak：修饰符指向但是并不持有该对象，引用计数也不会加1。在 Runtime 中对该属性进行了相关操作，无需处理，可以自动销毁。weak用来修饰对象，多用于避免循环引用的地方。weak 不可以修饰基本数据类型。
+- copy
+    * 复制特性,此属性只对遵守了NSCopying协议的对象类型有效,一般作用于NSString,NSArray,NSDictionary等有可变类型的对象
+    * 如果copy的是不可变类型,就不会开辟新的内存空间, 并且为指针拷贝, 指向同一个内存地址:浅拷贝
+    * 如果copy的是可变类型, 就会开辟新的内存空间, 并且将内容copy下来单独保存: 深拷贝
+    * 注意: 如果在系统中创建内容相同的不可变字符串, 系统会自动做出优化, 指向同一块内存空间
+- nonatomic
+    * 非原子性,即非线程安全的,不给变量提供线程锁保护, 这样会提高性能
+    * 在iOS的移动端,一般不会出现多线程访问同一个属性的情况,就算发生情况,atomic也不能完美的保证安全, 并且还需要手动增加线程锁,因此对于变量都应该使用nonatomic
+- atomic
+    * atomic会给属性加上一个同步锁,这是为了防止多线程同时访问属性出现异常需要添加的属性,但是这样会增加额外的内存开销并且在变编程习惯中,我们都应该避免多线程访问统一资源
+    * 即便是使用atomic,在多线程时也无法完全保证线程安全, 往往是需要手动添加线程锁
+- __unsafe_unretain：类似于weak，但是当对象被释放后，指针已然保存着之前的地址，被释放后的地址变为僵尸对象，访问被释放的地址就会出问题，所以说他是不安全的。
+- __autoreleasing：将对象赋值给附有__autoreleasing修饰的变量等同于 ARC 无效时调用对象的autorelease方法,实质就是扔进了自动释放池。
+
+### 12.automic的实现机制；
+- 添加属性时使用了automic声明的，系统会自动在setter和getter方法中添加锁来实现读写安全。
+- 通过源码查看发现automic的原理是使用OSSPinLock来实现的，这种自旋锁会出现优先级反转导致死锁的问题，所以不推荐automic。
+- 在iOS 10之后系统推荐使用os_unfair_lock来代替OSSPinlock，并且automic在iOS10之后也使用os_unfair_lock来实现了。
+
+### 13.atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？
+- atomic 和 nonatomic 的区别在于，系统自动生成的 getter/setter 方法不一样。如果你自己写 getter/setter，那 atomic/nonatomic/retain/assign/copy 这些关键字只起提示作用，写不写都一样。
+- 其实质就是，atomic比nonatomic多了一个互斥加锁代码，避免该变量的读写不同步问题。
+- 对于atomic的属性，系统生成的 getter/setter 会保证 get、set 操作的完整性，不受其他线程影响。比如，线程 A 的 getter 方法运行到一半，线程 B 调用了 setter：那么线程 A 的 getter 还是能得到一个完好无损的对象。 而nonatomic就没有这个保证了。所以，nonatomic的速度要比atomic快。据说快大约20倍。
+- 不过atomic可并不能保证线程安全。如果线程 A 调了 getter，与此同时线程 B 、线程 C 都调了 setter——那最后线程 A get 到的值，3种都有可能：可能是 B、C set 之前原始的值，也可能是 B set 的值，也可能是 C set 的值。同时，最终这个属性的值，可能是 B set 的值，也有可能是 C set 的值。
+- 解决方案是加锁。
+
+### 14.什么情况使用 weak 关键字，相比 assign 有什么不同？
 - 什么情况使用weak关键字
     * 在ARC模式下，在有可能出现循环引用时，让其一端使用weak修饰。例如：delegate（代理）属性；
     * 自身已经对它强引用一次了，没有必再强引用一次使用weak解决。例如：自定义IBOutlet控件属性。当然，也可以使用strong。
@@ -4220,26 +4350,23 @@ typedef struct {
     * assign 可以用非 OC 对象,而 weak 必须用于 OC 对象。
     * ==注意:assign修饰的对象（一般编译的时候会产生警告：Assigning retained object to unsafe property; object will be released after assignment）在释放之后，指针的地址还是存在的，也就是说指针并没有被置为nil，造成野指针。对象一般分配在堆上的某块内存，如果在后续的内存分配中，刚好分到了这块地址，程序就会崩溃掉。那为什么可以用assign修饰基本数据类型？因为基础数据类型一般分配在栈上，栈的内存会由系统自己自动处理，不会造成野指针。weak修饰的对象在释放之后，指针地址会被置为nil。所以现在一般弱引用就是用weak。==
 
-### 9.@protocol 和 category 中如何使用 @property
-- category和protocol都可以添加方法，也都可以添加@property 关键字
-- 在 protocol 中使用 property 只会生成 setter 和 getter 方法声明,我们使用属性的目的,是希望遵守我协议的对象能实现该属性，也就是说，在实现这个protocol协议的类中，我们要自己手动添加实例变量，并且需要实现setter和getter方法
-- category 使用 @property 也是只会生成 setter 和 getter 方法的声明,由于category不能添加实例变量，故必须通过运行时添加associated object的方法来添加实例变量，如果我们真的需要给 category 增加属性的实现,需要借助于运行时的两个函数：
-    * objc_setAssociatedObject
-    * objc_getAssociatedObject
+### 15.assign能修饰对象吗？assign修饰对象可能存在的问题
+- weak生成的成员变量是用__weak修饰的，assign生成的成员变量是用__unsafe_unretained修饰的；
+- 对象开辟的空间是在堆空间，指针开辟的空间是在栈上，使用assign修饰，当对象销毁时并不会将指针置为nil。所以当堆空间的对象销毁时指向对象的指针仍然存在，会造成野指针，当访问该对象时会crash报错EXC_BAD_ACCESS。因为基本数据类型的空间开辟也在栈空间，同样由系统进行销毁，所以不存在野指针的情况。使用weak修饰对象时当对象销毁时指针也会被置为nil，所以用weak不会造成野指针。
 
-### 10.__weak 和 _Unsafe_Unretain 的区别
+### 16.__weak 和 _Unsafe_Unretain 的区别
 - weak 修饰的指针变量，在指向的内存地址销毁后，会在 Runtime 的机制下，自动置为 nil。
 - _Unsafe_Unretain不会置为 nil，容易出现 悬垂指针，发生崩溃。但是 _Unsafe_Unretain 比 __weak 效率高。
 
-### 11._weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
+### 17._weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
 - 用的弱引用 - weak表。也是一张 哈希表。
 - 被 weak 修饰的指针变量所指向的地址是 key ，所有指向这块内存地址的指针会被添加在一个数组里，这个数组是 Value。当内存地址销毁，数组里的所有对象被置为 nil。
 
-### 12.runtime如何实现weak变量的自动置nil？
+### 18.runtime如何实现weak变量的自动置nil？
 - 用的弱引用 - weak表。也是一张 哈希表。
 - 被 weak 修饰的指针变量所指向的地址是 key ，所有指向这块内存地址的指针会被添加在一个数组里，这个数组是 Value。当内存地址销毁，数组里的所有对象被置为 nil。
 
-### 13.weak属性需要在dealloc中置nil么？
+### 19.weak属性需要在dealloc中置nil么？
 - 不需要。
 - 在ARC环境无论是强指针还是弱指针都无需在 dealloc 设置为 nil ， ARC 会自动帮我们处理
 - 即便是编译器不帮我们做这些，weak也不需要在 dealloc 中置nil：
@@ -4254,10 +4381,9 @@ typedef struct {
    }];
 }
 ```
-也即:
-在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。
+- 也即:在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。
 
-### 14.runtime 如何实现 weak 属性
+### 20.runtime 如何实现 weak 属性
 - 要实现 weak 属性，首先要搞清楚 weak 属性的特点：
     * weak 此特质表明该属性定义了一种“非拥有关系” (nonowning relationship)。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质同 assign 类似， 然而在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。
 - 那么 runtime 如何实现 weak 变量的自动置nil？
@@ -4518,7 +4644,7 @@ NSObject *foo = [[NSObject alloc] init];
 }];
 ```
 
-### 15.怎么用 copy 关键字？
+### 21.怎么用 copy 关键字？
 - 用途：
     * NSString、NSArray、NSDictionary 等等经常使用copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary；
     * block 也经常使用 copy 关键字，具体原因见官方文档：Objects Use Properties to Keep Track of Blocks：
@@ -4542,7 +4668,7 @@ NSObject *foo = [[NSObject alloc] init];
 下面做下解释： copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。 当属性类型为 NSString 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString 类的实例。这个类是 NSString 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。
 > 用 @property 声明 NSString、NSArray、NSDictionary 经常使用 copy 关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary，他们之间可能进行赋值操作，为确保对象中的字符串值不会无意间变动，应该在设置新属性值时拷贝一份。
 
-### 16.如何令自己所写的对象具有拷贝功能?
+### 22.如何令自己所写的对象具有拷贝功能?
 > 若想令自己所写的对象具有拷贝功能，则需实现 NSCopying 协议。如果自定义的对象分为可变版本与不可变版本，那么就要同时实现 NSCopying 与 NSMutableCopying 协议。
 - 具体步骤：
     * 需声明该类遵从 NSCopying 协议
@@ -4681,7 +4807,7 @@ typedef NS_ENUM(NSInteger, CYLSex) {
 }
 ```
 
-### 17.这个写法会出什么问题： @property (copy) NSMutableArray *array;
+### 23.这个写法会出什么问题： @property (copy) NSMutableArray *array;
 - 两个问题：
     * 1、添加,删除,修改数组内的元素的时候,程序会因为找不到对应的实例方法而崩溃.报
 ```
@@ -4695,7 +4821,7 @@ typedef NS_ENUM(NSInteger, CYLSex) {
     * 第一个原因：copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。 当属性类型为 NSString（或NSArray，NSDictionary） 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString（或NSMutableArray，NSMutableDictionary） 类的实例。这个类是 NSString（或NSArray，NSDictionary） 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。所以使用copy 就是复制一个不可变 NSArray 的对象；所以会报找不到对应的实例方法而崩溃。
     * 第二个原因：该属性使用了同步锁，会在创建时生成一些额外的代码用于帮助编写多线程程序，这会带来性能问题，通过声明 nonatomic 可以节省这些虽然很小但是不必要额外开销。在默认情况下，由编译器所合成的方法会通过锁定机制确保其原子性(atomicity)。如果属性具备 nonatomic 特质，则不使用同步锁。请注意，尽管没有名为“atomic”的特质(如果某属性不具备 nonatomic 特质，那它就是“原子的”(atomic))。在iOS开发中，你会发现，几乎所有属性都声明为 nonatomic。一般情况下并不要求属性必须是“原子的”，因为这并不能保证“线程安全” ( thread safety)，若要实现“线程安全”的操作，还需采用更为深层的锁定机制才行。例如，一个线程在连续多次读取某属性值的过程中有别的线程在同时改写该值，那么即便将属性声明为 atomic，也还是会读到不同的属性值。因此，开发iOS程序时一般都会使用 nonatomic 属性。但是在开发 Mac OS X 程序时，使用 atomic 属性通常都不会有性能瓶颈。
 
-### 18.用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
+### 24.用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
 - 因为父类指针可以指向子类对象,使用 copy 的目的是为了让本对象的属性不受外界影响,使用 copy 无论给我传入是一个可变对象还是不可对象,我本身持有的就是一个不可变的副本.
 - 如果我们使用是 strong ,那么这个属性就有可能指向一个可变对象,如果这个可变对象在外部被修改了,那么会影响该属性.
 - copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。 当属性类型为 NSString 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString 类的实例。这个类是 NSString 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。
@@ -4789,7 +4915,7 @@ NSMutableArray *mCopyArray = [array mutableCopy];
 
 参考链接：[iOS 集合的深复制与浅复制](https://www.zybuluo.com/MicroCai/note/50592)
 
-### 19.如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？
+### 25.如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？
 > 若想令自己所写的对象具有拷贝功能，则需实现 NSCopying 协议。如果自定义的对象分为可变版本与不可变版本，那么就要同时实现 NSCopying 与 NSMutableCopying 协议。
 - 具体步骤：
     * 需声明该类遵从 NSCopying 协议
@@ -4994,7 +5120,7 @@ typedef NS_ENUM(NSInteger, CYLSex) {
    }
 ```
 
-### 20.是否了解深拷贝和浅拷贝的概念，集合类深拷贝如何实现？
+### 26.是否了解深拷贝和浅拷贝的概念，集合类深拷贝如何实现？
 - 对不可变的非集合对象，copy是指针拷贝，mutablecopy是内容拷贝
 - 对于可变的非集合对象，copy，mutablecopy都是内容拷贝
 - 对不可变的数组、字典、集合等集合类对象，copy是指针拷贝，mutablecopy是内容拷贝
@@ -5011,67 +5137,9 @@ NSDictionary shallowCopyDict = [[NSDictionary alloc] initWithDictionary:someDict
 NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:oldArray]];
 ```
 
-### 21.完全深拷贝和不完全深拷贝
+### 27.完全深拷贝和不完全深拷贝
 - 完全深拷贝:在做深拷贝的时候,我们拷贝的对象具有多层,每一层我们都需要拷贝对象,而不是简单的指针拷贝。
 - 默认状态下深拷贝指的是不完全深拷贝,如要实现完全深拷贝, 则要重写copyWithZone:方法,自行实现完全深拷贝的
-
-### 22.内存管理默认的关键字是什么？
-- MRC
-
-```
-@property (atomic,readWrite,retain) UIView *view;
-```
-- ARC
-
-```
-@property (atomic,readWrite,strong) UIView *view;
-```
-- 如果改为基本数据类型，那就是 assign。
-
-### 23.内存中的5大区分别是什么？
-- 栈区：编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程/进程是唯一的。
-- 堆区：由程序员分配和释放，如果程序员不释放，程序结束时，可能会由操作系统回收 ，比如在iOS 中 alloc 都是存放在堆中。
-- 全局区：全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量存放在一块区域，未初始化的全局变量和静态变量在相邻的另一块区域，程序结束后由系统释放。
-- 文字常量区：存放常量字符串，程序结束后由系统释放程序结束释放。
-- 代码区：存放函数的二进制代码
-
-### 24.iOS程序内存的每个分区怎么存储（举例说明）
-- 栈区：存放的局部变量、先进后出、一旦出了作用域就会被销毁；函数跳转地址，现场保护等，内存地址从高到低分配。
-- 堆区：堆区的地址是从低到高分配，通过程序员通过alloc手动分配。
-- 全局区：包含两个部分，未初始化区，初始化区域。全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域；
-- 代码区存放于低地址，栈区存放于高地址。区与区之间并不是连续的。堆区的内存是应用程序共享的，堆中的内存分配是系统负责的；当引用计数为0的时候，系统会回收该内存。
-
-### 25.代码区存储的是什么？
-- 代码区存放的是程序中函数编译后的CPU指令
-
-### 26.什么是虚拟内存，虚拟内存和物理内存的关系和区别
-- 操作系统有虚拟内存与物理内存之分
-- 在虚拟内存出现之前，程序寻址用的都是物理地址，因此程序能寻址的范围是有限的，具体程序可以寻址的范围有多大取决于CPU的地址线条数。
-- 比如在32位平台下，寻址的范围是2^32也就是4G，并且这是固定的，如果没有虚拟内存，且每次开启一个进程都分配出来4G的物理内存，就会出现很多问题：
-    * 因为物理内存是有限的，当有多个进程要执行的时候，对每个进程都要分配4G内存，很显然你内存若小一点，这很快就分配完了，于是没有得到分配资源的进程就只能等待。当一个进程执行完后，再将等待的进程装入内存。这种频繁的装入内存的操作是很没效率的。
-    * 由于指令都是直接访问物理内存的，那么进程就可以修改其他进程的数据，甚至会修改内核地址空间的数据，这是我们不想看到的。
-    * 因为内存是随机分配的，所以程序运行的地址也是不正确的。
-- 为了解决上述问题，于是就出现了虚拟内存。
-
-#### 虚拟内存原理及与物理内存的关系
-- 一个进程运行时会被分配4G的虚拟内存。进程有了虚拟内存后，每个进程都认为自己拥有4G的内存空间，当然这只是每个进程认为的。但实际上，虚拟内存对应的实际物理内存，可能只对应的分配了一点点的物理内存，实际使用了多少内存，就会对应多少物理内存。
-- 进程得到的这4G虚拟内存是一个连续的地址空间（这也只是进程认为），而实际上，它的数据是存储在多个物理内存碎片的，还有一部分存储在外部磁盘存储器上，在需要时将数据交换进物理内存。
-- 进程开始要访问一个地址，它可能会经历下面的过程
-    * 进程每次要访问地址空间上的某一个地址时，都需要把地址翻译为实际物理内存地址。
-    * 所有进程共享一整块物理内存，每个进程只把自己目前需要访问的虚拟地址空间映射到物理内存上。
-    * 进程需要知道哪些虚拟内存地址空间上的数据在物理内存上，哪些不在（可能这部分存储在磁盘上），若在物理内存上存在，则需要进一步知道数据存储在物理内存上的具体位置，这都需要通过页表来记录。
-    * 页表的每一个表项分两部分，第一部分记录此页是否在物理内存上，第二部分记录物理内存页的地址（如果在的话）。
-    * 当进程访问某个虚拟地址的时候，就会先去看页表，如果发现对应的数据不在物理内存上，就会发生缺页异常。
-    * 缺页异常的处理过程，操作系统立即阻塞该进程，并将硬盘里对应的页换入内存，然后使该进程就绪，如果内存已经满了，没有空地方了，那就找一个页覆盖，至于具体覆盖的哪个页，就需要看操作系统的页面置换算法是怎么设计的了。
-
-#### 总结
-- 当每个进程创建的时候，内核会为进程分配4G的虚拟内存，当进程还没有开始运行时，这只是一个内存布局。实际上并不立即就把虚拟内存对应位置的程序数据和代码（比如.text .data段）拷贝到物理内存中，只是建立好虚拟内存和磁盘文件之间的映射关系（叫做存储器映射）。这个时候数据和代码还是在磁盘上的。当运行到对应的程序时，进程去访问页表，发现页表中地址没有存放在物理内存上，而是在磁盘上，于是发生缺页异常，于是将磁盘上的数据拷贝到物理内存中。
-- 外在进程运行过程中，通过malloc来动态分配内存时，也只是分配了虚拟内存，即为这块虚拟内存对应的页表项做相应设置，当进程真正访问到此数据时，才引发缺页异常。
-- 可以认为虚拟空间都被映射到了磁盘空间中（事实上也是按需要映射到磁盘空间上，通过mmap，mmap是用来建立虚拟空间和磁盘空间的映射关系的）
-
-### 27.block一般存在哪里（分ARC和MRC）
-- 在 MRC 下，Block 默认是分配在栈上的，除非进行显式执行的copy方法，只要block没有引用外部的局部变量，block放在全局区里面
-- 在ARC的中，对象默认是用__strong修饰的，所以大部分情况下编译器都会将 block从栈自动复制到堆上。有一个特殊情况，如果仅仅定义了block没有赋值给变量的话，仍是在栈上。这种情况下随着作用域结束，block将会销毁回收。
 
 ### 28.讲一下 `iOS` 内存管理的理解？(三种方案的结合)
 - OC中的内存管理主要有三种方式：ARC、MRC、自动释放池
@@ -5299,7 +5367,7 @@ extra_rc | 存储引用计数值减一后的结果
     * DenseMap类中包含好多映射实例到其引用计数的键值对，并支持用 DenseMapIterator 迭代器快速查找遍历这些键值对。
     * 引用计数表、weak表都是散列表；
 
-### 补充：对象引用计数放哪里？
+### 29.对象引用计数放哪里？
 - 采用散列表（引用计数表）来管理引用计数。
 
 ![image](http://upload-images.jianshu.io/upload_images/131615-d1212b1150b575e7.png)
@@ -5313,7 +5381,7 @@ extra_rc | 存储引用计数值减一后的结果
     * 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
 - 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
 
-### 29.使用自动引用计（ARC）数应该遵循的原则?
+### 30.使用自动引用计（ARC）数应该遵循的原则?
 - ARC规则：
     * 不能使用retain/release/retainCount/autorelease
     * 不能使用NSAllocateObject/NSDeallocateObject
@@ -5324,13 +5392,13 @@ extra_rc | 存储引用计数值减一后的结果
     * 对象型变量不能作为c语言结构体的成员
     * 显式转换id和void*
 
-### 30.ARC 自动内存管理的原则?
+### 31.ARC 自动内存管理的原则?
 - 自己生成的对象，自己持有
 - 非自己生成的对象，自己可以持有
 - 自己持有的对象不再需要时，需要对其进行释放
 - 非自己持有的对象无法释放
 
-### 31.ARC 的 retainCount 怎么存储的？
+### 32.ARC 的 retainCount 怎么存储的？
 - 采用散列表（引用计数表）来管理引用计数。
 
 ![image](http://upload-images.jianshu.io/upload_images/131615-d1212b1150b575e7.png)
@@ -5344,11 +5412,11 @@ extra_rc | 存储引用计数值减一后的结果
     * 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
 - 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
 
-### 32.ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
+### 33.ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
 - 对应基本数据类型默认关键字是 atomic,readwrite,assign
 - 对于普通的 Objective-C 对象 atomic,readwrite,strong
 
-### 33.ARC通过什么方式帮助开发者管理内存？
+### 34.ARC通过什么方式帮助开发者管理内存？
 - 采用散列表（引用计数表）来管理引用计数。
 
 ![image](http://upload-images.jianshu.io/upload_images/131615-d1212b1150b575e7.png)
@@ -5362,20 +5430,20 @@ extra_rc | 存储引用计数值减一后的结果
     * 引用计数表各记录中存有内存块地址，可从各个记录中追溯到各对象的内存块
 - 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
 
-### 34.ARC 在编译时做了哪些工作？
+### 35.ARC 在编译时做了哪些工作？
 - 主要是指 weak 关键字。weak 修饰的变量能够在引用计数为0 时被自动设置成 nil，显然是有运行时逻辑在工作的。
 - 为了保证向后兼容性，ARC 在运行时检测到类函数中的 autorelease 后紧跟其后 retain，此时不直接调用对象的 autorelease 方法，而是改为调用 objc_autoreleaseReturnValue。
 objc_autoreleaseReturnValue会检视当前方法返回之后即将要执行的那段代码，若那段代码要在返回对象上执行 retain 操作，则设置全局数据结构中的一个标志位，而不执行 autorelease操作，与之相似，如果方法返回了一个自动释放的对象，而调用方法的代码要保留此对象，那么此时不直接执行 retain ，而是改为执行 objc_retainAoutoreleasedReturnValue函数。此函数要检测刚才提到的标志位，若已经置位，则不执行 retain 操作，设置并检测标志位，要比调用 autorelease 和retain更快。
 
-### 35.ARC 在运行时做了哪些工作？
+### 36.ARC 在运行时做了哪些工作？
 - 根据代码执行的上下文语境，在适当的位置插入 retain，release
 
-### 36.简要说一下 @autoreleasePool 的数据结构？
+### 37.简要说一下 @autoreleasePool 的数据结构？
 - 简单说是双向链表，每张链表头尾相接，有parent、child指针
 - 每创建一个池子，会在首部创建一个哨兵对象,作为标记
 - 最外层池子的顶端会有一个next指针。当链表容量满了，就会在链表的顶端，并指向下一张表。
 
-### 37.@autoreleasrPool 的释放时机？
+### 38.@autoreleasrPool 的释放时机？
 - App启动后，苹果在主线程 RunLoop 里注册了两个 Observer，其回调都是_wrapRunLoopWithAutoreleasePoolHandler()。
 - 第一个 Observer监视的事件是Entry(即将进入Loop)，其回调内会调用_objc_autoreleasePoolPush()创建自动释放池。其 order是-2147483647，优先级最高，保证创建释放池发生在其他所有回调之前。
 - 第二个 Observer监视了两个事件：BeforeWaiting(准备进入休眠) 时调用_objc_autoreleasePoolPop() 和_objc_autoreleasePoolPush()释放旧的池并创建新池；Exit(即将退出Loop)时调用_objc_autoreleasePoolPop() 来释放自动释放池。这个Observer的order是2147483647，优先级最低，保证其释放池子发生在其他所有回调之后。
@@ -5384,17 +5452,17 @@ objc_autoreleaseReturnValue会检视当前方法返回之后即将要执行的�
     * 子线程执行完任务被释放
     * 当pthread_exit退出时，触发了_pthread_tsd_cleanup，触发AutoreleasePoolPage的tls_dealloc(void*)，然后回收autorelease对象
 
-### 38.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
+### 39.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
 - 避免内存峰值，及时释放不需要的内存空间
 
-### 39.函数返回一个对象时，会对对象 autorelease 么？为什么？
+### 40.函数返回一个对象时，会对对象 autorelease 么？为什么？
 - 会 ，为了延长返回对象的生命周期，给其他使用者留足调用的时间
 
-### 40.realease作用是什么和 autorelease 有什么区别？
+### 41.realease作用是什么和 autorelease 有什么区别？
 - realease释放对象，防止内存泄漏；
 - 如果插入，该函数若用weak指针持有函数返回值，马上会将其置为nil；为了解决这个问题，用Autorelease，就是用autorelease来代替release，将要释放的对象先放入一个“释放池”，而不是马上释放。
 
-### 41.不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）
+### 42.不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）
 - 分两种情况：手动干预释放时机、系统自动去释放。
     * 手动干预释放时机—指定autoreleasepool 就是所谓的：当前作用域大括号结束时释放。
     * 系统自动去释放—不手动指定autoreleasepool
@@ -5409,14 +5477,16 @@ objc_autoreleaseReturnValue会检视当前方法返回之后即将要执行的�
 - 但对于 blockOperation 和 invocationOperation 这种默认的Operation ，系统已经帮我们封装好了，不需要手动创建自动释放池。
 - @autoreleasepool 当自动释放池被销毁或者耗尽时，会向自动释放池中的所有对象发送 release 消息，释放自动释放池中的所有对象。
 
-### 42.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
+### 43autorelease实现逻辑
+
+### 44.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
 - 在访问__weak修饰的变量时，必定要访问注册到autoreleasepool的对象，这是因为：__weak修饰符只持有对象的弱引用，他不能持有对象实例，所以在超出其变量作用域时，对象即被释放。 而在访问引用对象的过程中，该对象可能被废弃，而如果把要访问的对象注册到autoreleasepool中，在@autoreleasepool块结束之前都能确保该对象存在。
 
-### 43.在OC里 alloc 和 retain 语义相反的方法是？
+### 45.在OC里 alloc 和 retain 语义相反的方法是？
 - OC 使用了一种叫做引用计数的机制来管理对象，如果对一个对象使用了alloc、[Mutable]copy，retain，那么你必须使用相应的realease或者autorelease。也可以理解为自己生成的对象，自己持有。非自己生成的对象，自己也能持有。不在需要自己持有的对象时释放。非自己持有的对象无法释放。生成并持有对象<alloc,new,copy,mutableCopy 等>，持有对象<retain>，释放对象
 <release>,废弃对象<dealloc>。
 
-### 44.retain、release 的实现机制？
+### 46.retain、release 的实现机制？
 - Retain的实现机制。
 
 ```
@@ -5437,13 +5507,14 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
 ```
 - 二者的实现机制类似，概括讲就是通过第一层 hash 算法，找到 指针变量 所对应的 sideTable。然后再通过一层 hash 算法，找到存储 引用计数 的 size_t，然后对其进行增减操作。retainCount 不是固定的 1，SIZE_TABLE_RC_ONE 是一个宏定义，实际上是一个值为 4 的偏移量。
 
-### 45.能不能简述一下 Dealloc 的实现机制？
+### 47.能不能简述一下 Dealloc 的实现机制？
 - Dealloc 调用流程
     * 首先调用 _objc_rootDealloc()
     * 接下来调用 rootDealloc()
     * 这时候会判断是否可以被释放，判断的依据主要有5个，判断是否有以上五种情况
         * NONPointer_ISA
         * weakly_reference
+        * has_assoc
         * has_cxx_dtor
         * has_sidetable_rc
     * 如果有以上五中任意一种，将会调用 object_dispose()方法，做下一步的处理。
@@ -5463,7 +5534,7 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
     * 接下来执行 table.refcnts.eraser()，从引用计数表中擦除该对象的引用计数。
     * 至此为止，Dealloc 的执行流程结束。
 
-### 46.在 MRC 下如何重写属性的 Setter 和 Getter?
+### 48.在 MRC 下如何重写属性的 Setter 和 Getter?
 - setter
 
 ```
@@ -5498,15 +5569,15 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
 }
 ```
 
-### 47.讲一下 @dynamic 关键字？
+### 49.讲一下 @dynamic 关键字？
 - @dynamic 意味着编译器不会帮助我们自动合成 setter 和 getter 方法。我们需要手动实现
 
-### 48.@synthesize和@dynamic分别有什么作用？
+### 50.@synthesize和@dynamic分别有什么作用？
 - @property有两个对应的词，一个是@synthesize，一个是 @dynamic。如果@synthesize和@dynamic都没写，那么默认的就是@syntheszie var = _var;
 - @synthesize 的语义是如果你没有手动实现 setter 方法和 getter方法，那么编译器会自动为你加上这两个方法。
 - @dynamic 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供getter即可）。假如一个属性被声明为 @dynamic var，然后你没有提供@setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var = someVar，由于缺 setter 方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺getter方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。
 
-### 49.@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
+### 51.@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
 在回答之前先说明下一个概念：
 
 实例变量 = 成员变量 ＝ ivar
@@ -5544,7 +5615,7 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
 
 ![image](https://camo.githubusercontent.com/8e11101c9fe0b3defc7fbd144c0dca9fdf0471d0/687474703a2f2f692e696d6775722e636f6d2f743238676534572e706e67)
 
-### 50.在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？
+### 52.在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？
 - 回答这个问题前，我们要搞清楚一个问题，什么情况下不会autosynthesis（自动合成）？
     * 同时重写了 setter 和 getter 时
     * 重写了只读属性的 getter 时
@@ -5613,13 +5684,15 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
     * 要么如第14行：手动创建 ivar
     * 要么如第17行：使用@synthesize foo = _foo; ，关联 @property 与 ivar。
 
-### 补充：说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
+### 53.说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
 
-### 51.说一下什么是 悬垂指针？什么是 野指针?
+### 54.分别说一下什么是悬垂指针？什么是 野指针?什么是僵尸对象？什么是空指针?
 - 悬垂指针：指针指向的内存已经被释放了，但是指针还存在，这就是一个 悬垂指针 或者说 迷途指针
 - 野指针：没有进行初始化的指针，其实都是 野指针
+- 僵尸对象：已经被销毁的对象(不能再使用的对象),内存已经被回收的对象。一个引用计数器为0对象被释放后就变为了僵尸对象;
+- 空指针：空指针不同于野指针,他是一个没有指向任何内存的指针,空指针是有效指针,值为nil,NULL,Nil,0等,给空指针发送消息不会报错,不会响应消息;
 
-### 52.objc中向一个nil对象发送消息将会发生什么？
+### 55.objc中向一个nil对象发送消息将会发生什么？
 - 在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用:
 - 如果一个方法返回值是一个对象，那么发送给nil的消息将返回0(nil)。例如：
 
@@ -5656,7 +5729,7 @@ struct objc_class {
 ```
 objc在向一个对象发送消息时，runtime库会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，然后在发送消息的时候，objc_msgSend方法不会返回值，所谓的返回内容都是具体调用时执行的。 那么，回到本题，如果向一个nil对象发送消息，首先在寻找对象的isa指针时就是0地址返回了，所以不会出现任何错误。
 
-### 53.objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？
+### 56.objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？
 - objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。
 - 也就是该方法编译之后就是objc_msgSend()函数调用.
 - 我们用 clang 分析下，clang 提供一个命令，可以将Objective-C的源码改写成C++语言，借此可以研究下[obj foo]和objc_msgSend()函数之间有什么关系。
@@ -5695,11 +5768,11 @@ clang -rewrite-objc main.m
 也就是说：
 - [obj foo];在objc编译时，会被转意为：objc_msgSend(obj, @selector(foo));。
 
-### 54.BAD_ACCESS 在什么情况下出现?
+### 57.BAD_ACCESS 在什么情况下出现?
  访问了已经被销毁的内存空间，就会报出这个错误。
 根本原因是有 悬垂指针 没有被释放。
 
-### 55.什么时候会报unrecognized selector的异常？
+### 58.什么时候会报unrecognized selector的异常？
 - 简单来说：
     * 当调用该对象上某个方法,而该对象上没有实现这个方法的时候， 
 - 可以通过“消息转发”进行解决。
@@ -5712,10 +5785,10 @@ clang -rewrite-objc main.m
     * Normal forwarding
         * 这一步是Runtime最后一次给你挽救的机会。首先它会发送-methodSignatureForSelector:消息获得函数的参数和返回值类型。如果-methodSignatureForSelector:返回nil，Runtime则会发出-doesNotRecognizeSelector:消息，程序这时也就挂掉了。如果返回了一个函数签名，Runtime就会创建一个NSInvocation对象并发送-forwardInvocation:消息给目标对象。
 
-### 56.objc使用什么机制管理对象内存？
+### 59.objc使用什么机制管理对象内存？
 - 通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的retainCount，如果retainCount为0，说明该对象没有地方需要继续使用了，可以释放掉了。
 
-### 57.一个objc对象如何进行内存布局？（考虑有父类的情况）
+### 60.一个objc对象如何进行内存布局？（考虑有父类的情况）
 - 所有父类的成员变量和自己的成员变量都会存放在该对象所对应的存储空间中.
 - 每一个对象内部都有一个isa指针,指向他的类对象,类对象中存放着本对象的
     * 对象方法列表（对象能够接收的消息列表，保存在它所对应的类对象中）
@@ -5745,7 +5818,7 @@ clang -rewrite-objc main.m
 
 ![image](http://hi.csdn.net/attachment/201201/19/0_1326963670oeC1.gif)
 
-### 58.一个objc对象的isa的指针指向什么？有什么作用？
+### 61.一个objc对象的isa的指针指向什么？有什么作用？
 - isa指针是什么？
     * 我们经常使用id来声明一个对象，本质上，我们创建的一个对象或实例其实就是一个struct objc_object结构体，而我们常用的id也就是这个结构体的指针。这个结构体只有一个成员变量，这是一个Class类型的变量isa，也是一个结构体									指针。面向对象中每一个对象都必须依赖一个类来创建，因此对象的isa指针就指向对象所属的类根据这个类模板能够创建出实例变量、实例方法等。
 - 对象的isa指针
@@ -5761,7 +5834,7 @@ clang -rewrite-objc main.m
 - [《iOS class深入理解： 实例对象、类对象、元类和isa指针》](http://www.zhimengzhe.com/IOSkaifa/253119.html)
 - [《iOS中isa指针》](https://blog.csdn.net/miao_em/article/details/56671616)
 
-### 59.能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？
+### 62.能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？
  不能向编译后得到的类中增加实例变量；
 - 能向运行时创建的类中添加实例变量；
 解释下：
@@ -5769,7 +5842,14 @@ clang -rewrite-objc main.m
     * 因为编译后的类已经注册在 runtime 中，类结构体中的 objc_ivar_list 实例变量的链表 和 instance_size 实例变量的内存大小已经确定，同时runtime 会调用 class_setIvarLayout 或 class_setWeakIvarLayout 来处理 strong weak 引用。所以不能向存在的类中添加实例变量；
     * 运行时创建的类是可以添加实例变量，调用 class_addIvar 函数。但是得在调用 objc_allocateClassPair 之后，objc_registerClassPair 之前，原因同上。
 
-### 60.在Obj-C中，如何检测内存泄漏？你知道哪些方式
+### 63.对象释放时机，是立即释放吗
+- 在调用 release 后，对象会被立即释放，而调用 autorelease 后，对象不会被立即释放，而是注册到 autoreleasepool 中，经过一段时间后 pool结束，此时调用release方法，对象被释放。
+
+### 64.什么是内存泄露和内存溢出
+- 内存泄漏：是指申请的内存空间使用完毕之后未回收。一次内存泄露危害可以忽略，但若一直泄漏，无论有多少内存，迟早都会被占用光，最终导致程序crash。
+- 内存溢出：是指程序在申请内存时，没有足够的内存空间供其使用。 通俗理解就是内存不够用了，通常在运行大型应用或游戏时，应用或游戏所需要的内存远远超出了你主机内安装的内存所承受大小，就叫内存溢出。最终导致机器重启或者程序crash。
+
+### 65.在Obj-C中，如何检测内存泄漏？你知道哪些方式
 - 目前我知道的方式有以下几种
     * Memory Leaks
     * Alloctions
@@ -5779,6 +5859,41 @@ clang -rewrite-objc main.m
 - 泄露的内存主要有以下两种：
     * Laek Memory 这种是忘记 Release 操作所泄露的内存。
     * Abandon Memory 这种是循环引用，无法释放掉的内存。
+
+### 66.Core Foundation内存管理
+- ARC 能够解决 iOS 开发中大多数的内存管理问题，但是还有少量一些内存管理，是需要开发者自己处理的，这主要就是与底层 Core Foundation 对象交互的那部分，底层的 Core Foundation 对象由于不在 ARC 的管理下，所以需要自己维护这些对象的引用计数。
+底层的 Core Foundation 对象，在创建时大多以 XxxCreateWithXxx 这样的方式创建，例如：
+
+```
+// 创建一个 CFStringRef 对象
+CFStringRef str= CFStringCreateWithCString(kCFAllocatorDefault, “hello world", kCFStringEncodingUTF8);
+
+// 创建一个 CTFontRef 对象
+CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", fontSize, NULL);
+```
+- 对于这些对象的引用计数的修改，要相应的使用 CFRetain 和 CFRelease 方法。如下所示：
+
+```
+// 创建一个 CTFontRef 对象
+CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", fontSize, NULL);
+
+// 引用计数加 1
+CFRetain(fontRef);
+// 引用计数减 1
+CFRelease(fontRef);
+```
+- 对于CFRetain和CFRelease两个方法，读者可以直观地认为，这与Objective-C对象的 retain 和 release 方法等价。
+- 所以对于底层Core Foundation对象，我们只需要延续以前手工管理引用计数的办法即可。除此之外，还有另外一个问题需要解决。在ARC下，我们有时需要将一个 Core Foundation对象转换成一个Objective-C对象，这个时候我们需要告诉编译器，转换过程中的引用计数需要做如何的调整。这就引入了bridge相关的关键字，以下是这些关键字的说明：
+
+```
+__bridge: 只做类型转换，不修改相关对象的引用计数，原来的 Core Foundation 对象在不用时，需要调用 CFRelease 方法。
+__bridge_retained：类型转换后，将相关对象的引用计数加 1，原来的 Core Foundation 对象在不用时，需要调用 CFRelease 方法。
+__bridge_transfer：类型转换后，将该对象的引用计数交给 ARC 管理，Core Foundation 对象在不用时，不再需要调用 CFRelease 方法。
+```
+- 我们根据具体的业务逻辑，合理使用上面的3种转换关键字，就可以解决Core Foundation对象与OC对象相对转换的问题了。
+
+### 67.iOS常见内存问题及优化
+
 
 ## Runtime
 ### 1.实例对象的数据结构？
@@ -5832,8 +5947,61 @@ struct objc_class : objc_object {
     * data: 顾名思义，就是数据。是一个被封装好的 class_rw_t 。
 
 ### 4.Obj-C 对象、类的本质是通过什么数据结构实现的？
-- 可以看到NSObject_IMPL内部的isa是指向struct objc_class，说明isa是一个指针，在64位系统中该对象占用8个字节，但是实际分配了16个字节。我们需要用到下面两个函数
+- 我们平时编写的Objective-C代码，底层实现其实都是C\C++ 代码
+    * 编译器先把OC代码转换成C/C++代码
+    * 接着转成汇编语言，最后转成机器语言最终运行在手机上；
+    * 所以OC代码的本质其实就是C/C++代码；
+- 都是基于C/C++的数据结构实现的，也就是结构体
 
+```
+//NSObject的实现这个结构体只占用8个字节,只不过硬性分配给他16个字节
+struct NSObject_IMPL {
+    Class isa;
+};
+
+```
+
+- 可以看到NSObject_IMPL内部的isa是指向struct objc_class，说明isa是一个指针，在64位系统中该对象占用8个字节，但是实际分配了16个字节。我们需要用到下面两个函数
+    * size_t class_getInstanceSize(Class _Nullable cls):获取实例对象的成员变量所占用内存大小(内存对齐后的) -> 其实就是实例对象至少占用的内存大小
+    * size_t malloc_size(const void *ptr)：获取指针所指向内存的大小 -> 其实就是实例对象实际占用的内存大小
+- 一个NSObject对象占用16字节的内存，系统分配了16个字节给NSObject对象（通过malloc_size函数获得）但NSObject对象内部只使用了8个字节的空间（64bit环境下，可以通过class_getInstanceSize函数获得)，为什么通过class_getInstanceSize获取的是8呢?
+    * class_getInstanceSize源码
+
+```
+//获得的是内存对齐后的大小  aligned对齐
+size_t class_getInstanceSize(Class cls)
+{
+    if (!cls) return 0;
+    return cls->alignedInstanceSize();
+}
+
+```
+
+- 进去alignedInstanceSize,可以看出返回的是ivar成员变量的内存大小,所以打印的才是8
+
+```
+// Class's ivar size rounded up to a pointer-size boundary.uint32_t 
+alignedInstanceSize() {
+        return word_align(unalignedInstanceSize());
+    }
+```
+- 为什么我们需要8字节,系统给我们分配16字节呢?
+    * 现在我们看看alloc内部是怎么实现的,其实alloc内部调用的是allocWithZone,搜索_objc_rootAllocWithZone函数
+        * 进入class_createInstance -> _class_createInstanceFromZone
+        * 在_class_createInstanceFromZone里面我们发现有一个函数 obj = (id)calloc(1, size),其实这个calloc就是实际分配内存的函数,它传入一个参数size
+        * 进入获取size的函数 size_t size = cls->instanceSize(extraBytes)
+
+```
+size_t instanceSize(size_t extraBytes) {
+    //size_t size = class_getInstanceSize(Class) + extraBytes;)
+    size_t size = alignedInstanceSize() + extraBytes;
+    // CF requires all objects be at least 16 bytes.
+    if (size < 16) size = 16;
+    return size;
+}
+```
+- 总结：可以看出,如果size<16,size=16;现在我们就明白了，为什么OC对象至少占用16个字节了，因为系统的硬性规定。观察上面的代码,发现上面的代码也调用了class_getInstanceSize 的内部方法alignedInstanceSize所以,size_t size = alignedInstanceSize() + extraBytes其实就相当于size_t size = class_getInstanceSize(Class) + extraBytes
+    
 ### 5.类方法和实例方法有什么区别？
 - 类方法：
     * 类方法是属于类对象的
@@ -7386,16 +7554,16 @@ oprationQueueaddOperationWithBlock:^{
 - 常见的线程同步技术是：加锁
 
 #### iOS中的线程同步方案
-- OSSpinLock
-- os_unfair_lock
-- pthread_mutex
-- dispatch_semaphore
-- dispatch_queue(DISPATCH_QUEUE_SERIAL)
-- NSLock
-- NSRecursiveLock
-- NSCondition
-- NSConditionLock
-- @synchronized
+- OSSpinLock：自旋锁
+- os_unfair_lock：互斥锁
+- pthread_mutex：跨平台加锁方案，互斥锁
+- dispatch_semaphore：信号量
+- dispatch_queue(DISPATCH_QUEUE_SERIAL)：串行队列
+- NSLock：就是对pthread_metux 的封装
+- NSRecursiveLock：递归锁
+- NSCondition：条件锁
+- NSConditionLock：顺序执行
+- @synchronized：是对 pthread_mutex 递归锁的封装
 
 ##### OSSpinLock
 - OSSpinLock叫做”自旋锁”，等待锁的线程会处于忙等（busy-wait）状态，一直占用着CPU资源
@@ -7407,6 +7575,8 @@ oprationQueueaddOperationWithBlock:^{
     * bool result = OSSpinLockTry(&_lock); 尝试加锁(如果需要等待,就不尝试加锁,直接返回false,如果不需要等待就加锁,返回true)
     * OSSpinLockLock(&_lock);// 加锁
     * OSSpinLockUnlock(&_lock); //解锁
+- 注意： lock 要做成全局变量，要使用同一锁才可以。如果有两个方法：判断两个方法是否能同时执行，如果不能同时执行 则需要共用一把锁。
+- 原理：第二条线程会等待（此时会存在线程等待）第一条线程解锁，才会继续执行。
 - 代码例子如下
 ```
 #import <libkern/OSAtomic.h>
@@ -7436,17 +7606,24 @@ self.lock = OS_SPINLOCK_INIT;
 ![image](https://upload-images.jianshu.io/upload_images/1653926-00a374659301b683.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
 
 ##### os_unfair_lock
-- os_unfair_lock用于取代不安全的OSSpinLock ，从iOS10开始才支持
+- os_unfair_lock用于取代不安全的OSSpinLock，从iOS10开始才支持
 - 从底层调用看，等待os_unfair_lock锁的线程会处于休眠状态，并非忙等
+- 注意：os_unfair_lock是一个C语言的结构体，如果要使用属性调用需要使用assign修饰
 - 需要导入头文件#import <os/lock.h>
 - 重要方法
     * os_unfair_lock moneyLock = OS_UNFAIR_LOCK_INIT; //初始化
     * os_unfair_lock_trylock(&_ticketLock); // 尝试加锁
     * os_unfair_lock_lock(&_ticketLock); // 加锁
     * os_unfair_lock_unlock(&_ticketLock); // 解锁
+- 注意：如果忘记解锁，会出现线程死锁现象。
 
-##### pthread_mute
+##### pthread_mutex
 - mutex叫做”互斥锁”，等待锁的线程会处于休眠状态
+- 多平台通用，跨平台，互斥锁。等待锁的线程或处于休眠状态。区别于 自旋锁（OSSpinLock），自旋锁不会使线程休眠.
+- 静态初始化：pthread_mutex mutex = PTHREAD_MUTEX_INITIALIZER；但是不能直接 赋值给类属性，因为 PTHREAD_MUTEX_INITIALIZER 是一个结构体。
+- 动态初始化方式：@property (assign, nonatomic) pthread_mutex_t ticketMutex;
+- 注意： 这里的属性设置pthread_mutex_init(&ticketMutex, NULL); 可以传NULL，默认就等同于：PTHREAD_MUTEX_DEFAULT
+- 最后注意把mutex 销毁掉
 - 需要导入头文件#import <pthread.h>
 - 重要方法
 
@@ -7466,8 +7643,19 @@ pthread_mutex_unlock(&_ticketMutex);
 // 销毁属性
 pthread_mutexattr_destroy(&attr);
 ```
+- 销毁
+
+```
+- (void)dealloc
+{
+    pthread_mutex_destroy(&_moneyMutex);
+    pthread_mutex_destroy(&_ticketMutex);
+}
+```
 
 ##### pthread_mutex递归锁实现
+- 递归锁：允许同一个线程对一把锁进行重复加锁。一直调用一个关键方法函数，又需要加锁 则需要递归锁。
+- 方法：只需要改变mutex的属性即可：修改为：PTHREAD_MUTEX_RECURSIVE
 
 ```
 - (void)__initMutex:(pthread_mutex_t *)mutex {
@@ -7504,20 +7692,52 @@ pthread_mutexattr_destroy(&attr);
 ![image](https://upload-images.jianshu.io/upload_images/1653926-c31e8cf6db0e5f33.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
 
 ##### pthread_mutex – 条件
+- 条件锁：线程1跟线程2，线程1需要等待线程2做完一些事情后 唤醒 线程1。所以需要 等待（pthread_cond_wait）,然后 线程2执行唤醒操作： pthread_cond_signal(&条件)
+- pthread_cond_t :条件
+- pthread_cond_t:（&条件，锁）
+- pthread_cond_signal(&条件) 唤醒线程操作，激活等待这个 条件（cond）的线程。
+- pthread_cond_broadcast(&cond),唤醒所有等待这个条件（cond）的线程。
+
+```
+  pthread_mutex_lock(&_mutex);
+    NSLog(@"__remove - begin");
+    if (self.data.count == 0) {
+        // 等待
+        pthread_cond_wait(&_cond, &_mutex);
+    }
+    [self.data removeLastObject];
+    NSLog(@"删除了元素");
+    pthread_mutex_unlock(&_mutex);
+```
+
 ![image](https://upload-images.jianshu.io/upload_images/1653926-93853471e6f19941.png?imageMogr2/auto-orient/strip|imageView2/2/w/578)
 
 ##### NSLock
-- NSLock是对mutex普通锁的封装
+- NSLock：底层就是对pthread_mutex普通锁（PTHERAD_MUTEX_NORMAL）的封装也是互斥锁
 - 重要方法如下
     * NSLock *lock = [[NSLock alloc] init];初始化
     * [lock lock] 加锁
     * [lock unlock] 解锁
     
 ##### NSRecursiveLock
-- NSRecursiveLock也是对mutex递归锁的封装，API跟NSLock基本一致
+- NSRecursiveLock：递归锁，底层也是对pthread_mutex的封装，只不过他是对mutex递归锁（PTHREAD_MUTEX_RECURSIVE）的封装，API跟NSLock基本一致
+- 使用：
+
+```
+@property (strong, nonatomic) NSLock *ticketLock;
+//初始化
+self.ticketLock = [[NSLock alloc] init];
+// 加锁
+ [self.ticketLock lock];
+   //关键代码
+    [super __saleTicket];
+ //解锁  
+    [self.ticketLock unlock];
+```
+
 
 ##### NSCondition
-- NSCondition是对mutex和cond的封装
+- NSCondition是对mutex跟cond条件的封装，内部存在锁
 - 重要方法
 
 ```
@@ -7606,6 +7826,7 @@ pthread_mutexattr_destroy(&attr);
 
 ##### NSConditionLock
 - NSConditionLock是对NSCondition的进一步封装，可以设置具体的条件值
+- 使用：能做到线程依赖，根据条件值：1—>2—>3方法顺序执行。直接调用lock方法，则表明直接加锁，不用等条件值子线程 顺序执行串行
 
 ![image](https://upload-images.jianshu.io/upload_images/1653926-bd04c18c5f8dbbd0.png?imageMogr2/auto-orient/strip|imageView2/2/w/753)
 
@@ -7766,7 +7987,156 @@ self.moneySemaphore = dispatch_semaphore_create(1);
     }
 }
 ```
+### 补充：iOS锁的原理
+- 借鉴一张锁的性能数据对比图，如下所示
+- 可以看出，图中锁的性能从高到底依次是：OSSpinLock(自旋锁) -> dispatch_semaphone（信号量） -> pthread_mutex（互斥锁） -> NSLock（互斥锁） -> NSCondition（条件锁） -> pthread_mutex（recursive 互斥递归锁） -> NSRecursiveLock（递归锁） -> NSConditionLock（条件锁） -> synchronized（互斥锁）
+- 图中锁大致分为以下几类：
+    * 自旋锁
+        * 在自旋锁中，线程会反复检查变量是否可用。由于线程这个过程中一直保持执行，所以是一种忙等待。 一旦获取了自旋锁，线程就会一直保持该锁，直到显式释放自旋锁。自旋锁避免了进程上下文的调度开销，因此对于线程只会阻塞很短时间的场合是有效的。对于iOS属性的修饰符atomic，自带一把自旋锁
+        * OSSpinLock
+        * atomic
+    * 互斥锁
+        * 互斥锁是一种用于多线程编程中，防止两条线程同时对同一公共资源（例如全局变量）进行读写的机制，该目的是通过将代码切成一个个临界区而达成
+        * @synchronized，NSLock，pthread_mutex
+    * 条件锁
+        * 条件锁就是条件变量，当进程的某些资源要求不满足时就进入休眠，即锁住了，当资源被分配到了，条件锁打开了，进程继续运行
+        * NSCondition，NSConditionLock
+    * 递归锁
+        * 递归锁就是同一个线程可以加锁N次而不会引发死锁。递归锁是特殊的互斥锁，即是带有递归性质的互斥锁
+        * pthread_mutex(recursive)，NSRecursiveLock
+    * 信号量
+        * 信号量是一种更高级的同步机制，互斥锁可以说是semaphore在仅取值0/1时的特例，信号量可以有更多的取值空间，用来实现更加复杂的同步，而不单单是线程间互斥
+        * dispatch_semaphore
+    * 读写锁
+        * 读写锁实际是一种特殊的自旋锁。将对共享资源的访问分成读者和写者，读者只对共享资源进行读访问，写者则需要对共享资源进行写操作。这种锁相对于自旋锁而言，能提高并发性
+        * 一个读写锁同时只能有一个写者或者多个读者，但不能既有读者又有写者，在读写锁保持期间也是抢占失效的
+        * 如果读写锁当前没有读者，也没有写者，那么写者可以立刻获得读写锁，否则它必须自旋在那里， 直到没有任何写者或读者。如果读写锁没有写者，那么读者可以立刻获得读写锁
+- 其实基本的锁就包括三类：自旋锁、互斥锁、读写锁，其他的比如条件锁、递归锁、信号量都是上层的封装和实现。
+- 建议读：https://www.jianshu.com/p/467366e23fab
 
+### 补充：iOS读写锁实现原理
+#### 两把互斥锁
+- 使用两把互斥锁与一个整数计数器实现。计数器condition跟踪被阻塞的读线程。互斥锁rlock保护condition，供读者使用。互斥锁wlock 确保写操作互斥。
+
+```
+#import "JKRWLock.h"
+#import <pthread/pthread.h>
+
+pthread_mutex_t rlock = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t wlock = PTHREAD_MUTEX_INITIALIZER;
+
+static int condition = 0;
+
+@implementation JKRWLock
+//读者加锁
+- (void)rLock {
+    pthread_mutex_lock(&rlock);
+    condition++;
+    if (condition == 1) {
+        pthread_mutex_lock(&wlock);
+    }
+    pthread_mutex_unlock(&rlock);
+}
+//读者解锁
+- (void)rUnlock {
+    pthread_mutex_lock(&rlock);
+    condition--;
+    if (condition == 0) {
+        pthread_mutex_unlock(&wlock);
+    }
+    pthread_mutex_unlock(&rlock);
+}
+//写者加锁
+- (void)wLock {
+    pthread_mutex_lock(&wlock);
+}
+//写者解锁
+- (void)wUnlock {
+    pthread_mutex_unlock(&wlock);
+}
+@end
+```
+
+#### 条件变量+互斥锁
+- 可使用条件变量cond与普通的互斥锁rwlock、整型计数器readCount（表示正在读的个数）与布尔标志write（表示正在写）来实现读写锁。
+
+```
+#import "JKRWLock.h"
+#import <pthread/pthread.h>
+
+@interface JKRWLock ()
+@property (nonatomic, assign) int readCount;
+@property (nonatomic, assign, getter=isWriting) BOOL write;
+@end
+//读写锁
+pthread_mutex_t rwlock = PTHREAD_MUTEX_INITIALIZER;
+//条件变量
+pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+
+@implementation JKRWLock
+
+//读者加锁
+- (void)rLock {
+    pthread_mutex_lock(&rwlock);
+    while (self.isWriting) {
+        pthread_cond_wait(&cond, &rwlock);
+    }
+    self.readCount++;
+    pthread_mutex_unlock(&rwlock);
+}
+//读者解锁
+- (void)rUnlock {
+   pthread_mutex_lock(&rwlock);
+    self.readCount--;
+   if (self.readCount == 0) {
+       //唤起一条写的线程
+       pthread_cond_signal(&cond);
+   }
+   pthread_mutex_unlock(&rwlock);
+}
+//写者加锁
+- (void)wLock {
+    pthread_mutex_lock(&rwlock);
+    while (self.isWriting || self.readCount > 0) {
+        pthread_cond_wait(&cond, &rwlock);
+    }
+    self.write = YES;
+    pthread_mutex_unlock(&rwlock);
+}
+//写者解锁
+- (void)wUnlock {
+    pthread_mutex_lock(&rwlock);
+    self.write = NO;
+    //唤起多个读的线程
+    pthread_cond_broadcast(&cond);
+    pthread_mutex_unlock(&rwlock);
+}
+@end
+```
+
+#### 同步任务+栅栏
+- 读数据
+
+```
+- (id)objectForKey:(NSString *)key {
+    __block id obj;
+    // 同步读取指定数据:
+    dispatch_sync(self.concurrent_queue, ^{
+        obj = [self.dataCenterDic objectForKey:key];
+    });
+    return obj;
+}
+```
+- 写数据
+
+```
+- (void)setObject:(id)obj forKey:(NSString *)key {
+    // 异步栅栏调用设置数据:
+    dispatch_barrier_async(self.concurrent_queue, ^{
+        [self.dataCenterDic setObject:obj forKey:key];
+    });
+}
+```
 
 ### 5.NSThread相关知识？
 - NSThread创建线程，有三种创建方式：
@@ -8814,6 +9184,10 @@ void dispatch_once(dispatch_once_t *predicate, dispatch_block_t block);
 ### 41.Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
 ### 42.如何把异步线程转换成同步任务进行单元测试？
 ### 43.如何实现线性编程？
+### 补充：面向协议编程特点
+- 即在程序设计中，不要以一个类开始设计，应该从一个协议开始，应抛弃之前OOP的对象设计理念，设计协议，这样不同的继承链之间也可以使用同一个协议。可以将协议看做一个组件，哪里需要哪里继承协议即可，而且协议是可以多继承的，iOS中的类只能单继承，这也是面向协议相对面向对象的一大优势。
+- 我理解的OC和swift面向协议编程一个最大区别是OC的 Protocol 没有默认的实现，需要依赖具体的实现类实现协议定义的方法，而Swift2.0开始提供了Protocol + Extension，协议可以再 Extension中提供默认的实现，这样上层调用可以直接调用协议的默认实现。
+- 严谨来说，OC不是一门面向协议编程的语言，因为 Protocol 只提供定义，而不提供实现，所以叫他 面向接口编程 更合适一些。
 
 ## 网络
 ### 1.你了解的网络协议
@@ -9279,7 +9653,10 @@ void dispatch_once(dispatch_once_t *predicate, dispatch_block_t block);
     * 一旦 Sender 这边发现了 Partial ACK 出现，那么，sender 就可以推理出来有多个包被丢了，于是乎继续重传 sliding window 里未被 ack 的第一个包。直到再也收不到了 Partial ACK，才真正结束 Fast Recovery 这个过程。
     * 这个 Fast Recovery 的变更是一个非常激进的玩法，他同时延长了 Fast Retransmit 和 Fast Recovery 的过程。
 
+### 补充：拥塞控制,为什么要将cwnd大小设为原来的一半?
+
 ### 10.简要说一下Https；
+
 ### 11.HTTPS的原理
 - https涉及了多种加密方式
     * 对称加密：加密和解密共用一把密钥，多用AES,DES算法；
@@ -9425,6 +9802,8 @@ void dispatch_once(dispatch_once_t *predicate, dispatch_block_t block);
 * 原因
     * 因为连接时服务端收到了客户端的SYN连接请求的报文后, 可以直接发送SYN+ACK报文, 其中的ACK报文是用来响应, SYN报文是用来同步的。
     * 而当关闭连接时, 服务端收到FIN报文后, 很可能并不会马上就关闭Socket连接, 所以只能先回复一个ACK报文, 告诉客户端, 你发的FIN报文我收到了, 只有等到服务器的所有报文发送完了, 服务端才会发送FIN报文, 所以才需要四次挥手。
+
+### 补充：四次挥手,为什么要有TIME_WAIT状态?为什么要等待2MLS?
 
 ### 16.GET 和 POST 请求的区别？
 - GET请求：参数在地址后拼接，没有请求数据，不安全（因为所有参数都拼接在地址后面），不适合传输大量数据（长度有限制，为1024个字节）。
