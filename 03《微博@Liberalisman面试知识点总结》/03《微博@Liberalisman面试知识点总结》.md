@@ -182,146 +182,74 @@
 
 
 ## iOS 内存管理
-- 1.为什么说Objective-C是一门动态的语言？
-- 2.内存中的5大区分别是什么？
-- 3.iOS程序内存的每个分区怎么存储（举例说明）
-- 4.代码区存储的是什么？
-- 5.block一般存在哪里（分ARC和MRC）
-- 6.什么是虚拟内存，虚拟内存和物理内存的关系和区别？
-- 7.@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
-- 8.@protocol 和 category 中如何使用 @property
-- 9.@property中有哪些属性关键字？@property 后面可以有哪些修饰符？
-- 10.内存管理默认的关键字是什么？
-- 11.说一下对 readwrite、readonly、retain、copy、assign、nonatomic、automic、weak、strong、_Unsafe_Unretain 关键字的理解。
-- 12.automic的实现机制；
-- 13.atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？
-- 14.什么情况使用 weak 关键字，相比 assign 有什么不同？
-- 15.assign能修饰对象吗？assign修饰对象可能存在的问题
-- 16.__weak 和 _Unsafe_Unretain 的区别
-- 17._weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil
-- 18.runtime如何实现weak变量的自动置nil？
-- 19.weak属性需要在dealloc中置nil么？
-- 20.runtime 如何实现 weak 属性
-- 21.怎么用 copy 关键字？
-- 22.如何令自己所写的对象具有拷贝功能?
-- 23.这个写法会出什么问题： @property (copy) NSMutableArray *array;
-- 24.用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
-- 25.如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？
-- 26.是否了解深拷贝和浅拷贝的概念，集合类深拷贝如何实现？
-- 27.完全深拷贝和不完全深拷贝
-- 28.讲一下 `iOS` 内存管理的理解？
-- 29.对象引用计数放哪里？
-- 30.使用自动引用计（ARC）数应该遵循的原则?
-- 31.ARC 自动内存管理的原则?
-- 32.ARC 的 retainCount 怎么存储的？
-- 33.ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？
-- 34.ARC通过什么方式帮助开发者管理内存？
-- 35.ARC 在编译时做了哪些工作？
-- 36.ARC 在运行时做了哪些工作？
-- 37.简要说一下 @autoreleasePool 的数据结构？
-- 38.@autoreleasrPool 的释放时机？
-- 39.为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？
-- 40.函数返回一个对象时，会对对象 autorelease 么？为什么？
-- 41.autorelease实现逻辑
-- 42.realease作用是什么和 autorelease 有什么区别？
-- 43.不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）
-- 44.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
-- 45.在OC里 alloc 和 retain 语义相反的方法是？
-- 46.retain、release 的实现机制？
-- 47.能不能简述一下 Dealloc 的实现机制？
-- 48.在 MRC 下如何重写属性的 Setter 和 Getter?
-- 49.讲一下 @dynamic 关键字？
-- 50.@synthesize和@dynamic分别有什么作用？
-- 51.@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？
-- 52.在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？
-- 53.说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
-- 54.分别说一下什么是悬垂指针？什么是 野指针?什么是僵尸对象？什么是空指针?
-- 55.objc中向一个nil对象发送消息将会发生什么？
-- 56.objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？
-- 57.BAD_ACCESS 在什么情况下出现?
-- 58.什么时候会报unrecognized selector的异常？
-- 59.objc使用什么机制管理对象内存？
-- 60.一个objc对象如何进行内存布局？（考虑有父类的情况）
-- 61.一个objc对象的isa的指针指向什么？有什么作用？
-- 62.能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？
-- 63.对象释放时机，是立即释放吗
-- 64.什么是内存泄露
-- 65.在Obj-C中，如何检测内存泄漏？你知道哪些方式？
-- 66.Core Foundation内存管理
-- 67.iOS常见内存问题及优化
+- 1.[为什么说Objective-C是一门动态的语言？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1为什么说objective-c是一门动态的语言)
+- 2.[内存中的5大区分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2内存中的5大区分别是什么)
+- 3.[iOS程序内存的每个分区怎么存储（举例说明）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3ios程序内存的每个分区怎么存储举例说明)
+- 4.[代码区存储的是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4代码区存储的是什么)
+- 5.[block一般存在哪里（分ARC和MRC）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5block一般存在哪里分arc和mrc)
+- 6.[什么是虚拟内存，虚拟内存和物理内存的关系和区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6什么是虚拟内存虚拟内存和物理内存的关系和区别)
+- 7.[@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7property-的本质是什么ivargettersetter-是如何生成并添加到这个类中的)
+- 8.[@protocol 和 category 中如何使用 @property](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8protocol-和-category-中如何使用-property)
+- 9.[@property中有哪些属性关键字？@property 后面可以有哪些修饰符？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9property中有哪些属性关键字-property-后面可以有哪些修饰符)
+- 10.[内存管理默认的关键字是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10内存管理默认的关键字是什么)
+- 11.[说一下对 readwrite、readonly、retain、copy、assign、nonatomic、automic、weak、strong、_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11说一下对readwritereadonlyretaincopyassignnonatomicautomicweakstrong_unsafe_unretain__autoreleasing-关键字的理解)
+- 12.[automic的实现机制；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12automic的实现机制)
+- 13.[atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13atomic是绝对的线程安全么为什么如果不是那应该如何实现)
+- 14.[什么情况使用 weak 关键字，相比 assign 有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14什么情况使用-weak-关键字相比-assign-有什么不同)
+- 15.[assign能修饰对象吗？assign修饰对象可能存在的问题](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15assign能修饰对象吗assign修饰对象可能存在的问题)
+- 16.[__weak 和 _Unsafe_Unretain 的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16__weak-和-_unsafe_unretain-的区别)
+- 17.[_weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17_weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
+- 18.[runtime如何实现weak变量的自动置nil？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#18runtime如何实现weak变量的自动置nil)
+- 19.[weak属性需要在dealloc中置nil么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19weak属性需要在dealloc中置nil么)
+- 20.[runtime 如何实现 weak 属性](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20runtime-如何实现-weak-属性)
+- 21.[怎么用 copy 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21怎么用-copy-关键字)
+- 22.[如何令自己所写的对象具有拷贝功能?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22如何令自己所写的对象具有拷贝功能)
+- 23.[这个写法会出什么问题： @property (copy) NSMutableArray *array;](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#23这个写法会出什么问题-property-copy-nsmutablearray-array)
+- 24.[用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#24用property声明的nsstring或nsarraynsdictionary经常使用copy关键字为什么如果改用strong关键字可能造成什么问题)
+- 25.[如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#25如何让自己的类用copy修饰符如何重写带-copy-关键字的-setter)
+- 26.[是否了解深拷贝和浅拷贝的概念，集合类深拷贝如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#26是否了解深拷贝和浅拷贝的概念集合类深拷贝如何实现)
+- 27.[完全深拷贝和不完全深拷贝](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#27完全深拷贝和不完全深拷贝)
+- 28.[讲一下 `iOS` 内存管理的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#28讲一下-ios-内存管理的理解三种方案的结合)
+- 29.[对象引用计数放哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#29对象引用计数放哪里)
+- 30.[使用自动引用计（ARC）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#30使用自动引用计arc数应该遵循的原则)
+- 31.[ARC 自动内存管理的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#31arc-自动内存管理的原则)
+- 32.[ARC 的 retainCount 怎么存储的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#32arc-的-retaincount-怎么存储的)
+- 33.[ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#33arc下不显式指定任何属性关键字时默认的关键字都有哪些)
+- 34.[ARC通过什么方式帮助开发者管理内存？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#34arc通过什么方式帮助开发者管理内存)
+- 35.[ARC 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#35arc-在编译时做了哪些工作)
+- 36.[ARC 在运行时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#36arc-在运行时做了哪些工作)
+- 37.[简要说一下 @autoreleasePool 的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#37简要说一下-autoreleasepool-的数据结构)
+- 38.[@autoreleasrPool 的释放时机？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#38autoreleasrpool-的释放时机)
+- 39.[为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#39为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
+- 40.[函数返回一个对象时，会对对象 autorelease 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#40函数返回一个对象时会对对象-autorelease-么为什么)
+- 41.[realease作用是什么和 autorelease 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#41realease作用是什么和-autorelease-有什么区别)
+- 42.[不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#42不手动指定autoreleasepool的前提下一个autorealese对象在什么时刻释放比如在一个vc的viewdidload中创建)
+- 43.[autorelease实现逻辑](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#43autorelease实现逻辑)
+- 44.[访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#44访问-__weak-修饰的变量是否已经被注册在了-autoreleasepool-中为什么)
+- 45.[在OC里 alloc 和 retain 语义相反的方法是？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#45在oc里-alloc-和-retain-语义相反的方法是)
+- 46.[retain、release 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#46retainrelease-的实现机制)
+- 47.[能不能简述一下 Dealloc 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#47能不能简述一下-dealloc-的实现机制)
+- 48.[在 MRC 下如何重写属性的 Setter 和 Getter?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#48在-mrc-下如何重写属性的-setter-和-getter)
+- 49.[讲一下 @dynamic 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#49讲一下-dynamic-关键字)
+- 50.[@synthesize和@dynamic分别有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#50synthesize和dynamic分别有什么作用)
+- 51.[@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#51synthesize合成实例变量的规则是什么假如property名为foo存在一个名为_foo的实例变量那么还会自动合成新变量么)
+- 52.[在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#52在有了自动合成属性实例变量之后synthesize还有哪些使用场景)
+- 53.[说 @synchronized 锁的实现原理，并说明其中可能存在的问题。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#53说-synchronized-锁的实现原理并说明其中可能存在的问题)
+- 54.[分别说一下什么是悬垂指针？什么是 野指针?什么是僵尸对象？什么是空指针?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#54分别说一下什么是悬垂指针什么是-野指针什么是僵尸对象什么是空指针)
+- 55.[objc中向一个nil对象发送消息将会发生什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#55objc中向一个nil对象发送消息将会发生什么)
+- 56.[objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#56objc中向一个对象发送消息obj-foo和objc_msgsend函数之间有什么关系)
+- 57.[BAD_ACCESS 在什么情况下出现?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#57bad_access-在什么情况下出现)
+- 58.[什么时候会报unrecognized selector的异常？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#58什么时候会报unrecognized-selector的异常)
+- 59.[objc使用什么机制管理对象内存？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#59objc使用什么机制管理对象内存)
+- 60.[一个objc对象如何进行内存布局？（考虑有父类的情况）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#60一个objc对象如何进行内存布局考虑有父类的情况)
+- 61.[一个objc对象的isa的指针指向什么？有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#61一个objc对象的isa的指针指向什么有什么作用)
+- 62.[能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#62能否向编译后得到的类中增加实例变量能否向运行时创建的类中添加实例变量为什么)
+- 63.[对象释放时机，是立即释放吗](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#63对象释放时机是立即释放吗)
+- 64.[什么是内存泄露](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#64什么是内存泄露和内存溢出)
+- 65.[在Obj-C中，如何检测内存泄漏？你知道哪些方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#65在obj-c中如何检测内存泄漏你知道哪些方式)
+- 66.[Core Foundation内存管理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#66core-foundation内存管理)
+- 67.[iOS常见内存问题及优化](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#67ios常见内存问题及优化)
 
-
-
-- [补充：为什么说Objective-C是一门动态的语言？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充为什么说objective-c是一门动态的语言)
-- 1.[说一下对 retain,copy,assign,weak,_Unsafe_Unretain 关键字的理解。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下对-retaincopyassignweak_unsafe_unretain-关键字的理解)
-- 2.[简述下列属性的作用：readwrite、readonly、assign、retain、copy、nonatomic、weak、strong](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2简述下列属性的作用readwritereadonlyassignretaincopynonatomicweakstrong)
-- 补充：assign能修饰对象吗？assign修饰对象可能存在的问题
-- 3.[automic的实现机制；](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3automic的实现机制)
-- 4.[atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4atomic是绝对的线程安全么为什么如果不是那应该如何实现)
-- 5.[@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5property-的本质是什么ivargettersetter-是如何生成并添加到这个类中的)
-- 6.[@property 后面可以有哪些修饰符？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6property-后面可以有哪些修饰符)
-- 7.[@property中有哪些属性关键字？/ @property 后面可以有哪些修饰符](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7property中有哪些属性关键字-property-后面可以有哪些修饰符)
-- 8.[什么情况使用 weak 关键字，相比 assign 有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8什么情况使用-weak-关键字相比-assign-有什么不同)
-- 9.[@protocol 和 category 中如何使用 @property](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9protocol-和-category-中如何使用-property)
-- 10.[__weak 和 _Unsafe_Unretain 的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10__weak-和-_unsafe_unretain-的区别)
-- 11.[_weak 属性修饰的变量，如何实现在变量没有强引用后自动置为 nil](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11_weak-属性修饰的变量如何实现在变量没有强引用后自动置为-nil)
-- 12.[runtime如何实现weak变量的自动置nil？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12runtime如何实现weak变量的自动置nil)
-- 13.[weak属性需要在dealloc中置nil么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13weak属性需要在dealloc中置nil么)
-- 14.[runtime 如何实现 weak 属性](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14runtime-如何实现-weak-属性)
-- 15.[怎么用 copy 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15怎么用-copy-关键字)
-- 16.[如何令自己所写的对象具有拷贝功能?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16如何令自己所写的对象具有拷贝功能)
-- 17.[这个写法会出什么问题： @property (copy) NSMutableArray *array;](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17这个写法会出什么问题-property-copy-nsmutablearray-array)
-- 18.[用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18用property声明的nsstring或nsarraynsdictionary经常使用copy关键字为什么如果改用strong关键字可能造成什么问题)
-- 19.[如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19如何让自己的类用copy修饰符如何重写带-copy-关键字的-setter)
-- 20.[是否了解深拷贝和浅拷贝的概念，集合类深拷贝如何实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20是否了解深拷贝和浅拷贝的概念集合类深拷贝如何实现)
-- 21.[完全深拷贝和不完全深拷贝](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21完全深拷贝和不完全深拷贝)
-- 22.[内存管理默认的关键字是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22内存管理默认的关键字是什么)
-- 23.[内存中的5大区分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23内存中的5大区分别是什么)
-- 24.[iOS程序内存的每个分区怎么存储（举例说明）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24ios程序内存的每个分区怎么存储举例说明)
-- 25.[代码区存储的是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25代码区存储的是什么)
-- 26.[什么是虚拟内存，虚拟内存和物理内存的关系和区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26什么是虚拟内存虚拟内存和物理内存的关系和区别)
-- 27.[block一般存在哪里（分ARC和MRC）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27block一般存在哪里分arc和mrc)
-- 28.[讲一下 `iOS` 内存管理的理解？(三种方案的结合)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28讲一下-ios-内存管理的理解三种方案的结合)
-- [补充：对象引用计数放哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#补充对象引用计数放哪里)
-- 29.[使用自动引用计（ARC）数应该遵循的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29使用自动引用计arc数应该遵循的原则)
-- 30.[ARC 自动内存管理的原则?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30arc-自动内存管理的原则)
-- 31.[ARC 的 retainCount 怎么存储的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31arc-的-retaincount-怎么存储的)
-- 32.[ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#32arc下不显式指定任何属性关键字时默认的关键字都有哪些)
-- 33.[ARC通过什么方式帮助开发者管理内存？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#33arc通过什么方式帮助开发者管理内存)
-- 34.[ARC 在编译时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#34arc-在编译时做了哪些工作)
-- 35.[ARC 在运行时做了哪些工作？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#35arc-在运行时做了哪些工作)
-- 36.[简要说一下 @autoreleasePool 的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#36简要说一下-autoreleasepool-的数据结构)
-- 37.[@autoreleasrPool 的释放时机？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37autoreleasrpool-的释放时机)
-- 38.[为什么已经有了 ARC ,但还是需要 @AutoreleasePool 的存在？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38为什么已经有了-arc-但还是需要-autoreleasepool-的存在)
-- 39.[函数返回一个对象时，会对对象 autorelease 么？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39函数返回一个对象时会对对象-autorelease-么为什么)
-- 40.[realease作用是什么和 autorelease 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40realease作用是什么和-autorelease-有什么区别)
-- 41.[不手动指定autoreleasepool的前提下，一个autorealese对象在什么时刻释放？（比如在一个vc的viewDidLoad中创建）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41不手动指定autoreleasepool的前提下一个autorealese对象在什么时刻释放比如在一个vc的viewdidload中创建)
-- 补充：autorelease实现逻辑
-- 42.[访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42访问-__weak-修饰的变量是否已经被注册在了-autoreleasepool-中为什么)
-- 43.[在OC里 alloc 和 retain 语义相反的方法是？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#43在oc里-alloc-和-retain-语义相反的方法是)
-- 44.[retain、release 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#44retainrelease-的实现机制)
-- 45.[能不能简述一下 Dealloc 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#45能不能简述一下-dealloc-的实现机制)
-- 46.[在 MRC 下如何重写属性的 Setter 和 Getter?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#46在-mrc-下如何重写属性的-setter-和-getter)
-- 47.[讲一下 @dynamic 关键字？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#47讲一下-dynamic-关键字)
-- 48.[@synthesize和@dynamic分别有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#48synthesize和dynamic分别有什么作用)
-- 49.[@synthesize合成实例变量的规则是什么？假如property名为foo，存在一个名为_foo的实例变量，那么还会自动合成新变量么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#49synthesize合成实例变量的规则是什么假如property名为foo存在一个名为_foo的实例变量那么还会自动合成新变量么)
-- 50.[在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#50在有了自动合成属性实例变量之后synthesize还有哪些使用场景)
-- 补充：说 @synchronized 锁的实现原理，并说明其中可能存在的问题。
-- 51.[说一下什么是 悬垂指针？什么是 野指针?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51说一下什么是-悬垂指针什么是-野指针)
-- 补充：什么是僵尸对象？什么是空指针?
-- 52.[objc中向一个nil对象发送消息将会发生什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52objc中向一个nil对象发送消息将会发生什么)
-- 53.[objc中向一个对象发送消息[obj foo]和objc_msgSend()函数之间有什么关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#53objc中向一个对象发送消息obj-foo和objc_msgsend函数之间有什么关系)
-- 54.[BAD_ACCESS 在什么情况下出现?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#54bad_access-在什么情况下出现)
-- 55.[什么时候会报unrecognized selector的异常？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#55什么时候会报unrecognized-selector的异常)
-- 56.[objc使用什么机制管理对象内存？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#56objc使用什么机制管理对象内存)
-- 57.[一个objc对象如何进行内存布局？（考虑有父类的情况）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#57一个objc对象如何进行内存布局考虑有父类的情况)
-- 58.[一个objc对象的isa的指针指向什么？有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#58一个objc对象的isa的指针指向什么有什么作用)
-- 59.[能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#59能否向编译后得到的类中增加实例变量能否向运行时创建的类中添加实例变量为什么)
-- 60.[在Obj-C中，如何检测内存泄漏？你知道哪些方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#60在obj-c中如何检测内存泄漏你知道哪些方式)
-- 补充：对象释放时机，是立即释放吗
-- 补充：什么是内存泄露
-- 补充：Core Foundation内存管理
-- 补充：iOS常见内存问题及优化
 
 ## Runtime
 - 1.[实例对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1实例对象的数据结构)
