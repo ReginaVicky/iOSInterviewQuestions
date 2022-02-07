@@ -269,58 +269,69 @@
 
 
 ## Runtime 
-- 1.[实例对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1实例对象的数据结构)
-- 2.[类对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2类对象的数据结构)
-- 3.[元类对象的数据结构?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3元类对象的数据结构)
-- 4.[Obj-C 对象、类的本质是通过什么数据结构实现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4obj-c-对象类的本质是通过什么数据结构实现的)
-- 5.[类方法和实例方法有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5类方法和实例方法有什么区别)
-- 6.[Obj-C 中的类信息存放在哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6obj-c-中的类信息存放在哪里)
-- 7.[一个 NSObject 对象占用多少内存空间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7一个-nsobject-对象占用多少内存空间)
-- 8.[说一下对 class_rw_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8说一下对-class_rw_t-的理解)
-- 9.[说一下对 class_ro_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9说一下对-class_ro_t-的理解)
-- 10.[介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10介绍一下分类能用分类做什么内部是如何实现的它为什么会覆盖掉原来的方法)
-- 11.[Category 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11category-的实现原理)
-- 12.[如何给 Category 添加属性？关联对象以什么形式进行存储？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12如何给-category-添加属性关联对象以什么形式进行存储)
-- 13.[Category 有哪些用途？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13category-有哪些用途)
-- 14.[Category 中都可以添加哪些内容？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14category-中都可以添加哪些内容)
-- 15.[Category的优缺点](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15category的优缺点)
-- 16.[Category 和 Extension 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16category-和-extension-有什么区别)
-- 17.[Category 可不可以添加实例对象？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17category-可不可以添加实例对象为什么)
-- 18.[Category不能添加实例变量，那为什么能添加属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18category不能添加实例变量那为什么能添加属性)
-- 19.[Category 在编译过后，是在什么时机与原有的类合并到一起的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19category-在编译过后是在什么时机与原有的类合并到一起的)
-- 20.[分类实现了类的initialize方法，那么类的方法initialize还会调用吗？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20分类实现了类的initialize方法那么类的方法initialize还会调用吗为什么)
-- 21.[分类与类中同样方法，调用顺序？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21分类与类中同样方法调用顺序)
-- 22.[分类的对象方法是如何添加到类对象方法列表中的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22分类的对象方法是如何添加到类对象方法列表中的)
-- 23.[memmove和memcpy的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23memmove和memcpy的区别)
-- 24.[分类和类拓展的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24分类和类拓展的区别)
-- 25.[动态库和静态库的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25动态库和静态库的区别)
-- 26.[category 中有load 方法吗？ load 方法什么时候调用？ load 方法能继承吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26category-中有load-方法吗-load-方法什么时候调用-load-方法能继承吗)
-- 27.[+load 和 initialized方法的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27load-和-initialized方法的区别)
-- 28.[+load的调用时机](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28load的调用时机)
-- 29.[+load分类中的处理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29load分类中的处理)
-- 30.[分类和类别的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30分类和类别的区别)
-- 31.[关联对象的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31关联对象的原理)
-- 32.[说一下 Method Swizzling? 说一下在实际开发中你在什么场景下使用过?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#32说一下-method-swizzling-说一下在实际开发中你在什么场景下使用过)
-- 33.[如何实现动态添加方法和属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#33如何实现动态添加方法和属性)
-- 34.[运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#34运行时能增加成员变量么能增加属性么如果能如何增加如果不能为什么)
-- 35.[说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#35说一下对-isa-指针的理解-对象的isa-指针指向哪里isa-指针有哪两种类型注意区分不同对象)
-- 36.[objc中向一个nil对象发送消息将会发生什么？（返回值是对象，是标量，结构体）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#36objc中向一个nil对象发送消息将会发生什么返回值是对象是标量结构体)
-- 37.[利用Runtime交换方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37利用runtime交换方法)
-- 38.[说一下 Runtime 消息发送。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38说一下-runtime-消息发送)
-- 39.[说一下 Runtime 消息解析。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39说一下-runtime-消息解析)
-- 40.[说一下 Runtime 消息转发。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40说一下-runtime-消息转发)
-- 41.[如何运用 Runtime 字典转模型？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41如何运用-runtime-字典转模型)
-- 42.[如何运用 Runtime 进行模型的归解档？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42如何运用-runtime-进行模型的归解档)
-- 43.[在 Obj-C 中为什么叫发消息而不叫函数调用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#43在-obj-c-中为什么叫发消息而不叫函数调用)
-- 44.[说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#44说一下对-runtime-的理解主要讲一下消息机制是对上述的总结)
-- 45.[说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#45说一下-runtime-的方法缓存存储的形式数据结构以及查找的过程)
-- 46.[是否了解 Type Encoding?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#46是否了解-type-encoding)
-- 47.[Objective-C 如何实现多重继承？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#47objective-c-如何实现多重继承)
-- 48.[runtime如何通过selector找到对应的IMP地址？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#48runtime如何通过selector找到对应的imp地址)
-- 49.[runtime具体应用](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#49runtime具体应用)
-- 50.[使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#50使用runtime-associate方法关联的对象需要在主对象dealloc的时候释放么)
-- 51.[runtime 如何实现 weak 属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51runtime 如何实现 weak 属性吗)
-- 52.[runtime如何实现weak变量的自动置nil？知道SideTable吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52runtime如何实现weak变量的自动置nil知道sidetable吗)
+1.实例对象的数据结构？
+2.类对象的数据结构？
+3.元类对象的数据结构?
+4.Obj-C 对象、类的本质是通过什么数据结构实现的？
+5.类方法和实例方法有什么区别？
+6.讲一下对象，类对象，元类，跟元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存的对象结构体里，而是保存在类对象的结构体里？
+7.Obj-C 中的类信息存放在哪里？
+8.一个 NSObject 对象占用多少内存空间？
+9.说一下对 class_rw_t 的理解？
+10.说一下对 class_ro_t 的理解？
+11.`class_rw_t` 和 `class_ro_t` 的区别
+12.iOS中内省的几个方法？class方法和objc_getClass方法有什么区别?
+13.介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？
+14.Category 的实现原理？
+15.如何给 Category 添加属性？关联对象以什么形式进行存储？
+16.Category 有哪些用途？
+17.Category 中都可以添加哪些内容？
+18.Category的优缺点
+19.Category 可不可以添加实例对象？为什么？
+20.Category不能添加实例变量，那为什么能添加属性？
+21.Category 在编译过后，是在什么时机与原有的类合并到一起的？
+22.Category 和 Extension 有什么区别？
+23.分类实现了类的initialize方法，那么类的方法initialize还会调用吗？为什么？
+24.分类与类中同样方法，调用顺序？
+25.分类的对象方法是如何添加到类对象方法列表中的？
+26.分类和类拓展的区别
+27.动态库和静态库的区别
+28.category 中有load 方法吗？ load 方法什么时候调用？ load 方法能继承吗？
+29.category如何被加载的,两个category的load方法的加载顺序，两个category的同名方法的加载顺序
+30.+load 和 initialized方法的区别，在继承关系中他们有什么区别
+31.+load的调用时机
+32.+load分类中的处理
+33.关联对象的原理
+34.说一下 Method Swizzling?说一下在实际开发中你在什么场景下使用过?
+35.类簇是什么，可以对类簇进行Method Swizzling吗？
+36.Method Swizzie是如何确保安全的替换方法的？如何确保替换的不是父类的方法？
+37.如何实现动态添加方法和属性？
+38.运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？
+39.说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）
+40.objc中向一个nil对象发送消息将会发生什么？（返回值是对象，是标量，结构体）
+41.在方法调用的时候，`方法查询-> 动态解析-> 消息转发` 之前做了什么
+42.利用Runtime交换方法
+43.说一下 Runtime 消息发送。
+44.说一下 Runtime 消息解析。
+45.说一下 Runtime 消息转发， 消息转发机制的优劣
+46.如何运用 Runtime 字典转模型？
+47.如何运用 Runtime 进行模型的归解档？
+48.在 Obj-C 中为什么叫发消息而不叫函数调用？
+49.说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）
+50.说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？
+51.是否了解 Type Encoding?
+52.Objective-C 如何实现多重继承？
+53.memmove和memcpy的区别？
+54.`IMP`、`SEL`、`Method`的区别和使用场景
+55.runtime如何通过selector找到对应的IMP地址？
+56.runtime具体应用
+57.使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？
+58.runtime 如何实现 weak 属性？
+59.runtime如何实现weak变量的自动置nil？知道SideTable吗？存在的意义是什么
+60.为什么要设计metaclass
+61.`class_copyIvarList` & `class_copyPropertyList`区别
+62.看过 runtime的源码吗?源码中常有的fastpath、 flowpath是什么?
+63.在运行时创建类的方法objc_allocateClassPair的方法名尾部为什么是pair（成对的意思）？
 
 ## Runloop
 - 1.[RunLoop概念](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1runloop概念)
@@ -4134,6 +4145,8 @@ indexOfObjectIdenticalTo:
 
 ### 8.程序在运行时操作系统除了分配内存空间还有什么？
 
+- 根据代码执行的上下文语境，在适当的位置插入 retain，release
+
 ### 9.@property 的本质是什么？ivar、getter、setter 是如何生成并添加到这个类中的
 - @property 的本质是什么？
     * @property = ivar + getter + setter;
@@ -4208,10 +4221,41 @@ typedef struct {
 也就是说我们每次在增加一个属性,系统都会在 ivar_list 中添加一个成员变量的描述,在 method_list 中增加 setter 与 getter 方法的描述,在属性列表中增加一个属性的描述,然后计算该属性在对象中的偏移量,然后给出 setter 与 getter 方法对应的实现,在 setter 方法中从偏移量的位置开始赋值,在 getter 方法中从偏移量开始取值,为了能够读取正确字节数,系统对象偏移量的指针类型进行了类型强转.
 
 ### 10.父类的property是如何查找的？
+
+```
+@interface Person : NSObject
+{
+    NSObject *bbbbb;
+}
+@property (nonatomic, strong) NSObject *aaaaaa;
+@end
+
+@implementation Person
+@end
+
+@interface Teacher : Person
+@end
+@implementation Teacher
+@end
+```
+- clang编译后
+```
+struct Person_IMPL {
+    struct NSObject_IMPL NSObject_IVARS;
+    NSObject *bbbbb;
+    NSObject *_aaaaaa;
+};
+struct Teacher_IMPL {
+    struct Person_IMPL  Person_IVARS;
+};
+```
+- 子类中的propert_list、method_list、ivar_list并不包含父类
+- 子类对象的_IMPL包含父类的，所以应该是通过Person_IMPL查找的父类property。
+
 ### 11.@protocol 和 category 中如何使用 @property
-- category和protocol都可以添加方法，也都可以添加@property 关键字
+- category（分类）和protocol（协议）都可以添加方法，也都可以添加@property 关键字
 - 在 protocol 中使用 property 只会生成 setter 和 getter 方法声明,我们使用属性的目的,是希望遵守我协议的对象能实现该属性，也就是说，在实现这个protocol协议的类中，我们要自己手动添加实例变量，并且需要实现setter和getter方法
-- category 使用 @property 也是只会生成 setter 和 getter 方法的声明,由于category不能添加实例变量，故必须通过运行时添加associated object的方法来添加实例变量，如果我们真的需要给 category 增加属性的实现,需要借助于运行时的两个函数：
+- category 使用 @property 也是只会生成 setter 和 getter 方法的声明,由于category不能添加实例变量，故必须通过运行时添加associated object的方法来添加实例变量，如果我们真的需要给 category 增加属性的实现,需要借助于运行时的两个函数（关联对象）：
     * objc_setAssociatedObject
     * objc_getAssociatedObject
 
@@ -4260,12 +4304,12 @@ typedef struct {
 ### 14.说一下对readwrite、readonly、retain、copy、assign、nonatomic、automic、weak、strong、_Unsafe_Unretain、__autoreleasing 关键字的理解。
 - readwrite：可读可写特性,需要生成setter和getter方法时使用, 可被外界读取和修改；
 - readonly：只读特性,只会生成getter方法,只可被外界读取, 不能修改；
-- assign：赋值特性,作用于非OC对象的赋值,setter方法将参数传给变量；主要用于修饰基本数据类型，例如NSInteger，CGFloat，存储在栈中，内存不用程序员管理。assign是可以修饰对象的，但是会出现问题。问题是：
+- assign：赋值特性,作用于非OC对象的赋值,setter方法将参数传给变量；主要用于修饰对象和基本数据类型，例如NSInteger，CGFloat，int，遵循先进后出的原则，存储在栈中，内存不用程序员管理。assign是可以修饰对象的，但是会出现问题。问题是：
     * - weak生成的成员变量是用__weak修饰的，assign生成的成员变量是用__unsafe_unretained修饰的；
     * 对象开辟的空间是在堆空间，指针开辟的空间是在栈上，使用assign修饰，当对象销毁时并不会将指针置为nil。所以当堆空间的对象销毁时指向对象的指针仍然存在，会造成野指针，当访问该对象时会crash报错EXC_BAD_ACCESS。因为基本数据类型的空间开辟也在栈空间，同样由系统进行销毁，所以不存在野指针的情况。使用weak修饰对象时当对象销毁时指针也会被置为nil，所以用weak不会造成野指针。
 - retain：持有特性,他的setter方法会释放旧址,然后引用住新值, 并且将新值的引用计数+1,只能作用于OC对象(基本数据类型和CoreFoundation对象没有引用计数的概念, 因此不能用retain)
-- Strong：修饰符表示指向并持有该对象，其修饰对象的引用计数会加1。该对象只要引用计数不为0就不会被销毁。当然可以通过将变量强制赋值 nil 来进行销毁。
-- weak：修饰符指向但是并不持有该对象，引用计数也不会加1。在 Runtime 中对该属性进行了相关操作，无需处理，可以自动销毁。weak用来修饰对象，多用于避免循环引用的地方。weak 不可以修饰基本数据类型。
+- Strong：表示指向并持有该对象，其修饰对象的引用计数会加1。该对象只要引用计数不为0就不会被销毁。当然可以通过将变量强制赋值 nil 来进行销毁。
+- weak：指向但是并不持有该对象，引用计数也不会加1。在 Runtime 中对该属性进行了相关操作，无需处理，可以自动销毁。weak用来修饰对象，多用于避免循环引用的地方。weak 不可以修饰基本数据类型。
 - copy
     * 复制特性,此属性只对遵守了NSCopying协议的对象类型有效,一般作用于NSString,NSArray,NSDictionary等有可变类型的对象
     * 如果copy的是不可变类型,就不会开辟新的内存空间, 并且为指针拷贝, 指向同一个内存地址:浅拷贝
@@ -4275,19 +4319,19 @@ typedef struct {
     * 非原子性,即非线程安全的,不给变量提供线程锁保护, 这样会提高性能
     * 在iOS的移动端,一般不会出现多线程访问同一个属性的情况,就算发生情况,atomic也不能完美的保证安全, 并且还需要手动增加线程锁,因此对于变量都应该使用nonatomic
 - atomic
-    * atomic会给属性加上一个同步锁,这是为了防止多线程同时访问属性出现异常需要添加的属性,但是这样会增加额外的内存开销并且在变编程习惯中,我们都应该避免多线程访问统一资源
+    * atomic会给属性加上一个自旋锁,锁的是赋值的setter方法，读取操作没有上锁，这是为了防止多线程同时访问属性出现异常需要添加的属性,但是这样会增加额外的内存开销并且在变编程习惯中,我们都应该避免多线程访问统一资源
     * 即便是使用atomic,在多线程时也无法完全保证线程安全, 往往是需要手动添加线程锁
 - __unsafe_unretain：类似于weak，但是当对象被释放后，指针已然保存着之前的地址，被释放后的地址变为僵尸对象，访问被释放的地址就会出问题，所以说他是不安全的。
 - __autoreleasing：将对象赋值给附有__autoreleasing修饰的变量等同于 ARC 无效时调用对象的autorelease方法,实质就是扔进了自动释放池。
 
 ### 15.automic的实现机制；
-- 添加属性时使用了automic声明的，系统会自动在setter和getter方法中添加锁来实现读写安全。
+- 添加属性时使用了automic声明的，系统会自动在setter方法中添加锁来实现读写安全（getter方法没有加锁）。
 - 通过源码查看发现automic的原理是使用OSSPinLock来实现的，这种自旋锁会出现优先级反转导致死锁的问题，所以不推荐automic。
 - 在iOS 10之后系统推荐使用os_unfair_lock来代替OSSPinlock，并且automic在iOS10之后也使用os_unfair_lock来实现了。
 
 ### 16.atomic是绝对的线程安全么？为什么？如果不是，那应该如何实现？
 - atomic 和 nonatomic 的区别在于，系统自动生成的 getter/setter 方法不一样。如果你自己写 getter/setter，那 atomic/nonatomic/retain/assign/copy 这些关键字只起提示作用，写不写都一样。
-- 其实质就是，atomic比nonatomic多了一个互斥加锁代码，避免该变量的读写不同步问题。
+- 其实质就是，atomic比nonatomic多了一个自旋锁代码，避免该变量的读写不同步问题。
 - 对于atomic的属性，系统生成的 getter/setter 会保证 get、set 操作的完整性，不受其他线程影响。比如，线程 A 的 getter 方法运行到一半，线程 B 调用了 setter：那么线程 A 的 getter 还是能得到一个完好无损的对象。 而nonatomic就没有这个保证了。所以，nonatomic的速度要比atomic快。据说快大约20倍。
 - 不过atomic可并不能保证线程安全。如果线程 A 调了 getter，与此同时线程 B 、线程 C 都调了 setter——那最后线程 A get 到的值，3种都有可能：可能是 B、C set 之前原始的值，也可能是 B set 的值，也可能是 C set 的值。同时，最终这个属性的值，可能是 B set 的值，也有可能是 C set 的值。
 - 解决方案是加锁。
@@ -4456,6 +4500,22 @@ else {
 - 要是一个对象调用方法需要返回一些额外的信息，就可能需要使用代理。
 
 ### 20.在block里面使用_property会造成循环引用吗？怎么解决？除了使用self->_property，可以使用valueforkey来访问吗？在block里面可以修改它的值吗setvalueforkey？
+- ARC 情况下 block为了保证代码块内部对象不被提前释放，会对block中的对象进行强引用，就相当于持有了其中的对象，而如果此时block中的对象又持有了该block，就会造成循环引用。
+- 并不是所有block都会造成循环引用
+    * UIView动画block、Masonry添加约束block、AFN网络请求回调block等
+    * UIView动画block不会造成循环引用是因为这是类方法，不可能强引用一个类，所以不会造成循环引用
+    * Masonry约束block不会造成循环引用是因为self并没有持有block，所以我们使用Masonry的时候不需要担心循环引用
+    * AFN请求回调block不会造成循环引用是因为在内部做了处理。
+block先是被AFURLSessionManagerTaskDelegate对象持有。而AFURLSessionManagerTaskDelegate对象被mutableTaskDelegatesKeyedByTaskIdentifier字典持有，在block执行完成后，mutableTaskDelegatesKeyedByTaskIdentifier字典会移除AFURLSessionManagerTaskDelegate对象，这样对象就被释放了，所以不会造成循环引用。
+- 在block中并不只是self会造成循环引用，用下划线调用属性(如_name)也会出现循环引用，效果和使用self是一样的（内部会用self->name去查找）。
+- 通过__weak __typeof(self) weakSelf = self;并不能可以解决所有block造成的循环引用
+    * 部分情况下，这样使用是可以解决block循环引用，但是有些情况下这样使用会造成一些问题，比如在block中延迟执行一些代码，在还没有执行的时候，控制器被销毁了，这样控制器中的对象也会被释放，__weak对象就会变成null。所以会输出null。
+- 并不是所有通过self调用带有block的方法会引起循环引用，需要看方法内部有没有持有self。
+
+#### 如何避免循环引用
+- weakSelf、strongSelf结合使用
+- block的外部对象使用week
+- 将对象置为nil
 
 ### 21.assign能修饰对象吗？assign修饰对象可能存在的问题
 - weak生成的成员变量是用__weak修饰的，assign生成的成员变量是用__unsafe_unretained修饰的；
@@ -4942,6 +5002,56 @@ NSObject *foo = [[NSObject alloc] init];
 
 ### 28.copy和strong的区别 
  
+- 首先明确深拷贝和浅拷贝
+    * 浅拷贝：可以理解为指针的复制，只是多了一个指向这块内存的指针，共用一块内存。
+    * 深拷贝:理解为内存的复制，两块内存是完全不同的，也就是两个对象指针分别指向不同的内存，互不干涉。
+- 代码：
+
+```
+@property (nonatomic, strong) NSString *strongString;
+@property (nonatomic, copy) NSString *copyedString;
+```
+
+```
+NSString * originString = [NSString stringWithFormat:@"abc"];
+self.strongString = originString;
+self.copyedString = originString;
+NSLog(@"origin string: %p", originString);
+NSLog(@"strong string: %p", self.strongString);
+NSLog(@"copy string: %p", self.copyedString);
+```
+- 打印结果：
+    * origin string: 0xd3dfc4bafa8cbd0c
+    * strong string: 0xd3dfc4bafa8cbd0c
+    * copy string: 0xd3dfc4bafa8cbd0c
+- 结果可以看出，此时无论是strong修饰的字符串还是copy修饰的字符串，都进行了浅Copy
+- 当如果赋值对象是可变字符串
+
+```
+@property (nonatomic, strong) NSString *strongString;
+@property (nonatomic, copy) NSString *copyedString;
+```
+
+```
+NSMutableString *mutableOriginString = [NSMutableString stringWithFormat:@"abc"];
+self.strongString = mutableOriginString;
+self.copyedString = mutableOriginString;
+[mutableOriginString appendString:@"efg"];
+NSLog(@"origin string: %@,地址为：%p",mutableOriginString, mutableOriginString);
+NSLog(@"strong string: %@,地址为：%p",self.strongString, self.strongString);
+NSLog(@"copy string: %@,地址为：%p",self.copyedString, self.copyedString);
+```
+- 打印结果：
+    * origin string: abcefg,地址为：0x6000020da9d0
+    * strong string: abcefg,地址为：0x6000020da9d0
+    * copy string: abc,地址为：0xbe2aec24682d8cf2
+- 结果可以看出用copy修饰的copyedString进行深Copy，新开辟了一块内存地址。相反，用strong修饰的strongString进行了浅Copy，导致共用了一块内存。
+- 总结：    
+    * copyedString在copy修饰的情况下，赋值过程中操作：self.copyedString = [mutableOriginString copy](同等于self.copyedString = mutableOriginString;)。
+    * 但是copy方法分对可变对象和不可变对象的操作。
+    * 如果是对可变对象操作（如NSMutableString），那么会深copy不可变对象。
+    * 如果对一个不可变对象（如NSString）的操作，那么会浅copy不可变对象。
+
 ### 29.怎么用 copy 关键字？
 - 用途：
     * NSString、NSArray、NSDictionary 等等经常使用copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary；
@@ -5120,6 +5230,100 @@ typedef NS_ENUM(NSInteger, CYLSex) {
     * 第二个原因：该属性使用了同步锁，会在创建时生成一些额外的代码用于帮助编写多线程程序，这会带来性能问题，通过声明 nonatomic 可以节省这些虽然很小但是不必要额外开销。在默认情况下，由编译器所合成的方法会通过锁定机制确保其原子性(atomicity)。如果属性具备 nonatomic 特质，则不使用同步锁。请注意，尽管没有名为“atomic”的特质(如果某属性不具备 nonatomic 特质，那它就是“原子的”(atomic))。在iOS开发中，你会发现，几乎所有属性都声明为 nonatomic。一般情况下并不要求属性必须是“原子的”，因为这并不能保证“线程安全” ( thread safety)，若要实现“线程安全”的操作，还需采用更为深层的锁定机制才行。例如，一个线程在连续多次读取某属性值的过程中有别的线程在同时改写该值，那么即便将属性声明为 atomic，也还是会读到不同的属性值。因此，开发iOS程序时一般都会使用 nonatomic 属性。但是在开发 Mac OS X 程序时，使用 atomic 属性通常都不会有性能瓶颈。
 
 ### 32.可变数组的实现原理
+![image](https://upload-images.jianshu.io/upload_images/3334822-06d22af25e60c47a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+- 总结：
+    * 不管是NSArray,还是NSMutableArray,alloc之后的得到都是__NSPlacrholderArray.
+    * 当我们nsarray一个空数组,得到的是__NSArray0
+    * nsarray只有一个元素时,得到的是__NSSingleObjectArrayI
+    * nsarray.count > 1 时, 得到 __NSArrayI
+    * nsmutablearray 返回的都是__NSArrayM
+    * placeHolder 和 placeHoldes 的内存地址一样,说明是一个单例,该类内部只有一个isa指针,init后被新的实例换掉了
+    * CFArray 是CoreFoundation中的, 和Foundation中的NSArray相对应,他们是Toll-Free-Briaged. 用的环形缓冲区实现的.
+- C数组的原理 连续的内存空间, 在下标0处插入一个元素时, 移动其后面所有的元素, 即memmove原理
+
+![image](https://upload-images.jianshu.io/upload_images/3334822-ce194b24dea192e7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+- 同样的移除第一个元素,需要进行相同的动作
+
+![image](https://upload-images.jianshu.io/upload_images/3334822-fe18633da0a50801.png?imageMogr2/auto-orient/strip|imageView2/2/w/924/format/webp)
+
+- 当数组非常大时,就有问题了,NSMutableArray使用环形缓冲区,_NSArrayM用了环形缓冲区(circular buffer),这个数据结构相对简单,只是比常规数组/缓冲区复杂点.环形缓冲区的内容能在到达任意一段时绕向另一端.
+- 环形缓冲区,在删除的时候不会清楚指针, 如果我们在中间进行插入和删除, 只会移动最少的一边元素.
+
+![image](https://upload-images.jianshu.io/upload_images/3334822-0d4ad152bdd141fc.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+#### 遍历数组的几个方法
+- for循环
+- NSEnumerator
+- forin
+- enumerateObjectsUsingBlock:(通过block回调,在子线程中遍历,对象的回调次序是乱序的,而且调用线程会等待该遍历过程完成:)
+- 总结：forin性能最好,for循环较低, 多线程遍历方式是性能最差的.
+
+#### __NSArrayI的实现
+
+
+```
+__NSArrayI{
+//数组的元素个数，调用[array count]时，返回的就是_userd的值。
+NSInterger _userd; 
+//当做id_list来用，即一个存储id对象的buff.由于__NSArrayI的不可变，所以_list一旦分配，释放之前都不会再有移动删除操作了。
+id_list[0]; 
+}
+
+```
+
+![image](https://upload-images.jianshu.io/upload_images/3334822-3df799053f5a7640.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+- __NSArrayI对这个方法的实现中，主要把内部数组的_list赋给state->itemsPtr,并返回_used数组大小。state->mutationsPtr指向一个局部静态变量，state->state看起来是一个标志，再次用同一个state调用这个方法就直接返回0.
+- 快速枚举的意思就是一下就把全部对象获取到了，而且在一个c数组里，之后要获得哪个位置的对象都可以快速寻址到，通过state->itemsPtr来访问数组。
+
+#### __NSSingleObjectArrayI的实现
+
+```
+__NSSingleObjectArrayI{
+//因为只有在创建只包含一个对象的不可变数组时，才会得到__NSSingleObjectArrayI对象，所以其内部结构更加简单
+id object; 
+}
+```
+
+#### __NSArrayM的实现
+
+```
+__NSArrayM{ 
+//它的内部对象数组时一块连续内存
+id *_list
+//当前对象数目 [nsmutablearray count]
+NSUInterger _used; 
+//时机对象数组的起始偏移
+NSUInterger _offset; 
+//已分配的_list大小,能存储的对象个数，不是字节数
+int_size: 28; 
+int_unused: 4;
+//修改标记，每次对__NSArrayM的修改操作都会使_mutations +1 "Collection <__NSArrayM: 0x1002076b0> was mutated while being enumerated" 这个异常就是通过对_mutations的识别来引发的。
+uint32_t _mutations;
+//是个循环数组，并且在增删操作时会动态地重新分配以符合当前的存储需求
+id *_list;
+}
+
+```
+
+![image](https://upload-images.jianshu.io/upload_images/3334822-37418f7682b95b16.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+- 从实现来看，如果_list还没有构成循环，第一次就获得了全部元素，跟__NSArrayI一样。但是如果_list构成了玄幻，就需要两次，第一次获取_offset到_list末端的元素，第二次获取存放在_list起始处的剩余元素。
+
+![image](https://upload-images.jianshu.io/upload_images/3334822-4fbbc8429d2fd9bd.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+- __NSArrayM的_list是个循环数组，它的其实由_offset标识.
+
+#### forin速度最快的原因
+- forin速度最快的原因是遵从了NSFastEnumertation协议，它是直接从C数组中去对象对于可变数组来说，最多只需要两次就可以获取全部数据。如果数组没有构成循环，第一次就获得了全部元素，跟不可变数组一样，如果数组构成了循环，那么就需要两次，第一次获取对象数组的起始偏移到循环数组末端的元素，第二次获取存放在循环数组起始处的剩余元素。而for循环之所以慢一点，是每次都要调用objectAtIndex:，添加@autoreleasepool,可以提高效率,如果我们每次遍历不需要知道下标，选择forin。
+
+![image](https://upload-images.jianshu.io/upload_images/3334822-c4195a0230259d0d.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+- forin是基于快速枚举实现的，编译器将for in 转化为两层循环，外层调用快速枚举方法批量获取元素，内层通过c数组取得一批元素中的每一个，并且在每次获取元素前，检查是否对数组对象进行了变更操作，如果是，则抛出异常。
+- block循环，系统已经帮我加了@autoreleasepool,其他的循环可以通过@autoreleasepool来优化。
+- NSEnumerationConcurrent+Block的方式耗时最大，我认为是因为它采用多线程，就这个方法来讲，多线程的优势并不在遍历多快，它的回调在各个子线程。
 
 ### 33.用@property声明的NSString（或NSArray，NSDictionary）经常使用copy关键字，为什么？如果改用strong关键字，可能造成什么问题？
 - 因为父类指针可以指向子类对象,使用 copy 的目的是为了让本对象的属性不受外界影响,使用 copy 无论给我传入是一个可变对象还是不可对象,我本身持有的就是一个不可变的副本.
@@ -5216,8 +5420,85 @@ NSMutableArray *mCopyArray = [array mutableCopy];
 参考链接：[iOS 集合的深复制与浅复制](https://www.zybuluo.com/MicroCai/note/50592)
 
 ### 34.为什么不可变对象要用copy
+- 因为父类指针可以指向子类对象,使用copy修饰对象的话,无论赋值对象是可变还是不可变的,对象本身持有的都是一个不可变的副本，这样就避免外界的影响。
+- 如果我们使用strong修饰对象的话,该对象可能会指向一个可变对象,如果这个可变对象发生改变的话，使用strong修饰的对象也会受到影响。
+
 ### 35.数组copy后里面的元素会复制一份新的吗？
+- 首先明确几点：
+    * 对NSString执行copy后, 是深拷贝还是浅拷贝?答：浅拷贝
+    * 对NSMutableString执行copy后, 是深拷贝还是浅拷贝?答：深拷贝
+    * 对数组进行Copy后, 是深拷贝还是浅拷贝?答：浅拷贝
+    * 对数组进行Copy后, 修改旧数组内指针执行对象的内容, 新数组对象内容是否改变?答：改变
+    * 对数组进行mutableCopy呢?答：浅拷贝, 改变（对数组里面的元素是浅拷贝，对数组本身是深拷贝）
+    * NSArray *newArray = [[NSArray alloc] initWithArray:oldArray]. 对newArray的元素所指的指针进行操作, 会影响oldArray吗?答：会影响
+    * 如何实现数组的内容Copy?答initWithArray:copyItems:
+
+#### 首先要知道，两种情况：
+- 对非集合类对象的 copy 与 mutableCopy 操作；
+- 对集合类对象的 copy 与 mutableCopy 操作。
+
+### 对非集合类对象的copy操作：
+- 在非集合类对象中：对 immutable 对象进行 copy 操作，是指针复制，mutableCopy 操作时内容复制；对 mutable 对象进行 copy 和 mutableCopy 都是内容复制。用代码简单表示如下：
+
+[immutableObject copy] // 浅复制
+[immutableObject mutableCopy] //深复制
+[mutableObject copy] //深复制
+[mutableObject mutableCopy] //深复制
+比如以下代码：
+
+```
+NSMutableString *string = [NSMutableString stringWithString:@"origin"];//copy
+NSString *stringCopy = [string copy];
+```
+查看内存，会发现 string、stringCopy 内存地址都不一样，说明此时都是做内容拷贝、深拷贝。即使你进行如下操作：
+
+```
+[string appendString:@"origion!"]
+```
+stringCopy 的值也不会因此改变，但是如果不使用 copy，stringCopy 的值就会被改变。 集合类对象以此类推。 所以，
+
+- 用 @property 声明 NSString、NSArray、NSDictionary 经常使用 copy 关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary，他们之间可能进行赋值操作，为确保对象中的字符串值不会无意间变动，应该在设置新属性值时拷贝一份。
+
+### 集合类对象的copy与mutableCopy
+
+集合类对象是指 NSArray、NSDictionary、NSSet ... 之类的对象。下面先看集合类immutable对象使用 copy 和 mutableCopy 的一个例子：
+
+```
+NSArray *array = @[@[@"a", @"b"], @[@"c", @"d"]];
+NSArray *copyArray = [array copy];
+NSMutableArray *mCopyArray = [array mutableCopy];
+```
+查看内容，可以看到 copyArray 和 array 的地址是一样的，而 mCopyArray 和 array 的地址是不同的。说明 copy 操作进行了指针拷贝，mutableCopy 进行了内容拷贝。但需要强调的是：此处的内容拷贝，仅仅是拷贝 array 这个对象，array 集合内部的元素仍然是指针拷贝。这和上面的非集合 immutable 对象的拷贝还是挺相似的，那么mutable对象的拷贝会不会类似呢？我们继续往下，看 mutable 对象拷贝的例子：
+
+```
+NSMutableArray *array = [NSMutableArray arrayWithObjects:[NSMutableString stringWithString:@"a"],@"b",@"c",nil];
+NSArray *copyArray = [array copy];
+NSMutableArray *mCopyArray = [array mutableCopy];
+```
+查看内存，如我们所料，copyArray、mCopyArray和 array 的内存地址都不一样，说明 copyArray、mCopyArray 都对 array 进行了内容拷贝。同样，我们可以得出结论：
+
+在集合类对象中，对 immutable 对象进行 copy，是指针复制， mutableCopy 是内容复制；对 mutable 对象进行 copy 和 mutableCopy 都是内容复制。但是：集合对象的内容复制仅限于对象本身，对象元素仍然是指针复制。用代码简单表示如下：
+
+```
+[immutableObject copy] // 浅复制
+[immutableObject mutableCopy] //单层深复制
+[mutableObject copy] //单层深复制
+[mutableObject mutableCopy] //单层深复制
+```
+这个代码结论和非集合类的非常相似。
+
+参考链接：[iOS 集合的深复制与浅复制](https://www.zybuluo.com/MicroCai/note/50592)
+
 ### 36.数组的浅拷贝与深拷贝
+- Array 的copy是浅拷贝, mutableCopy虽然数组重新分配了内存, 但是元素内容不变, 浅拷贝;
+- 对MArray进行add, 或 remove, 并不会改变数组的指针, 只会更改数组内的元素
+- [MutableArray copy] 是浅拷贝 [MutableArray mutableCopy] 也是浅拷贝
+- 数组无论是copy, 还是mutableCopy, 内部元素地址都不变, 都是浅拷贝
+
+#### 如何实现数组内容的拷贝?
+- 对可变, 不可变数组执行copy,mutableCopy的结果都不会影响数组内的元素, 数组内元素仍是浅拷贝.
+- 无论执行的是 initWithArray 方法还是Copy, 结果都一致
+- initWithArray:copyItems: 会调用NSCoping协议的copyWithZone方法, 达到内容拷贝的效果.
 
 ### 37.如何让自己的类用copy修饰符？如何重写带 copy 关键字的 setter？
 > 若想令自己所写的对象具有拷贝功能，则需实现 NSCopying 协议。如果自定义的对象分为可变版本与不可变版本，那么就要同时实现 NSCopying 与 NSMutableCopying 协议。
@@ -5442,6 +5723,9 @@ NSArray *trueDeepCopyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyed
 ```
 
 ### 39.[object copy]是浅拷贝还是深拷贝？为什么是浅拷贝？copy是实现了哪个协议？
+- 浅拷贝
+- 没有生成新的对象
+- 实现 NSCopying 协议。如果自定义的对象分为可变版本与不可变版本，那么就要同时实现 NSCopying 与 NSMutableCopying 协议。
 
 ### 40.父类实现深拷贝时，子类如何实现深度拷贝。父类没有实现深拷贝时，子类如何实现深度拷贝。
 - 深拷贝同浅拷贝的区别：浅拷贝是指针拷贝，对一个对象进行浅拷贝，相当于对指向对象的指针进行复制，产生一个新的指向这个对象的指针，那么就是有两个指针指向同一个对象，这个对象销毁后两个指针都应该置空。深拷贝是对一个对象进行拷贝，相当于对对象进行复制，产生一个新的对象，那么就有两个指针分别指向两个对象。当一个对象改变或者被销毁后拷贝出来的新的对象不受影响。
@@ -5595,7 +5879,7 @@ uintptr_t objc_object::sidetable_release(bool performDealloc)
     * 比如NSNumber，除了8位标志位外，其余56位则用来存储数值本身内容。当存储用的数值超过56位存储上限的时候，那么NSNumber才会用真正的64位内存地址存储数值，然后用指针指向该内存地址。
     * 注意：所有对象都有 isa 指针，而Tagged Pointer其实是没有的，因为它不是真正的对象。 因为不是真正的对象，所以如果你直接访问Tagged Pointer的isa成员的话，在编译时将会有如下警告：
 
- ![image](https://res.infoq.com/articles/deep-understanding-of-tagged-pointer/zh/resources/0519063.jpg)
+ ![image](http://blog.devtang.com/images/tagged_pointer_isa_forbidden.jpg)
  
  应该换成相应的方法调用，如 isKindOfClass 和 object_getClass。只要避免在代码中直接访问对象的isa变量，即可避免这个问题。
  * 第二种方案：isa 指针（NONPOINTER_ISA）
@@ -5694,6 +5978,15 @@ extra_rc | 存储引用计数值减一后的结果
 - 即使出现故障导致对象占用的内存块损坏，但只要引用计数表没有被破坏，就能够确认各内存块的位置
 
 ### 44.ARC和MRC的本质区别是什么？
+- MRC手动内存管理
+    * 引用计数器:在MRC时代，系统判定一个对象是否销毁是根据这个对象的引用计数器来判断的。
+        * 每个对象被创建时引用计数都为1
+        * 每当对象被其他指针引用时，需要手动使用[obj retain];让该对象引用计数+1。
+        * 当指针变量不在使用这个对象的时候，需要手动释放release这个对象。 让其的引用计数-1.
+        * 当一个对象的引用计数为0的时候，系统就会销毁这个对象。
+    * 在MRC模式下必须遵循谁创建，谁释放，谁引用，谁管理
+- ARC自动内存管理
+    * ARC管理机制与MRC手动机制差不多，只是不再需要手动调用retain、release、autorelease；当你使用ARC时，编译器会在适当位置插入release和autorelease；ARC时代引入了strong强引用来带代替retain，引入了weak弱引用。
 
 ### 45.使用自动引用计（ARC）数应该遵循的原则?
 - ARC规则：
@@ -5859,7 +6152,8 @@ id obj = [[NSObject alloc]init];
 }
 ```
 
-### 59.@autorelease{ NSString s;}和NSString s;有什么区别？
+### 59.@autorelease{ NSString *s;}和NSString *s;有什么区别？
+- 前者会加入autoreleasepool里面，不会被立即释放，后者则会被立即释放，如果是局部变量的话，有可能造成野指针；
 
 ### 60.访问 __weak 修饰的变量，是否已经被注册在了 @autoreleasePool 中？为什么？
 - 在访问__weak修饰的变量时，必定要访问注册到autoreleasepool的对象，这是因为：__weak修饰符只持有对象的弱引用，他不能持有对象实例，所以在超出其变量作用域时，对象即被释放。 而在访问引用对象的过程中，该对象可能被废弃，而如果把要访问的对象注册到autoreleasepool中，在@autoreleasepool块结束之前都能确保该对象存在。
@@ -6281,7 +6575,7 @@ clang -rewrite-objc main.m
 - [obj foo];在objc编译时，会被转意为：objc_msgSend(obj, @selector(foo));。
 
 ### 74.BAD_ACCESS 在什么情况下出现?
- 访问了已经被销毁的内存空间，就会报出这个错误。
+- 访问了已经被销毁的内存空间，就会报出这个错误。
 根本原因是有 悬垂指针 没有被释放。
 
 ### 75.什么时候会报unrecognized selector的异常？
@@ -6328,11 +6622,11 @@ clang -rewrite-objc main.m
 
 如图: 
 
-![image](http://hi.csdn.net/attachment/201201/19/0_1326963670oeC1.gif)
+![image](https://upload-images.jianshu.io/upload_images/13277235-b66dbacab43f5f3f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 ### 78.一个objc对象的isa的指针指向什么？有什么作用？
 - isa指针是什么？
-    * 我们经常使用id来声明一个对象，本质上，我们创建的一个对象或实例其实就是一个struct objc_object结构体，而我们常用的id也就是这个结构体的指针。这个结构体只有一个成员变量，这是一个Class类型的变量isa，也是一个结构体									指针。面向对象中每一个对象都必须依赖一个类来创建，因此对象的isa指针就指向对象所属的类根据这个类模板能够创建出实例变量、实例方法等。
+    * 我们经常使用id来声明一个对象，本质上，我们创建的一个对象或实例其实就是一个struct objc_object结构体，而我们常用的id也就是这个结构体的指针。这个结构体只有一个成员变量，这是一个Class类型的变量isa，也是一个结构体指针。面向对象中每一个对象都必须依赖一个类来创建，因此对象的isa指针就指向对象所属的类根据这个类模板能够创建出实例变量、实例方法等。
 - 对象的isa指针
     * 每个实例对象有个isa的指针,他指向对象的类
 - 类对象的isa指针
@@ -6340,17 +6634,15 @@ clang -rewrite-objc main.m
 - 元类的isa指针
     * 元类保存了类方法的列表。当类方法被调用时，先会从本身查找类方法的实现，如果没有，元类会向他父类查找该方法。同时注意的是：元类（meteClass）也是类，它也是对象。元类也有isa指针,它的isa指针最终指向的是一个根元类(root meteClass).根元类的isa指针指向本身，这样形成了一个封闭的内循环。
 
-![image](http://hi.csdn.net/attachment/201201/19/0_1326963670oeC1.gif)
+![image](https://upload-images.jianshu.io/upload_images/13277235-b66dbacab43f5f3f.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 参考文献：
 - [《iOS class深入理解： 实例对象、类对象、元类和isa指针》](http://www.zhimengzhe.com/IOSkaifa/253119.html)
 - [《iOS中isa指针》](https://blog.csdn.net/miao_em/article/details/56671616)
 
 ### 79.能否向编译后得到的类中增加实例变量？能否向运行时创建的类中添加实例变量？为什么？
- 不能向编译后得到的类中增加实例变量；
-- 能向运行时创建的类中添加实例变量；
-解释下：
-- 原因：
+- 不能向编译后得到的类中增加实例变量；能向运行时创建的类中添加实例变量；
+- 解释下原因：
     * 因为编译后的类已经注册在 runtime 中，类结构体中的 objc_ivar_list 实例变量的链表 和 instance_size 实例变量的内存大小已经确定，同时runtime 会调用 class_setIvarLayout 或 class_setWeakIvarLayout 来处理 strong weak 引用。所以不能向存在的类中添加实例变量；
     * 运行时创建的类是可以添加实例变量，调用 class_addIvar 函数。但是得在调用 objc_allocateClassPair 之后，objc_registerClassPair 之前，原因同上。
 
@@ -6530,7 +6822,17 @@ size_t instanceSize(size_t extraBytes) {
     * 实例方法中直接调用实例方法
     * 实例方法中也可以调用类方法(通过类名)
 
-### 6.Obj-C 中的类信息存放在哪里？
+### 6.讲一下对象，类对象，元类，根元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存的对象结构体里，而是保存在类对象的结构体里？
+
+#### 讲一下对象，类对象，元类，跟元类结构体的组成以及他们是如何相关联的
+- 对象的结构体里存放着isa和成员变量，isa指向类对象。
+- 类对象的isa指向元类，元类的isa指向NSObject的元类。
+- 类对象和元类的结构体有isa、superclass、cache、bits，bits里存放着class_rw_t的指针。
+
+#### 为什么对象方法没有保存的对象结构体里，而是保存在类对象的结构体里
+- 方法是每个对象互相可以共用的，如果每个对象都存储一份方法列表太浪费内存，由于对象的isa是指向类对象的，当调用的时候，直接去类对象中查找就行了。可以节约很多内存空间的
+
+### 7.Obj-C 中的类信息存放在哪里？
 - 存放在类对象里面
 - 实例对象在内存中存储的信息，主要包括：
     * isa指针
@@ -6547,7 +6849,7 @@ size_t instanceSize(size_t extraBytes) {
     * superclass指针
     * 类的类方法信息（class method）
 
-### 7.一个 NSObject 对象占用多少内存空间？
+### 8.一个 NSObject 对象占用多少内存空间？
 - 受限于内存分配的机制，一个 NSObject对象都会分配 16byte 的内存空间。
 - 但是实际上在 64位 下，只使用了 8byte;
 - 在32位下，只使用了 4byte
@@ -6607,7 +6909,7 @@ struct WStruct2 {
 ```
 - 我们假设从位置0开始存储，double占用8个字节，所以占用0-7位置的内存空间，由于0-7已经被double占用，在存储char的时候至少要从8号位置开始，我们知道char占用1个字节，然后开始储存int类型，是从9开始，但是9不是4的倍数，需要加3，是从12开始存储，int是4个字节，就到15位置，开始存储short，short是占2个字节，所以占用16，17位置，然后再储存WStruct结构体，第一个是double类型，占用8个字节，因为18不是8的倍数，所以需要加到23的位置，从24开始储存，然后用24加16是40，所以是占用40个字节；
 
-### 8.说一下对 class_rw_t 的理解？
+### 9.说一下对 class_rw_t 的理解？
 - rw代表可读可写。
 - ObjC 类中的属性、方法还有遵循的协议等信息都保存在 class_rw_t 中：
 
@@ -6637,7 +6939,7 @@ struct class_rw_t {
     }
 ```
 
-### 9.说一下对 class_ro_t 的理解？
+### 10.说一下对 class_ro_t 的理解？
 - 存储了当前类在编译期就已经确定的属性、方法以及遵循的协议。
 
 ```
@@ -6660,7 +6962,23 @@ struct class_ro_t {
 ```
 - baseMethodList，baseProtocols，ivars，baseProperties三个都是以为数组。
 
-### 10.介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？
+### 11.`class_rw_t` 和 `class_ro_t` 的区别
+- 从字面上理解，class_ro_t是只读，class_rw_t可写可读。这两个变量共同点都是存储类的属性、方法、协议等信息的，不同的有两点：1、class_ro_t还存储了类的成员变量，而class_rw_t则没有，从这方面也验证了类的成员变量一旦确定了，就不能写了，就是分类不能增加成员变量的原因；2、class_ro_t是在编译期就确定了固定的值，在整个运行时都只读不可写的状态，在运行时调用realizeClass方法将class_ro_t复制到class_rw_t对应的变量上去。
+
+### 12.iOS中内省的几个方法？class方法和objc_getClass方法有什么区别?
+- 内省：
+    * 在计算机科学中，内省是指计算机程序在运行时（Run time）检查对象（Object）类型的一种能力，通常也可以称作运行时类型检查。不应该将内省和反射混淆。相对于内省，反射更进一步，是指计算机程序在运行时（Run time）可以访问、检测和修改它本身状态或行为的一种能力。
+- iOS中内省的几个方法：
+    * isMemberOfClass //对象是否是某个类型的对象
+    * isKindOfClass //对象是否是某个类型或某个类型子类的对象
+    * isSubclassOfClass //某个类对象是否是另一个类型的子类
+    * isAncestorOfObject //某个类对象是否是另一个类型的父类
+    * respondsToSelector //是否能响应某个方法
+    * conformsToProtocol //是否遵循某个协议
+- class方法和object_getClass方法有什么区别：
+    * 实例class方法就直接返回object_getClass(self)，类class方法直接返回self，而object_getClass(类对象)，则返回的是元类
+
+### 13.介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？
 - Category (分类、类别) 分类只能增加方法不能增加成员变量,可以声明属性,实际上会生成属性的set和get方法,但不会生成带下划线的成员变量,也不能添加成员变量（可以在不修改原来类模型的基础上拓充方法）
 - 作用：
     * 可以在不修改原来类的基础上，为一个类扩展方法。
@@ -6718,7 +7036,7 @@ struct category_t {
 - 它为什么会覆盖掉原来的方法
 - 我们已经知道category其实并不是完全替换掉原来类的同名方法，只是category在方法列表的前面而已，所以我们只要顺着方法列表找到最后一个对应名字的方法，就可以调用原来类的方法
 
-### 11.Category 的实现原理？
+### 14.Category 的实现原理？
 - 被添加在了 class_rw_t 的对应结构里。
 - Category 实际上是 Category_t 的结构体，在运行时，新添加的方法，都被以倒序插入到原有方法列表的最前面，所以不同的Category，添加了同一个方法，执行的实际上是最后一个。
 - 拿方法列表举例，实际上是一个二维的数组。
@@ -6737,9 +7055,10 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 }
 ```
 - Category 在刚刚编译完的时候，和原来的类是分开的，只有在程序运行起来后，通过 Runtime ，Category 和原来的类才会合并到一起。
-- mememove，memcpy：这俩方法是位移、复制，简单理解就是原有的方法移动到最后，根根新开辟的控件，把前面的位置留给分类，然后分类中的方法，按照倒序依次插入，可以得出的结论就就是，越晚参与编译的分类，里面的方法才是生效的那个。
+- mememove，memcpy：这俩方法是位移、复制，简单理解就是原有的方法移动到最后，根据新开辟的控件，把前面的位置留给分类，然后分类中的方法，按照倒序依次插入，可以得出的结论就就是，越晚参与编译的分类，里面的方法才是生效的那个。
 
-### 12.如何给 Category 添加属性？关联对象以什么形式进行存储？
+### 15.如何给 Category 添加属性？关联对象以什么形式进行存储？
+- 我们知道 Category只能添加方法不能添加成员变量但是可以添加属性，但是只生成 setter 和 getter 方法的声明，不会生成 setter 和 getter 方法的实现以及下划线成员变量，可以用关联对象的方法来增加
 - 关联对象 以哈希表的格式，存储在一个全局的单例中。
 
 ```
@@ -6766,16 +7085,16 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 @end
 ```
 
-### 13.Category 有哪些用途？
+### 16.Category 有哪些用途？
 - 给一个类添加新的方法，可以为系统的类扩展功能。
 - 给系统类添加方法、属性（需要关联对象）。
 - 对某个类大量的方法，可以实现按照不同的名称归类。
 
-### 14.Category 中都可以添加哪些内容？
+### 17.Category 中都可以添加哪些内容？
 - 实例方法、类方法、协议、属性（只生成 setter 和 getter 方法的声明，不会生成 setter 和 getter 方法的实现以及下划线成员变量）；
 - 默认情况下，由于分类底层结构的限制，不能添加成员变量到分类中，但可以通过关联对象来间接实现这种效果。
 
-### 15.Category的优缺点
+### 18.Category的优缺点
 - 优点：
     * 可以按需加载不同的分类。
     * 有很多用途，见上面
@@ -6792,7 +7111,35 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
     * 同名分类方法谁能生效取决于编译顺序，最后参与编译的分类中的同名方法会最终生效；
     * 名字相同的分类会引起编译报错。
 
-### 16.Category 和 Extension 有什么区别？
+### 19.Category 可不可以添加实例对象？为什么？
+- Category可以动态添加属性，但是不能直接添加实例变量。
+- 原因：
+    * 分类没有自己的isa指针.“类最开始生成了很多基本属性，比如IvarList，MethodList。分类只会将自己的method attach到主类，并不会影响到主类的IvarList。这就是为什么分类里面不能增加成员变量的原因”，实例变量没有setter和getter方法。也没有自己的isa指针。所以，就算系统不报错也不能用。
+- runtime给Category动态添加属性，也就是关联对象
+
+### 20.Category不能添加实例变量，那为什么能添加属性？
+- 在分类转化为c++文件中可以看出_category_t结构体中，存放着类名，对象方法列表，类方法列表，协议列表，以及属性列表。
+
+```
+struct _category_t {
+    const char *name;  //哪个类的分类 LSPerson
+    struct _class_t *cls; //这个值没用到传的为0，要扩展的类对象，编译期间这个值是不会有的，在app被runtime加载时才会根据name对应到类对象
+    const struct _method_list_t *instance_methods;//对象方法列表，这个category所有的-方法
+    const struct _method_list_t *class_methods;//类方法列表，这个category所有的+方法
+    const struct _protocol_list_t *protocols;//协议列表，这个category实现的protocol，比较不常用在category里面实现协议，但是确实支持的
+    const struct _prop_list_t *properties;//属性列表，这个category所有的property，这也是category里面可以定义属性的原因，不过这个property不会@synthesize实例变量，一般有需求添加实例变量属性时会采用objc_setAssociatedObject和objc_getAssociatedObject方法绑定方法绑定，不过这种方法生成的与一个普通的实例变量完全是两码事。
+};
+```
+
+### 21.Category 在编译过后，是在什么时机与原有的类合并到一起的？
+- 程序启动后，通过编译之后，Runtime 会进行初始化，调用 _objc_init。
+- 然后会 map_images。
+- 接下来调用 map_images_nolock。
+- 再然后就是 read_images，这个方法会读取所有的类的相关信息。
+- 最后是调用 reMethodizeClass:，这个方法是重新方法化的意思。
+- 在 reMethodizeClass: 方法内部会调用 attachCategories: ，这个方法会传入 Class 和 Category ，会将方法列表，协议列表等与原有的类合并。最后加入到 class_rw_t 结构体中。
+
+### 22.Category 和 Extension 有什么区别？
 - extension 在编译期决定，它就是类的一部分，在编译期和头文件里的@interface以及实现文件里的@implement 一起形成一个完整的类，它伴随类的产生而产生，亦随之一起消亡。extension一般用来隐藏类的私有信息，你必须有一个类的源码才能为一个类添加extension，所以你无法为系统的类比如 NSString 添加 extension。
 - 但是 category则完全不一样，它是在运行期决定的。就 category 和extension的区别来看，我们可以推导出一个明显的事实，extension 可以添加实例变量，而 category 是无法添加实例变量的
 - category 的加载是发生在运行时，加载 category 的过程：
@@ -6834,69 +7181,82 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
     }
 ```
 
-### 17.Category 可不可以添加实例对象？为什么？
-- Category可以动态添加属性，但是不能直接添加实例变量。
-- 原因：
-    * 分类没有自己的isa指针.“类最开始生成了很多基本属性，比如IvarList，MethodList。分类只会将自己的method attach到主类，并不会影响到主类的IvarList。这就是为什么分类里面不能增加成员变量的原因”，实例变量没有setter和getter方法。也没有自己的isa指针。所以，就算系统不报错也不能用。
-- runtime给Category动态添加属性，也就是关联对象
-
-### 18.Category不能添加实例变量，那为什么能添加属性？
-- 在分类转化为c++文件中可以看出_category_t结构体中，存放着类名，对象方法列表，类方法列表，协议列表，以及属性列表。
-
-```
-struct _category_t {
-    const char *name;  //哪个类的分类 LSPerson
-    struct _class_t *cls; //这个值没用到传的为0，要扩展的类对象，编译期间这个值是不会有的，在app被runtime加载时才会根据name对应到类对象
-    const struct _method_list_t *instance_methods;//对象方法列表，这个category所有的-方法
-    const struct _method_list_t *class_methods;//类方法列表，这个category所有的+方法
-    const struct _protocol_list_t *protocols;//协议列表，这个category实现的protocol，比较不常用在category里面实现协议，但是确实支持的
-    const struct _prop_list_t *properties;//属性列表，这个category所有的property，这也是category里面可以定义属性的原因，不过这个property不会@synthesize实例变量，一般有需求添加实例变量属性时会采用objc_setAssociatedObject和objc_getAssociatedObject方法绑定方法绑定，不过这种方法生成的与一个普通的实例变量完全是两码事。
-};
-```
-
-### 19.Category 在编译过后，是在什么时机与原有的类合并到一起的？
-- 程序启动后，通过编译之后，Runtime 会进行初始化，调用 _objc_init。
-- 然后会 map_images。
-- 接下来调用 map_images_nolock。
-- 再然后就是 read_images，这个方法会读取所有的类的相关信息。
-- 最后是调用 reMethodizeClass:，这个方法是重新方法化的意思。
-- 在 reMethodizeClass: 方法内部会调用 attachCategories: ，这个方法会传入 Class 和 Category ，会将方法列表，协议列表等与原有的类合并。最后加入到 class_rw_t 结构体中。
-
-### 20.分类实现了类的initialize方法，那么类的方法initialize还会调用吗？为什么？
+### 23.分类实现了类的initialize方法，那么类的方法initialize还会调用吗？为什么？
 - 分类中实现的类的initialize方法，那么类的方法就不会调用了。
 - 之所以出现这种覆盖的假象，是因为map_images操作方法的时候，加载顺序：先加载父类->再子类->所有类的分类。所以方法存进类的方法的顺序是：先添加类，后添加分类。但是在Runtime查找imp的时候，是倒序查找类的方法列表中第一个出现的方法，只要找到第一个就直接返回了，所以会出现分类方法覆盖类方法的假象。
 
-### 21.分类与类中同样方法，调用顺序？
+### 24.分类与类中同样方法，调用顺序？
 - 同样的方法优先调用分类。如果两个分类有同一个方法，调用顺序则取决于编译顺序。
 
-### 22.分类的对象方法是如何添加到类对象方法列表中的？
+### 25.分类的对象方法是如何添加到类对象方法列表中的？
 - 首先内存扩充。扩展存对象方法的数组大小
 - 其次内存移动。将原来类对象方法列表数据移到后面
 - 最后内存拷贝。将分类中方法拷贝到原来列表指向位置。
 
-### 23.memmove和memcpy的区别？
-- memmove会根据内存大小，移动方向，数量来移动内存；
-- memcpy是按照一定规则一个地址一个地址拷贝。
-- memmove能保证原数据完整性，内部移动最好不要使用memcpy，外部内存移动可以使用。
+### 26.分类和类拓展的区别
+- extension 在编译期决定，它就是类的一部分，在编译期和头文件里的@interface以及实现文件里的@implement 一起形成一个完整的类，它伴随类的产生而产生，亦随之一起消亡。extension一般用来隐藏类的私有信息，你必须有一个类的源码才能为一个类添加extension，所以你无法为系统的类比如 NSString 添加 extension。
+- 但是 category则完全不一样，它是在运行期决定的。就 category 和extension的区别来看，我们可以推导出一个明显的事实，extension 可以添加实例变量，而 category 是无法添加实例变量的
+- category 的加载是发生在运行时，加载 category 的过程：
+    * 把 category 的实例方法、协议以及属性添加到类上。
+    * 把 category 的类方法和协议添加到类的 metaclass 上。
+- 其中需要注意的是：
+    * category 的方法没有「完全替换掉」原来类已经有的方法，也就是说如果 category 和原来类都有 methodA，那么 category 附加完成之后，类的方法列表里会有两个 methodA。
+    * category 的方法被放到了新方法列表的前面，而原来类的方法被放到了新方法列表的后面，这也就是我们平常所说的category 的方法会「覆盖」掉原来类的同名方法，这是因为运行时在查找方法的时候是顺着方法列表的顺序查找的，它只要一找到对应名字的方法，就会返回
+- 在类和 category中都可以有+load方法，那么有两个问题：
+    * 在类的 +load方法调用的时候，我们可以调用 category 中声明的方法么？答案是：可以调用，因为附加 category 到类的工作会先于 +load方法的执行。
+    * 这么些个+load方法，调用顺序是咋样的呢？答案是：+load的执行顺序是先类，后 category，而 category 的+load 执行顺序是根据编译顺序决定的。虽然对于 +load的执行顺序是这样，但是对于「覆盖」掉的方法，则会先找到最后一个编译的 category 里的对应方法。
+- 上面讲到的方法覆盖，还有一个补充问题：怎么调用到原来类中被 category 覆盖掉的方法？对于这个问题，我们已经知道 category 其实并不是完全替换掉原来类的同名方法，只是 category 在方法列表的前面而已，所以我们只要顺着方法列表找到最后一个对应名字的方法，就可以调用原来类的方法：
 
-### 24.分类和类拓展的区别
-- category 是在运行时才会将数据合并到类信息中。
-- class extension 在编译时就会将数 据编译到类信息中
+```
+    // 假设被覆盖的方法名叫 printName。
+    Class currentClass = [MyClass class];
+    MyClass *my = [[MyClass alloc] init];
 
-### 25.动态库和静态库的区别
+    if (currentClass) {
+        unsigned int methodCount;
+        Method *methodList = class_copyMethodList(currentClass, &methodCount);
+        IMP lastImp = NULL;
+        SEL lastSel = NULL;
+        for (NSInteger i = 0; i < methodCount; i++) {
+            Method method = methodList[i];
+            NSString *methodName = [NSString stringWithCString:sel_getName(method_getName(method)) encoding:NSUTF8StringEncoding];
+            if ([@"printName" isEqualToString:methodName]) {
+                lastImp = method_getImplementation(method);
+                lastSel = method_getName(method);
+            }
+        }
+        typedef void (*fn)(id,SEL);
+
+        if (lastImp != NULL) {
+            fn f = (fn) lastImp;
+            f(my, lastSel);
+        }
+        free(methodList);
+    }
+```
+
+### 27.动态库和静态库的区别
+- 动态库形式：.dylib和.framework
+- 静态库形式：.a和.framework
 - 静态库在编译时期:commond+shift+N(即新建工程)----->FrameWork&library—>Cocoa Touch Static Libiary
 - 动态库在运行时期:commond+shift+N(即新建工程)----->FrameWork&library—>Cocoa Touch Libiary
 - 动态库和静态库的本质区别是，动态库是在程序运行时链接的，而静态库在编译时把代码加入目标程序，那么程序运行时就不需要了。所以使用静态库时生成的目标程序可以脱离源码运行，而动态库生成的目标程序，还需要先安装库才行
 - 使用gcc编译的静态库，在生成目标程序链接的过程中也只能用gcc编译；同理使用g++编译的静态库在生成目标程序链接的过程中也只能用g++编译。否则会报错"undefined reference to 'Fun1()'
 - 用gcc编译目标程序时，main.c中可以不需要#include "lib.h",会报warning,但是不会报error;但是用g++编译时，一定要加 #include "lib.h",不然编译不通过，因此用g++编译的静态库，还需要它的所有头文件才能使用。
 - 当你更改库文件的一些宏定义或者其他东西时，需要重新编译静态库，不然你的修改没有起作用。
+- 动态库的作用：应用插件化，每一个功能点都是一个动态库，在用户想使用某个功能的时候让其从网络下载，然后手动加载动态库，实现功能的的插件化；虽然技术上来说这种动态更新是可行的，但是对于AppStore上上架的app是不可以的。iOS8之后虽然可以上传含有动态库的app，但是苹果不仅需要你动态库和app的签名一致，而且苹果会在你上架的时候再经过一次AppStore的签名。所以你想在线更新动态库，首先你得有苹果APPStore私钥，而这个基本不可能。除非你的应用不需要通过AppStore上架，比如企业内部的应用，通过企业证书发布，那么就可以实现应用插件化在线更新动态库了。
 
-### 26.category 中有load 方法吗？ load 方法什么时候调用？ load 方法能继承吗？
+### 28.category 中有load 方法吗？ load 方法什么时候调用？ load 方法能继承吗？
 - 有load
 - 在runtime加载类、分类的时候调用。
 - load方法可以继承，但是通常我们不会主动调用。都是系统自动调用。如果我们主动调用的，也就是[KCPerson load]手动调用，这样就变成消息发送机制流程了。
 
-### 27.+load 和 initialized方法的区别
+### 29.category如何被加载的,两个category的load方法的加载顺序，两个category的同名方法的加载顺序
+- category的加载是在运行时发生的，加载过程是，把category的实例方法、属性、协议添加到类对象上。把category的类方法、属性、协议添加到metaclass上。
+- category的load方法执行顺序是根据类的编译顺序决定的
+- category并不会替换掉同名的方法的，也就是说如果 category 和原来类都有 methodA，那么 category 附加完成之后，类的方法列表里会有两个 methodA，并且category添加的methodA会排在原有类的methodA的前面，因此如果存在category的同名方法，那么在调用的时候，则会先找到最后一个编译的 category 里的对应方法。
+
+### 30.+load 和 initialized方法的区别，在继承关系中他们有什么区别
 - 两个方法的调用方式
     * load是拿到函数地址直接进行调用
     * initialize是通过objc_msgSend()进行调用的
@@ -6909,13 +7269,21 @@ struct _category_t {
         * 再调用分类的load方法，先编译的分类优先先调用(只看编译顺序，不区分是父类的分类还是子类的分类)
     * 先初始化父类，再初始化子类(可能最终调用的是父类的initialize方法)
 
-### 28.+load的调用时机
+### 31.+load的调用时机
 - load方法调用时机其实就是在程序运行，Runtime进行load_images时调用的，在main函数之前，父类子类分类的调用顺序是：先调用类，后调用所有分类；调用类会先递归调用父类，后调用子类；分类和类的调用顺序没有关系，是根据Mach-O文件的顺序进行调用的。
+- 调用顺序
+    * 类要优先于分类调用+load方法；
+    * 子类调用+load方法时，要先要调用父类的+load方法；(父类优先与子类，与继承不同)；
+    * 不同的类按照编译先后顺序调用+load方法（先编译，先调用）；
+    * 分类的按照编译先后顺序调用+load方法（先编译，先调用）。
 
-### 29.+load分类中的处理
-### 30.分类和类别的区别
+### 32.+load分类中的处理
+- +load的使用场景：
+    * hook方法的时候 
+    * 涉及到组件化开发中不同组件间通信，在load中注册相关协议等等
+- 分类的按照编译先后顺序调用+load方法（先编译，先调用）
 
-### 31.关联对象的原理
+### 33.关联对象的原理
 - 关联对象的的api就只有三个
 
 ```
@@ -6942,7 +7310,7 @@ struct _category_t {
 #### objc_removeAssociatedObjects
 - 这个函数负责移除一个对象的所有关联对象, 具体实现也是先根据对象的地址获取其对应的 ObjectAssociationMap 对象，然后将所有的关联结构保存到一个 vector 中, 最终释放 vector 中保存的所有关联对象.
 
-### 32.说一下 Method Swizzling? 说一下在实际开发中你在什么场景下使用过?
+### 34.说一下 Method Swizzling?说一下在实际开发中你在什么场景下使用过?
 - 简单说就是进行方法交换
 - 在Objective-C中调用一个方法，其实是向一个对象发送消息，查找消息的唯一依据是selector的名字。利用Objective-C的动态特性，可以实现在运行时偷换selector对应的方法实现，达到给方法挂钩的目的。
 - 每个类都有一个方法列表，存放着方法的名字和方法实现的映射关系，selector的本质其实就是方法名，IMP有点类似函数指针，指向具体的Method实现，通过selector就可以找到对应的IMP。
@@ -6950,10 +7318,20 @@ struct _category_t {
     * 利用 method_exchangeImplementations 交换两个方法的实现
     * 利用 class_replaceMethod替换方法的实现
     * 利用 method_setImplementation 来直接设置某个方法的IMP
+- 注意：
+    * Swizzling应该总在+load中执行
+    * Swizzling应该总是在dispatch_once中执行
+    * Swizzling在+load中执行时，不要调用[super load]。如果多次调用了[super load]，可能会出现“Swizzle无效”的假象
 
 ![image](https://upload-images.jianshu.io/upload_images/11034989-c18ff3c6e3ab50c5.png?imageMogr2/auto-orient/strip|imageView2/2/w/648)
 
-### 33.如何实现动态添加方法和属性？
+### 35.类簇是什么，可以对类簇进行Method Swizzling吗？
+- 在iOS中NSNumber、NSArray、NSDictionary等这些类都是类簇(Class Clusters)，一个NSArray的实现可能由多个类组成。 所以如果想对NSArray进行Swizzling，必须获取到其“真身”进行Swizzling，直接对NSArray进行操作是无效的。
+
+### 36.Method Swizzie是如何确保安全的替换方法的？如何确保替换的不是父类的方法？
+- 在Objective-C的runtime特性中，调用一个对象的方法就是给这个对象发送消息。是通过查找接收消息对象的方法列表，从方法列表中查找对应的SEL，这个SEL对应着一个IMP（一个IMP可以对应多个SEL），通过这个IMP找到对应的方法调用。
+
+### 37.如何实现动态添加方法和属性？
 - 动态添加属性
 
 ```
@@ -6970,10 +7348,10 @@ struct _category_t {
 - 动态添加方法
     * 为什么动态添加方法，为有些方法可能会就不会用到，所以OC都是懒加载机制
 
-### 34.运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？
+### 38.运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？
 - 可以添加属性的，但必须我们实现它的getter和setter方法。但是没有添加带下滑线同名的成员变量，但是我们使用runtime我们就可以实现添加成员变量；
 
-### 35.说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）
+### 39.说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）
 - isa指针是什么？
     * 我们经常使用id来声明一个对象，本质上，我们创建的一个对象或实例其实就是一个struct objc_object结构体，而我们常用的id也就是这个结构体的指针。这个结构体只有一个成员变量，这是一个Class类型的变量isa，也是一个结构体									指针。面向对象中每一个对象都必须依赖一个类来创建，因此对象的isa指针就指向对象所属的类根据这个类模板能够创建出实例变量、实例方法等。
 - 对象的isa指针
@@ -6989,7 +7367,7 @@ struct _category_t {
 - [《iOS class深入理解： 实例对象、类对象、元类和isa指针》](http://www.zhimengzhe.com/IOSkaifa/253119.html)
 - [《iOS中isa指针》](https://blog.csdn.net/miao_em/article/details/56671616)
 
-### 36.objc中向一个nil对象发送消息将会发生什么？（返回值是对象，是标量，结构体）
+### 40.objc中向一个nil对象发送消息将会发生什么？（返回值是对象，是标量，结构体）
 - 在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用:
 - 如果一个方法返回值是一个对象，那么发送给nil的消息将返回0(nil)。例如：
 
@@ -7026,7 +7404,9 @@ struct objc_class {
 ```
 objc在向一个对象发送消息时，runtime库会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，然后在发送消息的时候，objc_msgSend方法不会返回值，所谓的返回内容都是具体调用时执行的。 那么，回到本题，如果向一个nil对象发送消息，首先在寻找对象的isa指针时就是0地址返回了，所以不会出现任何错误。
 
-### 37.利用Runtime交换方法
+### 41.在方法调用的时候，`方法查询-> 动态解析-> 消息转发` 之前做了什么
+
+### 42.利用Runtime交换方法
 - Method Swizzling
 - 有的时候，系统的类不能满足要求时,例如系统类(NSString,UIImage)可能并不能满足我们的要求,解决办法:
     * 往往是给系统自带的类添加分类，就是对原有的类进行扩充方法，但是切记扩充的方法不要和系统的类相同.
@@ -7038,11 +7418,10 @@ objc在向一个对象发送消息时，runtime库会根据对象的isa指针找
         * 调用imageNamed，先会调用分类的load方法，在load方法实现交换，然后才会去调用分类的ZBimageNamed
         * 具体步骤:在分类中调用load方法，导入runtime框架，load方法中写上获取两个交换的类的类名，然后写上method_exchangexxxxx,实现交换。外界调用imageNamed：的方法，实际上调用了ZBimageNamed。
 
-### 38.说一下 Runtime 消息发送。
-
+### 43.说一下 Runtime 消息发送。
 ![image](https://upload-images.jianshu.io/upload_images/5796542-aae846adbc49d9c0.png?imageMogr2/auto-orient/strip|imageView2/2/w/1021)
 
-### 39.说一下 Runtime 消息解析。
+### 44.说一下 Runtime 消息解析。
 - 在自己的类对象的缓存和方法列表中都没有找到方法，并且在父类的类对象的缓存和方法列表中都没有找到方法时，这时候就会启动动态方法解析。
 - lookUpImpOrForward这个方法。在这个方法中前半部分是在自己的类对象以及父类对象中查找方法，后半部分就是处理在自己的类对象和父类对象中都找到不这个方法
 - 其中_class_resolveMethod()的实现：就是判断是类对象还是元类对象，如果是类对象则说明调用的实例方法，则调用类的resolveInstanceMethod:方法，如果是元类对象，则说明是调用的类方法，则调用类的resolveClassMethod:方法。
@@ -7051,28 +7430,28 @@ objc在向一个对象发送消息时，runtime库会根据对象的isa指针找
 
 ![image](https://upload-images.jianshu.io/upload_images/5796542-e6ad23b13a86a4e2.png?imageMogr2/auto-orient/strip|imageView2/2/w/921)
 
-### 40.说一下 Runtime 消息转发。
+### 45.说一下 Runtime 消息转发， 消息转发机制的优劣
 - 进行动态方法解析结束之后，会从头开始再进行消息发送这一步，如果在动态方法解析的时候有动态添加方法实现，那么就能找到方法实现并返回方法实现，不再执行下面的代码；如果在动态方法解析的时候没有做什么事，那么就不能找到方法实现，这时候由于triedResolver标志位已经置为YES，也就不会再进入动态消息解析，而是会进入消息转发。
 - 调用_objc_msgForward_impcache函数
 - 消息转发首先依赖于- (id)forwardingTargetForSelector:(SEL)aSelector这个方法，若是这个方法直接返回了一个消息转发对象，则会通过objc_msgSend()把这个消息转发给消息转发对象了。若是这个方法没有实现或者实现了但是返回值为空，则会跑去执行后面的- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector这个函数以及- (void)forwardInvocation:(NSInvocation *)anInvocation这个函数。
 
 ![image](https://upload-images.jianshu.io/upload_images/5796542-b19c544c6b2be02e.png?imageMogr2/auto-orient/strip|imageView2/2/w/1013)
 
-### 41.如何运用 Runtime 字典转模型？
+### 46.如何运用 Runtime 字典转模型？
 - 利用kvc，键值编码，字典转模型
 
-### 42.如何运用 Runtime 进行模型的归解档？
+### 47.如何运用 Runtime 进行模型的归解档？
 - 类要遵从NSCoding协议就
 
-### 43.在 Obj-C 中为什么叫发消息而不叫函数调用？
+### 48.在 Obj-C 中为什么叫发消息而不叫函数调用？
 - OC中的方法调用其实都是转成了objc_msgSend函数的调用，给receiver（方法调用者）发送了一条消息（selector方法名）
 - objc_msgSend底层有3大阶段，消息发送（当前类、父类中查找）、动态方法解析、消息转发
 
-### 44.说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）
+### 49.说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）
 - OC中的方法调用其实都是转成了objc_msgSend函数的调用，给receiver（方法调用者）发送了一条消息（selector方法名）
 - objc_msgSend底层有3大阶段，消息发送（当前类、父类中查找）、动态方法解析、消息转发
 
-### 45.说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？
+### 50.说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？
 - cache_t增量扩展的哈希表结构。哈希表内部存储的 bucket_t。
 - bucket_t 中存储的是 SEL 和 IMP的键值对。
     * 如果是有序方法列表，采用二分查找
@@ -7122,7 +7501,7 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
 ```
 - 上面是查询散列表函数，其中cache_hash(k, m)是静态内联方法，将传入的key和mask进行&操作返回uint32_t索引值。do-while循环查找过程，当发生冲突cache_next方法将索引值减1。
 
-### 46.是否了解 Type Encoding?
+### 51.是否了解 Type Encoding?
 - 类型编码
 - 为了完善 Runtime 机制，编译器将方法的返回值类型和参数的类型编码成字符串，并且将这个字符串与方法的选择器(selector)关联起来。这个字符串就是类型编码
 - 通过编译指令@encode()，则可以获得对应的类型编码。传递的类型可以是基本数据类型，比如int，指针(pointer)，结构体(struct)或者联合(union),还可以是一个类名，任何类型都可以。事实上，适用于@sizeof()的类型都适用于@encode()。
@@ -7130,23 +7509,64 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
 
 ![image](https://upload-images.jianshu.io/upload_images/11544062-818801b9af677f1a.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
 
-### 47.Objective-C 如何实现多重继承？
+### 52.Objective-C 如何实现多重继承？
 - Object-c的类没有多继承,只支持单继承,如果要实现多继承的话，可使用如下几种方式间接实现
 - 通过组合实现：A和B组合，作为C类的组件
 - 通过协议实现：C类实现A和B类的协议方法
 - 消息转发实现：forwardInvocation:方法
 
-### 48.runtime如何通过selector找到对应的IMP地址？
+### 53.memmove和memcpy的区别？
+- memmove会根据内存大小，移动方向，数量来移动内存；
+- memcpy是按照一定规则一个地址一个地址拷贝。
+- memmove能保证原数据完整性，内部移动最好不要使用memcpy，外部内存移动可以使用。
+
+### 54.`IMP`、`SEL`、`Method`的区别和使用场景
+- 它们之间的关系可以这么解释：一个类（Class）持有一个分发表，在运行期分发消息，表中的每一个实体代表一个方法（Method），它的名字叫做选择子（SEL），对应着一种方法实现（IMP）。具体的分析如下:
+
+#### SEL
+- 定义：typedef struct objc_selector *SEL，代表方法的名称。仅以名字来识别。翻译成中文叫做选择子或者选择器，选择子代表方法在 Runtime期间的标识符。为 SEL类型，虽然 SEL是 objc_selector 结构体指针，但实际上它只是一个 C 字符串。在类加载的时候，编译器会生成与方法相对应的选择子，并注册到 Objective-C的 Runtime 运行系统。不论两个类是否存在依存关系，只要他们拥有相同的方法名，那么他们的SEL都是相同的。比如，有n个viewcontroller页面，每个页面都有一个viewdidload,每个页面的载入，肯定都是不尽相同的。但是我们可以通过打印，观察发现，这些viewdidload的SEL都是同一个
+SEL sel = @selector(methodName); // 方法名字 NSLog(@"address = %p",sel);// log输出为 address = 0x1df807e29因此类方法定义时，尽量不要用相同的名字，就算是变量类型不同也不行。否则会引起重复，例如：
+
+```
+-(void)setWidth:(int)width; -(void)setWidth:(double)width; 
+
+```
+
+#### IMP
+- 定义：typedef id (*IMP)(id, SEL, ...)，代表函数指针，即函数执行的入口。该函数使用标准的 C调用。第一个参数指向 self（它代表当前类实例的地址，如果是类则指向的是它的元类），作为消息的接受者；第二个参数代表方法的选择子；... 代表可选参数，前面的 id 代表返回值。
+
+#### Method
+- 定义：typedef struct objc_method *Method，Method对开发者来说是一种不透明的类型，被隐藏在我们平时书写的类或对象的方法背后。它是一个objc_method结构体指针，我们可以看到该结构体中包含一个SEL和IMP，实际上相当于在SEL和IMP之间作了一个映射。有了SEL，我们便可以找到对应的IMP，从而调用方法的实现代码。 objc_method的定义为：
+
+```
+/// Method
+struct objc_method {
+    SEL method_name; 
+    char *method_types;
+    IMP method_imp;
+ };
+
+```
+- 方法名 method_name 类型为 SEL，相同名字的方法即使在不同类中定义，它们的方法选择器也相同。
+- 方法类型 method_types 是个 char 指针，其实存储着方法的参数类型和返回值类型，即是 Type Encoding 编码。
+- method_imp 指向方法的实现，本质上是一个函数的指针
+
+#### 总结
+- SEL ：selector的简写,俗称方法选择器,实质存储的是方法的名称
+- IMP ：implement的简写,俗称方法实现,看源码得知它就是一个函数指针
+- Method ：对上述两者的一个包装结构.
+
+### 55.runtime如何通过selector找到对应的IMP地址？
 - 每一个类对象中都一个方法列表,方法列表中记录着方法的名称,方法实现,以及参数类型,其实selector本质就是方法名称,通过这个方法名称就可以在方法列表中找到对应的方法实现.
 
-### 49.runtime具体应用
+### 56.runtime具体应用
 - 利用关联对象（AssociatedObject）给分类添加属性
 - 遍历类的所有成员变量（修改textfield的占位文字颜色、字典转模型、自动归档解档）
 - 交换方法实现（交换系统的方法）
 - 利用消息转发机制解决方法找不到的异常问题
 - KVC 字典转模型
 
-### 50.使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？
+### 57.使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？
 - 无论在MRC下还是ARC下均不需要，被关联的对象在生命周期内要比对象本身释放的晚很多，它们会在被 NSObject -dealloc 调用的object_dispose()方法中释放。
 
 ```
@@ -7172,7 +7592,7 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
 
 ```
 
-### 51.runtime 如何实现 weak 属性？
+### 58.runtime 如何实现 weak 属性？
 - weak 此特质表明该属性定义了一种「非拥有关系」(nonowning relationship)。为这种属性设置新值时，设置方法既不持有新值（新指向的对象），也不释放旧值（原来指向的对象）。
 - runtime 对注册的类，会进行内存布局，从一个粗粒度的概念上来讲，这时候会有一个 hash 表，这是一个全局表，表中是用 weak 指向的对象内存地址作为 key，用所有指向该对象的 weak 指针表作为 value。当此对象的引用计数为 0 的时候会 dealloc，假如该对象内存地址是 a，那么就会以 a 为 key，在这个 weak 表中搜索，找到所有以 a 为键的 weak 对象，从而设置为 nil。
 - runtime 如何实现 weak 属性具体流程大致分为 3 步：
@@ -7180,7 +7600,7 @@ bucket_t * cache_t::find(cache_key_t k, id receiver)
     * 添加引用时：objc_initWeak 函数会调用 objc_storeWeak() 函数，objc_storeWeak() 的作用是更新指针指向（指针可能原来指向着其他对象，这时候需要将该 weak 指针与旧对象解除绑定，会调用到 weak_unregister_no_lock），如果指针指向的新对象非空，则创建对应的弱引用表，将 weak 指针与新对象进行绑定，会调用到 weak_register_no_lock。在这个过程中，为了防止多线程中竞争冲突，会有一些锁的操作。
     * 释放时：调用 clearDeallocating 函数，clearDeallocating 函数首先根据对象地址获取所有 weak 指针地址的数组，然后遍历这个数组把其中的数据设为 nil，最后把这个 entry 从 weak 表中删除，最后清理对象的记录。
 
-### 52.runtime如何实现weak变量的自动置nil？知道SideTable吗？
+### 59.runtime如何实现weak变量的自动置nil？知道SideTable吗？存在的意义是什么
 - runtime 对注册的类会进行布局，对于 weak 修饰的对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
 - 更细一点的回答：
     * 初始化时：runtime会调用objc_initWeak函数，初始化一个新的weak指针指向对象的地址。
@@ -7243,6 +7663,41 @@ objc_storeWeak(&obj1, 0);
     * 将weak表中该记录删除
     * 从引用计数表中删除废弃对象的地址为键值的记录
 - 其实Weak表是一个hash（哈希）表，Key是weak所指对象的地址，Value是weak指针的地址（这个地址的值是所指对象指针的地址）数组。
+
+### 60.为什么要设计metaclass
+- 在Smalltack中Class是一个对象；一个类需要成为一个类(即元类 metaclass)的对象。
+- 原因：
+    * 职责分离，不用所有的类方法都加到同一个类里
+    * objc_msgSend(void /* id self, SEL op, ... */ ) 复用消息通道，类方法也可以放在Class里，但发送消息时，需要增加一个参数
+    * 类方法不仅实现实现专门的实例化器（与其他一些面向对象语言的“构造函数”大致对应），且有利于类之间共享的行为
+    * smalltalk-76，类的类都是'Class'，该类实现了任何类都需要的方法-eg. new方法。我们想添加一个类方法，必须添加到'Class'。
+    * metaclass是 smalltack 中为数不多丑陋设计之一，好处是不需要了解工厂模式，类本身就能充当工厂。
+    * 对象的共享行为放在类里，类的共享行为放在元类里，只有一个元类就会像“第4条”一样，元类爆炸。
+
+### 61.`class_copyIvarList` & `class_copyPropertyList`区别
+- class_copyPropertyList 返回的仅仅是对象类的属性( @property 申明的属性)
+- class_copyIvarList 返回类的所有属性和变量(包括在 @interface 大括号中声明的变量)
+- 补充：
+    * 使用 class_copyPropertyList 与 class_copyIvarList 实现字典转模型的功能的第三方有：YYModel、MJExtension、JSONModel等。其中 YYModel、MJExtension 使用的是 class_copyIvarList。JSONModel 使用的是 class_copyPropertyList。
+
+### 62.看过 runtime的源码吗?源码中常有的fastpath、 slowpath是什么?
+- fastpath：大概率事件
+- slowpath：小概率事件
+
+### 63.在运行时创建类的方法objc_allocateClassPair的方法名尾部为什么是pair（成对的意思）？
+因为此方法会创建一个类对象以及元类，正好组成一队
+```
+Class objc_allocateClassPair(Class superclass, const char *name, 
+                             size_t extraBytes){
+    ...省略了部分代码
+    //生成一个类对象
+    cls  = alloc_class_for_subclass(superclass, extraBytes);
+    //生成一个类对象元类对象
+    meta = alloc_class_for_subclass(superclass, extraBytes);
+    objc_initializeClassPair_internal(superclass, name, cls, meta);
+    return cls;
+}
+```
 
 ## Runloop
 ### 1.RunLoop概念
