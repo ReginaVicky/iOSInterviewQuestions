@@ -7329,7 +7329,26 @@ struct _category_t {
 - 在iOS中NSNumber、NSArray、NSDictionary等这些类都是类簇(Class Clusters)，一个NSArray的实现可能由多个类组成。 所以如果想对NSArray进行Swizzling，必须获取到其“真身”进行Swizzling，直接对NSArray进行操作是无效的。
 
 ### 36.Method Swizzie是如何确保安全的替换方法的？如何确保替换的不是父类的方法？
+- Method Swizzling，其实就是方法交换
+- 方法交换实际就是互相替换方法的实现。以下是方法Method的底层结构：
+
+```
+struct method_t {
+    SEL name;
+    IMP imp;
+    const char *types;
+}
+```
 - 在Objective-C的runtime特性中，调用一个对象的方法就是给这个对象发送消息。是通过查找接收消息对象的方法列表，从方法列表中查找对应的SEL，这个SEL对应着一个IMP（一个IMP可以对应多个SEL），通过这个IMP找到对应的方法调用。
+- 方法交换在使用过程中应该注意的一些问题：
+
+#### 子类方法和父类方法替换导致父类调用异常
+- 自定义一个类Animal和继承自Animal的子类Dog。父类有个实例方法parentInstanceMethod，子类有个方法childInstanceMethod，对这两个方法进行替换，当运行的时候子类Dog调用parentInstanceMethod没有崩溃，父类Animal调用parentInstanceMethod崩溃了，
+- 原因：首先因为Dog继承了Animal，所以相当于说Dog两个方法childInstanceMethod和parentInstanceMethod都有，但是Animal没有方法childInstanceMethod，所以在方法替换的时候，子类方法指向了父类方法parentInstanceMethod的实现，父类方法parentInstanceMethod指向了子类方法childInstanceMethod的实现，因此父类在调用parentInstanceMethod方法时，实际调用的是子类方法childInstanceMethod的实现，而此时子类中通过childInstanceMethod调用原先的父类方法，根据消息发送流程，实际上是向父类发送childInstanceMethod消息，但是父类方法列表中并没有childInstanceMethod方法，而在消息发送流程中，方法寻找过程是由子类向父类移动的，而方法childInstanceMethod存在于子类，所以就出现崩溃。
+- 解决：方法交换前先尝试为当前类添加要被替换的方法，在方法交换前，我们先尝试添加一个新的方法，如果添加成功，则直接替换，如果添加不成功则交换。
+
+#### 如何确保替换的不是父类的方法？
+- 首先打印子类的方法列表，判断有没有，如果有的话就直接交换，如果没有的话就添加这个方法，这样就不用替换父类的方法；
 
 ### 37.如何实现动态添加方法和属性？
 - 动态添加属性
