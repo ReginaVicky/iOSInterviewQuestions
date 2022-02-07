@@ -269,69 +269,69 @@
 
 
 ## Runtime 
-1.实例对象的数据结构？
-2.类对象的数据结构？
-3.元类对象的数据结构?
-4.Obj-C 对象、类的本质是通过什么数据结构实现的？
-5.类方法和实例方法有什么区别？
-6.讲一下对象，类对象，元类，跟元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存的对象结构体里，而是保存在类对象的结构体里？
-7.Obj-C 中的类信息存放在哪里？
-8.一个 NSObject 对象占用多少内存空间？
-9.说一下对 class_rw_t 的理解？
-10.说一下对 class_ro_t 的理解？
-11.`class_rw_t` 和 `class_ro_t` 的区别
-12.iOS中内省的几个方法？class方法和objc_getClass方法有什么区别?
-13.介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？
-14.Category 的实现原理？
-15.如何给 Category 添加属性？关联对象以什么形式进行存储？
-16.Category 有哪些用途？
-17.Category 中都可以添加哪些内容？
-18.Category的优缺点
-19.Category 可不可以添加实例对象？为什么？
-20.Category不能添加实例变量，那为什么能添加属性？
-21.Category 在编译过后，是在什么时机与原有的类合并到一起的？
-22.Category 和 Extension 有什么区别？
-23.分类实现了类的initialize方法，那么类的方法initialize还会调用吗？为什么？
-24.分类与类中同样方法，调用顺序？
-25.分类的对象方法是如何添加到类对象方法列表中的？
-26.分类和类拓展的区别
-27.动态库和静态库的区别
-28.category 中有load 方法吗？ load 方法什么时候调用？ load 方法能继承吗？
-29.category如何被加载的,两个category的load方法的加载顺序，两个category的同名方法的加载顺序
-30.+load 和 initialized方法的区别，在继承关系中他们有什么区别
-31.+load的调用时机
-32.+load分类中的处理
-33.关联对象的原理
-34.说一下 Method Swizzling?说一下在实际开发中你在什么场景下使用过?
-35.类簇是什么，可以对类簇进行Method Swizzling吗？
-36.Method Swizzie是如何确保安全的替换方法的？如何确保替换的不是父类的方法？
-37.如何实现动态添加方法和属性？
-38.运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？
-39.说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）
-40.objc中向一个nil对象发送消息将会发生什么？（返回值是对象，是标量，结构体）
-41.在方法调用的时候，`方法查询-> 动态解析-> 消息转发` 之前做了什么
-42.利用Runtime交换方法
-43.说一下 Runtime 消息发送。
-44.说一下 Runtime 消息解析。
-45.说一下 Runtime 消息转发， 消息转发机制的优劣
-46.如何运用 Runtime 字典转模型？
-47.如何运用 Runtime 进行模型的归解档？
-48.在 Obj-C 中为什么叫发消息而不叫函数调用？
-49.说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）
-50.说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？
-51.是否了解 Type Encoding?
-52.Objective-C 如何实现多重继承？
-53.memmove和memcpy的区别？
-54.`IMP`、`SEL`、`Method`的区别和使用场景
-55.runtime如何通过selector找到对应的IMP地址？
-56.runtime具体应用
-57.使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？
-58.runtime 如何实现 weak 属性？
-59.runtime如何实现weak变量的自动置nil？知道SideTable吗？存在的意义是什么
-60.为什么要设计metaclass
-61.`class_copyIvarList` & `class_copyPropertyList`区别
-62.看过 runtime的源码吗?源码中常有的fastpath、 flowpath是什么?
-63.在运行时创建类的方法objc_allocateClassPair的方法名尾部为什么是pair（成对的意思）？
+1.[实例对象的数据结构](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1实例对象的数据结构)？
+2.[类对象的数据结构？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2类对象的数据结构)
+3.[元类对象的数据结构?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3元类对象的数据结构)
+4.[Obj-C 对象、类的本质是通过什么数据结构实现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4obj-c-对象类的本质是通过什么数据结构实现的)
+5.[类方法和实例方法有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5类方法和实例方法有什么区别)
+6.[讲一下对象，类对象，元类，跟元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存的对象结构体里，而是保存在类对象的结构体里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6讲一下对象类对象元类根元类结构体的组成以及他们是如何相关联的为什么对象方法没有保存的对象结构体里而是保存在类对象的结构体里)
+7.[Obj-C 中的类信息存放在哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7obj-c-中的类信息存放在哪里)
+8.[一个 NSObject 对象占用多少内存空间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8一个-nsobject-对象占用多少内存空间)
+9.[说一下对 class_rw_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9说一下对-class_rw_t-的理解)
+10.[说一下对 class_ro_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10说一下对-class_ro_t-的理解)
+11.[`class_rw_t` 和 `class_ro_t` 的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11class_rw_t-和-class_ro_t-的区别)
+12.[iOS中内省的几个方法？class方法和objc_getClass方法有什么区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12ios中内省的几个方法class方法和objc_getclass方法有什么区别)
+13.[介绍一下分类，能用分类做什么？内部是如何实现的？它为什么会覆盖掉原来的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13介绍一下分类能用分类做什么内部是如何实现的它为什么会覆盖掉原来的方法)
+14.[Category 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14category-的实现原理)
+15.[如何给 Category 添加属性？关联对象以什么形式进行存储？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15如何给-category-添加属性关联对象以什么形式进行存储)
+16.[Category 有哪些用途？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16category-有哪些用途)
+17.[Category 中都可以添加哪些内容？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17category-中都可以添加哪些内容)
+18.[Category的优缺点](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#18category的优缺点)
+19.[Category 可不可以添加实例对象？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19category-可不可以添加实例对象为什么)
+20.[Category不能添加实例变量，那为什么能添加属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20category不能添加实例变量那为什么能添加属性)
+21.[Category 在编译过后，是在什么时机与原有的类合并到一起的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21category-在编译过后是在什么时机与原有的类合并到一起的)
+22.[Category 和 Extension 有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22category-和-extension-有什么区别)
+23.[分类实现了类的initialize方法，那么类的方法initialize还会调用吗？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#23分类实现了类的initialize方法那么类的方法initialize还会调用吗为什么)
+24.[分类与类中同样方法，调用顺序？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#24分类与类中同样方法调用顺序)
+25.[分类的对象方法是如何添加到类对象方法列表中的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#25分类的对象方法是如何添加到类对象方法列表中的)
+26.[分类和类拓展的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#26分类和类拓展的区别)
+27.[动态库和静态库的区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#27动态库和静态库的区别)
+28.[category 中有load 方法吗？ load 方法什么时候调用？ load 方法能继承吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#28category-中有load-方法吗-load-方法什么时候调用-load-方法能继承吗)
+29.[category如何被加载的,两个category的load方法的加载顺序，两个category的同名方法的加载顺序](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#29category如何被加载的两个category的load方法的加载顺序两个category的同名方法的加载顺序)
+30.[+load 和 initialized方法的区别，在继承关系中他们有什么区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#30load-和-initialized方法的区别在继承关系中他们有什么区别)
+31.[+load的调用时机](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#31load的调用时机)
+32.[+load分类中的处理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#32load分类中的处理)
+33.[关联对象的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#33关联对象的原理)
+34.[说一下 Method Swizzling?说一下在实际开发中你在什么场景下使用过?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#34说一下-method-swizzling说一下在实际开发中你在什么场景下使用过)
+35.[类簇是什么，可以对类簇进行Method Swizzling吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#35类簇是什么可以对类簇进行method-swizzling吗)
+36.[Method Swizzie是如何确保安全的替换方法的？如何确保替换的不是父类的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#36method-swizzie是如何确保安全的替换方法的如何确保替换的不是父类的方法)
+37.[如何实现动态添加方法和属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#37如何实现动态添加方法和属性)
+38.[运行时能增加成员变量么？能增加属性么？如果能，如何增加？如果不能，为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#38运行时能增加成员变量么能增加属性么如果能如何增加如果不能为什么)
+39.[说一下对 isa 指针的理解， 对象的isa 指针指向哪里？isa 指针有哪两种类型？（注意区分不同对象）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#39说一下对-isa-指针的理解-对象的isa-指针指向哪里isa-指针有哪两种类型注意区分不同对象)
+40.[objc中向一个nil对象发送消息将会发生什么？（返回值是对象，是标量，结构体）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#40objc中向一个nil对象发送消息将会发生什么返回值是对象是标量结构体)
+41.[在方法调用的时候，`方法查询-> 动态解析-> 消息转发` 之前做了什么](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#41在方法调用的时候方法查询--动态解析--消息转发-之前做了什么)
+42.[利用Runtime交换方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#42利用runtime交换方法)
+43.[说一下 Runtime 消息发送。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#43说一下-runtime-消息发送)
+44.[说一下 Runtime 消息解析。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#44说一下-runtime-消息解析)
+45.[说一下 Runtime 消息转发， 消息转发机制的优劣](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#45说一下-runtime-消息转发-消息转发机制的优劣)
+46.[如何运用 Runtime 字典转模型？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#46如何运用-runtime-字典转模型)
+47.[如何运用 Runtime 进行模型的归解档？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#47如何运用-runtime-进行模型的归解档)
+48.[在 Obj-C 中为什么叫发消息而不叫函数调用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#48在-obj-c-中为什么叫发消息而不叫函数调用)
+49.[说一下对 runtime 的理解。（主要讲一下消息机制，是对上述的总结）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#49说一下对-runtime-的理解主要讲一下消息机制是对上述的总结)
+50.[说一下 Runtime 的方法缓存？存储的形式、数据结构以及查找的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#50说一下-runtime-的方法缓存存储的形式数据结构以及查找的过程)
+51.[是否了解 Type Encoding?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#51是否了解-type-encoding)
+52.[Objective-C 如何实现多重继承？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#52objective-c-如何实现多重继承)
+53.[memmove和memcpy的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#53memmove和memcpy的区别)
+54.[`IMP`、`SEL`、`Method`的区别和使用场景](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#54impselmethod的区别和使用场景)
+55.[runtime如何通过selector找到对应的IMP地址？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#55runtime如何通过selector找到对应的imp地址)
+56.[runtime具体应用](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#56runtime具体应用)
+57.[使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#57使用runtime-associate方法关联的对象需要在主对象dealloc的时候释放么)
+58.[runtime 如何实现 weak 属性？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#58runtime-如何实现-weak-属性)
+59.[runtime如何实现weak变量的自动置nil？知道SideTable吗？存在的意义是什么](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#59runtime如何实现weak变量的自动置nil知道sidetable吗存在的意义是什么)
+60.[为什么要设计metaclass](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#60为什么要设计metaclass)
+61.[`class_copyIvarList` & `class_copyPropertyList`区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#61class_copyivarlist--class_copypropertylist区别)
+62.[看过 runtime的源码吗?源码中常有的fastpath、 flowpath是什么?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#62看过-runtime的源码吗源码中常有的fastpath-slowpath是什么)
+63.[在运行时创建类的方法objc_allocateClassPair的方法名尾部为什么是pair（成对的意思）？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#63在运行时创建类的方法objc_allocateclasspair的方法名尾部为什么是pair成对的意思)
 
 ## Runloop
 - 1.[RunLoop概念](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1runloop概念)
