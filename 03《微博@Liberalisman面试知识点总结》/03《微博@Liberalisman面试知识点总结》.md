@@ -334,52 +334,52 @@
 63.[在运行时创建类的方法objc_allocateClassPair的方法名尾部为什么是pair（成对的意思）？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#63在运行时创建类的方法objc_allocateclasspair的方法名尾部为什么是pair成对的意思)
 
 ## Runloop
-1.RunLoop概念
-2.RunLoop是一个不停歇在运行的死循环吗?为什么?
-3.内核态和用户态
-4.RunLoop的数据结构
-5.猜想runloop内部是如何实现的？
-6.runloop是来做什么的？runloop和线程有什么关系？主线程默认开启了runloop么？子线程呢？
-7.Runloop 和线程的关系？
-8.为什么只有主线程的`runloop`是开启的
-9.讲一下 Runloop 的 Mode?(越详细越好)
-10.微信TableView滑动的时候，动图是不动的，为什么？（Runloop的Mode决定的）
-11 and .讲一下 Observer ？（Mode中的重点）
-12.讲一下 Runloop 的内部实现逻辑？（运行过程）
-13.Runloop的各个状态处理了什么事情？
-14.RunLoop实战使用
-15你所知的哪些三方框架使用了 Runloop?（AFNetworking、Texture 等）
-16如何使线程保活
-17为什么要在主线程更新UI
-18.autoreleasePool 在何时被释放？
-19.介绍UIResponder的继承链。然后说事件响应链。
-20.说一下响应链的原理？
-21.hitTest有尝试过重写吗？
-22app如何接收到触摸事件的
-23.解释一下 事件响应 的过程？
-24.解释一下 手势识别 的过程？
-25.手触碰到屏幕的时候，响应机制是怎样的？第一响应者是谁？UIView和UIResponse的关系是什么？
-26用户点击屏幕，系统是怎么找到一个view并决定由它来响应事件的
-27.解释一下 GCD 在 Runloop 中的使用？
-28.解释一下 NSTimer，以及 NSTimer 的循环引用。
-29.NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?
-30.AFNetworking 中如何运用 Runloop?
-31.AFN为什么添加一条常驻线程？
-32.PerformSelector 的实现原理？
-33利用 runloop 解释一下页面的渲染的过程？
-34如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？
-35.NSThread+runloop实现常驻线程
-36.为什么 NSTimer 有时候不好使？（不同类型的Mode）
-37滑动tableView时，定时器还会生效吗？
-38以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？
-39.`PerformSelector`和`runloop`的关系
-40.PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
-41.什么是异步绘制？
-42哪些场景可以触发离屏渲染？
-43.如何检测 App 运行过程中是否卡顿？
-44.TableView优化，怎么减少卡顿
-45.了解表视图吗，解释一下复用原理
-46.说明一下表视图的滑动卡顿的优化方法
+1.[RunLoop概念](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#1runloop概念)
+2.[RunLoop是一个不停歇在运行的死循环吗?为什么?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#2runloop是一个不停歇在运行的死循环吗为什么)
+3.[内核态和用户态](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3内核态和用户态)
+4.[RunLoop的数据结构](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4runloop的数据结构)
+5.[猜想runloop内部是如何实现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5猜想runloop内部是如何实现的)
+6.[runloop是来做什么的？runloop和线程有什么关系？主线程默认开启了runloop么？子线程呢？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6runloop是来做什么的runloop和线程有什么关系主线程默认开启了runloop么子线程呢)
+7.[Runloop 和线程的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7runloop-和线程的关系)
+8.[为什么只有主线程的`runloop`是开启的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8为什么只有主线程的runloop是开启的)
+9.[讲一下 Runloop 的 Mode?(越详细越好)](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9讲一下-runloop-的-mode越详细越好)
+10.[微信TableView滑动的时候，动图是不动的，为什么？（Runloop的Mode决定的）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#10微信tableview滑动的时候动图是不动的为什么runloop的mode决定的)
+11 [讲一下 Observer ？（Mode中的重点）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#11讲一下-observer-mode中的重点)
+12.[讲一下 Runloop 的内部实现逻辑？（运行过程）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#12讲一下-runloop-的内部实现逻辑运行过程)
+13.[Runloop的各个状态处理了什么事情？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#13runloop各个状态处理了什么事情)
+14.[RunLoop实战使用](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#14runloop实战使用)
+15.[你所知的哪些三方框架使用了 Runloop?（AFNetworking、Texture 等）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15你所知的哪些三方框架使用了-runloopafnetworkingtexture-等)
+16.[如何使线程保活](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16如何使线程保活)
+17.[为什么要在主线程更新UI](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17为什么要在主线程更新ui)
+18.[autoreleasePool 在何时被释放？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#18autoreleasepool-在何时被释放)
+19.[介绍UIResponder的继承链。然后说事件响应链。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19介绍uiresponder的继承链然后说事件响应链)
+20.[说一下响应链的原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20说一下响应链的原理)
+21.[hitTest有尝试过重写吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21hittest有尝试过重写吗)
+22.[app如何接收到触摸事件的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22app如何接收到触摸事件的)
+23.[解释一下 事件响应 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#23解释一下-事件响应-的过程)
+24.[解释一下 手势识别 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#24解释一下-手势识别-的过程)
+25.[手触碰到屏幕的时候，响应机制是怎样的？第一响应者是谁？UIView和UIResponse的关系是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#25手触碰到屏幕的时候响应机制是怎样的第一响应者是谁uiview和uiresponse的关系是什么)
+26[用户点击屏幕，系统是怎么找到一个view并决定由它来响应事件的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#26用户点击屏幕系统是怎么找到一个view并决定由它来响应事件的)
+27.[解释一下 GCD 在 Runloop 中的使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#27解释一下-gcd-在-runloop-中的使用)
+28.[解释一下 NSTimer，以及 NSTimer 的循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#28解释一下-nstimer以及-nstimer-的循环引用)
+29.[NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#29nstimer准吗谈谈你的看法如果不准该怎样实现一个精确的nstimer)
+30.[AFNetworking 中如何运用 Runloop?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#30afnetworking-中如何运用-runloop)
+31.[AFN为什么添加一条常驻线程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#31afn为什么添加一条常驻线程)
+32.[PerformSelector 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#32performselector-的实现原理)
+33.[利用 runloop 解释一下页面的渲染的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#33利用-runloop-解释一下页面的渲染的过程)
+34.[如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#34如何使用-runloop-实现一个常驻线程这种线程一般有什么作用)
+35.[NSThread+runloop实现常驻线程](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#35nsthreadrunloop实现常驻线程)
+36.[为什么 NSTimer 有时候不好使？（不同类型的Mode）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#36为什么-nstimer-有时候不好使不同类型的mode)
+37.[滑动tableView时，定时器还会生效吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#37滑动tableview时定时器还会生效吗)
+38.[以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#38以-scheduledtimerwithtimeinterval的方式触发的timer在滑动页面上的列表时timer会暂定回调为什么如何解决)
+39.[`PerformSelector`和`runloop`的关系](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#39performselector和runloop的关系)
+40.[PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#40performselectorafterdelay这个方法在子线程中是否起作用为什么怎么解决)
+41.[什么是异步绘制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#41什么是异步绘制)
+42.[哪些场景可以触发离屏渲染？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#42哪些场景可以触发离屏渲染)
+43.[如何检测 App 运行过程中是否卡顿？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#43如何检测-app-运行过程中是否卡顿)
+44.[TableView优化，怎么减少卡顿](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#44tableview优化怎么减少卡顿)
+45.[了解表视图吗，解释一下复用原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#45了解表视图吗解释一下复用原理)
+46.[说明一下表视图的滑动卡顿的优化方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#44tableview优化怎么减少卡顿)
 
 ## 多线程
 - 1.[进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1进程和线程多进程和多线程任务和队列并行与串行同步和异步)
