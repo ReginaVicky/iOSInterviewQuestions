@@ -790,6 +790,3347 @@
 
 
 
+# 数据结构及算法
+
+## 数据结构
+### 1.数据结构
+#### 1.数据结构的存储一般常用的有几种？各有什么特点？
+- 数据结构的存储一般常用的有两种 顺序存储结构 和 链式存储结构
+- 顺序存储结构:
+    * 比如，数组，1-2-3-4-5-6-7-8-9-10，存储是按顺序的。再比如栈和队列等
+- 链式存储结构:
+    * 比如，数组，1-2-3-4-5-6-7-8-9-10，链式存储就不一样了 1(地址)-2(地址)-7(地址)-4(地址)-5(地址)-9(地址)-8(地址)-3(地址)-6(地址)-10(地址)。每个数字后面跟着一个地址 而且存储形式不再是顺序
+
+#### 2.集合结构 线性结构 树形结构 图形结构
+
+### 2.数组
+#### 1.数组和链表的区别
+- 数组
+    * 数组元素在内存上连续存放，可以通过下标查找元素；插入、删除需要移动大量元素，比较适用于元素很少变化的情况
+- 链表
+    * 链表中的元素在内存中不是顺序存储的，查找慢，插入、删除只需要对元素指针重新赋值，效率高
+
+### 3.字符串
+#### 1.字符匹配 & 字符去重
+### 4.链表
+#### 1.单向链表 双向链表 循环链表
+- 单向链表 A->B->C->D->E->F->G->H. 这就是单向链表 H 是头 A 是尾 像一个只有一个头的火车一样 只能一个头拉着跑
+
+![image](https://upload-images.jianshu.io/upload_images/12311242-b8b156df351244ec.png?imageMogr2/auto-orient/strip|imageView2/2/w/690)
+
+- 双向链表
+
+![image](https://upload-images.jianshu.io/upload_images/12311242-1e239e3e44cb5169.png?imageMogr2/auto-orient/strip|imageView2/2/w/690)
+
+- 循环链表
+    * 循环链表是与单向链表一样，是一种链式的存储结构，所不同的是，循环链表的最后一个结点的指针是指向该循环链表的第一个结点或者表头结点，从而构成一个环形的链。发挥想象力 A->B->C->D->E->F->G->H->A. 绕成一个圈。就像蛇吃自己的这就是循环 不需要去死记硬背哪些理论知识。
+
+### 5.树
+#### 二叉树
+##### 基本概念
+- 二叉树是每个节点最多有两个子树的树结构。通常子树被称作“左子树”（left subtree）和“右子树”（right subtree）。
+- 二叉树常被用于实现二叉查找树和二叉堆(详见堆排序)。
+- 二叉树不是树的一种特殊情形，尽管其与树有许多相似之处，但树和二叉树有两个主要差别：
+    * 树中结点的最大度数没有限制，而二叉树结点的最大度数为2；
+    * 树的结点无左、右之分，而二叉树的结点有左、右之分。
+
+##### 分类
+- 完全二叉树
+    * 若设二叉树的高度为h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第h层有叶子结点，并且叶子结点都是从左到右依次排布，这就是完全二叉树。完全二叉树的特点是：“叶子节点的位置比较规律”。因此在对数据进行排序或者查找时可以用到它，比如堆排序就使用了它。
+- 满二叉树
+    * 除了叶结点外每一个结点都有左右子叶且叶子结点都处在最底层的二叉树。
+- 平衡二叉树
+    * 平衡二叉树又被称为AVL树（区别于AVL算法），它是一棵二叉排序树，且具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。
+
+##### 存储结构
+- 二叉树的存储结构有顺序和链式两种方式。前者虽然使用简单，但是存在浪费空间的问题
+- 二叉树的顺序存储，就是用一组连续的存储单元存放二叉树中的结点。即用一维数组存储二叉树中的结点。因此，必须把二叉树的所有结点安排成一个恰当的序列，结点在这个序列中的相互位置能反映出结点之间的逻辑关系。用编号的方法从树根起，自上层至下层，每层自左至右地给所有结点编号。
+- 依据二叉树的性质，完全二叉树和满二叉树采用顺序存储比较合适，树中结点的序号可以唯一地反映出结点之间的逻辑关系，这样既能够最大可能地节省存储空间，又可以利用数组元素的下标值确定结点在二叉树中的位置，以及结点之间的关系。
+- 但是对于一般的非完全二叉树来说，如果仍然按照从上到下、从左到右的次序存储在一维数组中，则数组下标之间不能准确反映树中结点间的逻辑关系，可以在非完全二叉树中添加一些并不存在的空结点使之变成完全二叉树，不过这样做有可能会造成空间的浪费。在最坏的情况下，一棵深度为k的右斜树，它只有k个结点，却需要2^k-1个结点存储空间。这显然是对存储空间的严重浪费，所以顺序存储结构一般只用于完全二叉树或满二叉树。
+- 二叉树的链式存储结构是指用链表来表示一棵二叉树，即用链来指示元素的逻辑关系。二叉树的每个结点最多有两个孩子，因此，每个结点除了存储自身的数据外，还应设置两个指针分别指向左、右孩子结点。data是数据域，lchild和rchild都是指针域，分别存放指向左孩子和右孩子的指针。当没有孩子结点时，相应的指针域置为空。
+
+##### 二叉查找树
+- 二叉树的提出其实主要就是为了提高查找效率，比如我们常用的 HashMap在处理哈希冲突严重时，拉链过长导致查找效率降低，就引入了红黑树。二分查找可以缩短查找的时间，但是它要求查找的数据必须是有序的。每次查找、操作时都要维护一个有序的数据集，于是有了二叉查找树这个概念。
+- 二叉查找树（又叫二叉排序树），它是具有下列性质的二叉树：
+    * 若左子树不空，则左子树上所有结点的值均小于它的根结点的值；
+    * 若右子树不空，则右子树上所有结点的值均大于或等于它的根结点的值；
+    * 左、右子树也分别为二叉排序树。
+- 二叉查找树中，左子树都比节点小，右子树都比节点大，递归定义。根据二叉排序树这个特点我们可以知道：二叉排序树的中序遍历一定是从小到大的。
+- 比如：
+
+![image](https://upload-images.jianshu.io/upload_images/1170656-e1e38cf94b3ad1d4.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/256)
+
+- 中序遍历结果是
+
+```
+1 3 4 6 7 8 10 13 14
+```
+- 在最好的情况下，二叉排序树的查找效率比较高，是 O(logn)，其访问性能近似于折半查找；但最差时候会是 O(n)，比如插入的元素是有序的，生成的二叉排序树就是一个链表，这种情况下，需要遍历全部元素才行（见下图 ）。
+
+![image](https://upload-images.jianshu.io/upload_images/1170656-4fce4ddb7694e358.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/509)
+
+- 如果我们可以保证二叉排序树不出现上面提到的极端情况（插入的元素是有序的，导致变成一个链表），就可以保证很高的效率了。但这在插入有序的元素时不太好控制，按二叉排序树的定义，我们无法判断当前的树是否需要调整。因此就要用到平衡二叉树（AVL 树）了。平衡二叉树在添加和删除时需要进行旋转保持整个树的平衡，内部做了这么复杂的工作后，我们在使用它时，插入、查找的时间复杂度都是 O(logn)，性能已经相当好了。
+
+##### 遍历顺序
+- 二叉的遍历方式有四种：
+    * 第一种：前序遍历。先访问根节点，再访问左子树，最后访问右子树。
+    * 第二种：中序遍历。先访问左子树，再访问根节点，最后访问右子树。
+    * 第三种：后序遍历。先访问左子树，再访问右子树，最后访问根节点。
+    * 第四种：层序遍历。一层层节点依次遍历。
+
+![image](https://upload-images.jianshu.io/upload_images/1170656-fcfcd39aed2bad36.png?imageMogr2/auto-orient/strip|imageView2/2/w/329)
+
+- 这颗二叉树
+    * 前序遍历：1-2-4-5-7-3-6
+    * 中序遍历：4-2-5-7-1-6-3
+    * 后序遍历：4-7-5-2-6-3-1
+    * 层序遍历：1-2-3-4-5-6-7
+- 先序遍历是先访问根结点，再左子树，再右子树。中序是先访问左子树,再根结点，再右子树。后序是先访问左子树, 再右子树，再根结点。递归固然是清晰明了，但是存在效率低的问题，非递归的方案用栈结构来存结点信息，通过出栈访问来遍历二叉树。它思想是这样的，当栈顶中的指针非空时，遍历左子树，也就是左子树根的指针进栈。当栈顶指针为空时，应退至上一层，如果是从左子树返回的，访问当前层，也就是栈顶中的根指针结点。如果是从右子树返回，说明当前层遍历完毕，继续退栈。
+
+#### 二叉搜索树
+##### 1.输入一棵二叉树的根结点，求该树的深度？
+- 二叉树的结点定义如下：
+
+```
+struct BinaryTreeNode
+{
+    int m_nValue ；
+    BinaryTreeNode* m_pLeft;
+    BinarvTreeNode* m_pRight ；
+}
+```
+- 如果一棵树只有一个结点，它的深度为1。
+- 如果根结点只有左子树而没有右子树，那么树的深度应该是其左子树的深度加1；同样，如果根结点只有右子树而没有左子树，那么树的深度应该是其右子树的深度加1。
+- 如果既有右子树又有左子树，那该树的深度就是其左、右子树深度的较大值再加1。
+
+```
+int TreeDepth(TreeNode* pRoot)
+{
+    if(pRoot == nullptr)
+        return 0;
+    int left = TreeDepth(pRoot->left);
+    int right = TreeDepth(pRoot->right);
+
+    return (left>right) ? (left+1) : (right+1);
+}
+```
+
+##### 2.输入一课二叉树的根结点，判断该树是不是平衡二叉树？
+- 重复遍历结点
+    * 先求出根结点的左右子树的深度，然后判断它们的深度相差不超过1，如果否，则不是一棵二叉树；如果是，再用同样的方法分别判断左子树和右子树是否为平衡二叉树，如果都是，则这就是一棵平衡二叉树。
+- 遍历一遍结点
+    * 遍历结点的同时记录下该结点的深度，避免重复访问。
+- 方法1:
+
+```
+struct TreeNode{
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+};
+ 
+int TreeDepth(TreeNode* pRoot){
+    if(pRoot==NULL)
+        return 0;
+    int left=TreeDepth(pRoot->left);
+    int right=TreeDepth(pRoot->right);
+    return left>right?(left+1):(right+1);
+}
+ 
+bool IsBalanced(TreeNode* pRoot){
+    if(pRoot==NULL)
+        return true;
+    int left=TreeDepth(pRoot->left);
+    int right=TreeDepth(pRoot->right);
+    int diff=left-right;
+    if(diff>1 || diff<-1)
+        return false;
+    return IsBalanced(pRoot->left) && IsBalanced(pRoot->right);
+}
+
+```
+- 方法2
+
+```
+bool IsBalanced_1(TreeNode* pRoot,int& depth){
+    if(pRoot==NULL){
+        depth=0;
+        return true;
+    }
+    int left,right;
+    int diff;
+    if(IsBalanced_1(pRoot->left,left) && IsBalanced_1(pRoot->right,right)){
+        diff=left-right;
+        if(diff<=1 || diff>=-1){
+            depth=left>right?left+1:right+1;
+            return true;
+        }
+    }
+    return false;
+}
+ 
+bool IsBalancedTree(TreeNode* pRoot){
+    int depth=0;
+    return IsBalanced_1(pRoot,depth);
+} 
+```
+
+#### 红黑树
+### 6.栈
+#### 1.堆、栈和队列 分别是什么？
+### 7.队列
+### 8.哈希表（有哪些功能是通过哈希表实现的）
+
+## 算法
+### 基本概念
+#### 时间复杂度
+- 时间频度
+    * 一个算法执行所耗费的时间,从理论上是不能算出来的,必须上机运行测试才能知道.但我们不可能也没有必要对每个算法都上机测试,只需知道哪个算法花费的时间多,哪个算法花费的时间少就可以了.并且一个算法花费的时间与算法中语句的执行次数成正比例,哪个算法中语句执行次数多,它花费时间就多.一个算法中的语句执行次数称为语句频度或时间频度.记为T(n).
+- 时间复杂度
+    * 一般情况下,算法中基本操作重复执行的次数是问题规模n的某个函数,用T(n)表示,若有某个辅助函数f(n),使得当n趋近于无穷大时,T（n)/f(n)的极限值为不等于零的常数,则称f(n)是T(n)的同数量级函数.记作T(n)=O(f(n)),称O(f(n)) 为算法的渐进时间复杂度,简称时间复杂度.
+    * 在各种不同算法中,若算法中语句执行次数为一个常数,则时间复杂度为O(1),另外,在时间频度不相同时,时间复杂度有可能相同,如T(n)=n2+3n+4与T(n)=4n2+2n+1它们的频度不同,但时间复杂度相同,都为O(n2).
+- 按数量级递增排列,常见的时间复杂度有：
+    * O(1)称为常量级，算法的时间复杂度是一个常数。
+    * O(n)称为线性级，时间复杂度是数据量n的线性函数。
+    * O(n²)称为平方级，与数据量n的二次多项式函数属于同一数量级。
+    * O(n³)称为立方级，是n的三次多项式函数。
+    * O(logn)称为对数级，是n的对数函数。
+    * O(nlogn)称为介于线性级和平方级之间的一种数量级
+    * O(2ⁿ)称为指数级，与数据量n的指数函数是一个数量级。
+    * O(n!)称为阶乘级，与数据量n的阶乘是一个数量级。
+    * 它们之间的关系是： O(1)<O(logn)<O(n)<O(nlogn)<O(n²)<O(n³)<O(2ⁿ)<O(n!)，随着问题规模n的不断增大,上述时间复杂度不断增大,算法的执行效率越低.
+
+#### 空间复杂度
+- 评估执行程序所需的存储空间。可以估算出程序对计算机内存的使用程度。不包括算法程序代码和所处理的数据本身所占空间部分。通常用所使用额外空间的字节数表示。其算法比较简单，记为S(n)=O(f(n))，其中，n表示问题规模。
+
+### 常见的摘要算法
+#### HEX编码
+#### Base64
+#### MD5
+#### SHA1
+#### SHA256
+#### MAC算法
+
+### 常见对称加密算法
+#### AES
+#### DES
+#### 3DES
+#### - Blowfish
+
+### 常见的排序算法
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-af954dfa5ba39bca.png?imageMogr2/auto-orient/strip|imageView2/2/w/678)
+
+#### 插入排序
+- 插入排序，一般也被称为直接插入排序。对于少量元素的排序，它是一个有效的算法。插入排序是一种最简单的方法，它的基本思想是将一个记录插入到已经排好序的有序表中，从而一个新的、记录数增1的有序表。在其实现过程使用双层循环，外层循环对除了第一个元素之外的所有元素，内层循环对当前元素前面有序表进行待插入位置查找，并进行移动
+- 思想：插入排序是指在待排序的元素中，假设前面n-1(其中n>=2)个数已经是排好顺序的，现将第n个数插到前面已经排好的序列中，然后找到合适自己的位置，使得插入第n个数的这个序列也是排好顺序的。按照此法对所有元素进行插入，直到整个序列排为有序的过程，称为插入排序
+- 特性：
+    * 如果当前索引大于0，并且前一张牌比后一张牌大
+    * 如果判断的时候相等，那么是不稳定排序，会交换两个相等的元素的位置，这里只是compare为大于
+    * 时间复杂度取决于逆序对的数量，如10，9，8，3，2，1，【10，1】，【9，2】，【8，3】，互为逆序对，最后面的牌，需要经历很远的路程，才可以排到前面
+    * 时间复杂度与逆序对的数量成正比
+    * 逆序对的数量越多，插入排序的时间复杂度越高
+    * 时间复杂度为O(n^2),最好的时间复杂度为O(n),如果没有逆序对，就是最优的情况
+    * 属于稳定排序
+    * 数量不大的时候，插入排序的效率很高
+- 算法时间复杂度
+    * 最好的情况下：正序有序(从小到大)，这样只需要比较n次，不需要移动。因此时间复杂度为O(n)
+    * 最坏的情况下：逆序有序,这样每一个元素就需要比较n次，共有n个元素，因此实际复杂度为O(n­2)
+    * 平均情况下：O(n­2)
+- 稳定性
+    * 理解性记忆比死记硬背要好。因此，我们来分析下。稳定性，就是有两个相同的元素，排序先后的相对位置是否变化，主要用在排序时有多个排序规则的情况下。在插入排序中，K1是已排序部分中的元素，当K2和K1比较时，直接插到K1的后面(没有必要插到K1的前面，这样做还需要移动！！)，因此，插入排序是稳定的。
+- 几种算法实现
+    * 每次拿到当前元素之后和前面的元素挨个比较，如果比当前元素小，就交换元素位置，以此类推，所以这种算法会频繁交换
+    * 每次拿当前元素和前面的元素进行比较，如果前面的元素比当前元素大，那么将前面的元素向后移动，然后记录当前要插入的元素的位置，这种算法优于前面，因为每次只需要移动一次元素位置即可
+    * 基于二分法查找优化，每次拿到当前元素之后，去前面已经排好序的数组中查找要插入的位置，查找基于二分法查找，这样效率大大提高于之前的每次交换，然后拿到要插入的元素的位置之后，再移动一次元素的位置。
+
+```
+//
+//  SCXInsertionSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/12.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXInsertionSoft.h"
+
+@implementation SCXInsertionSoft
+// 插入排序更优的优化
+- (NSArray *)soft:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    for (int i = 1 ; i < soft.count; i ++) {
+        // 原始位置元素
+        NSNumber *cur = soft[i];
+        // 从第一个位置开始查找当前这个位置的元素应该放的位置，因为是依次查找，所以顺便排序了
+        // 这个当前元素应该插入的索引
+        int index = [self binarySearch:soft index:i];
+        // 找到这个index之后开始挪动元素位置，区间为[index,begin);
+        for (int j = i ; j > index; j --) {
+            soft[j] = soft[j - 1];
+        }
+        soft[index] = cur;
+    }
+    return soft.copy;
+}
+
+/// 二分查找找到index位置应该插入的位置
+/// @param arr 查找的数组
+/// @param index 要查找区间最大值
+/// @return 元素的索引
+// 下面的另一个二分查找的方法有弊端，比如有重复的元素，1，2，3，5，5，5，5，5，6，7，8，其中有多个5，在我们二分查找的过程中可能元素个数的不同，返回5的索引位置也不同，这样是不行的，我们应该返回第一个元素的位置，不影响原来相同元素位置的排序，这样才是稳定的
+- (int)binarySearch:(NSArray *)arr index:(int)index{
+    if (arr == nil || arr.count <= 0 || index >= arr.count) {
+        return -1;
+    }
+    NSNumber *obj = arr[index];
+    // 开始索引
+    int begin = 0;
+    // 结束索引
+    // 区间为[begin,end);,左闭由开
+    int end = index;
+    int value = obj.intValue;
+    while (begin < end) {
+        int mid = (begin + end) >> 1;
+        NSNumber *midValue = arr[mid];
+        // 要查找的值在左边
+        if (value < midValue.intValue) {
+            // 更改end的位置
+            end = mid;
+        } else {
+            // 这里是找到第一个大于当前值得位置，因为如果valu比midValue大的话，那么插入的位置肯定在后面
+            // 如果vaalue 和 midvalue 相等的话，我们这里也向后查找，如上面举的例子，存在好几个5，那么第一次出现5的位置并不一定是我们要找的位置，但是我们可以确定，一定在这个值得后面。
+            // 要查找的值在右边
+            // 更改begin的位置
+            begin = mid + 1;
+        }
+    }
+    return begin;
+}
+/// 二分查找
+/// @param arr 查找的数组
+/// @param obj 要查找的值
+/// @return 元素的索引
+- (int)binarySearch1:(NSArray *)arr obj1:(NSNumber *)obj{
+    if (arr == nil || arr.count <= 0 || obj == nil) {
+        return -1;
+    }
+    // 开始索引
+    int begin = 0;
+    // 结束索引
+    // 区间为[begin,end);,左闭由开
+    int end = arr.count;
+    int value = obj.intValue;
+    while (begin < end) {
+        int mid = (begin + end) >> 1;
+        NSNumber *midValue = arr[mid];
+        // 要查找的值在左边
+        if (value < midValue.intValue) {
+            // 更改end的位置
+            end = mid;
+        } else if (value > midValue.intValue){
+            // 要查找的值在右边
+            // 更改begin的位置
+            begin = mid + 1;
+        } else {
+            // 命中
+            return mid;
+        }
+    }
+    return -1;
+}
+// 插入排序优化
+-(NSArray *)soft2:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    // 插入排序的优化的思想就是将元素向后挪，挪出一个位置之后，再将待插入的元素放进去
+    // 1，2，4，5，然后插入3,相当于,1,2,[],4,5,4和5，向后挪动了，中间留了一个位置给3，最后把3放进去
+    for (int i = 1 ; i < soft.count - 1; i ++) {
+        int index = i;
+        // 当前待插入的元素
+        NSNumber *cur = soft[index];
+        while (index > 0 && [self compareA:soft[index - 1] valueB:cur]) {
+            // 比当前要插入的对象要大的那个元素往后移动，流出来当前位置给要插入的那个元素
+            // 下面的插入排序方法，这里每次都需要交换，三行代码，这里只需要向后挪动，一行代码
+            soft[index] = soft[index - 1];
+            index --;
+        }
+        // 将腾出来的那个位置赋值
+        soft[index] = cur;
+    }
+    
+    return soft.copy;
+}
+// 普通插入排序
+-(NSArray *)soft1:(NSArray *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    // 把插入排序看成打扑克牌，每次抓一张牌然后插入到已经有的牌当中，原来抓到手的牌是有序的，插入之后还是有序的。
+    // 每次抓取一张牌
+    for (int i = 1; i < soft.count - 1; i ++) {
+        // 如果当前牌索引大于0，并且前一张牌比后一张牌大
+        // 如果判断的时候，相等，那么是不稳定排序，会交换两个相等的元素的位置，这里只是compare为大于
+        // 时间复杂度取决于逆序对的数量，如，10，9，8，3，2，1，【10，1】，【9，2】，【8，3】，互为逆序对，最后面的牌，需要经历很远的路程，才可以排到前面
+        // 时间复杂度与逆序对的数量成正比
+        // 逆序对的数量越多，插入排序的时间复杂度越高
+        // 时间复杂度为O(n^2),最好的时间复杂度为O(n),如果没有逆序对，就是最优的情况
+        // 属于稳定排序
+        // 数量不大的时候，插入排序的效率很高
+        int index = i;
+        while (index > 0 && [self compareA:soft[index - 1] valueB:soft[index]]) {
+            // 交换牌的位置
+            NSNumber *tmp = soft[index];
+            soft[index] = soft[index - 1];
+            soft[index - 1] = tmp;
+            
+            // 一次向前推，直到排到最前面有序的位置
+            index --;
+        }
+    }
+    return soft.copy;
+}
+- (BOOL)compareA:(NSNumber *)valueA valueB:(NSNumber *)valueB{
+    return valueA.intValue > valueB.intValue;
+}
+@end
+```
+
+#### 快速排序
+- 思想：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序
+- 说明：最核心的思想是将小的部分放在左边，大的部分放到右边，实现分割。
+- 快速排序算法通过多次比较和交换来实现排序，其排序流程如下：
+    * 首先设定一个分界值，通过该分界值将数组分成左右两部分。
+    * 将大于或等于分界值的数据集中到数组右边，小于分界值的数据集中到数组的左边。此时，左边部分中各元素都小于或等于分界值，而右边部分中各元素都大于或等于分界值。
+    * 然后，左边和右边的数据可以独立排序。对于左侧的数组数据，又可以取一个分界值，将该部分数据分成左右两部分，同样在左边放置较小值，右边放置较大值。右侧的数组数据也可以做类似处理。
+    * 重复上述过程，可以看出，这是一个递归定义。通过递归将左侧部分排好序后，再递归排好右侧部分的顺序。当左、右两个部分各数据排序完成后，整个数组的排序也就完成了。
+- 算法复杂度
+    * 最好的情况下：因为每次都将序列分为两个部分(一般二分都复杂度都和logN相关)，故为 O(N*logN)
+    * 最坏的情况下：基本有序时，退化为冒泡排序，几乎要比较N*N次，故为O(N*N)
+- 稳定性
+    * 由于每次都需要和中轴元素交换，因此原来的顺序就可能被打乱。如序列为5 3 3 4 3 8 9 10 11会将3的顺序打乱。所以说，快速排序是不稳定的！
+- 代码
+
+```
+//
+//  SCXQuickSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/14.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXQuickSoft.h"
+@interface SCXQuickSoft()
+@property(nonatomic,strong) NSMutableArray *softArr;
+@end
+@implementation SCXQuickSoft
+-(NSArray *)soft:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    self.softArr = soft;
+    [self beginSoft:0 end:soft.count];
+    return soft.copy;
+}
+- (void)beginSoft:(NSInteger)begin end:(NSInteger)end{
+    if (end - begin < 2) {
+        return;
+    }
+    // 找到轴点，然后依次在进行分割
+    // 时间复杂度 O(n)
+    NSInteger pivotIndex = [self pivotIndex:begin end:end];
+    // 左半边
+    // T(n/2)
+    [self beginSoft:begin end:pivotIndex];
+    // 右半边
+    // T(n/2)
+    [self beginSoft:pivotIndex+1 end:end];
+    // 如果左右分布均匀，此时为最好的情况想，总时间复杂度 T(n) = 2 * T(n/2) + O(n) = O(nlogn)
+    // 如果分布不均匀，如，7，6，5，4，3，2，1，7 为轴点，7右边的都比7小，那么需要将每一个都调到7的左边
+    // T(n) = T(n - 1) + O(n) =O(n^2)
+}
+
+/// 获取轴点位置，也就是那个分割点的位置，每次将序列分为两个，这个分割点的左边都比这个轴点小，右边都比这个轴点大
+/// @param begin 开始位置
+/// @param end 结束位置
+- (NSInteger)pivotIndex:(NSInteger)begin end:(NSInteger)end{
+    /*
+     1.取出第一元素来一次进行比较，从后往前比较
+     2.如果后面的元素比当前元素大，那么不用动，然后end--
+     ,如果发现后面的元素小于等于当前轴点元素，那么将end的位置的元素，
+     覆盖当前begin位置的元素，然后从begin开始比较,
+     调到步骤3
+     3.如果发现当前元素大小比轴点元素大小小，那么begin++，
+     如果当前元素比轴点元素大，那么将begin位置的元素赋值给end，
+     然后再从end往回比较，
+     调到步骤2.
+     
+     */
+    
+    // 为了优化，随机选择一个元素和begin位置元素作为交换，不要每次都选第一个，有局限性
+    int rand = begin + (arc4random() %(end - begin + 1));
+    NSNumber *tmp = self.softArr[begin];
+    self.softArr[begin] = self.softArr[rand];
+    self.softArr[rand] = tmp;
+    
+    // 1. 取出来第一个元素，当做轴点元素,备份
+    NSNumber *first = self.softArr[begin];
+    // 最后一个元素的位置
+    end --;
+    // begin 和 end 没有重合
+    while (begin < end) {
+        // 最后一个元素，从后往前走
+        while (begin < end) {
+            // 取出最后一个元素，然后和轴点元素比较
+            NSNumber *last = self.softArr[end];
+            // 2. 从后往前比较，如果后面的比前面大，那么不用交换，end--
+            if (last.intValue > first.intValue) {
+                // 2. 后面的大，一直往前走就可以
+                end --;
+            } else {
+                // 2. 后面的比前面的小或者等于，需要调换位置
+                // 2. 将end元素覆盖到begin位置，然后begin++，然后调用，从begin开始，从前往后比较。
+                self.softArr[begin++] = last;
+                break;
+            }
+        }
+        
+        // 如果这时候begin和end重合了，那么久说明找到了
+        // 3.如果没有重合，就说明掉头了，需要从前往后走
+        while (begin < end) {
+            // 3。取出第一个元素，和当前轴点元素作比较
+            NSNumber *last = self.softArr[begin];
+            // 3.如果当前元素比轴点元素小，那么只需要begin++ 就可以，继续向后找
+            // 等于放到下面是为了均匀分割，分布均匀之后，效率会大大增高，差别很大
+            if (first.intValue > last.intValue) {
+                begin ++;
+            } else {
+                // 3. 如果当前位置元素比轴点元素大，那么需要将这个begin位置的元素，覆盖到end位置，然后end--；
+                // 2. 然后跳到步骤2，从后往前走
+                self.softArr[end--] = last;
+                break;;
+            }
+        }
+        
+    }
+    // 然后将备份的元素放到轴点位置
+    self.softArr[begin] = first;
+    // 当开始哨兵和结束的哨兵位置重合的时候，就是轴点的位置，说明已经分割好了
+    return begin;
+}
+@end
+```
+
+#### 堆排序
+- 思想：
+    * 堆排序实际上是对选择排序的一个优化，选择排序每次都要选出一个最大值，相当于从头遍历到尾去选择最大值，时间复杂度为O(n)，在加上外层遍历n-1次，所有时间复杂度为O(n^2)，而堆排序在选择最大值的时候有优势，所以堆排序是对选择排序的一个优化。
+    * 利用完全二叉树中双亲节点和孩子节点之间的内在关系，在当前无序区中选择关键字最大(或者最小)的记录。也就是说，以最小堆为例，根节点为最小元素，较大的节点偏向于分布在堆底附近。
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-ba7f66b5e558da7f.png?imageMogr2/auto-orient/strip|imageView2/2/w/431)
+
+- 操作流程
+    * 对数组元素进行原地建堆，然后执行后面的操作，直到堆的元素数量为1
+    * 交换堆顶元素与尾元素，相当于最大值和最小值的交换
+    * 然后将堆的数量减去一
+    * 因为堆顶元素被交换之后不符合大顶堆或者小顶堆的要求，需要对0位置的元素进行一次 siftDown 下滤操作。
+- 算法复杂度
+    * 最坏情况下，接近于最差情况下：O(N*logN)，因此它是一种效果不错的排序算法。
+- 稳定性
+    * 堆排序需要不断地调整堆，因此它是一种不稳定的排序！
+- 代码
+
+```
+//
+//  SCXHeapSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/11.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXHeapSoft.h"
+@interface SCXHeapSoft(){
+    
+    int _size;
+}
+
+@end
+@implementation SCXHeapSoft
+-(NSArray *)soft:(NSArray *)arr{
+    // 建堆
+    NSMutableArray *soft = arr.mutableCopy;
+    _size = soft.count;
+    // 自下而上下滤
+    for (NSInteger i = (_size >> 1) - 1; i >= 0; i --) {
+        [self siftDown:i arr:soft];
+    }
+    while (_size > 1) {
+        // 将堆顶和堆尾元素互换
+        // size --
+        NSNumber *tmp = soft[--_size];
+        soft[_size] = soft[0];
+        soft[0] = tmp;
+        
+        // 将第0个元素下滤，保证除了最后一个元素之外，其余的元素组成一个堆
+        [self siftDown:0 arr:soft];
+    }
+    return soft.copy;
+}
+// 下滤
+- (void)siftDown:(NSInteger)index arr:(NSMutableArray *)_array{
+    //第一个叶子节点的索引就是非叶子节点的数量，因为为完全二叉树，所以，要么没有左右子节点，要么只有左节点，不可能出现只有右子节点的情况
+    // index < 第一个叶子节点的索引，这样就能保证他能和有子节点的进行交换
+    // 必须保证index 位置为非叶子节点，因为这样可以找到左节点，或者左右节点，进行交换
+    // 非叶子节点的数量为 二叉树节点数量除以二
+    if (index >= _array.count) {
+        return;
+    }
+    id obj = _array[index];
+    // 第一个非叶子节点的索引
+    NSInteger half = _size >> 1;
+    while (index < half) {
+        // 要么只有左子节点
+        // 要么右左右子节点
+        // 左子节点的索引为 2i +1 ,右子节点的索引为 2i+2
+        NSInteger leftIndex = (index << 1) + 1;
+        id leftObjf = _array[leftIndex];
+        NSInteger rightIndex = leftIndex +1;
+        
+        
+        // 选出最大值
+        id maxObj = leftObjf;
+        NSInteger maxIndex = leftIndex;
+        if (rightIndex < _size ) {
+            id rightObj = _array[rightIndex];
+            if ([self compareA:rightObj valueB:leftObjf]) {
+                // 右节点比左节点大
+                maxObj = rightObj;
+                maxIndex = rightIndex;
+            }
+        }
+        
+        // 选出左右最大的节点和index之后，和当前节点进行比较
+        if ([self compareA:obj valueB:maxObj]) {
+            // 如果当前节点比左右子节点中最大的那一个都打大，就退出不用交换了
+            break;
+        }
+        // 如果当前节点比左右节点中的其中一个小，那么将当前位置，赋值为最大值,将最大值一次上滤，然后自己下沉，记住位置
+        _array[index] = maxObj;
+        index = maxIndex;
+    }
+    _array[index] = obj;
+}
+- (BOOL)compareA:(NSNumber *)valueA valueB:(NSNumber *)valueB{
+    return valueA.intValue > valueB.intValue;
+}
+@end
+```
+
+#### 冒泡排序
+- 基本思想：通过无序区中相邻记录关键字间的比较和位置的交换,使关键字最小的记录如气泡一般逐渐往上“漂浮”直至“水面”。
+- 原理
+    * 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+    * 对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
+    * 针对所有的元素重复以上的步骤，除了最后一个。
+    * 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+- 时间复杂度
+    * 最好情况下：正序有序，则只需要比较n次。故，为O(n)
+    * 最坏情况下:逆序有序，则需要比较(n-1)+(n-2)+……+1，故，为O(N*N)
+- 稳定性
+    * 排序过程中只交换相邻两个元素的位置。因此，当两个数相等时，是没必要交换两个数的位置的。所以，它们的相对位置并没有改变，冒泡排序算法是稳定的！
+- 代码
+
+```
+//
+//  SCXBubbleSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/11.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXBubbleSoft.h"
+
+@implementation SCXBubbleSoft
+-(NSArray *)soft:(NSArray *)arr{
+    // 改进，因为冒泡排序每次是找到最大值，比如遍历之后，后面四个已经是有序的，那么每次就不需要遍历后面几个了，记住最开始的那个有序的位置就可以了
+    NSMutableArray *soft = arr.mutableCopy;
+    for (int i = soft.count - 1 ; i > 0; i --) {
+        int end = 1;
+        for ( int j = 1; j <= i; j ++) {
+            NSNumber *pre = soft[j - 1];
+            NSNumber *current = soft[j];
+            if (pre.intValue > current.intValue) {
+                NSNumber *tmp = pre;
+                soft[j - 1] = current;
+                soft[j] = tmp;
+                // 当前排序的索引
+                end = j;
+            }
+        }
+        // 如果上面的for循环里面的 end 没有赋值，说明就没有交换，说明就是有序的，就不需要排序了
+        i = end;
+    }
+    return soft.copy;;
+}
+-(NSArray *)soft1:(NSArray *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    for (int i = 0 ; i < soft.count - 1; i ++) {
+        for ( int j = 1; j < soft.count - 1 - i; j ++) {
+            NSNumber *pre = soft[j - 1];
+            NSNumber *current = soft[j];
+            if (pre.intValue > current.intValue) {
+                NSNumber *tmp = pre;
+                soft[j - 1] = current;
+                soft[j] = tmp;
+            }
+        }
+        
+    }
+    return soft.copy;;
+}
+@end
+```
+
+#### 选择排序
+- 思想：选择排序是一种简单直观的[排序算法]。它的工作原理是：第一次从待排序的[数据元素]中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾。以此类推，直到全部待排序的数据元素的个数为零。选择排序是不稳定的排序方法。
+- 思路：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-9048e08e9155b963.png?imageMogr2/auto-orient/strip|imageView2/2/w/275)
+
+- 时间复杂度
+    * 最好情况下：交换0次，但是每次都要找到最小的元素，因此大约必须遍历N*N次，因此为O(N*N)。减少了交换次数！
+    * 最坏情况下，平均情况下：O(N*N)
+- 稳定性
+    * 选择排序是给每个位置选择当前元素最小的，比如给第一个位置选择最小的，在剩余元素里面给第二个元素选择第二小的，依次类推，直到第n-1个元素，第n个元素不用选择了，因为只剩下它一个最大的元素了。那么，在一趟选择，如果一个元素比当前元素小，而该小的元素又出现在一个和当前元素相等的元素后面，那么交换后稳定性就被破坏了。举个例子，序列5 8 5 2 9，我们知道第一遍选择第1个元素5会和2交换，那么原序列中两个5的相对前后顺序就被破坏了，所以选择排序是一个不稳定的排序算法
+- 代码
+
+```
+//  SCXSelectionSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/11.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXSelectionSoft.h"
+
+@implementation SCXSelectionSoft
+-(NSArray *)soft:(NSArray *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    // 需要遍历多少趟
+    for (int i = soft.count - 1; i > 0; i --) {
+        
+        // 假设最大的是第一个元素
+        int index = 0;
+        // 每次遍历除了最后几个已经排好序的元素之外，其余的元素
+        // 如果当前的元素比最大值的这个位置的元素要大，更改最大值的位置，继续遍历
+        for (int j = 1 ; j <= i; j ++) {
+            NSNumber *current = soft[j];
+            NSNumber *max = soft[index];
+            if (current.intValue > max.intValue) {
+                index = j;
+            }
+        }
+        // 找到最大元素的位置，将其放到最后
+        if (index != i) {
+            NSNumber *tmp = soft[i];
+            soft[i] = soft[index];
+            soft[index] = tmp;
+        }
+    }
+    return soft.copy;
+}
+@end
+```
+
+#### 希尔排序
+- 思想：希尔排序也是一种插入排序方法,实际上是一种分组插入方法。先取定一个小于n的整数d1作为第一个增量,把表的全部记录分成d1个组,所有距离为d1的倍数的记录放在同一个组中,在各组内进行直接插入排序；然后,取第二个增量d2(＜d1),重复上述的分组和排序,直至所取的增量dt=1
+- 时间复杂度
+    * 最好情况：由于希尔排序的好坏和步长d的选择有很多关系，因此，目前还没有得出最好的步长如何选择(现在有些比较好的选择了，但不确定是否是最好的)。所以，不知道最好的情况下的算法时间复杂度。
+    * 最坏情况下：O(N*logN)，最坏的情况下和平均情况下差不多。
+    * 平均情况下：O(N*logN)
+- 稳定性
+    * 由于多次插入排序，我们知道一次插入排序是稳定的，不会改变相同元素的相对顺序，但在不同的插入排序过程中，相同的元素可能在各自的插入排序中移动，最后其稳定性就会被打乱，所以shell排序是不稳定的。
+- 代码
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-b07115db43096672.png?imageMogr2/auto-orient/strip|imageView2/2/w/522)
+
+#### 归并排序
+- 思想：不断的将当前序列，分割成两个子序列,直到分割到一个元素不能分割为止，不断的将两个子序列合并成一个有序序列，直到最后只剩下一个有序序列。
+- 算法时间复杂度
+    * 最好的情况下：一趟归并需要n次，总共需要logN次，因此为O(N*logN)
+    * 最坏的情况下，接近于平均情况下，为O(N*logN)
+    * 对长度为n的文件，需进行logN 趟二路归并，每趟归并的时间为O(n)，故其时间复杂度无论是在最好情况下还是在最坏情况下均是O(nlgn)。
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-96053f74b9b11315.png?imageMogr2/auto-orient/strip|imageView2/2/w/360)
+
+- 稳定性
+    * 归并排序最大的特色就是它是一种稳定的排序算法。归并过程中是不会改变元素的相对位置的。
+- 缺点
+    * 它需要O(n)的额外空间。但是很适合于多链表排序。
+- 代码
+
+```
+//  SCXMergeSoft.m
+//  TestArithmetic
+//
+//  Created by 孙承秀 on 2020/7/13.
+//  Copyright © 2020 孙承秀. All rights reserved.
+//
+
+#import "SCXMergeSoft.h"
+/*
+ 1. 不断的将当前序列，分割成两个子序列,直到分割到一个元素不能分割为止
+ 2. 不断的将两个子序列合并成一个有序序列，直到最后只剩下一个有序序列
+ */
+@interface SCXMergeSoft()
+@property (nonatomic , strong) NSMutableArray *softArr;
+@property (nonatomic , strong) NSMutableArray *leftArr;
+@end
+@implementation SCXMergeSoft
+- (NSArray *)soft:(NSArray<NSNumber *> *)arr{
+    NSMutableArray *soft = arr.mutableCopy;
+    self.softArr = soft;
+    self.leftArr = [NSMutableArray arrayWithCapacity:(soft.count) >> 1];
+    [self binary:0 end:soft.count];
+    return soft.copy;;
+}
+- (void)binary:(int)begin end:(int) end{
+    // 至少要有两个元素
+    if (end - begin < 2) {
+        return;
+    }
+    int mid = (end + begin ) >> 1;
+    // 将左边的不断的拆分，直到拆分到一个元素
+    [self binary:begin end:mid];
+    // 将右边的不断的拆分，直到拆分到一个元素
+    [self binary:mid end:end];
+    // 不断的将两个元素合并
+    [self merge:begin mid:mid end:end];
+}
+/*
+ merge 的原理:
+ 比如一个数组[1,6,2,7,3,8,4,9];
+ 1.我们经过不断的拆分之后变成1,6  2,7 3,8 4,9 ,这样的
+ 2. 然后将上面拆分出来的一个一个数据，两个连个再次合并到一起，[1,6],[2,7],[3,8],[4,9]
+ 然后再变成[1,2,6,7],[3,4,8,9]
+ 然后再变成[1,2,3,4,6,7,8,9];
+ 这个流程
+ 3.其实我们最终的目的其实就是将所有的元素合并到一个大数组里面，其实我们的最后[1,2,3,4,6,7,8,9];，一次，这个数据就是最终的大数组，而他是由之前的两份数据得来的，所以我们可以将大数组拆分成一个小数组，然后每次将小数组的元素和当前大数组剩余的元素作比较，然后依次比较添加，什么意思呢？
+ 
+ 将 [1,2,3,4,6,7,8,9]; ，的左一半copy出来，其余元素不变，也就是
+ [1,2,3,4,6,7,8,9]; 和 [1,2,3,4,];
+ 或者你可以理解为
+ [null,null,null,null,6,7,8,9]; 和 [1,2,3,4]; 最后将这两个合并不就是 [1,2,3,4,6,7,8,9];吗
+ 
+ 
+ */
+- (void)merge:(int)begin mid:(int)mid end:(int) end{
+    // 定义标记,对应于数组的索引
+    // 左边的开始位置的标记
+    int lb = 0;
+    // 左边的结束位置的标记
+    int le = mid - begin;
+    // 右边开始位置的标记
+    int rb = mid;
+    // 右边结束位置的标记
+    int re = end;
+    // 整个大数组的标记
+    int ab = begin;
+    
+    // 左边备份的数组
+    for (int i = lb; i < le; i ++) {
+        self.leftArr[i] = self.softArr[begin + i];
+    }
+    NSLog(@"----%@",self.leftArr);
+    // 左右进行比对
+    while (lb < le) {
+        // 左边没有排完，就将左边的依次放到大数组里面
+        // 如果左边排完了，右边不动就行
+        // 判断如果左边拿出来的元素比右边拿出来的元素小，就放到大数组里面
+        NSNumber *left = self.leftArr[lb];
+        NSNumber *right = self.softArr[rb];
+        // 如果右边的大或者右边排完了，那么就跳出来这if，跑到下面去，因为右边的大，肯定是将左边放进去，或者右边的所有元素都取完了，那么也跑到else里面
+        if (rb< re && left.intValue > right.intValue ) {
+            // 如果左边的大于等于右边的，就将右边的放入大数组的前面
+            self.softArr[ab++] = right;
+            rb++;
+        } else {
+            // 如果右边的比左边大或者等于左边当前取出的，就将左边的先取出来放到数组里面，这样可以保证算法的稳定性
+            self.softArr[ab++] = left;
+            lb++;
+            
+        }
+    }
+    NSLog(@"~~~~~%@",self.softArr);
+}
+@end
+```
+
+#### 基数排序
+- 思想：它是一种非比较排序。它是根据位的高低进行排序的，也就是先按个位排序，然后依据十位排序……以此类推。
+- 示例如下：
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-46b92b43b25fa8f0.png?imageMogr2/auto-orient/strip|imageView2/2/w/899)
+
+![image](https://upload-images.jianshu.io/upload_images/6370252-f165a8bada6ae8d8.png?imageMogr2/auto-orient/strip|imageView2/2/w/907)
+
+- 算法的时间复杂度
+    * 分配需要O(n),收集为O(r),其中r为分配后链表的个数，以r=10为例，则有0～9这样10个链表来将原来的序列分类。而d，也就是位数(如最大的数是1234，位数是4，则d=4)，即"分配-收集"的趟数。因此时间复杂度为O(d*(n+r))。
+- 稳定性
+    * 基数排序过程中不改变元素的相对位置，因此是稳定的！
+- 适用情况：如果有一个序列，知道数的范围(比如1～1000)，用快速排序或者堆排序，需要O(N*logN)，但是如果采用基数排序，则可以达到O(4*(n+10))=O(n)的时间复杂度。算是这种情况下排序最快的！
+
+### 常见的字符编码方法
+#### ASCII
+#### ISO-8859-1
+#### GB2312
+#### GBK
+#### UTF-8
+#### UTF-16
+#### Unicode
+
+### 常考算法题
+#### 1.字符串反转
+- 做法就是，设立两个begin和end哨兵，然后将这两个哨兵对应的值进行交换，当 begin >=end 的时候结束
+
+```
+void reverseStr(char *chr){
+    char *begin = chr;
+    char *end = chr + strlen(chr) - 1;
+    while (begin < end) {
+        char temp = *begin;
+        *(begin ++) = *end;
+        *(end --) = temp;
+    }
+}
+```
+
+#### 2.链表反转
+- 1->2->3->4->NULL 听过反转之后变成 4->3->2->1->NULL
+
+##### 头插法：
+- 头插法需要我们定义一个新的头结点作为新的链表，然后利用头插法，将原来的链表的每一个节点取出来，然后去新的链表里面做头插法，这样就可以反转了，这里需要一个新的头结点，和遍历原来链表的一个P指针。
+
+```
+/// 构造一个链表
+struct Node *constructList(void){
+    // 当前节点
+    struct Node *cur = NULL;
+    // 头结点
+    struct Node *head = NULL;
+    for (int i = 1 ; i < 5 ; i ++) {
+        struct Node *node = malloc(sizeof(struct Node));
+        node->data = i;
+        // 如果头结点为空
+        if (head == NULL) {
+            // 将当前节点赋值为头结点
+            head = node;
+        } else {
+            // 将当前节点的next指向这个新的节点，形成链表
+            cur->next = node;
+        }
+        // 将当前节点赋向后移动
+        cur = node;
+    }
+    cur->next = NULL;
+    return head;
+}
+```
+- 上面的代码是构造一个链表，构造一个链表的思想就是，创建一个节点，然后如果当前有头结点，就将当前节点的next指向新创建的节点，然后将当前节点向后移动，如果当前没有头结点，就将头结点和当前节点都赋值为新创建的节点
+
+```
+/// 链表的反转
+/// @param head 头结点
+struct Node * reverseList(struct Node *head){
+    // 新链表哨兵指针
+    struct Node *newHead = NULL;
+    // 旧链表哨兵指针
+    struct Node *p = head;
+    // 旧链表遍历完毕
+    while (p != NULL) {
+        // 下一个节点
+        struct Node *temp = p->next;
+        // 将这个节点头插到新的链表里面
+        p->next = newHead;
+        // 更改新链表的头位置
+        newHead = p;
+        // 旧链表的头向后移动
+        p = temp;
+    }
+    return newHead;
+}
+```
+- 上面的代码是反转一个链表，反转链表的思想就是新建一个链表然后利用头插法，先从原来的链表里面按照顺序一个个取，取出来之后到新的链表里面进行头插，就形成了头插。
+
+#### 3.有序数组合并
+- 第一种方法：始终比较两个数组的首元素大小，然后将小者 shift 出来push到结果数组中去，因为总是会将数组首元素较小的那个移出，故不用改变比较数组的索引值，一直固定为 0 就行了。最后不要忘记将长度值大于 0 的数组中的元素移出放置到结果数组中。
+
+```
+/* 清空了原来的两个有序数组 */
+function mergeTwoSortedArr (arr1, arr2) {
+  var retArr = [];
+  /* 遍历比较两个数组的首元素大小，小者 shift 出来 push 到结果数组中去 */
+  while (arr1.length > 0 && arr2.length > 0) {
+    if (arr1[0] < arr2[0]) {
+      retArr.push(arr1.shift());
+    } else if (arr1[0] > arr2[0]) {
+      retArr.push(arr2.shift());
+    } else {
+      retArr.push(arr1.shift());
+      retArr.push(arr2.shift());
+    }
+  }
+  /* 将数组（最多有一个）剩余元素移出放置到结果数组中 */
+  while (arr1.length > 0) {
+    retArr.push(arr1.shift());
+  }
+  while (arr2.length > 0) {
+    retArr.push(arr2.shift());
+  }
+  return retArr;
+}
+
+// 示例
+var arr1 = [2, 3, 5];
+var arr2 = [3, 4, 7, 9];
+console.log(mergeTwoSortedArr(arr1, arr2));   // [2, 3, 3, 4, 5, 7, 9]
+```
+- 第二种：没有影响原来的两个有序数组，通过遍历比较两个数组当前元素的大小，小者push到结果数组中去，相应数组索引加一，然后再进行循环比较。同样，最后不要忘记将未遍历过的数组元素复制到结果数组中。
+
+```
+/* 未对原来的两个有序数组做改动 */
+function mergeTwoSortedArr (arr1, arr2) {
+  var retArr = [];
+  var len1 = arr1.length;
+  var len2 = arr2.length;
+  var i = 0, j = 0;
+  /* 遍历比较两个数组当前元素的大小，小者 push 到结果数组中去，相应数组索引加一 */
+  while (i < len1 && j < len2) {
+    if (arr1[i] < arr2[j]) {
+      retArr.push(arr1[i]);
+      i++;
+    } else if(arr1[i] > arr2[j]) {
+      retArr.push(arr2[j]);
+      j++;
+    } else {
+      retArr.push(arr1[i], arr1[i]);
+      i++;
+      j++;
+    }
+  }
+  /* 将数组（最多有一个）剩余元素 push 到结果数组中 */
+  for (; i < len1; i++) {
+    retArr.push(arr1[i]);
+  }
+  for (; j < len2; j++) {
+    retArr.push(arr2[j]);
+  }
+  return retArr;
+}
+
+// 示例
+var arr1 = [2, 3, 5];
+var arr2 = [3, 4, 7, 9];
+console.log(mergeTwoSortedArr(arr1, arr2));   // [2, 3, 3, 4, 5, 7, 9]
+```
+#### 4.假设某个数组中只有数字1和2，进行排序，使得数字1位于数组前部分，数字2位于后部分
+- 使用双指针的方法
+- 解法步骤：
+    * 设置一个头指针、一个尾指针，头指针首先指向数组的第一个元素（索引为0），而尾指针则指向数组的最后一个元素（索引为len-1，假定数组的长度为 len）；
+    * 然后比较这两个一前一后元素的大小：
+        * 若两值不相等，则较小的 1 放在前面，较大的 2 放在后面，头指针往后移动一步，尾指针向前移动一步；
+        * 若两值相等且都等于1，则头指针往后移动一步，尾指针不移动；
+        * 若两值相等且都等于2，则尾指针往前移动一步，头指针不移动。
+    * 接着再次比较头、尾指针指向元素的大小，决定是否交换值以及移动指针；
+    * 依照以上步骤进行指针移动、元素大小比较，便可使得数字1位于数组前部分，数字2位于数组后部分。
+- 注意点：上面循环进行操作的条件是头指针索引值小于尾指针索引值。
+- 代码
+
+```
+function sortOneTwoInArr (arr) {
+  var len = arr.length;
+  var head = 0;
+  var tail = len - 1;
+  /* 遍历数组，对 1 和 2 进行排序 */
+  while (head < tail) {
+    // 若头、尾指针指向的元素大小相等则只移
+    // 动一个指针，否则同时移动两个指针
+    if (arr[head] === arr[tail]) {
+      if (arr[head] === 1) {
+        head++;
+      } else if (arr[head] === 2) {
+        tail--;
+      }
+    } else {
+      if (arr[head] > arr[tail]) {
+        [arr[head], arr[tail]] = [arr[tail], arr[head]];
+      }
+      head++;
+      tail--;
+    }
+  }
+  return arr;
+}
+
+/* 测试用例 */
+var arr1 = [];
+var arr2 = [1];
+var arr3 = [2];
+var arr4 = [1, 2, 1, 2];
+var arr5 = [1, 1, 2, 2];
+var arr6 = [1, 2, 2, 1, 1];
+var arr7 = [2, 2, 1, 1, 2];
+console.log(sortOneTwoInArr(arr6));            // [1, 1, 1, 2, 2]
+```
+
+#### 5.查找第一个只出现一次的字符
+- 方式一：
+    * 遍历每一个字符，然后取出遍历的当前字符与剩下的字符做比较，判断剩下的字符串中是否有当前遍历的这个字符，如果没有，则是在字符串中出现一次的，而第一个出现的，就是要查找的。
+
+```
+/**
+     * 使用便利的方式，时间复杂度是O(n^2)
+     * @param str
+     */
+    private static void printFirstCharOnlyOnce(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            // 截去第i个字符
+            String temp = str.substring(0, i) + str.substring(i + 1);
+            // 判断截去第i个字符后剩下的字符串中是否还有与第i个字符相同的字符
+            int index = temp.indexOf(str.charAt(i));
+            // 如果剩下的字符中没有与第i个字符相同的字符存在，则返回-1
+            // 第一次出现index=-1的时候，说明第i个字符就是第一个出现一次的字符
+            if (index == -1) {
+                String c = String.valueOf(str.charAt(i));
+                System.out.println(c);
+                break;
+            }
+        }
+    }
+```
+- 方式二：
+    * 直接使用hash表来查询，即使用HashMap来实现；首先遍历字符串的每一个字符，将字符作为HashMap的key，然后使用Integer作为HashMap的value，当key相同的时候，value就加1。遍历完之后，再对HashMap做遍历，找出key对应的value=1的key，第一个key就是查找第一个只出现一次的字符
+
+```
+/**
+    * 时间复杂度为O(n)
+    */
+    private static void printFirstCharOnlyOnce(String str) {
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (hashMap.containsKey(str.charAt(i))) {
+                int value = hashMap.get(str.charAt(i));
+                hashMap.put(str.charAt(i), value + 1);
+            } else {
+                hashMap.put(str.charAt(i), 1);
+            }
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            if (hashMap.get(str.charAt(i)) == 1) {
+                System.out.println(str.charAt(i));
+                break;
+            }
+        }
+    }
+```
+- 方式三：
+    * 借助ASCII码，将字符的ASCII码作为在int数组的索引位置，而该字符出现的次数就是对应的int数组的索引位置的值
+
+```
+private static void printFirstCharOnlyOnce(String str) {
+        int[] hash = new int[256];
+        for (int i = 0; i < str.length(); i++) {
+            int temp = str.charAt(i);
+            hash[temp]++;
+        }
+
+        for (int i=0;i<str.length();i++) {
+            int temp = str.charAt(i);
+            if (hash[temp] == 1) {
+                System.out.println(str.charAt(i));
+                break;
+            }
+        }
+    }
+```
+
+#### 6.查找两个子视图的共同父视图
+
+```
+- (NSArray <UIView *> *)findCommonSuperView:(UIView *)viewOne other:(UIView *)viewOther
+{
+    NSMutableArray *result = [NSMutableArray array];
+    
+    // 查找第一个视图的所有父视图
+    NSArray *arrayOne = [self findSuperViews:viewOne];
+    // 查找第二个视图的所有父视图
+    NSArray *arrayOther = [self findSuperViews:viewOther];
+    
+    int i = 0;
+    // 越界限制条件
+    while (i < MIN((int)arrayOne.count, (int)arrayOther.count)) {
+        // 倒序方式获取各个视图的父视图
+        UIView *superOne = [arrayOne objectAtIndex:arrayOne.count - i - 1];
+        UIView *superOther = [arrayOther objectAtIndex:arrayOther.count - i - 1];
+        
+        // 比较如果相等 则为共同父视图
+        if (superOne == superOther) {
+            [result addObject:superOne];
+            i++;
+        }
+        // 如果不相等，则结束遍历
+        else{
+            break;
+        }
+    }
+    
+    return result;
+}
+
+- (NSArray <UIView *> *)findSuperViews:(UIView *)view
+{
+    // 初始化为第一父视图
+    UIView *temp = view.superview;
+    // 保存结果的数组
+    NSMutableArray *result = [NSMutableArray array];
+    while (temp) {
+        [result addObject:temp];
+        // 顺着superview指针一直向上查找
+        temp = temp.superview;
+    }
+    return result;
+}
+```
+
+#### 7.无序数组中的中位数
+- 中位数，就是数组排序后处于数组最中间的那个元素。如果数组长度是奇数，最中间就是位置为(n+1)/2的那个元素；如果数组长度是偶数，中位数就是位置n/2和位置为n/2+1的两个元素的和除以2的结果。
+- 第一种方法是先排序，然后找中位数；第二种方法是，用快速排序，然后找中位数
+- 基于快速排序查找中位数
+    * 定义一个key，一般取数组最右边的元素为key，然后再定义两个变量start和end
+    * start为首元素索引，end为尾元素索引
+    * 然后从后往前找，找到第一个比key小的元素，没找到则end--，找到则将当前start位置的元素值置为当前end位置的元素值
+    * 然后再start++
+    * 接着再从前往后找，找到第一个比key大的元素，没找到则start++，找到则将当前end位置的元素值置为当前start位置的元素值
+    * 最后当start==end的时候，将当前start位置的元素值置为key
+    * 接着递归调用，按当前start==end的位置，分成两半
+    * 左边到start-1，右边从start+1开始
+    * 求中位数，如果数组长度为奇数，则是第(n+1)/2个，即下标为(n+1)/2-1，如果数组长度为偶数，则是第n/2和n/2+1个之和除以2，即下标为n/2-1和n/2的两个数的和除以2；
+
+```
+/**
+     * 基于快速排序查找中位数
+     * 定义一个key，一般取数组最右边的元素为key，然后再定义两个变量start和end
+     * start为首元素索引，end为尾元素索引
+     * 然后从后往前找，找到第一个比key小的元素，没找到则end--，找到则将当前start位置的元素值置为当前end位置的元素值
+     * 然后再start++
+     * 接着再从前往后找，找到第一个比key大的元素，没找到则start++，找到则将当前end位置的元素值置为当前start位置的元素值
+     * 最后当start==end的时候，将当前start位置的元素值置为key
+     * 接着递归调用，按当前start==end的位置，分成两半
+     * 左边到start-1，右边从start+1开始
+     *
+     * @param array
+     * @param left
+     * @param right
+     */
+    private static void quickSortSearchMedian(int[] array, int left, int right) {
+        if (left < 0) {
+            return;
+        }
+        if (right >= array.length) {
+            return;
+        }
+        if (left >= right) {
+            return ;
+        }
+        int key = array[left];
+        int start = left;
+        int end = right;
+        while (start < end) {
+            // 从右边往左边找，找到第一个小于key的值，则索引--
+            while (start < end && array[end] >= key) {
+                end--;
+            }
+            if (start < end) {
+                array[start] = array[end];
+                start++;
+            }
+            // 从左边往右边找，找到第一个大于key的值，则索引++
+            while (start < end && array[start] <= key) {
+                start++;
+            }
+            if (start < end) {
+                array[end] = array[start];
+                end--;
+            }
+        }
+        // start == end
+        array[start] = key;
+        quickSortSearchMedian(array, left, start - 1);
+        quickSortSearchMedian(array, start + 1, right);
+    }
+
+    /**
+     * 求中位数
+     * 如果数组长度为奇数，则是第(n+1)/2个，即下标为(n+1)/2-1
+     * 如果数组长度为偶数，则是第n/2和n/2+1个之和除以2，即下标为n/2-1和n/2的两个数的和除以2
+     * @param array
+     */
+    public static void searchMedian(int[] array) {
+        quickSortSearchMedian(array, 0, array.length - 1);
+        if ((array.length % 2) == 0) {
+            int i = array[array.length/2-1];
+            int j = array[array.length/2];
+            System.out.println((i+j)/2.0);
+        } else {
+            System.out.println(array[(array.length + 1) / 2 - 1]);
+        }
+    }
+```
+
+#### 8.两数之和为特定值
+- 穷举法：O（n^2）
+- 采用哈希算法确定某个数是否存在数组中：O（n）
+- 先排序，然后从左右两边进行调整
+
+#### 9.求出数组中连续数字的和值
+
+#### 10.白鼠与毒酒的算法问题
+- 一个酒窖里有一千桶酒，其中有一桶是毒酒，白鼠喝了毒酒一个星期后会死去。现在问给你多少只白鼠（最少的），在一个星期内确定那桶毒酒。
+- 设有 N 桶酒，有一桶是毒酒，编号从0到N-1,最少要 K 只白鼠，显然：
+> 当N=2，K=1 
+当N=3，K=2 
+当N=4，K=2 
+4桶酒编号0，1，2，3 
+K=2，设有白鼠A和白鼠B 
+A喝0,1，B喝0,2 
+一星期后，有4种可能状态 
+A死B死(0号有毒)，A死B活(1号有毒)，A活B死(2号有毒)，A活B活(3号有毒) 
+- 猜想白鼠的最终状态只有死活两种可能，通过白鼠一星期后的状态可以算出毒酒编号
+- 很自然想到二进制
+> 当N=4时，0=00,1=01,2=10,3=11 
+当N=8，K=3 
+0=000,1=001,2=010,3=011，4=100，5=101，6=110，7=111 
+白鼠A,B,C 
+A喝0，1，2，3 (0XX) 
+B喝0，1，4，5 (X0X) 
+C喝0，2，4，6 (XX0) 
+ABC的最终状态可以确定毒酒编号 
+当N=1000时，可以类推至少要10只，你可以这样推出这10只白鼠具体是喝哪些编号的酒，规律很明显了 
+- 回过来再想想，1000之内的任意一个数都可以用一个10位的二进制数表示(不够的话前面补0),白鼠与数位对应，第几位为0，则说明第几位的白鼠死了，而这个二进制的编号即为毒酒编号
+
+#### 11.背包问题
+- 背包问题是指在给定条件下 如何获得最高价值的问题
+- 给定一个重量限制，和几种不同物品的价值和重量，每种物品只有一个，寻找能拿到的最大价值是多少
+- 背包问题根本指的是，同种物品有且最高只有一个，在给定限制下，如何获得最大收益
+- 思路一：枚举：找出所有组合
+- 思路二：动态规划
+    * 问题的关键在于我们是否要选择当前物品，选取了当前物品是否是最大的价值，做一个n^2的算法
+    * 内层循环表示寻找合适的大小，外层循环表示第几件物品，每次内层循环，我们第一个要找的是我们是否能放下当前物品。放下当前物品后，是否比放上一件物品的价值高，选取高者。之后继续查找剩余空间能否放下之前的物品，如果能那么和上一轮的结果比取高者。
+
+```
+#include<iostream>
+using namespace std;
+const int maxn = 1000;
+int dp[20];
+int value[20],weight[20];
+
+int main(){
+    int n,limitw;
+    cin>>n>>limitw;
+    for (int i=1;i<=n;i++){
+        cin>>value[i]>>weight[i];
+    }
+    cout<<"0 1 2 3 4 5 6 7 8 9 10\n";   //更好的观察算法
+    for(int i=1;i<=n;i++){
+        for(int j=limitw;j>=weight[i];j--){
+            dp[j]=max(dp[j-weight[i]]+value[i],dp[j]);
+            cout<<dp[j]<<" ";   //更好的观察算法
+        }
+        cout<<"\n"; //更好的观察算法
+    }
+
+    cout<<dp[limitw];
+    return 0;
+}
+```
+
+#### 补充：多重背包问题
+- 有N种物品，第i种物品的体积是C，价值是W，每种物品的数量都是有限的，为N。现有容量为V的背包，放入若干物品，在总体积不超过V的条件下，使总价值尽可能大。
+- 每种物品数量为1的多重背包问题，和背包问题一样，把物品拆分成一件一件的；
+
+```
+#include<iostream>
+using namespace std;
+int dp[1010];       //背包大小
+int w[10],c[21],n[21];  //价值,体积,数量
+int main(){
+    int N,V;
+    cin>>N>>V;
+    for(int i=1;i<=N;i++){
+        cin>>w[i]>>c[i]>>n[i];
+    }
+    for(int i=1;i<=N;i++){  //第几件物品
+        for(int j=V;j>=0;j--){  //背包大小，优化空间复杂度一定要反着放
+            for(int k=0;k<=n[i];k++){   //这里其实把物品当做一个一个往里面放
+                if(j>=c[i]*k){
+                    dp[j]=max(dp[j-c[i]*k]+w[i]*k,dp[j]);
+                }
+            }
+        }
+    }
+    cout<<dp[V]<<endl;
+    return 0;
+}
+```
+
+#### 补充：完全背包问题
+- 在多重背包问题上把每种物品的数量取消限制
+- 解决思路：转换成多重背包问题
+- 因为虽然物品数量没有上限，但其实物品数量的上限就是背包的上限，只需要处理数量*体积<剩余空间。
+
+```
+#include<stdio.h>
+#include<algorithm>
+#include<iostream>
+using namespace std;
+int dp[1010];       //背包大小
+int w[10],c[21];  //价值,体积
+int main(){
+    int N,V;
+    cin>>N>>V;
+    for(int i=1;i<=N;i++){
+        cin>>w[i]>>c[i];
+    }
+    for(int i=1;i<=N;i++){  //第几件物品
+        for(int j=1;j<=V;j++){  //背包大小
+            dp[j]=max(dp[j-c[i]]+w[i],dp[j]);
+        }
+    }
+    cout<<dp[V]<<endl;
+    return 0;
+}
+```
+
+#### 12.实现数组的随机排序（含洗牌算法）
+- 有时，我们需要将一个数组内的元素顺序进行打乱，达到随机排序的目的。首先想到的是 Math.random() 方法结合数组的 sort() 方法。
+- Math.random() 结合 sort() 方法，Math.random() 方法用于产生一个介于 0 和 1 之间的随机数（含 0 但不包括 1）。数组的 sort() 方法可以有两种用法：
+    * 用法一：在不传入可选的函数参数时，将会对数组的每一个元素应用toString()方法，通过比较字符串大小的方式升序排列所有的数组项。
+    * 用法二：编写比较函数并作为参数传入，假设有以下比较函数（补充一点关于下面参数 a、b 的说明，若a为数组的第一个元素，则b为第二个元素，依次类推……）
+    * 如果你想将a变量排列在变量b的前面位置，则比较函数返回负数（即上述 val 为负数）；若想将 a 变量排列在变量 b 的后面，则返回正数（即上述 val 为正数）；若不需要改变a、b变量之间的顺序，则返回 0（即上述 val 为 0）
+
+```
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+arr.sort(function (a, b) {
+  return Math.random() - 0.5;
+});
+console.log(arr);
+```
+
+##### 补充：洗牌算法
+- 洗牌原理，该算法需要遍历整个数组，当遍历到第 i（i 为数组元素的索引）个元素时，从 0 到 i 随机挑选出一个数字，记为 index，然后对索引为 i 和 index 的数组元素进行互换，直至遍历结束。如此下来，也即完成了数组的随机排序。
+- 代码
+
+```
+var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+function shuffle (arr) {
+  var len = arr.length;
+  for (var i = 0; i < len; i++) {
+    // 生成 0 到 i 之间的随机整数
+    var index = Math.floor(Math.random() * (i + 1));
+    // 使用 ES6 中的解构赋值完成两个变量值的交换
+    [arr[i], arr[index]] = [arr[index], arr[i]];
+  }
+  return arr;
+}
+console.log('Shuffled arr: ', shuffle(arr));
+```
+
+#### 13.在一个数组中找出前四个最大的数字
+- 和下面这个题的逻辑差不多
+
+#### 14.最小的K个数，输入n个整数，找出其中最小的K个数
+- 第一种方式：普通的排序算法，排序之后自然可以得到最小的k个数，但时间复杂度高达O(NlogN)
+- 第二种方式：用快排将数组排序，输出前k小的数。
+- 基于快速排序
+    * 定义一个key，一般取数组最右边的元素为key，然后再定义两个变量start和end
+    * start为首元素索引，end为尾元素索引
+    * 然后从后往前找，找到第一个比key小的元素，没找到则end--，找到则将当前start位置的元素值置为当前end位置的元素值
+    * 然后再start++
+    * 接着再从前往后找，找到第一个比key大的元素，没找到则start++，找到则将当前end位置的元素值置为当前start位置的元素值
+    * 最后当start==end的时候，将当前start位置的元素值置为key
+    * 接着递归调用，按当前start==end的位置，分成两半
+    * 左边到start-1，右边从start+1开始
+    * 查找前K小，就从左边输出
+- 但上面两种方式是有限制的，需要一次性将全部数据装入内存，对于求解海量数据的top k问题是无能为力的。
+- 还有一种方式：BFPRT算法
+    * 时间复杂度仅为O(N)
+    * 在时间复杂度O(N)内，从无序的数组中找到第k小的数。显而易见的是，如果我们找到了第k小的数，那么想求arr中最小的k个数，只需再遍历一遍数组，把小于第k小的数都搜集起来，再把不足部分用第k小的数补全即可。
+    * BFPRT算法的过程
+        * 假设BFPRT算法的函数是int select(int[] arr, int k)，该函数的功能为在arr中找到第k小的数，然后返回该数。select(arr, k)的过程如下：
+            * 将arr中的n个元素划分成 n/5 组，每组5个元素，如果最后的组不够5个元素，那么最后剩下的元素为一组（n%5 个元素）。时间复杂度O(1)
+            * 对每个组进行排序，比如选择简单的插入排序，只针对每个组最多5个元素之间的组内排序，组与组之间不排序。时间复杂度 N/5O(1)
+            * 找到每个组的中位数，如果元素个数为偶数可以找下中位数，让这些中位数组成一个新的数组，记为mArr。时间复杂度O(N/5)
+            * 递归调用select(mArr, mArr.length / 2)，意义是找到mArr这个数组的中位数x，即中位数的中位数。时间复杂度T(N/2)
+            * 根据上面得到的x划分整个arr数组（partition过程），划分的过程为：在arr中，比x小的都在x左边，比x大的都在x右边，x在中间。时间复杂度O(N)
+            * 假设划分完成后，x在arr中的位置记为i，关于i与k的相对大小，有如下三种情况：
+                * 如果 i = k，说明x为整个数组中第k小的数，直接返回。时间复杂度O(1)
+                * 如果 i < k，说明x处在第k小的数左边，应该在x的右边继续寻找，所以递归调用select函数，在右半区寻找第k-i小的数。时间复杂度不超过T(7/10N + 6)
+                * 如果 i > k，说明x处在第k小的数右边，应该在x的左边继续寻找，所以递归调用select函数，在左半区寻找第k小的数。时间复杂度同样不超过T(7/10N + 6)
+- 针对海量数据的top k问题
+    * 实现了一种时间复杂度为O(Nlogk)的有效算法：初始时一次性从文件中读取k个数据，并建立一个有k个数的最大堆，代表目前选出的最小的k个数。然后从文件中一个一个的读取剩余数据，如果读取的数据比堆顶元素小，则把堆顶元素替换成当前的数，然后从堆顶向下重新进行堆调整；否则不进行任何操作，继续读取下一个数据。直到文件中的所有数据读取完毕，堆中的k个数就是海量数据中最小的k个数（如果是找最大的k个数，则使用最小堆）。
+- 对于从海量数据(N)中找出TOP K，这种算法仅需一次性将k个数装入内存，其余数据从文件一个一个读即可，所以它是针对海量数据TOP K问题最为有效的算法
+
+#### 15.找出数组中第 k 大的数字及其出现次数
+- 比如说数组 [1, 2, 4, 4, 3, 5]，第 2 大的数字是 4，出现了 2 次
+- 大体的思路
+    * 既然涉及到数字大小的问题，那就要对给定数组进行排序，题目要求“第k大”的数字，故选择降序的方式更有利于后面的查找；
+    * 需要遍历数组，对当前遍历到的数组元素的大小排名和 k 值进行比较，若排名大于k值则结束循环；如果排名等于 k 值，则将该数组元素记为第 k 大的数字，且次数加一；
+    * 我们先将数组的第一项定为第 1 大的数字，然后比较第一项和第二项是否相等，若相等则第二项也为第 1 大；如果不相等则数组第二项为第 2 大的数字。依次类推，可获知每次遍历的数组元素的大小排名。
+- 边界判断
+    * 给定的 k 值是否大于或等于 1（保证没有第 0 大的数字），且k值小于或等于数组的长度（因为数组经降序排序后，值最小的数组元素的大小排名值不可能比数组长度值更大）。这条判断隐含了数组不能为空的条件。
+    * 遍历结束时，k值不能超出值最小的数组元素的大小排名，若超出了，说明数组中不存在这样的数字。
+- 代码
+
+```
+function findKthNum (arr, k) {
+  var len = arr.length;
+  // 对给定的 k 值进行判断，确保 len >= k >= 1
+  if (k > len || k < 1) {
+    console.log("There doesn't exists the number you want !");
+    return;
+  }
+  // 获得数组的副本
+  var _arr = arr.slice();
+  // 遍历数组时，当前数组元素的大小排名
+  var rank = 1;
+  // 第 k 大的数字
+  var num = 0;
+  // 第 k 大数字的出现次数
+  var count = 0;
+  // 对 _arr 进行降序排序
+  _arr.sort(function (a, b) {
+    return b - a;
+  });
+  for (var i = 0; i < len; i++) {
+    var j = i + 1;
+    // 对当前数组元素的大小排名和 k 值进行比较，若排名大
+    // 于 k 值则结束循环；如果排名等于 k 值，则将该数组
+    // 元素记为第 k 大的数字，且次数加一。
+    if (rank > k) {
+      break;
+    } else if (rank == k) {
+      num = _arr[i];
+      count++;
+    }
+    // 若当前遍历的数组项与下一项数字不相等，则说明下一个
+    // 数字的排名值比当前遍历数字的排名刚好大 1
+    if ((j < len) && (_arr[i] != _arr[j])) {
+      rank++;
+    }
+  }
+  // 遍历结束时，若最后遍历的数组元素的大小排名小于给定的 k 值，则说
+  // 明数组中没有第 k 大的数字，即 k 值超出了所有数组元素的大小排名。
+  if (rank < k) {
+    console.log("There doesn't exists the number you want !");
+  } else {
+    console.log('第' + k + '大的数字：' + num, '出现次数：' + count);
+  }
+}
+```
+- 测试数据
+
+```
+// 正常情况，findKthNum(arr1, 2)
+var arr1 = [1, 2, 4, 4, 3, 5];
+
+// 数组为空，findKthNum(arr2, 2)
+var arr2 = [];
+
+// k 值小于 1，findKthNum(arr3, 0)
+var arr3 = [1, 2, 4, 4, 3, 5];
+
+// k 值大于数组长度，findKthNum(arr4, 7)
+var arr4 = [1, 2, 4, 4, 3, 5];
+
+// k 值超出了所有数组元素的大小排名，findKthNum(arr5, 6)
+var arr5 = [1, 2, 4, 4, 3, 5];
+```
+
+#### 16.假如有 10亿 条数据，每条数据的大小在 10k-100k 之间，我们有一台内存为4G的电脑，如何算出播放次数最多的一条微博？
+#### 17.如何打印一个矩阵
+- 例如：输出一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字
+- 顺时针打印矩阵
+
+##### 思路一：
+- 将复杂的矩阵拆解成若干个圈，循环打印矩阵，每次打印其中一个圈，设起点坐标为(start,start)，矩阵的行数为rows，矩阵的列数为columns，循环结束条件为 rows>start * 2，并且columns>start * 2将打印一圈拆解为四部分：
+    * 第一步：从左到右打印一行
+    * 第二步：从上到下打印一列
+    * 第三步：从右到左打印一行
+    * 第四步：从下到上打印一列
+- 需要注意的是最后一步打印，所以在每一行打印时要做好条件判断:
+    * 能走到最后一圈，从左到右必定会打印
+    * 结束行号大于开始行号，需要从上到下打印
+    * 结束列号大于开始列号，需要从右到左打印
+    * 结束行号大于开始行号+1，需要从下到上打印
+
+#### 18.如何验证一个 IP 地址的有效性
+- IPv4 地址由十进制数和点来表示，每个地址包含4个十进制数，其范围为 0 - 255
+- IPv4 地址内的数不会以 0 开头
+- IPv6 地址由 8 组 16 进制的数字来表示，每组表示 16 比特。
+- 正则表达式
+
+```
+String pattern = "^(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}$";
+```
+
+```
+/**
+ * 有效IP地址
+ */
+public class Code_07_IsValidIP {
+    public static String getIp(String ip) {
+        if (ip == null || ip.length() == 0) return "Neither";
+
+        if (ip.startsWith(":") || ip.startsWith(".")
+                || ip.endsWith(":") || ip.endsWith(".")
+        )
+            return "Neither";
+
+        String[] split = ip.split("\\.");
+        if (split.length == 4) {
+            int n = 1;
+            for (int i = 0; i < 4; i++) {
+                try {
+                    n = Integer.parseInt(split[i]);
+                    if (n < 0 || n > 255) return "Neither";
+                    if (split[i].length() > 1 && (split[i].startsWith("0") || split[i].startsWith(".")))
+                        return "Neither";
+                } catch (Exception e) {
+                    return "Neither";
+                }
+            }
+            return "IPv4";
+        } else {
+            split = ip.split(":");
+            if (split.length == 8) {
+                long n = -1;
+                for (int i = 0; i < 8; i++) {
+                    try {
+                        if (split[i].length() > 4 || split[i].startsWith(".")) return "Neither";
+                        n = Long.parseLong(split[i], 16);
+                        if (n < 0) return "Neither";
+                    } catch (Exception e) {
+                        return "Neither";
+                    }
+                }
+                return "IPv6";
+            } else {
+                return "Neither";
+            }
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getIp("256.256.256.256"));
+        System.out.println(getIp("2001:0db8:85a3:0:0:8A2E:0370:7334"));
+        System.out.println(getIp("172.16.254.1"));
+    }
+}
+```
+
+#### 19.栈中储存着一组无序的数字，不用遍历的方式，如何找出最小值
+#### 20.二维数组查找一个值
+- 例子：在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+- 方法一：穷举法
+- 方法二：双索引查找
+    * 二维数组是有序的，通过观察发现，若我们选取数组右上角的数字作为查找的起始点，如果等于目标值，则直接返回true；否则：如果大于目标值，则在该列左侧进行查找，如果小于目标值，则在该行下方进行查找。这样重复迭代，每查找一次就缩小查找范围，直到找到要查找的数字，或者查找范围为空。
+
+#### 21.有一个很大的整形数据，转成二进制求1的个数
+- 思路一：移位法。位操作。首先，判断这个数的最后一位是否为1，如果为1，那么计算器加1，然后通过右移丢弃掉最后一位，循环执行该操作直到这个数等于0位置。在判断二进制表示的最后一位是否为1时，可以采用与运算来达到这个目的。
+- 思路二：一个数的二进制形式中1的个数等于将这个数和这个数减一的值相与，将相与的到的数作为新的数。接着和其减一相与，知道结果变为0，中间的相与的次数。
+
+#### 22.判断一个正数是否是2的乘方
+- 思路一：
+    * 从int temp = 1开始，每次循环比较是否与number相等，不相等就让temp增大一倍(temp = temp*2)，如此循环比较，直到相等为止。这个方法的时间复杂度是O(LogN)
+
+#### 23.缓存淘汰算法 LRU 和 LFU
+- 缓存是一个计算机思维，对于重复的计算，缓存其结果，下次再算这个任务的时候，不去真正的计算，而是直接返回结果，能加快处理速度。当然有些会随时间改变的东西，缓存会失效，得重新计算。
+- 比如缓存空间只有2个，要缓存的数据有很多，1，2，3，4，5，那么当缓存空间满了，需要淘汰一个缓存出去，其中淘汰算法有 LRU，LFU，FIFO，SC二次机会，老化算法，时钟工作集算法等等。
+- LRU，最近最少使用，把数据加入一个链表中，按访问时间排序，发生淘汰的时候，把访问时间最旧的淘汰掉。比如有数据 1，2，1，3，2，此时缓存中已有（1，2）当3加入的时候，得把后面的2淘汰，变成（3，1）
+- LFU，最近不经常使用，把数据加入到链表中，按频次排序，一个数据被访问过，把它的频次+1，发生淘汰的时候，把频次低的淘汰掉。比如有数据1，1，1，2，2，3缓存中有（1(3次)，2(2次)）当3加入的时候，得把后面的2淘汰，变成（1(3次)，3(1次)）
+- 区别：LRU 是得把 1 淘汰。
+- 显然LRU对于循环出现的数据，缓存命中不高比如，这样的数据，1，1，1，2，2，2，3，4，1，1，1，2，2，2.....当走到3，4的时候，1，2会被淘汰掉，但是后面还有很多1，2
+- LFU对于交替出现的数据，缓存命中不高比如，1，1，1，2，2，3，4，3，4，3，4，3，4，3，4，3，4......
+由于前面被（1(3次)，2(2次)）3加入把2淘汰，4加入把3淘汰，3加入把4淘汰，然而3，4才是最需要缓存的，1去到了3次，谁也淘汰不了它了。
+
+#### 24.LRU缓存机制
+
+> 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。获取数据 get(key) - 如果关键字 (key) 存在于缓存中，则获取关键字的值（总是正数），否则返回 -1。写入数据 put(key,value)-如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字/值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。进阶:你是否可以在 O(1) 时间复杂度内完成这两种操作？
+- 思路大概是：维护一个按数据未使用时长升序的双链表（即最近使用的数据放在表头），建立hash表映射至双链表中的结点，并采用拉链法解决哈希冲突，哈希地址采用取余法。
+- 最难的是 put 操作，分析一下有几种情形：
+    * hash表中已有与该密钥（key）相同的数据，则无论缓存容量是否满，直接替换双链表中结点的数据值，并将其更新至双链表表头；
+    * hash表中没有与该密钥（key）的数据，那我们肯定要创建结点来存放该（密钥\数据），分两种情况：
+        * 缓存容量没满，那我们直接创建一个hash表的结点和双链表的结点，并存入（密钥\数据）及建立映射，再更新至双链表表头就可以了;
+        * 缓存容量满了，这时有两种办法：
+            * 删除双链表中最后一个数据结点（即最久未使用的数据），并删除其对应的hash表中的结点，然后和①操作类似；
+            删除hash表中最久未使用数据的结点，并根据密钥（key）建立一个新的结点，将其映射至双链表最后一个数据结点，改变该数据结点的密钥\数据值，再对其更新至双链表表头，相当于利用了该数据结点，避免了删除和新增这两步操作。
+- 采用的是第二种方法
+
+```
+#define Nothingness -1
+
+struct node{
+    int key;
+    int value;
+    struct node* prev;
+    struct node* next;
+};//双向链表
+
+struct hash{
+    struct node* unused;//数据的未使用时长
+    struct hash* next;//拉链法解决哈希冲突
+};//哈希表结构
+
+typedef struct {    
+    int size;//当前缓存大小
+    int capacity;//缓存容量
+    struct hash* table;//哈希表
+    //维护一个双向链表用于记录 数据的未使用时长
+    struct node* head;//后继 指向 最近使用的数据
+    struct node* tail;//前驱 指向 最久未使用的数据    
+} LRUCache;
+
+struct hash* HashMap(struct hash* table, int key, int capacity)
+{//哈希地址
+    int addr = key % capacity;//求余数
+    return &table[addr];
+}
+
+void HeadInsertion(struct node* head, struct node* cur)
+{//双链表头插法
+    if (cur->prev == NULL && cur->next == NULL)
+    {// cur 不在链表中        
+        cur->prev = head;
+        cur->next = head->next;
+        head->next->prev = cur;
+        head->next = cur;
+    }
+    else
+    {// cur 在链表中
+        struct node* fisrt = head->next;//链表的第一个数据结点
+        if ( fisrt != cur)
+        {//cur 是否已在第一个
+            cur->prev->next = cur->next;//改变前驱结点指向
+            cur->next->prev = cur->prev;//改变后继结点指向
+            cur->next = fisrt;//插入到第一个结点位置
+            cur->prev = head;
+            head->next = cur;
+            fisrt->prev = cur;
+        }
+    }
+}
+
+LRUCache* lRUCacheCreate(int capacity) {
+    /*if (capacity <= 0)
+    {//传参检查
+        return NULL;
+    }*/
+    LRUCache* obj = (LRUCache*)malloc(sizeof(LRUCache));
+    obj->table = (struct hash*)malloc(capacity * sizeof(struct hash));
+    memset(obj->table, 0, capacity * sizeof(struct hash));
+    obj->head = (struct node*)malloc(sizeof(struct node));
+    obj->tail = (struct node*)malloc(sizeof(struct node));
+    //创建头、尾结点并初始化
+    obj->head->prev = NULL;
+    obj->head->next = obj->tail;
+    obj->tail->prev = obj->head;
+    obj->tail->next = NULL;
+    //初始化缓存 大小 和 容量 
+    obj->size = 0;
+    obj->capacity = capacity;
+    return obj;
+}
+
+int lRUCacheGet(LRUCache* obj, int key) {
+    struct hash* addr = HashMap(obj->table, key, obj->capacity);//取得哈希地址
+    addr = addr->next;//跳过头结点
+    if (addr == NULL){
+        return Nothingness;
+    }
+    while ( addr->next != NULL && addr->unused->key != key)
+    {//寻找密钥是否存在
+        addr = addr->next;
+    }
+    if (addr->unused->key == key)
+    {//查找成功
+        HeadInsertion(obj->head, addr->unused);//更新至表头
+        return addr->unused->value;
+    }
+    return Nothingness;
+}
+
+void lRUCachePut(LRUCache* obj, int key, int value) {
+    struct hash* addr = HashMap(obj->table, key, obj->capacity);//取得哈希地址
+    if (lRUCacheGet(obj, key) == Nothingness)
+    {//密钥不存在
+        if (obj->size >= obj->capacity)
+        {//缓存容量达到上限
+            struct node* last = obj->tail->prev;//最后一个数据结点
+            struct hash* remove = HashMap(obj->table, last->key, obj->capacity);//舍弃结点的哈希地址
+            struct hash* ptr = remove;
+            remove = remove->next;//跳过头结点
+            while (remove->unused->key != last->key)
+            {//找到最久未使用的结点
+                ptr = remove;
+                remove = remove->next;
+            }
+            ptr->next = remove->next;//在 table[last->key % capacity] 链表中删除结点
+            remove->next = NULL;
+            remove->unused = NULL;//解除映射
+            free(remove);//回收资源
+            struct hash* new_node = (struct hash*)malloc(sizeof(struct hash));
+            new_node->next = addr->next;//连接到 table[key % capacity] 的链表中
+            addr->next = new_node;
+            new_node->unused = last;//最大化利用双链表中的结点，对其重映射(节约空间)
+            last->key = key;//重新赋值
+            last->value = value;
+            HeadInsertion(obj->head, last);//更新最近使用的数据
+        }
+        else
+        {//缓存未达上限
+            //创建(密钥\数据)结点,并建立映射
+            struct hash* new_node = (struct hash*)malloc(sizeof(struct hash));
+            new_node->unused = (struct node*)malloc(sizeof(struct node));
+            new_node->next = addr->next;//连接到 table[key % capacity] 的链表中
+            addr->next = new_node;
+            new_node->unused->prev = NULL;//标记该结点是新创建的,不在双向链表中
+            new_node->unused->next = NULL;
+            new_node->unused->key = key;//插入密钥
+            new_node->unused->value = value;//插入数据
+            HeadInsertion(obj->head,new_node->unused);//更新最近使用的数据
+            ++(obj->size);//缓存大小+1
+        }
+    }
+    else
+    {//密钥已存在
+    // lRUCacheGet 函数已经更新双链表表头，故此处不用更新
+        obj->head->next->value = value;//替换数据值
+    }
+}
+
+void lRUCacheFree(LRUCache* obj) {
+    free(obj->table);
+    free(obj->head);
+    free(obj->tail);
+    free(obj);
+}
+```
+
+#### 25.行间的换页算法有哪些
+#### 26.山脉数组找目标值(要求logN的时间复杂度)
+- 山脉数组：顶峰向左是递增的；顶峰向右是递减的
+- 首先找出顶峰节点，在往两边的递增递减数据使用二分
+
+```
+
+// 找到峰顶
+// 在峰顶左边 递增数组
+// 在峰顶右边 递减数组
+func findPeakSlope(pStart, pEnd int, pMountainArr *MountainArray) int {
+    for pStart < pEnd {
+        mid := pStart + (pEnd-pStart)/2
+        midNum := pMountainArr.get(mid)
+        if pMountainArr.get(mid+1) > midNum {
+            pStart = mid + 1
+        } else {
+            pEnd = mid
+        }
+    }
+    return pStart
+}
+
+// 递增排序
+func FindPositiveSlope(pStart, pEnd, pTarget int, pMountainArr *MountainArray) int {
+    mid := (pStart + pEnd) / 2
+    for pStart <= pEnd {
+        if pMountainArr.get(mid) == pTarget {
+            return mid
+        }
+        if pMountainArr.get(mid) > pTarget {
+            pEnd = mid - 1
+        } else {
+            pStart = mid + 1
+        }
+        mid = (pStart + pEnd) / 2
+    }
+    return -1
+}
+
+// 递减排序
+func FindBackSlope(pStart, pEnd, pTarget int, pMountainArr *MountainArray) int {
+    mid := (pStart + pEnd) / 2
+    for pStart <= pEnd {
+        if pMountainArr.get(mid) == pTarget {
+            return mid
+        }
+        if pMountainArr.get(mid) > pTarget {
+            pStart = mid + 1
+        } else {
+            pEnd = mid - 1
+        }
+        mid = (pStart + pEnd) / 2
+    }
+    return -1
+}
+func findInMountainArray(target int, mountainArr *MountainArray) int {
+    // 错误处理
+    if mountainArr.length() == 0 {
+        return -1
+    }
+    // 二分查找
+    peakIndex := findPeakSlope(0, mountainArr.length()-1, mountainArr)
+    if mountainArr.get(peakIndex) == target {
+        return peakIndex
+    }
+    // 递增
+    r := FindPositiveSlope(0, peakIndex-1, target, mountainArr)
+    if r != -1 {
+        return r
+    }
+    r = FindBackSlope(peakIndex+1, mountainArr.length()-1, target, mountainArr)
+    return r
+}
+```
+
+#### 27.给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素
+##### 方法一：最笨效率最低的办法，两个for循环，找出出现相同数字的次数
+
+```
+- (void)test1{
+    NSArray *array = @[@"1",@"1",@"2",@"2",@"3",@"3",@"4",@"4",@"5",@"6"];
+   
+    for (int i = 0; i < array.count; i++) {
+        NSString *itemi = array[i];
+         int count = 0;
+        for (int j = 0; j<array.count; j++) {
+             NSString *itemj = array[j];
+            if ([itemi isEqualToString:itemj]) {
+                count++;
+            }
+        }
+        if (count == 1) {
+            NSLog(@"只出现一次数为：%@", array[i]);
+        }
+    }
+}
+```
+##### 方法二：利用数组比较元素的方法，如果数组中没有出现该元素则添加，如果该元素出现了则删除该元素
+
+```
+- (void)test2{
+    NSArray *array = @[@"1",@"1",@"2",@"2",@"3",@"3",@"4",@"4",@"5",@"6"];
+    
+    NSMutableArray *mArray = [[NSMutableArray alloc] init];
+   
+    for (int i = 0; i < array.count; i++) {
+         NSString *item = array[i];
+        if (![mArray containsObject:item]) {
+            [mArray addObject:item];
+        }else{
+            [mArray removeObject:item];
+        }
+    }
+    NSLog(@"只出现一次数为：%@", mArray);
+}
+
+```
+##### 方法三：直接遍历整个数组，建成hash的数组。最后再遍历一次hash，取出对应key的数组有几个元素，如果有一个元素的key则是要找的只出现一次的元素。
+
+```
+- (void)test3{
+    NSArray *array = @[@"1",@"1",@"2",@"2",@"3",@"3",@"4",@"4",@"5",@"6"];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (int i = 0; i < array.count; i++) {
+        NSString *item = array[i];
+       // 如果字典中不存在该key
+        if (![[dict allKeys] containsObject:item]) {
+            NSMutableArray *mArray = [[NSMutableArray alloc] init];
+            [mArray addObject:item];
+            [dict setObject:mArray forKey:item];
+        }
+        else{
+            // 如果字典中存在key,则取出数组增加元素
+            NSMutableArray *mArray = [dict objectForKey:item];
+            [mArray addObject:item];
+        }
+        
+    }
+    
+    NSArray *keyArr = dict.allKeys;
+// 遍历字典，取出的数组如果只有一个元素的则是我们要找的
+    for (int i = 0; i < keyArr.count; i++) {
+        NSString *key = keyArr[i];
+        NSMutableArray *arr = [dict objectForKey:key];
+        if (arr.count == 1) {
+            NSLog(@"只出现一个数为：%@", key);
+        }
+    }
+    
+}
+```
+
+### 补充：有一个a[1000]的数组，存放1-1000的数，现在有一个数重复了，用一个时间复杂度为N的算法找到重复的数值
+- 方法一：将1001个元素相加减去1,2,3,……1000数列的和，得到的差即为重复的元素。
+
+#### 28.100层楼，扔两个鸡蛋，寻找使鸡蛋摔碎的楼层最快要扔多少次？（Google经典的面试题，有一个100层的楼，你手里现在有两个一模一样的鸡蛋，它们有可能都在一楼就摔碎，也可能从一百层楼摔下来没事，要你用这两个鸡蛋确定哪一层是鸡蛋可以安全落下的最高位置
+- 解释：两个鸡蛋一样，只有在达到某个楼层高度时，才会摔碎。可以假设这个摔碎临界楼层是N。
+- 最笨的方法:只用一个鸡蛋遍历——N次尝试
+    * 一个鸡蛋遍历那就是从一楼顶开始，逐层尝试，如果摔不碎那就继续往上层尝试，直到N层摔碎了。这样就尝试了N次，而且浪费了一个鸡蛋的使用。
+- 二分查找——两个鸡蛋，鸡蛋A用来二分尝试，鸡蛋B用来在A摔碎后做局部遍历尝试
+    * 鸡蛋A用来做二分尝试，即第一次从50层扔下。
+    * 最悲观情况，直接摔碎，说明N在1-50之间，那么鸡蛋B也只能从1开始遍历，回到了第一种情况（最多尝试次数也是N）。
+    * 乐观情况，鸡蛋A没摔碎，接下来就可以尝试从75层扔下，碎了那就是N在51-74之间了。尝试次数为1+1+（74-51）=25次。
+    * 更乐观情况，鸡蛋A在75层也没碎，接下来可以在87层扔下；A碎了则N在76-86之间，故是需要1+1+1+（86-76）=13次。
+    * A没碎，接下来在93层扔下；A碎了则N在88-92之间，故需要扔1+1+1+1+（92-88）=8次。
+    * A没碎，接下来在96层扔下；A碎了则N在94-95之间，故需要扔1+1+1+1+1+（95-94）=6次。
+    * A没碎，接下来在98层扔下；A碎了则N在97-98，故需要扔1+1+1+1+1+1=6次。
+    * A没碎，则A在99-100之间，如需要扔6+1=7次。
+- 可见，用二分法结果很不稳定，特别是N小于50时最糟糕（甚至会比第一种直接遍历的还要多一次）。N越大越好找，需要尝试的次数越少。如果这个题目换成鸡蛋个数不限制，那就是用二分法最快了。
+- 平均分割楼层法——假设总共扔X次，其中鸡蛋A扔了X1次，鸡蛋B扔了X2次
+    * X=X1+X2
+    * 鸡蛋A用来做楼层平均分割，大步尝试；鸡蛋B作为每一小部分的遍历小步尝试。
+    * 假设将100层平均分为10部分，即鸡蛋A分别在第10、20、30、40、50、60、70、80、90、100层扔；则鸡蛋B在A摔碎后在细分的那个楼层小步遍历寻找即可。如此的平均尝试次数又要比二分查找更好。
+    * 但问题是如何找到最优的平均分割n段，X1=n，X2=100/n。X=n+100/n，可见n平方=100即n等于10时，X=20。
+    * 若能在后面每一段更准确地分析出应该分的楼层数（如图2），而不是平均10层一段（如图1），会有更优的效果。下一个方法就是这样。
+- 假设法——假设最多允许尝试X次，问能尝试到的最高的楼层。
+    * 第1次从X楼扔下来。因为即使摔坏了，也可以用另一个鸡蛋遍历X-1次找到该楼层。
+    * 第2次（还剩X-1次尝试次数）可以从X+(X-1)层扔下来。因为即使摔碎了，也可以用另一个鸡蛋遍历X-1-1次找到该楼层。
+    * 同理，第3次，可以从X+(X-1)+(X-2)层扔下来。
+    * 第X次。可以从第X+(X-1)+(X-2)+...+(X-(X-2))+1层扔下来，这就是最高可能尝试到的楼层X*(X+1)/2，下面所有的楼层都可以在X次尝试中到达。
+    * 当最高楼层为100时，可列出不等式：最高可能尝试到的楼层X*(X+1)/2 > 100，解出X=14次。这就是最稳定的最快寻找到该楼层的扔鸡蛋次数。也就是说第一次扔鸡蛋要从14楼开始扔。14+13+12+11+...+2+1 = 105层，也就是14次尝试一定可以在1-105层中找到那个第N层。推出了公式X*(X+1)/2后，要想编程求任意总楼层条件下，就都很方便了。
+
+![image](https://upload-images.jianshu.io/upload_images/1197643-f14862e6af2c67c9.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/198)
+
+- 动态规划法——找最优解常用方法
+    * 在我们编程解决问题的过程中，如果遇到最优问题的时候，往往可以先尝试一下动态规划的方法。而动态规划的方法，首要的我们要找到构成这个最优问题的最优子问题。所以，下面的分析，我们首先尝试动态规划的方法，如何解决这个问题，这也是典型的程序员的思路；其次，在众多的问题当中，有不少可以直接归结为数学方程式，如果我们能够写出数学方程式，那么，答案将是更加的简洁、美妙（比如上一种方法推导出来的公式）。
+- 基于动态规划的方法
+    * 前面提到，若要采用动态规划的方法，最重要的是要找到子问题。做如下面的分析，假设F{n}表示从第n层楼扔下鸡蛋，找到不摔碎鸡蛋楼层的最少尝试次数。第一个鸡蛋可能从第i层扔下，有两个情况：
+        * 碎了，第二个鸡蛋，需要从第一层开始试验，最多要尝试i-1次。
+        * 没碎，两个鸡蛋，还有n-i层。这个就是子问题了f[n-i] 。
+- 所以，当第一个鸡蛋，由第i个位置落下的时候，要尝试的次数为f[i]= 1 + max(i - 1, f[n-i])用max是确保一定可以在这么多次内找到。那么对于每一个i对f(i)进行比较，非最小的f(i)，就是F{n}的值。状态转移方程如下： F{n} = min f[i] = min(1 + max(i - 1, f[n-i]) ) 其中: i的范围为(1, n), f[1] = 1 完毕。
+- 推广动态规划的方法，可以推广为n层楼，m个鸡蛋。如下分析： 假设f{n,m}表示n层楼、m个鸡蛋时找到最高楼层的最少尝试次数。当第一个鸡蛋从第i层扔下，如果碎了，还剩m-1个鸡蛋，为确定下面楼层中的安全楼层，还需要f{i-1,m-1}次，找到子问题；不碎的话，上面还有n-i层，还需要f[n-i,m]次，又一个子问题。 状态转移方程如下： f{n, m} = min(1 + max(f{i - 1, m - 1}, f{n - i, m}) ) 其中： i为(1, n), f{i, 1} = 1
+- 拓展一下，如果不是100楼层，是N楼层，曾怎么计算呢？
+
+![image](https://upload-images.jianshu.io/upload_images/1197643-336110312293e97a.png?imageMogr2/auto-orient/strip|imageView2/2/w/283)
+* 再次拓展，如果我们有三个鸡蛋，有k次机会，我们最大可以测试多少层楼？
+
+![image](https://upload-images.jianshu.io/upload_images/1197643-5a0a44afdb597907.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/690)
+* 如果我们有M个鸡蛋，有k次机会，我们最大可以测试多少层楼？
+
+#### 29.数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。或者是问：给定一个大小为n的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素
+##### 题解一
+- 对于排序的数组，数组中出现次数超过一半的数字一定会出现在数组的中间。于是先将数组排序，然后输出中位数即可。但是由于输入的数组不一定满足要求，所以别忘了检查得到的数字是否真的在数组中出现的次数超过一半。
+- 时间复杂度为O(nlogn)，空间复杂度为O(1)。
+
+##### 题解二
+- 一个直观的解法是使用哈希表。遍历一遍数组，将数组中每个元素出现的次数存入哈希表，然后遍历哈希表，找出出现次数大于一半的数字。
+- 时间复杂度为O(n)，空间复杂度为O(n)。
+
+##### 题解三
+- 考虑数组的特性，若数组中有一个数字出现的次数超过了数组长度的一半，那么数组中第 n/2 大的数字一定是这个数字。
+- 可以借助快排的思想来寻找特定的下标，这里我们需要寻找的下标就是 n/2，每次 Partition 都可以将 pivot放置到其对应的位置，且所有小于pivot的数字都在 pivot 左边，大于 pivot 的数字都在 pivot右边。排序后数组中的下标为数组长度一半的数字即为数组中第 n/2 大的数字（数组的中位数）。
+- 为了找到这个数字，我们可以使用递归，如果 pivot 的坐标小于 n/2，那么继续在 pivot 右边进行查找；如果 pivot 的坐标大于 n/2，那么继续在 pivot 左边进行查找；如果 pivot 的坐标刚好等于n/2，那么就返回数组中对应的数字。
+- 最后别忘了检查得到的数字是否真的在数组中出现的次数超过一半，毕竟上述算法得到的只是这个数组中第 n/2大的数字，并不保证这个数字出现次数超过一半。
+- 时间复杂度为O(n)，空间复杂度为O(1)。
+
+##### 题解四
+- 还有另外一种巧妙的方法。遍历数组，同时维护两个变量：一个是数组中的一个数字，另一个是次数。在遍历数组时，第一个数字作为守方，设置count=1，接下来的数字进行攻击。在遇到相同元素时守方即count加1，遇到不同元素时count-1。在count为0时，新的数字成为新的守方，接受接下来的攻击。
+- 若数组中有一个出现次数超过一半的数字，那么它一定是最终的胜利者。但也有可能不存在这与的数字，所以在结束之后也要像之前一样进行检查。
+- 时间复杂度为O(n)，空间复杂度为O(1)。
+
+### 30.怎么判断一条链表有环
+- 有环的定义：链表的尾结点指向了链表中的某个结点
+
+![image](https://upload-images.jianshu.io/upload_images/3738156-67be985aa4b3da78.png?imageMogr2/auto-orient/strip|imageView2/2/w/677)
+
+- 两种解决方案
+    * 方法一：使用p、q两个指针，p总是向前走，但q每次都从头开始走，对于每个结节点，看p走的步数是否和q一样。如果不一样，就存在环。如图，当p从6走到3时，总共需要6步，此时q从头head出发，只需要两步就到3，步数不等，存在环。
+    * 方法二：利用快慢指针，使用p、q两个指针，p每次向前走一步，q每次向前走两步，若在某个时候，p == q，则存在环。
+- 代码：
+- 第一步：创建有环单链表
+
+```
+/**
+ * 随机产生n个元素的值，建立带头结点的单链表L（尾插法）
+ */
+void CreatListTail(LinkList * L, int n){
+    
+    LinkList p,r;
+    int i;
+    
+    srand(time(0));                            /* 初始化随机数种子 */
+    *L = (LinkList)malloc(sizeof(Node));        /* L为整个线性表 */
+    r = *L;                                   /* r为指向尾部的结点 */
+    
+    for (i = 0; i < n; i++) {
+        
+        p = (LinkList)malloc(sizeof(Node));     /* 生成新节点 */
+        p->data = rand()%100 +1;               /* 随机生成100以内的数字 */
+        r->next = p;                          /* 将表尾终端结点的指针指针指向新节点 */
+        r = p;                                /* 将当前的新节点定义为表尾终端结点 */
+    }
+    
+    r->next = (*L)->next->next;                /* 尾部指向第二个结点(如果无环r->next = null) */
+}
+```
+- 用比较步数的方法【方法一】判断是否有环
+
+```
+/**
+ * 比较步数的方法
+ */
+int HasLoop(LinkList L){
+    
+    LinkList cur1 = L;                         /* 定义结点cur1 */
+    int pos1 = 0;                              /* cur1的步数 */
+    
+    while (cur1) {                             /* 结点cur1存在 */
+        
+        LinkList cur2 = L;                     /* 定义结点cur2 */
+        int pos2 = 0;                          /* cur2的步数 */
+        
+        while (cur2) {                         /* 结点cur2存在 */
+            
+            if (cur2 == cur1) {                /* 当cur2和cur1到达相同的结点时 */
+                
+                if (pos1 == pos2)              /* cur2和cur1走过的步数一样,说明没有环 */
+                    break;
+                else{                          /* 有环并返回1*/
+                    printf("环的位置在第%d个结点处.\n\n",pos2);
+                    return 1;
+                }
+
+            }
+            cur2 = cur2->next;                 /* 若果没有环，继续下一个结点 */
+            pos2++;                            /* cur2的步数自增 */
+        }
+        cur1 = cur1->next;                     /* cur1继续向后一个结点 */
+        pos1++;                                /* cur1的步数自增 */
+    }
+    return 0;
+}
+```
+- 用快慢指针【方法二】
+
+```
+/**
+ * 用快慢指针的方法
+ */
+int HasLoop2(LinkList L){
+
+    LinkList p = L;
+    LinkList q = L;
+    
+    while (p != NULL && q != NULL && q->next != NULL) {
+        
+        p = p->next;                          /* p每次走一步*/
+        
+        if (q->next != NULL) {
+            q = q->next->next;                /* p每次走两步*/
+        }
+        
+        printf("p:%d, q:%d \n", p->data,q->data);
+        
+        if (p == q) {
+            return 1;                        /* 当p和q相等，则表示有环 */
+        }
+    }
+    return 0;
+}
+```
+
+### 31.求数组的最长子数组
+### 32.回文算法，最长回文子串之 Manacher 算法
+- 最长回文子串：在计算机科学中，最长回文子串或最长对称因子问题是在一个字符串中查找一个最长连续子串，这个子串必须是回文。例如“banana”最长回文子串是“anana”。最长回文子串并不能保证是唯一的
+- 回文串可分为奇数回文串和偶数回文串。
+- 它们的区别是：奇数回文串关于它的“中点”满足“中心对称”，偶数回文串关于它“中间的两个点”满足“中心对称”。
+- 思路1：暴力匹配 Brute Force。
+    * 暴力匹配，虽然听起来并不是那么友好，但是我个人认为暴力解法虽然时间复杂度很高，但是它简单粗暴，编写正确的概率其实是很高的，完全可以使用暴力匹配算法检验我们编写的算法的正确性，并且在优化正确的前提下，通过和暴力匹配的比较，也可以体现我们优化算法的性能优势。
+    * 当然，“最长回文子串”在 LeetCode 上有标准的问题，我们编写好算法以后，可以提交到 LeetCode 上，运行 LeetCode 的测试用例检验我们实现的算法。
+- 思路2：中心扩散法。想法很简单，就是遍历每一个索引，以这个索引为中心，看看往两边扩散，最多能扩散多长的字符串。具体做法是利用“回文串”中心对称的特点，在枚举子串的过程中进行剪枝，在具体解这个问题的过程中，我们就要对可能产生的回文串是奇数长度和偶数长度进行考量，但是完全可以设计一种方法，兼容两种情况。
+- 思路3：动态规划。
+    * 定义状态：s[i, j] ：表示原始字符串的一个子串，i、j分别是索引，使用闭区间表示包括区间左右端点。
+    * dp[i, j]：如果子串 s[i,...,j] 是回文串，那么 dp[i, j] = true。即二维 dp：dp[i, j] 表示子串 s[i, j]（包括区间左右端点）是否构成回文串，是一个二维布尔型数组。
+    * 状态转移方程：在 dp[i, j] = true 的时候， dp[i + 1, j - 1] = true，因此，如果已知 dp[i + 1, j - 1]，就可以通过比较 s[i] 和 s[j] 并且考虑 dp[i + 1, j - 1] 进而得到 dp[i, j]。
+    * 如果 s[i, j] 是一个回文串，例如 “abccba”，那么 s[i+1, j-1] 也一定是一个回文串，根据这个递归的性质，我们可以写出状态转移方程。
+    * dp[i, j] = dp[i+1, j-1]，当然，此时我们要保证 [i+1, j-1] 能够形成区间，因此有i+1<=j-1，整理得 i-j <= -2，或者 j-i >=2。
+- 思路4：专门解决回文串的一个著名算法 Manacher 算法。
+    * Manacher 算法就是专门解决“最长回文子串”的一个算法，它的时间复杂度可以达到 O(n)
+    * [Manacher(1975)] 发现了一种线性时间算法，可以在列出给定字符串中从字符串头部开始的所有回文。并且，Apostolico, Breslauer & Galil (1995) 发现，同样的算法也可以在任意位置查找全部最大回文子串，并且时间复杂度是线性的。因此，他们提供了一种时间复杂度为线性的最长回文子串解法。替代性的线性时间解决 Jeuring (1994), Gusfield (1997)提供的，基于后缀树(suffix trees)。也存在已知的高效并行算法。
+    * 第 1 步：预处理，添加分隔符
+        * 分隔符是字符串中没有出现过的字符，这个分隔符的种类只有一个，即你不能同时添加 "#" 和 "?" 作为分隔符；
+        * 在字符串的首位置、尾位置和每个字符的“中间”都添加  个这个分隔符，可以很容易知道，如果这个字符串的长度是 len，那么添加的分隔符的个数就是 len + 1，得到的新的字符串的长度就是 2len + 1，显然它一定是奇数。
+        * 为什么要添加分隔符？
+            * 首先是正确性：添加了分隔符以后的字符串的回文性质与原始字符串是一样的。
+            * 其实是避免奇偶数讨论，对于使用“中心扩散法”判定回文串的时候，长度为奇数和偶数的判定是不同的，添加分隔符可以避免对奇偶性的讨论。
+    * 第 2 步：得到 p 数组
+        * 第 1 行 char 数组：这个数组就是待检测字符串加上分隔符以后的字符构成的数组。
+        * 第 2 行 index 数组：这个数组是索引数组，我们后面要利用到它，填写即索引从 0 开始写就好了。
+        * 回文半径：以 char[i] 作为回文中心，同时向左边、向右边进行扩散，直到不能构成回文串或者触碰到边界为止，能扩散的步数 + 1 ，即定义为 p 数组索引的值，也称之为回文半径。
+        * p-1 数组很简单了，把 p 数组的数 -1 就行了。于是：数组 p -1 的最大值就是最长的回文子串，可以在得到 p 数组的过程中记录这个最大值，并且记录最长回文子串。
+
+### 33.判断一个字符串是不是对称的字符串，比如 abba 或者 aba 这样的就是对称的。
+### 34.hash 算法的原理
+### 35.二叉树逐层打印
+- 请按层输出其的节点值，即：按从上到下，从左到右的顺序。
+- 因为我们不但需要按层来遍历，还需要按层来输出结果，所以我在代码中使用了两个队列，分别名为level和nextLevel，用于保存不同层的节点。
+- 最终，整个算法逻辑是：
+    * 判断输入参数是否是为空。
+    * 将根节点加入到队列level中。
+    * 如果level不为空，则：
+        * 将level加入到结果ans中。
+        * 遍历level的左子节点和右子节点，将其加入到nextLevel中。
+        * 将nextLevel赋值给level，重复第 3 步的判断。
+    * 将ans中的节点换成节点的值，返回结果。
+
+### 36.找出一个页面中漏出部分面积最大的试图，重合的部分按照最上层的面积算漏出
+### 37.一个坦克从一个空间的起点到终点，中间在某些位置上有阻隔的情况下，判断从起点到终点是否有可行路径。
+### 38.二叉树翻转，将二叉树的两个孩子换位置，即左变右，右变左。
+- 方法一：循环，栈存储（DFS，非递归)    
+    * 本质思想是，左右节点进行交换，循环翻转每个节点的左右子节点，将未翻转的子节点存入栈中，循环直到栈里所有节点都循环交换完为止。
+
+```
+       public TreeNode invertTree(TreeNode root) {          
+            if (root == null) {
+                return null;
+            }
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(root);           
+            while(!stack.isEmpty()) {
+                final TreeNode node = stack.pop();
+                final TreeNode left = node.left;
+                node.left = node.right;
+                node.right = left;           
+                if(node.left != null) {
+                    stack.push(node.left);
+                }
+                if(node.right != null) {
+                    stack.push(node.right);
+                }
+            }
+            return root;
+        }
+```
+
+- 方法二：循环，队列存储（BFS，非递归）
+    * 本质思想是，左右节点进行交换，循环翻转每个节点的左右子节点，将未翻转的子节点存入队列中，循环直到栈里所有节点都循环交换完为止。
+
+```
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            TreeNode left = node.left;
+            node.left = node.right;
+            node.right = left;
+            if (node.left != null) {
+                queue.offer(node.left);
+            }
+            if (node.right != null) {
+                queue.offer(node.right);
+            }
+        }
+        return root;
+    }
+```
+
+- 方法一、方法二伪代码：
+
+```
+1、判断根结点是否为空，为空则返回null；
+2、新建栈（队列），用于节点存储，初始存入根节点到栈（队列）里；
+3、while循环，栈（队列）为空时结束循环；
+  i.出栈（队列）一个节点，将该节点的左右子节点交互；
+  ii.判断左右子节点是否为null，非null则继续将左右节点入栈（队列）；
+4、循环交换结束，返回根节点;
+
+```
+- 方法三：递归
+    * 本质思想也是左右节点进行交换，交换前递归调用对根结点的左右节点分别进行处理，保证交换前左右节点已经翻转。
+
+```
+1、判断根结点是否为空，为空则返回null；
+2、交换跟节点的左右节点；
+3、递归交互左右子树；
+```
+
+```
+    public TreeNode invertTree(TreeNode node) {
+        if (node == null) {
+            return null;
+        }
+        TreeNode temp = node.left;
+        node.left = node.right;
+        node.right = temp;
+        invertTree(node.left);
+        invertTree(node.right);
+        return node;
+    }
+```
+
+## UIKit
+### 1.UIView 和 CALayer 是什么关系？
+- 首先从继承关系来分析两者：UIView : UIResponder，CALayer : NSObject。
+#### UIView
+- UIView 响应事件，UIView 继承 UIResponder，而 UIResponder 是响应者对象，所以UIView 响应事件
+- 实现了如下 API，所以继承自 UIResponder 的都具有响应事件的能力：
+
+```
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event;
+- (void)touchesEstimatedPropertiesUpdated:(NSSet<UITouch *> *)touches NS_AVAILABLE_IOS(9_1);
+```
+- 并且 UIView 提供了以下两个方法，来进行 iOS 中的事件的响应及传递（响应者链）：
+
+```
+- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event;
+- (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event;  
+```
+#### CALayer 绘制 UI
+- CALayer 绘制 UI：CALayer 没有继承自 UIResponder，所以CALayer不具备响应处理事件的能力。CALayer 是 QuartzCore中的类，是一个比较底层的用来绘制内容的类。
+#### UIView 对 CALayer 封装属性
+- UIView 中持有一个 layer 对象，同时这个 layer 对象的 delegate 是 UIView ，所以，UIView 和 CALayer 是协同工作。
+- 平时我们对 UIView 设置 frame、center、bounds 等位置信息，其实都是UIView对CALayer进一层封装，使得我们可以很方便地设置控件的位置；例如圆角、阴影等属性，UIView就没有进一步封装，所以我们还是需要去设置 Layer 的属性来实现功能。
+- Frame 属性主要是依赖：bounds、anchorPoint、transform、和position。
+- 我们这主要说一下 anchorPoint 和 position 如何影响 Frame 的：anchorPoint锚点是相对于当前Layer的一个点，position 是 Layer 中 anchorPoint 锚点在 superLayer 中的点，即 position 是由 anchorPoint 来确认的。
+- 这里有几个通用的公式：
+
+```
+position.x = frame.origin.x + anchorPoint.x * bounds.size.width；  
+position.y = frame.origin.y + anchorPoint.y * bounds.size.height；
+  
+frame.origin.x = position.x - anchorPoint.x * bounds.size.width；  
+frame.origin.y = position.y - anchorPoint.y * bounds.size.height；    
+```
+- 故有：
+    * position 是 layer 中的 anchorPoint 在 superLayer 中的位置坐标。
+    * 单独修改 position 与 anchorPoint 中任何一个属性都不影响另一个属性。
+#### UIView 是 CALayer 的代理
+- UIView 持有一个 CALayer 的属性，并且是该属性的代理，用来提供一些 CALayer 的数据，例如动画和绘制。
+
+```
+//绘制相关
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
+
+//动画相关
+- (nullable id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event;
+```
+#### 动画相关
+- Layer 中很多属性都是 animatable 的，这就意味着修改这些属性会产生隐式动画。当是如果修改 UIView主Layer的话，此时隐式动画会失效，因为：UIView 默认情况下禁止了 layer 动画，但是在 animation block 中又重新启用了它们。
+- 当一个 animatable 属性变化时，Layer 会询问代理方法该如何处理这个动画，即需要在代理方法中返回合适的 CAAction 对象。
+- 属性改变时 layer会向view请求一个动作，而一般情况下 view 将返回一个NSNull，只有当属性改变发生在动画 block 中时，view 才会返回实际的动作。
+#### 绘制相关
+- CALayer 在屏幕上绘制东西是因为 CALayer 内部有一个 contents (CGImage)的属性，contents 也被称为寄宿图。绘制相关的 API 如下：
+
+```
+- (void)displayLayer:(CALayer *)layer;
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
+
+- (void)drawRect:(CGRect)rect
+```
+#### drawRect 方法实现
+- 平时为自定义View添加空间或者在上下文画图都会使用到这个函数，但是如果当我们实现了这个方法的时候，这个时候会生成一张寄宿图，这个寄宿图的尺寸是 layer 的宽 * 高 * contentsScale，其实算出来的是有多少像素。然后每个像素占用4个字节，总共消耗的内存大小为：宽 * 高 * contentsScale * 4 字节。
+- 这里跟我们图片显示是一个道理：一张图片需要解压成位图才能显示到屏幕上，图片的颜色空间一般是RGBA，每个像素点需要包含RGBA四个信息，所以一张图片解压成位图需要占用内存大小为：像素宽 * 像素高 * 4 个字节。（PS：将图片解压成位图是比较耗时的，这就是为什么通常会在子线程解压图片，然后再到主线程中显示，避免卡住主线程）
+- 所以在使用 drawRect方法来实现功能之前，需要看看是否有替代方案，避免产生寄宿图增加程序的内存，使用 CAShapeLayer 来绘制是一个不错的方案。
+#### UILabel 绘制文字占用内存的情况
+- 这里讲到绘制占用内存的情况，我们简单来了解下 Label 绘制文字占用的内存情况，实例代码如下：
+
+```
+//绘制一个全屏的 Label
+        UILabel *label1 = [[UILabel alloc] initWithFrame:self.view.bounds];
+    label1.text = @"11111";
+    [self.view addSubview:label1];
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:self.view.bounds];
+    label2.text = @"😀11111";
+    [self.view addSubview:label2];
+```
+- 绘制一个全屏的 Label，按理由需要占用内存：宽 * 高 * 4，iPhone 6SP 像素为：1242 * 2208，全屏差不多是占用 10 M 左右，但是 label1 大概会占用 3 M左右， label2 会占用 10 M左右；其实这里是因为如果使用黑白位图，苹果会优化颜色空间，这里每个像素就只会占用 1 个字节，比 4 字节节省 75% 的空间。
+#### 总结
+- 如果确定是不需要交互的，可以将 UIView 替换成 CALayer，来省去UIView封装带来的损耗，AsyncDisplayKit 库利用 ASDisplayNode 来替代UIView来节省资源。
+
+### 2.Bounds 和 Frame 的区别?
+#### frame
+- 是每个view必备的属性，代表的是当前视图的位置和大小，没有设置frame，当前视图是看不到的。
+- 在iOS坐标系中以左上角为坐标原点，往右为X正方向，往下是Y正方向
+- frame中的位置是以父视图的坐标系为标准来确定当前视图的位置
+- 同样的默认情况下，本视图的左上角就是子视图的坐标原点
+- 更改frame中位置，则当前视图的位置会发生改变
+- 更改frame的大小，则当前视图以当前视图的左上角为基准进行大小的修改
+#### bounds
+- 是每个View都有的属性，这个属性我们一般不进行设置，他同样代表位置和大小；
+每个视图都有自己的坐标系，且这个坐标系默认以自身的左上角为坐标原点，所有子视图以这个坐标系的原点为基准点。
+- bounds的位置代表的是子视图看待当前视图左上角的位置;bounds的大小代表当前视图的大小；
+- 更改bounds中的位置对于当前视图没有影响，相当于更改了当前视图的坐标系，对于子视图来说当前视图的左上角已经不再是(0,0), 而是改变后的坐标，坐标系改了，那么所有子视图的位置也会跟着改变
+- 更改bounds的大小，bounds的大小代表当前视图的长和宽，修改长宽后，中心点继续保持不变, 长宽进行改变；通过bounds修改长宽看起来就像是以中心点为基准点对长宽两边同时进行缩放；
+#### frame和bounds
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-188e8cb0157b3cee.png?imageMogr2/auto-orient/strip|imageView2/2/w/779)
+
+- 因为是View A是顶层视图，所以其实相当于覆盖在框架上，因此位置从父视图的（0，0）开始，大小为500*400
+- 默认情况下，本视图的坐标系是没有发生改变的即当前视图(view A)的左上角就是所有子视图的原点，大小就是当前视图的大小.
+- 因为View B是ViewA的子视图，所以ViewB的frame位置需要以View A的左上角为参照，因此位置为(200, 100), 大小为200*150
+- bounds在默认情况下本视图的坐标系是没有发生改变的即当前视图(viewB)的左上角就是当前视图所有子视图的原点.
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-2844fc5a83246fca.png?imageMogr2/auto-orient/strip|imageView2/2/w/893)
+
+- 在上一个例子的基础上，我们更改了view A的bounds后，view B看待View A的左上角就已经发生改变了；这个时候我们看待View A的左上角就不是坐标原点了，而是我们通过bounds设置后的坐标，如图也就是(0, 100);
+在View B的frame没有保存不变的基础上，我们View B的位置向上移动了100
+
+![image](https://upload-images.jianshu.io/upload_images/1196725-ed92b2bc1640b1bd.png?imageMogr2/auto-orient/strip|imageView2/2/w/935)
+
+#### 总结
+- frame不管对于位置还是大小，改变的都是自己本身
+- frame的位置是以父视图的坐标系为参照，从而确定当前视图在父视图中的位置
+- frame的大小改变时，当前视图的左上角位置不会发生改变，只是大小发生改变
+- bounds改变位置时，改变的是子视图的位置，自身没有影响；其实就是改变了本身的坐标系原点，默认本身坐标系的原点是左上角
+- bounds的大小改变时，当前视图的中心点不会发生改变，当前视图的大小发生改变，看起来效果就想缩放一样
+
+### 3.TableViewCell如何根据UILabel内容长度自动调整高度?
+- 将需要改变高度的UILabel的Line设置为0。Line代表UILabel能显示的最多行数
+- 重写estimatedHeightForRowAtIndexPath方法
+    * 因为系统是先获取cell的高度，再获取cell的view。也就是先调用heightForRowAtIndexPath，再调用cellForRowAtIndexPath。在cellForRowAtIndexPath被调用之前，你的label是没有被设置文本内容的，因此它获取到的高度，并不是你想要的。那么我们必须想办法让系统在获取了cell之后，再获取cell的高度。方法就是，重写estimatedHeightForRowAtIndexPath
+    * 它会返回一个估计高度，有了这个方法后，tableview会先调用它获取估计高度，然后获取cell，最后获取真实高度。那么最后的真实高度，就是我们希望的高度。estimatedHeightForRowAtIndexPath的返回值可以随意，返回多少都可以，让它延迟获取真实的高度。
+- 重写heightForRowAtIndexPath，真实高度返回值为UITableViewAutomaticDimension
+- 或者在viewDidLoad中直接用
+
+```
+self.tableView.estimatedRowHeight = 10
+self.tableView.rowHeight = UITableViewAutomaticDimension
+```
+
+### 4.LoadView方法了解吗？
+- loadView作用,用来创建控制器的View.
+- 当控制器的View,第一次使用的时候调用.
+- loadView底层原理:
+    * 先判断当前控制器是不是从storyBoard当中加载的,如果是从storyBoard加载的控制器.那么它就会把从storyBoard当中加载的控制器的View,设置成当前控制器的view.
+    * 当前控制器是不是从xib当中加载的,如果是从xib当中加载的话,把xib当中指定的View,设置为当前控制器的View.
+    * 如果也不是从xib加载的,它会创建空白的view.
+- 一但重写了loadView方法,就说明要自己定义View.
+- 一般使用的场景:当控制器的View一显示时,就是一张图片,或者UIWebView.
+节省内存
+
+### 5.UIButton 的父类是什么？UILabel 的父类又是什么？
+- UIControl 
+- UIView
+
+### 补充：UIButton防止多次点击
+#### 设置enabled或userInteractionEnabled属性
+* 通过UIButton的enabled属性和userInteractionEnabled属性控制按钮是否可点击。此方案在逻辑上比较清晰、易懂，但具体代码书写分散，常常涉及多个地方。
+
+```
+- (void)tapBtn:(UIButton *)btn {
+    NSLog(@"按钮点击...");
+    btn.enabled = NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        btn.enabled = YES;
+    });
+}
+```
+#### 借助cancelPreviousPerformRequestsWithTarget:selector:object实现
+- 通过 NSObject 的两个方法
+- 实现步骤如下:
+    * 创建一个UIButton的分类，使用runtime增加public属性cs_eventInterval和private属性cs_eventInvalid。
+    * 在+load方法中使用runtime将UIButton的-sendAction:to:forEvent:方法与自定义的cs_sendAction:to:forEvent:方法进行交换
+    * 使用cs_eventInterval作为控制cs_eventInvalid的计时因子，用cs_eventInvalid控制UIButton的event事件是否有效。
+
+```
+// 此方法会在连续点击按钮时取消之前的点击事件，从而只执行最后一次点击事件
++ (void)cancelPreviousPerformRequestsWithTarget:(id)aTarget selector:(SEL)aSelector object:(nullable id)anArgument;
+// 多长时间后做某件事情
+- (void)performSelector:(SEL)aSelector withObject:(nullable id)anArgument afterDelay:(NSTimeInterval)delay;
+```
+
+```
+/** 方法一 */
+- (void)tapBtn:(UIButton *)btn {
+    NSLog(@"按钮点击了...");
+    // 此方法会在连续点击按钮时取消之前的点击事件，从而只执行最后一次点击事件
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(buttonClickedAction:) object:btn];
+    // 多长时间后做某件事情
+    [self performSelector:@selector(buttonClickedAction:) withObject:btn afterDelay:2.0];
+}
+
+- (void)buttonClickedAction:(UIButton *)btn {
+    NSLog(@"真正开始执行业务 - 比如网络请求...");
+}
+```
+- 通过runtime交换方法实现
+
+```
+@interface UIButton (Extension)
+
+/** 时间间隔 */
+@property(nonatomic, assign)NSTimeInterval cs_eventInterval;
+
+@end
+```
+
+```
+#import "UIButton+Extension.h"
+#import <objc/runtime.h>
+
+static char *const kEventIntervalKey = "kEventIntervalKey"; // 时间间隔
+static char *const kEventInvalidKey = "kEventInvalidKey";   // 是否失效
+
+@interface UIButton()
+
+/** 是否失效 - 即不可以点击 */
+@property(nonatomic, assign)BOOL cs_eventInvalid;
+
+@end
+
+@implementation UIButton (Extension)
+
++ (void)load {
+    // 交换方法
+    Method clickMethod = class_getInstanceMethod(self, @selector(sendAction:to:forEvent:));
+    Method cs_clickMethod = class_getInstanceMethod(self, @selector(cs_sendAction:to:forEvent:));
+    method_exchangeImplementations(clickMethod, cs_clickMethod);
+}
+
+#pragma mark - click
+
+- (void)cs_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
+    if (!self.cs_eventInvalid) {
+        self.cs_eventInvalid = YES;
+        [self cs_sendAction:action to:target forEvent:event];
+        [self performSelector:@selector(setCs_eventInvalid:) withObject:@(NO) afterDelay:self.cs_eventInterval];
+    }
+}
+
+#pragma mark - set | get
+
+- (NSTimeInterval)cs_eventInterval {
+    return [objc_getAssociatedObject(self, kEventIntervalKey) doubleValue];
+}
+
+- (void)setCs_eventInterval:(NSTimeInterval)cs_eventInterval {
+    objc_setAssociatedObject(self, kEventIntervalKey, @(cs_eventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)cs_eventInvalid {
+    return [objc_getAssociatedObject(self, kEventInvalidKey) boolValue];
+}
+
+- (void)setCs_eventInvalid:(BOOL)cs_eventInvalid {
+    objc_setAssociatedObject(self, kEventInvalidKey, @(cs_eventInvalid), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+```
+
+
+### 6.IBOutlet连出来的视图属性为什么可以被设置成weak?
+- 官方文档里面说：一般的IBOutlet直接关联到viewcontroller。但是跟其关联的控件并不是添加在controller上，而是添加到controller的view上，比如[self.view addSubView：xxx]; 这个时候self.view已经对xxx 强引用过了，self.view才是持有xxx的对象。这样子才符合引用计数的规则。所以直接IBOutlet顶级view的时候肯定是strong的。
+- 其实质是：使用storyboard创建的viewController，那么会有一个叫 _topLevelObjectsToKeepAliveFromStoryboard的私有数组强引用所有top level的对象，同时top level对象强引用所有子对象，那么vc没必要再强引用top level对象的子对象。
+- 以UIButton为例：UIViewController->UIView->UIButton
+    * 如果我们在vc中这样写
+
+```
+@IBOutlet weak var bu: UIButton!
+```
+他们之间的引用关系用图表示如下：
+
+![image](http://jbcdn2.b0.upaiyun.com/2016/03/5f5fef26ea7d3eb2dd997e21d1254758.png)
+viewController强引用view对象，同时view强引用button对象，那么你声明属性的时候使用weak就可以了。（觉得Strong也可以，但是完全没必要）
+
+释放过程：其实不管声明的属性是强引用还是弱引用，在控制器消失的时候，这个属性消失，View消失，subViews消失，控件也就消失了。
+
+### 7.IB中User Defined Runtime Attributes如何使用？
+- 用户定义的运行时属性
+- 它能够通过KVC的方式配置一些你在interface builder 中不能配置的属性。当你希望在IB中作尽可能多得事情，这个特性能够帮助你编写更加轻量级的viewcontroller
+- 当你使用IB（Storyboard或者Xib）编辑视图的时候，有时可能会遇到诸如 圆角、边框、边框颜色、控件背景颜色等等难以通过IB直接设置的属性。这时你不得不借助代码实现。其实当出现这类情况时,我们其实可以借助Runtime Attribute在IB中实现。
+- 在IB中，点击任意一个控件切换到identity inspector
+
+![image](https://upload-images.jianshu.io/upload_images/2791656-10f9e2c59df07f7b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/300)
+- 属性类型
+    * 下面是一些可用的Attribute Types与其相对应的数据类型:
+        * Boolean – BOOL
+        * Number – NSNumber * 
+        * String – NSString *
+        * Point – CGPoint
+        * Size – CGSize
+        * Rect – CGRect
+        * Range – NSRange
+        * Color – UIColor *
+        * Image - UIImage imageNamed
+    
+==注意：在user defined runtime attributes（用户定义的运行时属性）是没有报错机制的，我们必须保障每一个属性都要写正确（尤其是大小写）和每个Type的数据类型选择正确==
+
+### 8.实现一个控件，可以浮在任意界面的上层并支持拖动？
+### 9.说一下控制器View的生命周期，一旦收到内存警告会如何处理？
+![image](https://upload-images.jianshu.io/upload_images/1434508-370daf660ff330e4.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+- Phone下每个app可用的内存是被限制的，如果一个app使用的内存超过20M，则系统会向该app发送Memory Warning消息。
+- 当应用程序占用了大约20MB内存时，iphone开始发出内存警告。当应用程序所占内存大约为30MB时，iphone OS会关闭应用程序。收到此消息后，app必须正确处理，否则可能出错或者出现内存泄露。app收到Memory Warning后会调用：
+    * UIApplication::didReceiveMemoryWarning
+    * UIApplicationDelegate::applicationDidReceiveMemoryWarning
+- 然后调用当前所有的viewController进行处理。因此处理的主要工作是在viewController。
+- 我们知道，创建viewcontroller时，执行顺序是loadview -> viewDidLoad。
+- 当收到内存警告时，如果viewcontroller未显示（在后台），会执行didReceiveMemoryWarning -> viewDidUnLoad；如果viewcontroller当前正在显示（在前台），则只执行didReceiveMemoryWarning。
+当重新显示该viewController时，执行过viewDidUnLoad的viewcontroller（即原来在后台）会重新调用loadview -> viewDidLoad。
+- 重载didReceiveMemoryWarning时，一定调用这个函数的super实现来允许父类（一般是UIVIewController）释放self.view。self.view释放之后，会调用下面的viewDidUnload函数.也就是说，尽管self.view是被处理了，但是outlets的变量因为被retain过，所以不会被释放，为了解决这个问题，就需要在viewDidUnload中释放这些retain过的outlets变量。通常controller会保存nib文件建立的views的引用，但是也可能会保存着loadView函数创建的对象的引用。
+
+#### 生命周期
+- 单个viewController
+    * loadView： 加载view
+    * viewDidLoad： view加载完毕
+    * viewWillAppear： 控制器的view将要显示
+    * viewWillLayoutSubviews：控制器的view将要布局子控件
+    * viewDidLayoutSubviews：控制器的view布局子控件完成
+    * viewDidAppear: 控制器的view完全显示
+    * viewWillDisappear： 控制器的view即将消失的时候
+    * viewDidDisappear： 控制器的view完全消失的时候
+- 多个viewControllers跳转
+    * 当我们点击push的时候首先会加载下一个界面然后才会调用界面的消失方法
+    * loadView：ViewController2
+    * viewDidLoad：ViewController2
+    * viewWillDisappear：ViewController1 将要消失
+    * viewWillAppear：ViewController2 将要出现
+    * viewWillLayoutSubviews ViewController2
+    * viewDidLayoutSubviews ViewController2
+    * viewWillLayoutSubviews:ViewController1
+    * viewDidLayoutSubviews:ViewController1
+    * viewDidDisappear:ViewController1 完全消失
+    * viewDidAppear:ViewController2 完全出现
+- 控制器的view是延迟加载的：创建控制器并不一定会创建控制器的view，等用到时再加载
+- 补充：
+    * 如果a控制器push到b控制器,那么a和b的View都不会被销毁,因为它的控制器还存在，有一个强引用引用着它(除非内存警告会销毁a的View)如果b控制器pop到a控制器,那么b的View会被销毁a和b都在导航控制器的栈里被管理,就是个数组
+    * 此时如果你打印会发现方法的调用顺序是:
+        * 控制器b的View的viewDidLoad
+        * 控制器b的View的viewWillAppear
+        * 控制器a的View的viewDidDisappear
+#### 内存警告的处理
+- 两个内存警告
+    * 当application接收到内存警告的时候，会先通知它的代理，代理在接收到内存警告的时候会调用applicationDidReceiveMemoryWarning方法
+    * 之后代理会通知它的window,window会通知它的根控制器，根控制器会通知它的子控制器,内存警告是由上往下一层一层往下传的,最后传给控制器View,控制器View会调用它的didReceiveMemoryWarning方法
+- 内存警告的处理
+
+![image](https://upload-images.jianshu.io/upload_images/6950351-dd67f46bce6d4073.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
+
+### 10.说一下 UIView 的生命周期？
+- 单个viewController
+    * viewDidLoad
+    * viewWillAppear
+    * viewWillLayoutSubviews
+    * viewDidLayoutSubviews
+    * viewDidAppear
+    * viewWillDisappear
+    * viewDidDisappear
+- 多个viewControllers跳转
+    * 当我们点击push的时候首先会加载下一个界面然后才会调用界面的消失方法
+    * loadView：ViewController2
+    * viewDidLoad：ViewController2
+    * viewWillDisappear：ViewController1 将要消失
+    * viewWillAppear：ViewController2 将要出现
+    * viewWillLayoutSubviews ViewController2
+    * viewDidLayoutSubviews ViewController2
+    * viewWillLayoutSubviews:ViewController1
+    * viewDidLayoutSubviews:ViewController1
+    * viewDidDisappear:ViewController1 完全消失
+    * viewDidAppear:ViewController2 完全出现
+
+
+### 11.说一下AppDelegate的几个方法？从后台到前台调用了哪些方法？第一次启动调用了哪些方法？从前台到后台调用了哪些方法？
+- 1,-(void)applicationWillResignActive:(UIApplication *)application.
+    * 说明:当应用程序将要入非活动状态执行,在此期间,应用程序不接收消息或事件,比如来电
+- 2.-(void)applicationDidBecomeActive:(UIApplication *)application
+    * 说明:当应用程序入活动状态执行,这个刚好跟上面那个方法相反
+- 3,-(void)applicationDidEnterBackground:(UIApplication *)application
+    * 说明:当程序被推送到后台的时候调用。所以要设置后台继续运行,则在这个函数里面设置即,可
+- 4,-(void)applicationWillEnterForeground:(UIApplication *)application
+    * 说明:当程序从后台将要重新回到前台时候调用,这个刚好跟上面的那个方法相反.
+- 5,-(void)applicationWillTerminate:(UIApplication *)application.
+    * 说明:当程序将要退出是被调用,通常是用来保存数据和一些退出前的清理工作。这个需要要,设置UIApplicationExitsOnSuspend的键值。
+- 6,-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+    * 说明: iPhone设备只有有限的内存,如果为应用程序分配了太多内存操作系统会终止应用程!序的运行,在终止前会执行这个方法,通常可以在这里进行内存清理工作防止程序被终止,
+- 7,-(void)applicationSignificantTimeChange:(UIApplication*)application
+    * 说明：当系统时间发生改变时执行
+- 8,-(void)applicationDidFinishLaunching:(UIApplication*)application
+    * 说明:当程序载入后执行
+- 9.- (void)application:(UApplication)application willChangeStatusBarFrame:(CGRectinewStatusBarFrame
+    * 说明:当StatusBar框将要变化时执行
+- 10 - (void)application:(UIApplication*)application willChangeStatusBarOrientation:(UlinterfaceOrientation)newStatusBarOrientation
+duration(NSTimelinterval)duration
+    * 说明:当StatusBar框方向将要变化时执行,
+- 11,-(BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
+    * 说明:当通过url执行
+- 12.- (void)application:(UIApplication*)application didChangeStatusBarOrientation(unterfaceOrientation)oldStatusBarOrientation
+    * 说明:当StatusBar框方向变化完成后执行
+- 13.-(void)application:(UIApplication*)application didChangeSetStatusBarFrame:(CGRect)oldStatusBarFrame
+    * 说明:当StatusBar框变化完成后执行
+
+### 12.如何暂停一个 UIView 中正在播放的动画？暂停后如何恢复？
+### 13.如何以通用的方法找到当前显示的ViewController?
+- 场景：在处理 URL Router 跳转的时候，经常需要得到“当前最上层的视图控制器”来进行视图跳转。
+- 方法一：
+    * Podfile添加pod 'CJBaseHelper/UIViewControllerCJHelper'，并pod update或pod install
+    * 库引入成功后，直接使用如下方法即可。即：
+
+```
+UIViewController *vc = [UIViewControllerCJHelper findCurrentShowingViewController];
+或
+UIViewController *vc = [UIViewControllerCJHelper findCurrentShowingViewControllerFrom:self];
+```
+### 14.如何在多次presentViewController后直接返回到指定层
+- 场景：如果多个控制器都通过 present 的方式跳转呢？比如从A跳转到B，从B跳转到C，从C跳转到D，如何由D直接返回到A呢？
+- 可以通过 presentingViewController 一直找到A控制器，然后调用A控制器的 dismissViewControllerAnimated 方法。方法如下：
+
+```
+UIViewController *controller = self;
+while(controller.presentingViewController != nil){
+    controller = controller.presentingViewController;
+}
+[controller dismissViewControllerAnimated:YES completion:nil];
+```
+- presentedViewController 与 presentingViewController
+    * 假设从A控制器通过present的方式跳转到了B控制器，那么 A.presentedViewController 就是B控制器；B.presentingViewController 就是A控制器。
+
+### 15.如何通过视图(view)获取该视图所在的控制器(viewController)
+```
++ (nullable UIViewController *)findBelongViewControllerForView:(UIView *)view {
+    UIResponder *responder = view;
+    while ((responder = [responder nextResponder]))
+        if ([responder isKindOfClass: [UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+    return nil;
+}
+```
+
+### 16.setNeedsDisplay 和 layoutIfNeeded 两者是什么关系？
+- setNeedsDisplay会调用drawRect方法重画页面
+- setNeedsLayout会调用layoutSubviews，页面才会发生变化。
+- 调用layoutIfNeed不会触发VC中viewDidLayoutSubviews 和 viewWillLayoutSubviews 里面重写 views的布局
+
+### 17.什么情况下会调用layoutSubviews ？
+- 调用setNeedsLayout，直接调用setLayoutSubviews
+- addsubview时触发layoutSubviews
+- 改变一个view的frame会触发layoutSubviews
+- 改变view的size会触发父view的layoutSubviews
+- 滚动会触发layoutSubviews
+- 旋转Screen会触发父UIView上的layoutSubviews事件
+
+### 18.什么情况会调用draw rect方法
+- controller的loadView、viewdidLoad方法调用之后，view即将出现在屏幕之前系统调用drawRect。
+- sizeToFit方法调用之后。
+- 设置contetMode为UIViewCOntentModelRedraw，之后每次更改frame的时候调用redraw方法。
+- 调用setNeedsDisplay方法。
+
+### 19.多个类型的cell如何优雅加载？
+#### 题解一
+- 一种就是常见的if else，但是如果修改的话，就会代码很多，一旦修改，就会修改太多，太繁琐了；
+
+#### 题解二
+- modle，根据model来对应cell，cell面向model开发，一般都是一个类型的数据（model）对应一种类型的cell，所以类型是固定的，所以我们用一个枚举来定义所有类型的cell，cellType或者model就知道如何去处理相应的cell了；但是会有重复的操作和数据处理。
+
+#### 题解三
+- Model：对 Cell 类型进行更高层次的抽象，将model抽出相同的数据，定义BaseModel，通过继承的方式，分为数据类型 DataModel 和非数据类型 SpecialModel 两种，进行定义，通过多层继承可进一步避免重复定义变量。将非数据类型也定义为类型的好处是，将这部分 UI 控制逻辑下沉到 Model 创建之处：网络/持久化数据 Entity -> UIModel，在这个过程中，创建额外的非数据型UIModel，只要数据创建好，后期就不用再理相关逻辑了。
+- Cell：定义BaseCell, Cell子类型通过运行时动态创建，UI显示通过CardBaseView作为容器，加载到Cell 的ContentView上。
+- 通过一系列解耦，将变化分散到两端：Model 和 View；
+- View：因为是View放置在Cell的ContentView上，因此，View的Delegate是Cell，Cell通过消息转发实现回调，避免Cell实现中手写回调中转。
+
+### 20.UICollectionView自定义layout如何实现？
+> 在创建自定义的layout之前，你需要知道UICollectionViewFlowLayout提供的很多特性已经 经过优化以满足多种常用的layout。除非是如下情况，否则不建议自定义
+
+- 你所想实现的外观并不是网格或者 line-based breaking 布局（items排成一行直到行满，再继续往下一行上去排，直到所有items都排列完成），或者必须要在多个方向上都可以滚动
+- 需要频繁地改变所有 Cell的位置，以致于创建自定义layout比修改现有flow layout工作量更省
+
+==记住：自定义最难的部分是确定布局中各item位置所需要的计算==
+
+### 继承UICollectionViewLayout
+- 继承UICollectionViewLayout之后只需要重载几个提供布局核心特性的方法，其他方法只需按情况重载即可，核心特性如下：
+    * 指定可滚动内容区域的size
+    * 为布局中的每个Cell及view提供属性对象
+- layout对象需要用到datasource以创建collection view的layout对象，其通过layout自身的collectionView属性访问此datasource。需要注意的是，知道 layout过程中哪些信息可以从collection view中访问到，哪些不可以 是非常重要的。因为layout过程中，collection view 是无法获知各View的布局以及位置的。所以尽量避免通过 collection view获取除layout之外的信息。
+> 深入理解布局过程
+
+collection view完全通过你自定义的layout对象管理整个布局过程，如 collection view 首次布局或者resize的时候，会向布局对象获取相关信息。你也可以手动调用invalidateLayout方法以更新布局对象，此方法会强制生成新layout。（需要注意invalidateLayout与reloadData的区别，在移动，添加或者删除item的时候，需要摒弃原有布局，重新生成新的布局，使用invalidateLayout，而如果只是datasource中的数据有更新，这时需要使用reloadData）
+
+layout过程中，如下方法提供了layout的基本信息，其他方法也会被调用，但如下这些方法总是按如下顺序调用的：
+
+1 prepareLayout方法调用来为即将进行的layout作前期的计算
+
+2 collectionViewContentSize方法基于初始计算，返回整体内容区域的size
+
+3 layoutAttributesForElementsInRect:方法返回指定区域中cells和views的属性
+
+![image](https://upload-images.jianshu.io/upload_images/268750-cd700e8158f38214.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+prepareLayout方法是为确定布局中各cell和view位置做计算，需要在此方法中算出足够的信息以供后续方法计算内容区域的整体size，collection view使用content size 以正确地配置scroll view。比如 content size 长宽均超过屏幕的话，水平与竖直方向的滚动都会被enable。基于当前滚动位置，collection view会调用 layoutAttributesForElementsInRect:方法以请求特定rect(有可能是也可能不是可见rect）中cell和view的属性。到此，core layout process已经结束了。
+
+layout结束之后，cells和views的属性在你或者collection view invalidate布局之前都不会变，collection view可以在滚动的过程中自动invalidate 布局：用户滚动内容过程中，collection view调用layout的shouldInvalidateLayoutForBoundsChange:方法，如果返回值为YES则invalidate 布局。（但需要知道的是，invalidateLayout并不会马上触发layout update process,而是在下一个view更新周期中，collection view发现layout已经dirty才会去更新)
+
+> 创建布局属性
+
+自定义layout需要返回UICollectionViewLayoutAttributes类的对象，这些对象可以在很多不同方法中创建，但创建时间可以根据具体情况具体决定。如果collectionview未有数千的item,则prepare layout时创建会比在用户滚动过程中用到时再计算更可取，因为创建的这些属性可以缓存起来。如果计算所有属性并缓存起来所带来的性能消耗比请求时获取的消耗更大，则可请求时再创建相关属性对象。
+
+创建UICollectionViewLayoutAttributes类对象新实例时，可以使用这样几个方法：layoutAttributesForCellWithIndexPath:，layoutAttributesForSupplementaryViewOfKind:withIndexPath:，layoutAttributesForDecorationViewOfKind:withIndexPath:，基于展示的view类型的不同，必须使用正确的类方法，因为collection view使用这些信息向datasource对象请求适当类型的view。使用错误的方法会引起collection view在错误的地方创建错误的view，你所希望呈现的layout就不会出现。
+
+创建每个属性对象之后，将相应View的相关属性都设置上。最少要在layout中设置view的size和position。如果在你的布局中有view重叠了，需要正确配置zIndex属性以维持重叠views的一致的有序状态。其他属性可以让你控制cell或者view的可见性或者外观表现。如果标准属性类无法满足你的需要，可以继承并对其进行扩充以存储每个View的其他信息。继承layout属性时，需要实现属性的isEqual:方法因为collectionview需要使用这个方法。
+
+> 给定矩形中的items的布局属性
+
+layout processs的最后，collection view会调用你的layout对象的layoutAttributesForElementsInRect：方法。对一个大的可滚动的内容区域，collectionview可能只会请求当前可见的那部分区域中的所有items的属性。当然，这个方法需要支持获取任意rect中items的信息，因为有可能在插入及删除时需要做动画效果。
+
+![image](https://upload-images.jianshu.io/upload_images/268750-30364131ff8a1720.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+layoutAttributesForElementsInRect：方法的实现需要遵循如下步骤：
+
+1 遍历prepareLayout方法产生的数据以访问缓存的属性或者创建新的属性
+
+2 检查每个item的frame以确定是否与layoutAttributesForElementsInRect:方法中指定rectangle有重叠部分
+
+3 对每个重叠的item，添加一个对应的UICollectionViewLayoutAttributes对象到一个数组中
+
+4 返回布局属性的数组给collection view
+
+不仅要记住缓存layout信息能够带来性能提升，也要记住不断重复为cells创建新layout属性的计算代价是十分昂贵的，足以影响到app的性能。当collection view管理的items量很大时，采用在请求时创建layout属性的方式是十分合理的。
+
+> 按需提供布局属性对象
+
+collection view会在正常的layout 过程之外周期性地让你提供单个items的layout对象。比如为某item配置插入和删除动画时。自定义的layout通过如下方法提供这些信息：
+
+layoutAttributesForItemAtIndexPath:
+
+layoutAttributesForSupplementaryViewOfKind:atIndexPath:
+
+layoutAttributesForDecorationViewOfKind:atIndexPath:
+
+返回属性时，不能更新这些layout属性，如果需要改变layout信息，调用invalidateLayout，在接下来的layout周期中更新这些信息。上述方法中layoutAttributesForItemAtIndexPath：是所有自定义 layout都必须重载的方法，如果有supplementary view和decoration view可以分别重载下面两个方法。
+
+> 可以通过self.collectionView.collectionViewLayout = [[MyCustomLayout alloc] init];方式也可以在storyboard文件中设置collection view 的class属性
+
+### 让你的layout更优异
+
+除了上述这些必须实现的方法，还有一些特性能够改善自定义layout的用户体验，实现这些属性是可选但推荐实现的。
+
+> 通过 附加view 提供内容品质
+
+supplementary views与Cells分离且有自己的layout属性，由Datasource提供，且其目的是为app主要内容增强信息。与cells一样，supplementary view也会经历重用的过程以最小化collection view使用的资源消耗。所以所有 supplementary view都需要继承UICollectionReusableView。
+
+添加supplementary view到layout中的过程如下：
+
+1 注册supplementary view到layout对象中，registerClass:forSupplementaryViewOfKind:withReuseIdentifier: or registerNib:forSupplementaryViewOfKind:withReuseIdentifier:
+
+2 在datasource中实现collectionView:viewForSupplementaryElementOfKind:atIndexPath:,由于这些view是可重用的，调用dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:来获取可用的view
+
+3 但为Cells创建一样为supplementary Views创建layout 属性对象
+
+4 layoutAttributesForElementsInRect:方法中返回的属性数组中包含supplementary view的layout属性对象
+
+5 实现layoutAttributesForSupplementaryViewOfKind:atIndexPath:方法为特定supplementary View返回属性对象
+
+处理supplementaryview布局属性的过程和cell属性的过程一样，但不同的是supplementary view可以有很多种但只能有一种Cell。这是因为 supplementary view与它们是分离开的，是为了烘托主旨，所以每个supplementary view方法都会指明其各类以方便正确计算其特有的属性。
+
+> 在layout中添加Decoration Views
+
+Decoration Views是layout UI特征的有效点缀，与cell和supplementary view不同的是，它只做外观呈现用，所以与datasource无关。可以用来提供自定义背影，在Cells缝隙之间填充，甚至可以掩盖cell,它完全由layout对象控制。
+
+在layout中添加Decoration view步骤如下：
+
+1 用registerClass:forDecorationViewOfKind: or registerNib:forDecorationViewOfKind: method方法注册自定义的decoration view，但记住是在layout对象中注册
+
+2 layout对象中layoutAttributesForElementsInRect:方法中为decoration view创建属性
+
+3 实现layoutAttributesForDecorationViewOfKind:atIndexPath:方法并在请求时返回decoration view的布局属性
+
+4 选择性地实现initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath: 和 finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:方法以处理出现和消失的动画，可参考下面的插入和删除动画部分
+
+由于decoration view与cell和supplementary view的创建过程不同，注册class或者 nib即可，最多需要调用 一个initWithFrame:方法。但任何decoration view也需要是UICollectionReusableView子类，因为 也对其启用了回收机制。
+
+> 插入和删除动画
+
+插入及删除cell时collection view会询问layout对象提供一组初始化属性用于动画，同样，删除元素时会询问一组终值属性。
+
+![image](https://upload-images.jianshu.io/upload_images/268750-44af6d2d9ef3b376.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+item插入时，layout对象提供正要被插入的item的初始化layout信息。在此例中，layout先将Cell的初始化位置设置到Collection view中间，并将其alpha通道设置为0，动画期间，此item会渐现并从中间移动到右下角。下面的代码描述了如何设置初始化信息及实现动画：
+
+![image](https://upload-images.jianshu.io/upload_images/268750-a64cb521b2521b45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+需要注意的是，上述代码会使得此item插入的时候对所有Cell都会添加此插入的动画，若只想对插入的item做插入动画，可以检查 index path是否与传入prepareForCollectionViewUpdates:方法的item的index path匹配，并只在有匹配到的时候才进行动画，否则只返回super initialLayoutAttributesForAppearingItemAtIndexPath:
+
+delete动画与插入类似，提供正确的final 属性即可
+
+> 提升layout的滚动体验
+
+滚动的时候scrollview会根据当前的speed和减速状况决定最终会停在哪个偏移，当算出这个停留位置之后，其会调用 targetContentOffsetForProposedContentOffset:withScrollingVelocity:方法是否要改变这个位置，由于其是在滚动过程中调用此方法，所以自定义layout可以改变滚动的仪停留位置。
+
+下图展示了调整滚动特性的效果
+
+![image](https://upload-images.jianshu.io/upload_images/268750-9c00715d303bc260.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+
+假定collection view开始于（0，0），且用户向左侧滑，collection view计算出滚动原本会停下的位置，自定义layout可能会改变这个值以确保滚动停下的时候，某个item正好停留在可见区域正中间。这个新值会成为新的目标content offset，且会从targetContentOffsetForProposedContentOffset:withScrollingVelocity：方法返回。
+
+注意：
+
+1 items数较小（数百），或者items layout信息变化较小 时，可以在prepareLayout中创建并缓存layout信息
+
+2 尽量不要继承UICollectionView
+
+3 不要在layoutAttributesForElementsInRect：方法中调用uicollectionview的visiblecells方法，因为其实这个调用是转化成了向layout对象请求visible cells
+
+### 21.用StoryBoard开发界面有什么弊端？如何避免？
+* 难以维护
+    - Storyboard在某些角度上，是难以维护的。我所遇到过的实际情况是，公司一个项目的2.0版本，设计师希望替换原有字体。然而原来项目的每一个Label都是采用Storyboard来定义字体的，因此替换新字体需要在Storyboard中更改每一个Label。
+    - 幸亏我们知道Storyboard的源文件是XML，最终写了一个读取-解析-替换脚本来搞定这件事。
+* 性能瓶颈
+    - 当项目达到一定的规模，即使是高性能的MacBook Pro,在打开Storyboard是也会有3-5秒的读取时间。无论是只有几个Scene的小东西，还是几十个Scene的庞然大物，都无法避免。Scene越多的文件，打开速度越慢(从另一个方面说明了分割大故事板的重要性)。
+    - 让人沮丧的是，这个造成卡顿的项目规模并不是太难达到。 
+    - 我猜想是由于每一次打开都需要进行I/O操作造成的，Apple对这一块的缓存优化没有做到位。可能是由于Storyboard占用了太多内存，难以在内存中进行缓存。Whatever,这个问题总是让人困扰的。 
+    - 然而需要指出的是，采用Storyboard开发或采用纯代码开发的App，在真机的运行效率上，并没有太大的区别。
+* 错误定位困难
+    - Storyboard的初学者应该对此深有体会。排除BAD_EXCUSE错误不说，单单是有提示的错误，就足以让人在代码和Storyboard之间来回摸索，却无法找到解决方案。
+
+### 22.iOS滑块验证
+#### 拼图的验证
+- 思路：
+    * 1.创建一个背景图片和一个滑块，需要注意的是我们需要压缩背景的显示图片到指定的尺寸目的是为了从这图片上截取某一块的时候frame对的上
+    * 2 创建一个从可移动的图片，从背景图的随机位置截取某一部分，并绘制贝塞尔曲线
+    * 3 创建一个遮罩层UIView （上面加入一个CAShapeLayer CAShapeLayer的贝塞尔曲线和截取图片的一样）
+    * 4 拉动滑块移动让图片位置随着Slider的value值改变而改变frame
+    * 5 判断可移动图片与遮罩层的frame的x值相差是否在误差范围内
+
+#### 文本按顺序点击的验证
+- 思路：
+    * 创建普通的背景图和滑块。。。
+    * 获取多个随机汉字并打乱顺序
+    * 创建随机位置的按钮文本（x值固定，y值随机）
+
+### 23.控件的点击事件和添加在上边的手势谁先响应，并说明原因
+- 只会响应手势
+- UIGestureRecognizer有个属性cancelsTouchesInView，这个属性默认值为YES，即当手势识别成功后，会发送touchesCancelled消息为view来结束view的响应。如果cancelsTouchesInView为NO，那么gestureRecognizer和view都可以响应。
+UIKit内置了6中手势识别器：
+    * UITapGestureRecognizer:点击（单击、双击、三连击等）手势。
+    * UIPinchGestureRecognizer：缩放手势。
+    * UIPanGestureRecognizer：拖拽手势。
+    * UISwipeGestureRecognizer：滑动手势。
+    * UIRotationGestureRecognizer：旋转手势。
+    * UILongPressGestureRecognizer：长按手势。
+
+## Foundation
+### 1.nil`、`NIL`、`NSNULL` 有什么区别？
+- nil、NIL 可以说是等价的，都代表内存中一块空地址。
+- NSNULL 代表一个指向 nil 的对象。
+
+### 2.如何实现一个线程安全的 `NSMutableArray`?
+- NSMutableArray是线程不安全的，当有多个线程同时对数组进行操作的时候可能导致崩溃或数据错误
+- 线程锁：使用线程锁对数组读写时进行加锁
+- 派发队列：多用派发队列，少用同步锁中指出：使用“串行同步队列”，将读取操作及写入操作都安排在同一个队列里，即可保证数据同步。
+- 而通过并发队列，结合GCD的栅栏块（barrier）来不仅实现数据同步线程安全，还比串行同步队列方式更高效。
+
+### 3.如何定义一台 iOS 设备的唯一性?
+- UUID+keyChain存储
+- 获取UUID
+
+```
+[[UIDevice currentDevice] identifierForVendor] UUIDString]
+```
+- 当你升级或者重装软件的时候，UUID会发生变化，这时候我们再去获取UUID时，得到的值和以前的不一样，但其实还是同一台设备
+- keychain：是钥匙串的意思，是苹果公司Mac OS中的密码管理系统。keychain里保存的信息不会因App被删除而丢失，在用户重新安装App后依然有效，数据还在。所以我们可以将UUID存储到keychain里面，需要用到的时候从keychain中取，这样可以保证UUID的唯一性。
+
+### 4.atomic` 修饰的属性是绝对安全的吗？为什么？
+- 不一定安全，所谓的安全只是局限于 Setter、Getter 的访问器方法而言的
+- 方法里加入一些互斥锁，目的就是防止多(条)线程访问同一个内存地址，造成数据错误。
+- 但是不能保证多线程安全，当开启两个异步线程频繁的去对ojb执行+1操作的时候，就不是线程安全的，解决方法是加锁
+
+### 5.实现 `isEqual` 和 `hash` 方法时要注意什么？
+- hash
+    * 对关键属性的hash值进行位或运算作为hash值
+- isEqual
+    * ==运算符判断是否是同一对象,因为同一对象必然完全相同
+    * 判断是否是同一类型,这样不仅可以提高判等的效率, 还可以避免隐式类型转换带来的潜在风险
+    * 判断对象是否是nil, 做参数有效性检查
+    * 各个属性分别使用默认判等方法进行判断
+    * 返回所有属性判等的与结果
+
+### 6.`id` 和 `instanceType` 有什么区别？
+- 相同点
+    * instancetype 和 id 都是万能指针，指向对象。
+- 不同点：
+    * id 在编译的时候不能判断对象的真实类型，instancetype 在编译的时候可以判断对象的真实类型。
+    * id 可以用来定义变量，可以作为返回值类型，可以作为形参类型；instancetype只能作为返回值类型。
+
+### 7.简述事件传递、事件响应机制。
+#### UIResponder的继承链
+- 首先要先了解响应者对象UIResponder，只有继承UIResponder的的类，才能处理事件。
+- 我们可以看出UIApplication，UIView，UIViewController都是继承自UIResponder类，可以响应和处理事件。
+
+#### 事件响应的过程？
+- 响应者：响应者为响应事件的UIResponder子类对象，如UIButton、UIView等；
+- 响应链：响应链是由链接在一起的响应者（UIResponse子类）组成的。
+- 事件传递：获得响应链后，将事件由第一响应者往application传递的过程；
+- 事件的传递过程
+
+![image](https://upload-images.jianshu.io/upload_images/4986510-8e8307e475ec486f.png)
+
+- 苹果基于mach port注册了一个Source1用来接收系统事件，其回调函数为 __IOHIDEventSystemClientQueueCallback()。
+- 当一个硬件事件(触摸/锁屏/摇晃等)发生后，首先由 IOKit.framework 生成一个 IOHIDEvent 事件并由 SpringBoard 接收。SpringBoard只接收按键(锁屏/静音等)，触摸，加速，接近传感器等几种 Event，随后用 mach port 转发给需要的 App 进程。随后苹果注册的那个Source1就会触发回调，并调用_UIApplicationHandleEventQueue()进行应用内部的分发。
+- _UIApplicationHandleEventQueue() 会把IOHIDEvent 处理并包装成 UIEvent 进行处理或分发，其中包括识别 UIGesture/处理屏幕旋转/发送给UIWindow等。通常事件比如 UIButton 点击、touchesBegin/Move/End/Cancel 事件都是在这个回调中完成的。
+- 其实说白了就是：当iOS程序发生触摸事件后，系统会利用Runloop将事件加入到UIApplication的任务队列中；UIApplication分发触摸事件到UIWindow，然后UIWindow依次向下分发给UIView；UIView调用hitTest:withEvent:方法看看自己能否处理事件，以及触摸点是否在自己上面；如果满足条件，就遍历UIView上的子控件。重复上面的动作；直到找到最顶层的一个满足条件（既能处理触摸事件，触摸点又在上面）的子控件，此子控件就是我们需要找到的第一响应者。
+
+```
+// 此方法返回的View是本次点击事件需要的最佳View
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+
+// 判断一个点是否落在范围内
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+//返回最适合处理事件的视图，最好在父视图中指定子视图的响应
+
+// 因为所有的视图类都是继承BaseView
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+   // 1.判断当前控件能否接收事件
+   if (self.userInteractionEnabled == NO || self.hidden == YES || self.alpha <= 0.01) return nil;
+   // 2. 判断点在不在当前控件
+   if ([self pointInside:point withEvent:event] == NO) return nil;
+   // 3.从后往前遍历自己的子控件
+   NSInteger count = self.subviews.count;
+   for (NSInteger i = count - 1; i >= 0; i--) {
+       UIView *childView = self.subviews[I];
+       // 把当前控件上的坐标系转换成子控件上的坐标系
+    CGPoint childP = [self convertPoint:point toView:childView];
+      UIView *fitView = [childView hitTest:childP withEvent:event];
+       if (fitView) { // 寻找到最合适的view
+           return fitView;
+       }
+   }
+   // 循环结束,表示没有比自己更合适的view
+   return self;
+   
+}
+```
+
+#### 手势识别的过程？
+- 当 _UIApplicationHandleEventQueue()识别了一个手势时，其首先会调用Cancel将当前的touchesBegin/Move/End 系列回调打断。随后系统将对应的UIGestureRecognizer 标记为待处理。
+- 苹果注册了一个 Observer 监测 BeforeWaiting (Loop即将进入休眠) 事件，这个 Observer 的回调函数是 _UIGestureRecognizerUpdateObserver()，其内部会获取所有刚被标记为待处理的GestureRecognizer，并执行GestureRecognizer 的回调。
+- 当有 UIGestureRecognizer的变化(创建/销毁/状态改变)时，这个回调都会进行相应处理。
+
+### 8.说一下对 `Super` 关键字的理解。
+- 使用super关键字发送消息会被编译器转化为调用objc_msgSendSuper以及相关函数
+
+```
+id objc_msgSendSuper(struct objc_super *super, SEL op, ...);
+```
+- 这里的super已经不再是我们调用时写的[super init]的super了，这里指代的是struct objc_super结构体指针。
+
+### 9.了解 逆变 和 协变 吗？
+- __covariant:协变, 子类转父类 
+- __contravariant:逆变 父类转子类
+- 协变和逆变的作用就是，对象相互赋值时，对象属性(泛型)的处理
+- 协变:`对象(属性泛型子类)`赋予`对象( 属性泛型父类)`
+- 逆变:`对象(属性泛型父类)`赋予`对象( 属性泛型子类)`
+
+### 10.`@synthesize` 和 `@dynamic` 分别有什么作用？
+- @property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var;
+- @synthesize 的语义是如果你没有手动实现 setter 方法和 getter方法，那么编译器会自动为你加上这两个方法。
+- @dynamic 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供 getter 即可）。
+- 假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var =someVar，由于缺setter方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺 getter方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。
+
+### 11.Obj-C 中的反射机制了解吗？
+- iOS反射机制：运行时选择创建哪个实例，并动态选择调用哪个方法。
+- 常用判断方法
+
+```
+// 当前对象是否这个类或其子类的实例
+- (BOOL)isKindOfClass:(Class)aClass;
+// 当前对象是否是这个类的实例
+- (BOOL)isMemberOfClass:(Class)aClass;
+// 当前对象是否遵守这个协议
+- (BOOL)conformsToProtocol:(Protocol *)aProtocol;
+// 当前对象是否实现这个方法
+- (BOOL)respondsToSelector:(SEL)aSelector;
+```
+- 获取Class的三种方法
+
+```
+// 通过字符串获取class  
+Class class = NSClassFromString(@"NSString");  
+NSLog(@"class type : %@", class);  
+
+// 直接用class 来创建对象 ,通过对象来获取class 
+id str = [[class alloc] init];   
+NSLog(@"%@", [str class]);  
+
+// 通过类来获取class  
+NSLog(@"%d", class==NSString.class);   
+```
+- 实际应用
+    * 根据后台推送过来的数据，进行动态页面跳转，跳转到页面后根据返回到数据执行对应的操作。
+- OC中使用反射的优点
+    * 松耦合，类与类之间不需要太多依赖
+    * 构建灵活
+- OC中使用反射的缺点
+    * 不利于维护。使用反射模糊了程序内部实际发生的事情，隐藏了程序的逻辑。这种绕过源码的方式比直接代码更为复杂，增加了维护成本。
+    * 性能较差。使用反射匹配字符串间接命中内存比直接命中内存的方式要慢。当然，这个程度取决于使用场景，如果只是作为程序中很少涉及的部分，这个性能上的影响可以忽略不计。但是，如果在性能很关键的应用核心逻辑中使用反射，性能问题就尤其重要了
+
+### 12.`typeof` 和 `__typeof`，`typeof` 的区别?
+#### typeof
+- 是一个一元运算，放在一个运算数之前，运算数可以是任意类型。
+- 可以理解为：我们根据typeof（）括号里面的变量，自动识别变量类型并返回该类型。
+- typeof 常见运用于Block中，避免循环引用发生的问题。
+
+#### 补充：typeof、__typeof__、__typeof的区别
+- 我们经常会看到有的人是这样使用的__weak __typeof__(self) wself = self;有的是这样使用的__weak typeof(self) wself = self;, 有的是这样使用的__weak __typeof(self) wself = self;, 这三种方式有什么区别呢
+- __typeof__()和 typeof() 和 __typeof()等都是C语言的扩展, 要表达的意思都是一样的, 这个时候需要说到C的发展, 其中两个阶段, GNUC 和 标准C在GNUC环境下, 其扩展是支持直接写__typeof__()和typeof()和__typeof()而在标准C环境下, 其扩展是以__开头, 所以其只能写成__typeof__()和__typeof()
+
+#### typedef：
+- 定义一种类型的别名，而不只是简单的宏替换。
+- typedef 常用于命名（枚举和Block）
+
+### 补充：self + weakSelf + strongSelf ?
+
+```
+__weak __typeof(self)weakSelf = self;    //1
+
+[self.context performBlock:^{      
+    [weakSelf doSomething];          //2
+     __strong __typeof(weakSelf)strongSelf = weakSelf;  //3
+    [strongSelf doAnotherSomething];        
+}];
+```
+- 1.使用__weak __typeof是在编译的时候,另外创建一个局部变量weak对象来操作self，引用计数不变。block 会将这个局部变量捕获为自己的属性，访问这个属性，从而达到访问 self的效果，因为他们的内存地址都是一样的。
+- 2.因为weakSelf和self是两个变量,doSomething有可能就直接对self自身引用计数减到0了.所以在[weakSelf doSomething]的时候,你很难控制这里self是否就会被释放了.weakSelf只能看着.
+- __strong __typeof在编译的时候,实际是对weakSelf的强引用.指针连带关系self的引用计数会增加.但是你这个是在block里面,生命周期也只在当前block的作用域.所以,当这个block结束,strongSelf随之也就被释放了.不会影响block外部的self的生命周期.
+- 在 Block 内如果需要访问self的方法、变量，建议使用 weakSelf。
+- 如果在 Block 内需要多次 访问 self，则需要使用 strongSelf。
+
+### 13.头文件导入的方式？
+### 14.如何将 Obj-C 代码改变为 C++/C 的代码？
+- clang -rewrite-objc -fobjc-arc -fobjc-runtime=macosx-10.13 main.m
+
+### 15.知不知道在哪里下载苹果的源代码？
+- https://opensource.apple.com/source
+
+### 16.objc_getClass()、object_getClass()、Class 这三个方法用来获取类对象有什么不同？
+- 全部返回 Class 类对象
+- class 方法
+    * class 方法无论是类对象还是实例对象都可以调用，可以嵌套，返回永远是自身的类对象。
+- object_getClass 方法
+    * object_getClass 和 class 同样可以嵌套，但是 object_getClass 得到的是他的 isa 指向的地址。
+- objc_getClass 方法
+    * objc_getClass 无法嵌套，因为参数 是 char 类型，效果和 class 相同
+
+### 17.NSCache优于NSDictionary的几点？
+- NSCache苹果提供的一套缓存机制
+    * 主要作用于内存缓存的管理方面;
+    * 在没有引入NSCache之前,我们要管理缓存,都是使用的NSMutableDictionary来管理,如:
+
+```
+// 定义下载操作缓存池
+@property (nonatomic, strong) NSMutableDictionary *operationCache;
+// 定义图片缓存池
+@property (nonatomic, strong) NSMutableDictionary *imageCache;
+
+```
+然而,使用NSMutableDictionary来管理缓存是有些不妥的, 知道多线程操作原理的开发者都明白, NSMutableDictionary在线程方面来说是不安全,这也是苹果官方文档明确说明了的,而如果使用的是NSCache,那就不会出现这些问题.
+
+- NSCache和NSMutableDictionary的相同点与区别
+    * 相同点：
+        * NSCache和NSMutableDictionary功能用法基本是相同的。
+    * 区别：
+        * NSCache是线程安全的，NSMutableDictionary线程不安全;NSCache线程是安全的，Mutable开发的类一般都是线程不安全的
+        * 当内存不足时NSCache会自动释放内存(所以从缓存中取数据的时候总要判断是否为空)
+        * NSCache可以指定缓存的限额，当缓存超出限额自动释放内存缓存限额：
+            * 缓存数量
+            
+            @property NSUInteger countLimit;
+            * 缓存成本
+            
+            @property NSUInteger totalCostLimit;
+        * 苹果给NSCache封装了更多的方法和属性,比NSMutableDictionary的功能要强大很多
+
+代码演示：
+
+先定义缓存池,并懒加载初始化:
+
+
+```
+#import "ViewController.h"
+
+@interface ViewController () <NSCacheDelegate>
+
+// 定义缓存池
+@property (nonatomic, strong) NSCache *cache;
+@end
+
+@implementation ViewController
+- (NSCache *)cache {
+if (_cache == nil) {
+    _cache = [[NSCache alloc] init];
+    // 缓存中总共可以存储多少条
+    _cache.countLimit = 5;
+    // 缓存的数据总量为多少
+    _cache.totalCostLimit = 1024 * 5;
+}
+return _cache;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  // Do any additional setup after loading the view, typically from a nib.
+
+  //添加缓存数据
+   for (int i = 0; i < 10; i++) {
+    [self.cache setObject:[NSString stringWithFormat:@"hello %d",i] forKey:[NSString stringWithFormat:@"h%d",i]];
+    NSLog(@"添加 %@",[NSString stringWithFormat:@"hello %d",i]);
+   }
+
+  //输出缓存中的数据
+   for (int i = 0; i < 10; i++) {
+    NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+   }
+
+}
+
+```
+控制台输出结果为:
+
+![image](https://upload-images.jianshu.io/upload_images/1483059-7d13b9b81f721289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/455)
+
+**通过输出结果可以看出: **
+
+1.当我们使用NSCache来创建缓存池的时候,我们可以很灵活的设置缓存的限额,
+
+2.当程序中的个数超过我们的限额的时候,会先移除最先创建的
+
+3.如果已经移除了,那么当我们输出缓存中的数据的时候,就只剩下后面创建的数据了;
+
+#### 演示NSCache的代理方法
+
+先设置代理对象:
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+//设置NSCache的代理
+self.cache.delegate = self;
+调用代理方法: 这里我仅用一个方法来演示:
+
+
+```
+//当缓存被移除的时候执行
+         - (void)cache:(NSCache *)cache willEvictObject:(id)obj{
+        NSLog(@"缓存移除  %@",obj);
+       }
+```
+![image](https://camo.githubusercontent.com/ba7de0659ecacb3d4d33d30ea1c4eb564b56a3bb/68747470733a2f2f7374617469632e6f736368696e612e6e65742f75706c6f6164732f696d672f3230313630322f31363232313531375f773432722e706e67)
+
+通过结果可以看出: NSCache的功能要比NSMutableDictionary的功能要强大很多很多;
+
+#### 当遇到内存警告的时候
+
+```
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    //当收到内存警告，清除内存
+    [self.cache removeAllObjects];
+    //输出缓存中的数据
+    for (int i = 0; i < 10; i++) {
+        NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+    }
+}
+```
+控制台输出结果:
+
+![image](https://camo.githubusercontent.com/9d0895f61d5c29f257092c7a32d5b5cce8043a9e/68747470733a2f2f7374617469632e6f736368696e612e6e65742f75706c6f6164732f696d672f3230313630322f31363232303331345f505064382e706e67)
+
+通过结果可以看出: 当收到内存警告之后,清除数据之后,NSCache缓存池中所有的数据都会为空!
+
+#### 当收到内存警告，调用removeAllObjects 之后，无法再次往缓存池中添加数据
+
+
+```
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    //当收到内存警告，调用removeAllObjects 之后，无法再次往缓存中添加数据
+    [self.cache removeAllObjects];
+    //输出缓存中的数据
+    for (int i = 0; i < 10; i++) {
+        NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+    }
+}
+
+// 触摸事件, 以便验证添加数据
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.cache removeAllObjects];
+    
+    //添加缓存数据
+    for (int i = 0; i < 10; i++) {
+        [self.cache setObject:[NSString stringWithFormat:@"hello %d",i] forKey:[NSString stringWithFormat:@"h%d",i]];
+//        NSLog(@"添加 %@",[NSString stringWithFormat:@"hello %d",i]);
+    }
+    
+    //输出缓存中的数据
+    for (int i = 0; i < 10; i++) {
+        NSLog(@"%@",[self.cache objectForKey:[NSString stringWithFormat:@"h%d",i]]);
+    }
+
+}
+```
+控制台输出结果为: 
+
+![image](https://camo.githubusercontent.com/c30bb9b1a4d03a949190145b441ed3ebc888504b/68747470733a2f2f7374617469632e6f736368696e612e6e65742f75706c6f6164732f696d672f3230313630322f31363232313931345f664678622e706e67)
+
+通过输出结果,我们可以看出: 当收到内存警告，而我们又调用removeAllObjects 之后，则无法再次往缓存中添加数据;
+
+### 补充：NSCache，NSDictionary，NSArray的区别
+#### NSArray
+- NSArray作为一个存储对象的有序集合，可能是被使用最多的集合类。
+- 性能特征
+    * 在数组的开头和结尾插入/删除元素通常是一个O(1)操作，而随机的插入/删除通常是 O(N)的。
+- 有用的方法
+    * NSArray的大多数方法使用isEqual:来检查对象间的关系(例如containsObject:)。有一个特别的方法
+
+```
+indexOfObjectIdenticalTo:
+```
+- 用来检查指针相等，如果你确保在同一个集合中搜索，那么这个方法可以很大的提升搜索速度。
+
+#### NSDictionary
+- 一个字典存储任意的对象键值对。 由于历史原因，初始化方法使用相反的对象到值的方法
+
+```
+[NSDictionary dictionaryWithObjectsAndKeys:object, key, nil]
+```
+- 而新的快捷语法则从key开始
+
+```
+@{key : value, ...}
+```
+- NSDictionary中的键是被拷贝的并且需要是恒定的。如果在一个键在被用于在字典中放入一个值后被改变，那么这个值可能就会变得无法获取了。一个有趣的细节，在NSDictionary中键是被拷贝的，而在使用一个toll-free桥接的CFDictionary时却只被retain。CoreFoundation类没有通用对象的拷贝方法，因此这时拷贝是不可能的(*)。这只适用于使用CFDictionarySetValue()的时候。如果通过setObject:forKey使用toll-free桥接的CFDictionary，苹果增加了额外处理逻辑来使键被拷贝。反过来这个结论则不成立 — 转换为CFDictionary的NSDictionary对象，对其使用CFDictionarySetValue()方法会调用回setObject:forKey并拷贝键。
+
+#### NSCache
+- NSCache是一个非常奇怪的集合。在iOS 4/Snow Leopard中加入，默认为可变并且线程安全的。这使它很适合缓存那些创建起来代价高昂的对象。它自动对内存警告做出反应并基于可设置的成本清理自己。与NSDictionary相比，键是被retain而不是被拷贝的。
+- NSCache的回收方法是不确定的，NSCache可以设置撑自动回收实现了NSDiscardableContent协议的对象。实现该属性的一个比较流行的类是同时间加入的NSPurgeableData，但是在OS X 10.9之前，是非线程安全的
+- NSCache性能
+    * 那么NSCache如何承受NSMutableDictionary的考验?加入的线程安全必然会带来一些消耗。
+
+#### iOS 构建缓存时选 NSCache 而非NSDictionary
+- 当系统资源将要耗尽时，NSCache可以自动删减缓存。如果采用普通的字典，那么就要自己编写挂钩，在系统通知时手动删减缓存，NSCache会先行删减时间最久为被使用的对象
+- NSCache 并不会拷贝键，而是会保留它。此行为用NSDictionary也可以实现，但是需要编写比较复杂的代码。NSCache对象不拷贝键的原因在于，很多时候键都是不支持拷贝操作的对象来充当的。因此NSCache对象不会自动拷贝键，所以在键不支持拷贝操作的情况下，该类比字典用起来更方便
+- NScache是线程安全的，NSDictionary不是。在开发者自己不编写加锁代码的前提下，多个线程可以同时访问NSCache。对缓存来说，线程安全通常是很重要的，因为开发者可能在某个线程中读取数据，此时如果发现缓存里找不着指定的键，那么就要下载该键对应的数据了
+
+### 18.知不知道DesignatedInitializer？使用它的时候有什么需要注意的问题？
+### 19.实现description方法能取到什么效果？
+
+
 ## iOS 内存管理
 ### 1.为什么说Objective-C是一门动态的语言
 - 首先动态类型语言和静态类型语言
@@ -5399,14 +8740,14 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 ### 49.说明一下表视图的滑动卡顿的优化方法
 - 同43题
 
-## 多线程
+## iOS 多线程
 ### 1.进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步
 - 进程和线程的区别
     * 一个程序至少要有进程，一个进程至少要有一个线程
     * 进程：资源分配的最小独立单元，进程是具有一定独立功能的程序关于某个数据集合上的一次运行活动，进程是系统进行资源分配和调度的一个独立单位
     * 线程:进程下的一个分支，是进程的实体，是cpu调度和分派的基本单元，它使比进程更小的能独立运行的基本单位，线程自己基本不拥有系统资源，只拥有一点在运行中必不可少的资源呢，但是它可与同属一个进程的其他线程共享进程所拥有的全部资源
     * 进程和线程都是由操作系统所体会的程序运行的基本单元，系统利用该基本单元实现系统对应用的并发性
-    * 进程和线程的主要差别在于它们是不同的操作系统资源管理方式，进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，而进程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于这个进程死掉，所以多进程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一些。
+    * 进程和线程的主要差别在于它们是不同的操作系统资源管理方式，进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，而线程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于这个进程死掉，所以多进程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一些。
     * 但对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程
 
 - 多进程，打开mac的活动监视器，可以看到很多个进程同时运行：
@@ -5436,19 +8777,19 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 
 - 同步和异步、并发和并行的区别？
 
-1、并发：在操作系统中，是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个处理机上运行。其中两种并发关系分别是同步和互斥
+1、并发：在操作系统中，是指一个时间段中有几个程序都处于已启动运行到运行完毕之间，且这几个程序都是在同一个处理机上运行。其中两种并发关系分别是同步和互斥，并发是单核CPU交替执行两个任务
 
 2、同步：进程之间的关系不是相互排斥临界资源的关系，而是相互依赖的关系。进一步的说明：就是前一个进程的输出作为后一个进程的输入，当第一个进程没有输出时第二个进程必须等待。具有同步关系的一组并发进程相互发送的信息称为消息或事件。
 
 3、互斥：进程间相互排斥的使用临界资源的现象，就叫互斥。
 
-4、并行：在单处理器中多道程序设计系统中，进程被交替执行，表现出一种并发的外部特种；在多处理器系统中，进程不仅可以交替执行，而且可以重叠执行。在多处理器上的程序才可实现并行处理。从而可知，并行是针对多处理器而言的。并行是同时发生的多个并发事件，具有并发的含义，但并发不一定并行，也亦是说并发事件之间不一定要同一时刻发生。
+4、并行：在单处理器中多道程序设计系统中，进程被交替执行，表现出一种并发的外部特性；在多处理器系统中，进程不仅可以交替执行，而且可以重叠执行。在多处理器上的程序才可实现并行处理。从而可知，并行是针对多处理器而言的。并行是同时发生的多个并发事件，具有并发的含义，但并发不一定并行，也亦是说并发事件之间不一定要同一时刻发生。
 
 5、异步：异步和同步是相对的，同步就是顺序执行，执行完一个再执行下一个，需要等待、协调运行。异步就是彼此独立,在等待某事件的过程中继续做自己的事，不需要等待这一事件完成后再工作。线程就是实现异步的一个方式。异步是让调用方法的主线程不需要同步等待另一线程的完成，从而可以让主线程干其它的事情。
 
-6、串行和并行：串行是一次只能执行一个任务，并行是一次能执行多个任务；并行是CPU的多核芯同时执行多个任务  并发是单核CPU交替执行两个任务
+6、串行和并行：串行是一次只能执行一个任务，并行是一次能执行多个任务；并行是CPU的多核芯同时执行多个任务，并发是单核CPU交替执行两个任务
 
-7、同步异步关注的是消息通讯机制，所谓同步，就是在发出一个*调用*时，在没有得到结果之前，该*调用*就不返回。但是一旦调用返回，就得到返回值了。注意这个返回是指CUP返回执行的数据段部分，所以目前来看只是阻塞了CPU的数据段部分 并不耽误CPU干别的 所以即使是同步也不见得是阻塞模式。换句话说，就是由*调用者*主动等待这个*调用*的结果。而异步则是相反，*调用*在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在*调用*发出后，*被调用者*通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js
+7、同步和异步：关注的是消息通讯机制，所谓同步，就是前一个进程的输出作为后一个进程的输入，当第一个进程没有输出时第二个进程必须等待。具有同步关系的一组并发进程相互发送的信息称为消息或事件。注意这个返回是指CUP返回执行的数据段部分，所以目前来看只是阻塞了CPU的数据段部分，并不耽误CPU干别的，所以即使是同步也不见得是阻塞模式。异步和同步是相对的，同步就是顺序执行，执行完一个再执行下一个，需要等待、协调运行。异步就是彼此独立,在等待某事件的过程中继续做自己的事，不需要等待这一事件完成后再工作。线程就是实现异步的一个方式。异步是让调用方法的主线程不需要同步等待另一线程的完成，从而可以让主线程干其它的事情。
 
 ### 2.多线程可以访问同一个对象吗，多进程呢
 - 进程：是指在系统中正在运行的一个应用程序,每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内
@@ -5502,29 +8843,355 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 ### 4.并行同步和串行异步区别
 
 
-|线程| 同步 | 异步 | 对比 |
-|---| --- | --- | --- |
-|串行|  在主线程操作, 任务一次执行, 执行完成后, 在执行主线程的内容   |  创建一个新的子线程, 所有任务在子线程操作, 线程内容的任务依次执行, 子线程和主线程的内容同时执行   |  是否阻塞主线程   |
-|并行|  在主线程操作, 主线程任务等待, 所有任务同时创建, 但是在此队列中, 任务执行为依次执行, 没有轮到的任务处于等待状态, 执行完成后, 执行主线程内容   |   创建多条线程(未必有多少任务创建多少线程, 有点像cell的复用), 按顺序创建任务, 同时执行, 同时, 主线程任务正常执行  |  1.是否阻塞主线程2.任务的执行时间是否统一  |
-|    |  1. 主线程阻塞等待2. 任务的创建和执行时间点   |  1. 主线程异步执行, 不阻塞.2. 任务的创建和执行时间点   |     |
+| 线程 | 同步                                                         | 异步                                                         | 对比                                     |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------- |
+| 串行 | 在主线程操作, 任务一次执行, 执行完成后, 在执行主线程的内容   | 创建一个新的子线程, 所有任务在子线程操作, 线程内容的任务依次执行, 子线程和主线程的内容同时执行 | 是否阻塞主线程                           |
+| 并行 | 在主线程操作, 主线程任务等待, 所有任务同时创建, 但是在此队列中, 任务执行为依次执行, 没有轮到的任务处于等待状态, 执行完成后, 执行主线程内容 | 创建多条线程(未必有多少任务创建多少线程, 有点像cell的复用), 按顺序创建任务, 同时执行, 同时, 主线程任务正常执行 | 1.是否阻塞主线程2.任务的执行时间是否统一 |
+|      | 1. 主线程阻塞等待2. 任务的创建和执行时间点                   | 1. 主线程异步执行, 不阻塞.2. 任务的创建和执行时间点          |                                          |
+
+### 补充：任务和队列的六种组合方式及其比较
+- 既然我们有两种队列（串行队列 / 并发队列），两种任务执行方式（同步执行 / 异步执行），还有主队列的概念，我们就可以组合成六种不同的组合：
+    * 同步执行 + 并发队列
+    * 异步执行 + 并发队列
+    * 同步执行 + 串行队列
+    * 异步执行 + 串行队列
+    * 同步执行 + 主队列
+    * 异步执行 + 主队列
+
+#### 队列不嵌套情况下，不同组合方式区别
+
+| 区别 | 并发队列 | 串行队列 | 主队列 |
+| --- | --- | --- | --- |
+| 同步（sync） | 没有开启新线程，串行执行任务 | 没有开启新线程，串行执行任务 | 死锁卡住不执行 |
+| 异步（async） | 有开启新线程，并发执行任务 | 有开启新线程（1条），串行执行任务 | 没有开启新线程，串行执行任务 |
+
+- 从上边可看出： 『主线程』 中调用 『主队列』+『同步执行』会导致死锁问题。这是因为 主队列中追加的同步任务和主线程本身的任务两者之间相互等待，阻塞了『主队列』，最终造成了主队列所在的线程（主线程）死锁问题。而如果我们在『其他线程』调用『主队列』+『同步执行』，则不会阻塞 『主队列』，自然也不会造成死锁问题。最终的结果是：不会开启新线程，串行执行任务。
+
+#### 队列嵌套情况下，不同组合方式区别
+- 除了上边提到的『主线程』中调用『主队列』+『同步执行』会导致死锁问题。实际在使用『串行队列』的时候，也可能出现阻塞『串行队列』所在线程的情况发生，从而造成死锁问题。这种情况多见于同一个串行队列的嵌套使用。
+- 『不同队列』+『不同任务』 组合，以及 『队列中嵌套队列』 使用的区别：
+
+
+| 区别 | 异步执行+并发队列』嵌套『同一个并发队列』 | 同步执行+并发队列』嵌套『同一个并发队列』 | 『异步执行+串行队列』嵌套『同一个串行队列』 | 『同步执行+串行队列』嵌套『同一个串行队列』 |
+| --- | --- | --- | --- | --- |
+| 同步（sync） | 没有开启新的线程，串行执行任务 | 没有开启新线程，串行执行任务 | 死锁卡住不执行 | 死锁卡住不执行 |
+| 异步（async） | 有开启新线程，并发执行任务 | 有开启新线程，并发执行任务 | 有开启新线程（1 条），串行执行任务 | 有开启新线程（1 条），串行执行任务 |
+
+#### 具体分析
+##### 同步执行 + 并发队列
+- 在当前线程中执行任务，不会开启新线程，执行完一个任务，再执行下一个任务。
+
+```
+/**
+ * 同步执行 + 并发队列
+ * 特点：在当前线程中执行任务，不会开启新线程，执行完一个任务，再执行下一个任务。
+ */
+- (void)syncConcurrent {
+    NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
+    NSLog(@"syncConcurrent---begin");
+    
+    dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_sync(queue, ^{
+        // 追加任务 1
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_sync(queue, ^{
+        // 追加任务 2
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"2---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_sync(queue, ^{
+        // 追加任务 3
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"3---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    NSLog(@"syncConcurrent---end");
+}
+输出结果：
+2019-08-08 14:32:53.542816+0800 YSC-GCD-demo[16332:4171500] currentThread---<NSThread: 0x600002326940>{number = 1, name = main}
+2019-08-08 14:32:53.542964+0800 YSC-GCD-demo[16332:4171500] syncConcurrent---begin
+2019-08-08 14:32:55.544329+0800 YSC-GCD-demo[16332:4171500] 1---<NSThread: 0x600002326940>{number = 1, name = main}
+2019-08-08 14:32:57.545779+0800 YSC-GCD-demo[16332:4171500] 2---<NSThread: 0x600002326940>{number = 1, name = main}
+2019-08-08 14:32:59.547154+0800 YSC-GCD-demo[16332:4171500] 3---<NSThread: 0x600002326940>{number = 1, name = main}
+2019-08-08 14:32:59.547365+0800 YSC-GCD-demo[16332:4171500] syncConcurrent---end
+```
+- 从 同步执行 + 并发队列 中可看到：
+    * 所有任务都是在当前线程（主线程）中执行的，没有开启新的线程（同步执行不具备开启新线程的能力）。
+    * 所有任务都在打印的 syncConcurrent---begin 和 syncConcurrent---end 之间执行的（同步任务 需要等待队列的任务执行结束）。
+    * 任务按顺序执行的。按顺序执行的原因：虽然 并发队列 可以开启多个线程，并且同时执行多个任务。但是因为本身不能创建新线程，只有当前线程这一个线程（同步任务 不具备开启新线程的能力），所以也就不存在并发。而且当前线程只有等待当前队列中正在执行的任务执行完毕之后，才能继续接着执行下面的操作（同步任务 需要等待队列的任务执行结束）。所以任务只能一个接一个按顺序执行，不能同时被执行。
+
+##### 异步执行 + 并发队列
+- 可以开启多个线程，任务交替（同时）执行。
+
+```
+/**
+ * 异步执行 + 并发队列
+ * 特点：可以开启多个线程，任务交替（同时）执行。
+ */
+- (void)asyncConcurrent {
+    NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
+    NSLog(@"asyncConcurrent---begin");
+    
+    dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_async(queue, ^{
+        // 追加任务 1
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_async(queue, ^{
+        // 追加任务 2
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"2---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_async(queue, ^{
+        // 追加任务 3
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"3---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    NSLog(@"asyncConcurrent---end");
+}
+输出结果：
+2019-08-08 14:36:37.747966+0800 YSC-GCD-demo[17232:4187114] currentThread---<NSThread: 0x60000206d380>{number = 1, name = main}
+2019-08-08 14:36:37.748150+0800 YSC-GCD-demo[17232:4187114] asyncConcurrent---begin
+2019-08-08 14:36:37.748279+0800 YSC-GCD-demo[17232:4187114] asyncConcurrent---end
+2019-08-08 14:36:39.752523+0800 YSC-GCD-demo[17232:4187204] 2---<NSThread: 0x600002010980>{number = 3, name = (null)}
+2019-08-08 14:36:39.752527+0800 YSC-GCD-demo[17232:4187202] 3---<NSThread: 0x600002018480>{number = 5, name = (null)}
+2019-08-08 14:36:39.752527+0800 YSC-GCD-demo[17232:4187203] 1---<NSThread: 0x600002023400>{number = 4, name = (null)}
+
+```
+- 在 异步执行 + 并发队列 中可以看出：
+    * 除了当前线程（主线程），系统又开启了 3 个线程，并且任务是交替/同时执行的。（异步执行 具备开启新线程的能力。且 并发队列 可开启多个线程，同时执行多个任务）。
+    * 所有任务是在打印的 syncConcurrent---begin 和 syncConcurrent---end 之后才执行的。说明当前线程没有等待，而是直接开启了新线程，在新线程中执行任务（异步执行 不做等待，可以继续执行任务）。
+
+##### 同步执行 + 串行队列
+- 不会开启新线程，在当前线程执行任务。任务是串行的，执行完一个任务，再执行下一个任务。
+
+```
+/**
+ * 同步执行 + 串行队列
+ * 特点：不会开启新线程，在当前线程执行任务。任务是串行的，执行完一个任务，再执行下一个任务。
+ */
+- (void)syncSerial {
+    NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
+    NSLog(@"syncSerial---begin");
+    
+    dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_sync(queue, ^{
+        // 追加任务 1
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    dispatch_sync(queue, ^{
+        // 追加任务 2
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"2---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    dispatch_sync(queue, ^{
+        // 追加任务 3
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"3---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    NSLog(@"syncSerial---end");
+}
+输出结果为：
+2019-08-08 14:39:31.366815+0800 YSC-GCD-demo[17285:4197645] currentThread---<NSThread: 0x600001b5e940>{number = 1, name = main}
+2019-08-08 14:39:31.366952+0800 YSC-GCD-demo[17285:4197645] syncSerial---begin
+2019-08-08 14:39:33.368256+0800 YSC-GCD-demo[17285:4197645] 1---<NSThread: 0x600001b5e940>{number = 1, name = main}
+2019-08-08 14:39:35.369661+0800 YSC-GCD-demo[17285:4197645] 2---<NSThread: 0x600001b5e940>{number = 1, name = main}
+2019-08-08 14:39:37.370991+0800 YSC-GCD-demo[17285:4197645] 3---<NSThread: 0x600001b5e940>{number = 1, name = main}
+2019-08-08 14:39:37.371192+0800 YSC-GCD-demo[17285:4197645] syncSerial---end
+```
+- 在 同步执行 + 串行队列 可以看到：
+    * 所有任务都是在当前线程（主线程）中执行的，并没有开启新的线程（同步执行 不具备开启新线程的能力）。
+    * 所有任务都在打印的 syncConcurrent---begin 和 syncConcurrent---end 之间执行（同步任务 需要等待队列的任务执行结束）。
+    * 任务是按顺序执行的（串行队列 每次只有一个任务被执行，任务一个接一个按顺序执行）。
+
+##### 异步执行 + 串行队列
+- 会开启新线程，但是因为任务是串行的，执行完一个任务，再执行下一个任务
+
+```
+/**
+ * 异步执行 + 串行队列
+ * 特点：会开启新线程，但是因为任务是串行的，执行完一个任务，再执行下一个任务。
+ */
+- (void)asyncSerial {
+    NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
+    NSLog(@"asyncSerial---begin");
+    
+    dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_async(queue, ^{
+        // 追加任务 1
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    dispatch_async(queue, ^{
+        // 追加任务 2
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"2---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    dispatch_async(queue, ^{
+        // 追加任务 3
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"3---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    NSLog(@"asyncSerial---end");
+}
+输出结果为：
+2019-08-08 14:40:53.944502+0800 YSC-GCD-demo[17313:4203018] currentThread---<NSThread: 0x6000015da940>{number = 1, name = main}
+2019-08-08 14:40:53.944615+0800 YSC-GCD-demo[17313:4203018] asyncSerial---begin
+2019-08-08 14:40:53.944710+0800 YSC-GCD-demo[17313:4203018] asyncSerial---end
+2019-08-08 14:40:55.947709+0800 YSC-GCD-demo[17313:4203079] 1---<NSThread: 0x6000015a0840>{number = 3, name = (null)}
+2019-08-08 14:40:57.952453+0800 YSC-GCD-demo[17313:4203079] 2---<NSThread: 0x6000015a0840>{number = 3, name = (null)}
+2019-08-08 14:40:59.952943+0800 YSC-GCD-demo[17313:4203079] 3---<NSThread: 0x6000015a0840>{number = 3, name = (null)}
+```
+- 在 异步执行 + 串行队列 可以看到：
+    * 开启了一条新线程（异步执行 具备开启新线程的能力，串行队列 只开启一个线程）。
+    * 所有任务是在打印的 syncConcurrent---begin 和 syncConcurrent---end 之后才开始执行的（异步执行 不会做任何等待，可以继续执行任务）。
+    * 任务是按顺序执行的（串行队列 每次只有一个任务被执行，任务一个接一个按顺序执行）。
+
+##### 同步执行 + 主队列
+- 同步执行 + 主队列 在不同线程中调用结果也是不一样，在主线程中调用会发生死锁问题，而在其他线程中调用则不会。
+
+###### 在主线程中调用 『同步执行 + 主队列』
+- 互相等待卡住不可行
+
+```
+/**
+ * 同步执行 + 主队列
+ * 特点(主线程调用)：互等卡主不执行。
+ * 特点(其他线程调用)：不会开启新线程，执行完一个任务，再执行下一个任务。
+ */
+- (void)syncMain {
+    
+    NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
+    NSLog(@"syncMain---begin");
+    
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    
+    dispatch_sync(queue, ^{
+        // 追加任务 1
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_sync(queue, ^{
+        // 追加任务 2
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"2---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_sync(queue, ^{
+        // 追加任务 3
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"3---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    NSLog(@"syncMain---end");
+}
+输出结果
+2019-08-08 14:43:58.062376+0800 YSC-GCD-demo[17371:4213562] currentThread---<NSThread: 0x6000026e2940>{number = 1, name = main}
+2019-08-08 14:43:58.062518+0800 YSC-GCD-demo[17371:4213562] syncMain---begin
+(lldb)
+```
+- 在主线程中使用 同步执行 + 主队列 可以惊奇的发现：
+    * 追加到主线程的任务 1、任务 2、任务 3 都不再执行了，而且 syncMain---end 也没有打印，在 XCode 9 及以上版本上还会直接报崩溃。这是为什么呢？
+    * 这是因为我们在主线程中执行 syncMain 方法，相当于把 syncMain 任务放到了主线程的队列中。而 同步执行 会等待当前队列中的任务执行完毕，才会接着执行。那么当我们把 任务 1 追加到主队列中，任务 1 就在等待主线程处理完 syncMain 任务。而syncMain 任务需要等待 任务 1 执行完毕，才能接着执行。
+    * 那么，现在的情况就是 syncMain 任务和 任务 1 都在等对方执行完毕。这样大家互相等待，所以就卡住了，所以我们的任务执行不了，而且 syncMain---end 也没有打印。
+
+###### 在其他线程中调用『同步执行 + 主队列』
+- 不会开启新线程，执行完一个任务，再执行下一个任务
+
+```
+// 使用 NSThread 的 detachNewThreadSelector 方法会创建线程，并自动启动线程执行 selector 任务
+[NSThread detachNewThreadSelector:@selector(syncMain) toTarget:self withObject:nil];
+输出结果：
+2019-08-08 14:51:38.137978+0800 YSC-GCD-demo[17482:4237818] currentThread---<NSThread: 0x600001dd6c00>{number = 3, name = (null)}
+2019-08-08 14:51:38.138159+0800 YSC-GCD-demo[17482:4237818] syncMain---begin
+2019-08-08 14:51:40.149065+0800 YSC-GCD-demo[17482:4237594] 1---<NSThread: 0x600001d8d380>{number = 1, name = main}
+2019-08-08 14:51:42.151104+0800 YSC-GCD-demo[17482:4237594] 2---<NSThread: 0x600001d8d380>{number = 1, name = main}
+2019-08-08 14:51:44.152583+0800 YSC-GCD-demo[17482:4237594] 3---<NSThread: 0x600001d8d380>{number = 1, name = main}
+2019-08-08 14:51:44.152767+0800 YSC-GCD-demo[17482:4237818] syncMain---end
+```
+- 在其他线程中使用 同步执行 + 主队列 可看到：
+    * 所有任务都是在主线程（非当前线程）中执行的，没有开启新的线程（所有放在主队列中的任务，都会放到主线程中执行）。
+    * 所有任务都在打印的 syncConcurrent---begin 和 syncConcurrent---end 之间执行（同步任务 需要等待队列的任务执行结束）。
+    * 任务是按顺序执行的（主队列是 串行队列，每次只有一个任务被执行，任务一个接一个按顺序执行）。
+- 为什么现在就不会卡住了呢？
+    * 因为syncMain 任务 放到了其他线程里，而 任务 1、任务 2、任务3 都在追加到主队列中，这三个任务都会在主线程中执行。syncMain 任务 在其他线程中执行到追加 任务 1 到主队列中，因为主队列现在没有正在执行的任务，所以，会直接执行主队列的 任务1，等 任务1 执行完毕，再接着执行 任务 2、任务 3。所以这里不会卡住线程，也就不会造成死锁问题。
+
+##### 异步执行 + 主队列
+- 只在主线程中执行任务，执行完一个任务，再执行下一个任务。
+
+```
+/**
+ * 异步执行 + 主队列
+ * 特点：只在主线程中执行任务，执行完一个任务，再执行下一个任务
+ */
+- (void)asyncMain {
+    NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
+    NSLog(@"asyncMain---begin");
+    
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    
+    dispatch_async(queue, ^{
+        // 追加任务 1
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_async(queue, ^{
+        // 追加任务 2
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"2---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    dispatch_async(queue, ^{
+        // 追加任务 3
+        [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+        NSLog(@"3---%@",[NSThread currentThread]);      // 打印当前线程
+    });
+    
+    NSLog(@"asyncMain---end");
+}
+输出结果：
+2019-08-08 14:53:27.023091+0800 YSC-GCD-demo[17521:4243690] currentThread---<NSThread: 0x6000022a1380>{number = 1, name = main}
+2019-08-08 14:53:27.023247+0800 YSC-GCD-demo[17521:4243690] asyncMain---begin
+2019-08-08 14:53:27.023399+0800 YSC-GCD-demo[17521:4243690] asyncMain---end
+2019-08-08 14:53:29.035565+0800 YSC-GCD-demo[17521:4243690] 1---<NSThread: 0x6000022a1380>{number = 1, name = main}
+2019-08-08 14:53:31.036565+0800 YSC-GCD-demo[17521:4243690] 2---<NSThread: 0x6000022a1380>{number = 1, name = main}
+2019-08-08 14:53:33.037092+0800 YSC-GCD-demo[17521:4243690] 3---<NSThread: 0x6000022a1380>{number = 1, name = main}
+```
+- 在 异步执行 + 主队列 可以看到：
+    * 所有任务都是在当前线程（主线程）中执行的，并没有开启新的线程（虽然 异步执行 具备开启线程的能力，但因为是主队列，所以所有任务都在主线程中）。
+    * 所有任务是在打印的 syncConcurrent---begin 和 syncConcurrent---end 之后才开始执行的（异步执行不会做任何等待，可以继续执行任务）。
+    * 任务是按顺序执行的（因为主队列是 串行队列，每次只有一个任务被执行，任务一个接一个按顺序执行）。
 
 ### 5.http中的同步和异步
 - 同步请求：使用主线程一次性获得所有请求数据，这就导致一个比较容易出现的问题，当请求的数据比较大时，就会出现卡顿现象，也就是阻塞主线程
 - 异步请求：异步请求就是再创建一个线程，使用这个线程进行请求数据，逐步请求数据，这样就可以不断获得数据然后进行界面更新，不至于造成卡顿现象
 
 ### 6.iOS线程间怎么通信？
-线程间通信：在1个进程中，线程往往不是孤立存在的，多个线程之间需要经常进行通信
- 
-线程间通信的体现
-1个线程传递数据给另1个线程
-在1个线程中执行完特定任务后，转到另1个线程继续执行任务
- 
-线程间通信常用方法
-- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait;
-- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thr withObject:(id)arg waitUntilDone:(BOOL)wait;
-
- 
-线程间通信示例 – 图片下载
+- 线程间通信：在1个进程中，线程往往不是孤立存在的，多个线程之间需要经常进行通信
+- 线程间通信的体现
+    * 1个线程传递数据给另1个线程
+    * 在1个线程中执行完特定任务后，转到另1个线程继续执行任务
+- 线程间通信常用方法
+    * - (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait;
+    * - (void)performSelector:(SEL)aSelector onThread:(NSThread *)thr withObject:(id)arg waitUntilDone:(BOOL)wait;
+- 线程间通信示例 – 图片下载
 
 
 ```
@@ -5654,10 +9321,10 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 
 ### 8.谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
 - 好处：
-    - 使用线程可以把占据时间长的程序中的任务放到后台去处理
+    - 使用多线程可以把占据时间长的程序中的任务放到后台去处理
     - 用户界面可以更加吸引人，这样比如用户点击了一个按钮去触发某些事件的处理，可以弹出一个进度条来显示处理的进度
     - 程序的运行效率可能提高
-    - 在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，线程就比较有用了。
+    - 在一些等待的任务实现上如用户输入、文件读写和网络收发数据等，多线程就比较有用了。
 - 缺点：
     - 如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换。
     - 更多的线程需要更多的内存空间。
@@ -5668,7 +9335,7 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
     - NSThread
     - NSOperation
     - GCD
-- NSThread:(两种创建方式)
+#### NSThread:(两种创建方式)
 
 ```
 [NSThread detachNewThreadSelector:@selector(doSomething:) toTarget:self withObject:nil];
@@ -5679,7 +9346,8 @@ NSThread *myThread = [[NSThread alloc] initWithTarget:self selector:@selector(do
 ```
 - 优点：NSThread 比其他两个轻量级。 
 - 缺点：需要自己管理线程的生命周期，线程同步，线程同步时对数据的加锁会有一定的系统开销。
-- Cocoa Operation
+
+#### NSOperation
 
 ```
 NSOperationQueue*oprationQueue= [[NSOperationQueuealloc] init];
@@ -5690,20 +9358,29 @@ oprationQueueaddOperationWithBlock:^{
  
 }
 ```
-- 优点：不需要关心线程管理，数据同步的事情。 Cocoa Operation 相关的类是 NSOperation ，NSOperationQueue。NSOperation是个抽象类，使用它必须用它的子类，可以实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation。创建NSOperation子类的对象，把对象添加到NSOperationQueue队列里执行，我们会把我们的执行操作放在NSOperation中main函数中。
-- GCD Grand Central Dispatch (GCD)是Apple开发的一个多核编程的解决方法，GCD是一个替代诸如NSThread, NSOperationQueue, NSInvocationOperation等技术的很高效和强大的技术。它让程序平行排队的特定任务，根据可用的处理资源，安排他们在任何可用的处理器核心上执行任务，一个任务可以是一个函数(function)或者是一个block。 dispatch queue分为下面三种： private dispatch queues，同时只执行一个任务，通常用于同步访问特定的资源或数据。 global dispatch queue，可以并发地执行多个任务，但是执行完成的顺序是随机的。 Main dispatch queue 它是在应用程序主线程上执行任务的。
+- 优点：
+    * 不需要关心线程管理，数据同步的事情。
+    * Cocoa Operation 相关的类是 NSOperation ，NSOperationQueue。
+    * NSOperation是个抽象类，使用它必须用它的子类，可以实现它或者使用它定义好的两个子类：NSInvocationOperation 和 NSBlockOperation。
+    * 创建NSOperation子类的对象，把对象添加到NSOperationQueue队列里执行，我们会把我们的执行操作放在NSOperation中main函数中。
+
+#### GCD
+- 是Apple开发的一个多核编程的解决方法，是一个替代诸如NSThread, NSOperationQueue, NSInvocationOperation等技术的很高效和强大的技术。它让程序平行排队的特定任务，根据可用的处理资源，安排他们在任何可用的处理器核心上执行任务，一个任务可以是一个函数(function)或者是一个block。
+- dispatch queue分为下面三种： private，dispatch，queues，同时只执行一个任务，通常用于同步访问特定的资源或数据。 
+- global dispatch queue，可以并发地执行多个任务，但是执行完成的顺序是随机的。 
+- Main dispatch queue 它是在应用程序主线程上执行任务的。
 
 ### 9.多线程容易出现的问题，怎么解决
 - 线程安全问题，当多个线程访问同一块资源时，很容易引发数据错乱和数据安全问题。加锁
 
 ### 10.解释一下多线程中的死锁？
-- 并发、串行队列，异步和同步之间的区别：
-    * 并发队列将任务(函数)分配到线程执行时，不需要等待函数的返回即可执行下一个任务
-    * 串行队列需要等待任务的返回才能执行下一个任务
-    * 同步任务会在当前线程执行
-    * 异步任务会在另外的线程执行。
-- 死锁
-    * 两个或以上的线程互相等待彼此执行，通常情况有(在同一个串行队列中执行同步操作，或两个线程互相依赖等情况)
+- 线程死锁的四个条件
+    * 互斥条件：即一段时间内某资源仅为一个线程所占有，此时若其他线程请求该资源，则请求线程都需要等待
+    * 不可剥夺条件：即线程所获得的资源在未使用完毕之前，不能被其他线程强行夺走，只能由获得该资源的线程自己主动释放
+    * 请求与保持条件：即线程已经至少保持了一个资源，但又提出了新的资源请求，而该资源已经被其他线程占有，此时请求线程被阻塞，但对自己已获得的资源保持不放
+    * 循环等待条件：存在一种线程资源的循环等待链，链中每一个已获得的资源同时被链中下一个线程所请求。
+- 多线程死锁
+    * 两个或以上的线程互相等待彼此执行，通常情况有：在同一个串行队列中执行同步操作，或两个线程互相依赖等情况
 - 阻塞：只要是同步操作都会阻塞一个线程
 - 所以，原因：
     * 在遇到需要多线程相互依赖的情况，一定要注意，不要两个线程互相依赖，这样会造成死锁
@@ -6156,7 +9833,10 @@ self.moneySemaphore = dispatch_semaphore_create(1);
 ```
 ### 12.iOS锁的原理
 - 借鉴一张锁的性能数据对比图，如下所示
-- 可以看出，图中锁的性能从高到底依次是：OSSpinLock(自旋锁) -> dispatch_semaphone（信号量） -> pthread_mutex（互斥锁） -> NSLock（互斥锁） -> NSCondition（条件锁） -> pthread_mutex（recursive 互斥递归锁） -> NSRecursiveLock（递归锁） -> NSConditionLock（条件锁） -> synchronized（互斥锁）
+
+![image](https://upload-images.jianshu.io/upload_images/2819141-8ad6352a477286e6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+
+- 可以看出，图中锁的性能从高到底依次是：OSSpinLock(自旋锁) -> dispatch_semaphore（信号量） -> pthread_mutex（互斥锁） -> NSLock（互斥锁） -> NSCondition（条件锁） -> pthread_mutex（recursive 互斥递归锁） -> NSRecursiveLock（递归锁） -> NSConditionLock（条件锁） -> synchronized（互斥锁）
 - 图中锁大致分为以下几类：
     * 自旋锁
         * 在自旋锁中，线程会反复检查变量是否可用。由于线程这个过程中一直保持执行，所以是一种忙等待。 一旦获取了自旋锁，线程就会一直保持该锁，直到显式释放自旋锁。自旋锁避免了进程上下文的调度开销，因此对于线程只会阻塞很短时间的场合是有效的。对于iOS属性的修饰符atomic，自带一把自旋锁
@@ -6182,6 +9862,13 @@ self.moneySemaphore = dispatch_semaphore_create(1);
 - 建议读：https://www.jianshu.com/p/467366e23fab
 
 ### 13.iOS读写锁实现原理
+- iOS中常见的一个就是同步任务加栅栏函数，同步读操作，栅栏函数写操作；另一个是pthread_rwlock：等待锁的线程会进入休眠
+- 模拟的话有两把互斥锁加一个整数计数器，条件变量加互斥锁、整型计数器（表示正在读的个数）与布尔标志（表示正在写）来实现
+
+#### pthread_rwlock
+
+![image](https://www.freesion.com/images/307/105c563d2b9ca2580bdc6b55b8244d03.png)
+
 #### 两把互斥锁
 - 使用两把互斥锁与一个整数计数器实现。计数器condition跟踪被阻塞的读线程。互斥锁rlock保护condition，供读者使用。互斥锁wlock 确保写操作互斥。
 
@@ -6215,6 +9902,7 @@ static int condition = 0;
 }
 //写者加锁
 - (void)wLock {
+    pthread_mutex_lock(&wlock);
     pthread_mutex_lock(&wlock);
 }
 //写者解锁
@@ -6339,7 +10027,7 @@ NSThread *thread1 = [[NSThread alloc] initWithTarget:self selector:@selector(doS
     NSLog(@"doSomething3：%@",[NSThread currentThread]);
 }
 ```
-- NSThread的类方法
+#### NSThread的类方法
 - 返回当前线程
 
 ```
@@ -6370,7 +10058,7 @@ NSLog(@"%@",[NSThread currentThread]);
 //主线程的对象
 NSThread *mainThread = [NSThread mainThread];
 ```
-- NSThread的一些属性
+####  NSThread的一些属性
 
 ```
 //线程是否在执行
@@ -7144,7 +10832,7 @@ dispatch_queue_t queue = dispatch_queue_create("create_asy_queue", DISPATCH_QUEU
 - dispatch_group
     * 用户下载一个图片，图片很大，需要分成很多份进行下载，
     * 使用Dispatch Group追加block到Global Group Queue，这些block如果全部执行完毕，就会执行通过dispatch_group_notify添加到主队列中的block，进行图片的合并处理。
-        
+      
 ```
 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 dispatch_group_t group = dispatch_group_create();
@@ -7256,6 +10944,7 @@ for (int i = 0; i < 1000; i++) {
 
 ... ...
 ```
+
 - 延迟函数dispatch_after(.....)
 
 ```
@@ -7381,7 +11070,7 @@ void func(dispatch_queue_t queue, dispatch_block_t block)
 } 
 
 ```
-    
+
 然后潜意识里，觉得这个函数是可重入的。但当target queue恰好是current queue时，同步阻塞会导致死锁。
 
 ### 31.NSOperation 和 NSOperationQueue相关知识？
@@ -8003,6 +11692,86 @@ NSRecursiveLock 与 NSLock 的区别在于内部封装的 pthread_mutex_t 对象
 
 ### 47.信号量 - dispatch_semaphore
 - 如果获取不到`锁`，重置当前线程中断，暂停，直到其他线程释放`锁`时，会唤醒当前线程。
+- 信号量
+    * 就是一种可用来控制访问资源的数量的标识，设定了一个信号量，在线程访问之前，加上信号量的处理，则可告知系统按照我们指定的信号量数量来执行多个线程。
+    * 其实，这有点类似锁机制了，只不过信号量都是系统帮助我们处理了，我们只需要在执行线程之前，设定一个信号量值，并且在使用时，加上信号量处理方法就行了。
+    * 信号量主要有3个函数，分别是：
+        * dispatch_semaphore_create（信号量值）//创建信号量，参数：信号量的初值，如果小于0则会返回NULL
+        * dispatch_semaphore_wait（信号量，等待时间）//等待降低信号量
+        * dispatch_semaphore_signal(信号量)//提高信号量
+        * 注意，正常的使用顺序是先降低然后再提高，这两个函数通常成对使用。
+    * 信号量机制主要是通过设置有限的资源数量来控制线程的最大并发数量以及阻塞线程实现线程同步等。
+    * 使用信号量实现任务2依赖于任务1，即任务2要等待任务1结束才开始执行
+    * 方法很简单，创建信号量并初始化为0，让任务2执行前等待信号，实现对任务2的阻塞。然后在任务1完成后再发送信号，从而任务2获得信号开始执行。需要注意的是这里任务1和2都是异步提交的，如果没有信号量的阻塞，任务2是不会等待任务1的,实际上这里使用信号量实现了两个任务的同步。
+    
+```
+/* 创建一个信号量 */
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+/* 任务1 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 耗时任务1 */
+    NSLog(@"任务1开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务1结束");
+    /* 任务1结束，发送信号告诉任务2可以开始了 */
+    dispatch_semaphore_signal(semaphore);
+});
+
+/* 任务2 */
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    /* 等待任务1结束获得信号量, 无限等待 */
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    /* 如果获得信号量则开始任务2 */
+    NSLog(@"任务2开始");
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@"任务2结束");
+});
+[NSThread sleepForTimeInterval:10];
+```
+- 通过信号量控制最大并发数量：
+    * 通过信号量控制最大并发数量的方法为：创建信号量并初始化信号量为想要控制的最大并发数量，例如想要保证最大并发数为5，则信号量初始化为5。然后在每个新任务执行前进行P操作，等待信号使信号量减1；每个任务结束后进行V操作，发送信号使信号量加1。这样即可保证信号量始终在5以内，当前最多也只有5个以内的任务在并发执行。
+    
+```
+/* 创建一个信号量并初始化为5 */
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(5);
+
+/* 模拟1000个等待执行的任务，通过信号量控制最大并发任务数量为5 */
+for (int i = 0; i < 1000; i++) {
+    /* 任务i */
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        /* 耗时任务1，执行前等待信号使信号量减1 */
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"任务%d开始", i);
+        [NSThread sleepForTimeInterval:10];
+        NSLog(@"任务%d结束", i);
+        /* 任务i结束，发送信号释放一个资源 */
+        dispatch_semaphore_signal(semaphore);
+    });
+}
+[NSThread sleepForTimeInterval:1000];
+
+打印结果为每次开启五个并发任务
+2017-06-02 21:45:27.409067+0800 OC[7234:336757] 任务1开始
+2017-06-02 21:45:27.409069+0800 OC[7234:336758] 任务2开始
+2017-06-02 21:45:27.409103+0800 OC[7234:336759] 任务3开始
+2017-06-02 21:45:27.409268+0800 OC[7234:336761] 任务4开始
+2017-06-02 21:45:27.409887+0800 OC[7234:336756] 任务0开始
+
+2017-06-02 21:45:37.415217+0800 OC[7234:336757] 任务1结束
+2017-06-02 21:45:37.415370+0800 OC[7234:336759] 任务3结束
+2017-06-02 21:45:37.415217+0800 OC[7234:336761] 任务4结束
+2017-06-02 21:45:37.415217+0800 OC[7234:336758] 任务2结束
+2017-06-02 21:45:37.415442+0800 OC[7234:336756] 任务0结束
+
+2017-06-02 21:45:37.415544+0800 OC[7234:336760] 任务5开始
+2017-06-02 21:45:37.415548+0800 OC[7234:336762] 任务6开始
+2017-06-02 21:45:37.415614+0800 OC[7234:336765] 任务9开始
+2017-06-02 21:45:37.415620+0800 OC[7234:336764] 任务8开始
+2017-06-02 21:45:37.415594+0800 OC[7234:336763] 任务7开始
+
+... ...
+```
 
 ### 48.自旋锁 - OSSpinLock
 - 是一种用于保护多线程共享资源的锁，与一般互斥锁（mutex）不同之处在于当自旋锁尝试获取锁时以忙等待（busy waiting）的形式不断地循环检查锁是否可用。当上一个线程的任务没有执行完毕的时候（被锁住），那么下一个线程会一直等待（不会睡眠），当上一个线程的任务执行完毕，下一个线程会立即执行。
@@ -10625,1896 +14394,3 @@ NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
 
 ![image](http://upload-images.jianshu.io/upload_images/1599305-6a75ebddd2c1b221.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 项目架构
-### 1.什么是 MVC?
-![image](https://upload-images.jianshu.io/upload_images/1653926-9abf7d3219aa5b1c.png?imageMogr2/auto-orient/strip|imageView2/2/w/974)
-
-- 视图（View）：用户界面。
-- 控制器（Controller）：业务逻辑
-- 模型（Model）：数据保存
-- 各部分之间的通信方式如下
-    * View 传送指令到 Controller
-    * Controller 完成业务逻辑后，要求 Model 改变状态
-    * Model 将新的数据发送到 View，用户得到反馈
-- MVC的弊端
-    * 厚重的View Controller
-        * M：模型model的对象通常非常的简单。根据Apple的文档，model应包括数据和操作数据的业务逻辑。而在实践中，model层往往非常薄，不管怎样，model层的业务逻辑不应被拖入到controller。
-        * V：视图view通常是UIKit控件（component，这里根据习惯译为控件）或者编码定义的UIKit控件的集合。View的如何构建（PS：IB或者手写界面）何必让Controller知晓，同时View不应该直接引用model（PS：现实中，你懂的！），并且仅仅通过IBAction事件引用controller。业务逻辑很明显不归入view，视图本身没有任何业务。
-        * C：控制器controller。Controller是app的“胶水代码”：协调模型和视图之间的所有交互。控制器负责管理他们所拥有的视图的视图层次结构，还要响应视图的loading、appearing、disappearing等等，同时往往也会充满我们不愿暴露的model的模型逻辑以及不愿暴露给视图的业务逻辑。网络数据的请求及后续处理，本地数据库操作，以及一些带有工具性质辅助方法都加大了Massive View Controller的产生。
-    * 遗失（无处安放）的网络逻辑
-        * 苹果使用的MVC的定义是这么说的：所有的对象都可以被归类为一个model，一个view，或是一个controller。
-        * 你可能试着把它放在Model对象里，但是也会很棘手，因为网络调用应该使用异步，这样如果一个网络请求比持有它的model生命周期更长，事情将变的复杂。显然View里面做网络请求那就更格格不入了，因此只剩下Controller了。若这样，这又加剧了Massive View Controller的问题。若不这样，何处才是网络逻辑的家呢？
-    * 较差的可测试性
-        * 由于View Controller混合了视图处理逻辑和业务逻辑，分离这些成分的单元测试成了一个艰巨的任务。
-
-### 2.什么是 MVVM?
-- 一种可以很好地解决Massive View Controller问题的办法就是将 Controller 中的展示逻辑抽取出来，放置到一个专门的地方，而这个地方就是 viewModel 。MVVM衍生于MVC，是对 MVC 的一种演进，它促进了 UI 代码与业务逻辑的分离。它正式规范了视图和控制器紧耦合的性质，并引入新的组件。他们之间的结构关系如下：
-
-![image](https://upload-images.jianshu.io/upload_images/1653926-7ed45d1af126df79.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
-
-- MVVM 的基本概念
-    * 在MVVM 中，view 和 view controller正式联系在一起，我们把它们视为一个组件
-    * view 和 view controller 都不能直接引用model，而是引用视图模型（viewModel）
-    * viewModel 是一个放置用户输入验证逻辑，视图显示逻辑，发起网络请求和其他代码的地方
-    * 使用MVVM会轻微的增加代码量，但总体上减少了代码的复杂性
-- MVVM 的注意事项
-    * view 引用viewModel ，但反过来不行（即不要在viewModel中引入#import UIKit.h，任何视图本身的引用都不应该放在viewModel中）
-    * viewModel 引用model，但反过来不行
-- MVVM 的使用建议
-    * MVVM 可以兼容你当下使用的MVC架构。
-    * MVVM 增加你的应用的可测试性。
-    * MVVM 配合一个绑定机制效果最好
-    * viewController 尽量不涉及业务逻辑，让 viewModel 去做这些事情。
-    * viewController 只是一个中间人，接收 view 的事件、调用 viewModel 的方法、响应 viewModel 的变化。
-    * viewModel 绝对不能包含视图 view（UIKit.h），不然就跟 view 产生了耦合，不方便复用和测试。
-    * viewModel之间可以有依赖。
-    * viewModel避免过于臃肿，否则重蹈Controller的覆辙，变得难以维护。
-- MVVM 的优势
-    * 低耦合：View 可以独立于Model变化和修改，一个 viewModel 可以绑定到不同的 View 上
-    * 可重用性：可以把一些视图逻辑放在一个 viewModel里面，让很多 view 重用这段视图逻辑
-    * 独立开发：开发人员可以专注于业务逻辑和数据的开发 viewModel，设计人员可以专注于页面设计
-    * 可测试：通常界面是比较难于测试的，而 MVVM 模式可以针对 viewModel来进行测试
-- MVVM 的弊端
-    * 数据绑定使得Bug 很难被调试。你看到界面异常了，有可能是你 View 的代码有 Bug，也可能是 Model 的代码有问题。数据绑定使得一个位置的 Bug 被快速传递到别的位置，要定位原始出问题的地方就变得不那么容易了。
-    * 对于过大的项目，数据绑定和数据转化需要花费更多的内存（成本）。主要成本在于：
-        * 数组内容的转化成本较高：数组里面每项都要转化成Item对象，如果Item对象中还有类似数组，就很头疼。
-        * 转化之后的数据在大部分情况是不能直接被展示的，为了能够被展示，还需要第二次转化。
-        * 只有在API返回的数据高度标准化时，这些对象原型（Item）的可复用程度才高，否则容易出现类型爆炸，提高维护成本。
-    * 调试时通过对象原型查看数据内容不如直接通过NSDictionary/NSArray直观。
-    * 同一API的数据被不同View展示时，难以控制数据转化的代码，它们有可能会散落在任何需要的地方。
-- MVVM 模式将 Presenter改名为ViewModel，基本上与 MVP 模式完全一致。
-- 唯一的区别是，它采用双向绑定（data-binding）：View的变动，自动反映在 ViewModel，反之亦然。
-- MVVM的优势就是，任务均摊每部分都承担各自的责任，结构清晰更加符合软件设计原则
-- 其次就是可测试性强，我们只需要测试ViewModel就能够轻易的测试UI上的问题
-
-### 3.什么是 MVP?
-- MVP 模式将 Controller改名为Presenter，同时改变了通信方向。
-- 各部分之间的通信，都是双向的。
-- View 与 Model 不发生联系，都通过 Presenter 传递。
-- View 非常薄，不部署任何业务逻辑，称为"被动视图"（Passive View），即没有任何主动性，而 Presenter非常厚，所有逻辑都部署在那里。
-
-### 4.什么是 CDD?
-### 5.项目的组件化？
-#### 1.说一下你了解的项目组件化方案？
-#### 2.什么样的团队及项目适合采用组件化的形式进行开发？
-#### 3.组件之间的通信方式。
-#### 4.各组件之间的解耦。
-### 6.还了解哪些项目架构？你之前所在公司的架构师什么样的，简单说一下？
-### 7.从宏观上来讲 App 可以分为哪些层？
-### 8.多工程连编之静态库
-
-
-## iOS设计模式
-### 1.编程中的六大设计原则？
-- 单一职责原则
-    * 通俗地讲就是一个类只做一件事
-        * CALayer：动画和视图的显示。
-        * UIView：只负责事件传递、事件响应。
-- 开闭原则
-    * 对修改关闭，对扩展开放。
-    * 要考虑到后续的扩展性，而不是在原有的基础上来回修改
-- 接口隔离原则
-    * 使用多个专门的协议、而不是一个庞大臃肿的协议
-        * UITableviewDelegate
-        * UITableViewDataSource
-- 依赖倒置原则
-    * 抽象不应该依赖于具体实现、具体实现可以依赖于抽象。
-    * 调用接口感觉不到内部是如何操作的
-- 里氏替换原则
-    * 父类可以被子类无缝替换，且原有的功能不受任何影响，例如 KVO
-- 迪米特法则
-    * 一个对象应当对其他对象尽可能少的了解，实现高聚合、低耦合
-
-### 2.如何设计一个图片缓存框架？
-- 可以模仿 SDWebImage 来实现。
-- 构成
-    * Manager
-    * 内存缓存
-    * 磁盘缓存
-    * 网络下载
-    * Code Manager
-        * 图片解码
-        * 图片解压缩
-        * 图片的存储是以图片的单向 hash 值为 Key
-- 内存设计需要考虑的问题
-    * 存储的 Size
-        * 因为内存的空间有限，我们针对不同尺寸的图片，给出不同的方案
-        * 10K 以下的50个
-        * 100Kb 以下的20个
-        * 100kb 以上的10个
-    * 淘汰的策略
-        * 内存的淘汰策略采取LRU（最近最少使用算法）
-        * 触发淘汰策略的时机有三种
-            * 定期检查（不建议，耗性能）
-            * 提高检查触发频率（一定要注意开销）
-                * 前后台切换的时候
-                * 每次读写的时候
-- 磁盘设计需要考虑的问题
-    * 存储方式
-    * 大小限制（有固定的大小）
-    * 移除策略（可以设置为7天或者15天）
-- 网络设计需要考虑的问题
-    * 图片请求的最大并发量
-    * 请求超时策略
-    * 请求优先级
-- 图片解码
-    * 应用 策略模式，针对 jpg、png、gif 等不同的图片格式进行解码
-    * 图片解码的时机
-        * 在 子线程 图片刚下载完时
-        * 在 子线程 刚从磁盘读取完时
-        * 避免在主线程解压缩、解码，避免卡顿
-
-### 3.如何设计一个时长统计框架？
-- 记录器
-    * 页面式记录器
-    * 流式记录器
-    * 自定义式
-- 记录管理者
-    * 内存记录缓存
-    * 磁盘存储
-    * 上传器
-- 如何降低数据的丢失率？
-    * 定期写入磁盘
-    * 每当达到某个值的时候，就写入磁盘
-- 记录上传的时机
-    * 前后台切换的时候可以上传
-    * 从无网到有网切换的时候可以上传
-- 上传时机的选择
-    * 立即上传
-    * 定时上传
-    * 延时上传
-
-### 4.如何实现 App 换肤（夜间模式）？
-### 5.外观模式
-### 6.中介者模式
-### 7.访问者模式
-### 8.装饰模式
-### 9.观察者模式
-### 10.责任链模式
-### 11.命令模式
-### 12.适配器模式
-### 13.桥接模式
-### 14.代理委托模式
-### 15.单例模式
-### 补充：单例弊端？
-- 优点：
-    * 一个类只被实例化一次，提供了对唯一实例的受控访问。
-    * 节省系统资源
-    * 允许可变数目的实例。
-- 缺点：
-    * 一个类只有一个对象，可能造成责任过重，在一定程度上违背了“单一职责原则”。
-    * 由于单利模式中没有抽象层，因此单例类的扩展有很大的困难。
-    * 滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为的单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；如果实例化的对象长时间不被利用，系统会认为是垃圾而被回收，这将导致对象状态的丢失。
-
-### 16.类工厂模式
-
-## 数据存储
-### 1.如何判断一个文件在沙盒中是否存在？
-- 通常我们在模拟器中运行项目时，如果需要查看沙盒中的文件，只需要按住command+shift+g，然后将文件路径复制进去点击前往，就能查看到沙盒中的文件
-- 在真机测试时查看沙盒
-    * 点击xcode菜单中的window选项，然后选择Devices and Simulators选项
-    * 然后窗口中的TeachersSide就是在真机测试运行的项目。
-    * 然后Download文件
-    * 然后显示包内容
-
-### 2.数据持久化的几个方案（fmdb用没用过）
-- NSUserDefaults
-- plist（属性列表）
-- NSKeyedArchiver（对象归档）
-- iOS的嵌入式关系数据库SQLite3
-- 苹果公司提供的持久化工具 Core Data
-
-首先介绍沙盘
-- 沙盒目录结构:
-    * Documents：保存应用运行时生成的需要持久化的数据，iTunes同步设备时 会 备份该目录。例如，游戏应用可将游戏存档保存在该目录
-    * tmp：保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时 不会 备份该目录
-    * Library/Caches：保存应用运行时生成的需要持久化的数据，iTunes同步设备时 不会 备份该目录。一般存储体积大、不需要备份的非重要数据
-    * Library/Preference：保存应用的所有偏好设置，iOS的Settings(设置)应用 会 在该目录中查找应用的设置信息。iTunes同步设备时 会 备份该目录
-
-NSUserDefaults
-
-```
-static NSString* const key = @"key";
-[[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:key];
-[NSUserDefaults standardUserDefaults] valueForKey:key]
-[userDefaults removeObjectForKey:key];
-[userDefaults synchronize];
-```
-上面的示例代码基本就是NSUserDefaults所有用法了，虽然很简单，但还是有几点需要注意：
-    * 建议将所有的的key单独存放（好处自己领会）
-    * NSUserDefaults可以存储的数据类型包括：NSData、NSString、NSNumber、NSDate、NSArray、NSDictionary。如果要存储其他类型，则需要转换为前面的类型，才能用NSUserDefaults存储。之前碰到个坑就是从服务器拿到数据部分用这种方式存储，服务器返回NSNull,我们这边也没有model层转，就直接存储了，导致app卡掉但并没有闪退之类，就是线程卡死的情况
-    * 同步问题，在适当的时候同步。因为synchronize的开销可能会很大，因为要比较内存中和存储中的所有用户偏好默认值，如果有好几百个key value 同步是非常消耗性能的。
-    * 偏好设置是专门用来保存应用程序的配置信息的，（ 用过Settings.bundle的应该都很熟悉），所以一般不要在偏好设置中保存其他数据。
-    * 偏好设置会将所有数据保存到同一个文件中。即preference目录下的一个以此应用包名来命名的plist文件。
-
-plist
-首先需要知道什么是序列化对象（serialized object）：指可以被转换为字节流以便于存储到文件中或通过网络进行传输的对象
-
-```
-/**
- *  获取存储路径
- */
-- (NSString*)dataFilePath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = paths[0];
-    return [documentDirectory stringByAppendingPathComponent:@"data.plist"];//nsstring真强大
-}
-```
-我们在app处于非活跃状态时存储一些东东
-
-```
-UIApplication* app = [UIApplication sharedApplication];
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:app];
-
-- (void)appWillResignActive:(NSNotification*)notification {
-    NSString* filePath = [self dataFilePath];
-    NSArray* arr = @[@1,@2,@3,@4];
-    [arr writeToFile:filePath atomically:YES];
-}
-```
-在我们需要这些东东的时候从文件中读取
-
-```
-NSString* filePath = [self dataFilePath];
-if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-    NSArray* arr = [[NSArray alloc]initWithContentsOfFile:filePath];
-}
-```
-
-NSKeyedArchiver
-
-在Cocoa中，Archiver是另一种形式的序列化，是任何对象都可实现的更常规的类型
-
-说明：
-
-只有遵守了NSCoding或 NSSecureCoding（更为安全的归档协议）协议,并且实现了协议里归档与解归档的方法的的类创建的对象才能够进行归档
-最好也实现以下NSCopying，NSCopying与NSCoding一起实现好处在于允许复制对象，使用数据模型对象时有较大的灵活性
-
-
-```
-#import <Foundation/Foundation.h>
-@interface FourLines : NSObject<NSCoding,NSCopying>
-
-@property(copy,nonatomic)NSArray* lines;
-
-@end
-
-#import "FourLines.h"
-
-//编解码的key
-static NSString* const klinesKey = @"klinesKey";
-
-@implementation FourLines
-
-#pragma mark -  NSCoding
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.lines forKey:klinesKey];
-}
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
-    if (self) {
-        self.lines = [aDecoder decodeObjectForKey:klinesKey];
-    }
-    return self;
-}
-
-#pragma mark -  NSCopying 
-
-- (id)copyWithZone:(nullable NSZone *)zone {
-    FourLines* copy = [[[self class]allocWithZone:zone]init];
-    NSMutableArray* linesCopy = [NSMutableArray array];
-    for (id line in self.lines) {
-        [linesCopy addObject:[line copyWithZone:zone]];
-    }
-    copy.lines = linesCopy;
-    return copy;
-}
-
-@end
-```
-写入数据，编码：文件路径还是用上面代码中定义的文件路径
-
-```
-- (void)appWillResignActive:(NSNotification*)notification {
-    NSString* filePath = [self dataFilePath];
-    FourLines* lines = [[FourLines alloc]init];
-    lines.lines = @[@"a",@"b",@"c",@"d"];
-    NSMutableData* data = [[NSMutableData alloc]init];
-    NSKeyedArchiver* archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
-    [archiver encodeObject:lines forKey:kRootKey];
-    [archiver finishEncoding];
-    [data writeToFile:filePath atomically:YES];  
-}
-```
-读取数据，解码：
-
-```
-NSString* filePath = [self dataFilePath];
- if ([[NSFileManager defaultManager]fileExistsAtPath:filePath]) {
-        NSData* data = [[NSMutableData alloc]initWithContentsOfFile:filePath];
-        NSKeyedUnarchiver* unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
-        FourLines* four = [unarchiver decodeObjectForKey:kRootKey];
-        [unarchiver finishDecoding];
-        for (int i = 0; i < 4; i++) {
-            //to do
-        }
-}
-
-UIApplication* app = [UIApplication sharedApplication];
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:app];
-```
-fmdb（iOS平台的SQLite数据库框架）
-
-建表以及关闭表
-
-使用数据库的第一件事，就是建立一个数据库。要注意的是，在iOS环境下，只有document directory 是可以进行读写的。在写程序时用的那个Resource资料夹底下的东西都是read-only。因此，建立的资料库要放在document 资料夹下。方法如下：
-
-
-```
-//建表
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSLog(@"doc = %@", doc);
-    NSString *fileName = [doc stringByAppendingPathComponent:@"device.sqlite"];
-    FMDatabase *db = [FMDatabase databaseWithPath:fileName];
-    if ([db open]) {
-        BOOL result = [db executeUpdate:@"CREATE TABLE IF NOT EXISTS Device (deviceID text, deviceName text, deviceType integer, deviceStatus integer);"];
-        if (result) {
-            NSLog(@"创建表成功");
-        } else {
-            NSLog(@"建表失败");
-        }
-    }
-
-```
-
-这样简单的操作就已经完成了数据库的创建，每一行代码都很好理解，先是找到程序在沙盒中的路径，之后填写数据库的名字，完成创建。如果创建数据库成功，那么我们就创建一个名字叫Device的表，这个设备表里有 deviceID, deviceName, deviceType, deviceStatus 四个字段，他们的类型分别是text、text、integer、integer。
-
-### 3.简要介绍沙盘
-- 沙盒目录结构:
-    * Documents：保存应用运行时生成的需要持久化的数据，iTunes同步设备时 会 备份该目录。例如，游戏应用可将游戏存档保存在该目录
-    * tmp：保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时 不会 备份该目录
-    * Library/Caches：保存应用运行时生成的需要持久化的数据，iTunes同步设备时 不会 备份该目录。一般存储体积大、不需要备份的非重要数据
-    * Library/Preference：保存应用的所有偏好设置，iOS的Settings(设置)应用 会 在该目录中查找应用的设置信息。iTunes同步设备时 会 备份该目录
-
-### 4.Sqlite3
-#### 1.简单说一下 Sqlite3
-#### 2.Sqlite3 常用的执行语句
-### 3.Sqlite3在不同版本的APP，数据库结构变化了，如何处理?
-### 5.FMDB (Sqlite3 的封装)
-### 6.Realm
-### 7.NSKeyArchieve
-### 8.Preperfence
-### 9.Plist
-### 10.CoreDate
-### 11.Keychain
-### 12.UIPasteBoard
-### 13.FoundationDB
-### 14.LRU(最少最近使用)缓存
-
-
-## WebView
-### 1.说一下 JS 和 OC 互相调用的几种方式？
-#### UIWebView 拦截 URL
-##### JS 调用原生 OC
-- 我们可以利用 JS 发起一个假的 URL 请求，然后利用UIWebView的代理方法拦截这次请求，然后再做相应的处理。
-
-```
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSURL * url = [request URL];
-    if ([[url scheme] isEqualToString:@"firstclick"]) {  // firstClick://shareClick?title=分享的标题&content=分享的内容&url=链接地址&imagePath=图片地址
-        NSArray *params = [url.query componentsSeparatedByString:@"&"];
-        
-        NSMutableDictionary *tempDict = [NSMutableDictionary dictionary];
-        NSMutableString *strM = [NSMutableString string];
-        for (NSString *paramStr in params) {
-            NSArray *dictArray = [paramStr componentsSeparatedByString:@"="];
-            if (dictArray.count > 1) {
-                NSString *decodeValue = [dictArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                decodeValue = [decodeValue stringByRemovingPercentEncoding];
-                [tempDict setObject:decodeValue forKey:dictArray[0]];
-                [strM appendString:decodeValue];
-            }
-        }
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这是OC原生的弹出窗" message:strM delegate:self cancelButtonTitle:@"收到" otherButtonTitles:nil];
-        [alertView show];
-        NSLog(@"tempDic:%@",tempDict);
-        return NO;
-    }
-    return YES;
-}
-```
-- 相关问题：
-    * 为什么定义一个loadURL方法，不直接使用window.location.href?
-        * 因为如果当前网页正在使用window.location.href加载网页的同时，调用window.location.href去调用 OC 原生方法，会导致加载网页的操作被取消掉。同样的，如果连续使用window.location.href执行两次 OC 原生调用，也有可能导致第一次的操作被取消掉。所以我们使用自定义的loadURL，来避免这个问题。
-    * 为什么 loadURL 中的链接，使用统一的 scheme？
-        * 便于在 OC 中做拦截处理，减少在 JS 中调用一些 OC 没有实现的方法时，webView 做跳转。我再 OC 拦截 URL 时，根据 scheme即(firstclick）来区分是调用原生的方法还是正常的网页跳转。然后根据host（即//后面的部分shareClick）来区分执行什么操作。
-    * 为什么自定义一个asyncAlert方法？
-        * 因为有的 JS 调用是需要 OC 返回结果到 JS 的。stringByEvaluatingJavaScriptFromString是一个同步方法，会等待js方法执行完成。而弹出的alert也会阻塞界面等待用户响应，所以他们可能会造成死锁。导致 alert 卡死界面。如果回调的JS是一个耗时操作，那么建议将耗时的操作也放入setTimeout的function中。
-> 1.JS中的firstClick,在拦截到的url scheme全都被转化为小写。
-2.html 中需要设置编码，否则中文参数可能会出现编码问题。
-3.JS用打开一个iFrame的方式替代直接用document.location的方式，以避免多次请求，被替换覆盖的问题。
-
-##### OC 调用 JS
-
-```
-NSString *jsStr = [NSString stringWithFormat:@"showAlert('%@')",@"这里是JS中alert弹出的message"];
-[self.webView stringByEvaluatingJavaScriptFromString:jsStr];
-```
-
-- ==注意：该方法会同步返回一个字符串，因此是一个同步方法，可能会阻塞主线程。==
-- 在 html 文件中
-
-```
-function showAlert(message) {
-  alert(message);
-}
-```
-
-#### WKWebView拦截 URL
-##### JS调用 OC
-- 使用WKNavigationDelegate中的代理方法，拦截自定义的 URL 来实现 JS 调用 OC 方法。
-
-```
-#pragma mark - WKNavigationDelegate
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSURL *URL = navigationAction.request.URL;
-    NSString *scheme = [URL scheme];
-    if ([scheme isEqualToString:@"haleyaction"]) {
-        [self handleCustomAction:URL];
-        decisionHandler(WKNavigationActionPolicyCancel);
-        return;
-    }
-    decisionHandler(WKNavigationActionPolicyAllow);
-}
-```
-- ==注意点：如果实现了这个代理方法，就必须得调用decisionHandler这个 block，否则会导致 app 奔溃。block 参数是一个枚举值，WKNavigationActionPolicyCancel代表取消加载，相当于UIWebView的代理方法return NO的情况；WKNavigationActionPolicyAllow代表允许加载，相当于UIWebView的代理方法中 return YES的情况。==
-- 关于如何区分执行不同的OC方法，也与UIWebView的处理方式一样,通过URL的host来区分执行不同的方法：
-
-```
-#pragma mark - dealwith custom action
-
-- (void)handleCustomAction:(NSURL *)URL {
-    NSString *host = [URL host];
-    
-    if ([host isEqualToString:@"shareClick"]) {
-        [self share:URL];
-    } else if ([host isEqualToString:@"getLocation"]) {
-        [self getLocation:URL];
-    } else if ([host isEqualToString:@"setBGColor"]) {
-        [self setBGColor:URL];
-    } else if ([host isEqualToString:@"payAction"]) {
-        [self payAction:URL];
-    } else if ([host isEqualToString:@"shake"]) {
-        [self shakeAction];
-    } else if ([host isEqualToString:@"back"]) {
-        [self goBack];
-    }
-}
-```
-##### OC 调用 JS 方法
-- JS 调用OC 方法后，有的操作可能需要将结果返回给JS。这时候就是OC 调用JS 方法的场景。
-- WKWebView 提供了一个新的方法evaluateJavaScript:completionHandler:，实现OC 调用JS 等场景。
-
-```
-- (void)getLocation:(NSURL *)URL {
-    // 获取位置信息
-    NSLog(@"原生获取位置信息操作");
-    
-    // 将结果返回给 JS
-    NSString *jsStr = [NSString stringWithFormat:@"setLocation('%@')",@"广东省广州市白云区豪泉大厦"];
-    [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSLog(@"%@----%@",result, error);
-    }];
-}
-```
-- ==注意点：evaluateJavaScript:completionHandler:没有返回值，JS执行成功还是失败会在completionHandler 中返回。所以使用这个API就可以避免执行耗时的JS，或者alert 导致界面卡住的问题。==
-
-#### JavaScriptCore （UIWebView）
-##### JS 调用原生 OC
-- 在iOS 7之后，apple添加了一个新的库JavaScriptCore，用来做JS交互，因此JS与原生OC交互也变得简单了许多。
-- 首先导入JavaScriptCore库,然后在OC中获取JS的上下文。
-
-```
-JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-```
-- 再然后定义好JS需要调用的方法，例如JS要调用share方法：则可以在UIWebView加载url完成后，在其代理方法中添加要调用的share方法：
-
-```
-- (void)setupData {
-    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    //定义好JS要调用的方法, share就是调用的share方法名
-    context[@"share"] = ^() {
-        NSLog(@"+++++++Begin Log+++++++");
-        NSArray *args = [JSContext currentArguments];
-        NSMutableString *strM = [NSMutableString string];
-        for (JSValue *jsVal in args) {
-            NSLog(@"%@", jsVal.toString);
-            [strM appendString:jsVal.toString];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"这是OC原生的弹出窗" message:strM delegate:self cancelButtonTitle:@"收到" otherButtonTitles:nil];
-            [alertView show];
-        });
-        
-        
-        NSLog(@"-------End Log-------");
-    };
-}
-```
-##### OC 调用 JS
-- OC 调用 JS 方法有多种，首先介绍使用JavaScriptCore框架的方式。
-- 方式一：使用JSContext 的方法-evaluateScript，可以实现 OC 调用 JS 方法
-
-```
-// 法一
-- (void)transferJS {
-    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    NSString *textJS = @"showAlert('这里是JS中alert弹出的message')";
-    [context evaluateScript:textJS];
-}
-
-// 法二
-- (void)transferJS {
-    NSString *textJS = @"showAlert('这里是JS中alert弹出的message')";
-    [[JSContext currentContext] evaluateScript:textJS];
-}
-```
-- 方式二：使用 JSValue 的方法-callWithArguments，也可以实现 OC 调用 JS 方法
-
-```
-JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-[context[@"showAlert"] callWithArguments:@[@"这里是JS中alert弹出的message"]];
-```
-
-#### MessageHandler(WKWebView)
-- 使用WKWebView的时候，如果想要实现JS调用OC方法，除了拦截URL之外，还有一种简单的方式。那就是利用WKWebView的新特性MessageHandler来实现JS调用原生方法。
-##### 怎么使用MessageHandler？
-- 创建WKWebViewConfiguration对象，配置各个API对应的MessageHandler。
-- WKUserContentController对象可以添加多个scriptMessageHandler。
-- 然后在界面即将显示的时候添加MessageHandler
-
-```
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    // addScriptMessageHandler 很容易导致循环引用
-    // 控制器 强引用了WKWebView,WKWebView copy(强引用了）configuration， configuration copy （强引用了）userContentController
-    // userContentController 强引用了 self （控制器）
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"ScanAction"];
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"Location"];
-    [self.webView.configuration.userContentController addScriptMessageHandler:self name:@"Share"];
-}
-```
-- 需要注意的是addScriptMessageHandler很容易引起循环引用，导致控制器无法被释放，所以需要移除MessageHandler
-
-```
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    // 因此这里要记得移除handlers
-    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"ScanAction"];
-    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"Location"];
-    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:@"Share"];
-}
-```
-##### 实现协议方法 - JS调用 OC
-- 这里实现了两个协议<WKUIDelegate,WKScriptMessageHandler>，WKUIDelegate是因为我在JS中弹出了alert 。WKScriptMessageHandler是因为我们要处理JS调用OC方法的请求。
-
-```
-#pragma mark - WKScriptMessageHandler
-
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    // message.body  --  Allowed types are NSNumber, NSString, NSDate, NSArray,NSDictionary, and NSNull.
-    if ([message.name isEqualToString:@"ScanAction"]) {
-        [self scanAction];
-    } else if ([message.name isEqualToString:@"Location"]) {
-        [self getLocation];
-    } else if ([message.name isEqualToString:@"Share"]) {
-        [self shareWithParams:message.body];
-    }
-}
-```
-- WKScriptMessage有两个关键属性name 和 body。
-- 因为我们给每一个OC方法取了一个name，那么我们就可以根据name 来区分执行不同的方法。body 中存着JS 要给OC 传的参数。
-- 关于参数body的解析，我就举一个body中放字典的例子，其他的稍后可以看demo。
-解析JS 调用OC 实现分享的参数：
-
-```
-- (void)shareWithParams:(NSDictionary *)params {
-    if (![params isKindOfClass:[NSDictionary class]]) {
-        return;
-    }
-    NSString *title = [params objectForKey:@"title"];
-    NSString *content = [params objectForKey:@"content"];
-    NSString *url = [params objectForKey:@"url"];
-    
-    // 在这里执行分享的操作
-    NSLog(@"在这里执行分享的操作");
-    
-    // 将分享结果返回给js
-    NSString *jsStr = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
-    [self.webView evaluateJavaScript:jsStr completionHandler:^(id result, NSError *error) {
-        NSLog(@"%@----%@",result, error);
-    }];
-}
-```
-- message.boby就是JS里传过来的参数。我们不同的方法先做一下容错性判断。然后正常取值就可以了。
-
-##### 处理HTML中JS调用
-
-```
-// 传字典              
-function shareClick(){
-  window.webkit.messageHandlers.Share.postMessage({title:'测试分享的标题',content:'测试分享的内容',url:'http://www.baidu.com'});
-}
-
-function shareResult(channel_id,share_channel,share_url) {
-    var content = channel_id+","+share_channel+","+share_url;
-    asyncAlert(content);
-    document.getElementById("returnValue").value = content;
-}
-            
-function asyncAlert(content) {
-    setTimeout(function(){
-        alert(content);
-    },1);
-}
-```
-##### OC调用JS
-- 这里使用WKWebView实现OC调用JS方法与之前说的文章一样，通过- evaluateJavaScript:completionHandler:
-
-```
-// 将分享结果返回给js
-NSString *jsStr = [NSString stringWithFormat:@"shareResult('%@','%@','%@')",title,content,url];
-[self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-    NSLog(@"%@----%@",result, error);
-}];
-```
-##### 使用MessageHandler的好处
-- 1.在JS中写起来简单，不用再用创建URL的方式那么麻烦了。
-- 2.JS传递参数更方便。使用拦截URL的方式传递参数，只能把参数拼接在后面，如果遇到要传递的参数中有特殊字符，如&、=、？等，必须得转换，否则参数解析肯定会出错。
-
-#### WebViewJavascriptBridge(UIWebView)
-##### 第一步，使用Pods 将WebViewJavascriptBridge库添加到工程中。
-##### 第二步，创建UIWebView和WebViewJavascriptBridge示例
-
-```
-#import <WebViewJavascriptBridge.h>
-
-@interface WebBridgeViewController ()
-/** webView */
-@property(nonatomic, strong)UIWebView *webView;
-/** bridge */
-@property(nonatomic, strong)WebViewJavascriptBridge *webViewBridge;
-
-@end
-```
-- 创建UIWebVIew
-
-```
-- (void)drawUI {
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.webView];
-    
-    NSURL *htmlURL = [[NSBundle mainBundle] URLForResource:@"index.html" withExtension:nil];
-    NSURLRequest *request = [NSURLRequest requestWithURL:htmlURL];
-    
-    // UIWebView 滚动的比较慢，这里设置为正常速度
-    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
-    [self.webView loadRequest:request];
-}
-```
-> 这里不需要为UIWebViews设置代理，因为在创建WebViewJavascriptBridge的时候，UIWebView的代理已经被赋值给了WebViewJavascriptBridge。
-
-- 创建WebViewJavascriptBridge
-    * 因为WebViewJavascriptBridge实例，在控制器中多个地方用到，因此最好定义一个property或者实例变量存起来。
-
-```
-// WebViewJavascriptBridge
-self.webViewBridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
-[self.webViewBridge setWebViewDelegate:self];
-```
-- 然后看看bridgeForWebView:方法是如何实现的
-
-```
-+ (instancetype)bridgeForWebView:(id)webView {
-    return [self bridge:webView];
-}
-+ (instancetype)bridge:(id)webView {
-#if defined supportsWKWebView
-    if ([webView isKindOfClass:[WKWebView class]]) {
-        return (WebViewJavascriptBridge*) [WKWebViewJavascriptBridge bridgeForWebView:webView];
-    }
-#endif
-    if ([webView isKindOfClass:[WVJB_WEBVIEW_TYPE class]]) {
-        WebViewJavascriptBridge* bridge = [[self alloc] init];
-        [bridge _platformSpecificSetup:webView];
-        return bridge;
-    }
-    [NSException raise:@"BadWebViewType" format:@"Unknown web view type."];
-    return nil;
-}
-```
-- 其实{-bridgeForWebView }内部先去判断当前使用的是 WKWebView 还是 UIWebView，然后再分别初始化了一个WebViewJavascriptBridge对象，并为其实例变量_webView 和 _base赋值。
-
-##### 第三步，注册js 要调用的Native 功能。
-
-```
-- (void)registerNativeFunctions {
-    [self registShareFunction];
-    
-    [self registLocationFunction];
-    
-    [self registPayFunction];
-}
-
-- (void)registShareFunction {
-    [self.webViewBridge registerHandler:@"shareClick" handler:^(id data, WVJBResponseCallback responseCallback) {
-        // data 的类型与 JS中传的参数有关
-        NSDictionary *tempDic = data;
-        // 在这里执行分享的操作
-        NSString *title = [tempDic objectForKey:@"title"];
-        NSString *content = [tempDic objectForKey:@"content"];
-        NSString *url = [tempDic objectForKey:@"url"];
-        NSLog(@"JS 传递给 OC 的参数:%@",[NSString stringWithFormat:@"分享成功:%@,%@,%@",title,content,url]);
-        
-        // 将分享的结果返回到JS中
-        NSString *result = [NSString stringWithFormat:@"分享成功:%@,%@,%@",title,content,url];
-        responseCallback(result);
-    }];
-}
-```
-- - (void)registerHandler:(NSString *)handlerName handler:(WVJBHandler)handler 该方法由两个参数：第一个参数handlerName，是对这个功能起的一个别名。第二个参数handler，是一个block，也就是 Native 实现的功能。JS 要调用的 Native 实现其实就是 block 内{}内的代码功能。
-- 为了便于维护，我们可以将JS要调用的Native方法都集中到一起，然后单个功能再封装一个方法。
-
-##### 第四步，完成 HTML 必要的 JS 代码
-- HTML 中有一个必须要添加的JS方法，然后需要自动调用一次该方法。该方法是：
-
-```
-function setupWebViewJavascriptBridge(callback) {
-    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
-    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
-    window.WVJBCallbacks = [callback];
-    var WVJBIframe = document.createElement('iframe');
-    WVJBIframe.style.display = 'none';
-    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-    document.documentElement.appendChild(WVJBIframe);
-    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-}
-```
-- 上面这个方法的参数是一个function，这个方法的作用主要是在第一次加载HTML的时候起作用，目的是加载一次wvjbscheme://__BRIDGE_LOADED__，来触发往HTML中注入一些已经写好的JS方法。
-- 看看上面的方法与下面这个是不是很相似：
-
-```
-function loadURL(url) {
-    var iFrame;
-    iFrame = document.createElement("iframe");
-    iFrame.setAttribute("src", url);
-    iFrame.setAttribute("style", "display:none;");
-    iFrame.setAttribute("height", "0px");
-    iFrame.setAttribute("width", "0px");
-    iFrame.setAttribute("frameborder", "0");
-    document.body.appendChild(iFrame);
-    // 发起请求后这个iFrame就没用了，所以把它从dom上移除掉
-    iFrame.parentNode.removeChild(iFrame);
-    iFrame = null;
-}
-```
-- 添加完setupWebViewJavascriptBridge方法，需要在JS中主动调用一次该方法：
-
-```
-setupWebViewJavascriptBridge(function(bridge) {
-     bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
-        alert('JS方法被调用:'+data);
-        responseCallback('js执行过了');
-     })
-})
-```
-- Native 需要调用的 JS 功能，也是需要先注册，然后再执行的。如果Native 需要调用的JS 功能有多个，那么这些功能都要在这里先注册，注册之后才能够被Native 调用。
-接下来需要好好分析一下JS 中这个方法的作用了。
-- 以下是分析的重点
-    * 首先调用setupWebViewJavascriptBridge，第一次执行的时候，由于window.WebViewJavascriptBridge和window.WVJBCallbacks都不存在，所以会继续往下执行，将参数callback（它是一个function）装进数组赋值给window.WVJBCallbacks。
-    * js 支持动态添加属性并赋值，这里window.WVJBCallbacks=[callback];就是动态添加属性，并赋值。 另外js中的全局变量都可以使用window.xxxx来调用;动态添加的属性也可以不加window.，直接使用
-    * WebViewJavascriptBridge 帮助JS调用Native的url 有两种，一种是wvjbscheme://__BRIDGE_LOADED__；而另一种是wvjbscheme://__WVJB_QUEUE_MESSAGE__。前者只有在调用setupWebViewJavascriptBridge的时候执行一次，一般来说这个url 如果没有页面应该只会执行一次。第二种url所有js调用Native 功能时，都会使用到。
-    * 在拦截到自定义的url 时，WebViewJavascriptBridge分了三种情况。
-3.1 如果是wvjbscheme://__BRIDGE_LOADED__,就往HMTL 中注入已经写好的js，这个js 在WebViewJavascriptBridge_JS中；
-3.2 如果是wvjbscheme://__WVJB_QUEUE_MESSAGE__,那就利用stringByEvaluatingJavaScriptFromString，取回调用js中callHandler传进去的参数。
-然后再从WebViewJavascriptBridge之前保存的Native 方法对应的block，调用对应的block。
-
-##### 第五步，调用 Native 功能
-- 利用之前注入的JS方法callHandler就可以调用Native 功能了。
-- 示例代码如下：
-
-```
-function shareClick() {
-    var params = {'title':'测试分享的标题','content':'测试分享的内容','url':'http://www.baidu.com'};
-    WebViewJavascriptBridge.callHandler('shareClick',params,function(response) {
-         alert(response);
-        document.getElementById("returnValue").value = response;
-     });
-}
-```
-- 这里callHandler前的WebViewJavascriptBridge,其实就是上一步注入到JS中的代码中，动态创建属性，动态赋值的属性。如下代码片段可以在WebViewJavascriptBridge_JS中找到。
-
-```
-window.WebViewJavascriptBridge = {
-  registerHandler: registerHandler,
-  callHandler: callHandler,
-  disableJavscriptAlertBoxSafetyTimeout: disableJavscriptAlertBoxSafetyTimeout,
-  _fetchQueue: _fetchQueue,
-  _handleMessageFromObjC: _handleMessageFromObjC
- };
-```
-- 而callHandler 内部调用了另一个js function _doSend,而_doSend内部其实，就是把handlerName和 参数data，再加上callbackId 装成键值对，然后保存到数组sendMessageQueue，同时加载一次wvjbscheme://__WVJB_QUEUE_MESSAGE__。
-到此 利用WebViewJavascriptBridge实现JS 调用iOS Native 就完成了。
-
-##### 第六步，Native 调用 JS 功能
-- Native 调用js 的功能，也需要先在js 中为要调用的功能注册一个别名。
-- js 注册Native 要调用的功能
-
-```
-setupWebViewJavascriptBridge(function(bridge) {
-     bridge.registerHandler('testJSFunction', function(data, responseCallback) {
-        alert('JS方法被调用:'+data);
-        responseCallback('js执行过了');
-     })
-    // 注册其他的功能
-    //bridge.regsiterHandler.....
-})
-```
-- Native 调用功能的别名handlerName
-
-```
-//    // 如果不需要参数，不需要回调，使用这个
-//    [_webViewBridge callHandler:@"testJSFunction"];
-//    // 如果需要参数，不需要回调，使用这个
-//    [_webViewBridge callHandler:@"testJSFunction" data:@"一个字符串"];
-    // 如果既需要参数，又需要回调，使用这个
-    [_webViewBridge callHandler:@"testJSFunction" data:@"一个字符串" responseCallback:^(id responseData) {
-        NSLog(@"调用完JS后的回调：%@",responseData);
-    }];
-```
-- 而callHandler 方法又是如何实现调用js 方法的呢？
-callHandler 内部是将传递给js 的参数、handlerName、callbackId组合成字典，然后把字典转换成字符串，将转换后的字符串以参数的形式，通过stringByEvaluatingJavaScriptFromString传递给js ，js 中将传递过来的字符串转成json ，然后通过handlerName 获取对应的function执行。
-- 关键的几个代码段：
-
-```
-// 这里是Native 调用js ，把参数转换为字符串，执行js 中的_handleMessageFromObjC方法。
-- (void)_dispatchMessage:(WVJBMessage*)message {
-    NSString *messageJSON = [self _serializeMessage:message pretty:NO];
-    [self _log:@"SEND" json:messageJSON];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\'" withString:@"\\\'"];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
-    messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
-    
-    NSString* javascriptCommand = [NSString stringWithFormat:@"WebViewJavascriptBridge._handleMessageFromObjC('%@');", messageJSON];
-    if ([[NSThread currentThread] isMainThread]) {
-        [self _evaluateJavascript:javascriptCommand];
-
-    } else {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self _evaluateJavascript:javascriptCommand];
-        });
-    }
-}
-```
-- 下面这里是找到handlerName对应的function，并执行function。
-
-```
-var handler = messageHandlers[message.handlerName];
-    if (!handler) {
-     console.log("WebViewJavascriptBridge: WARNING: no handler for message from ObjC:", message);
-    } else {
-     handler(message.data, responseCallback);
-    }
-}
-```
-- 到这里 利用WebViewJavascriptBridge 实现Native 调用js 的功能就完成了。
-> 注意：JS 有动态参数的特性，调用js 的方法，可以传0个参数，1个参数，N个参数都可以。
-例如，我们在js中定义一个test()方法，我们可以调用test()，来执行这个方法；如果有参数要传进来，也可以调用test(xxx)；如果有多个参数，那么就用test(xxx,xxx)。当然如果我们定义的参数是test(a,b,c)，也可以少传参数，或者不传参数调用test()。
-
-##### 总结
-- 利用WebViewJavascriptBridge来实现JS与OC的交互的优点：
-    * 获取参数时，更方便一些，如果参数中有一些特殊符号或者url带参数，能够很好的解析。
-- 一些缺点：
-    * 做一次交互，需要执行的js与原生的交互步骤较多，至少有两次。
-    * 需要花较多的时间，理解WebViewJavascriptBridge的原理和使用步骤。
-
-#### WebViewJavascriptBridge(WKWebView)
-
-### 2.在使用 WKWedView 时遇到过哪些问题？
-### 3.是否了解 UIWebView 的插件化？
-### 4.是否了解 SFSafariViewController ？
-
-
-## 音频处理
-
-## 视频处理
-### 补充：AVFoundation原理
-- AFNetworking 底层原理分析
-- AFNetworking是封装的NSURLSession的网络请求，由五个模块组成：分别由NSURLSession,Security,Reachability,Serialization,UIKit五部分组成
-- NSURLSession：网络通信模块（核心模块） 对应 AFNetworking中的 AFURLSessionManager和对HTTP协议进行特化处理的AFHTTPSessionManager,AFHTTPSessionManager是继承于AFURLSessionmanager的
-- Security：网络通讯安全策略模块 对应 AFSecurityPolicy
-- Reachability：网络状态监听模块 对应AFNetworkReachabilityManager
-- Seriaalization：网络通信信息序列化、反序列化模块 对应 AFURLResponseSerialization
-- UIKit：对于iOS UIKit的扩展库
-
-### AFN3.0与2.0区别，AFN4.0
-#### 发展历程
-- AFNetworking 1.0建立在NSURLConnection的基础API之上
-- AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。
-- AFNetworking 3.0现已完全基于NSURLSession的API，这降低了维护的负担，同时支持苹果增强关于NSURLSession提供的任何额外功能。
-- AFNetworking 2.X将继续获得关键的隐患和安全补丁，但没有新的功能将被添加。Alamofire(Swift下的网络请求)软件基金会建议，所有的项目迁移到基于NSURLSession的API。
-
-#### 废弃与新增
-- 下面的类已从AFNetworking 3.0中废弃：
-    * AFURLConnectionOperation
-    * AFHTTPRequestOperation
-    * AFHTTPRequestOperationManager
-- 依次被下面三个类代替了，同时请求方法也跟着改变了
-    * AFURLSessionManager
-    * AFHTTPSessionManager
-    * AFNetworkReachabilityManager
-- 下面的类包含基于NSURLConnection的API的内部实现。他们已经被NSURLSession重构:
-    * UIImageView+AFNetworking
-    * UIWebView+AFNetworking
-    * UIButton+AFNetworking
-
-#### 迁移
-- AFHTTPRequestOperationManager与AFHTTPSessionManager
-    * 如果你以前使用 AFHTTPRequestOperationManager ， 你将需要迁移去使用 AFHTTPSessionManager。 以下的类在两者过渡间并没有变化：
-        * securityPolicy
-        * requestSerializer
-        * responseSerializer
-    * 接下来举一个关于AFHTTPSessionManager的简单例子。注意HTTP网络请求返回的不再是AFHTTPRequestOperation, 修改成为了NSURLSessionTask，并且成功和失败的Block块中的参数也变更为了NSURLSessionTask，而不再是AFHTTPRequestOperation。
-    * 
-
-### 一个完整直播app功能
-
-![image](https://upload-images.jianshu.io/upload_images/8957764-fc94afcbe56ece0b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
-
-#### 基本概念
-- 一个完整直播app原理
-    * 直播原理：把主播录制的视频，推送到服务器，在由服务器分发给观众观看。
-    * 直播环节：推流端（采集、美颜处理、编码、推流）、服务端处理（转码、录制、截图、鉴黄）、播放器（拉流、解码、渲染）、互动系统（聊天室、礼物系统、赞）
-- 一个完整直播app实现流程
-    * 1.采集、2.滤镜处理、3.编码、4.推流、5.CDN分发、6.拉流、7.解码、8.播放、9.聊天互动
-- 一个完整直播app架构
-
-![image](https://upload-images.jianshu.io/upload_images/304825-54974199408c0cc1.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
-
-#### 一个完整直播app技术点
-
-![image](https://upload-images.jianshu.io/upload_images/304825-9b64e9596f3ccdce.jpeg?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
-
-#### 了解流媒体（直播需要用到流媒体）
-- 流媒体开发:网络层(socket或st)负责传输，协议层(rtmp或hls)负责网络打包，封装层(flv、ts)负责编解码数据的封装，编码层(h.264和aac)负责图像，音频压缩。
-- 帧:每帧代表一幅静止的图像
-- GOP:（Group of Pictures）画面组，一个GOP就是一组连续的画面，每个画面都是一帧，一个GOP就是很多帧的集合
-    * 直播的数据，其实是一组图片，包括I帧、P帧、B帧，当用户第一次观看的时候，会寻找I帧，而播放器会到服务器寻找到最近的I帧反馈给用户。因此，GOP Cache增加了端到端延迟，因为它必须要拿到最近的I帧
-    * GOP Cache的长度越长，画面质量越好
-- 码率：图片进行压缩后每秒显示的数据量。
-- 帧率：每秒显示的图片数。影响画面流畅度，与画面流畅度成正比：帧率越大，画面越流畅；帧率越小，画面越有跳动感。
-    * 由于人类眼睛的特殊生理结构，如果所看画面之帧率高于16的时候，就会认为是连贯的，此现象称之为视觉暂留。并且当帧速达到一定数值后，再增长的话，人眼也不容易察觉到有明显的流畅度提升了。
-- 分辨率：(矩形)图片的长度和宽度，即图片的尺寸
-- 压缩前的每秒数据量:帧率X分辨率(单位应该是若干个字节)
-- 压缩比:压缩前的每秒数据量/码率 （对于同一个视频源并采用同一种视频编码算法，则：压缩比越高，画面质量越差。）
-- 视频文件格式：文件的后缀，比如.wmv,.mov,.mp4,.mp3,.avi,
-    * 主要用处，根据文件格式，系统会自动判断用什么软件打开,
-注意: 随意修改文件格式，对文件的本身不会造成太大的影响，比如把avi改成mp4,文件还是avi.
-- 视频封装格式：一种储存视频信息的容器，流式封装可以有TS、FLV等，索引式的封装有MP4,MOV,AVI等，
-    * 主要作用：一个视频文件往往会包含图像和音频，还有一些配置信息(如图像和音频的关联，如何解码它们等)：这些内容需要按照一定的规则组织、封装起来.
-    * 注意：会发现封装格式跟文件格式一样，因为一般视频文件格式的后缀名即采用相应的视频封装格式的名称,所以视频文件格式就是视频封装格式。
-- 视频封装格式和视频压缩编码标准：就好像项目工程和编程语言，封装格式就是一个项目的工程，视频编码方式就是编程语言，一个项目工程可以用不同语言开发。
-
-#### 直播基础知识介绍
-##### 1.采集视频、音频
-- 采集视频、音频编码框架
-    * AVFoundation:AVFoundation是用来播放和创建实时的视听媒体数据的框架，同时提供Objective-C接口来操作这些视听数据，比如编辑，旋转，重编码
-- 视频、音频硬件设备
-    * CCD:图像传感器： 用于图像采集和处理的过程，把图像转换成电信号。
-    * 拾音器:声音传感器： 用于声音采集和处理的过程，把声音转换成电信号。
-    * 音频采样数据:一般都是PCM格式
-    * 视频采样数据: 一般都是YUV,或RGB格式，采集到的原始音视频的体积是非常大的，需要经过压缩技术处理来提高传输效率
-
-##### 2.视频处理（美颜，水印）
-    * 视频处理原理:因为视频最终也是通过GPU，一帧一帧渲染到屏幕上的，所以我们可以利用OpenGL ES，对视频帧进行各种加工，从而视频各种不同的效果，就好像一个水龙头流出的水，经过若干节管道，然后流向不同的目标
-    * 现在的各种美颜和视频添加特效的app都是利用GPUImage这个框架实现的
-- 视频处理框架
-    * GPUImage : GPUImage是一个基于OpenGL ES的一个强大的图像/视频处理框架,封装好了各种滤镜同时也可以编写自定义的滤镜,其本身内置了多达120多种常见的滤镜效果。
-    * OpenGL:OpenGL（全写Open Graphics Library）是个定义了一个跨编程语言、跨平台的编程接口的规格，它用于三维图象（二维的亦可）。OpenGL是个专业的图形程序接口，是一个功能强大，调用方便的底层图形库。
-    * OpenGL ES:OpenGL ES (OpenGL for Embedded Systems) 是 OpenGL三维图形 API 的子集，针对手机、PDA和游戏主机等嵌入式设备而设计。
-
-##### 3.视频编码解码
-- 视频编码框架
-    * FFmpeg:是一个跨平台的开源视频框架,能实现如视频编码,解码,转码,串流,播放等丰富的功能。其支持的视频格式以及播放协议非常丰富,几乎包含了所有音视频编解码、封装格式以及播放协议。
-        * -Libswresample:可以对音频进行重采样,rematrixing 以及转换采样格式等操 作。
-        * -Libavcodec:提供了一个通用的编解码框架,包含了许多视频,音频,字幕流 等编码/解码器。
-        * -Libavformat:用于对视频进行封装/解封装。
-        * -Libavutil:包含一些共用的函数,如随机数生成,数据结构,数学运算等。
-        * -Libpostproc:用于进行视频的一些后期处理。
-        * -Libswscale:用于视频图像缩放,颜色空间转换等。
-        * -Libavfilter:提供滤镜功能。
-    * X264:把视频原数据YUV编码压缩成H.264格式
-    * VideoToolbox:苹果自带的视频硬解码和硬编码API，但是在iOS8之后才开放。
-    * AudioToolbox:苹果自带的音频硬解码和硬编码API
-- 视频编码技术
-    * 视频压缩编码标准：对视频进行压缩(视频编码)或者解压缩（视频解码）的编码技术,比如MPEG，H.264,这些视频编码技术是压缩编码视频的
-        * 主要作用:是将视频像素数据压缩成为视频码流，从而降低视频的数据量。如果视频不经过压缩编码的话，体积通常是非常大的，一部电影可能就要上百G的空间。
-        * 注意:最影响视频质量的是其视频编码数据和音频编码数据，跟封装格式没有多大关系
-    * MPEG:一种视频压缩方式，它采用了帧间压缩，仅存储连续帧之间有差别的地方 ，从而达到较大的压缩比
-    * H.264/AVC:一种视频压缩方式,采用事先预测和与MPEG中的P-B帧一样的帧预测方法压缩，它可以根据需要产生适合网络情况传输的视频流,还有更高的压缩比，有更好的图象质量
-        * 注意1:如果是从单个画面清晰度比较，MPEG4有优势；从动作连贯性上的清晰度，H.264有优势
-        * 注意2:由于264的算法更加复杂，程序实现烦琐，运行它需要更多的处理器和内存资源。因此，运行264对系统要求是比较高的。
-        * 注意3:由于264的实现更加灵活，它把一些实现留给了厂商自己去实现，虽然这样给实现带来了很多好处，但是不同产品之间互通成了很大的问题，造成了通过A公司的编码器编出的数据，必须通过A公司的解码器去解这样尴尬的事情
-    * H.265/HEVC:一种视频压缩方式,基于H.264，保留原来的某些技术，同时对一些相关的技术加以改进，以改善码流、编码质量、延时和算法复杂度之间的关系，达到最优化设置。
-        * H.265 是一种更为高效的编码标准，能够在同等画质效果下将内容的体积压缩得更小，传输时更快更省带宽
-        * I帧:(关键帧)保留一副完整的画面，解码时只需要本帧数据就可以完成（因为包含完整画面）
-    * P帧:(差别帧)保留这一帧跟之前帧的差别，解码时需要用之前缓存的画面叠加上本帧定义的差别，生成最终画面。（P帧没有完整画面数据，只有与前一帧的画面差别的数据）
-    * B帧:(双向差别帧)保留的是本帧与前后帧的差别，解码B帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的与本帧数据的叠加取得最终的画面。B帧压缩率高，但是解码时CPU会比较累
-    * 帧内（Intraframe）压缩:当压缩一帧图像时，仅考虑本帧的数据而不考虑相邻帧之间的冗余信息,帧内一般采用有损压缩算法
-    * 帧间（Interframe）压缩:时间压缩（Temporal compression），它通过比较时间轴上不同帧之间的数据进行压缩。帧间压缩一般是无损的
-    * muxing（合成）：将视频流、音频流甚至是字幕流封装到一个文件中(容器格式（FLV，TS）)，作为一个信号进行传输。
-- 音频编码技术
-    * AAC，mp3：这些属于音频编码技术,压缩音频用
-- 码率控制 
-    * 多码率:观众所处的网络情况是非常复杂的，有可能是WiFi，有可能4G、3G、甚至2G，那么怎么满足多方需求呢？多搞几条线路，根据当前网络环境自定义码率。
-    * 列如：常常看见视频播放软件中的1024，720，高清，标清，流畅等，指的就是各种码率。
-- 视频封装格式
-    * TS : 一种流媒体封装格式，流媒体封装有一个好处，就是不需要加载索引再播放，大大减少了首次载入的延迟，如果片子比较长，mp4文件的索引相当大，影响用户体验
-        * 为什么要用TS:这是因为两个TS片段可以无缝拼接，播放器能连续播放
-    * FLV: 一种流媒体封装格式,由于它形成的文件极小、加载速度极快，使得网络观看视频文件成为可能,因此FLV格式成为了当今主流视频格式
-
-##### 4.推流
-- 数据传输框架
-    * librtmp:用来传输RTMP协议格式的数据
-- 流媒体数据传输协议
-    * RTMP:实时消息传输协议,Adobe Systems公司为Flash播放器和服务器之间音频、视频和数据传输开发的开放协议，因为是开放协议所以都可以使用了。
-        * RTMP协议用于对象、视频、音频的传输。
-        * 这个协议建立在TCP协议或者轮询HTTP协议之上。
-        * RTMP协议就像一个用来装数据包的容器，这些数据可以是FLV中的视音频数据。一个单一的连接可以通过不同的通道传输多路网络流，这些通道中的包都是按照固定大小的包传输的
-    * chunk:消息包
-
-##### 流媒体服务器
-- 常用服务器
-    * SRS：一款国人开发的优秀开源流媒体服务器系统
-    * BMS:也是一款流媒体服务器系统，但不开源，是SRS的商业版，比SRS功能更多
-    * nginx:免费开源web服务器，常用来配置流媒体服务器。
-- 数据分发
-    * CDN：(Content Delivery Network)，即内容分发网络,将网站的内容发布到最接近用户的网络”边缘”，使用户可以就近取得所需的内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度.
-        * CDN：代理服务器，相当于一个中介。
-        * CDN工作原理：比如请求流媒体数据
-            * 1.上传流媒体数据到服务器（源站）
-            * 2.源站存储流媒体数据
-            * 3.客户端播放流媒体，向CDN请求编码后的流媒体数据
-            * 4.CDN的服务器响应请求，若节点上没有该流媒体数据存在，则向源站继续请求流媒体数据；若节点上已经缓存了该视频文件，则跳到第6步。
-            * 5.源站响应CDN的请求，将流媒体分发到相应的CDN节点上
-            * 6.CDN将流媒体数据发送到客户端
-    * 回源：当有用户访问某一个URL的时候，如果被解析到的那个CDN节点没有缓存响应的内容，或者是缓存已经到期，就会回源站去获取搜索。如果没有人访问，那么CDN节点不会主动去源站拿.
-    * 带宽:在固定的时间可传输的数据总量
-        * 比如64位、800MHz的前端总线，它的数据传输率就等于64bit×800MHz÷8(Byte)=6.4GB/s
-    * 负载均衡: 由多台服务器以对称的方式组成一个服务器集合，每台服务器都具有等价的地位，都可以单独对外提供服务而无须其他服务器的辅助.
-        * 通过某种负载分担技术，将外部发送来的请求均匀分配到对称结构中的某一台服务器上，而接收到请求的服务器独立地回应客户的请求。
-        * 均衡负载能够平均分配客户请求到服务器列阵，籍此提供快速获取重要数据，解决大量并发访问服务问题。
-        * 这种群集技术可以用最少的投资获得接近于大型主机的性能。
-    * QoS（带宽管理）:限制每一个组群的带宽，让有限的带宽发挥最大的效用
-
-##### 拉流
-- 直播协议选择：
-    * 即时性要求较高或有互动需求的可以采用RTMP,RTSP
-    * 对于有回放或跨平台需求的，推荐使用HLS
-    * `直播协议对比`    :
-
-![image](https://upload-images.jianshu.io/upload_images/304825-f92e85515845e107.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200)
-
-- HLS:由Apple公司定义的用于实时流传输的协议,HLS基于HTTP协议实现，传输内容包括两部分，一是M3U8描述文件，二是TS媒体文件。可实现流媒体的直播和点播，主要应用在iOS系统
-    * HLS是以点播的技术方式来实现直播
-    * HLS是自适应码率流播，客户端会根据网络状况自动选择不同码率的视频流，条件允许的情况下使用高码率，网络繁忙的时候使用低码率，并且自动在二者间随意切
-换。这对移动设备网络状况不稳定的情况下保障流畅播放非常有帮助。
-    * 实现方法是服务器端提供多码率视频流，并且在列表文件中注明，播放器根据播放进度和下载速度自动调整。
-- HLS与RTMP对比:HLS主要是延时比较大，RTMP主要优势在于延时低
-    * HLS协议的小切片方式会生成大量的文件，存储或处理这些文件会造成大量资源浪费
-    * 相比使用RTSP协议的好处在于，一旦切分完成，之后的分发过程完全不需要额外使用任何专门软件，普通的网络服务器即可，大大降低了CDN边缘服务器的配置要求，可以使用任何现成的CDN,而一般服务器很少支持RTSP。
-- HTTP-FLV:基于HTTP协议流式的传输媒体内容。
-    * 相对于RTMP，HTTP更简单和广为人知，内容延迟同样可以做到1~3秒，打开速度更快，因为HTTP本身没有复杂的状态交互。所以从延迟角度来看，HTTP-FLV要优于RTMP。
-- RTSP:实时流传输协议,定义了一对多应用程序如何有效地通过IP网络传送多媒体数据.
-- RTP:实时传输协议,RTP是建立在UDP协议上的，常与RTCP一起使用，其本身并没有提供按时发送机制或其它服务质量（QoS）保证，它依赖于低层服务去实现这一过程。
-- RTCP:RTP的配套协议,主要功能是为RTP所提供的服务质量（QoS）提供反馈，收集相关媒体连接的统计信息，例如传输字节数，传输分组数，丢失分组数，单向和双向网络延迟等等。
-
-##### 解码
-- 解封装
-    * demuxing（分离）：从视频流、音频流，字幕流合成的文件(容器格式（FLV，TS）)中， 分解出视频、音频或字幕，各自进行解码。
-- 音频编码框架
-    * fdk_aac:音频编码解码框架，PCM音频数据和AAC音频数据互转
-- 解码介绍
-    * 硬解码：用GPU来解码，减少CPU运算
-        * 优点：播放流畅、低功耗，解码速度快，
-        * 缺点：兼容不好
-    * 软解码：用CPU来解码
-        * 优点：兼容好
-        * 缺点：加大CPU负担，耗电增加、没有硬解码流畅，解码速度相对慢
-
-##### 播放
-- ijkplayer:一个基于FFmpeg的开源Android/iOS视频播放器
-    * API易于集成；
-    * 编译配置可裁剪，方便控制安装包大小；
-    * 支持硬件加速解码，更加省电
-    * 简单易用，指定拉流URL，自动解码播放.
-
-##### 聊天互动
-- IM:(InstantMessaging)即时通讯:是一个实时通信系统，允许两人或多人使用网络实时的传递文字消息、文件、语音与视频交流.
-    * IM在直播系统中的主要作用是实现观众与主播、观众与观众之间的文字互动.
-- 腾讯云：腾讯提供的即时通讯SDK，可作为直播的聊天室
-- 融云：一个比较常用的即时通讯SDK，可作为直播的聊天室
-
-####  
-
-
-
-
-
-
-
-
-## 图像处理
-### 1.图像的压缩、解压。
-### 2.一张物理体积20KB、分辨率为 200 * 300 的图片，在内存中占用多大的空间？
-### 3.GLSurfaceView的相关知识，OpenGL，Shader，绘制流程。
-
-
-## iOS 动画
-### 1.简要说一下常用的动画库。
-### 2.请说一下对 CALayer 的认识。
-### 3.解释一下 CALayer.contents 属性。
-### 4.在 iOS 中，动画有哪几种类型？
-### 5.隐式动画
-### 6.显式动画
-
-## 蓝牙
-
-## ARKit
-
-## Core ML
-
-
-## 代码管理、持续集成、项目托管
-### 1.Git
-#### 1.`git pull` 和 `git fetch` 的区别？
-#### 2.`git merge` 和 `git rebase` 的区别？
-#### 3.如何在本地新建一个分支，并 push 到远程服务器上？
-#### 4.如果 fork 了一个别人的仓库，怎样与源仓库保持同步
-#### 5.总结一下 Git 常用的命令？
-### 2.Svn
-### 3.CocoaPods
-#### 1.说一下 `CocoaPods` 的原理？
-#### 2.如何让自己写的框架支持 `CocoaPods`？
-#### 3.`pod update` 和 `pod install` 有什么区别？
-#### 4.`Podfile.lock` 文件起什么作用？
-#### 5.CocoaPods 常用指令？
-#### 6.在使用 CocoaPods 中遇到过哪些问题？
-#### 7.如何使用 CocoaPods 集成远程私有库？
-#### 8.如果自己写的库需要依赖其他的三方库，该怎么办？
-#### 9.CocoaPods 中的 Subspec 字段有什么用处？
-### 4.Carthage
-### 5.Fastlane
-### 6.Jenkins
-### 7.fir.im
-### 8.蒲公英
-### 9.TestFlight
-
-
-## 数据安全及加密
-### 1.RSA非对称加密  
-### 2.AES对称加密
-### 3.DES加密
-### 4.Base64加密
-### 5.MD5加密
-### 6.简述 `SSL` 加密的过程用了哪些加密方法，为何这么作？
-### 7.是否了解 `iOS` 的签名机制？
-### 8.如何对 `APP` 进行重签名？
-### 9.在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计
-### 10.常见的加密算法
-### 11.对称加密算法和非对称加密算法的区别
-
-
-## 源代码阅读
-### 1.YYKit
-### 2.SDWebImage
-#### 面试常见问题
-#### 1.看过sdwebimage的源码吗？说一下sdwebimage的原理
-- SDWebImage加载图片的流程
-    * 入口 setImageWithURL:placeholderImage:options:会先把 placeholderImage显示，然后 SDWebImageManager根据 URL 开始处理图片。
-    * 进入SDWebImageManager类中downloadWithURL:delegate:options:userInfo:，交给 SDImageCache从缓存查找图片是否已经下载 queryDiskCacheForKey:delegate:userInfo:.
-    * 先从内存图片缓存查找是否有图片，如果内存中已经有图片缓存，SDImageCacheDelegate回调 imageCache:didFindImage:forKey:userInfo:到 SDWebImageManager。
-    * SDWebImageManagerDelegate 回调 webImageManager:didFinishWithImage: 到 UIImageView+WebCache,等前端展示图片。
-    * 如果内存缓存中没有，生成 ｀NSOperation ｀ 添加到队列，开始从硬盘查找图片是否已经缓存。
-    * 根据 URL的MD5值Key在硬盘缓存目录下尝试读取图片文件。这一步是在 NSOperation 进行的操作，所以回主线程进行结果回调 notifyDelegate:。
-    * 如果上一操作从硬盘读取到了图片，将图片添加到内存缓存中（如果空闲内存过小， 会先清空内存缓存）。SDImageCacheDelegate'回调 imageCache:didFindImage:forKey:userInfo:`。进而回调展示图片。
-    * 如果从硬盘缓存目录读取不到图片，说明所有缓存都不存在该图片，需要下载图片， 回调 imageCache:didNotFindImageForKey:userInfo:。
-    * 共享或重新生成一个下载器 SDWebImageDownloader开始下载图片。
-    * 图片下载由 NSURLConnection来做，实现相关 delegate 来判断图片下载中、下载完成和下载失败。
-    * connection:didReceiveData: 中利用 ImageIO做了按图片下载进度加载效果。
-    * connectionDidFinishLoading: 数据下载完成后交给 SDWebImageDecoder做图片解码处理。
-    * 图片解码处理在一个 NSOperationQueue完成，不会拖慢主线程 UI.如果有需要 对下载的图片进行二次处理，最好也在这里完成，效率会好很多。
-    * 在主线程 notifyDelegateOnMainThreadWithInfo: 宣告解码完成 imageDecoder:didFinishDecodingImage:userInfo: 回调给 SDWebImageDownloader`。
-    * imageDownloader:didFinishWithImage:回调给 SDWebImageManager告知图片 下载完成。
-    * 通知所有的 downloadDelegates下载完成，回调给需要的地方展示图片。
-    * 将图片保存到 SDImageCache中，内存缓存和硬盘缓存同时保存。写文件到硬盘 也在以单独 NSOperation 完成，避免拖慢主线程。
-    * SDImageCache 在初始化的时候会注册一些消息通知， 在内存警告或退到后台的时 候清理内存图片缓存，应用结束的时候清理过期图片。
-#### 2.说一下SDWebImage的缓存策略？
-- 有一个专门的 Cache 分类用来处理图片的缓存。 这里面也有两个类 SDImageCache 和 SDImageCacheConfig。 大部分的缓存处理都在 SDImageCache 这个类中实现。
-- SDImageCache 中有一个叫做 memCache 的属性，它是一个 NSCache 对象，用于实现我们对图片的 Memory Cache，其实就是接受系统的内存警告通知，然后清除掉自身的图片缓存。Disk Cache，也就是文件缓存，SDWebImage 会将图片存放到 NSCachesDirectory目录中，然后为每一个缓存文件生成一个 md5 文件名, 存放到文件中。
-- Memory 和 Disk 双缓存
-    * Memory(内存)中查找：SDImageCache 类的 queryDiskCacheForKey方法，查询图片缓存，queryDiskCacheForKey 方法内部， 先会查询 Memory Cache ，如果查找到就直接返回，反之进入下面的硬盘查找。
-    * Disk(硬盘) 中查找：如果 Memory Cache查找不到， 就会查询 Disk Cache，查询Disk Cache 的时候有一个小插曲，就是如果 Disk Cache 查询成功，还会把得到的图片再次设置到 Memory Cache 中。这样做可以最大化那些高频率展现图片的效率。如果找不到就进入下面的网络下载。
-    * 网路下载：请求网络使用的是imageDownloader属性，这个示例专门负责下载图片数据。如果下载失败， 会把失败的图片地址写入failedURLs集合，为什么要有这个 failedURLs 呢，因为SDWebImage默认会有一个对上次加载失败的图片拒绝再次加载的机制。也就是说，一张图片在本次会话加载失败了，如果再次加载就会直接拒绝，SDWebImage这样做可能是为了提高性能。如果下载图片成功了，接下来就会使用 [self.imageCache storeImage]方法将它写入缓存，同时也会写入硬盘，并且调用 completedBlock 告诉前端显示图片。
-    * Disk(硬盘)缓存清理策略：SDWebImage 会在每次 APP 结束的时候执行清理任务。清理缓存的规则分两步进行。第一步先清除掉过期的缓存文件。如果清除掉过期的缓存之后，空间还不够。那么就继续按文件时间从早到晚排序，先清除最早的缓存文件，直到剩余空间达到要求。
-
-#### 补充：如何设计一个图片缓存框架？
-- 可以模仿 SDWebImage 来实现。
-- 构成
-    * Manager
-    * 内存缓存
-    * 磁盘缓存
-    * 网络下载
-    * Code Manager
-        * 图片解码
-        * 图片解压缩
-        * 图片的存储是以图片的单向 hash 值为 Key
-- 内存设计需要考虑的问题
-    * 存储的 Size
-        * 因为内存的空间有限，我们针对不同尺寸的图片，给出不同的方案
-        * 10K 以下的50个
-        * 100Kb 以下的20个
-        * 100kb 以上的10个
-    * 淘汰的策略
-        * 内存的淘汰策略采取LRU（最近最少使用算法）
-        * 触发淘汰策略的时机有三种
-            * 定期检查（不建议，耗性能）
-            * 提高检查触发频率（一定要注意开销）
-                * 前后台切换的时候
-                * 每次读写的时候
-- 磁盘设计需要考虑的问题
-    * 存储方式
-    * 大小限制（有固定的大小）
-    * 移除策略（可以设置为7天或者15天）
-- 网络设计需要考虑的问题
-    * 图片请求的最大并发量
-    * 请求超时策略
-    * 请求优先级
-- 图片解码
-    * 应用 策略模式，针对 jpg、png、gif 等不同的图片格式进行解码
-    * 图片解码的时机
-        * 在 子线程 图片刚下载完时
-        * 在 子线程 刚从磁盘读取完时
-        * 避免在主线程解压缩、解码，避免卡顿
-
-#### 3.磁盘缓存时间，默认的缓存路径，怎么处理图片的名称?默认的超时时间是多少?最大并发数？
-#### 4.该框架内部对内存警告的处理方式?（或者问：当app接收到内存警告时，SDWebImage做了什么？）
-#### 5.NSCache和字典的区别？
-#### 6.如何计算图片的成本?
-#### 7.保证错误的URL不会被尝试重新下载，使用什么来下载图片的 
-#### 8.sdwebimage是一个异步下载图片的三方，怎么保证线程安全的？
-#### 9.如果一个页面 加载图片很卡 ，什么原因，会跟sdwebimage有关吗，还是跟图片渲染有关？
-#### 10.如果收到内存警告怎么办
-- 如果使用了SDWebImage框架,使用如下代码,可以有效的减少内存:
-
-```
-[[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];//清除内存中通过SDWebImage框架下载的图片,建议在收到内存警告时在调用
-```
-#### 11.SDWebImage是如何做到Url不变的情况下，更新图片内容的？
-- SDWebImage它是基于URL作为Key来实现图片缓存机制的。大多数情况下，片与URL是一一对应的，即使服务器修改了图片也会相应的变更URL。但是在少数情况下，服务器修改了图片后不会变更相应的URL，也就是说图片本身的内容变了然而它的URL没有变化，那么按照对SDWebImage的常规使用方法的话，客户端肯定更新不到同一URL对应到服务器已变更的图片内容。
-- 客户端第一次请求图片时，Charles抓包得知response header里有一个名为Last-Modified、数据是时间戳的键值对。
-- 客户端第二次及以后请求图片时，通过Charles抓包发现，服务器返回304 not modified状态，说明服务器在接收客户端请求后通过某种判断逻辑得出结论：“客户端已缓存的图片与服务器图片都是最新的”，那么服务器如何判断的呢？
-- 通过查阅HTTP协议相关的资料得知，与服务器返回的Last-Modified相对应的request header里可以加一个名为If-Modified-Since的key，value即是服务器回传的服务端图片最后被修改的时间，第一次图片请求时If-Modified-Since的值为空，第二次及以后的客户端请求会把服务器回传的Last-Modified值作为If-Modified-Since的值传给服务器，这样服务器每次接收到图片请求时就将If-Modified-Since与Last-Modified进行比较，如果客户端图片已陈旧那么返回状态码200、Last-Modified、图片内容，客户端存储Last-Modified和图片；如果客户端图片是最新的那么返回304 Not Modified、不会返回Last-Modified、图片内容。
-- Apache比较时是看If-Modified-Since之后有没有更新图片，Nginx比较时是看If-Modified-Since与Last-Modified是否相等，所以对于Apache服务器环境客户端每次都要严格的存储服务器回传的Last-Modified以便下次请求时作为If-Modified-Since的值传给服务器，对于Nginx服务器环境客户端不必存储服务器回传的Last-Modified，每次请求时只需将图片自身的fileModificationDate作为If-Modified-Since的值传服务器即可。在实际开发中，如果遇到明明传了If-Modified-Since、服务器图片也变更了、但是客户端却请求不到最新的图片的情况时，那么就需要查看一下服务器对这两个时间戳的比较逻辑。
-- 那么，现在我们可以回到SDWebImage上来了。通过查看SDWebImageDownloader的源码得知，它开放了一个headersFilter的block，意在让开发者可以对所有图片请求追加一些额外的header，这正合我意。那么我们就可以在诸如AppDelegate didFinishLaunching的地方追加如下代码：
-
-```
-SDWebImageDownloader *imgDownloader = SDWebImageManager.sharedManager.imageDownloader;
-imgDownloader.headersFilter  = ^NSDictionary *(NSURL *url, NSDictionary *headers) {
-
-    NSFileManager *fm = [[NSFileManager alloc] init];
-    NSString *imgKey = [SDWebImageManager.sharedManager cacheKeyForURL:url];
-    NSString *imgPath = [SDWebImageManager.sharedManager.imageCache defaultCachePathForKey:imgKey];
-    NSDictionary *fileAttr = [fm attributesOfItemAtPath:imgPath error:nil];
-
-    NSMutableDictionary *mutableHeaders = [headers mutableCopy];
-
-    NSDate *lastModifiedDate = nil;
-
-    if (fileAttr.count > 0) {
-        if (fileAttr.count > 0) {
-            lastModifiedDate = (NSDate *)fileAttr[NSFileModificationDate];
-        }
-
-    }
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    formatter.dateFormat = @"EEE, dd MMM yyyy HH:mm:ss z";
-
-    NSString *lastModifiedStr = [formatter stringFromDate:lastModifiedDate];
-    lastModifiedStr = lastModifiedStr.length > 0 ? lastModifiedStr : @"";
-    [mutableHeaders setValue:lastModifiedStr forKey:@"If-Modified-Since"];
-
-    return mutableHeaders;
-};
-
-```
-- 然后，加载图片的地方以前怎么写还是怎么写，但别忘了Option是SDWebImageRefreshCached
-
-```
-NSURL *imgURL = [NSURL URLWithString:@"http://handy-img-storage.b0.upaiyun.com/3.jpg"];  
-[[self imageView] sd_setImageWithURL:imgURL  
-                    placeholderImage:nil  
-                             options:SDWebImageRefreshCached];
-                             
-```
-- 经测试，服务器只修改图片不变更URL的时候，客户端也可以更新到最新的图片。
-从以上第一段代码内容可以看出我采用的是与ngix服务器比较逻辑对应的代码，BTW:我测试的服务器是又拍云，说明又拍云的比较逻辑是等与不等的关系判断，不是大小关系的判断。
-- 这里顺便说一下，如果服务器的环境是类似于Apache的比较逻辑时，客户端可以把Last-Modified存放在图片的名称上(这需要修改SDWebImage源码，不建议)，或者用一个plist文件存放图片key名称与时间的对应关系(这个不用修改源码)。
-- OK，到此这次的主题已得到完美解决。
-- 其实，在抓取服务器返回的数据包时，还发现response header中还有一个ETag，与之相对应的request header中可以追加一个If-None-Match的key，这对header与Last-Modified、If-Modified-Since的作用是相同的，即服务器是否需要返回最新的图片，当然它们在服务器端的判断逻辑应该是等与不等的判断，Etag在客户端的存储同样可以采用在plist文件中存放图片key名称与Etag的对应关系。
-
-### 3.AFNetworking
-### 4.SVProgressHub 
-### 5.Texture（ASDK）
-
-
-## iOS逆向及安全
-### 1.怎么防止反编译？
-- 本地数据加密。
-    * iOS应用防反编译加密技术之一：对NSUserDefaults，sqlite存储文件数据加密，保护帐号和关键信息
-- URL编码加密。
-    * iOS应用防反编译加密技术之二：对程序中出现的URL进行编码加密，防止URL被静态分析
-- 网络传输数据加密。
-    * iOS应用防反编译加密技术之三：对客户端传输数据提供加密方案，有效防止通过网络接口的拦截获取数据
-- 方法体，方法名高级混淆。
-    * iOS应用防反编译加密技术之四：对应用程序的方法名和方法体进行混淆，保证源码被逆向后无法解析代码
-- 程序结构混排加密。
-    * iOS应用防反编译加密技术之五：对应用程序逻辑结构进行打乱混排，保证源码可读性降到最低
-
-### 2.项目中网络层如何做安全处理？
-- 尽量使用https
-    * https可以过滤掉大部分的安全问题。https在证书申请，服务器配置，性能优化，客户端配置上都需要投入精力，所以缺乏安全意识的开发人员容易跳过https，或者拖到以后遇到问题再优化。https除了性能优化麻烦一些以外其他都比想象中的简单，如果没精力优化性能，至少在注册登录模块需要启用https，这部分业务对性能要求比较低。
-- 不要传输明文密码
-    * 不知道现在还有多少app后台是明文存储密码的。无论客户端，server还是网络传输都要避免明文密码，要使用hash值。客户端不要做任何密码相关的存储，hash值也不行。存储token进行下一次的认证，而且token需要设置有效期，使用refresh，token去申请新的token。
-- Post并不比Get安全
-    * 事实上，Post和Get一样不安全，都是明文。参数放在QueryString或者Body没任何安全上的差别。在Http的环境下，使用Post或者Get都需要做加密和签名处理。
-- 不要使用301跳转
-    * 301跳转很容易被Http劫持攻击。移动端http使用301比桌面端更危险，用户看不到浏览器地址，无法察觉到被重定向到了其他地址。如果一定要使用，确保跳转发生在https的环境下，而且https做了证书绑定校验。
-- http请求都带上MAC
-    * 所有客户端发出的请求，无论是查询还是写操作，都带上MAC（Message Authentication Code）。MAC不但能保证请求没有被篡改（Integrity），还能保证请求确实来自你的合法客户端（Signing）。当然前提是你客户端的key没有被泄漏，如何保证客户端key的安全是另一个话题。MAC值的计算可以简单的处理为hash（request params＋key）。带上MAC之后，服务器就可以过滤掉绝大部分的非法请求。MAC虽然带有签名的功能，和RSA证书的电子签名方式却不一样，原因是MAC签名和签名验证使用的是同一个key，而RSA是使用私钥签名，公钥验证，MAC的签名并不具备法律效应。
-- http请求使用临时密钥
-    * 高延迟的网络环境下，不经优化https的体验确实会明显不如http。在不具备https条件或对网络性能要求较高且缺乏https优化经验的场景下，http的流量也应该使用AES进行加密。AES的密钥可以由客户端来临时生成，不过这个临时的AES key需要使用服务器的公钥进行加密，确保只有自己的服务器才能解开这个请求的信息，当然服务器的response也需要使用同样的AES key进行加密。由于http的应用场景都是由客户端发起，服务器响应，所以这种由客户端单方生成密钥的方式可以一定程度上便捷的保证通信安全。
-- AES使用CBC模式
-    * 不要使用ECB模式，记得设置初始化向量，每个block加密之前要和上个block的秘文进行运算。
-
-
-## Coretext
-## 项目组件化
-### 1.说一下你之前项目的组件化方案？
-### 2.项目的组件化模块应该如何划分？
-### 3.如何集成本地私有库？
-### 4.如何集成远程私有库？
-
-
-## 性能优化
-### 1.如何提升 `tableview` 的流畅度？
-- 本质上是降低 CPU、GPU 的工作，从这两个大的方面去提升性能。
-    * CPU：对象的创建和销毁、对象属性的调整、布局计算、文本的计算和排版、图片的格式转换和解码、图像的绘制
-    * GPU：纹理的渲染
-- 卡顿优化在 CPU 层面
-    * 尽量用轻量级的对象，比如用不到事件处理的地方，可以考虑使用 CALayer 取代 UIView
-    * 不要频繁地调用 UIView 的相关属性，比如 frame、bounds、transform 等属性，尽量减少不必要的修改
-    * 尽量提前计算好布局，在有需要时一次性调整对应的属性，不要多次修改属性
-    * Autolayout 会比直接设置 frame 消耗更多的 CPU 资源
-    * 图片的 size 最好刚好跟 UIImageView 的 size 保持一致
-    * 控制一下线程的最大并发数量
-    * 尽量把耗时的操作放到子线程
-        * 文本处理（尺寸计算、绘制）
-        * 图片处理（解码、绘制）
-- 卡顿优化在 GPU层面
-    * 尽量避免短时间内大量图片的显示，尽可能将多张图片合成一张进行显示
-    * GPU能处理的最大纹理尺寸是 4096x4096，一旦超过这个尺寸，就会占用 CPU 资源进行处理，所以纹理尽量不要超过这个尺寸
-    * 尽量减少视图数量和层次
-    * 减少透明的视图（alpha<1），不透明的就设置 opaque 为 YES
-    * 尽量避免出现离屏渲染
-- iOS 保持界面流畅的技巧
-    * 预排版，提前计算
-        * 在接收到服务端返回的数据后，尽量将 CoreText 排版的结果、单个控件的高度、cell 整体的高度提前计算好，将其存储在模型的属性中。需要使用时，直接从模型中往外取，避免了计算的过程。
-        * 尽量少用 UILabel，可以使用 CALayer 。避免使用AutoLayout的自动布局技术，采取纯代码的方式
-    * 预渲染，提前绘制
-        * 例如圆形的图标可以提前在，在接收到网络返回数据时，在后台线程进行处理，直接存储在模型数据里，回到主线程后直接调用就可以了，避免使用CALayer的Border、corner、shadow、mask 等技术，这些都会触发离屏渲染。
-    * 异步绘制
-    * 全局并发线程
-    * 高效的图片异步加载
-
-### 2.如何使用 `Instruments` 进行性能调优？(Time Profiler、Zombies、Allocations、Leaks)
-### 3.如何优化 `APP` 的启动时间
-- App启动过程
-    * 解析Info.plist
-    * 加载相关信息，例如闪屏
-    * 沙箱建立、权限检查
-    * Mach-O加载
-    * 如果是胖二进制文件，寻找合适当前CPU类别的部分
-    * 加载所有依赖的Mach-O文件（递归调用Mach-O加载的方法）
-    * 定位内部、外部指针引用，例如字符串、函数等
-    * 执行声明为attribute((constructor))的C函数
-    * 加载类扩展（Category）中的方法
-    * C++静态对象加载、调用ObjC的 +load 函数
-    * 程序执行
-    * 调用main()
-    * 调用UIApplicationMain()
-    * 调用applicationWillFinishLaunching
-- 影响启动性能的因素
-    * main()函数之前耗时的影响因素
-        * 动态库加载越多，启动越慢。
-        * ObjC类越多，启动越慢
-        * C的constructor函数越多，启动越慢
-        * C++静态对象越多，启动越慢
-        * ObjC的+load越多，启动越慢
-    * main()函数之后耗时的影响因素
-        * 执行main()函数的耗时
-        * 执行applicationWillFinishLaunching的耗时
-        * rootViewController及其childViewController的加载、view及其subviews的加载
-
-### 4.今日头条的启动优化方案
-- 针对于今日头条这个App我们可以优化的点如下：
-    * 纯代码方式而不是storyboard加载首页UI。
-    * 对didFinishLaunching里的函数考虑能否挖掘可以延迟加载或者懒加载，需要与各个业务方pm和rd共同check 对于一些已经下线的业务，删减冗余代码。
-    * 对于一些与UI展示无关的业务，如微博认证过期检查、图片最大缓存空间设置等做延迟加载。
-    * 对实现了+load()方法的类进行分析，尽量将load里的代码延后调用。
-    * 上面统计数据显示展示feed的导航控制器页面(NewsListViewController)比较耗时，对于viewDidLoad以及viewWillAppear方法中尽量去尝试少做，晚做，不做。
-
-### 5.如何对 `APP` 进行内存、电量、网络流量的优化
-### 6.如何有效降低 `APP` 包的大小？
-- 可执行文件
-    * 编译器优化
-        * Strip Linked Product、Make Strings Read-Only、Symbols Hidden by Default 设置为 YES
-        * 去掉异常支持，Enable C++ Exceptions、Enable Objective-C Exceptions 设置为 NO， Other C Flags 添加 -fno-exceptions
-    * 利用 AppCode 检测未使用的代码：菜单栏 -> Code -> Inspect Code
-    * 编写LLVM插件检测出重复代码、未被调用的代码
-- 资源
-    * 资源包括 图片、音频、视频 等
-    * 优化的方式可以对资源进行无损的压缩
-    * 去除没有用到的资源
-
-### 7.日常如何检查内存泄露？
-- 目前我知道的方式有以下几种
-    * Memory Leaks
-    * Alloctions
-    * Analyse
-    * Debug Memory Graph
-    * MLeaksFinder
-- 泄露的内存主要有以下两种
-    * Laek Memory这种是忘记Release操作所泄露的内存。
-    * Abandon Memory这种是循环引用，无法释放掉的内存。
-
-### 8.能不能说一下物理屏幕显示的原理？
-- CPU 计算好显示内容提交到 GPU，GPU 渲染完成后将渲染结果放入帧缓冲区，视频控制器收到VSync信号后逐行读取帧缓冲区的数据，再经过一定的数模转换传递给显示器显示。
-- iOS屏幕刷新机制
-    * 为了解决单缓存区的问题，iOS设备在这个过程中采取了如下图所示的双缓存区+VSync机制：
-        * GPU 会预先渲染好一帧放入一个缓存区内（前帧缓存）。
-        * 在显示器发出VSync后，视频控制器的指针会指向前帧缓存区并开始读取，GPU开始渲染下一帧，并将渲染结果放入另一个缓存区（后帧缓存）。
-        * 在显示器发出新的VSync后，视频控制器的指针会指向后帧缓存区并开始读取，GPU开始渲染下一帧，并将渲染结果放入前帧缓存区。
-- 双缓存和VSync造成的问题
-    * 每一帧画面要先经过CPU计算，再经过GPU渲染，最后存入缓存区供视频控制器读取。由于垂直同步的机制，如果在一个VSync时间内，CPU 或者 GPU 没有完成内容提交，则那一帧就会被丢弃，而这时显示屏会保留之前的内容不变，也就造成界面卡顿。
-- 为了降低双缓存造成界面卡顿的几率，有些设备（如安卓设备）会引入三缓存+VSync机制，但iOS设备一直都是双缓存+垂直同步机制。
-- 三缓存区的工作原理同双缓冲类似，只是多了一个 Back Buffer（图中的缓存区C）。三缓存区只是能降低界面卡顿的几率，并不能解决这个问题。
-
-### 9.解释一下什么是屏幕卡顿、掉帧？该如何避免？
-- 图像显示相关的原理
-    * iOS系统中 CPU、GPU、显示器是以下面图中方式协同工作的。CPU和GPU是通过总线链接起来的，CPU 计算好显示内容提交到 GPU，GPU 渲染完成后将渲染结果放入帧缓冲区，视频控制器会按照 VSync 信号逐行读取帧缓冲区的数据，经过数模转换传递给显示器显示。 
-- 关于CPU和GPU的分工又有以下内容：
-    * CPU负责：
-        * 对象创建和销毁
-        * 对象属性调整
-        * 布局计算、文本的计算
-        * 排版、图片的格式转换和解码
-        * 图像的绘制
-    * GPU负责：
-        * 纹理的渲染
-        * 视图的混合
-        * 图形的生成
-- IOS视图卡顿掉帧的原因
-    * 标准情况下，页面滑动流畅是60FPs ，就是每一秒有60帧的画面刷新，每16.7ms(1/60秒)有一帧数据。上图两个VSync 之间的时间就是16.7ms。 如果CPU 和 GPU 加起来的处理时间超过了 16.7ms，就会造成掉帧甚至卡顿。当FPs 帧数低于30时，人的肉眼就能感觉到画面明显的卡顿。
-- 如何监控界面的卡顿
-    * 思路一：监控一秒钟内的帧数是否经常低于或远低于 60FPs。
-    * 思路二：监控每一帧的时长是否超时。
-- 思路一实现方法：用 CADisplayLinker 来计数
-> CADisplayLink可以以屏幕刷新的频率调用指定selector，iOS系统中正常的屏幕刷新率为60次/秒，只要在这个方法里面统计每秒这个方法执行的次数，通过次数/时间就可以得出当前屏幕的刷新率了。
-
-- 思路二实现方法：通过子线程监测主线程的RunLoop，判断两个状态RunLoop的状态区域之间的耗时是否达到一定阈值。
-> 开启子线程,实时计算这两个状态区域之间的耗时是否到达某个阀值,便能揪出这些性能杀手，假定连续6次超时50ms认为卡顿(当然也包含了单次超时300ms)
-
-- 如何优化掉帧卡顿
-    * 图像显示的工作是由CPU和GPU协同完成的， 那么优化的方向和思路就是尽量减少他们的处理时长。
-    * 对CPU处理的优化:
-        * 在子线程中进行对象的创建,调整和销毁，节省一部分CPU的时间
-        * 在子线程中预排版(布局计算,文本计算)，让主线程有更多的时间去响应用户的交互
-        * 对文本等异步绘制,图片编解码等内容进行 预渲染、预排版
-    * 对GPU处理的优化
-        * 尽量避免使用 CALayer 的 Border、corner、shadow、mask 等技术，这样能少触发离屏渲染
-        * 尽可能将多张图片合成为一张进行显示，减轻视图层级
-
-### 10.什么是`离屏渲染`？什么情况下会触发？该如何应对？
-- 离屏渲染就是在当前屏幕缓冲区以外，新开辟一个缓冲区进行操作。
-- 离屏渲染出发的场景
-    * 圆角 （maskToBounds并用才会触发）
-    * 图层蒙版
-    * 阴影
-    * 光栅化
-- 为什么要避免离屏渲染？
-    * CPU、GPU在绘制渲染视图时做了大量的工作。离屏渲染发生在GPU层面上，会创建新的渲染缓冲区，会触发 OpenGL的多通道渲染管线，图形上下文的切换会造成额外的开销，增加 GPU 工作量。如果 CPU GPU 累计耗时16.67毫秒还没有完成，就会造成卡顿掉帧。
-    * 圆角属性、蒙层遮罩都会触发离屏渲染。指定了以上属性，标记了它在新的图形上下文中，在未愈合之前，不可以用于显示的时候就出发了离屏渲染。
-- 在OpenGL中，GPU有2种渲染方式
-    * On-Screen Rendering：当前屏幕渲染，在当前用于显示的屏幕缓冲区进行渲染操作
-    * Off-Screen Rendering：离屏渲染，在当前屏幕缓冲区以外新开辟一个缓冲区进行渲染操作
-- 离屏渲染消耗性能的原因
-    * 需要创建新的缓冲区
-    * 离屏渲染的整个过程，需要多次切换上下文环境，先是从当前屏幕（On-Screen）切换到离屏（Off-Screen）；等到离屏渲染结束以后，将离屏缓冲区的渲染结果显示到屏幕上，又需要将上下文环境从离屏切换到当前屏幕
-- 哪些操作会触发离屏渲染？
-    * 光栅化，layer.shouldRasterize = YES
-    * 遮罩，layer.mask
-    * 圆角，同时设置 layer.masksToBounds = YES、layer.cornerRadius大于0
-    * 考虑通过 CoreGraphics 绘制裁剪圆角，或者叫美工提供圆角图片
-    * 阴影，layer.shadowXXX，如果设置了 layer.shadowPath 就不会产生离屏渲染；
-
-### 11.如何检测离屏渲染？
-- 模拟器debug-选中color Offscreen - Renderd离屏渲染的图层高亮成黄 可能存在性能问题
-- 真机Instrument-选中Core Animation-勾选Color Offscreen-Rendered Yellow
-- 离屏渲染的触发方式
-    * 设置了以下属性时，都会触发离屏绘制：
-        * layer.shouldRasterize（光栅化）
-            * 光栅化概念：将图转化为一个个栅格组成的图象。
-            * 光栅化特点：每个元素对应帧缓冲区中的一像素。
-        * masks（遮罩）
-        * shadows（阴影）
-        * edge antialiasing（抗锯齿）
-        * group opacity（不透明）
-        * 复杂形状设置圆角等
-        * 渐变
-        * drawRect
-- 例如我们日程经常打交道的TableViewCell,因为TableViewCell的重绘是很频繁的（因为Cell的复用）,如果Cell的内容不断变化,则Cell需要不断重绘,如果此时设置了cell.layer可光栅化。则会造成大量的离屏渲染,降低图形性能。
-- 如果将不在GPU的当前屏幕缓冲区中进行的渲染都称为离屏渲染，那么就还有另一种特殊的“离屏渲染”方式：CPU渲染。如果我们重写了drawRect方法，并且使用任何Core Graphics的技术进行了绘制操作，就涉及到了CPU渲染。整个渲染过程由CPU在App内同步地完成，渲染得到的bitmap最后再交由GPU用于显示。
-- 现在摆在我们面前得有三个选择：当前屏幕渲染、离屏渲染、CPU渲染，该用哪个呢？这需要根据具体的使用场景来决定。
-- 尽量使用当前屏幕渲染，鉴于离屏渲染、CPU渲染可能带来的性能问题，一般情况下，我们要尽量使用当前屏幕渲染。
-- 由于GPU的浮点运算能力比CPU强，CPU渲染的效率可能不如离屏渲染；但如果仅仅是实现一个简单的效果，直接使用CPU渲染的效率又可能比离屏渲染好，毕竟离屏渲染要涉及到缓冲区创建和上下文切换等耗时操作
-
-### 12.如何高性能的画一个圆角？
-
-```
-label.layer.cornerRadius = 5
-label.layer.masksToBounds = true
-```
-- 首先上面的方式是不可取的，会触发离屏渲染。
-- 如果能够只用 cornerRadius解决问题，就不用优化。
-- 如果必须设置masksToBounds，可以参考圆角视图的数量，如果数量较少（一页只有几个）也可以考虑不用优化。
-- UIImageView的圆角通过直接截取图片实现，其它视图的圆角可以通过 Core Graphics 画出圆角矩形实现。
-
-### 13.如何优化 APP 的内存？
-
-### 14.如何优化 APP 的电量？
-- 程序的耗电主要在以下四个方面：
-    * CPU 处理
-    * 定位
-    * 网络
-    * 图像
-- 优化的途径主要体现在以下几个方面：
-    * 尽可能降低 CPU、GPU 的功耗。
-    * 尽量少用 定时器。
-    * 优化 I/O 操作。
-        * 不要频繁写入小数据，而是积攒到一定数量再写入
-        * 读写大量的数据可以使用 Dispatch_io ，GCD 内部已经做了优化。
-        * 数据量比较大时，建议使用数据库
-    * 网络方面的优化
-        * 减少压缩网络数据 （XML -> JSON -> ProtoBuf），如果可能建议使用 ProtoBuf。
-        * 如果请求的返回数据相同，可以使用 NSCache 进行缓存
-        * 使用断点续传，避免因网络失败后要重新下载。
-        * 网络不可用的时候，不尝试进行网络请求
-        * 长时间的网络请求，要提供可以取消的操作
-        * 采取批量传输。下载视频流的时候，尽量一大块的进行下载，广告可以一次下载多个
-    * 定位层面的优化
-        * 如果只是需要快速确定用户位置，最好用 CLLocationManager 的 requestLocation 方法。定位完成后，会自动让定位硬件断电
-        * 如果不是导航应用，尽量不要实时更新位置，定位完毕就关掉定位服务
-        * 尽量降低定位精度，比如尽量不要使用精度最高的 kCLLocationAccuracyBest
-        * 需要后台定位时，尽量设置 pausesLocationUpdatesAutomatically 为 YES，如果用户不太可能移动的时候系统会自动暂停位置更新
-        * 尽量不要使用 startMonitoringSignificantLocationChanges，优先考虑 startMonitoringForRegion:
-    * 硬件检测优化
-        * 用户移动、摇晃、倾斜设备时，会产生动作(motion)事件，这些事件由加速度计、陀螺仪、磁力计等硬件检测。在不需要检测的场合，应该及时关闭这些硬件
-
-### 15.假如Controller太臃肿，如何优化？
-- 将网络请求抽象到单独的类中
-    * 方便在基类中处理公共逻辑；
-    * 方便在基类中处理缓存逻辑，以及其它一些公共逻辑；
-    * 方便做对象的持久化。
-- 将界面的封装抽象到专门的类中
-    * 构造专门的 UIView 的子类，来负责这些控件的拼装。这是最彻底和优雅的方式，不过稍微麻烦一些的是，你需要把这些控件的事件回调先接管，再都一一暴露回 Controller。
-- 构造 ViewModel
-    * 借鉴MVVM。具体做法就是将 ViewController 给 View 传递数据这个过程，抽象成构造 ViewModel 的过程。
-- 专门构造存储类
-    * 专门来处理本地数据的存取。
-- 整合常量
-
-
-
-## 调试技巧 & 软件使用
-### 1.`LLDB` 调试。
-### 2.断点调试- breakPoint。
-### 3.`NSAssert` 的使用。
-### 4.`Charles` 的使用。
-    - 使用 Charles 下载过去任意版本的 App。
-### 5.`Reveal` 的使用。
-### 6.iOS 常见的崩溃类型有哪些？
-### 7.当页面 AutoLayout 出现了问题，怎样快速调试？
-
-## 扩展问题
-### 1.无痕埋点
-### 2.APM（应用程序性能监测）
-### 3.Hot Patch（热修补）
-### 4.崩溃的处理
-### 补充：各个app之间是怎么相互切换的
-
-
-## 其他问题
-### 1.面向对象的三个要素
-- 封装
-    * 封装，就是将客观事物抽象为逻辑实体，实体的属性和功能相结合，形成一个有机的整体。并对实体的属性和功能实现进行访问控制，向信任的实体开放，对不信任的实体隐藏。，通过开放的外部接口即可访问，无需知道功能如何实现。
-    * 也就是说，封装主要有以下目的：
-        * 可隐藏实体实现的细节
-        * 提高安全性，设定访问控制，只允许具有特定权限的使用者调用。
-        * 简化编程，调用方无需知道功能是怎么实现的，即可调用。
-- 继承
-    * 继承，在继承机制下形成有层级的类，使得低层级的类可以延用高层级类的特征和方法。继承的实现方式有两种：实现继承、接口继承。
-    * 实现继承：直接使用基类公开的属性和方法，无需额外编码。
-    * 接口继承：仅使用接口公开的属性和方法名称，需要子类实现。
-    * 也就是说，继承有以下目的：
-        * 复用代码，减少类的冗余代码，减少开发工作量。
-        * 使得类与类之间产生关系，为多态的实现打下基础。
-- 多态
-    * 多态，是指一个类的同名方法，在不同情况下的实现细节不同。多态机制实现不同的内部实现结构共用同一个外部接口。
-    * 也就是说，多态有以下目的：
-        * 一个外部接口可被多个同类使用。
-        * 不同对象调用同个方法，可有不同实现。
-
-### 2.多态？
-- 多态实现的三个必要条件是：继承、重写（子类继承父类后，对继承的方法重新定义）、父类应用指向子类对象。所以，多态的实现是基于继承的。
-
-### 补充：事务的特征
-- 事务的四个特征：
-    * 原子性 Atomic：事务中的所有操作要么都执行，要么都不执行
-    * 一致性 Consistency：事务执行的结果从一个状态到另一个状态时保持一致。即当事务提交成功时，保存一致性的结果；当事务提交不成功时，数据库将处在不一样的状态，这种状态应该撤销
-    * 隔离性 Isolation：并发执行事务时，事务之间不能互相干扰
-    * 持久性 Durability：事务一旦提交成功，数据修改是永久的
-- 原子性保持了事务的一致性，隔离性保证多个事务间不互相干扰。否则，即便每个事务都能确保数据的原子性和一致性，多个事务并发执行时，也可能出现不一致的状态。
-
-### 补充：事务状态
-- 活动状态：事务执行前的状态
-- 部分提交状态：事务的最后一条语句执行完毕，结果已经在内存缓冲区中，还没有写入磁盘
-- 失败状态：事务没有正常执行，应该回滚
-- 终止状态：事务回滚并且数据库恢复到事务执行前的状态
-- 提交状态：数据的更改完全写入磁盘
-
-### 3.Java，python，OC运行效率孰高？
-- OC最高，OC大于java大于python
-- oc方法调用的需要经历查缓存，查方法表，查父类方法表，如果都差不多就会进行动态方法决议，如果还是不行，就执行消息转发机制，如果还是无法处理就crash。但是大部分在方法缓存的时候就能找到，苹果有函数缓存机制，当缓存生效时性能与c差不多。
-- Java是静态语言静态编译的，直接执行，速度上要比Python快的很多。而Python动态类型语言，一边执行一边编译，所以要比Java慢。
-
-### 4.Property，其中copy如何？
-- 用途：
-    * NSString、NSArray、NSDictionary 等等经常使用copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary；
-    * lock 也经常使用 copy 关键字
-- block 使用 copy 是从 MRC 遗留下来的“传统”,在 MRC 中,方法内部的 block 是在栈区的,使用 copy 可以把它放到堆区.在 ARC 中写不写都行：对于 block 使用 copy 还是 strong 效果是一样的，但写上 copy 也无伤大雅，还能时刻提醒我们：编译器自动对 block 进行了 copy 操作。如果不写 copy ，该类的调用者有可能会忘记或者根本不知道“编译器会自动对 block 进行了 copy 操作”，他们有可能会在调用之前自行拷贝属性值。这种操作多余而低效。
-- 下面做下解释：
-    * copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。
-    * 当属性类型为 NSString 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString 类的实例。这个类是 NSString 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。
-    * 用 @property 声明 NSString、NSArray、NSDictionary 经常使用 copy 关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary，他们之间可能进行赋值操作，为确保对象中的字符串值不会无意间变动，应该在设置新属性值时拷贝一份。
-
-### 5.Property(nonatomatic, copy) NSMutableArray有什么问题？
-- 两个问题：
-    * 添加,删除,修改数组内的元素的时候,程序会因为找不到对应的方法而崩溃.因为copy就是复制一个不可变 NSArray 的对象；
-    * 使用了 atomic 属性会严重影响性能 ；
-- 第一个问题：
-    * 因为父类指针可以指向子类对象,使用 copy 的目的是为了让本对象的属性不受外界影响,使用 copy 无论给我传入是一个可变对象还是不可对象,我本身持有的就是一个不可变的副本.
-- 第二个问题：
-    * 该属性使用了同步锁，会在创建时生成一些额外的代码用于帮助编写多线程程序，这会带来性能问题，通过声明nonatomic可以节省这些虽然很小但是不必要额外开销。
-    * 在默认情况下，由编译器所合成的方法会通过锁定机制确保其原子性(atomicity)。如果属性具备 nonatomic 特质，则不使用同步锁。请注意，尽管没有名为“atomic”的特质(如果某属性不具备 nonatomic 特质，那它就是“原子的”(atomic))。
-    * 在iOS开发中，你会发现，几乎所有属性都声明为 nonatomic。
-    * 一般情况下并不要求属性必须是“原子的”，因为这并不能保证“线程安全” ( thread safety)，若要实现“线程安全”的操作，还需采用更为深层的锁定机制才行。例如，一个线程在连续多次读取某属性值的过程中有别的线程在同时改写该值，那么即便将属性声明为atomic，也还是会读到不同的属性值。
-    * 因此，开发iOS程序时一般都会使用 nonatomic 属性。但是在开发 Mac OS X 程序时，使用atomic 属性通常都不会有性能瓶颈。
-
-### 6.Copy和MutableCopy的区别？
-#### 对非集合类对象的 copy 与 mutableCopy 操作；
-- 在非集合类对象中：对 immutable 对象进行 copy 操作，是指针复制，mutableCopy 操作时内容复制；对 mutable 对象进行 copy 和 mutableCopy 都是内容复制。用代码简单表示如下：
-    * [immutableObject copy] // 浅复制
-    * [immutableObject mutableCopy] //深复制
-    * [mutableObject copy] //深复制
-    * [mutableObject mutableCopy] //深复制
-- 用 @property声明NSString、NSArray、NSDictionary 经常使用 copy关键字，是因为他们有对应的可变类型：NSMutableString、NSMutableArray、NSMutableDictionary，他们之间可能进行赋值操作，为确保对象中的字符串值不会无意间变动，应该在设置新属性值时拷贝一份。
-
-#### 对集合类对象的 copy 与 mutableCopy 操作。
-- 集合类对象是指 NSArray、NSDictionary、NSSet ... 之类的对象。
-- 集合类对象中，对 immutable 对象进行 copy，是指针复制， mutableCopy 是内容复制；对 mutable 对象进行 copy 和 mutableCopy 都是内容复制。但是：集合对象的内容复制仅限于对象本身，对象元素仍然是指针复制。
-
-### 7.解释下类别的原理
-### 8.解释下封装，重载
-### 9.OC存在多重继承吗？
-### 10.了解表视图吗，解释一下复用原理
-### 11.说明一下表视图的滑动卡顿的优化方法
-### 12.viewDidLoad和viewDidAppear的调用时机（一次和多次的区别）；
-### 13.页面间的传值方式有哪些（公有属性，公有方法和协议，block传值，通知，extern全局变量传值，NSUserDefault简单数据存储传值）；
-### 14.在OC中对象方法的几种访问权限，分别是什么？
-### 15.列出 #import 和 #include 的区别，另外什么时候使用@class？
-### 16.`load` 和 `Initialize` 的区别?
-### 17.`Designated Initializer`的规则？
-### 18.`App` 编译过程有了解吗？
-### 19.介绍下App启动的完成过程？
-- 先加载Main函数
-- 在Main函数里的 UIApplicationMain方法中，创建Application对象 创建Application的Delegate对象
-- 创建主循环，代理对象开始监听事件
-- 启动完毕会调用 didFinishLaunching方法，并在这个方法中创建UIWindow
-- 设置UIWindow的根控制器是谁
-- 如果有storyboard，会根据info.plist中找到应用程序的入口storyboard并加载箭头所指的控制器
-- 显示窗口
-- 其中在didFinishLaunching方法到窗口显示其中有AppDelegate,ViewController,MainView（控制器的View）,ChildView（子控件的View）的18个方法：
-    * AppDelegate中的：
-        * application:didFinishLaunchingWithOptions:
-        * applicationDidBecomeActive:
-    * ViewController中的：
-        * loadView
-        * viewDidLoad
-        * load
-        * initialize
-        * viewWillAppear
-        * viewWillLayoutSubviews
-        * viewDidLayoutSubviews
-        * viewDidAppear
-    * MainView（控制器的View）中的
-        * initWithCoder（如果没有storyboard就会调用initWithFrame，这里两种方法视为一种）
-        * awakeFromNib
-        * layoutSubviews
-        * drawRect
-    * ChildView（子控件View）中的：
-        * initWithCoder（如果没有storyboard就会调用initWithFrame，这里两种方法视为一种）
-        * awakeFromNib
-        * layoutSubviews
-        * drawRect
-- 十八个方法排个顺序
-
-```
-+ (void)load; //这是应用程序启动就会调用的方法，在这个方法里写的代码最先调用
-
-+ (void)initialize; //这个是需要用到本类时才调用，这个方法里一般写设置导航控制器的主题啊之类的，
-//如果在后面的方法设置导航栏主题就晚了！（当然在上面的方法里也能写）
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
-//这个方法里面会创建UIWindow，设置根控制器并展现，
-//比如某些应用程序要加载授权页面也是在这加，也可以设置观察者，监听到通知切换根控制器
-
-ChildView - (instancetype)initWithCoder:(NSCoder *)aDecoder;
-//这里反正我是万万没想到，childView的initwithcoder会在MainView的方法之前调用，
-//父的都还没出来，就先整子控件？ 有了解比较透彻的博友恳请告诉我谢谢。
-
-MainView - (instancetype)initWithCoder:(NSCoder *)aDecoder;
-// 就是关于应用程序的数据存储后的解档操作。
-
-MainView - (void)awakeFromNib;
-//在这个方法里设置view的背景等一系列普通操作，不要写关于frame的还不准，
-//在使用IB的时候才会涉及到此方法的使用，当.nib文件被加载的时候，
-//会发送一个awakeFromNib的消息到.nib文件中的每个对象，
-//每个对象都可以定义自己的awakeFromNib函数来响应这个消息，执行一些必要的操作。
-
-ChildView - (void)awakeFromNib
-//子控件也有本方法，重写父类的方法。基本用法同上
-
-- (void)loadView; 
-//创建视图的层次结构，这里需要注意，
-//在没有创建控制器的view的情况下不能直接写 self.view 因为self.view的底层是：
-    if（_view == nil）{
-　   　_view = [self loadView]
-    }
-//所以这么写会直接造成死循环。
-//如果重写这个loadView方法里面什么都不写，会显示黑屏
-
-- (void)viewDidLoad;
-//卧槽，这个方法是用的最多的方法，但是在之后的开发中就会发现越来越不靠谱，
-//很多东西都还没加载完毕，各种取值都不准确，很少在这里面写东西了。 
-//这里只是把视图元件加载完成
-
-- (void)viewWillAppear:(BOOL)animated;
-//视图将要出现，这个方法用的非常多，比如如果要设置导航栏的setNavigationBarHiden:animate: 
-//就必须要在这里写，才能完美契合，不卡跳。 还有很多比如监听屏幕旋转啦，
- 
-//viewWillTransitionToSize:可能要在本方法里再调一次，
-//或者就是新到这个界面要reloadData或是自动下拉刷新等 都是写在本方法里
-
-- (void)viewWillLayoutSubviews;
-//视图将要布局子视图，苹果建议的设置界面布局属性的方法，
-//这个方法和viewWillAppear里，系统的底层都是没有写任何代码的，也就是说这里面不写super 也是可以的
-
-MainView  - (void)layoutSubviews;
-//在这个方法里一般设置子控件的frame，因为这里相当于是布局基本完成了，
-//设置时取到的frame或者是self.bounds才最准，如果在awakeFromeNib里写会不准确 。
-//还有这里要切记千万不能把super layoutSubviews忘了，可能最后都很难找到这个bug
-
-- (void)viewDidLayoutSubviews;
-//这个方法我也是玩玩没想到，控制器的view的子控件还没有布局好呢，怎么这个控制器就已经说布局全部完成了？
-//那后边的布局就不等了？ 有独到见解的也恳请你告诉我，这其中苹果的意思到底是什么。
-
-ChildView - (void)layoutSubviews;
-//控制器的子控件里的子控件的布局就在这里写了。
-
-MainView - (void)drawRect:(CGRect)rect;
-//因为默认所有额UI控件都是画上去的，在这一步就是把所有的东西画上去，
-//有时候需要用到Quartz2D的知识的时候都是在这个方法里话，但也是要注意别忘了写super，
-//不然系统原本的东西就都画不上来了，这里要建议尽可能使用贝塞尔路径画图形，
-//因为系统默认的那个上下文画法有时可能会内存泄露。drawRect方法只能在加载时调用一次，
-//如果后面还需要调用，比如下载进度的圆弧，需要一直刷帧，
-//就要使用setNeedsDisplay来定时多次调用本方法
-
-ChildView - (void)drawRect:(CGRect)rect;
-//view的子控件内部的画图方法，有时可以自己自定义label 中间带个删除线的（用来写打折前的原价） 就是在这里画根线 。
-
-- (void)viewDidAppear:(BOOL)animated;
-//把上面的画图都画完了，这里就会显示，视图完全加载完成。
-//在这里的操作可能就是设置页面的一些动画,或者是设置tableView，collectionView，
-//QQ聊天页面啥的滚动到底部scrollToIndexPath之类的代码操作
-
-- (void)applicationDidBecomeActive:(UIApplication *)application;
-//最后这是AppDelegate的应用程序获取焦点方法，真正到了这里，才是所有东西全部加载完毕，应用程序整装待发保持最佳状态等待用户操作。
-//这个方法中一般会写关于弹出键盘的方法，比如有的用户登录界面为了更好的用户体验，
-//就让你在刚打开程序来到登录界面的时候，光标的焦点就自动在账号的文本框里闪烁，
-//也就是设置账号文本框为第一响应者。键盘在页面加载完毕后从下方弹出，这种代码一般就在本方法写。
-
-```
-
-### 20.`JS` 和 `Native` 交互。
-### 21.`LoadView`方法了解吗？
-### 22.说一下对 `APNS` 的认识？
-### 23：简述Xcode7和Xcode8的异同
-### 24：描述iOS 10的一些新特性（包括系统和开发环境）
-### 25.App 上有一数据列表，客户端和服务端均没有任何缓存，当服务端有数据更新时，该列表在 wifi 下能获取到数据，在 4G 下刷新不到，但是在 4g 环境下其他 App 都可以正常打开，分析其产生的原因？
-### 26.是否了解链式编程？
-### 27.dSYM你是如何分析的
-- 我们在iOS开发过程中一定会跟符号表（dSYM文件）打交道，它是我们不可或缺的定位bug的小帮手。我们都知道，每次编译都会生成一个dSYM文件，当我们的应用程序出现奔溃时，dSYM文件能帮我们定位到应用程序的代码奔溃到哪里了。
-- 符号表是内存地址与函数名、文件名、行号的映射表。符号表元素如下所示：
-
-```
-<起始地址> <结束地址> <函数> [<文件名:行号>]
-```
-- dSYM是如何分析的
-    * 方法1 使用XCode，这种方法可能是最容易的方法了。
-        * 要使用Xcode符号化 crash log，你需要下面所列的3个文件：crash报告（.crash文件），符号文件(.dsymb文件)，应用程序文件(appName.app文件，把IPA文件后缀改为zip，然后解压，Payload目录下的appName.app文件),这里的appName是你的应用程序的名称。把这3个文件放到同一个目录下，打开Xcode的Window菜单下的organizer，然后点击Devices tab，然后选中左边的Device Logs。然后把.crash文件拖到Device Logs或者选择下面的import导入.crash文件。这样你就可以看到crash的详细log了。
-        * 方法2 使用命令行工具symbolicatecrash，有时候Xcode不能够很好的符号化crash文件。我们这里介绍如何通过symbolicatecrash来手动符号化crash log。在处理之前，请依然将“.app“, “.dSYM”和 ".crash"文件放到同一个目录下。现在打开终端(Terminal)然后输入如下的命令：export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer，然后输入命令：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash appName.crash appName.app > appName.log；现在，符号化的crash log就保存在appName.log中了。
-        * 方法3 使用命令行工具atos，如果你有多个“.ipa”文件，多个".dSYMB"文件，你并不太确定到底“dSYMB”文件对应哪个".ipa"文件，那么，这个方法就非常适合你。特别当你的应用发布到多个渠道的时候，你需要对不同渠道的crash文件，写一个自动化的分析脚本的时候，这个方法就极其有用。
