@@ -385,83 +385,83 @@
 - 49.[说明一下表视图的滑动卡顿的优化方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#49tableview优化怎么减少卡顿)
 
 ## 多线程
-- 1.进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步
-- 2.多线程可以访问同一个对象吗，多进程呢
-- 3.线程和队列的关系？
-- 4.并行同步和串行异步区别
-- 5.http中的同步和异步
-- 6.iOS线程间怎么通信？
-- 7.`iOS`开发中有多少类型的线程？分别对比一下
-- 8.谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？
-- 9.多线程容易出现的问题，怎么解决
-- 10.解释一下多线程中的死锁？
-- 11.多线程的安全隐患+11种同步解决方案
-- 12.iOS锁的原理
-- 13.iOS读写锁实现原理
-- 14.NSThread相关知识？
-- 15.GCD 相关知识？
-- 16.GCD执行顺序问题
-- 17.请简单介绍一下对GCD的理解，有NSThread等线程方法，苹果为什么还推出了GCD
-- 18.说一下对GCD的了解，它有那些方法，分别是做什么用的？
-- 19.说一下 GCD 并发队列实现机制
-- 20.GCD的并行队列一定会开辟新的线程？
-- 21.如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）
-- 22.单列写法，使用GCD API和完全二次检查实现
-- 23.怎么实现多个任务执行完后，再统一处理（应该是同步阻塞、栅栏函数、调度组）
-- 24.GCD的一些常用的函数？（group，barrier，信号量，线程同步）
-- 25.GCD的队列（dispatch_queue_t）分哪两种类型？
-- 26.`GCD`主线程 & 主队列的关系
-- 27.不使用gcd，如何保证线程安全？
-- 28.dispatch_barrier_async的作用是什么？有什么使用场景？
-- 29.说一下dispatch_group_t和dispatch_barrier_sync的区别吗？
-- 30.苹果为什么要废弃dispatch_get_current_queue？
-- 31.NSOperation 和 NSOperationQueue相关知识？
-- 32.`NSOperationQueue`中的`maxConcurrentOperationCount`默认值
-- 33.如何自定义 NSOperation ?
-- 34.NSOperationQueue的优点
-- 35.NSOperation与GCD的关系？
-- 36.GCD 与 NSOperationQueue 有哪些异同？什么时候使用GCD,什么时候使用NSOperation
-- 37.你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?
-- 38.如何使用队列来避免资源抢夺？
-- 39.dispatch_sync 和 dispatch_async 区别
-- 40.iOS的锁有哪些？
-- 41.iOS各种锁的性能，琐是毫秒级别还是微妙级别
-- 42.NSLock？是否会出现死锁？
-- 43.NSContion
-- 44.条件锁 - NSContionLock
-- 45.递归锁 - NSRecursiveLock
-- 46.同步锁 - Synchronized(self) {// code}
-- 47.信号量 - dispatch_semaphore
-- 48.自旋锁 - OSSpinLock
-- 49.互斥锁
-- 50.互斥锁和自旋锁区别及应用场景
-- 51.多功能锁 - pthread_mutex]
-- 52.分步锁 - NSDistributedLock
-- 53.如何确保线程安全？
-- 54.同一线程里面使用两个@synconize会怎么样，是递归锁还是非递归锁
-- 55.NSMutableArray、和 NSMutableDictionary是线程安全的吗？NSCache呢？
-- 56.线程死锁的四个条件
-- 57.解释一下多线程中的死锁？
-- 58.列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。
-- 59.子线程是否会出现死锁？说一下场景？
-- 60.请说明同步请求与异步请求的区别?
-- 61.默认最大并发？
-- 62.`GCD`实现最大线程并发数？(使用`dispatch_semaphore`)、手动实现队列最大并发
-- 63.FMDB如何保证线程安全
-- 64.`dispatch_once`实现原理
-- 65.dispatch_once如何实现一次性代码？
-- 66.Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?
-- 67.如何把异步线程转换成同步任务进行单元测试？
-- 68.如何实现线性编程？
-- 69.面向协议编程特点
-- 70.`AFNetworking`源码：网络状态监听的实现、`NSURLSection`与`NSURLConnection`的区别？
-- 71.说一下NSURLSession具体的实现原理
-- 72.了解NSURLConnection和Session吗？
-- 73.线程安全错误是怎么出现的？
-- 74.哪些OC对象是线程安全的
-- 75.如何保证OC容器在多线程下的数据安全性
-- 76.说几个你在工作中使用到的线程安全的例子。
-- 77.`NSTimer、CADisplayLink、dispatch_source_t` 的优劣
+- 1.[进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1进程和线程多进程和多线程任务和队列并行与串行同步和异步)
+- 2.[多线程可以访问同一个对象吗，多进程呢](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2多线程可以访问同一个对象吗多进程呢)
+- 3.[线程和队列的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3线程和队列的关系)
+- 4.[并行同步和串行异步区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4并行同步和串行异步区别)
+- 5.[http中的同步和异步](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5http中的同步和异步)
+- 6.[iOS线程间怎么通信？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6ios线程间怎么通信)
+- 7.[`iOS`开发中有多少类型的线程？分别对比一下](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7ios开发中有多少类型的线程分别对比一下)
+- 8.[谈谈你对多线程开发的理解(多线程的好处，多线程的作用)？ios中有几种实现多线程的方法？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8谈谈你对多线程开发的理解多线程的好处多线程的作用ios中有几种实现多线程的方法)
+- 9.[多线程容易出现的问题，怎么解决](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9多线程容易出现的问题怎么解决)
+- 10.[解释一下多线程中的死锁？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10解释一下多线程中的死锁)
+- 11.[多线程的安全隐患+11种同步解决方案](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11多线程的安全隐患11种同步解决方案)
+- 12.[iOS锁的原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12ios锁的原理)
+- 13.[iOS读写锁实现原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13ios读写锁实现原理)
+- 14.[NSThread相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14nsthread相关知识)
+- 15.[GCD 相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15gcd-相关知识)
+- 16.[GCD执行顺序问题](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16gcd执行顺序问题)
+- 17.[请简单介绍一下对GCD的理解，有NSThread等线程方法，苹果为什么还推出了GCD](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17请简单介绍一下对gcd的理解有nsthread等线程方法苹果为什么还推出了gcd)
+- 18.[说一下对GCD的了解，它有那些方法，分别是做什么用的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18说一下对gcd的了解它有那些方法分别是做什么用的)
+- 19.[说一下 GCD 并发队列实现机制](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19说一下-gcd-并发队列实现机制)
+- 20.[GCD的并行队列一定会开辟新的线程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20gcd的并行队列一定会开辟新的线程)
+- 21.[如何用GCD同步若干个异步调用？（如根据若干个url异步加载多张图片，然后在都下载完成后合成一张整图）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21如何用gcd同步若干个异步调用如根据若干个url异步加载多张图片然后在都下载完成后合成一张整图)
+- 22.[单列写法，使用GCD API和完全二次检查实现](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22单列写法使用gcd-api和完全二次检查实现)
+- 23.[怎么实现多个任务执行完后，再统一处理（应该是同步阻塞、栅栏函数、调度组）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23怎么实现多个任务执行完后再统一处理应该是同步阻塞栅栏函数调度组)
+- 24.[GCD的一些常用的函数？（group，barrier，信号量，线程同步）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24gcd的一些常用的函数groupbarrier信号量线程同步)
+- 25.[GCD的队列（dispatch_queue_t）分哪两种类型？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25gcd的队列dispatch_queue_t分哪两种类型)
+- 26.[`GCD`主线程 & 主队列的关系](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26gcd主线程--主队列的关系)
+- 27.[不使用gcd，如何保证线程安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27不使用gcd如何保证线程安全)
+- 28.[dispatch_barrier_async的作用是什么？有什么使用场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28dispatch_barrier_async的作用是什么有什么使用场景)
+- 29.[说一下dispatch_group_t和dispatch_barrier_sync的区别吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29说一下dispatch_group_t和dispatch_barrier_sync的区别吗)
+- 30.[苹果为什么要废弃dispatch_get_current_queue？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30苹果为什么要废弃dispatch_get_current_queue)
+- 31.[NSOperation 和 NSOperationQueue相关知识？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31nsoperation-和-nsoperationqueue相关知识)
+- 32.[`NSOperationQueue`中的`maxConcurrentOperationCount`默认值](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#32nsoperationqueue中的maxconcurrentoperationcount默认值)
+- 33.[如何自定义 NSOperation ?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#33如何自定义-nsoperation-)
+- 34.[NSOperationQueue的优点](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#34nsoperationqueue的优点)
+- 35.[NSOperation与GCD的关系？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#35nsoperation与gcd的关系)
+- 36.[GCD 与 NSOperationQueue 有哪些异同？什么时候使用GCD,什么时候使用NSOperation](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#36gcd-与-nsoperationqueue-有哪些异同什么时候使用gcd什么时候使用nsoperation)
+- 37.[你们项目中为什么多线程用GCD而不用NSOperation呢? 你有没有发现国外的大牛他们多线程都是用NSOperation? 你能告诉我他们这样做的理由吗?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#37你们项目中为什么多线程用gcd而不用nsoperation呢-你有没有发现国外的大牛他们多线程都是用nsoperation-你能告诉我他们这样做的理由吗)
+- 38.[如何使用队列来避免资源抢夺？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#38如何使用队列来避免资源抢夺)
+- 39.[dispatch_sync 和 dispatch_async 区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#39dispatch_sync-和-dispatch_async-区别)
+- 40.[iOS的锁有哪些？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#40ios的锁有哪些)
+- 41.[iOS各种锁的性能，琐是毫秒级别还是微妙级别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#41ios各种锁的性能琐是毫秒级别还是微妙级别)
+- 42.[NSLock？是否会出现死锁？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#42nslock是否会出现死锁)
+- 43.[NSContion](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#43nscontion)
+- 44.[条件锁 - NSContionLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#44条件锁---nscontionlock)
+- 45.[递归锁 - NSRecursiveLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#45递归锁---nsrecursivelock)
+- 46.[同步锁 - Synchronized(self) {// code}](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#46同步锁---synchronizedself--code)
+- 47.[信号量 - dispatch_semaphore](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#47信号量---dispatch_semaphore)
+- 48.[自旋锁 - OSSpinLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#48自旋锁---osspinlock)
+- 49.[互斥锁](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#49互斥锁)
+- 50.[互斥锁和自旋锁区别及应用场景](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#50互斥锁和自旋锁区别及应用场景)
+- 51.[多功能锁 - pthread_mutex]](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51多功能锁---pthread_mutex)
+- 52.[分步锁 - NSDistributedLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52分步锁---nsdistributedlock)
+- 53.[如何确保线程安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#53如何确保线程安全)
+- 54.[同一线程里面使用两个@synconize会怎么样，是递归锁还是非递归锁](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#54同一线程里面使用两个synconize会怎么样是递归锁还是非递归锁)
+- 55.[NSMutableArray、和 NSMutableDictionary是线程安全的吗？NSCache呢？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#55nsmutablearray和-nsmutabledictionary是线程安全的吗nscache呢)
+- 56.[线程死锁的四个条件](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#56线程死锁的四个条件)
+- 57.[解释一下多线程中的死锁？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#57解释一下多线程中的死锁)
+- 58.[列举几种进程的同步机制、进程的通信途径、死锁及死锁的处理方法。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#58列举几种进程的同步机制进程的通信途径死锁及死锁的处理方法)
+- 59.[子线程是否会出现死锁？说一下场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#59子线程是否会出现死锁说一下场景)
+- 60.[请说明同步请求与异步请求的区别?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#60请说明同步请求与异步请求的区别)
+- 61.[默认最大并发？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#61默认最大并发)
+- 62.[`GCD`实现最大线程并发数？(使用`dispatch_semaphore`)、手动实现队列最大并发](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#62gcd实现最大线程并发数使用dispatch_semaphore手动实现队列最大并发)
+- 63.[FMDB如何保证线程安全](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#63fmdb如何保证线程安全)
+- 64.[`dispatch_once`实现原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#64dispatch_once实现原理)
+- 65.[dispatch_once如何实现一次性代码？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#65dispatch_once如何实现一次性代码)
+- 66.[Object C中创建线程的方法是什么?如果在主线程中执行代码，方法是什么?如果想延时执行代码、方法又是什么?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#66object-c中创建线程的方法是什么如果在主线程中执行代码方法是什么如果想延时执行代码方法又是什么)
+- 67.[如何把异步线程转换成同步任务进行单元测试？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#67如何把异步线程转换成同步任务进行单元测试)
+- 68.[如何实现线性编程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#68如何实现线性编程)
+- 69.[面向协议编程特点](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#69面向协议编程特点)
+- 70.[`AFNetworking`源码：网络状态监听的实现、`NSURLSection`与`NSURLConnection`的区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#70afnetworking源码网络状态监听的实现nsurlsection与nsurlconnection的区别)
+- 71.[说一下NSURLSession具体的实现原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#71说一下nsurlsession具体的实现原理)
+- 72.[了解NSURLConnection和Session吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#72了解nsurlconnection和session吗)
+- 73.[线程安全错误是怎么出现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#73线程安全错误是怎么出现的)
+- 74.[哪些OC对象是线程安全的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#74哪些oc对象是线程安全的)
+- 75.[如何保证OC容器在多线程下的数据安全性](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#75如何保证oc容器在多线程下的数据安全性)
+- 76.[说几个你在工作中使用到的线程安全的例子。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#76说几个你在工作中使用到的线程安全的例子)
+- 77.[`NSTimer、CADisplayLink、dispatch_source_t` 的优劣](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#77nstimercadisplaylinkdispatch_source_t-的优劣)
 
 
 ## 网络
