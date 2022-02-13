@@ -530,36 +530,38 @@
 
 
 ## 消息传递的方式
-- 1.[说一下 NSNotification 的实现机制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1说一下-nsnotification-的实现机制)
-- 2.[说一下 NSNotification 的特点。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#2说一下-nsnotification-的特点)
-- 3.[简述 KVO 的实现机制。或者是KVO的使用？实现原理？（为什么要创建子类来实现）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#3简述-kvo-的实现机制或者是kvo的使用实现原理为什么要创建子类来实现)
-- 4.[KVO 在使用过程中有哪些注意点？有没有使用过其他优秀的 KVO 三方替代框架？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#4kvo-在使用过程中有哪些注意点有没有使用过其他优秀的-kvo-三方替代框架)
-- 5.[消息通知有几种？如何判断是否发送通知。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#5消息通知有几种如何判断是否发送通知)
-- 6.[简述 KVO 的注册依赖键是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#6简述-kvo-的注册依赖键是什么)
-- 7.[如何做到 KVO手动通知？，如何手动触发一个value的KVO](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#7如何做到-kvo手动通知如何手动触发一个value的kvo)
-- 8.[在什么情况下会触发 KVO?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#8在什么情况下会触发-kvo)
-- 9.[给实例变量赋值时，是否会触发 KVO?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#9给实例变量赋值时是否会触发-kvo)
-- 10.[Delegate通常用什么关键字修饰？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#10delegate通常用什么关键字修饰为什么)
-- 11.[通知 和 代理 有什么区别？各自适应的场景？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#11通知-和-代理-有什么区别各自适应的场景)
-- 12.[说一下什么是Block?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#12说一下什么是block)
-- 13.[Block 有几种类型？分别是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#13block-有几种类型分别是什么)
-- 14.[Block 用什么修饰？copy，assign，strong有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#14block-用什么修饰copyassignstrong有什么区别)
-- 15.[Block 后面携带参数的时候，有数量限制吗？为什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#15block-后面携带参数的时候有数量限制吗为什么)
-- 16.[__block 的解释以及在 ARC 和 MRC 下有什么不同？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#16__block-的解释以及在-arc-和-mrc-下有什么不同)
-- [补充：在block内如何修改block外部变量?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#补充在block内如何修改block外部变量)
-- 17.[Block 的内存管理。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#17block-的内存管理)
-- 18.[Block 自动截取变量。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#18block-自动截取变量)
-- 19.[Block 处理循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#19block-处理循环引用)
-- 20.[使用block时什么情况会发生引用循环，如何解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#20使用block时什么情况会发生引用循环如何解决)
-- 21.[在block内如何修改block外部变量？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#21在block内如何修改block外部变量)
-- 22.[使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#22使用系统的某些block-api如uiview的block版本写动画时是否也考虑引用循环问题)
-- 23.[Dispatch_block_t这个有没有用过？解释一下？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#23dispatch_block_t这个有没有用过解释一下)
-- 24.[addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#24addobserverforkeypathoptionscontext各个参数的作用分别是什么observer中需要实现哪个方法才能获得kvo回调)
-- 25.[KVC和KVO的keyPath一定是属性么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#25kvc和kvo的keypath一定是属性么)
-- 26.[如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#26如何关闭默认的kvo的默认实现并进入自定义的kvo实现)
-- 27.[apple用什么方式实现对一个对象的KVO？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#27apple用什么方式实现对一个对象的kvo)
-- 28.[KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#28kvc的使用实现原理kvc拿到key以后是如何赋值的知不知道集合操作符能不能访问私有属性能不能直接访问_ivar)
-- 29.[KVC的keyPath中的集合运算符如何使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#29kvc的keypath中的集合运算符如何使用)
+- 1.说一下 NSNotification 的实现机制？
+- 2.说一下 NSNotification 的特点。
+- 3.简述 KVO 的实现机制。或者是KVO的使用？实现原理？（为什么要创建子类来实现）
+- 4.KVO 在使用过程中有哪些注意点？有没有使用过其他优秀的 KVO 三方替代框架？
+- 5.消息通知有几种？如何判断是否发送通知。
+- 6.简述 KVO 的注册依赖键是什么？
+- 7.如何做到 KVO手动通知？，如何手动触发一个value的KVO
+- 8.在什么情况下会触发 KVO?
+- 9.给实例变量赋值时，是否会触发 KVO
+- 10.Delegate通常用什么关键字修饰？为什么？
+- 11.通知 和 代理 有什么区别？各自适应的场景？
+- 12.说一下什么是Block?
+- 13.Block 有几种类型？分别是什么？
+- 14.Block 用什么修饰？copy，assign，strong有什么区别？
+- 15.Block 后面携带参数的时候，有数量限制吗？为什么？
+- 16.__block 的解释以及在 ARC 和 MRC 下有什么不同？
+- 17.在block内如何修改block外部变量?
+- 18.Block 的内存管理。
+- 19.Block 自动截取变量。
+- 20.Block 处理循环引用。
+- 21.使用block时什么情况会发生引用循环，如何解决？
+- 22.在block内如何修改block外部变量？
+- 23.使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？
+- 24.Dispatch_block_t这个有没有用过？解释一下？
+- 25.Block和函数指针的区别？
+- 26.addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？
+- 27.KVC和KVO的keyPath一定是属性么？
+- 28.如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？
+- 29.apple用什么方式实现对一个对象的KVO？
+- 30.KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）
+- 31.KVC的keyPath中的集合运算符如何使用？
+- 32.在KVO中，他是怎么知道监听的对象发生了变化？
 
 ## 项目架构
 - 1.[什么是 MVC?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1什么是-mvc)
@@ -13480,7 +13482,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     });
 ```
 
-## 消息传递的方式
+## iOS 消息传递的方式
 ### 1.说一下 NSNotification 的实现机制？
 - 使用观察者模式来实现的用于跨层传递信息的机制。传递方式是一对多的。
 - 如果实现通知机制？
@@ -13731,7 +13733,7 @@ CollectionViewTest[742:17933] {
 - MRC 环境下，block 截获外部用 __block 修饰的变量，不会增加对象的引用计数
 - ARC 环境下，block 截获外部用 __block 修饰的变量，会增加对象的引用计数
 
-### 补充：在block内如何修改block外部变量?
+### 17.在block内如何修改block外部变量?
 - 默认情况下,在block中访问的外部变量是复制过去的,即:写操作不对原变量生效
 - 这里是把栈中的a,复制了一份到堆中(只是一个简单的值传递,堆中的暂且称之为b,下面也这样称呼),两个内存空间,所以修改栈中的a,不影响堆中的b.
 - 如果我们想要修改外部变量的值,我们可以加上__block来进行操作
@@ -13741,8 +13743,8 @@ CollectionViewTest[742:17933] {
 - 可以看到,定义后和block内部内存地址是一样的,我们都知道 block 内部的变量会被放到堆区,“block内部”打印的是堆地址,因而也就可以知道,“定义后”打印的也是堆的地址.
 - 结论:a在定义前是在栈区(),进入block区域后,变成了堆区.这才是__block关键字的作用
 
-### 17.Block 的内存管理。
-### 18.Block 自动截取变量。
+### 18.Block 的内存管理。
+### 19.Block 自动截取变量。
 #### 局部变量截获 是值截获。 比如:
 
 ```
@@ -13857,7 +13859,7 @@ __Block_byref_num5_0 *__forwarding;
 ```
 - 该对象有个属性：num5，即我们用__block修饰的变量。这里__forwarding是指向自身的(栈block)。一般情况下，如果我们要对block截获的局部变量进行赋值操作需添加__block修饰符，而对全局变量，静态变量是不需要添加__block修饰符的。另外，block里访问self或成员变量都会去截获self。
 
-### 19.Block 处理循环引用。
+### 20.Block 处理循环引用。
 - 分为全局Block(_NSConcreteGlobalBlock)、栈Block(_NSConcreteStackBlock)、堆Block(_NSConcreteMallocBlock)三种形式其中栈Block存储在栈(stack)区，堆Block存储在堆(heap)区，全局Block存储在已初始化数据(.data)区
 - 不使用外部变量的block是全局block
 - 比如：
@@ -13973,7 +13975,7 @@ __block typeof(self) weakSelf = self;
 ```
 - 如果要解决这种循环引用，可以主动断开__block变量对self的持有，即在block内部使用完weakself后，将其置为nil，但这种方式有个问题，如果block一直不被调用，那么循环引用将一直存在。所以，我们最好还是用__weak来修饰self
 
-### 20.使用block时什么情况会发生引用循环，如何解决？
+### 21.使用block时什么情况会发生引用循环，如何解决？
 - 循环引用就是当self 拥有一个block的时候，在block 又调用self的方法。形成你中有我，我中有你，谁都无法将谁释放的困局。其实就是一个对象中强引用了block，在block中又强引用了该对象，就会发生循环引用。
 
 ```
@@ -14034,7 +14036,7 @@ __weak typeof (self) weakSelf = self;
 ```
 - 检测代码中是否存在循环引用问题，可使用 Facebook 开源的一个检测工具[FBRetainCycleDetector](https://github.com/facebook/FBRetainCycleDetector) 。
 
-### 21.在block内如何修改block外部变量？
+### 22.在block内如何修改block外部变量？
 - 用__block声明外部变量，或者static变量，或者全局变量。
 - 默认情况下，在block中访问的外部变量是复制过去的，即：写操作不对原变量生效。但是你可以加上 __block 来让其写操作生效，示例代码如下:
 
@@ -14099,7 +14101,7 @@ NSMutableString *a = [NSMutableString stringWithString:@"Tom"];
 - 但如果我们尝试像上面图片中的65行那样做，结果会编译不通过，那是因为此时你在修改的就不是堆中的内容，而是栈中的内容。
 - 上文已经说过：Block不允许修改外部变量的值，这里所说的外部变量的值，指的是栈中指针的内存地址。栈区是红灯区，堆区才是绿灯区。
 
-### 22.使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？
+### 23.使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？
 - 系统的某些block api中，UIView的block版本写动画时不需要考虑，但也有一些api 需要考虑：
 - 所谓“引用循环”是指双向的强引用，所以那些“单向的强引用”（block 强引用 self ）没有问题，比如这些：
 
@@ -14147,8 +14149,8 @@ __weak __typeof__(self) weakSelf = self;
 - self --> _observer --> block --> self 显然这也是一个循环引用。
 - 总结：所谓循环引用，是因为当前控制器在引用着block，而block又引用着self即当前控制器，这样就造成了循环引用。系统的block或者AFN等block的调用并不在当前控制器中调用，那么这个self就不代表当前控制器，那自然也就没有循环引用的问题。
 
-### 23.Dispatch_block_t这个有没有用过？解释一下？
-### 24.addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？
+### 24.Dispatch_block_t这个有没有用过？解释一下？
+### 25.addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？
 ```
 // 添加键值观察
 /*
@@ -14175,20 +14177,21 @@ observer中需要实现一下方法：
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
 ```
-
-### 25.KVC和KVO的keyPath一定是属性么？
+### 25.Block和函数指针的区别？
+### 26.addObserver:forKeyPath:options:context:各个参数的作用分别是什么，observer中需要实现哪个方法才能获得KVO回调？
+### 27.KVC和KVO的keyPath一定是属性么？
 - kvo支持实例变量
 - 分析：
     * [手动设定实例变量的KVO实现监听](https://yq.aliyun.com/articles/30483)
 
-### 26.如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？
-### 27.apple用什么方式实现对一个对象的KVO？
+### 28.如何关闭默认的KVO的默认实现，并进入自定义的KVO实现？
+### 29.apple用什么方式实现对一个对象的KVO？
 - 在iOS开发中，苹果提供了许多机制给我们进行回调。KVO(key-value-observing)是一种十分有趣的回调机制，在某个对象注册监听者后，在被监听的对象发生改变时，对象会发送一个通知给监听者，以便监听者执行回调操作。最常见的KVO运用是监听scrollView的contentOffset属性，来完成用户滚动时动态改变某些控件的属性实现效果，包括渐变导航栏、下拉刷新控件等效果。
 - Apple 的文档对 KVO 实现的描述：
 > Automatic key-value observing is implemented using a technique called isa-swizzling... When an observer is registered for an attribute of an object the isa pointer of the observed object is modified, pointing to an intermediate class rather than at the true class ...
 - 从Apple 的文档可以看出：Apple 并不希望过多暴露 KVO 的实现细节。不过，要是借助 runtime 提供的方法去深入挖掘，所有被掩盖的细节都会原形毕露：
 > 当你观察一个对象时，一个新的类会被动态创建。这个类继承自该对象的原本的类，并重写了被观察属性的 setter 方法。重写的 setter 方法会负责在调用原 setter 方法之前和之后，通知所有观察对象：值的更改。最后通过 isa 混写（isa-swizzling） 把这个对象的 isa 指针 ( isa 指针告诉 Runtime 系统这个对象的类是什么 )（关于更多isa指针，点击[这里](https://note.youdao.com/)） 指向这个新创建的子类，对象就神奇的变成了新创建的子类的实例。
-如下图
+> 如下图
 
 ![image](https://camo.githubusercontent.com/9517b0d78961b5f32cf3392b99964f2e1f79fb35/687474703a2f2f6936322e74696e797069632e636f6d2f7379353775722e6a7067)
 
@@ -14200,7 +14203,7 @@ KVO 确实有点黑魔法：
 键值观察通知依赖于 NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey: 。在一个被观察属性发生改变之前， willChangeValueForKey: 一定会被调用，这就会记录旧的值。而当改变发生后， observeValueForKey:ofObject:change:context: 会被调用，继而 didChangeValueForKey: 也会被调用。可以手动实现这些调用，但很少有人这么做。一般我们只在希望能控制回调的调用时机时才会这么做。大部分情况下，改变通知会自动调用。
 
 比如调用 setNow: 时，系统还会以某种方式在中间插入 wilChangeValueForKey: 、 didChangeValueForKey: 和 observeValueForKeyPath:ofObject:change:context: 的调用。大家可能以为这是因为 setNow: 是合成方法，有时候我们也能看到有人这么写代码:
- 
+
 ```
 - (void)setNow:(NSDate *)aDate {
    [self willChangeValueForKey:@"now"]; // 没有必要
@@ -14249,7 +14252,7 @@ wilChangeValueForKey: 、 didChangeValueForKey: 很好理解，observeValueForKe
 ```
 
 ![image](https://camo.githubusercontent.com/154f30ca6e4fbb77af74b8186057b7f7c96221ff/687474703a2f2f6936362e74696e797069632e636f6d2f6e636d3774682e6a7067)
-   
+
 如果单单从下面这个例子的打印上，顺序似乎是 wilChangeValueForKey: 、 observeValueForKeyPath:ofObject:change:context: 、 didChangeValueForKey: 。
 其实不然，这里有一个 observeValueForKeyPath:ofObject:change:context: , 和 didChangeValueForKey: 到底谁先调用的问题：如果 observeValueForKeyPath:ofObject:change:context: 是在 didChangeValueForKey: 内部触发的操作呢？ 那么顺序就是： wilChangeValueForKey: 、 didChangeValueForKey: 和 observeValueForKeyPath:ofObject:change:context:
 
@@ -14257,13 +14260,13 @@ wilChangeValueForKey: 、 didChangeValueForKey: 很好理解，observeValueForKe
 
 了解到这一点很重要，正如“手动触发”的使用场景是什么？一般我们只在希望能控制“回调的调用时机”时才会这么做。而“回调的调用时机”就是在你调用 didChangeValueForKey: 方法时。
 
-### 28.KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）
+### 30.KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）
 - KVC（Key-value coding）键值编码，单看这个名字可能不太好理解。其实翻译一下就很简单了，就是指iOS的开发中，可以允许开发者通过Key名直接访问对象的属性，或者给对象的属性赋值。而不需要调用明确的存取方法。这样就可以在运行时动态地访问和修改对象的属性。而不是在编译时确定，这也是iOS开发中的黑魔法之一。很多高级的iOS开发技巧都是基于KVC实现的。
 - 实现原理
     * KVC运用了一个isa-swizzling技术。isa-swizzling就是类型混合指针机制。KVC主要通过isa-swizzling，来实现其内部查找定位的。isa指针，如其名称所指，（就是is a kind of的意思），指向维护分发表的对象的类。该分发表实际上包含了指向实现类中的方法的指针，和其它数据。
 - KVC拿到key以后，是如何赋值的
 
-### 29.KVC的keyPath中的集合运算符如何使用？
+### 31.KVC的keyPath中的集合运算符如何使用？
 - 必须用在集合对象上或普通对象的集合属性上
 - 简单集合运算符有@avg， @count ， @max ， @min ，@sum，
 - 格式 @"@sum.age"或 @"集合属性.@max.age"
@@ -14393,4 +14396,6 @@ NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
 ![数组和集合操作符]
 
 ![image](http://upload-images.jianshu.io/upload_images/1599305-6a75ebddd2c1b221.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 32.在KVO中，他是怎么知道监听的对象发生了变化？
 
