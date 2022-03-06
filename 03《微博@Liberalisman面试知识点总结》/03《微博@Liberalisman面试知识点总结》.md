@@ -266,6 +266,12 @@
 - 82.[在Obj-C中，如何检测内存泄漏？你知道哪些方式？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#82在obj-c中如何检测内存泄漏你知道哪些方式)
 - 83.[Core Foundation内存管理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#83core-foundation内存管理)
 - 84.[iOS常见内存问题及优化](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#84ios常见内存问题及优化)
+- 85.项目中崩溃的情况
+- 86.数组越界为什么会崩溃
+- 87.重复释放为什么会崩溃
+- 88.app内存过大崩溃，怎么发现，怎么解决
+- 89..a/.framework，链接
+- 90.mach-o
 
 
 ## Runtime 
@@ -274,7 +280,7 @@
 - 3.[元类对象的数据结构?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#3元类对象的数据结构)
 - 4.[Obj-C 对象、类的本质是通过什么数据结构实现的？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#4obj-c-对象类的本质是通过什么数据结构实现的)
 - 5.[类方法和实例方法有什么区别？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#5类方法和实例方法有什么区别)
-- 6.[讲一下对象，类对象，元类，跟元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存的对象结构体里，而是保存在类对象的结构体里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6讲一下对象类对象元类根元类结构体的组成以及他们是如何相关联的为什么对象方法没有保存的对象结构体里而是保存在类对象的结构体里)
+- 6.[讲一下对象，类对象，元类，跟元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存在对象结构体里，而是保存在类对象的结构体里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#6讲一下对象类对象元类根元类结构体的组成以及他们是如何相关联的为什么对象方法没有保存在对象结构体里而是保存在类对象的结构体里)
 - 7.[Obj-C 中的类信息存放在哪里？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#7obj-c-中的类信息存放在哪里)
 - 8.[一个 NSObject 对象占用多少内存空间？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#8一个-nsobject-对象占用多少内存空间)
 - 9.[说一下对 class_rw_t 的理解？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#9说一下对-class_rw_t-的理解)
@@ -351,38 +357,39 @@
 - 15.[你所知的哪些三方框架使用了 Runloop?（AFNetworking、Texture 等）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#15你所知的哪些三方框架使用了-runloopafnetworkingtexture-等)
 - 16.[如何使线程保活](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#16如何使线程保活)
 - 17.[为什么要在主线程更新UI](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#17为什么要在主线程更新ui)
-- 18.[autoreleasePool 在何时被释放？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#18autoreleasepool-在何时被释放)
-- 19.[介绍UIResponder的继承链。然后说事件响应链。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19介绍uiresponder的继承链然后说事件响应链)
-- 20.[UIResponder、UIEvent 和 UIControl的介绍、联系与区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20UIResponder、UIEvent和 UIControl的介绍联系与区别)
-- 21.[说一下响应链的原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21说一下响应链的原理)
-- 22.[hitTest有尝试过重写吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22hittest有尝试过重写吗)
-- 23.[扩大button点击范围](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#23扩大button点击范围)
-- 24.[穿透事件的方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#24穿透事件的方法)
-- 25.[app如何接收到触摸事件的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#25app如何接收到触摸事件的)
-- 26.[解释一下 事件响应 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#26解释一下-事件响应-的过程)
-- 27.[解释一下 手势识别 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#27解释一下-手势识别-的过程)
-- 28.[手触碰到屏幕的时候，响应机制是怎样的？第一响应者是谁？UIView和UIResponse的关系是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#28手触碰到屏幕的时候响应机制是怎样的第一响应者是谁uiview和uiresponse的关系是什么)
-- 29[用户点击屏幕，系统是怎么找到一个view并决定由它来响应事件的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#29用户点击屏幕系统是怎么找到一个view并决定由它来响应事件的)
-- 30.[解释一下 GCD 在 Runloop 中的使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#30解释一下-gcd-在-runloop-中的使用)
-- 31.[解释一下 NSTimer，以及 NSTimer 的循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#31解释一下-nstimer以及-nstimer-的循环引用)
-- 32.[NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#32nstimer准吗谈谈你的看法如果不准该怎样实现一个精确的nstimer)
-- 33.[AFNetworking 中如何运用 Runloop?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#33afnetworking-中如何运用-runloop)
-- 34.[AFN为什么添加一条常驻线程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#34afn为什么添加一条常驻线程)
-- 35.[PerformSelector 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#35performselector-的实现原理)
-- 36.[利用 runloop 解释一下页面的渲染的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#36利用-runloop-解释一下页面的渲染的过程)
-- 37.[如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#37如何使用-runloop-实现一个常驻线程这种线程一般有什么作用)
-- 38.[NSThread+runloop实现常驻线程](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#38nsthreadrunloop实现常驻线程)
-- 39.[为什么 NSTimer 有时候不好使？（不同类型的Mode）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#39为什么-nstimer-有时候不好使不同类型的mode)
-- 40.[滑动tableView时，定时器还会生效吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#40滑动tableview时定时器还会生效吗)
-- 41.[以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#41以-scheduledtimerwithtimeinterval的方式触发的timer在滑动页面上的列表时timer会暂定回调为什么如何解决)
-- 42.[`PerformSelector`和`runloop`的关系](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#42performselector和runloop的关系)
-- 43.[PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#43performselectorafterdelay这个方法在子线程中是否起作用为什么怎么解决)
-- 44.[什么是异步绘制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#44什么是异步绘制)
-- 45.[哪些场景可以触发离屏渲染？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#45哪些场景可以触发离屏渲染)
-- 46.[如何检测 App 运行过程中是否卡顿？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#46如何检测-app-运行过程中是否卡顿)
-- 47.[TableView优化，怎么减少卡顿](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#47tableview优化怎么减少卡顿)
-- 48.[了解表视图吗，解释一下复用原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#48了解表视图吗解释一下复用原理)
-- 49.[说明一下表视图的滑动卡顿的优化方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#49tableview优化怎么减少卡顿)
+- 18.Runloop如何监听主线程的卡顿
+- 19.[autoreleasePool 在何时被释放？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#19autoreleasepool-在何时被释放)
+- 20.[介绍UIResponder的继承链。然后说事件响应链。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#20介绍uiresponder的继承链然后说事件响应链)
+- 21.[UIResponder、UIEvent 和 UIControl的介绍、联系与区别](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#21UIResponder、UIEvent和 UIControl的介绍联系与区别)
+- 22.[说一下响应链的原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#22说一下响应链的原理)
+- 23.[hitTest有尝试过重写吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#23hittest有尝试过重写吗)
+- 24.[扩大button点击范围](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#24扩大button点击范围)
+- 25.[穿透事件的方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#25穿透事件的方法)
+- 26.[app如何接收到触摸事件的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#26app如何接收到触摸事件的)
+- 27.[解释一下 事件响应 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#27解释一下-事件响应-的过程)
+- 28.[解释一下 手势识别 的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#28解释一下-手势识别-的过程)
+- 29.[手触碰到屏幕的时候，响应机制是怎样的？第一响应者是谁？UIView和UIResponse的关系是什么？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#29手触碰到屏幕的时候响应机制是怎样的第一响应者是谁uiview和uiresponse的关系是什么)
+- 30[用户点击屏幕，系统是怎么找到一个view并决定由它来响应事件的](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#30用户点击屏幕系统是怎么找到一个view并决定由它来响应事件的)
+- 31.[解释一下 GCD 在 Runloop 中的使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#31解释一下-gcd-在-runloop-中的使用)
+- 32.[解释一下 NSTimer，以及 NSTimer 的循环引用。](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#32解释一下-nstimer以及-nstimer-的循环引用)
+- 33.[NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#33nstimer准吗谈谈你的看法如果不准该怎样实现一个精确的nstimer)
+- 34.[AFNetworking 中如何运用 Runloop?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#34afnetworking-中如何运用-runloop)
+- 35.[AFN为什么添加一条常驻线程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#35afn为什么添加一条常驻线程)
+- 36.[PerformSelector 的实现原理？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#36performselector-的实现原理)
+- 37.[利用 runloop 解释一下页面的渲染的过程？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#37利用-runloop-解释一下页面的渲染的过程)
+- 38.[如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#38如何使用-runloop-实现一个常驻线程这种线程一般有什么作用)
+- 39.[NSThread+runloop实现常驻线程](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#39nsthreadrunloop实现常驻线程)
+- 40.[为什么 NSTimer 有时候不好使？（不同类型的Mode）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#40为什么-nstimer-有时候不好使不同类型的mode)
+- 41.[滑动tableView时，定时器还会生效吗？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#41滑动tableview时定时器还会生效吗)
+- 42.[以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#42以-scheduledtimerwithtimeinterval的方式触发的timer在滑动页面上的列表时timer会暂定回调为什么如何解决)
+- 43.[`PerformSelector`和`runloop`的关系](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#43performselector和runloop的关系)
+- 44.[PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#44performselectorafterdelay这个方法在子线程中是否起作用为什么怎么解决)
+- 45.[什么是异步绘制？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#45什么是异步绘制)
+- 46.[哪些场景可以触发离屏渲染？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#46哪些场景可以触发离屏渲染)
+- 47.[如何检测 App 运行过程中是否卡顿？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#47如何检测-app-运行过程中是否卡顿)
+- 48.[TableView优化，怎么减少卡顿](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#48tableview优化怎么减少卡顿)
+- 49.[了解表视图吗，解释一下复用原理](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#49了解表视图吗解释一下复用原理)
+- 50.[说明一下表视图的滑动卡顿的优化方法](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结》.md#50tableview优化怎么减少卡顿)
 
 ## 多线程
 - 1.[进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#1进程和线程多进程和多线程任务和队列并行与串行同步和异步)
@@ -435,8 +442,8 @@
 - 48.[自旋锁 - OSSpinLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#48自旋锁---osspinlock)
 - 49.[互斥锁](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#49互斥锁)
 - 50.[互斥锁和自旋锁区别及应用场景](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#50互斥锁和自旋锁区别及应用场景)
-- 51.[多功能锁 - pthread_mutex]](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51多功能锁---pthread_mutex)
-- 52.[分步锁 - NSDistributedLock]](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52分步锁---nsdistributedlock)
+- 51.[多功能锁 - pthread_mutex](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#51多功能锁---pthread_mutex)
+- 52.[分步锁 - NSDistributedLock](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#52分步锁---nsdistributedlock)
 - 53.[如何确保线程安全？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#53如何确保线程安全)
 - 54.[同一线程里面使用两个@synconize会怎么样，是递归锁还是非递归锁](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#54同一线程里面使用两个synconize会怎么样是递归锁还是非递归锁)
 - 55.[NSMutableArray、和 NSMutableDictionary是线程安全的吗？NSCache呢？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#55nsmutablearray和-nsmutabledictionary是线程安全的吗nscache呢)
@@ -799,11 +806,17 @@
 #### 1.数据结构的存储一般常用的有几种？各有什么特点？
 - 数据结构的存储一般常用的有两种 顺序存储结构 和 链式存储结构
 - 顺序存储结构:
+    * 顺序存储方式就是在一块连续的存储区域一个接着一个的存放数据，把逻辑上相连的结点存储在物理位置上相邻的存储单元里，结点间的逻辑关系由存储单元的邻接挂安息来体现。顺序存储方式也称为顺序存储结构，一般采用数组或者结构数组来描述。
     * 比如，数组，1-2-3-4-5-6-7-8-9-10，存储是按顺序的。再比如栈和队列等
 - 链式存储结构:
+    * 它比较灵活，其不要求逻辑上相邻的结点在物理位置上相邻，结点间的逻辑关系由附加的引用字段表示。一个结点的引用字段往往指导下一个结点的存放位置。链接存储方式也称为链接式存储结构，一般在原数据项中增加应用类型来表示结点之间的位置关系。
     * 比如，数组，1-2-3-4-5-6-7-8-9-10，链式存储就不一样了 1(地址)-2(地址)-7(地址)-4(地址)-5(地址)-9(地址)-8(地址)-3(地址)-6(地址)-10(地址)。每个数字后面跟着一个地址 而且存储形式不再是顺序
 
 #### 2.集合结构 线性结构 树形结构 图形结构
+- 集合结构：一个集合中有很多元素，元素与元素之间无任何关系
+- 线性结构：一条线上有很多元素（直线、曲线），元素与元素之间是一对一的关系
+- 树形结构：想象成金字塔的一种结构，其元素之间是一对多的关系
+- 图形结构：无穷、无边、无向，任意图形，其元素之间是多对多的关系
 
 ### 2.数组
 #### 1.数组和链表的区别
@@ -4137,24 +4150,24 @@ indexOfObjectIdenticalTo:
 ### 1.为什么说Objective-C是一门动态的语言
 - 首先动态类型语言和静态类型语言
     * 动态类型语言
-        * 动态类型语言是指在运行期间才去做数据类型检查的语言，也就是说，在用动态类型的语言编程时，永远也不用给任何变量指定数据类型，该语言会在你第一次赋值给变量时，在内部将数据类型记录下来。
+        * 动态类型语言是指在运行期间才去做数据类型检查的语言，也就是说，在用动态类型的语言编程时，永远也不用给任何变量指定数据类型，该语言会在你第一次赋值给变量时，在内部将数据类型记录下来。Python和Ruby就是一种典型的动态类型语言。
     * 静态类型语言
         * 静态类型语言与动态类型语言刚好相反，它的数据类型是在编译其间检查的，也就是说在写程序时要声明所有变量的数据类型，C/C++是静态类型语言的典型代表，其他的静态类型语言还有C#、JAVA等。
 - oc具有相当多的动态特性，表现在三个方面：动态类型、动态绑定、动态加载。之所以叫做动态，是因为必须到运行时才会做一些事情。
-    * 动态类型：即运行时再决定对象的类型。这类动态类型在日常应用中非常常见。简单说就是id类型。实际上静态类型因为其固定性和可预知性而使用的非常广泛，静态类型是请类型，而动态类型属于弱类型。运行时决定接受者。
-    * 动态绑定：基于动态类型，在某个实例对象被确定后，起类型就被确定了。该对象的属性和响应的消息也被完全确定，这就是动态绑定
-    * 动态加载：根据需求加载所需要的资源，这点很容易理解，对于ios开发来说，基本就是根据不同的急性左适配。最经典的例子就是在Retina设备上加载@2X的图片，而在老一些的普通设备上加载原图。随着Retina iPad的推出，和之后可能的Retina Mac的出现，这个特性相信会被越来越多的使用。让程序在运行时添加代码块以及其他资源。用户可以根据需要加载一些课指向代码和资源，而不是在启动时就加载所有组件。可执行代码中可以含有和程序运行时整合的新类。
+    * 动态类型：即运行时再决定对象的类型。这类动态类型在日常应用中非常常见。简单说就是id类型。实际上静态类型因为其固定性和可预知性而使用的非常广泛，静态类型是强类型，而动态类型属于弱类型。运行时决定接受者。
+    * 动态绑定：基于动态类型，在某个实例对象被确定后，类型就被确定了。该对象的属性和响应的消息也被完全确定，这就是动态绑定
+    * 动态加载：根据需求加载所需要的资源，对于ios开发来说，基本就是根据不同的机型做适配。最经典的例子就是在Retina设备上加载@2X的图片，而在老一些的普通设备上加载原图。随着Retina iPad的推出，和之后可能的Retina Mac的出现，这个特性相信会被越来越多的使用。让程序在运行时添加代码块以及其他资源。用户可以根据需要加载一些可指向的代码和资源，而不是在启动时就加载所有组件。可执行代码中可以含有和程序运行时整合的新类。
 
 ### 2.内存中的5大区分别是什么？
 - 栈区：编译器自动分配并释放，存放函数的参数值，局部变量等。栈是系统数据结构，对应线程、进程是唯一的。
 - 堆区：由程序员分配和释放，如果程序员不释放，程序结束时，可能会由操作系统回收 ，比如在iOS 中 alloc 都是存放在堆中，也就是说对象分配在堆区。
 - 全局区：全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量存放在一块区域，未初始化的全局变量和静态变量在相邻的另一块区域，程序结束后由系统释放。
-- 文字常量区：存放常量字符串，程序结束后由系统释放程序结束释放。
+- 文字常量区：存放常量字符串，程序结束后由系统释放。
 - 代码区：存放函数的二进制代码
 
 ### 3.iOS程序内存的每个分区怎么存储（举例说明）
 - 栈区：存放的局部变量、先进后出、一旦出了作用域就会被销毁；函数跳转地址，现场保护等，内存地址从高到低分配。
-- 堆区：堆区的地址是从低到高分配，通过程序员通过alloc手动分配。
+- 堆区：堆区的地址是从低到高分配，程序员通过alloc手动分配。
 - 全局区：包含两个部分，未初始化区，初始化区域。全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域；
 - 代码区存放于低地址，栈区存放于高地址。区与区之间并不是连续的。堆区的内存是应用程序共享的，堆中的内存分配是系统负责的；当引用计数为0的时候，系统会回收该内存。
 
@@ -4268,7 +4281,12 @@ typedef struct {
 - method_list ：方法列表
 - prop_list ：属性列表
 
-也就是说我们每次在增加一个属性,系统都会在 ivar_list 中添加一个成员变量的描述,在 method_list 中增加 setter 与 getter 方法的描述,在属性列表中增加一个属性的描述,然后计算该属性在对象中的偏移量,然后给出 setter 与 getter 方法对应的实现,在 setter 方法中从偏移量的位置开始赋值,在 getter 方法中从偏移量开始取值,为了能够读取正确字节数,系统对象偏移量的指针类型进行了类型强转.
+也就是说我们每次在增加一个属性,系统都会在 ivar_list 中添加一个成员变量的描述,在 method_list 中增加 setter 与 getter 方法的描述,在属性列表中增加一个属性的描述,然后计算该属性在对象中的偏移量,然后给出 setter 与 getter 方法对应的实现,在 setter 方法中从偏移量的位置开始赋值,在 getter 方法中从偏移量的位置开始取值,为了能够读取正确字节数,系统对象偏移量的指针类型进行了类型强转.
+
+### 属性是否可以扩展，如何扩展
+- 可以
+- 类扩展:能为某个类添加成员变量,属性,方法;
+- 分类：增加属性的时候，由于只声明了set和get方法，并没有实现，可以用关联对象的方法增加；
 
 ### 10.父类的property是如何查找的？
 
@@ -4304,7 +4322,7 @@ struct Teacher_IMPL {
 
 ### 11.@protocol 和 category 中如何使用 @property
 - category（分类）和protocol（协议）都可以添加方法，也都可以添加@property 关键字
-- 在 protocol 中使用 property 只会生成 setter 和 getter 方法声明,我们使用属性的目的,是希望遵守我协议的对象能实现该属性，也就是说，在实现这个protocol协议的类中，我们要自己手动添加实例变量，并且需要实现setter和getter方法
+- 在 protocol 中使用 property 只会生成 setter 和 getter 方法声明,我们使用属性的目的,是希望遵守协议的对象能实现该属性，也就是说，在实现这个protocol协议的类中，我们要自己手动添加实例变量，并且需要实现setter和getter方法
 - category 使用 @property 也是只会生成 setter 和 getter 方法的声明,由于category不能添加实例变量，故必须通过运行时添加associated object的方法来添加实例变量，如果我们真的需要给 category 增加属性的实现,需要借助于运行时的两个函数（关联对象）：
     * objc_setAssociatedObject
     * objc_getAssociatedObject
@@ -4355,9 +4373,10 @@ struct Teacher_IMPL {
 - readwrite：可读可写特性,需要生成setter和getter方法时使用, 可被外界读取和修改；
 - readonly：只读特性,只会生成getter方法,只可被外界读取, 不能修改；
 - assign：赋值特性,作用于非OC对象的赋值,setter方法将参数传给变量；主要用于修饰对象和基本数据类型，例如NSInteger，CGFloat，int，遵循先进后出的原则，存储在栈中，内存不用程序员管理。assign是可以修饰对象的，但是会出现问题。问题是：
-    * - weak生成的成员变量是用__weak修饰的，assign生成的成员变量是用__unsafe_unretained修饰的；
+    * - weak生成的成员变量是用__weak修饰的
+    * assign生成的成员变量是用__unsafe_unretained修饰的；
     * 对象开辟的空间是在堆空间，指针开辟的空间是在栈上，使用assign修饰，当对象销毁时并不会将指针置为nil。所以当堆空间的对象销毁时指向对象的指针仍然存在，会造成野指针，当访问该对象时会crash报错EXC_BAD_ACCESS。因为基本数据类型的空间开辟也在栈空间，同样由系统进行销毁，所以不存在野指针的情况。使用weak修饰对象时当对象销毁时指针也会被置为nil，所以用weak不会造成野指针。
-- retain：持有特性,他的setter方法会释放旧址,然后引用住新值, 并且将新值的引用计数+1,只能作用于OC对象(基本数据类型和CoreFoundation对象没有引用计数的概念, 因此不能用retain)
+- retain：持有特性,他的setter方法会释放旧址,然后引用住新址, 并且引用计数+1,只能作用于OC对象(基本数据类型和CoreFoundation对象没有引用计数的概念, 因此不能用retain)
 - Strong：表示指向并持有该对象，其修饰对象的引用计数会加1。该对象只要引用计数不为0就不会被销毁。当然可以通过将变量强制赋值 nil 来进行销毁。
 - weak：指向但是并不持有该对象，引用计数也不会加1。在 Runtime 中对该属性进行了相关操作，无需处理，可以自动销毁。weak用来修饰对象，多用于避免循环引用的地方。weak 不可以修饰基本数据类型。
 - copy
@@ -4370,13 +4389,13 @@ struct Teacher_IMPL {
     * 系统自动生成的getter/setter方法不会进行加锁操作；但速度会更快；
     * 在iOS的移动端,一般不会出现多线程访问同一个属性的情况,就算发生情况,atomic也不能完美的保证安全, 并且还需要手动增加线程锁,因此对于变量都应该使用nonatomic
 - atomic
-    * atomic会给属性加上一个自旋锁,系统自动生成的getter/setter方法会进行加锁操作；可以理解过读写锁，可以保证读写安全；较耗时；这是为了防止多线程同时访问属性出现异常需要添加的属性,但是这样会增加额外的内存开销并且在变编程习惯中,我们都应该避免多线程访问统一资源
-    * 即便是使用atomic,在多线程时也无法完全保证线程安全, 往往是需要手动添加线程锁
+    * atomic会给属性加上一个自旋锁,系统自动生成的getter/setter方法会进行加锁操作；可以理解成读写锁，可以保证读写安全；较耗时；这是为了防止多线程同时访问属性出现异常，但是这样会增加额外的内存开销并且在编程习惯中,我们都应该避免多线程访问同一资源
+    * 即便是使用atomic,在多线程时也无法完全保证线程绝对安全, 往往是需要手动添加线程锁
 - __unsafe_unretain：类似于weak，但是当对象被释放后，指针已然保存着之前的地址，被释放后的地址变为僵尸对象，访问被释放的地址就会出问题，所以说他是不安全的。
 - __autoreleasing：将对象赋值给附有__autoreleasing修饰的变量等同于 ARC 无效时调用对象的autorelease方法,实质就是扔进了自动释放池。
 
 ### 15.automic的实现机制；
-- 添加属性时使用了automic声明的，系统自动生成的getter/setter方法会进行加锁操作；可以理解过读写锁，可以保证读写安全；较耗时。
+- 添加属性时使用了automic声明的，系统自动生成的getter/setter方法会进行加锁操作；可以理解成读写锁，可以保证读写安全；较耗时。
 - 通过源码查看发现automic的原理是使用OSSPinLock来实现的，这种自旋锁会出现优先级反转导致死锁的问题，所以不推荐automic。
 - 在iOS 10之后系统推荐使用os_unfair_lock来代替OSSPinlock，并且automic在iOS10之后也使用os_unfair_lock来实现了。
 - 代码：
@@ -4413,7 +4432,7 @@ struct Teacher_IMPL {
 - atomic 和 nonatomic 的区别在于，系统自动生成的 getter/setter 方法不一样。如果你自己写 getter/setter，那 atomic/nonatomic/retain/assign/copy 这些关键字只起提示作用，写不写都一样。
 - 其实质就是，atomic比nonatomic多了一个自旋锁代码，避免该变量的读写不同步问题。
 - 对于atomic的属性，系统生成的 getter/setter 会保证 get、set 操作的完整性，不受其他线程影响。比如，线程 A 的 getter 方法运行到一半，线程 B 调用了 setter：那么线程 A 的 getter 还是能得到一个完好无损的对象。 而nonatomic就没有这个保证了。所以，nonatomic的速度要比atomic快。据说快大约20倍。
-- 不过atomic可并不能保证线程安全。atomic 所说的线程安全只是保证了 getter 和 setter 存取方法的线程安全，并不能保证整个对象是线程安全的。除了setter方法和getter方法，其他都是不能保证；
+- 不过atomic可并不能保证线程安全。atomic 所说的线程安全只是保证了 getter 和 setter 存取方法的线程安全，并不能保证整个对象是线程绝对安全的。除了setter方法和getter方法，其他都是不能保证；
 - 解决方案是加锁。
 
 ### 17.Weak关键字的原理
@@ -4421,7 +4440,7 @@ struct Teacher_IMPL {
 - weak表其实是一个hash（哈希）表(字典也是hash表)，Key是所指对象的地址，Value是weak指针的地址集合。
 - weak相关的数据结构有四个SideTables、SideTable、weak_table_t、weak_entry_t，他们是总分关系，整个结构是一个三级哈希表，之所以设计的这么复杂是因为SideTable不仅用于弱引用，还需要它辅助存储对象的引用计数，而weak_table_t、weak_entry_t则完全用于存储弱引用的相关信息
 - 对象每增加一个弱引用，运行时就会调用objc_initWeak-> storeWeak方法将weak指针的地址存储到对象对应的weak_entry_t的数组中，key是对象的地址
-- 我们通过打断点查看汇编的方式来查看weak底层的调用原理，我们通过查看汇编发现weak底层调用的是objc_initWeak，给objc_initWeak打上符号断点重新运行，发现objc_initWeak存在于libobjc.A.dylib的动态库中。
+- 我们通过打断点查看汇编的方式来查看weak底层的调用原理，发现weak底层调用的是objc_initWeak，给objc_initWeak打上符号断点重新运行，发现objc_initWeak存在于libobjc.A.dylib的动态库中。
 
 #### objc_initWeak
 - 我们在libobjc.A.dylib的开源代码中查找并定位到objc_initWeak函数。
@@ -4567,11 +4586,11 @@ else {
 
 #### 代理的delegate和dataSource有什么区别
 - delegate：代理，告诉使用者之前的view有什么方法可以供我调用。
-- dataSource：数据源，告诉使用者之前的view中都有什么东西，有什么属性啊，属性的值都是多少，是只关于数据的东西。
+- dataSource：数据源，告诉使用者之前的view中都有什么东西，有什么属性，属性的值都是多少，是只关于数据的东西。
 
 #### block和代理的区别
 - 代理回调更面向过程，block更面向结果。
-- 如果需要在执行的不同步骤时被通知，你就要使用代理。
+- 如果需要在执行不同步骤时被通知，你就要使用代理。
 - 如果只需要请求的消息或者失败的详情，应该使用block。
 - block更适合与状态无关的操作，比如被告知某些结果，block之间是不会相互影响的。
 - 但是代理更像一个生产流水线，每个回调方法是生产线上的一个处理步骤，一个回调的变动可能会引起另一个回调的变动。
@@ -4598,7 +4617,8 @@ block先是被AFURLSessionManagerTaskDelegate对象持有。而AFURLSessionManag
 - 将对象置为nil
 
 ### 21.assign能修饰对象吗？assign修饰对象可能存在的问题
-- weak生成的成员变量是用__weak修饰的，assign生成的成员变量是用__unsafe_unretained修饰的；
+- weak生成的成员变量是用__weak修饰的
+- assign生成的成员变量是用__unsafe_unretained修饰的；
 - 对象开辟的空间是在堆空间，指针开辟的空间是在栈上，使用assign修饰，当对象销毁时并不会将指针置为nil。所以当堆空间的对象销毁时指向对象的指针仍然存在，会造成野指针，当访问该对象时会crash报错EXC_BAD_ACCESS。因为基本数据类型的空间开辟也在栈空间，同样由系统进行销毁，所以不存在野指针的情况。使用weak修饰对象时当对象销毁时指针也会被置为nil，所以用weak不会造成野指针。
 
 ### 22.__weak 和 _Unsafe_Unretain 的区别
@@ -4642,8 +4662,7 @@ block先是被AFURLSessionManagerTaskDelegate对象持有。而AFURLSessionManag
 - _objc_rootDealloc调用的rootDealloc方法
 
 ```
-void
-_objc_rootDealloc(id obj)
+void _objc_rootDealloc(id obj)
 {
     assert(obj);
 
@@ -4653,8 +4672,7 @@ _objc_rootDealloc(id obj)
 - objc_object的rootDealloc方法实现如下
 
 ```
-inline void
-objc_object::rootDealloc()
+inline void objc_object::rootDealloc()
 {
     if (isTaggedPointer()) return;  // fixme necessary?
 
@@ -4674,12 +4692,14 @@ objc_object::rootDealloc()
 ```
 - 细数下判断条件，fastpath封装了编译器指令，告诉编译器内部的条件大概率为真，减少调用时符号检索的跳转
     * 对象采用了优化的isa计数方式（isa.nonpointer）
-    * 对象没有被weak引用!isa.weakly_referenced
-    * 没有关联对象!isa.has_assoc
-    * 没有自定义的C++析构方法!isa.has_cxx_dtor
-    * 没有用到sideTable来做引用计数 !isa.has_sidetable_rc
+    * 对象没有被weak引用（!isa.weakly_referenced）
+    * 没有关联对象（!isa.has_assoc）
+    * 没有自定义的C++析构方法（!isa.has_cxx_dtor）
+    * 没有用到sideTable来做引用计数 （!isa.has_sidetable_rc）
+- nonpointer:表示是否对isa指针开启指针优化0:纯isa指针，1:不止是类对象地址,isa中包含了类信息、对象的引用计数等。
 - isa.nonpointer假：访问对象的isa会直接返回一个指向cls的指针，是iPhone 迁移到64位系统之前时结构
 - isa.nonpointer真：代表是已经优化的isa，类的信息存储在shiftcls中，64位架构都是优化过的
+- shiftcls:存储类指针的值。开启指针优化的情况下，在 arm64 架构中有 33 位用来存储类指针。
 - 如果满足条件 则可直接调用free释放内存，否则会调用object_dispose函数
 
 ```
@@ -4816,14 +4836,14 @@ weak_clear_no_lock(weak_table_t *weak_table, id referent_id)
 
 #### 补充：关联对象
 - 关联对象，顾名思义不属于对象但是可以与对象聚合起来一起完成某些任务，场景是，当对象固有属性无法完成指定功能时候，动态拓展一个关联属性用于辅助完成任务
-- 关联对象相关的类有四个AssociationsManager、AssociationsHashMap、ObjectAssociationMap、ObjcAssociation，整个结构是一个二级哈希表，一个实例对象对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着此实例对象的所有关联对象
+- 关联对象相关的类有四个AssociationsManager、AssociationsHashMap、ObjectAssociationMap、ObjcAssociation，整个结构是一个二级哈希表，一个实例对象对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着该实例对象的所有关联对象
 - 对象每增加一个关联对象，运行时就会通过全局的AssociationsManager管理器访问到存储在静态区的哈希表，添加传入的key和value，key是对象的指针，value是ObjectAssociationMap，里面包含了对象所有关联对象的键值对
 
 ### 27.runtime 如何实现 weak 属性
 - 要实现 weak 属性，首先要搞清楚 weak 属性的特点：
     * weak 此特质表明该属性定义了一种“非拥有关系” (nonowning relationship)。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质同 assign 类似， 然而在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。
 - 那么 runtime 如何实现 weak 变量的自动置nil？
-    * runtime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
+    * runtime 对注册的类，会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
 - 对象的内存销毁时间表，分四个步骤：
 
 ```
@@ -5131,6 +5151,7 @@ NSLog(@"copy string: %@,地址为：%p",self.copyedString, self.copyedString);
     * 但是copy方法分对可变对象和不可变对象的操作。
     * 如果是对可变对象操作（如NSMutableString），那么会深copy不可变对象。
     * 如果对一个不可变对象（如NSString）的操作，那么会浅copy不可变对象。
+    * 总之，如果是对一个不可变对象（如NSString）的操作，strong和copy是一样的，都是指针拷贝；如果是对可变对象操作（如NSMutableString），strong和copy是不一样的，strong是指针，copy是内容拷贝；
 
 ### 29.怎么用 copy 关键字？
 - 用途：
@@ -5301,9 +5322,9 @@ typedef NS_ENUM(NSInteger, CYLSex) {
 ```
 -[__NSArrayI addObject:]: unrecognized selector sent to instance 0x7ff240614b40
 ```
-错误，因为 copy 就是复制一个不可变 NSArray 的对象；
+- 错误，因为 copy 就是复制一个不可变 NSArray 的对象；
 
- - - 2、使用了 atomic 属性会严重影响性能 ；
+    * 2、使用了 atomic 属性会严重影响性能 ；
 
 - 具体分析：
     * 第一个原因：copy 此特质所表达的所属关系与 strong 类似。然而设置方法并不保留新值，而是将其“拷贝” (copy)。 当属性类型为 NSString（或NSArray，NSDictionary） 时，经常用此特质来保护其封装性，因为传递给设置方法的新值有可能指向一个 NSMutableString（或NSMutableArray，NSMutableDictionary） 类的实例。这个类是 NSString（或NSArray，NSDictionary） 的子类，表示一种可修改其值的字符串，此时若是不拷贝字符串，那么设置完属性之后，字符串的值就可能会在对象不知情的情况下遭人更改。所以，这时就要拷贝一份“不可变” (immutable)的字符串，确保对象中的字符串值不会无意间变动。只要实现属性所用的对象是“可变的” (mutable)，就应该在设置新属性值时拷贝一份。所以使用copy 就是复制一个不可变 NSArray 的对象；所以会报找不到对应的实例方法而崩溃。
@@ -6239,8 +6260,7 @@ id obj = [[NSObject alloc]init];
 - 在访问__weak修饰的变量时，必定要访问注册到autoreleasepool的对象，这是因为：__weak修饰符只持有对象的弱引用，他不能持有对象实例，所以在超出其变量作用域时，对象即被释放。 而在访问引用对象的过程中，该对象可能被废弃，而如果把要访问的对象注册到autoreleasepool中，在@autoreleasepool块结束之前都能确保该对象存在。
 
 ### 61.在OC里 alloc 和 retain 语义相反的方法是？
-- OC 使用了一种叫做引用计数的机制来管理对象，如果对一个对象使用了alloc、[Mutable]copy，retain，那么你必须使用相应的realease或者autorelease。也可以理解为自己生成的对象，自己持有。非自己生成的对象，自己也能持有。不在需要自己持有的对象时释放。非自己持有的对象无法释放。生成并持有对象<alloc,new,copy,mutableCopy 等>，持有对象<retain>，释放对象
-<release>,废弃对象<dealloc>。
+- OC使用了一种叫做引用计数的机制来管理对象，如果对一个对象使用了alloc、[Mutable]copy，retain，那么你必须使用相应的realease或者autorelease。也可以理解为自己生成的对象，自己持有。非自己生成的对象，自己也能持有。不在需要自己持有的对象时释放。非自己持有的对象无法释放。生成并持有对象<alloc,new,copy,mutableCopy等>，持有对象<retain>，释放对象<release>,废弃对象<dealloc>。
 
 ### 62.retain、release 的实现机制？
 - Retain的实现机制。
@@ -6380,7 +6400,7 @@ refcntStorage -= SIZE_TABLE_RC_ONE;
     * 在 @protocol 中定义的所有属性
     * 在 category 中定义的所有属性
     * 重载的属性
-- 当你在子类中重载了父类中的属性，你必须 使用 @synthesize 来手动合成ivar。
+- 当你在子类中重载了父类中的属性，你必须使用@synthesize 来手动合成ivar。
 - 除了后三条，对其他几个我们可以总结出一个规律：当你想手动管理 @property 的所有内容时，你就会尝试通过实现 @property 的所有“存取方法”（the accessor methods）或者使用 @dynamic 来达到这个目的，这时编译器就会认为你打算手动管理 @property，于是编译器就禁用了 autosynthesis（自动合成）。
 - 因为有了 autosynthesis（自动合成），大部分开发者已经习惯不去手动定义ivar，而是依赖于 autosynthesis（自动合成），但是一旦你需要使用ivar，而 autosynthesis（自动合成）又失效了，如果不去手动定义ivar，那么你就得借助 @synthesize 来手动合成 ivar。
 - 其实，@synthesize 语法还有一个应用场景，但是不太建议大家使用：
@@ -6573,7 +6593,7 @@ done:
 
 ### 70.分别说一下什么是悬垂指针？什么是 野指针?什么是僵尸对象？什么是空指针?
 - 悬垂指针：指针指向的内存已经被释放了，但是指针还存在，这就是一个 悬垂指针 或者说 迷途指针
-- 野指针：没有进行初始化的指针，其实都是 野指针
+- 野指针：没有进行初始化的指针，指向“垃圾”内存（不可用内存）的指针，其实都是野指针
 - 僵尸对象：已经被销毁的对象(不能再使用的对象),内存已经被回收的对象。一个引用计数器为0对象被释放后就变为了僵尸对象;
 - 空指针：空指针不同于野指针,他是一个没有指向任何内存的指针,空指针是有效指针,值为nil,NULL,Nil,0等,给空指针发送消息不会报错,不会响应消息;
 
@@ -6778,6 +6798,104 @@ __bridge_transfer：类型转换后，将该对象的引用计数交给 ARC 管�
 - 我们根据具体的业务逻辑，合理使用上面的3种转换关键字，就可以解决Core Foundation对象与OC对象相对转换的问题了。
 
 ### 84.iOS常见内存问题及优化
+### 85.项目中崩溃的情况
+- 数组越界
+    * 数组中取值时越界
+    * 往数组中添加nil
+- 野指针
+    * 用assign修饰一个OC对象
+    * iOS9之前通知添加观察者之后没有手动移除
+- 主线程问题
+    * 如果主线程超过了系统规定的时间还没有响应，就会被Watchdog 杀掉
+- 多线程问题
+    * 子线程进行UI操作可能发生崩溃
+    * 多个线程对同一个数据进行处理，在一个线程将这个数据置空之后，另一个线程访问这个数据并使用它就可能出现崩溃
+- 方法找不到：unrecognized selector
+- 数据接收时，服务器返回数据不规范，如字典或数组元素中存在null，且客户端没做处理导致的崩溃。
+- Repeating NSTimer
+    * 如果一个 Timer 是不停 repeat，那么释放之前就应该先 invalidate。非repeat的timer在fired的时候会自动调用invalidate，但是repeat的不会。这时如果释放了timer，而timer其实还会回调，回调的时候找不到对象就会挂掉。
+    * 原因：NSTimer是通过RunLoop来实现定时调用的，当你创建一个 Timer 的时候，RunLoop 会持有这个 Timer 的强引用，如果你创建了一个 repeating timer，在下一次回调前就把这个 timer release了，那么 runloop 回调的时候就会找不到对象而 Crash。
+
+### 86.数组越界为什么会崩溃
+- 一个固定数组有一块连续内存，数组指针指向内存首地址，靠下标来计算元素地址，如果下标越界则指针偏移出这块内存，会访问到野数据，ObjC 为了安全就直接让程序 Crash 了。
+- 而 nil 对象在数组类的init方法里面是表示数组的结束，所以使用 addObject 方法来插入对象就会使程序挂掉。如果实在要在数组里面加入一个空对象，那就使用 NSNull。
+
+### 87.重复释放为什么会崩溃
+- 在不使用 ARC 的时候，内存要自己管理，这时重复或过早释放都有可能导致 Crash。
+- 原因：aObj这个对象已经被释放，但是指针没有置空，这时访问这个指针指向的内存就会 Crash。
+-  解决办法：1.使用前要判断非空，释放后要置空。
+
+### 88.app内存过大崩溃，怎么发现，怎么解决
+- 由于iOS平台的内存管理机制，不支持虚拟内存，所以在内存不足的情况，不会去Ram上创建虚拟内存；所以一旦出现内存不足的情况，iOS平台会通知所有已经运行的app，不论是前台app还是后台挂起的app，都会收到 memory warning的notice；一旦app收到memory warning的notice，就应该回收占用内存较大的变量；
+- 内存报警处理流程
+    * app收到系统发过来的memory warning的notice；
+    * app释放占用较大的内存；
+    * 系统回收此app所创建的autorelease的对象；
+    * app返回到已经打开的页面时，系统重新调用viewdidload方法，view重新加载页面数据；重新显示；
+- 内存报警测试方法
+    * 在Simulate上可以模拟低内存报警消息；
+    * iOS模拟器 -> 硬件 -> 模拟内存警告；
+- iOS平台内存检查工具
+    * 编译和分析工具Analyze
+        * iOS的分析工具可以发现编译中的warning，内存泄漏隐患，甚至还可以检查出logic上的问题；所以在自测阶段一定要解决Analyze发现的问题，可以避免出现严重的bug；
+        * 内存泄漏隐患提示：Potential Leak of an object allocated on line ……
+        * 数据赋值隐患提示：The left operand of …… is a garbage value;
+        * 对象引用隐患提示：Reference-Counted object is used after it is released;
+    * 内存检测工具Leak
+        * 内存检测工具可以通过iOS自带Leak工具检测 是否有内存泄漏；
+        * 一般通过Leak工具可以很快的检查出程序哪里有内存泄漏，一般这种问题也比较容易解决，可是有时候即使解决了所有的内存泄漏，但还是发现程序在运行中，内存还是在不断的疯涨，这时候可能就要借助另外一个工具Allocations来检查是那些地方使用的内存比较多而且是持续增长；下面详细介绍一下这两个工具的使用方法: Leak和Allocations；
+        * Leak工具：通过Leak工具可以很快发现代码中的内存泄漏，通过工具也可以很快找到发生内存泄漏的代码段：
+        * Allocations工具：此工具会显示出所有申请内存的地方，并统计申请的次数和大小； 从这个列表中可以找出内存申请次数最多且申请内存最大的语句；从而分析出哪些地方使用的内存最多，进而可以优化和改进；
+
+### 89..a/.framework，链接
+- 静态库：.a和.framework
+- 动态库：.tbd和.framework
+- 静态库和动态库的区别
+    * .a文件肯定是静态库，. tbd肯定是动态库，.framework可能是静态库也可能是动态库
+    * 静态库在链接时，会被完整的复制到可执行文件中，如果多个App都使用了同一个静态库，那么每个App都会拷贝一份，缺点是浪费内存。类似于定义一个基本变量，使用该基本变量是是新复制了一份数据，而不是原来定义的；
+    * 动态库不会复制，只有一份，程序运行时动态加载到内存中，系统只会加载一次，多个程序共用一份，节约了内存。类似于使用变量的内存地址一样，使用的是同一个变量；
+    * 在iOS8.0以后苹果开放了动态加载. tbd的接口，用于挂载. tbd动态库，项目中也可以使用了自己定义的动态库。
+- 使用静态库的好处
+    * 模块化，分工合作
+    * 避免少量改动经常导致大量的重复编译连接
+    * 也可以重用，注意不是共享使用
+- 使用动态库的好处
+    * 使用动态库，可以将最终可执行文件体积缩小
+    * 使用动态库，多个应用程序共享内存中得同一份库文件，节省资源
+    * 使用动态库，可以不重新编译连接可执行程序的前提下，更新动态库文件达到更新应用程序的目的。
+- 静态库的使用场景
+    * 保护自己的核心代码，自己不想别人看到的部分
+    * 将MRC的项目打包成静态库，可以在ARC下直接使用，不需要在转换
+
+### 90.mach-o
+![image](https://upload-images.jianshu.io/upload_images/1154538-1d87b25410baf7bd.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+- Mach-O是Mach object的缩写，是Mac/iOS上用于存储程序、库的标准格式，也就是说我们平常开发APP写的代码就在Mach-O文件中，想要分析代码，就得分析Mach-O文件（并非一定是可执行文件，是一种文件格式）
+- Mach-O其实就在ipa文件中，我们把.ipa文件的后缀名修改.zip，然后解压，打开里面的Payload文件夹，再对里面的.app文件显示包内容，就可以得到一个Unix可执行文件，这个文件就是我们要找的Mach-O格式的文件了
+- Mach-O包括以下几种类型：
+    * OBJECT，指的是.o或.a文件（目标文件）
+    * EXECUTE，指的是IPA拆包后的文件（可执行文件）
+    * DYLIB，指的是.dylib或.framework文件（动态库文件）
+    * DYLINKER，指的是动态连接器（动态链接器文件）
+    * DSYM（符号表），指的是有保存符号信息用于分析闪退信息的文件（符号表文件）
+- 加载过程：
+    * 把可执行文件加载到内存中
+    * 从可执行文件中分析出dyld的路径
+    * 把dyld加载到内存中
+    * dyld递归加载所有的动态链接库dylid
+- 一个Mach-O格式的文件主要包含下面三个区域：
+    * Header区域，用来存放文件类型 、目标架构类型（例如：arm64、armv7、armv7s等架构）
+    * Load commands区域，用来描述文件在虚拟内存中的逻辑结构、布局，通俗来讲，就是存储着各段数据的大小、分段、地址等信息
+    * Raw segment data区域，存放着各段的原始数据，就是Load commands区域描述的地址所指向的数据
+- 每个Mach-O文件的开始部分都有一个Header结构，这个Header标志这个文件是Mach-O文件。这个头部也包含了其他基础文件类型信息，标明目标体系结构，包含指定选项的标志，这些标志会影响对文件剩余部分的解释。
+- 在header之后是一系列大小可变的加载命令，它们指定文件的布局和链接特征。在其他信息中，load命令可以指定:
+    * 文件在虚拟内存中的初始化布局
+    * 符号表的位置（被用来动态链接使用）
+    * 程序主线程的初始执行状态
+    * 包含主可执行文件导入符号定义的共享库的名称
+- 在加载指令之后，所有的Mach-O文件都包含一个或多个段的数据。每个段有零个或多个section，段的每个section都包含特定类型的代码或数据。每个段定义了虚拟内存区域，被连接器用来映射到进程的地址空间中，段和section的确切数量和布局由load命令和文件类型指定。
+- Mach-O文件中，最后一个段是链接编辑段。此段包含链接编辑信息的表，如符号表、字符串表等，动态加载程序使用这些信息将可执行文件或Mach-O包链接到其附属库。
+- stabs取名于symbol table strings，因为开始的时候，调试信息是以字符串的形式存储在Unix的a.out目标文件的符号表中。 stabs以字符串的形式编码程序的信息。最开始的时候，stabs很简单，但是后来变得越来越复杂，难解，而且不一致。此外，stabs没有形成标准，文档也不够详细。
+- DWARF已经被广泛使用，包括GCC和LLVM。DWARF也是基于嵌套结构存储调试信息。
 
 
 ## Runtime
@@ -6903,7 +7021,7 @@ size_t instanceSize(size_t extraBytes) {
     * 实例方法中直接调用实例方法
     * 实例方法中也可以调用类方法(通过类名)
 
-### 6.讲一下对象，类对象，元类，根元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存的对象结构体里，而是保存在类对象的结构体里？
+### 6.讲一下对象，类对象，元类，根元类结构体的组成以及他们是如何相关联的？为什么对象方法没有保存在对象结构体里，而是保存在类对象的结构体里？
 
 #### 讲一下对象，类对象，元类，跟元类结构体的组成以及他们是如何相关联的
 - 对象的结构体里存放着isa和成员变量，isa指向类对象。
@@ -7136,6 +7254,13 @@ static struct _catrgory_t _OBJC_$_CATEGORY_NSObject_$_Tools __attribute__ ((used
 }
 ```
 - Category 在刚刚编译完的时候，和原来的类是分开的，只有在程序运行起来后，通过 Runtime ，Category 和原来的类才会合并到一起。
+- 合并时机
+    * 程序启动后，通过编译之后，Runtime 会进行初始化，调用 _objc_init。
+    * 然后会 map_images。
+    * 接下来调用 map_images_nolock。
+    * 再然后就是 read_images，这个方法会读取所有的类的相关信息。
+    * 最后是调用 reMethodizeClass:，这个方法是重新方法化的意思。
+    * 在 reMethodizeClass: 方法内部会调用 attachCategories: ，这个方法会传入 Class 和 Category ，会将方法列表，协议列表等与原有的类合并。最后加入到 class_rw_t 结构体中。
 - mememove，memcpy：这俩方法是位移、复制，简单理解就是原有的方法移动到最后，根据新开辟的控件，把前面的位置留给分类，然后分类中的方法，按照倒序依次插入，可以得出的结论就就是，越晚参与编译的分类，里面的方法才是生效的那个。
 
 ### 15.如何给 Category 添加属性？关联对象以什么形式进行存储？
@@ -7432,6 +7557,11 @@ struct method_t {
 #### 如何确保替换的不是父类的方法？
 - 首先打印子类的方法列表，判断有没有，如果有的话就直接交换，如果没有的话就添加这个方法，这样就不用替换父类的方法；
 
+#### A是父类，B和C同时继承于A,在B里面对父类方法进行交换，对C是否有影响
+- 首先要看B是否对A的方法承载
+- 如果B对A的方法做了承载，然后进行方法交换，对C就有影响，如果有新的属性声明，C调用的时候就会崩溃；
+- 如果B对A的方法没有承载，然后进行方法交换，其实质就是A本身方法交换，对C就没有影响；
+
 ### 37.如何实现动态添加方法和属性？
 - 动态添加属性
 
@@ -7543,8 +7673,8 @@ objc在向一个对象发送消息时，runtime库会根据对象的isa指针找
 
 ### 47.如何运用 Runtime 进行模型的归解档？
 - 项目开发中，需要定义一些模型对象储存用户基本信息或数据。常规做法，我们会遵循归档接档协议，并对每一个属性实现归档解档方法：
-    * - (id)initWithCoder:(NSCoder *)decoder
-    * - (void)encodeWithCoder:(NSCoder *)encoder 
+    * -(id)initWithCoder:(NSCoder *)decoder
+    * -(void)encodeWithCoder:(NSCoder *)encoder 
 - 模型属性随时会增加，常规做法下，我们需要实现每一个属性的归档和接档，利用runtime，我们可以遍历模型的所有属性，并依次归档和解档。
 
 
@@ -8171,13 +8301,26 @@ NSURLSession    ->AFNetworking2, Alamofire
 ### 17.为什么要在主线程更新UI
 - UIKit并不是一个 线程安全的类，UI操作涉及到渲染访问各种View对象的属性，如果异步操作下会存在读写问题，而为其加锁则会耗费大量资源并拖慢运行速度。另一方面因为整个程序的起点UIApplication是在主线程进行初始化，所有的用户事件都是在主线程上进行传递（如点击、拖动），所以view只能在主线程上才能对事件进行响应。而在渲染方面由于图像的渲染需要以60帧的刷新率在屏幕上同时更新，在非主线程异步化的情况下无法确定这个处理过程能够实现同步更新。
 
-### 18.autoreleasePool 在何时被释放？
+### 18.Runloop如何监听主线程的卡顿
+- 导致卡顿的原因：
+    * 复杂UI、图文混排的绘制量过大；
+    * 在主线程做网络同步请求；
+    * 在主线程做大量的IO操作；
+    * 运算量过大，CPU持续高占用；
+    * 死锁和主子线程抢锁
+- 监听方案：
+    * 通过监控RunLoop的状态来判断是否会出现卡顿；
+    * 如果RunLoop的线程，进入睡眠前方法的执行时间过长而导致无法进入睡眠，或者线程唤醒后接收消息时间过长而无法进入下一步的话，可以认为是线程受阻了。如果这个线程是主线程的话，表现出来的就是出现了卡顿；
+- 具体实施
+    * 如果我们要利用RunLoop原理来监控卡顿的话，就是要关注这两个阶段。RunLoop在进入睡眠之前和唤醒后的两个loop状态定义的值，分别是kCFRunLoopBeforeSources和kCFRunLoopAfterWaiting，也就是要触发Source0回调和接收mach_port消息两个状态；
+
+### 19.autoreleasePool 在何时被释放？
 - App启动后，苹果在主线程 RunLoop 里注册了两个 Observer，其回调都是 _wrapRunLoopWithAutoreleasePoolHandler()。
 - 第一个 Observer 监视的事件是 Entry(即将进入Loop)，其回调内会调用 _objc_autoreleasePoolPush() 创建自动释放池。其 order 是 -2147483647，优先级最高，保证创建释放池发生在其他所有回调之前。
 - 第二个 Observer 监视了两个事件： BeforeWaiting(准备进入休眠) 时调用_objc_autoreleasePoolPop() 和 _objc_autoreleasePoolPush() 释放旧的池并创建新池；Exit(即将退出Loop) 时调用 _objc_autoreleasePoolPop() 来释放自动释放池。这个 Observer 的 order 是 2147483647，优先级最低，保证其释放池子发生在其他所有回调之后。
 - 在主线程执行的代码，通常是写在诸如事件回调、Timer回调内的。这些回调会被 RunLoop 创建好的 AutoreleasePool 环绕着，所以不会出现内存泄漏，开发者也不必显示创建 Pool 了。
 
-### 19.介绍UIResponder的继承链。然后说事件响应链。
+### 20.介绍UIResponder的继承链。然后说事件响应链。
 #### UIResponder的继承链
 - 首先要先了解响应者对象UIResponder，只有继承UIResponder的类，才能处理事件。
 - 我们可以看出UIApplication，UIView，UIViewController都是继承自UIResponder类，可以响应和处理事件。
@@ -8190,7 +8333,7 @@ NSURLSession    ->AFNetworking2, Alamofire
 #### 响应者
 - 在iOS中，能够响应事件的对象都是UIResponder的子类对象。当事件来到时，系统会将事件传递给合适的响应者，并且将其成为第一响应者。第一响应者未处理的事件，将会在响应者链中进行传递，传递规则由UIResponder的nextResponder决定，可以通过重写该属性来决定传递规则。当一个事件到来时，第一响应者没有接收消息，则顺着响应者链向后传递。
 
-### 20.UIResponder、UIEvent 和 UIControl的介绍、联系与区别
+### 21.UIResponder、UIEvent 和 UIControl的介绍、联系与区别
 #### UIResponder
 - 我们最熟悉的UIApplication、UIView、UIViewController这几个类是直接继承自UIResponder，UIResponder类是专门用来响应用户的操作处理各种事件(UIEvent)的。
 - UIResponder提供了用户点击、按压检测(presses)以及手势检测(motion)的回调方法，分别对应用户开始、移动、结束以及取消，其中只有在程序强制退出或者来电时，取消事件才会调用。
@@ -8211,7 +8354,7 @@ NSURLSession    ->AFNetworking2, Alamofire
 - UIApplication–>UIWindow–>递归找到最合适处理的控件–>控件调用 touches 方法–>判断是否实现 touches 方法–>没有实现默认会将事件传递给上一个响应者–>找到上一个响应者–>找不到方法作废
 
 
-### 21.说一下响应链的原理？
+### 22.说一下响应链的原理？
 - 响应者链通常是由视图（UIView）构成的；
 - 一个视图的下一个响应者是它视图控制器（UIViewController）（如果有的话），然后再转给它的父视图（Super View）；
 - 视图控制器（如果有的话）的下一个响应者为其管理的视图的父视图；
@@ -8219,11 +8362,11 @@ NSURLSession    ->AFNetworking2, Alamofire
 - 单例的应用（UIApplication）是一个响应者链的终点，它的下一个响应者指向nil，以结束整个循环。
 
 
-### 22.hitTest有尝试过重写吗？
+### 23.hitTest有尝试过重写吗？
 - 重写hitTest,拦截runLoop响应
 ![image](https://upload-images.jianshu.io/upload_images/3175826-dfa01bb55f6d38ca.png?imageMogr2/auto-orient/strip|imageView2/2/w/765/format/webp)
 
-### 23.扩大button点击范围
+### 24.扩大button点击范围
 - button上面增加一个透明的控件，响应事件
 - 给button加分类然后重写pointInside或者hitTest方法
 
@@ -8249,7 +8392,7 @@ NSURLSession    ->AFNetworking2, Alamofire
 
 ```
 
-### 24.穿透事件的方法
+### 25.穿透事件的方法
 - 点击按钮1的区域，按钮2响应事件，那肯定要重写按钮1的hitTest方法
 - 在hitTest方法中，将触摸点的坐标系从按钮1转换到按钮2上，即以按钮2左上角为原点
 - 坐标系转换后，判断触摸点是否在按钮2上，如果是，直接返回按钮2（严谨一点的做法是调用按钮2的hitTest方法），如果不是，那就调用系统的方法，让系统去处理
@@ -8266,14 +8409,14 @@ NSURLSession    ->AFNetworking2, Alamofire
 
 ```
 
-### 25.app如何接收到触摸事件的
+### 26.app如何接收到触摸事件的
 - 首先，手机中处理触摸事件的是硬件系统进程 ，当硬件系统进程识别到触摸事件后，会将这个事件进行封装，并通过machPort,将封装的事件发送给当前活跃的APP进程。
 - 由于APP的主线程中runloop注册了这个machPort端口，就是用于接收处理这个事件的，所以这里APP收到这个消息后，开始寻找响应链。
 - 寻找到响应链后，开始分发事件，它会优先发送给手势集合，来过滤这个事件，一旦手势集合中其中一个手势识别了这个事件，那么这个事件将不会发送给响应链对象。
 - 手势没有识别到这个事件，事件将会发送给响应链对象UIResponser。
 ![image](https://img-blog.csdnimg.cn/img_convert/10637fea73f4b0c08718ba8f8e4efec7.png)
 
-### 26.解释一下 事件响应 的过程？
+### 27.解释一下 事件响应 的过程？
 - 响应者：响应者为响应事件的UIResponder子类对象，如UIButton、UIView等；
 - 响应链：响应链是由链接在一起的响应者（UIResponse子类）组成的。
 - 事件传递：获得响应链后，将事件由第一响应者往application传递的过程；
@@ -8317,18 +8460,18 @@ NSURLSession    ->AFNetworking2, Alamofire
 }
 ```
 
-### 27.解释一下 手势识别 的过程？
+### 28.解释一下 手势识别 的过程？
 - 当 _UIApplicationHandleEventQueue()识别了一个手势时，其首先会调用Cancel将当前的touchesBegin/Move/End 系列回调打断。随后系统将对应的UIGestureRecognizer 标记为待处理。
 - 苹果注册了一个 Observer 监测 BeforeWaiting (Loop即将进入休眠) 事件，这个 Observer 的回调函数是 _UIGestureRecognizerUpdateObserver()，其内部会获取所有刚被标记为待处理的GestureRecognizer，并执行GestureRecognizer 的回调。
 - 当有 UIGestureRecognizer的变化(创建/销毁/状态改变)时，这个回调都会进行相应处理。
 
-### 28.手触碰到屏幕的时候，响应机制是怎样的？第一响应者是谁？UIView和UIResponse的关系是什么？
+### 29.手触碰到屏幕的时候，响应机制是怎样的？第一响应者是谁？UIView和UIResponse的关系是什么？
 #### 响应机制
 - 当用户点击屏幕后，UIApplication 先响应事件，然后传递给UIWindow。如果window可以响应。就开始遍历window的subviews。遍历的过程中，如果第一个遍历的view1可以响应，那就遍历这个view1的subviews（依次这样不停地查找，直至查找到合适的响应事件view）。如果view1不可以响应，那就开始对view2进行判断和子视图的遍历。依次类推view3，view4……  如果最后没有找到合适的响应view，这个消息就会被抛弃。（整个遍历的过程就是树的先序遍历）。过程如下图：
 ![image](https://img-blog.csdn.net/20170317120911452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXVzaGFvZmVuZzE5OTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 - 包括两个方法：
-    * - (nullableUIView *)hitTest:(CGPoint)point withEvent:(nullableUIEvent *)event；
-    * - (BOOL)pointInside:(CGPoint)point withEvent:(nullableUIEvent *)event；
+    * -(nullableUIView *)hitTest:(CGPoint)point withEvent:(nullableUIEvent *)event；
+    * -(BOOL)pointInside:(CGPoint)point withEvent:(nullableUIEvent *)event；
 - 对view进行重写这两个方法后，就会发现，点击屏幕后，首先响应的是hitTest方法；如果方法A中，我们没有调用父类的这个方法，那就根据这个方法A的返回view，作为响应事件的view。（当然返回nil，就是这个view不响应）如果方法A中，我们调用了父类的这个方法，也就是[super hitTest:point withEvent:event];那这个时候系统就要调用pointInside方法；通过这个方法的返回值，来判断当前这个view能不能响应消息。如果pointInside方法返回的是no，那就不用再去遍历它的子视图。hitTest方法返回的view就是可以响应事件的view。如果pointInside方法返回的是YES，那就去遍历它的子视图。
 - 我们可以看出UIApplication，UIView，UIViewController都是继承自UIResponder类，可以响应和处理事件。
 
@@ -8339,20 +8482,20 @@ NSURLSession    ->AFNetworking2, Alamofire
 #### UIView和UIResponse的关系
 - 继承关系
 
-### 29.用户点击屏幕，系统是怎么找到一个view并决定由它来响应事件的
+### 30.用户点击屏幕，系统是怎么找到一个view并决定由它来响应事件的
 - 当用户点击屏幕后，UIApplication 先响应事件，然后传递给UIWindow。如果window可以响应。就开始遍历window的subviews。遍历的过程中，如果第一个遍历的view1可以响应，那就遍历这个view1的subviews（依次这样不停地查找，直至查找到合适的响应事件view）。如果view1不可以响应，那就开始对view2进行判断和子视图的遍历。依次类推view3，view4……  如果最后没有找到合适的响应view，这个消息就会被抛弃。（整个遍历的过程就是树的先序遍历）。过程如下图：
 ![image](https://img-blog.csdn.net/20170317120911452?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbXVzaGFvZmVuZzE5OTA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 - 包括两个方法：
-    * - (nullableUIView *)hitTest:(CGPoint)point withEvent:(nullableUIEvent *)event；
-    * - (BOOL)pointInside:(CGPoint)point withEvent:(nullableUIEvent *)event；
+    * -(nullableUIView *)hitTest:(CGPoint)point withEvent:(nullableUIEvent *)event；
+    * -(BOOL)pointInside:(CGPoint)point withEvent:(nullableUIEvent *)event；
 - 对view进行重写这两个方法后，就会发现，点击屏幕后，首先响应的是hitTest方法；如果方法A中，我们没有调用父类的这个方法，那就根据这个方法A的返回view，作为响应事件的view。（当然返回nil，就是这个view不响应）如果方法A中，我们调用了父类的这个方法，也就是[super hitTest:point withEvent:event];那这个时候系统就要调用pointInside方法；通过这个方法的返回值，来判断当前这个view能不能响应消息。如果pointInside方法返回的是no，那就不用再去遍历它的子视图。hitTest方法返回的view就是可以响应事件的view。如果pointInside方法返回的是YES，那就去遍历它的子视图。
 
-### 30.解释一下 GCD 在 Runloop 中的使用？
+### 31.解释一下 GCD 在 Runloop 中的使用？
 - 实际上 RunLoop 底层也会用到 GCD 的东西，但同时 GCD 提供的某些接口也用到了RunLoop，例如dispatch_async()。
 - 当调用 dispatch_async(dispatch_get_main_queue(), block) 时，libDispatch会向主线程的RunLoop发送消息，RunLoop会被唤醒，并从消息中取得这个 block，并在回调 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__() 里执行这个 block。但这个逻辑仅限于dispatch到主线程，dispatch 到其他线程仍然是由 libDispatch 处理的。
 - GCD由 子线程 返回到 主线程,只有在这种情况下才会触发 RunLoop。会触发 RunLoop 的 Source 1 事件。
 
-### 31.解释一下 NSTimer，以及 NSTimer 的循环引用。
+### 32.解释一下 NSTimer，以及 NSTimer 的循环引用。
 #### NSTimer
 - NSTimer 其实就是 CFRunLoopTimerRef，他们之间是 toll-free bridged 的。一个 NSTimer 注册到 RunLoop 后，RunLoop 会为其重复的时间点注册好事件。例如 10:00, 10:10, 10:20 这几个时间点。RunLoop 为了节省资源，并不会在非常准确的时间点回调这个Timer。Timer 有个属性叫做 Tolerance (宽容度)，标示了当时间点到后，容许有多少最大误差。
 - 如果某个时间点被错过了，例如执行了一个很长的任务，则那个时间点的回调也会跳过去，不会延后执行。就比如等公交，如果 10:10 时我忙着玩手机错过了那个点的公交，那我只能等 10:20 这一趟了。
@@ -8361,7 +8504,7 @@ NSURLSession    ->AFNetworking2, Alamofire
 #### NSTimer的循环引用
 - 当你在ViewController(简称VC)中使用timer属性，由于VC强引用timer，timer的target又是VC造成循环引用。当你在VC的dealloc方法中销毁timer，发现VC被pop，VC的dealloc方法没走，VC在等timer释放才走dealloc，timer释放在dealloc中，所以引起循环引用。
 
-### 32.NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?
+### 33.NStimer准吗？谈谈你的看法？如果不准该怎样实现一个精确的NSTimer?
 #### 不准
 #### 不准的原因如下：
 - NSTimer加在main runloop中，模式是NSDefaultRunLoopMode，main负责所有主线程事件，例如UI界面的操作，复杂的运算，这样在同一个runloop中timer就会产生阻塞。
@@ -8401,7 +8544,7 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 - 方法三：
     * 直接使用GCD替代！
 
-### 33.AFNetworking 中如何运用 Runloop?
+### 34.AFNetworking 中如何运用 Runloop?
  AFURLConnectionOperation 这个类是基于 NSURLConnection 构建的，其希望能在后台线程接收 Delegate 回调。为此 AFNetworking 单独创建了一个线程，并在这个线程中启动了一个 RunLoop：
 
 ```
@@ -8440,19 +8583,19 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 ```
 - 当需要这个后台线程执行任务时，AFNetworking 通过调用 [NSObject performSelector:onThread:..] 将这个任务扔到了后台线程的 RunLoop 中。
 
-### 34.AFN为什么添加一条常驻线程？
+### 35.AFN为什么添加一条常驻线程？
 - AFN2.0里面把每一个网络请求的发起和解析都放在了一个线程里执行。正常来说，一个线程执行完任务后就退出了。开启runloop是为了防止线程退出。一方面避免每次请求都要创建新的线程；另一方面，因为connection的请求是异步的，如果不开启runloop，线程执行完代码后不会等待网络请求完的回调就退出了，这会导致网络回调的代理方法不执行。
 - AFN3.x为什么不再需要常驻线程？NSURLConnection的一大痛点就是：发起请求后，这条线程需要一直处于等待回调的状态。从iOS9.0开始 deprecated 了NSURLConnection。 替代方案就是NSURLSession。
 - NSURLSession发起的请求，不再需要在当前线程进行代理方法的回调！可以指定回调的delegateQueue，这样我们就不用为了等待代理回调方法而苦苦保活线程了。
 
-### 35.PerformSelector 的实现原理？
+### 36.PerformSelector 的实现原理？
 - 当调用 NSObject 的 performSelecter:afterDelay: 后，实际上其内部会创建一个Timer并添加到当前线程的 RunLoop 中。所以如果当前线程没有RunLoop，则这个方法会失效。
 - 当调用 performSelector:onThread:时，实际上其会创建一个 Timer加到对应的线程去，同样的，如果对应线程没有 RunLoop 该方法也会失效。
 - PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
     * 不起作用，子线程默认没有 Runloop，也就没有 Timer。
     * 解决的办法是可以使用 GCD 来实现：Dispatch_after
 
-### 36.利用 runloop 解释一下页面的渲染的过程？
+### 37.利用 runloop 解释一下页面的渲染的过程？
 - 当我们调用 [UIView setNeedsDisplay]时，这时会调用当前 View.layer 的 [view.layer setNeedsDisplay]方法。
 - 这等于给当前的layer打上了一个脏标记，而此时并没有直接进行绘制工作。而是会到当前的Runloop即将休眠，也就是 beforeWaiting 时才会进行绘制工作。
 - 紧接着会调用 [CALayer display]，进入到真正绘制的工作。CALayer层会判断自己的 delegate有没有实现异步绘制的代理方法displayer:，这个代理方法是异步绘制的入口，如果没有实现这个方法，那么会继续进行系统绘制的流程，然后绘制结束。
@@ -8462,7 +8605,7 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 - 以上两个分支，最终 CALayer 都会将位图提交到 Backing Store，最后提交给 GPU。
 - 至此绘制的过程结束。
 
-### 37.如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？
+### 38.如何使用 Runloop 实现一个常驻线程？这种线程一般有什么作用？
 * 为当前线程开启一个RunLoop（第一次调用 [NSRunLoop currentRunLoop]方法时实际是会先去创建一个RunLoop）
 * 向当前RunLoop中添加一个Port/Source等维持RunLoop的事件循环（如果RunLoop的mode中一个item都没有，RunLoop会退出）
 * 启动该RunLoop
@@ -8479,7 +8622,7 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
     }
 ```
 
-### 38.NSThread+runloop实现常驻线程
+### 39.NSThread+runloop实现常驻线程
 - NSThread在实际开发中比较常用到的场景就是去实现常驻线程。
 - 由于每次开辟子线程都会消耗cpu，在需要频繁使用子线程的情况下，频繁开辟子线程会消耗大量的cpu，而且创建线程都是任务执行完成之后也就释放了，不能再次利用，那么如何创建一个线程可以让它可以再次工作呢？也就是创建一个常驻线程。
 - 首先常驻线程既然是常驻，那么我们可以用GCD实现一个单例来保存NSThread
@@ -8537,10 +8680,10 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 }
 ```
 
-### 39.为什么 NSTimer 有时候不好使？（不同类型的Mode）
+### 40.为什么 NSTimer 有时候不好使？（不同类型的Mode）
 - 因为创建的 NSTimer 默认是被加入到了 defaultMode，所以当 Runloop 的 Mode 变化时，当前的 NSTimer 就不会工作了。
 
-### 40.滑动tableView时，定时器还会生效吗？
+### 41.滑动tableView时，定时器还会生效吗？
 - 默认情况下RunLoop运行在kCFRunLoopDefaultMode下，而当滑动tableVie时，RunLoop切换到UITrackingRunLoopMode，而Timer是在kCFRunLoopDefaultMode下的，就无法接受处理Timer的事件。
 - 解决：把Timer添加到UITrackingRunLoopMode上并不能解决问题，因为这样在默认情况下就无法接受定时器事件了。所以我们需要把Timer同时添加到UITrackingRunLoopMode和kCFRunLoopDefaultMode上。
 - 那么如何把timer同时添加到多个mode上呢？就要用到NSRunLoopCommonModes了
@@ -8550,7 +8693,7 @@ self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(sho
 ```
 - Timer就被添加到多个mode上，这样即使RunLoop由kCFRunLoopDefaultMode切换到UITrackingRunLoopMode下，也不会影响接收Timer事件
 
-### 41.以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？
+### 42.以+ scheduledTimerWithTimeInterval...的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？
 - RunLoop只能运行在一种mode下，如果要换mode，当前的loop也需要停下重启成新的。利用这个机制，ScrollView滚动过程中NSDefaultRunLoopMode（kCFRunLoopDefaultMode）的mode会切换到UITrackingRunLoopMode来保证ScrollView的流畅滑动：只能在NSDefaultRunLoopMode模式下处理的事件会影响ScrollView的滑动。
 - 如果我们把一个NSTimer对象以NSDefaultRunLoopMode（kCFRunLoopDefaultMode）添加到主运行循环中的时候, ScrollView滚动过程中会因为mode的切换，而导致NSTimer将不再被调度。
 - 同时因为mode还是可定制的，所以：
@@ -8575,13 +8718,13 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 ```
 
-### 42.`PerformSelector`和`runloop`的关系
+### 43.`PerformSelector`和`runloop`的关系
 - 当调用 NSObject 的 performSelecter:afterDelay: 后，实际上其内部会创建一个 Timer 并添加到当前线程的 RunLoop 中。所以如果当前线程没有 RunLoop，则这个方法会失效。
 - 当调用 performSelector:onThread: 时，实际上其会创建一个 Timer 加到对应的线程去，同样的，如果对应线程没有 RunLoop 该方法也会失效。
 - performSelector:withObject:只是一个单纯的消息发送，和时间没有一点关系。所以不需要添加到子线程的Runloop中也能执行。
 - 参考文章：[iOS PerformSelector面试题总结](https://www.jianshu.com/p/da010a008741)
 
-### 43.PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
+### 44.PerformSelector:afterDelay:这个方法在子线程中是否起作用？为什么？怎么解决？
 - 不起作用，子线程默认没有 Runloop，也就没有 Timer。
 - 解决的办法是可以使用 GCD 来实现：Dispatch_after
 
@@ -8662,7 +8805,7 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 - 另外开了一个子线程并开启他的runloop（模仿了AFNetworking的方式），并加上一个timer每隔1秒去进行监测。
 - 如果当前时长与_waitStartTime差距大于2秒，则认为有卡顿情况，并记录了当前堆栈信息。
 
-### 47.TableView优化，怎么减少卡顿
+### 48.TableView优化，怎么减少卡顿
 
 #### 把赋值和计算布局以及数据绑定分离
 
@@ -8727,7 +8870,7 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 - 当一个图像混合了多个图层，每次移动时，每一帧都要重新合成这些图层，十-分消耗性能。当我们开启光栅化后，会在首次产生一个位图缓存，当再次使用时候就会复用这个缓存。但是如果图层发生改变的时候就会重新产生位图缓存。所以这个功能一般不 能用于UITableViewCell中，cell的复 用反而降低了性能。最好用于图层较多的静态内容的图形。而且产生的位图缓存的大小是有限制的，一般是2.5个屏幕尺寸。在100ms之内不使用这个缓存，缓存也会被删除。所以我们要根据使用场景而定。
 - Core Animation工具检测离屏渲染，对于离屏渲染的检测，苹果为我们提供了一个测试工具Core Animation。可以在Xcode- >Open Develeper Tools->Instruments中找到，
 
-### 48.了解表视图吗，解释一下复用原理
+### 49.了解表视图吗，解释一下复用原理
 - 表视图：是iOS开发中最重要的视图，它以列表的形式展示数据。表视图又一下部分组成：
     * 表头视图：表视图最上边的视图
     * 表脚视图：表视图最下边的视图
@@ -8739,8 +8882,8 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:1.0
 
 ![image](https://img.jbzj.com/file_images/article/201611/2016111100147763.jpg?20161011020)
 
-### 49.说明一下表视图的滑动卡顿的优化方法
-- 同43题
+### 50.说明一下表视图的滑动卡顿的优化方法
+- 同48题
 
 ## iOS 多线程
 ### 1.进程和线程、多进程和多线程、任务和队列、并行与串行、同步和异步
