@@ -939,6 +939,108 @@ var handler = messageHandlers[message.handlerName];
 #### WebViewJavascriptBridge(WKWebView)
 
 ### 2.在使用 WKWedView 时遇到过哪些问题？
+#### WKWebView 白屏问题
+- 在 UIWebView 上当内存占用太大的时候，App Process 会 crash；而在 WKWebView 上当总体的内存占用比较大的时候，WebContent Process 会 crash，从而出现白屏现象。
+- 这个时候 WKWebView.URL 会变为 nil, 简单的 reload 刷新操作已经失效，对于一些长驻的H5页面影响比较大。
+- 解决方案：
+    * 借助 WKNavigtionDelegate
+        * iOS 9以后 WKNavigtionDelegate 新增了一个回调函数：- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView API_AVAILABLE(macosx(10.11), ios(9.0));当 WKWebView 总体内存占用过大，页面即将白屏的时候，系统会调用上面的回调函数，我们在该函数里执行[webView reload](这个时候 webView.URL 取值尚不为 nil）解决白屏问题。在一些高内存消耗的页面可能会频繁刷新当前页面，H5侧也要做相应的适配操作。
+    * 检测 webView.title 是否为空
+        * 可以在 viewWillAppear 的时候检测 webView.title 是否为空来 reload 页面。
+
+#### WKWebView Cookie 问题
+- WKWebView Cookie 问题在于 WKWebView 发起的请求不会自动带上存储于 NSHTTPCookieStorage 容器中的 Cookie。
+- 目前的主要解决方案是：
+    * WKWebView loadRequest 前，在 request header 中设置 Cookie, 解决首个请求 Cookie 带不上的问题；
+    * 通过 document.cookie 设置 Cookie 解决后续页面(同域)Ajax、iframe 请求的 Cookie 问题；但无法解决302请求的 Cookie 问题
+
+#### WKWebView NSURLProtocol问题
+- WKWebView 在独立于 app 进程之外的进程中执行网络请求，请求数据不经过主进程，因此，在 WKWebView 上直接使用 NSURLProtocol 无法拦截请求。
+
+#### WKWebView loadRequest 问题
+- 在 WKWebView 上通过 loadRequest 发起的 post 请求 body 数据会丢失：
+
+#### WKWebView 页面样式问题
+- 在 WKWebView 适配过程中，我们发现部分H5页面元素位置向下偏移或被拉伸变形，追踪后发现主要是H5页面高度值异常导致：
+- 
+
+#### WKWebView 截屏问题
+- WKWebView 下通过 -[CALayer renderInContext:]实现截屏的方式失效，需要通过以下方式实现截屏功能：
+
+```
+@implementation UIView (ImageSnapshot) 
+- (UIImage*)imageSnapshot { 
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size,YES,self.contentScaleFactor); 
+    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES]; 
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext(); 
+    UIGraphicsEndImageContext(); 
+    return newImage; 
+} 
+@end
+```
+- 然而这种方式依然解决不了 webGL 页面的截屏问题，对webGL 页面的截屏结果不是空白就是纯黑图片。无奈之下，我们只能约定一个JS接口，让游戏开发商实现该接口，具体是通过 canvas getImageData()方法取得图片数据后返回 base64 格式的数据，客户端在需要截图的时候，调用这个JS接口获取 base64 String 并转换成 UIImage。
+
+#### WKWebView crash问题
+- 暂无
+
+#### 视频自动播放
+- WKWebView 需要通过WKWebViewConfiguration.mediaPlaybackRequiresUserAction设置是否允许自动播放，但一定要在 WKWebView 初始化之前设置，在 WKWebView 初始化之后设置无效。
+- 
+#### goBack API问题
+- WKWebView 上调用 -[WKWebView goBack], 回退到上一个页面后不会触发window.onload()函数、不会执行JS。
+
+#### 页面滚动速率
+- WKWebView 需要通过scrollView delegate调整滚动速率：
+
+```
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+     scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+}
+```
+参考：[WKWebView 那些坑](https://mp.weixin.qq.com/s/rhYKLIbXOsUJC_n6dt9UfA)
+
+#### WKWebView和UIWebView的区别
+- WKWebView 是苹果在 WWDC 2014 上推出的新一代 webView 组件，用以替代 UIKit 中笨重难用、内存泄漏的 UIWebView。WKWebView 拥有60fps滚动刷新率；
+- 优点
+    * 性能和稳定性的大幅提高
+    * 内存占用的减少，大概是UIWebView的1/4 - 1/3
+    * 支持更多HTML5、JS特性：允许JavaScript的Nitro的库加载并使用（移动设备的 Safari 使用 Nitro 引擎，但是 UIWebView 不包括 JIT 编译，所以不支持，体验会慢一些）
+    * 60fps的刷新率以及内置手势的支持
+    * 增加了新的代理方法，可控性更高
+    * estimatedProgress属性实现进度条：不需要像UIWebView一样自己做假进度条（通过NJKWebViewProgress和双层代理技术实现），技术复杂度和代码量，根贴近实际加载进度优化好的多。
+    * JS交互上更方便
+        * 可以和js直接互调函数，不像UIWebView需要第三方库WebViewJavascriptBridge来协助处理和js的交互。
+- 缺点
+    * 不自带cookie
+        * 业界普遍认为 WKWebView 拥有自己的私有存储，不会将 Cookie 存入到标准的 Cookie 容器 NSHTTPCookieStorage 中。会忽略任何的默认网络存储器(NSURLCache, NSHTTPCookieStorage, NSCredentialStorage) 和一些标准的自定义网络请求类(NSURLProtocol,等等.)，导致NSURLCache和NSHTTPCookieStroage无法操作(WKWebView)WebCore进程的缓存和Cookie
+        * 实践发现 WKWebView 实例其实也会将 Cookie 存储于 NSHTTPCookieStorage 中，但存储时机有延迟，在iOS 8上，当页面跳转的时候，当前页面的 Cookie 会写入 NSHTTPCookieStorage 中，而在 iOS 10 上，JS 执行 document.cookie 或服务器 set-cookie 注入的 Cookie 会很快同步到 NSHTTPCookieStorage 中，FireFox 工程师曾建议通过 reset WKProcessPool 来触发 Cookie 同步到 NSHTTPCookieStorage 中，实践发现不起作用，并可能会引发当前页面 session cookie 丢失等问题。
+    * 不支持自定义NSURLProtocol，否则无法发送POST参数
+
+#### iOS中的WebView如何优化
+- WkWebView时间消耗可能的节点
+    * 页面中初始化WKWebView时间消耗；
+    * WkWebView加载js、css、image等静态资源时间消耗；
+    * WKWebView渲染页面时间消耗；
+- 对应主要的时间消耗，解决方案如下
+    * WKWebView做成单例，常驻内存，避免实例化带来的时间消耗，同时避免大量创建造成的内存消耗；
+    * js、css、image等进行离线缓存或提前预加载，避免展示等时候才加载，减少加载静态资源的时间消耗；
+    * image可以考虑使用native预加载，WKWebView中的图片由native加载好的进行替换；
+    * 关于页面渲染时间消耗，只能将页面尽可能做的简单清晰，在代码优化上多做功夫。重度交互放在native上，WKWebView只做丰富内容的展示；
+- 主要设计思想
+    * 服务端返回一个头部包含js、css内容的、可以作为所有页面壳资源的壳文件（shell.html），native使用shell以单例的方式实例化一个WKWebView；
+    * 当用户在浏览列表页时，接口返回每个页面所包含的image集合、页面body内容（数据接口在稍后给出），App可以选择是否对图片进行预加载以提高WKWebView的响应速度（例如wifi情况下）；
+    * 进入包含WkWebView的页面以后，使用列表页中取得的图片和body内容对shell.html中的body内容进行替换，刷新WkWebView内容。也可以根据ID读取本地缓存文件实现内容替换，可操作性较强。
+- 核心模块及所需方法
+    * 资源管理模块
+        * 能够根据接口返回的信息有条件地下载js、css、shell.html等静态资源，存储到指定的位置。
+        * 能够对静态资源文件进行管理，包括：删除缓存，更新资源等操作。
+        * 能够对已经浏览过的页面数据及相关字段信息进行缓存，能够对这部分资源进行管理，包括：清除老旧信息、对应ID查找指定的页面信息、更新其中的字段信息等。
+    * WKWebView单例类
+        * 以单例模式生成shell.html文件页面；
+        * 能够根据model刷新页面信息；
+        * 支持常用的与js的交互能力；
+        * 代理方法能够支持获取必要的页面信息；
+
 ### 3.是否了解 UIWebView 的插件化？
 ### 4.是否了解 SFSafariViewController ？
 
@@ -1230,12 +1332,83 @@ var handler = messageHandlers[message.handlerName];
 ### 2.AES对称加密
 ### 3.DES加密
 ### 4.Base64加密
+- base64 编码是现代密码学的基础
+- 基本原理：
+    * 原本是 8个bit 一组表示数据,改为 6个bit一组表示数据,不足的部分补零,每 两个0 用 一个 = 表示
+- 用base64 编码之后,数据长度会变大,增加了大约 1/3 左右.(8-6)/6
+- 可进行反向解密
+- Xcode7.0 之后出现的
+- 编码有个非常显著的特点,末尾有个 = 号
+- 将文件进行加密
+
+```
+// 获取需要加密文件的二进制数据
+NSData *data = [NSData dataWithContentsOfFile:@"/Users/wangpengfei/Desktop/photo/IMG_5551.jpg"];
+// 或 base64EncodedStringWithOptions
+NSData *base64Data = [data base64EncodedDataWithOptions:0];
+// 将加密后的文件存储到桌面
+[base64Data writeToFile:@"/Users/wangpengfei/Desktop/123" atomically:YES];
+```
+- 将文件进行解密
+
+```
+// 获得加密后的二进制数据
+NSData *base64Data = [NSData dataWithContentsOfFile:@"/Users/wangpengfei/Desktop/123"];
+// 解密 base64 数据
+NSData *baseData = [[NSData alloc] initWithBase64EncodedData:base64Data options:0];
+// 写入桌面
+[baseData writeToFile:@"/Users/wangpengfei/Desktop/IMG_5551.jpg" atomically:YES];
+```
+- 利用终端命令进行base64运算:
+
+```
+// 将文件 meinv.jpg 进行 base64运算之后存储为 meinv.txt
+base64 meinv.jpg -o meinv.txt
+// 讲meinv.txt 解码生成 meinv.png
+base64 -D meinv.txt -o meinv.png
+// 将字符串 "hello" 进行 base 64 编码 结果:aGVsbG8=cho "hello" | base64
+// 将 base64编码之后的结果 aGVsbG8= 反编码为字符串
+echo aGVsbG8= | base64 -D
+```
+
 ### 5.MD5加密
+- 把一个任意长度的字节串变换成一定长度的十六进制的大整数.
+- 注意,字符串的转换过程是不可逆的,不能通过加密结果,反向推导出原始内容
+- 需要导入第三方框架: NSString+Hash
+- MD5特点:
+    * 压缩性 : 任意长度的数据,算出的 MD5 值长度都是固定的.
+    * 容易计算 : 从原数据计算出 MD5 值很容易.
+    * 抗修改性 : 对原数据进行任何改动,哪怕只修改一个字节,所得到的 MD5 值都有很大区别.
+    * 弱抗碰撞 : 已知原数据和其 MD5 值,想找到一个具有相同 MD5 值的数据(即伪造数据)是非常困难的.
+    * 强抗碰撞: 想找到两个不同数据,使他们具有相同的 MD5 值,是非常困难的
+- MD5 应用:
+    * 一致性验证:MD5将整个文件当做一个大文本信息,通过不可逆的字符串变换算法,产生一个唯一的MD5信息摘要.就像每个人都有自己独一无二的指纹,MD5对任何文件产生一个独一无二的数字指纹.
+    * 利用 MD5 来进行文件校验,被大量应用在软件下载站,论坛数据库,系统文件安全等方面(是否认为添加木马，篡改文件内容等).百度‘MD5'第一个网站进去，利用数据库伪解密,即反查询
+    * 数字签名;
+    * 安全访问认证;
+
 ### 6.简述 `SSL` 加密的过程用了哪些加密方法，为何这么作？
 ### 7.是否了解 `iOS` 的签名机制？
 ### 8.如何对 `APP` 进行重签名？
 ### 9.在HTTPS建立连接的时候都用了哪些加密算法，为什么要这么设计
 ### 10.常见的加密算法
+- iOS Base64编码
+- 哈希(散列)函数(消息摘要算法）：MD5、SHA、HMAC
+- 对称加密算法：DES、3DES、AES、RC4
+- 非对称加密算法：RSA
+- 苹果钥匙链Keychain
+
+![image](https://upload-images.jianshu.io/upload_images/2000534-492cd6051748c9ab.png?imageMogr2/auto-orient/strip|imageView2/2/w/946)
+
+### 补充：常见的加密方式
+- base64加密
+- POST加密
+- Token值
+- MD5加密
+- 时间戳密码
+- 钥匙串访问
+- 指纹识别
+
 ### 11.对称加密算法和非对称加密算法的区别
 
 

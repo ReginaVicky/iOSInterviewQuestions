@@ -569,6 +569,7 @@
 - 30.[KVC的使用？实现原理？（KVC拿到key以后，是如何赋值的？知不知道集合操作符，能不能访问私有属性，能不能直接访问_ivar）](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#30kvc的使用实现原理kvc拿到key以后是如何赋值的知不知道集合操作符能不能访问私有属性能不能直接访问_ivar)
 - 31.[KVC的keyPath中的集合运算符如何使用？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#31kvc的keypath中的集合运算符如何使用)
 - 32.[在KVO中，他是怎么知道监听的对象发生了变化？](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博@Liberalisman面试知识点总结》/03《微博@Liberalisman面试知识点总结》.md#32在kvo中他是怎么知道监听的对象发生了变化)
+- 33.Kvo常见崩溃
 
 ## 项目架构
 - 1.[什么是 MVC?](https://github.com/ReginaVicky/iOSInterviewQuestions/blob/master/03《微博%40Liberalisman面试知识点总结》/03《微博%40Liberalisman面试知识点总结·下》.md#1什么是-mvc)
@@ -6150,6 +6151,7 @@ objc_autoreleaseReturnValue会检视当前方法返回之后即将要执行的�
 - 简单说是双向链表，每张链表头尾相接，有parent、child指针
 - 每创建一个池子，会在首部创建一个哨兵对象,作为标记
 - 最外层池子的顶端会有一个next指针。当链表容量满了，就会在链表的顶端，并指向下一张表。
+- 每个自动释放池都是由一系列的AutoreleasePoolPage组成的，并且每个AutoreleasePoolPage的大小都是4096字节（也就是虚拟内存一页的大小）。
 
 ### 53.@autoreleasrPool 的释放时机？
 - App启动后，苹果在主线程 RunLoop 里注册了两个 Observer，其回调都是_wrapRunLoopWithAutoreleasePoolHandler()。
@@ -12483,7 +12485,7 @@ NSHTTPURLResponse是NSURLResponse的子类，由于绝大部分的REST都是HTTP
     * HTTP/1.0中只定义了16个状态响应码，对错误或警告的提示不够具体。HTTP/1.1引入了一个Warning头域，增加对错误或警告信息的描述。
     * 此外，在HTTP/1.1中新增了24个状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。
 
-#### HTTP1.1与HTTP2.0的区别
+#### HTTP1.1与HTTP2.0、HTTP3.0的区别
 - 多路复用
     * HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。
     * 当然HTTP1.1也可以多建立几个TCP连接，来支持处理更多并发的请求，但是创建TCP连接本身也是有开销的。
@@ -12499,6 +12501,15 @@ NSHTTPURLResponse是NSURLResponse的子类，由于绝大部分的REST都是HTTP
     * 为了改善延迟，HTTP/2引入了server push，它允许服务端推送资源给浏览器，在浏览器明确地请求之前。一个服务器经常知道一个页面需要很多附加资源，在它响应浏览器第一个请求的时候，可以开始推送这些资源。这允许服务端去完全充分地利用一个可能空闲的网络，改善页面加载时间。
     * 服务器端推送的这些资源其实存在客户端的某处地方，客户端直接从本地加载这些资源就可以了，不用走网络，速度自然是快很多的。
     * 在协议层，HTTP/2 server push被push_promise 帧所驱动，一个PUSH_PROMISE描述了一个请求，即服务端预测浏览器将马上要发出的请求。浏览器一收到PUSH_PROMISE，它马上知道服务端将要传输这个资源。如果浏览器后续发现它需要这个资源，它会等待这个推送完成，而不是发送一个新的请求。这减少了浏览器花费在网络等待上的时间 。
+
+#### HTTP3.0
+- QUIC (Quick UDP Internet Connections), 快速 UDP 互联网连接。
+- QUIC是基于UDP协议的。
+- 两个主要特性：
+    * 线头阻塞(HOL)问题的解决更为彻底：
+        * 基于TCP的HTTP/2，尽管从逻辑上来说，不同的流之间相互独立，不会相互影响，但在实际传输方面，数据还是要一帧一帧的发送和接收，一旦某一个流的数据有丢包，则同样会阻塞在它之后传输的流数据传输。而基于UDP的QUIC协议则可以更为彻底地解决这样的问题，让不同的流之间真正的实现相互独立传输，互不干扰。
+    * 切换网络时的连接保持：
+        * 当前移动端的应用环境，用户的网络可能会经常切换，比如从办公室或家里出门，WiFi断开，网络切换为3G或4G。基于TCP的协议，由于切换网络之后，IP会改变，因而之前的连接不可能继续保持。而基于UDP的QUIC协议，则可以内建与TCP中不同的连接标识方法，从而在网络完成切换之后，恢复之前与服务器的连接。
 
 ### 7.说一下传输控制协议 - TCP ?
 - TCP协议(Transport control Protocol)是一种面向连接的、可靠的、基于字节流的传输层通信协议。
@@ -13628,10 +13639,10 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 ## iOS 消息传递的方式
 ### 1.说一下 NSNotification 的实现机制？
 - 使用观察者模式来实现的用于跨层传递信息的机制。传递方式是一对多的。
-- 如果实现通知机制？
+- 如何实现通知机制？
     * 应用服务提供商从服务器端把要发送的消息和设备令牌（device token）发送给苹果的消息推送服务器APNs。
     * APNs根据设备令牌在已注册的设备（iPhone、iPad、iTouch、mac等）查找对应的设备，将消息发送给相应的设备。
-    * 客户端设备接将接收到的消息传递给相应的应用程序，应用程序根据用户设置弹出通知消息。
+    * 客户端设备将接收到的消息传递给相应的应用程序，应用程序根据用户设置弹出通知消息。
 
 ### 2.说一下 NSNotification 的特点。
 ### 3.简述 KVO 的实现机制。或者是KVO的使用？实现原理？（为什么要创建子类来实现）
@@ -14542,4 +14553,12 @@ NSLog(@"%@",[@[arr,arr2] valueForKeyPath:@"@unionOfArrays.name"]);
 ![image](http://upload-images.jianshu.io/upload_images/1599305-6a75ebddd2c1b221.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 32.在KVO中，他是怎么知道监听的对象发生了变化？
+- 重写子类;
+- 重写class方法
+- 重写set方法,调用willchange,set,didchange方法,然后通知observer发生了改变
+
+### 33.Kvo常见崩溃
+- observe忘记写监听回调方法 observeValueForKeyPath
+- add和remove次数不匹配，例如多次remove；
+- 监听者和被监听者dealloc之前没有remove（其实也原因2，但是监听者和被监听者的生命周期不同）
 
